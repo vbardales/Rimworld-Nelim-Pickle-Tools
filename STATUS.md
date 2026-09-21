@@ -26,7 +26,7 @@ remaining:
   - "defect (dansMonoRepo -> horsMonoRepo): no GitHub repository and no remote. The About.xml <url> and the Source code on GitHub link name https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools, which does not exist: the link is unverified, not known to be wrong."
   - "unverified: the renamed RimmsqolSteps build. Replay pass avec-rimmsqol after pointing the map of FlavorTextExtendedFR at PickleTools/RimmsqolSteps/Mod with the new packageId."
   - "open: Upstream/ holds patches against Pickle's source; Pickle's licence has not been checked for that. Must be settled before the repository goes public (ATTRIBUTION.md)."
-  - "open: attribution of FilmTicks, ResearchSteps and ColonistRace, written in other sessions, is not established here."
+  - "open: attribution of FilmTicks, ResearchSteps, ColonistRace, InspectTabs and KeyedClick, written in other sessions, is not established here."
   - "unverified: RIMMSQOL's Workshop page and description were not consulted for a licence or a prohibition; none was found in its About.xml, its shipped source or as a file."
   - "unverified: RIMMSQOL's checkbox is wired to the calls the steps make (read from its source, not clicked); other customization mods; the French interface."
   - "open: the image tool that generated the icon and the preview is not named in ATTRIBUTION.md."
