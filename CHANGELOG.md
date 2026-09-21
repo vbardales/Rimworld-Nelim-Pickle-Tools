@@ -22,4 +22,4 @@ Nothing here has been released or tagged: this is a development-only tool, never
   sources and the page that engraves the preview in `Art/`.
 - `LICENSE` (MIT), `ATTRIBUTION.md`, `STATUS.md`.
 - Other tools added by other sessions are recorded in their own folders: `FilmTicks/`, `ResearchSteps/`,
-  `ColonistRace/`, `Upstream/`.
+  `ColonistRace/`, `InspectTabs/`, `KeyedClick/`, `Upstream/`.
