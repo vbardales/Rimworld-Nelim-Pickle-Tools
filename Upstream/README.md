@@ -13,6 +13,7 @@ landed.
 |---|---|
 | `PENDING.md` | The ledger: every change and idea, its upstream reference, its state, and what proves it |
 | `patches/` | Unmerged code as patches against Pickle `main` (`git apply --ignore-whitespace`) |
+| `bundles/` | Upstream `main` plus named PRs, built and staged as a mod folder to play a PR before it merges (`make-bundle.sh`, `run-on-bundle.sh`; written by the ArchitectStudio session, see its README) |
 | `tests/` | Throwaway features that exercise a patch, kept because the patch is worthless without them |
 
 The launcher and the WSL harness are not here: they live in the monorepo's `scripts/` (`PICKLE-WSL.md`).
