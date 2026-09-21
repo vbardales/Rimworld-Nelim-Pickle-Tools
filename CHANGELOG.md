@@ -11,7 +11,8 @@ Nothing here has been released or tagged: this is a development-only tool, never
   every scenario and a hand-off between launches for restart chains.
 - Three offline checks: `Check-Bridge.ps1` (the binaries), `Check-Reader.ps1` (the settings-file reader),
   `Check-Steps.ps1` (patterns, ambiguity against Pickle, the other suites and the sibling tools).
-- First in-game run, 2026-09-21, in the `avec-rimmsqol` pass of FlavorTextExtendedFR: four launches, all passed.
+- First in-game run, 2026-09-21, in the `avec-rimmsqol` pass of FlavorTextExtendedFR: four launches, all passed,
+  and again after the rename, 23:12 to 23:18: four launches, all passed.
   Logs and four captures in `RimmsqolSteps/evidence/2026-09-21/`.
 - Identifiers: packageId `nelim.pickletools.rimmsqol`, assembly and namespace `Nelim.PickleTools.Rimmsqol`.
   The first version was `nelim.pickleshared.rimmsqol`, in the monorepo's `PickleShared/`.
