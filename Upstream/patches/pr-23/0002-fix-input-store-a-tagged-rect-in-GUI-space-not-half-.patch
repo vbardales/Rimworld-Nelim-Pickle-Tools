@@ -1,0 +1,80 @@
+From 122f21fed3ebc269d76c164fad743934460d2d06 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Sun, 20 Sep 2026 22:20:34 +0200
+Subject: [PATCH 2/3] fix(input): store a tagged rect in GUI space, not half in
+ screen space
+
+GUIToScreenRect composes two spaces: it adds the clip origin unscaled and the
+local offset scaled. Every consumer of the store wants GUI space - ToScreen
+applies Prefs.UIScale itself, and hit tests compare against
+UI.MousePositionOnUIInverted - so at any scale but 1 the stored rect was
+neither space.
+
+Measured in a running game at 1920x1080, on one button drawn in one place in
+its window, by a probe that prefixes Record:
+
+  100%  clip origin (0, 735)  local y 285  ->  stored 1020  =  GUI y 1020
+  150%  clip origin (0, 375)  local y 285  ->  stored 802.5 vs GUI y 660
+
+375 + 285 x 1.5 = 802.5, and ToScreen then multiplied it by 1.5 again: 1203 on
+a screen 1080 tall, clamped to the bottom edge. That is the "pointer never
+reached" the previous commit tried to catch from the other end. At scale 1 the
+two spaces coincide, which is why only a scaled interface ever saw it.
+
+Unclip through the origin instead. GUIToScreenPoint(Vector2.zero) is exact for
+it because the scaled term vanishes at zero, so 100% is unchanged and 150%
+gives 660, which ToScreen turns back into the right 990.
+
+The scale carried on each entry stays. It no longer has a wrong rect to catch,
+but the store is cleared per frame and the scale can still move between the
+repaint that records a rect and the lookup that reads it, which is the case it
+was written for.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Source/Pickle/Input/TagStore.cs | 21 ++++++++++++++++-----
+ 1 file changed, 16 insertions(+), 5 deletions(-)
+
+diff --git a/Source/Pickle/Input/TagStore.cs b/Source/Pickle/Input/TagStore.cs
+index b88e184..f3f370e 100644
+--- a/Source/Pickle/Input/TagStore.cs
++++ b/Source/Pickle/Input/TagStore.cs
+@@ -29,17 +29,28 @@ internal static class TagStore {
+       return;
+     }
+ 
+-    // Convert window-local rect to game-window space using the active GUI group matrix.
+-    // Rects tagged inside windows/groups are local; a backend expects game-window coords.
+-    Rect screenRect = GUIUtility.GUIToScreenRect(rect);
++    // Unclip a window-local rect into game-window GUI space. Rects tagged inside windows or
++    // groups are local, and every consumer wants GUI space: InputBackends.ToScreen applies
++    // Prefs.UIScale itself, and hit tests compare against UI.MousePositionOnUIInverted.
++    //
++    // GUIToScreenRect cannot do it. Measured at 1920x1080 on one button drawn in one place: it
++    // adds the clip origin UNSCALED and the local offset SCALED, so at 150% a window at GUI
++    // y 375 holding a local y 285 came back as 802.5 - neither GUI space (660) nor screen space
++    // (990). ToScreen then multiplied it by 1.5 again and sent the pointer to 1203 on a screen
++    // 1080 tall. At scale 1 the two spaces coincide, which is why only a scaled interface ever
++    // saw it.
++    //
++    // GUIToScreenPoint(zero) is exact for the origin: the scaled term vanishes at zero.
++    Vector2 clipOrigin = GUIUtility.GUIToScreenPoint(Vector2.zero);
++    Rect guiRect = new(rect.position + clipOrigin, rect.size);
+ 
+     if (Store.TryGetValue(tag, out TagEntry? entry)) {
+       entry.Duplicate = true;
+-      entry.DuplicateRect = screenRect;
++      entry.DuplicateRect = guiRect;
+       return;
+     }
+ 
+-    Store[tag] = new TagEntry { Rect = screenRect, Duplicate = false, UiScale = Prefs.UIScale };
++    Store[tag] = new TagEntry { Rect = guiRect, Duplicate = false, UiScale = Prefs.UIScale };
+   }
+ 
+   public static void BeginFrame() {
+-- 
+2.52.0.windows.1
+

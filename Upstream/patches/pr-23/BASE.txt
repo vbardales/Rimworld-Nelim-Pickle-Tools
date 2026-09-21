@@ -1,0 +1,1 @@
+b3fda03 (RimWorks/Rimworld-Pickle main, 2026-09-21). Head of the PR branch on the fork: a7c8ccf (fix/tag-rect-interface-scale). PR 23 on RimWorks/Rimworld-Pickle. These are the REMOTE commits, rebased onto b3fda03 for a linear history.

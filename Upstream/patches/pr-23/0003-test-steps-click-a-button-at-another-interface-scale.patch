@@ -1,0 +1,129 @@
+From a7c8ccf3f68e67494802dcc34b7d043117c7bd18 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 12:22:18 +0200
+Subject: [PATCH 3/3] test(steps): click a button at another interface scale
+
+The tag store converted a recorded rect with GUIToScreenRect, which composes two
+spaces, so a click only landed where the interface scale was 100 and the two
+coincide. Nothing in the sample suite ever set another scale, which is how that
+survived: every scenario here ran at 100.
+
+Add a step that sets the scale the way the Options page does - it clears the
+measured label widths, lets the GUI space follow, lays the open windows out
+again, and refuses to go on if the space did not follow - and restores it after
+the scenario. A scenario built on it clicks the main menu's New colony button at
+150 percent and expects the scenario page to open.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                      |  1 +
+ Pickle/Features/entry-flow.feature | 12 ++++++++
+ Source/Pickle.Vanilla/UiSteps.cs   | 48 ++++++++++++++++++++++++++++++
+ 3 files changed, 61 insertions(+)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..2117265 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -519,6 +519,7 @@ while a follow is active.
+ | `I select {string}` | Selects a pawn or thing by name |
+ | `I open the {string} tab` | Opens a main tab by def name or label |
+ | `I close all dialogs` | Closes every open window |
++| `the interface scale is {int} percent` | Sets `Prefs.UIScale` the way the Options page does: clears the measured label widths, lets the GUI space follow, and lays the open windows out again. Restored after the scenario, never saved. A click at a scale other than 100 is the only one that exercises the tag store's conversion |
+ | `window {string} is open` | Checks a window type is open |
+ | `window {string} is closed` | Checks a window type is closed |
+ | `the inspect pane shows {string}` | Checks the selected thing's label |
+diff --git a/Pickle/Features/entry-flow.feature b/Pickle/Features/entry-flow.feature
+index 950e6d2..af1c8dd 100644
+--- a/Pickle/Features/entry-flow.feature
++++ b/Pickle/Features/entry-flow.feature
+@@ -5,6 +5,18 @@ Feature: entry flow
+     When I click button "New colony"
+     Then window "Page_SelectScenario" is open
+ 
++  # A tag is recorded in GUI space and multiplied by Prefs.UIScale when the pointer moves, so a
++  # click only exercises that conversion where the two spaces differ. At 100% they coincide, and a
++  # rect stored half in screen space still lands on its button - which is why a tag store that
++  # converted with GUIToScreenRect passed every scenario here for months. At 150% the click lands
++  # away from its button and the page never opens - off the bottom of the screen for a widget low in
++  # its window, merely in the wrong place for one in the middle of the menu, as this one is.
++  Scenario: a button is clickable at another interface scale
++    Given the main menu is open
++    And the interface scale is 150 percent
++    When I click button "New colony"
++    Then window "Page_SelectScenario" is open
++
+   Scenario: a page's bottom buttons drive the stack
+     Given the main menu is open
+     When I click button "New colony"
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index f222ba2..bea37aa 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -14,6 +14,8 @@ namespace RimWorks.Pickle.Vanilla;
+ public class UiSteps {
+   private const string Nothing = "(none)";
+ 
++  private float? scaleBeforeScenario;
++
+   /// <summary>Returns to the main menu, waiting out any running long event first.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
+@@ -57,6 +59,52 @@ public class UiSteps {
+     await ctx.Click($"btn:{label}");
+   }
+ 
++  /// <summary>Changes the interface scale the way the Options page does, for the scenario only.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="percent">The scale to set, in percent; 100 is unscaled.</param>
++  /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
++  // Writing Prefs.UIScale is not enough, and a scenario that only writes it tests nothing. Widgets
++  // are laid out in UI.screenWidth/screenHeight, two cached fields that only Root.OnGUI recomputes,
++  // and a window already open keeps the rect it was given in the old space until something tells it
++  // the resolution moved. A tag recorded from such a rect points where nothing is drawn any more,
++  // and the click that follows misses for a reason that has nothing to do with the conversion under
++  // test. So: write it, drop the label widths measured at the old scale, let frames pass for the
++  // fields, lay the open windows out again as WindowStack.AdjustWindowsIfResolutionChanged does,
++  // and refuse to continue if the GUI space did not follow.
++  //
++  // Prefs.Save is never called and the hook below puts the value back, so a run leaves the player's
++  // scale as it found it.
++  [Given("the interface scale is {int} percent")]
++  public async Task InterfaceScaleIs(PickleContext ctx, int percent) {
++    scaleBeforeScenario ??= Prefs.UIScale;
++
++    Prefs.UIScale = percent / 100f;
++    GenUI.ClearLabelWidthCache();
++    await ctx.WaitFrames(2);
++
++    foreach (Window window in Find.WindowStack.Windows.ToList()) {
++      window.Notify_ResolutionChanged();
++    }
++
++    await ctx.WaitFrames(5);
++
++    int expected = UnityEngine.Mathf.RoundToInt(UnityEngine.Screen.height / Prefs.UIScale);
++    ctx.Require(
++        Verse.UI.screenHeight == expected,
++        $"the GUI space did not follow the scale: UI.screenHeight is {Verse.UI.screenHeight}, and "
++        + $"{UnityEngine.Screen.height} pixels at {Prefs.UIScale:0.##} make {expected}. Every rect "
++        + "measured now still belongs to the old layout");
++  }
++
++  /// <summary>Puts the interface scale back, so one scenario's scale cannot reach the next.</summary>
++  [AfterScenario]
++  public void RestoreInterfaceScale() {
++    if (scaleBeforeScenario is float previous) {
++      Prefs.UIScale = previous;
++      scaleBeforeScenario = null;
++    }
++  }
++
+   /// <summary>Presses a key.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <param name="key">The key to press.</param>
+-- 
+2.52.0.windows.1
+

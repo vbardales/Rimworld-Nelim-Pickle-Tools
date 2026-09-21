@@ -1,0 +1,101 @@
+From 30d258918712990af0ac4e26e66cd6ba2d282d19 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Sat, 19 Sep 2026 12:55:14 +0200
+Subject: [PATCH 1/3] fix(input): ignore a tagged rect measured at another
+ interface scale
+
+A rect is recorded in GUI space and converted with Prefs.UIScale when the
+pointer moves. Change the scale and the rects from the last frame describe a
+layout that no longer exists, so the pointer aims off the window: a scenario
+that switched to 150% reported "the pointer never reached (58.25, 855.00): the
+OS reports x:88 y:1199", the y being the screen bottom it was clamped to.
+
+Each entry now carries the scale it was measured at, and a lookup at another
+scale reads as a miss, so a click waits for the frame that redraws the widget
+where it now sits. The miss message names the case rather than listing tags.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Source/Pickle/Input/TagInteractor.cs |  7 +++++++
+ Source/Pickle/Input/TagStore.cs      | 17 +++++++++++++++--
+ 2 files changed, 22 insertions(+), 2 deletions(-)
+
+diff --git a/Source/Pickle/Input/TagInteractor.cs b/Source/Pickle/Input/TagInteractor.cs
+index 049ab48..a97b8f1 100644
+--- a/Source/Pickle/Input/TagInteractor.cs
++++ b/Source/Pickle/Input/TagInteractor.cs
+@@ -1,6 +1,7 @@
+ using System;
+ using System.Linq;
+ using UnityEngine;
++using Verse;
+ 
+ namespace RimWorks.Pickle.Input;
+ 
+@@ -27,6 +28,12 @@ internal static class TagInteractor {
+   }
+ 
+   internal static string DescribeMiss(string tag) {
++    if (TagStore.HeldAtAnotherScale(tag)) {
++      return $"tag '{tag}' was last drawn at another interface scale, and nothing redrew it at "
++          + $"{Prefs.UIScale:0.##}. Let a frame pass after changing the scale, so the widget is "
++          + "measured where it now sits.";
++    }
++
+     string[] knownTags = [.. TagStore.KnownTags.OrderBy(t => t)];
+     string tagList = knownTags.Length == 0 ? "no tags recorded this frame" : string.Join(", ", knownTags);
+     return $"tag '{tag}' not found; known tags: {tagList}";
+diff --git a/Source/Pickle/Input/TagStore.cs b/Source/Pickle/Input/TagStore.cs
+index c574790..b88e184 100644
+--- a/Source/Pickle/Input/TagStore.cs
++++ b/Source/Pickle/Input/TagStore.cs
+@@ -39,7 +39,7 @@ internal static class TagStore {
+       return;
+     }
+ 
+-    Store[tag] = new TagEntry { Rect = screenRect, Duplicate = false };
++    Store[tag] = new TagEntry { Rect = screenRect, Duplicate = false, UiScale = Prefs.UIScale };
+   }
+ 
+   public static void BeginFrame() {
+@@ -47,7 +47,10 @@ internal static class TagStore {
+   }
+ 
+   public static bool TryGet(string tag, out Rect rect, out bool duplicate) {
+-    if (Store.TryGetValue(tag, out TagEntry? entry)) {
++    // A rect recorded before the interface scale changed describes a layout that no longer
++    // exists, and scaling it to screen space aims the pointer off the window. Treating it as
++    // absent makes the caller wait for the frame that redraws the widget at the new scale.
++    if (Store.TryGetValue(tag, out TagEntry? entry) && Mathf.Approximately(entry.UiScale, Prefs.UIScale)) {
+       rect = entry.Rect;
+       duplicate = entry.Duplicate;
+       return true;
+@@ -58,6 +61,13 @@ internal static class TagStore {
+     return false;
+   }
+ 
++  /// <summary>Whether the tag is held, but from a frame drawn at another interface scale.</summary>
++  /// <param name="tag">The tag to look for.</param>
++  /// <returns>True when a stale-scale entry is the only thing the store holds for that tag.</returns>
++  public static bool HeldAtAnotherScale(string tag) {
++    return Store.TryGetValue(tag, out TagEntry? entry) && !Mathf.Approximately(entry.UiScale, Prefs.UIScale);
++  }
++
+   public static bool TryGetDuplicate(string tag, out Rect duplicateRect) {
+     if (Store.TryGetValue(tag, out TagEntry? entry) && entry.Duplicate) {
+       duplicateRect = entry.DuplicateRect;
+@@ -72,6 +82,9 @@ internal static class TagStore {
+ internal class TagEntry {
+   public Rect Rect { get; set; }
+ 
++  /// <summary>The interface scale the rect was measured at.</summary>
++  public float UiScale { get; set; }
++
+   public bool Duplicate { get; set; }
+ 
+   public Rect DuplicateRect { get; set; }
+-- 
+2.52.0.windows.1
+
