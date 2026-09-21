@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools</packageId>
+  <url>https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools</url>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Shared tooling for testing RimWorld mods with Pickle, the Gherkin runner that plays scenarios in a real game. Each tool is a companion mod that holds Pickle steps: reveal and hide a main-bar button through RIMMSQOL, film a scenario every N ticks, open the research window by name, give a scenario a colonist of any xenotype or kind. Development only: never published to the Workshop, no Defs, nothing to play. This mod as a whole carries only the identity of the repository; the tools are the folders beside it.
+
+IF I GO QUIET
+If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
+
+AI-GENERATED
+The code, the checks and the documents were written with Claude (Anthropic) under human direction and review. The icon and the preview were generated with an AI image model.
+
+THANKS
+To Malte Schulze for shipping RIMMSQOL's source, to the authors of Pickle, and to the authors of Harmony.
+
+See ATTRIBUTION.md and the MIT licence in the repository.
+
+[url=https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools]Source code on GitHub[/url]</description>
+</ModMetaData>
