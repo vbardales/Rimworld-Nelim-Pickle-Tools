@@ -21,7 +21,7 @@ namespace Nelim.PickleTools.Research
     /// record's own click action instead, and read what the window would list rather than the picture.
     ///
     /// Waiting for RimWorks/Rimworld-Pickle#33, which carries the same idea by def name only: once it is
-    /// merged, a suite should move to its texts and this assembly can go. The texts here carry "PickleTools"
+    /// merged, a suite should move to its texts and this assembly can go. The texts here carry the prefix `Nelim's Pickle Tools: `
     /// so the two never make a line ambiguous while both are loaded.
     /// </summary>
     [PickleSteps]
@@ -30,7 +30,7 @@ namespace Nelim.PickleTools.Research
         // ---------------------------------------------------------------- opening a tab
 
         /// <summary>By def name first, then by the label the tab is drawn with, in the language the game runs in.</summary>
-        [When("I open the PickleTools research tab {string}")]
+        [When("Nelim's Pickle Tools: I open the research tab {string}")]
         public Task OpenTab(PickleContext ctx, string nameOrLabel)
         {
             return Open(ctx, ResolveTab(ctx, nameOrLabel));
@@ -41,7 +41,7 @@ namespace Nelim.PickleTools.Research
         /// scenario naming the key runs in any language. It only reaches a tab whose label comes from a Keyed
         /// string; a def's label injected by DefInjected has no key that <c>.Translate()</c> resolves.
         /// </summary>
-        [When("I open the PickleTools research tab keyed {string}")]
+        [When("Nelim's Pickle Tools: I open the research tab keyed {string}")]
         public Task OpenTabKeyed(PickleContext ctx, string key)
         {
             var label = TranslateKey(ctx, key);
@@ -72,7 +72,7 @@ namespace Nelim.PickleTools.Research
         // ---------------------------------------------------------------- what the window shows
 
         /// <summary>The window is on that tab, it drew a selected record for it, and its contents are revealed.</summary>
-        [Then("the PickleTools research window is on the tab {string}")]
+        [Then("Nelim's Pickle Tools: the research window is on the tab {string}")]
         public void OnTab(PickleContext ctx, string nameOrLabel)
         {
             var window = Window();
@@ -93,7 +93,7 @@ namespace Nelim.PickleTools.Research
         }
 
         /// <summary>The label of the tab's record, which the window built from <c>LabelCap</c> when it opened.</summary>
-        [Then("the PickleTools research window labels the tab {string} as {string}")]
+        [Then("Nelim's Pickle Tools: the research window labels the tab {string} as {string}")]
         public void LabelsTab(PickleContext ctx, string nameOrLabel, string label)
         {
             var window = Window();
@@ -111,13 +111,13 @@ namespace Nelim.PickleTools.Research
         /// The project is one the window lists on its current tab: among the visible projects whose tab is the
         /// selected one, the very list <c>ListProjects</c> draws from, and not hidden. By def name or by label.
         /// </summary>
-        [Then("the PickleTools research window lists the project {string}")]
+        [Then("Nelim's Pickle Tools: the research window lists the project {string}")]
         public void ListsProject(PickleContext ctx, string nameOrLabel)
         {
             AssertListed(ctx, nameOrLabel, null);
         }
 
-        [Then("the PickleTools research window lists the project {string} costing {int}")]
+        [Then("Nelim's Pickle Tools: the research window lists the project {string} costing {int}")]
         public void ListsProjectCosting(PickleContext ctx, string nameOrLabel, int cost)
         {
             AssertListed(ctx, nameOrLabel, cost);

@@ -9,7 +9,7 @@ pass map and writes its own features. The demonstration is `AdaptiveStorageNeoli
 
 **Temporary.** These steps exist while [RimWorks/Rimworld-Pickle#33](https://github.com/RimWorks/Rimworld-Pickle/pull/33) is
 open. It carries the same idea by def name only (`I open the research tab {string}`). When it is merged, move the features to
-its texts and delete this folder. The texts here say "PickleTools" so the two never make a line ambiguous while both are loaded.
+its texts and delete this folder. The texts here carry the prefix `Nelim's Pickle Tools: ` (as `KeyedClick/` and `InspectTabs/` do) so the two never make a line ambiguous while both are loaded; to move a feature to the PR's texts, delete the prefix.
 
 ## Why a step at all
 
@@ -41,12 +41,12 @@ shared by two tabs fails the step and names both; an unknown name lists every ta
 
 | Step | What it does |
 | --- | --- |
-| `I open the PickleTools research tab {string}` | Opens the window and selects the tab, by def name or label |
-| `I open the PickleTools research tab keyed {string}` | Translates the key and selects the tab whose label it reads |
-| `the PickleTools research window is on the tab {string}` | `CurTab` is that tab, the window drew a selected record for it, and `ResearchManager.TabInfoVisible` holds |
-| `the PickleTools research window labels the tab {string} as {string}` | The label the window built for the tab's record (`LabelCap` when it opened) |
-| `the PickleTools research window lists the project {string}` | The project, by def name or label, is among the visible projects of the selected tab (the list `ListProjects` draws from) and is not hidden |
-| `the PickleTools research window lists the project {string} costing {int}` | The same, and its `Cost` |
+| `Nelim's Pickle Tools: I open the research tab {string}` | Opens the window and selects the tab, by def name or label |
+| `Nelim's Pickle Tools: I open the research tab keyed {string}` | Translates the key and selects the tab whose label it reads |
+| `Nelim's Pickle Tools: the research window is on the tab {string}` | `CurTab` is that tab, the window drew a selected record for it, and `ResearchManager.TabInfoVisible` holds |
+| `Nelim's Pickle Tools: the research window labels the tab {string} as {string}` | The label the window built for the tab's record (`LabelCap` when it opened) |
+| `Nelim's Pickle Tools: the research window lists the project {string}` | The project, by def name or label, is among the visible projects of the selected tab (the list `ListProjects` draws from) and is not hidden |
+| `Nelim's Pickle Tools: the research window lists the project {string} costing {int}` | The same, and its `Cost` |
 
 **The keyed step reaches only a tab whose label comes from a Keyed string.** Main, Anomaly and a mod's own tab are Def labels,
 translated by DefInjected, and a DefInjected key is not resolved by `.Translate()`. For those, use the def name, which reads
