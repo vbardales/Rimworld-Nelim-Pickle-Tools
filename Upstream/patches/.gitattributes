@@ -1,0 +1,2 @@
+# Patches must stay byte for byte as format-patch wrote them: CRLF in a working copy makes git am fail.
+* -text
