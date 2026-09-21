@@ -1,0 +1,1 @@
+b3fda03 (RimWorks/Rimworld-Pickle main, 2026-09-21). Head of the PR branch on the fork: 580d5cf (feat/research-tab-steps). PR 33 on RimWorks/Rimworld-Pickle. One commit, on top of b3fda03 with no rebase needed.

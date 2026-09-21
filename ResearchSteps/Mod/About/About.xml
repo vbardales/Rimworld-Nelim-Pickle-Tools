@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>PickleTools - research window steps (shared)</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.research</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that open a tab of the research window by def name, by label or by translation key, and read what it lists. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See PickleTools/ResearchSteps/README.md at the repository root.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

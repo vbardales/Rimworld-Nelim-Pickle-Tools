@@ -1,0 +1,189 @@
+From 580d5cfac5b6e605a4d31f6e3788850b26120344 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 20:17:25 +0200
+Subject: [PATCH] feat(steps): open a research tab by def name and read what it
+ lists
+
+AI-assisted: Claude Code
+---
+ Docs/steps.md                          |   9 ++
+ Pickle/Features/ui-steps.feature       |   8 ++
+ Source/Pickle.Vanilla/ResearchSteps.cs | 120 +++++++++++++++++++++++++
+ 3 files changed, 137 insertions(+)
+ create mode 100644 Source/Pickle.Vanilla/ResearchSteps.cs
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..8f74a96 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -518,6 +518,9 @@ while a follow is active.
+ | `I press key {string}` | Sends a real key through XTEST, so `Input.GetKeyDown` sees it. Accepts `Escape`, `Return`, `Space`, `Tab`, `Delete`, `Backspace`, a letter, or a digit |
+ | `I select {string}` | Selects a pawn or thing by name |
+ | `I open the {string} tab` | Opens a main tab by def name or label |
++| `I open the research tab {string}` | Opens the research window and selects one of its tabs by def name |
++| `the research window is on the tab {string}` | Checks the selected tab, and that it would draw its projects |
++| `the research window lists the project {string}` | Checks a project is listed on the selected tab |
+ | `I close all dialogs` | Closes every open window |
+ | `window {string} is open` | Checks a window type is open |
+ | `window {string} is closed` | Checks a window type is closed |
+@@ -536,6 +539,12 @@ Windows. Linux also needs a real X display. macOS has no backend, so those four
+ throw there. Every other step here works anywhere.
+ See [running tests](running.md).
+ 
++The research window draws its tabs as tab records, not as buttons, so `I click button` never
++finds one. `I open the research tab` runs the tab's own click action instead, and takes the
++`ResearchTabDef` name, so it works in any language. That is how a mod that adds a research
++tab checks its projects sit inside it. The two checks read what the window would draw, the
++selected tab and its listed projects, rather than the picture of it.
++
+ Vanilla warns constantly, so there is no blanket `no warnings were logged`. Every warning
+ step names a substring, and a warning never fails a scenario on its own the way an error
+ does.
+diff --git a/Pickle/Features/ui-steps.feature b/Pickle/Features/ui-steps.feature
+index 56a581e..39a2327 100644
+--- a/Pickle/Features/ui-steps.feature
++++ b/Pickle/Features/ui-steps.feature
+@@ -18,6 +18,14 @@ Feature: ui steps
+     Then window "MainTabWindow_Research" is closed
+     Then no errors were logged
+ 
++  Scenario: a research tab is opened by def name and lists its project
++    When I open the research tab "Main"
++    Then window "MainTabWindow_Research" is open
++    And the research window is on the tab "Main"
++    And the research window lists the project "Stonecutting"
++    When I close all dialogs
++    Then no errors were logged
++
+   @timeout:60
+   Scenario: a filmstrip follows a colonist through a whole order
+     Given the save "test-colony" is loaded
+diff --git a/Source/Pickle.Vanilla/ResearchSteps.cs b/Source/Pickle.Vanilla/ResearchSteps.cs
+new file mode 100644
+index 0000000..a2a0c3e
+--- /dev/null
++++ b/Source/Pickle.Vanilla/ResearchSteps.cs
+@@ -0,0 +1,120 @@
++using System;
++using System.Collections;
++using System.Collections.Generic;
++using System.Linq;
++using System.Reflection;
++using System.Threading.Tasks;
++using HarmonyLib;
++using RimWorld;
++using Verse;
++
++namespace RimWorks.Pickle.Vanilla;
++
++/// <summary>The research window: opening a tab by def name and reading what it lists.</summary>
++// The window draws its tabs as TabRecords through TabDrawer, which records no button tag, so
++// `I click button` cannot reach one. These steps run the tab record's own click action instead.
++[PickleSteps]
++public class ResearchSteps {
++  /// <summary>Opens the research window and selects a tab by def name, whatever language the game runs in.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="tabDefName">The <c>ResearchTabDef</c>'s def name, such as <c>Main</c>.</param>
++  /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
++  [When("I open the research tab {string}")]
++  public async Task OpenResearchTab(PickleContext ctx, string tabDefName) {
++    ResearchTabDef tab = DefLookup.Require<ResearchTabDef>(tabDefName);
++
++    Find.MainTabsRoot.SetCurrentTab(MainButtonDefOf.Research, playSound: false);
++    await ctx.WaitUntil(() => Records(Window()).Count > 0, 10f);
++
++    MainTabWindow_Research? window = Window();
++    ctx.Require(window != null, "the research window did not open");
++
++    TabRecord? record = RecordOf(window!, tab);
++    ctx.Require(
++        record != null,
++        $"the research window built no tab record for '{tabDefName}'. it built: {DescribeRecords(window!)}");
++
++    // What a click on the tab runs: it sets the window's current tab and its selected project.
++    record!.clickedAction();
++    await ctx.WaitFrames(2);
++  }
++
++  /// <summary>Asserts the research window shows a tab, and that the tab would draw its projects.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="tabDefName">The <c>ResearchTabDef</c>'s def name.</param>
++  [Then("the research window is on the tab {string}")]
++  public void AssertOnResearchTab(PickleContext ctx, string tabDefName) {
++    MainTabWindow_Research? window = Window();
++    ctx.Require(window != null, "the research window is not open");
++
++    ResearchTabDef? current = window!.CurTab;
++    ctx.Assert(
++        current != null && current.defName == tabDefName,
++        $"the research window is on '{current?.defName ?? "no tab"}', not '{tabDefName}'");
++
++    // A tab whose info is not visible draws its "not discovered" text in place of its projects.
++    ctx.Assert(
++        current != null && Find.ResearchManager.TabInfoVisible(current),
++        $"'{tabDefName}' is selected but its info is not visible, so the window would not list its projects");
++  }
++
++  /// <summary>Asserts the research window lists a project on the tab it is on.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="projectDefName">The <c>ResearchProjectDef</c>'s def name.</param>
++  [Then("the research window lists the project {string}")]
++  public void AssertListsResearchProject(PickleContext ctx, string projectDefName) {
++    MainTabWindow_Research? window = Window();
++    ctx.Require(window != null, "the research window is not open");
++    ResearchTabDef? current = window!.CurTab;
++    ctx.Require(current != null, "the research window has no current tab");
++
++    ResearchProjectDef project = DefLookup.Require<ResearchProjectDef>(projectDefName);
++
++    // The list the window draws from: the visible projects whose tab is the selected one.
++    List<ResearchProjectDef> listed = [.. window.VisibleResearchProjects.Where(p => p.tab == current)];
++    bool isListed = listed.Contains(project);
++    ctx.Assert(
++        isListed,
++        isListed
++            ? null
++            : $"the window does not list '{projectDefName}' on '{current!.defName}'. " +
++              $"it lists: {string.Join(", ", listed.Select(p => p.defName))}");
++  }
++
++  private static MainTabWindow_Research? Window() {
++    return Find.WindowStack?.WindowOfType<MainTabWindow_Research>();
++  }
++
++  // The window keeps its tab records in a private list, filled when it opens.
++  private static List<TabRecord> Records(MainTabWindow_Research? window) {
++    List<TabRecord> records = [];
++    if (window == null) {
++      return records;
++    }
++
++    FieldInfo field = AccessTools.Field(typeof(MainTabWindow_Research), "tabs")
++        ?? throw new InvalidOperationException("MainTabWindow_Research.tabs no longer exists: update the step");
++
++    if (field.GetValue(window) is IEnumerable list) {
++      records.AddRange(list.Cast<TabRecord>());
++    }
++
++    return records;
++  }
++
++  // The record is a private nested class whose def is a public field, so it is read by reflection.
++  private static ResearchTabDef DefOf(TabRecord record) {
++    FieldInfo field = AccessTools.Field(record.GetType(), "def")
++        ?? throw new InvalidOperationException($"{record.GetType().Name}.def no longer exists: update the step");
++
++    return (ResearchTabDef)field.GetValue(record);
++  }
++
++  private static TabRecord? RecordOf(MainTabWindow_Research window, ResearchTabDef tab) {
++    return Records(window).FirstOrDefault(r => DefOf(r) == tab);
++  }
++
++  private static string DescribeRecords(MainTabWindow_Research window) {
++    return string.Join(", ", Records(window).Select(r => DefOf(r).defName));
++  }
++}
+-- 
+2.52.0.windows.1
+
