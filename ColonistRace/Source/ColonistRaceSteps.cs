@@ -18,8 +18,6 @@ namespace Nelim.PickleTools.ColonistRace
     [PickleSteps]
     public class ColonistRaceSteps
     {
-        private const string None = "(none)";
-
         /// <summary>
         /// Gives a pawn a Biotech xenotype and redraws it. The game removes the pawn's xenogenes and adds the
         /// xenotype's genes one by one, so a gene that carries a body type (Body_Thin, Body_Hulk...) sets the
@@ -30,7 +28,7 @@ namespace Nelim.PickleTools.ColonistRace
         public void SetXenotype(PickleContext ctx, string nickname, string xenotypeDefName)
         {
             ctx.Require(ModsConfig.BiotechActive, "xenotypes need Biotech, and it is not active in this run");
-            Pawn pawn = RequireColonist(nickname);
+            Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.genes != null, $"pawn '{nickname}' has no genes, so it has no xenotype");
 
             List<XenotypeDef> all = DefDatabase<XenotypeDef>.AllDefsListForReading;
@@ -52,7 +50,7 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: a colonist {string} of kind {string} exists")]
         public void ColonistOfKindExists(PickleContext ctx, string nickname, string kindDefName)
         {
-            if (FindColonist(nickname) != null)
+            if (ColonistLookup.Find(nickname) != null)
             {
                 return;
             }
@@ -92,24 +90,6 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 Rand.PopState();
             }
-        }
-
-        private static Pawn FindColonist(string nickname)
-        {
-            return PawnsFinder.AllMaps_FreeColonists.FirstOrDefault(
-                p => string.Equals(p.Name?.ToStringShort, nickname, StringComparison.OrdinalIgnoreCase));
-        }
-
-        private static Pawn RequireColonist(string nickname)
-        {
-            Pawn pawn = FindColonist(nickname);
-            if (pawn != null)
-            {
-                return pawn;
-            }
-
-            string known = string.Join(", ", PawnsFinder.AllMaps_FreeColonists.Select(p => p.Name?.ToStringShort ?? None));
-            throw new InvalidOperationException($"no colonist named '{nickname}'; the colonists are {known}");
         }
 
         private static IntVec3 FindSpawnCell(PickleContext ctx, Map map)

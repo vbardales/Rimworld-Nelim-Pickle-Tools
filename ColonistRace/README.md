@@ -7,6 +7,18 @@ Two Pickle steps that give a scenario a colonist whose body is not the plain hum
 | `Nelim's Pickle Tools: {string} xenotype is {string}` | `Pawn_GeneTracker.SetXenotype`: the pawn's xenogenes are removed and the xenotype's genes added one by one, then the pawn is redrawn. A gene that carries a body type (`Body_Thin`, `Body_Hulk`...) sets the body type as it is added, on a pawn that is not a child. The pawn's endogenes stay, so a pawn born with one keeps it beside the new ones. Case insensitive. An unknown name fails and lists every xenotype the game has. Needs Biotech. |
 | `Nelim's Pickle Tools: a colonist {string} of kind {string} exists` | Generates a colonist of the player's faction from a `PawnKindDef` and spawns it near the colonists, as `a colonist {string} exists` does for the plain colonist kind. Does nothing if that colonist exists. The kind's race is the pawn's race. Refuses a kind that is not humanlike, and an unknown one lists how many humanlike kinds exist and the first thirty. |
 
+And five that read a colonist back, because a step that sets a value says what was asked and not what the game
+holds (a gene sets the body type again, a race keeps its own, a child is not an adult). Each failure says the state
+it found:
+
+| Step | What it asserts |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} has gender {word}` | `male` or `female`, case insensitive |
+| `Nelim's Pickle Tools: {string} has body type {word}` | the `BodyTypeDef` defName, case insensitive |
+| `Nelim's Pickle Tools: {string} has xenotype {string}` | the xenotype def; a custom xenotype reads as the def it was built from, and the failure names the custom one. Needs Biotech |
+| `Nelim's Pickle Tools: {string} is of race {string}` | the race def name: `Human`, or a race a mod adds |
+| `Nelim's Pickle Tools: {string} is at the {word} stage of life` | `Baby`, `Newborn`, `Child` or `Adult`; the failure adds the age |
+
 Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
 
@@ -64,7 +76,7 @@ Intermediates go to `ColonistRace/.build/`, never inside `Mod/`, since the stagi
 
 ## Verification
 
-Built with 0 warnings, 0 errors. **Nothing played in a game yet** as of 2026-09-21: the four scenarios that will
-play it (`Genie` gives `Naked_Thin`, `Hussar` gives `Naked_Hulk`, a body type set after the xenotype wins, a
-colonist of the vanilla kind `Villager` dressed and read back) are queued on the WSL machine. This section is to be
-rewritten with the run's result.
+Built with 0 warnings, 0 errors. **Nothing played in a game yet** as of 2026-09-21: the five scenarios that will
+play the seven steps (`Genie` gives Thin, `Hussar` gives Hulk, a body type set after the xenotype wins, a colonist
+of the vanilla kind `Villager` dressed and read back, a girl of eight read back as a female child) are queued on
+the WSL machine. This section is to be rewritten with the run's result.
