@@ -3,7 +3,7 @@
   <name>Nelim's Pickle Tools</name>
   <author>Nelim</author>
   <packageId>nelim.pickletools</packageId>
-  <url>https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools</url>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
@@ -20,5 +20,5 @@ To Malte Schulze for shipping RIMMSQOL's source, to the authors of Pickle, and t
 
 See ATTRIBUTION.md and the MIT licence in the repository.
 
-[url=https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools]Source code on GitHub[/url]</description>
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
 </ModMetaData>
