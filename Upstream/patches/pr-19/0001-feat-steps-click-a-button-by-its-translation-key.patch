@@ -1,0 +1,75 @@
+From 73073fd486063dea3e4fcdcb1a1b2f9796e438ab Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Thu, 17 Sep 2026 22:20:56 +0200
+Subject: [PATCH 1/2] feat(steps): click a button by its translation key
+
+Buttons are captured under the label the game drew, which is the player's
+language, so a scenario that spells the label out only runs on the language it
+was written in. On a French client `I click button "Research"` reports the tag
+as missing next to `btn:Recherche`.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                    | 12 ++++++++++++
+ Source/Pickle.Vanilla/UiSteps.cs | 16 ++++++++++++++++
+ 2 files changed, 28 insertions(+)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..c347251 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -513,6 +513,7 @@ while a follow is active.
+ | `the main menu is open` | Quits to the main menu if a game is loaded, then waits for `UIRoot_Entry`. The way into the `Page_` stack |
+ | `I click {string}` | Clicks a tagged widget |
+ | `I click button {string}` | Clicks a vanilla button by label. Pickle tags those for you |
++| `I click button keyed {string}` | Clicks a button by the translation key its label comes from, so the scenario runs in any language |
+ | `I click gizmo {string}` | Runs a gizmo on the current selection |
+ | `I hover {string}` | Moves the pointer onto a tagged widget |
+ | `I press key {string}` | Sends a real key through XTEST, so `Input.GetKeyDown` sees it. Accepts `Escape`, `Return`, `Space`, `Tab`, `Delete`, `Backspace`, a letter, or a digit |
+@@ -569,3 +570,14 @@ PickleUI.Tag("my-button", buttonRect);
+ 
+ Vanilla buttons need no tagging. Pickle records them by label, so
+ `I click button "Research"` works out of the box.
++
++A label is whatever the game drew, in the player's language: `I click button "Research"`
++finds nothing on a French client, where the button reads `Recherche`. Name the translation
++key instead, and the scenario runs anywhere:
++
++```gherkin
++When I click button keyed "Research"
++```
++
++The key is the one the drawing code translates, vanilla's own or your mod's. When no
++translation is loaded for it the step fails and names the active language.
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index f222ba2..2a79844 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -57,6 +57,22 @@ public class UiSteps {
+     await ctx.Click($"btn:{label}");
+   }
+ 
++  /// <summary>Clicks a button by the translation key its label comes from.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="key">The translation key of the button's label.</param>
++  /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
++  // Buttons are captured under the label the game drew, which is the player's language. A
++  // scenario that spells the label out only runs on the language it was written in.
++  [When("I click button keyed {string}")]
++  public async Task ClickButtonKeyed(PickleContext ctx, string key) {
++    ctx.Require(
++        key.CanTranslate(),
++        $"no translation is loaded for '{key}', so no label can be built from it. "
++            + $"active language: {LanguageDatabase.activeLanguage?.FriendlyNameEnglish ?? Nothing}");
++
++    await ctx.Click($"btn:{key.Translate()}");
++  }
++
+   /// <summary>Presses a key.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <param name="key">The key to press.</param>
+-- 
+2.52.0.windows.1
+

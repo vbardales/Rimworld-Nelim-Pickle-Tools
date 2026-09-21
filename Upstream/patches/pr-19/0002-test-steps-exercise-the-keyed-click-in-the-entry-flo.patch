@@ -1,0 +1,33 @@
+From cb4543dec765418854be7b04329add2aba962135 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Sun, 20 Sep 2026 14:24:15 +0200
+Subject: [PATCH 2/2] test(steps): exercise the keyed click in the entry flow
+
+The keyed click had no scenario, only unit coverage of its guard. This walks
+the same main-menu path the label-based scenario walks, by key instead, so a
+green pair means the two spell the same journey. This one also passes on a
+game running in another language, which is the point of the step.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Pickle/Features/entry-flow.feature | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/Pickle/Features/entry-flow.feature b/Pickle/Features/entry-flow.feature
+index 950e6d2..dca9f71 100644
+--- a/Pickle/Features/entry-flow.feature
++++ b/Pickle/Features/entry-flow.feature
+@@ -12,3 +12,10 @@ Feature: entry flow
+     Then window "Page_SelectStoryteller" is open
+     When I click button "Back"
+     Then window "Page_SelectScenario" is open
++
++  Scenario: a button answers to the key its label came from
++    Given the main menu is open
++    When I click button keyed "NewColony"
++    Then window "Page_SelectScenario" is open
++    When I click button keyed "Next"
++    Then window "Page_SelectStoryteller" is open
+-- 
+2.52.0.windows.1
+

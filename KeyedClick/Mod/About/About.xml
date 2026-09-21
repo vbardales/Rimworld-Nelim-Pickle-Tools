@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Keyed click</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.keyedclick</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>A Pickle step that clicks a button by the translation key its label comes from, so a scenario runs in any language. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See KeyedClick/README.md at the repository root.
+
+It is the same step as the one proposed to Pickle itself as a pull request; when that lands this mod's step can go.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>
