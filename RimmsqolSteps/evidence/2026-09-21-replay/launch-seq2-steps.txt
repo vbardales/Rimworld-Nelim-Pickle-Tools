@@ -1,0 +1,4 @@
+[2026-09-21 21:14:09.878] [INFO] [Mod.Unknown] [home/runner/work/Rimworld-Pickle/Rimworld-Pickle/Source/Pickle/Run/RunSession:620] [RIMMSQOL steps] reveald 'FTFR_Settings' through RIMMSQOL's own settings instance; buttonVisible is now True
+[2026-09-21 21:14:09.965] [INFO] [Mod.Unknown] [home/runner/work/Rimworld-Pickle/Rimworld-Pickle/Source/Pickle/Run/RunSession:620] [RIMMSQOL steps] the bar draws 'FTFR_Settings' at x 1792..1920, y 1045, of 17 buttons
+[2026-09-21 21:14:10.110] [INFO] [Mod.Unknown] [home/runner/work/Rimworld-Pickle/Rimworld-Pickle/Source/Pickle/Run/RunSession:620] [RIMMSQOL steps] settings file: the entry for 'FTFR_Settings' reads visible: mainButtonsLabel;f;IconPath;f;Description;f;Visible;t;Minimized;f;Order;f;Buttons;f;FTFR_Settings-1True
+[2026-09-21 21:14:10.454] [INFO] [Mod.Unknown] [home/runner/work/Rimworld-Pickle/Rimworld-Pickle/Source/Pickle/Run/RunSession:676] [RIMMSQOL steps] keeping for the next launch: FTFR_Settings

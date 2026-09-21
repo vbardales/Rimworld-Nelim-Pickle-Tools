@@ -1,0 +1,38 @@
+--- lancement 1 sur 4 : 12-rimmsqol-shortcut.feature
+staged: 15 mods
+  malteschulze.rimmsqol
+  nelim.pickletools.rimmsqol
+mods : les 15 mods mis en scene sont tous charges
+total      : 3
+passed     : 3
+failed     : 0
+skipped    : 0
+exitReason : passed
+rapport du lancement 1 garde dans C:\Users\nelim\Documents\rimworld\pickle-reports-archive\0921-2312-seq1
+--- lancement 2 sur 4 : 13-rimmsqol-restart-reveal.feature
+mise en scene : deja faite par le lancement precedent de la sequence
+mods : les 15 mods mis en scene sont tous charges
+total      : 1
+passed     : 1
+failed     : 0
+skipped    : 0
+exitReason : passed
+rapport du lancement 2 garde dans C:\Users\nelim\Documents\rimworld\pickle-reports-archive\0921-2314-seq2
+--- lancement 3 sur 4 : 14-rimmsqol-restart-hide.feature
+mise en scene : deja faite par le lancement precedent de la sequence
+mods : les 15 mods mis en scene sont tous charges
+total      : 1
+passed     : 1
+failed     : 0
+skipped    : 0
+exitReason : passed
+rapport du lancement 3 garde dans C:\Users\nelim\Documents\rimworld\pickle-reports-archive\0921-2316-seq3
+--- lancement 4 sur 4 : 15-rimmsqol-restart-forget.feature
+mise en scene : deja faite par le lancement precedent de la sequence
+mods : les 15 mods mis en scene sont tous charges
+total      : 1
+passed     : 1
+failed     : 0
+skipped    : 0
+exitReason : passed
+verrou rendu
