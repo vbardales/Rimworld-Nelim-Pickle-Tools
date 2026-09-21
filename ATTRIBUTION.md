@@ -15,9 +15,12 @@ their own READMEs are where they say what they rest on. See "Open" below.
   by the pass. The behaviour written up in `RimmsqolSteps/README.md` is a description of what was read, in our
   own words.
 - **Licence of RIMMSQOL: none found.** Not in its `About.xml`, not in the shipped source (its `AssemblyInfo.cs`
-  says only "Copyright 2017"), not as a file in the Workshop item. The Workshop page and its description were
-  **not** consulted in the session that wrote this, so the absence of a licence there is unverified. Nothing here
-  relies on a permission to redistribute RIMMSQOL, because nothing of it is redistributed.
+  says only "Copyright 2017"), not as a file in the Workshop item. **The Workshop description** was read on
+  2026-09-21 through Steam's public API (`GetPublishedFileDetails`; the page itself answered 429): a short feature
+  list, one incompatibility note (Performance Fish) and links to a manual and a bug-report thread. It states no
+  licence, no permission and no prohibition. The manual, the bug-report thread and the comments were **not** read,
+  so a licence or a prohibition stated only there is not ruled out. Nothing here relies on a permission to
+  redistribute RIMMSQOL, because nothing of it is redistributed.
 - **`RimmsqolSteps/evidence/`** holds four screenshots of a test game in which RIMMSQOL's own window is open.
   They show its interface as evidence that a run happened. If its author objects to them, they go.
 - **Pickle** ([RimWorks/Rimworld-Pickle](https://github.com/RimWorks/Rimworld-Pickle), `rimworks.pickle`,
