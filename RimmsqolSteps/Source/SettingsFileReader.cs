@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>
     /// Reads what RIMMSQOL wrote about one main button out of its settings file. Pure BCL, so it can be

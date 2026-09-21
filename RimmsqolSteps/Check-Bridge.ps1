@@ -21,7 +21,7 @@
   A binary read is not a run. It shows what RIMMSqol contains, not that it works in a game.
 
 .EXAMPLE
-  powershell.exe -ExecutionPolicy Bypass -File PickleShared/RimmsqolSteps/Check-Bridge.ps1
+  powershell.exe -ExecutionPolicy Bypass -File PickleTools/RimmsqolSteps/Check-Bridge.ps1
 #>
 param(
     [string]$Rimmsqol = 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\1084452457\1.6\Assemblies\RIMMSqol.dll',

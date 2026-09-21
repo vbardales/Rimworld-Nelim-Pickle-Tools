@@ -46,7 +46,7 @@ checkbox**: that the checkbox is wired to `set("Visible", …)` is read from RIM
 
    ```
    MalteSchulze.RIMMSqol            1084452457
-   nelim.pickleshared.rimmsqol      path:PickleShared/RimmsqolSteps/Mod
+   nelim.pickletools.rimmsqol      path:PickleTools/RimmsqolSteps/Mod
    ```
 
    Harmony is not repeated: the staging puts it first everywhere. The order is the file's order, and the steps
@@ -122,9 +122,9 @@ Offline, run on 2026-09-21:
 | Check | Command | Result |
 | --- | --- | --- |
 | Builds against the **real** `RIMMSqol.dll` (1.6) and the game's reference assemblies | `dotnet build Source/RimmsqolSteps.csproj -c Release` | 0 warnings, 0 errors: every RIMMSqol member the steps name exists with that signature |
-| The three reflected names and the facts above, read from the binaries | `powershell.exe -ExecutionPolicy Bypass -File PickleShared/RimmsqolSteps/Check-Bridge.ps1` | 10 checks, all pass |
-| The reader of RIMMSQOL's settings file follows its rules (13 hand-made cases: revealed, hidden with the `Visible` node absent, not configured, another property set, malformed...). It found one real defect on the way: `string.Split(char)` compiles against the game's references and is not on .NET Framework | `powershell.exe -ExecutionPolicy Bypass -File PickleShared/RimmsqolSteps/Check-Reader.ps1` | 13 cases, all pass. **The XML layout itself is derived from RIMMSqol's code and has not been seen** |
-| 17 patterns compile with Pickle's own engine, none declared twice, none ambiguous against 609 others (Pickle, 12 suites), every line of the rimmsqol features resolves | `powershell.exe -ExecutionPolicy Bypass -File PickleShared/RimmsqolSteps/Check-Steps.ps1` | pass. Its failure modes were exercised by planting a duplicate, an invalid and an ambiguous pattern: it reported all three |
+| The three reflected names and the facts above, read from the binaries | `powershell.exe -ExecutionPolicy Bypass -File PickleTools/RimmsqolSteps/Check-Bridge.ps1` | 10 checks, all pass |
+| The reader of RIMMSQOL's settings file follows its rules (13 hand-made cases: revealed, hidden with the `Visible` node absent, not configured, another property set, malformed...). It found one real defect on the way: `string.Split(char)` compiles against the game's references and is not on .NET Framework | `powershell.exe -ExecutionPolicy Bypass -File PickleTools/RimmsqolSteps/Check-Reader.ps1` | 13 cases, all pass. **The XML layout itself is derived from RIMMSqol's code and has not been seen** |
+| 17 patterns compile with Pickle's own engine, none declared twice, none ambiguous against 609 others (Pickle, 12 suites), every line of the rimmsqol features resolves | `powershell.exe -ExecutionPolicy Bypass -File PickleTools/RimmsqolSteps/Check-Steps.ps1` | pass. Its failure modes were exercised by planting a duplicate, an invalid and an ambiguous pattern: it reported all three |
 | The staging accepts the pass map, activates RIMMSQOL and this mod in dependency order, and RIMMSQOL lands in folder `1084452457` | `stage-pickle-wsl.sh` into a throwaway `GAME`/`CONFIG` with a lock path of its own | 15 mods staged in the order written in `wsl-deps.avec-rimmsqol.map` |
 
 ### In the game: played once, 2026-09-21
@@ -164,7 +164,7 @@ log lines say "reveald" and "hided" (the verb plus "d"); left as is so that the 
   bar's arithmetic; `RimmsqolShortcutSteps.cs` the vocabulary; `SettingsFileReader.cs` the parsing of RIMMSQOL's
   file (pure BCL, tested offline); `RimmsqolSandbox.cs` and `RimmsqolSession.cs` the teardown and the restart
   hand-off.
-- `Mod/` the companion mod the staging copies (`About/About.xml`, `Pickle/Assemblies/Nelim.PickleShared.RimmsqolSteps.dll`,
+- `Mod/` the companion mod the staging copies (`About/About.xml`, `Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll`,
   built). Nothing else may be put here: the staging copies it verbatim.
 - `Check-Steps.ps1`, `Check-Bridge.ps1`, `Check-Reader.ps1` the offline checks.
 - `evidence/2026-09-21/` the four captures and the step log lines of the first run.

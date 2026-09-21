@@ -6,7 +6,7 @@ using RimWorks.Pickle;
 using UnityEngine;
 using Verse;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>
     /// What the main bar draws, worked out from the game's own list and its own rule, not from a guess.

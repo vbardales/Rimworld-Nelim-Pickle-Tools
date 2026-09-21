@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>
     /// What this game process has asked RIMMSQOL to change and not yet put back. Plain strings and a

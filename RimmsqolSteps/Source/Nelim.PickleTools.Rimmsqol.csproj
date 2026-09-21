@@ -13,8 +13,8 @@
   -->
   <PropertyGroup>
     <TargetFramework>net48</TargetFramework>
-    <AssemblyName>Nelim.PickleShared.RimmsqolSteps</AssemblyName>
-    <RootNamespace>Nelim.PickleShared.Rimmsqol</RootNamespace>
+    <AssemblyName>Nelim.PickleTools.Rimmsqol</AssemblyName>
+    <RootNamespace>Nelim.PickleTools.Rimmsqol</RootNamespace>
     <LangVersion>latest</LangVersion>
     <Nullable>disable</Nullable>
     <Deterministic>true</Deterministic>

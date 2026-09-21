@@ -24,7 +24,7 @@
   A pattern no feature in the repository uses is reported as weight, not as an error.
 
 .EXAMPLE
-  powershell.exe -ExecutionPolicy Bypass -File PickleShared/RimmsqolSteps/Check-Steps.ps1
+  powershell.exe -ExecutionPolicy Bypass -File PickleTools/RimmsqolSteps/Check-Steps.ps1
 #>
 param(
     [string]$PickleAssemblies = 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\3791648678\Assemblies',
@@ -117,6 +117,13 @@ foreach ($dir in $suiteDirs | Sort-Object -Unique) {
     $suites++
     foreach ($p in Read-Patterns $src ('suite:' + (Split-Path $dir -Leaf))) { $others += $p }
 }
+# The sibling tools of this repository (FilmTicks, ColonistRace, ...) are steps assemblies too, and a pass
+# may stage several of them together: their expressions share the namespace with these.
+$toolsRoot = Split-Path $here -Parent
+foreach ($d in Get-ChildItem -LiteralPath $toolsRoot -Directory -ErrorAction SilentlyContinue |
+         Where-Object { $_.FullName -ne $here -and (Test-Path -LiteralPath (Join-Path $_.FullName 'Source')) }) {
+    foreach ($p in Read-Patterns (Join-Path $d.FullName 'Source') ('tool:' + $d.Name)) { $others += $p }
+}
 $otherExprs = @()
 foreach ($o in $others) {
     try { $otherExprs += [pscustomobject]@{ Source = $o.Source; Pattern = $o.Pattern; Regex = (New-Expr $o.Pattern).Regex } } catch { }   # their own check reports those
@@ -160,7 +167,7 @@ foreach ($file in $featureFiles | Where-Object { $_.Name -like '*rimmsqol*' }) {
 # --- report --------------------------------------------------------------------------------------
 
 Write-Host ''
-Write-Host "$($mine.Count) shared patterns, $($myExprs.Count) compile. Compared against $($otherExprs.Count) others: $vanillaCount from Pickle, $($otherExprs.Count - $vanillaCount) from $suites suites. $lines step lines in $($featureFiles.Count) feature files."
+Write-Host "$($mine.Count) shared patterns, $($myExprs.Count) compile. Compared against $($otherExprs.Count) others: $vanillaCount from Pickle, $($otherExprs.Count - $vanillaCount) from $suites suites and the sibling tools. $lines step lines in $($featureFiles.Count) feature files."
 
 foreach ($k in $ambiguous.Keys) { Write-Host "AMBIGUOUS  $k`n           $($ambiguous[$k])" -ForegroundColor Red; $bad++ }
 

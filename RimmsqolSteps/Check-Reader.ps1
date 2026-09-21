@@ -14,11 +14,11 @@
   The first real run writes the entry into its report, which is what confirms or corrects this.
 #>
 param(
-    [string]$Dll = (Join-Path $PSScriptRoot 'Mod\Pickle\Assemblies\Nelim.PickleShared.RimmsqolSteps.dll')
+    [string]$Dll = (Join-Path $PSScriptRoot 'Mod\Pickle\Assemblies\Nelim.PickleTools.Rimmsqol.dll')
 )
 $ErrorActionPreference = 'Stop'
 [Reflection.Assembly]::LoadFrom($Dll) | Out-Null
-$reader = [Nelim.PickleShared.Rimmsqol.SettingsFileReader]
+$reader = [Nelim.PickleTools.Rimmsqol.SettingsFileReader]
 
 $bad = 0
 function Case($name, $xml, $key, $expected, $detailPattern = $null) {

@@ -4,7 +4,7 @@ using RimWorld;
 using RimWorks.Pickle;
 using Verse;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>
     /// Reveals and hides any MainButtonDef the way RIMMSQOL's own interface does, and asserts what the

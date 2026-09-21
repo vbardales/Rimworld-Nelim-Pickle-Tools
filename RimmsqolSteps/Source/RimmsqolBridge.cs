@@ -11,7 +11,7 @@ using RimWorld;
 using RimWorks.Pickle;
 using Verse;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>What RIMMSQOL's settings file says about one main button.</summary>
     public enum Recorded
@@ -68,7 +68,7 @@ namespace Nelim.PickleShared.Rimmsqol
         {
             ctx.Require(IsLoaded(),
                 $"{PackageId} is not loaded in this pass, so no RIMMSQOL step can run. Name it in the pass map "
-                + "(see PickleShared/RimmsqolSteps/README.md) and play these features in that pass only");
+                + "(see PickleTools/RimmsqolSteps/README.md) and play these features in that pass only");
             ctx.Require(LoadedModManager.GetMod<QOLMod>() != null,
                 "RIMMSqol is loaded but LoadedModManager.GetMod<QOLMod>() returned nothing: its Mod class did not start");
             ctx.Require(SettingsInit.IsInitialized,

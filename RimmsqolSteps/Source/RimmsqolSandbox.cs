@@ -4,7 +4,7 @@ using System.Linq;
 using RimWorks.Pickle;
 using Verse;
 
-namespace Nelim.PickleShared.Rimmsqol
+namespace Nelim.PickleTools.Rimmsqol
 {
     /// <summary>
     /// RIMMSQOL's choice is written to the profile's Config folder by WriteSettings, which is exactly
@@ -97,7 +97,7 @@ namespace Nelim.PickleShared.Rimmsqol
             var problem = RimmsqolBridge.ForgetQuietly(toForget.Distinct());
             if (problem != null)
                 Log.Error($"[RIMMSQOL steps] could not put back RIMMSQOL's choice for {string.Join(", ", toForget.ToArray())}: {problem}. "
-                          + "It is still in RIMMSQOL's settings file: see PickleShared/RimmsqolSteps/README.md, 'Leftovers'");
+                          + "It is still in RIMMSQOL's settings file: see PickleTools/RimmsqolSteps/README.md, 'Leftovers'");
         }
 
         private static string MarkerPath(PickleContext ctx) => RimmsqolBridge.SettingsFilePath(ctx) + ".pickle-kept";
