@@ -134,6 +134,15 @@ order written in the map, all loaded): four launches, **every one `exitReason: p
 discovered**: launch 1 feature 12 (3 of 3), launch 2 feature 13 (1 of 1), launch 3 feature 14 (1 of 1), launch 4
 feature 15 (1 of 1). Reports and log lines in `evidence/2026-09-21/`.
 
+**Replayed after the move and the rename, the same evening (23:12 to 23:18).** The same command against the
+renamed build (`nelim.pickletools.rimmsqol`, assembly `Nelim.PickleTools.Rimmsqol`, staged from
+`PickleTools/RimmsqolSteps/Mod`): four launches again, **every one `exitReason: passed`**, 15 mods loaded, scenarios played
+3 of 3 (feature 12) and then 1 of 1 for each of features 13, 14 and 15. The logs name the new namespace
+(`Nelim.PickleTools.Rimmsqol.RimmsqolBridge.SetVisible`, `.Forget`, `RimmsqolShortcutSteps.AssertDrawn`), the
+settings-file entries read as before (visible, hidden, none), and the WSL profile was left with `<mainButtons />`
+and no marker. Launcher output and step log lines in `evidence/2026-09-21-replay/`. No new captures were taken.
+The `-Then` chain of four launches under one lock has now finished twice.
+
 What that established, and where:
 
 - **The file layout was right.** Revealed, the entry is `<li><id>mainButtons</id><isConfigured>…Visible;t;…</isConfigured>
