@@ -1,0 +1,271 @@
+From 286e74e57f4c2fcec033ff6739663744096178c9 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 21:49:34 +0200
+Subject: [PATCH] feat(film): a @film-ticks:N tag that films by game ticks
+ instead of the clock
+
+A film is paced by a stopwatch at ten pictures a second, so an effect that
+lives one tick in fifteen is caught by chance. @film-ticks:N films the scenario
+on its own and takes a picture whenever the tick counter has advanced by N,
+read on each rendered frame. FilmTickGate holds that rule in Pickle.Core so it
+can be unit tested without the game; the recorder asks it on every frame and
+falls back to the clock when the tag is absent.
+
+At normal speed @film-ticks:1 gives one picture per tick. Where several ticks
+run between two rendered frames the picture lands on the first frame after the
+interval, which the documentation says. The real-seconds cap still applies.
+
+AI-assisted: Claude Code
+---
+ Docs/authoring.md                           |  8 +++
+ Source/Pickle.Core/Run/FilmTickGate.cs      | 39 +++++++++++++
+ Source/Pickle.Tests/FilmTickGateTests.cs    | 65 +++++++++++++++++++++
+ Source/Pickle/Evidence/FilmstripRecorder.cs | 31 ++++++++--
+ Source/Pickle/Run/RunSession.cs             | 11 +++-
+ 5 files changed, 147 insertions(+), 7 deletions(-)
+ create mode 100644 Source/Pickle.Core/Run/FilmTickGate.cs
+ create mode 100644 Source/Pickle.Tests/FilmTickGateTests.cs
+
+diff --git a/Docs/authoring.md b/Docs/authoring.md
+index 7b1696a..86b4bcc 100644
+--- a/Docs/authoring.md
++++ b/Docs/authoring.md
+@@ -79,6 +79,7 @@ that feature.
+ | `@same-world` | Skip the fixture reload and keep the previous world |
+ | `@allow-errors` | Do not fail the scenario when the game logs an error |
+ | `@film` | Record the scenario and attach the video to the report |
++| `@film-ticks:1` | Film the scenario with one picture every 1 game tick instead of ten a second |
+ | `@watch` | Make wait steps pass real time instead of driving ticks |
+ | `@quickstart:Name` | Build the starting world from a Quickstarts quickstart |
+ 
+@@ -90,6 +91,13 @@ A film stops at sixty seconds by default, and Pickle logs when it does. Raise it
+ default, so `I wait 10000 ticks` finishes in seconds and films almost nothing. Under
+ `@watch` the same wait takes the real minutes it describes, and the video shows them.
+ 
++`@film-ticks:N` films on its own and counts in game ticks, not in seconds. Use it when the
++thing you want to see lasts a tick or two: a film paced by the clock catches it only by chance.
++The tick counter is read on each rendered frame, so at normal speed `@film-ticks:1` gives one
++picture per tick. At a speed that runs several ticks between two frames, or without `@watch`,
++a picture lands on the first frame after the interval and cannot show the ticks in between.
++It still stops at `-pickle-max-film-seconds`, counted in real seconds.
++
+ `@film` captures one full size jpeg as each step finishes. The report links them rather
+ than embedding them, and turns them into a video when `ffmpeg` is installed. Encoding a
+ frame stalls the frame it lands on, so tag a scenario while you work out why something
+diff --git a/Source/Pickle.Core/Run/FilmTickGate.cs b/Source/Pickle.Core/Run/FilmTickGate.cs
+new file mode 100644
+index 0000000..6409566
+--- /dev/null
++++ b/Source/Pickle.Core/Run/FilmTickGate.cs
+@@ -0,0 +1,39 @@
++using System;
++
++namespace RimWorks.Pickle.Core.Run;
++
++/// <summary>
++/// Decides, frame by frame, when a film that counts in game ticks takes its next picture.
++/// A film paced by the clock samples whatever the screen shows at that moment, so an effect that
++/// lives one tick in fifteen is caught by chance. This gate is fed the tick counter on every
++/// rendered frame and answers true once the counter has moved on by the requested number of ticks.
++/// </summary>
++public sealed class FilmTickGate {
++  private readonly int ticksPerFrame;
++
++  private int? lastCapturedTick;
++
++  /// <summary>Initializes a new instance.</summary>
++  /// <param name="ticksPerFrame">How many game ticks pass between two pictures. At least one.</param>
++  public FilmTickGate(int ticksPerFrame) {
++    if (ticksPerFrame < 1) {
++      throw new ArgumentOutOfRangeException(nameof(ticksPerFrame), ticksPerFrame, "A film needs at least one tick between pictures.");
++    }
++
++    this.ticksPerFrame = ticksPerFrame;
++  }
++
++  /// <summary>Whether this frame is one to capture, remembering it if so.</summary>
++  /// <param name="ticksGame">The game's tick counter as this frame is drawn.</param>
++  /// <returns><c>true</c> for the first frame and whenever the counter has advanced far enough.</returns>
++  // A counter that has gone backwards means a load or a debug rewind: the remembered tick is
++  // meaningless, so take the picture and start counting again from there.
++  public bool ShouldCapture(int ticksGame) {
++    if (lastCapturedTick is int last && ticksGame >= last && ticksGame - last < ticksPerFrame) {
++      return false;
++    }
++
++    lastCapturedTick = ticksGame;
++    return true;
++  }
++}
+diff --git a/Source/Pickle.Tests/FilmTickGateTests.cs b/Source/Pickle.Tests/FilmTickGateTests.cs
+new file mode 100644
+index 0000000..af9dfa9
+--- /dev/null
++++ b/Source/Pickle.Tests/FilmTickGateTests.cs
+@@ -0,0 +1,65 @@
++using System;
++using RimWorks.Pickle.Core.Run;
++using Xunit;
++
++namespace RimWorks.Pickle.Tests;
++
++public class FilmTickGateTests {
++  [Fact]
++  public void ShouldCapture_FirstFrameAlwaysCaptures() {
++    FilmTickGate gate = new(5);
++
++    Assert.True(gate.ShouldCapture(1000));
++  }
++
++  [Fact]
++  public void ShouldCapture_OneTickCapturesEveryTickThatPasses() {
++    FilmTickGate gate = new(1);
++
++    Assert.True(gate.ShouldCapture(10));
++    Assert.False(gate.ShouldCapture(10));
++    Assert.True(gate.ShouldCapture(11));
++    Assert.True(gate.ShouldCapture(12));
++  }
++
++  [Fact]
++  public void ShouldCapture_WaitsUntilTheCounterHasAdvancedFarEnough() {
++    FilmTickGate gate = new(15);
++
++    Assert.True(gate.ShouldCapture(100));
++    Assert.False(gate.ShouldCapture(101));
++    Assert.False(gate.ShouldCapture(114));
++    Assert.True(gate.ShouldCapture(115));
++    Assert.False(gate.ShouldCapture(129));
++    Assert.True(gate.ShouldCapture(130));
++  }
++
++  [Fact]
++  public void ShouldCapture_CountsFromTheTickItCapturedNotFromTheOneItWasDue() {
++    // The frame that finally notices a boundary may land late. The next picture is due
++    // ticksPerFrame after the one taken, so a slow frame does not shorten the next gap.
++    FilmTickGate gate = new(10);
++
++    Assert.True(gate.ShouldCapture(0));
++    Assert.True(gate.ShouldCapture(13));
++    Assert.False(gate.ShouldCapture(22));
++    Assert.True(gate.ShouldCapture(23));
++  }
++
++  [Fact]
++  public void ShouldCapture_CounterGoingBackwardsCapturesAndRestarts() {
++    FilmTickGate gate = new(10);
++
++    Assert.True(gate.ShouldCapture(500));
++    Assert.True(gate.ShouldCapture(20));
++    Assert.False(gate.ShouldCapture(25));
++    Assert.True(gate.ShouldCapture(30));
++  }
++
++  [Theory]
++  [InlineData(0)]
++  [InlineData(-3)]
++  public void Constructor_RejectsAnIntervalUnderOneTick(int ticksPerFrame) {
++    Assert.Throws<ArgumentOutOfRangeException>(() => new FilmTickGate(ticksPerFrame));
++  }
++}
+diff --git a/Source/Pickle/Evidence/FilmstripRecorder.cs b/Source/Pickle/Evidence/FilmstripRecorder.cs
+index 25bad53..fc9e846 100644
+--- a/Source/Pickle/Evidence/FilmstripRecorder.cs
++++ b/Source/Pickle/Evidence/FilmstripRecorder.cs
+@@ -3,7 +3,9 @@ using System.Collections.Generic;
+ using System.Diagnostics;
+ using System.IO;
+ using System.Linq;
++using RimWorks.Pickle.Core.Run;
+ using RimWorks.Pickle.Runtime;
++using Verse;
+ using Log = RimWorks.RimLogging.Log;
+ 
+ namespace RimWorks.Pickle.Evidence;
+@@ -16,6 +18,12 @@ public sealed class FilmstripRecorder {
+   /// <summary>The scenario tag that turns filming on.</summary>
+   public const string Tag = "@film";
+ 
++  /// <summary>
++  /// The scenario tag that films by game ticks instead of by the clock, such as
++  /// <c>@film-ticks:1</c> for a picture after every tick. It films the scenario on its own.
++  /// </summary>
++  public const string TicksTag = "@film-ticks:";
++
+   /// <summary>The capture rate this recorder aims for, in frames per second.</summary>
+   // Ten, not thirty: a software renderer cannot read back and encode faster than that.
+   // The game rarely hits even this, so the encoder gets the rate measured per scenario.
+@@ -31,6 +39,7 @@ public sealed class FilmstripRecorder {
+   private readonly PickleContext ctx;
+   private readonly string featureName;
+   private readonly string scenarioName;
++  private readonly FilmTickGate? tickGate;
+ 
+   private double nextCaptureAt;
+   private int frameIndex;
+@@ -40,10 +49,16 @@ public sealed class FilmstripRecorder {
+   /// <param name="ctx">The scenario context to attach the finished filmstrip to.</param>
+   /// <param name="featureName">The feature the scenario belongs to.</param>
+   /// <param name="scenarioName">The scenario being filmed.</param>
+-  public FilmstripRecorder(PickleContext ctx, string featureName, string scenarioName) {
++  /// <param name="ticksPerFrame">
++  /// Game ticks between two pictures, or <c>null</c> to take them by the clock. Counted from the
++  /// tick counter on each rendered frame, so at a speed that runs several ticks between frames
++  /// the picture lands on the first frame after the interval, not on the tick itself.
++  /// </param>
++  public FilmstripRecorder(PickleContext ctx, string featureName, string scenarioName, int? ticksPerFrame = null) {
+     this.ctx = ctx;
+     this.featureName = featureName;
+     this.scenarioName = scenarioName;
++    tickGate = ticksPerFrame is int ticks ? new FilmTickGate(ticks) : null;
+   }
+ 
+   /// <summary>
+@@ -115,11 +130,19 @@ public sealed class FilmstripRecorder {
+       return;
+     }
+ 
+-    if (clock.Elapsed.TotalSeconds < nextCaptureAt) {
+-      return;
++    if (tickGate is not null) {
++      // Paced by the game's own tick counter: the clock has no say, except in the cap above.
++      if (!tickGate.ShouldCapture(Find.TickManager.TicksGame)) {
++        return;
++      }
++    } else {
++      if (clock.Elapsed.TotalSeconds < nextCaptureAt) {
++        return;
++      }
++
++      nextCaptureAt = clock.Elapsed.TotalSeconds + (1.0 / TargetFramesPerSecond);
+     }
+ 
+-    nextCaptureAt = clock.Elapsed.TotalSeconds + (1.0 / TargetFramesPerSecond);
+     PickleDriver.Instance.CaptureFrameDetached(
+         ScreenshotCapture.BuildFramePath(featureName, scenarioName, frameIndex), FrameWidth);
+     frameIndex++;
+diff --git a/Source/Pickle/Run/RunSession.cs b/Source/Pickle/Run/RunSession.cs
+index 65d960f..2b6fdd8 100644
+--- a/Source/Pickle/Run/RunSession.cs
++++ b/Source/Pickle/Run/RunSession.cs
+@@ -383,9 +383,14 @@ public class RunSession {
+         PickleRunMode.Current = PickleRunMode.Mode.Watch;
+       }
+ 
+-      film = scenario.Tags.Contains(FilmstripRecorder.Tag)
+-          ? new FilmstripRecorder(ctx, featureName, scenario.Name)
+-          : null;
++      // @film-ticks:N films on its own and counts in game ticks; a value under one is read as one.
++      int? filmTicks = RunOutcomes.IntFromTag(scenario.Tags, FilmstripRecorder.TicksTag);
++      if (filmTicks.HasValue) {
++        film = new FilmstripRecorder(ctx, featureName, scenario.Name, Math.Max(1, filmTicks.Value));
++      } else if (scenario.Tags.Contains(FilmstripRecorder.Tag)) {
++        film = new FilmstripRecorder(ctx, featureName, scenario.Name);
++      }
++
+       film?.Start();
+ 
+       foreach (StepPlan step in scenario.Steps) {
+-- 
+2.52.0.windows.1
+
