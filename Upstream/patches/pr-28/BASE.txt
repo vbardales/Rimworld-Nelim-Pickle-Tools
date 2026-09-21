@@ -1,0 +1,1 @@
+b3fda03 (RimWorks/Rimworld-Pickle main, 2026-09-21). Head of the PR branch: 4af4409 (vbardales fork, fix/warnings-from-mod-packageid).

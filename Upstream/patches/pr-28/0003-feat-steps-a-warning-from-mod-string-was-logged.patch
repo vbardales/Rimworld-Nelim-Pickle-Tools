@@ -1,0 +1,72 @@
+From bad3dbd853cd6a489f18740713252e0ef5a5a8a7 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 11:17:22 +0200
+Subject: [PATCH 3/4] feat(steps): a warning from mod {string} was logged
+
+The negative had no counterpart, and that is what let #27 hide: a check that
+never matches passes "no warnings from mod" for the wrong reason, and no report
+shows the difference between "the mod was silent" and "nothing could ever have
+matched". The positive form is the only way a scenario can prove attribution is
+looked at rather than merely not contradicted.
+
+It takes a name or a packageId, like every other mod step, and reports the
+attributions actually seen when it finds none.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                    |  1 +
+ Source/Pickle.Vanilla/UiSteps.cs | 24 ++++++++++++++++++++++++
+ 2 files changed, 25 insertions(+)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..231011a 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -526,6 +526,7 @@ while a follow is active.
+ | `a warning matching {string} was logged` | Checks at least one warning contains the text |
+ | `no warning matching {string} was logged` | Checks no warning contains the text |
+ | `{int} warnings matching {string} were logged` | Checks an exact count, for a step that should warn once and not twice |
++| `a warning from mod {string} was logged` | Checks at least one warning is attributed to a mod. Takes a name or a packageId |
+ | `no warnings from mod {string}` | Checks no warning is attributed to a mod |
+ | `I take a screenshot {string}` | Captures a screenshot and attaches it to the report |
+ 
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index e5fd06f..3b9c255 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -205,6 +205,30 @@ public class UiSteps {
+         $"expected {expectedCount} warning(s) matching '{substring}'; got {matches.Count}: {string.Join(" | ", matches)}");
+   }
+ 
++  /// <summary>Asserts at least one warning attributed to a mod was logged.</summary>
++  /// <remarks>
++  /// The counterpart of <c>no warnings from mod</c>, and the only way a scenario can prove that
++  /// attribution is looked at rather than merely not contradicted: a check that never matches
++  /// passes the negative form for the wrong reason, and nothing in a report shows the difference.
++  /// </remarks>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="modName">The mod's name or packageId, as every other mod step takes it.</param>
++  [Then("a warning from mod {string} was logged")]
++  public void AssertWarningFromMod(PickleContext ctx, string modName) {
++    ModContentPack? mod = ModLookup.Find(modName);
++    ctx.Require(
++        mod != null,
++        $"mod '{modName}' is not loaded. loaded mods: {ModLookup.DescribeLoadOrder()}; " +
++        $"warnings seen from: {DescribeObservedMods()}");
++
++    List<string> matches = [.. LogWatch.WarningsSinceArmed
++        .Where(w => string.Equals(w.Mod, mod!.Name, StringComparison.OrdinalIgnoreCase))
++        .Select(w => w.Message)];
++    ctx.Assert(
++        matches.Count > 0,
++        $"expected a warning from mod '{mod!.Name}'; warnings seen from: {DescribeObservedMods()}");
++  }
++
+   /// <summary>Asserts no warning attributed to a mod was logged.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <param name="modName">The mod's display name, as RimLogging attributes it.</param>
+-- 
+2.52.0.windows.1
+

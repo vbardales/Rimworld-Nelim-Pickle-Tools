@@ -1,0 +1,83 @@
+From 142746091f02dfa884ba977ed60a8642ba205cbc Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 11:09:25 +0200
+Subject: [PATCH 1/4] fix(steps): match a mod's warnings by name or packageId,
+ not by name alone
+
+`no warnings from mod {string}` guarded with ModLookup, which takes a name OR a
+packageId, and then compared the argument straight against the attribution
+RimLogging records - the display name. A scenario written with the packageId
+therefore passed the requirement, matched nothing at all, and asserted nothing.
+
+It reported green, and the step is at its most useful exactly where that hurts:
+a pass with none of a mod's optional dependencies present, asserting that it
+loads and stays silent. The strongest-looking scenario in the file becomes a
+permanent pass.
+
+The packageId is also the form people reach for first, since @requires:,
+`mod {string} is loaded` and modDependencies all take it, and it survives a
+rename or a translation.
+
+ModLookup gains Find, which is the resolution its callers were doing by hand,
+and the step compares against the resolved mod's Name. Both forms work now.
+
+Closes #27
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Source/Pickle.Vanilla/UiSteps.cs | 11 +++++++++--
+ Source/Pickle/ModLookup.cs       |  8 ++++++++
+ 2 files changed, 17 insertions(+), 2 deletions(-)
+
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index f222ba2..e5fd06f 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -210,14 +210,21 @@ public class UiSteps {
+   /// <param name="modName">The mod's display name, as RimLogging attributes it.</param>
+   [Then("no warnings from mod {string}")]
+   public void AssertNoWarningsFromMod(PickleContext ctx, string modName) {
++    ModContentPack? mod = ModLookup.Find(modName);
+     ctx.Require(
+-        ModLookup.IsLoaded(modName),
++        mod != null,
+         $"mod '{modName}' is not loaded. loaded mods: {ModLookup.DescribeLoadOrder()}; " +
+         $"warnings seen from: {DescribeObservedMods()}");
+     RequireWarningsNotDropped(ctx);
+ 
++    // RimLogging attributes an entry to the mod's display name, while every neighbouring step
++    // takes a name OR a packageId. Comparing the argument straight against the attribution made
++    // a packageId pass the requirement above and then match nothing at all, so the step asserted
++    // nothing and reported green. Compare against the resolved mod instead: both forms work, and
++    // the one people reach for first - the packageId, which is what @requires: and
++    // `mod ... is loaded` take - stops being a silent no-op.
+     List<string> matches = [.. LogWatch.WarningsSinceArmed
+-        .Where(w => string.Equals(w.Mod, modName, StringComparison.OrdinalIgnoreCase))
++        .Where(w => string.Equals(w.Mod, mod!.Name, StringComparison.OrdinalIgnoreCase))
+         .Select(w => w.Message)];
+     ctx.Assert(
+         matches.Count == 0,
+diff --git a/Source/Pickle/ModLookup.cs b/Source/Pickle/ModLookup.cs
+index b92a01a..1100bd3 100644
+--- a/Source/Pickle/ModLookup.cs
++++ b/Source/Pickle/ModLookup.cs
+@@ -30,6 +30,14 @@ public static class ModLookup {
+     return null;
+   }
+ 
++  /// <summary>The loaded mod matching a name or packageId, or <c>null</c> when none does.</summary>
++  /// <param name="wanted">The mod name or packageId, case insensitive.</param>
++  /// <returns>The matching mod, or <c>null</c>.</returns>
++  public static ModContentPack? Find(string wanted) {
++    int? index = IndexOf(wanted);
++    return index == null ? null : LoadedModManager.RunningModsListForReading[index.Value];
++  }
++
+   /// <summary>Whether a mod matches a name or packageId, also checking <see cref="ModContentPack.PackageIdPlayerFacing"/>
+   /// since a Steam copy's <see cref="ModContentPack.PackageId"/> carries a <c>_steam</c> postfix.</summary>
+   /// <param name="mod">The mod to test.</param>
+-- 
+2.52.0.windows.1
+

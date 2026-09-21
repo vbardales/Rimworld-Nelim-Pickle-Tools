@@ -1,0 +1,111 @@
+From e3b558d4f54bd70b28453c74ea40a415d6d26609 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 12:10:37 +0200
+Subject: [PATCH 5/5] fix(test): the language steps shared their text, and the
+ scenario proves nothing yet
+
+Running language-steps.feature, which I had not done before pushing it, found
+two things.
+
+The action and the assertion were both "the language is {string}". The step
+table ignores the keyword, so every scenario failed with "Ambiguous step" in a
+few milliseconds. The action is now "the language is set to {string}".
+
+Past that, the scenario fails: switching to French took about 7 seconds, but
+switching back to English never completed within 35, so the first scenario
+times out and the second reads French. The log has no "No active language!"
+line, so the run never entered the window this PR fixes - it survived because
+nothing hit it, which is not evidence that the fix held. The comment I had
+written, that the file never reaches its second scenario on the broken code,
+was a claim I had not checked.
+
+The feature is tagged @wip with the above written at its head, so it stays out
+of default runs instead of sitting red on an open PR. It needs running against
+the unfixed build, and the English timeout needs an explanation, before it
+claims anything.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                          |  4 ++--
+ Pickle/Features/language-steps.feature | 27 +++++++++++++++++++-------
+ Source/Pickle.Vanilla/LanguageSteps.cs |  5 ++++-
+ 3 files changed, 26 insertions(+), 10 deletions(-)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index a481742..b39fed6 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -49,8 +49,8 @@ happen the steps fail and say so, instead of reporting every def as unpatched.
+ 
+ | Step | Does |
+ | --- | --- |
+-| `the language is {string}` (When) | Switches the active language by folder prefix and waits for the reload |
+-| `the language is {string}` (Then) | Checks which language is active |
++| `the language is set to {string}` | Switches the active language by folder prefix and waits for the reload |
++| `the language is {string}` | Checks which language is active |
+ | `mod {string} is loaded` | Matches by name or packageId, the same rule `@requires:` uses |
+ | `mod {string} is not loaded` | Proves a conflict guard fired |
+ | `mod {string} loads before {string}` | Checks the first mod's load order index comes before the second's |
+diff --git a/Pickle/Features/language-steps.feature b/Pickle/Features/language-steps.feature
+index e171dae..8d7cd1b 100644
+--- a/Pickle/Features/language-steps.feature
++++ b/Pickle/Features/language-steps.feature
+@@ -1,17 +1,30 @@
+-# Switching language is the one thing that empties LanguageDatabase.activeLanguage, and a dashboard
++# @wip: written, run once, and NOT yet proving what it was written to prove.
++#
++# The intent. Switching language is what empties LanguageDatabase.activeLanguage, and a dashboard
+ # snapshot published in that window used to throw out of the runner and end the run with
+-# exitReason "infrastructure-error" - blaming whichever scenario happened to be running. The proof
+-# that it no longer does is structural rather than an assertion: on the broken code this file never
+-# reaches its second scenario, and the run dies here.
++# exitReason "infrastructure-error", blaming whichever scenario was running. A scenario that goes
++# through the switch and is still standing afterwards would be the regression test for it.
++#
++# What the one run on 2026-09-21 showed, against a build that already carries the fix:
++#   - switching to French took about 7 seconds and succeeded;
++#   - switching back to English never completed within 35 seconds, so the first scenario fails
++#     and the second reads the language as French;
++#   - the log holds no "No active language!" line at all, so the run never entered the window the
++#     fix is about. It survived because nothing hit it, not because the fix held.
++#
++# So this cannot yet tell the fixed code from the broken one, and it fails for a reason that is not
++# understood: the step, or the game refusing to select English while a session is in French. Both
++# need running against the unfixed build before this file claims anything. Until then it stays out
++# of default runs, which is what @wip is for.
++@wip
+ Feature: language steps
+ 
+   Scenario: switching language and coming back leaves the game with a language
+-    When the language is "French"
++    When the language is set to "French"
+     Then the language is "French"
+-    When the language is "English"
++    When the language is set to "English"
+     Then the language is "English"
+ 
+-  # Reached only if the switch above did not take the run down with it.
+   Scenario: the run survived the switch
+     Then the language is "English"
+     And no errors were logged
+diff --git a/Source/Pickle.Vanilla/LanguageSteps.cs b/Source/Pickle.Vanilla/LanguageSteps.cs
+index 27f9561..1000da8 100644
+--- a/Source/Pickle.Vanilla/LanguageSteps.cs
++++ b/Source/Pickle.Vanilla/LanguageSteps.cs
+@@ -20,7 +20,10 @@ public class LanguageSteps {
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <param name="folderName">The language folder, by prefix: English, French, German.</param>
+   /// <returns>A task that completes once the language is active.</returns>
+-  [When("the language is {string}", TimeoutSeconds = 40f)]
++  // The step table ignores the keyword, so an action and an assertion cannot share their text:
++  // declaring both as "the language is {string}" made every scenario in this file fail with
++  // "Ambiguous step", found by running them.
++  [When("the language is set to {string}", TimeoutSeconds = 40f)]
+   public async Task SetLanguage(PickleContext ctx, string folderName) {
+     // Folder names carry the native name too - "French (Français)" - so an exact match on "French"
+     // finds nothing. Exact first, so "Russian" cannot take "Russian (Русский)" by accident.
+-- 
+2.52.0.windows.1
+

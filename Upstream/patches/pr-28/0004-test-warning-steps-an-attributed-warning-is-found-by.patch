@@ -1,0 +1,85 @@
+From 4af44092b4242c1c4e3ddbf0446396ec98ee8c84 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 14:50:07 +0200
+Subject: [PATCH 4/4] test(warning-steps): an attributed warning is found by
+ name and by packageId
+
+The packageId scenario alone guards one direction only: it passes on the old code
+too, vacuously. What was missing was a warning the suite can count on being
+attributed to a mod, so attribution is asserted against something that exists.
+
+A step in this assembly logs one warning, "pickle-attribution-canary", and the
+scenario asserts it is found by display name, by packageId, and by its text.
+Played against a build of this branch in the headless Linux install: the five
+scenarios of warning-steps.feature pass. The warning is attributed to the
+display name "Pickle" - the step lives in Pickle.Vanilla, and RimLogging
+attributes by the calling assembly - so both names resolve to it.
+
+That answers what the first version of this PR left open, that I could not name
+a warning honestly attributed to a mod: one the suite produces itself, on demand,
+with no dependency on a third-party mod's behaviour or timing.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                         |  1 +
+ Pickle/Features/warning-steps.feature |  8 ++++++++
+ Source/Pickle.Vanilla/UiSteps.cs      | 13 +++++++++++++
+ 3 files changed, 22 insertions(+)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 231011a..cfa420e 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -526,6 +526,7 @@ while a follow is active.
+ | `a warning matching {string} was logged` | Checks at least one warning contains the text |
+ | `no warning matching {string} was logged` | Checks no warning contains the text |
+ | `{int} warnings matching {string} were logged` | Checks an exact count, for a step that should warn once and not twice |
++| `Pickle logs a warning for its own tests` | Logs one warning from Pickle's own assembly, for asserting on attribution |
+ | `a warning from mod {string} was logged` | Checks at least one warning is attributed to a mod. Takes a name or a packageId |
+ | `no warnings from mod {string}` | Checks no warning is attributed to a mod |
+ | `I take a screenshot {string}` | Captures a screenshot and attaches it to the report |
+diff --git a/Pickle/Features/warning-steps.feature b/Pickle/Features/warning-steps.feature
+index 462edac..99dec98 100644
+--- a/Pickle/Features/warning-steps.feature
++++ b/Pickle/Features/warning-steps.feature
+@@ -18,3 +18,11 @@ Feature: warning steps
+   Scenario: a packageId names the same mod as its display name does
+     Then no warnings from mod "rimworks.rimlogging"
+     And no warnings from mod "RimLogging"
++  # A warning the suite owns, so attribution is asserted against something that exists rather
++  # than against a silence. Both names must find it: the display name RimLogging records, and
++  # the packageId every neighbouring step takes.
++  Scenario: an attributed warning is found by display name and by packageId
++    When Pickle logs a warning for its own tests
++    Then a warning from mod "Pickle" was logged
++    And a warning from mod "rimworks.pickle" was logged
++    And a warning matching "pickle-attribution-canary" was logged
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index 3b9c255..e1f9769 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -205,6 +205,19 @@ public class UiSteps {
+         $"expected {expectedCount} warning(s) matching '{substring}'; got {matches.Count}: {string.Join(" | ", matches)}");
+   }
+ 
++  /// <summary>Logs a warning from this assembly, so a scenario can assert on attribution.</summary>
++  /// <remarks>
++  /// Attribution cannot be asserted against a warning nobody controls: in a staged set the only
++  /// mods that warn at all are the framework ones, and a third-party warning depends on that
++  /// mod's own behaviour and timing. This produces one on demand, inside the scenario, carrying
++  /// this mod's identity - which is what the assertions around it need in order to mean anything.
++  /// </remarks>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  [When("Pickle logs a warning for its own tests")]
++  public void LogTestWarning(PickleContext ctx) {
++    Log.Warning("pickle-attribution-canary");
++  }
++
+   /// <summary>Asserts at least one warning attributed to a mod was logged.</summary>
+   /// <remarks>
+   /// The counterpart of <c>no warnings from mod</c>, and the only way a scenario can prove that
+-- 
+2.52.0.windows.1
+

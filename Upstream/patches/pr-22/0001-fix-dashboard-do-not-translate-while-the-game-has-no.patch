@@ -1,0 +1,60 @@
+From 7b245151329a3b19a17bca10718eb1494ed63cfc Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Sun, 20 Sep 2026 22:37:34 +0200
+Subject: [PATCH 1/5] fix(dashboard): do not translate while the game has no
+ active language
+
+DashboardStrings.Translate calls CanTranslate, which dereferences
+LanguageDatabase.activeLanguage. That field is null for as long as the game is
+reloading its language data: SelectLanguage does not finish inside the call, and
+every frame in between has no active language at all - the log fills with "No
+active language! Cannot translate from key" while it lasts.
+
+A snapshot published in that window therefore throws NullReferenceException out
+of DashboardStrings.BuildJson, through RunnerSnapshot.Build and PublishSnapshot,
+and takes the run with it: the autorun stops with exitReason
+"infrastructure-error" and exit code 2, the scenario that happened to be running
+is reported as failing with nothing but "Object reference not set to an instance
+of an object", and the game is then left unable to quit - no further log output,
+process alive.
+
+Any suite with a scenario that switches language hits this. Observed on
+2026-09-20 in a headless Linux run (RimWorld 1.6.4871, Pickle 4.8.0): a scenario
+calling LanguageDatabase.SelectLanguage lost the run and hung the game, and the
+step-level failure message named a step that had nothing to do with it.
+
+Guarding Translate is enough, and it degrades the way the method already does
+for a missing key: the label comes back empty and the browser decides. A
+dashboard label is never worth a run.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Source/Pickle/Web/DashboardStrings.cs | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
+
+diff --git a/Source/Pickle/Web/DashboardStrings.cs b/Source/Pickle/Web/DashboardStrings.cs
+index 53d1ab6..16c1ac9 100644
+--- a/Source/Pickle/Web/DashboardStrings.cs
++++ b/Source/Pickle/Web/DashboardStrings.cs
+@@ -69,8 +69,15 @@ public static class DashboardStrings {
+ 
+   // A key with no entry translates to the key itself, which would read as
+   // "Pickle_RunAll" on a button. Fall back to nothing and let the browser decide.
++  //
++  // There may also be no language at all. SelectLanguage does not finish inside the call: the
++  // game reloads the language data and only then points activeLanguage at it, and every frame in
++  // between has none. CanTranslate dereferences it, so a snapshot published in that window throws
++  // NullReferenceException - out of PublishSnapshot, out of the runner, and the whole run dies
++  // with exitReason "infrastructure-error" while the game is left unable to quit. A scenario that
++  // switches language is enough to hit it. A dashboard label is never worth a run.
+   private static string Translate(string key) {
+-    if (!key.CanTranslate()) {
++    if (LanguageDatabase.activeLanguage == null || !key.CanTranslate()) {
+       return string.Empty;
+     }
+ 
+-- 
+2.52.0.windows.1
+

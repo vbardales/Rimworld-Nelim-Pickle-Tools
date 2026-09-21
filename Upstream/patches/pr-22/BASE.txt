@@ -1,0 +1,1 @@
+b3fda03 (RimWorks/Rimworld-Pickle main, 2026-09-21). Head of the PR branch on the fork: e3b558d (fix/dashboard-strings-no-active-language). The local branch of the session that wrote it had diverged; these are the REMOTE commits.

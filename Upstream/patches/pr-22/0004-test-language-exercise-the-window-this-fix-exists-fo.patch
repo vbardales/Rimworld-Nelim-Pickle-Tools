@@ -1,0 +1,129 @@
+From 960a73d661fd6941aa661f4c143554842d826c83 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 11:33:30 +0200
+Subject: [PATCH 4/5] test(language): exercise the window this fix exists for
+
+The fix could not be unit tested - both halves need RimWorld - and CONTRIBUTING
+says as much: anything touching the game is proved by running the suite. So it
+gets what it should have had from the start, a scenario.
+
+Switching language is the one thing that empties activeLanguage, so
+language-steps.feature walks through it and back. The proof is structural
+rather than an assertion: on the broken code the snapshot published during that
+window throws out of the runner, the run ends with exitReason
+"infrastructure-error", and the file never reaches its second scenario.
+
+The step comes with it, because no vanilla one could switch language and suites
+were each writing their own - one of them asserted straight after the call and
+read the old language on a slow machine. SelectLanguage does not finish inside
+the call, so the step waits for activeLanguage and declares TimeoutSeconds,
+above the five seconds a step gets by default.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                          |  2 +
+ Pickle/Features/language-steps.feature | 17 +++++++++
+ Source/Pickle.Vanilla/LanguageSteps.cs | 52 ++++++++++++++++++++++++++
+ 3 files changed, 71 insertions(+)
+ create mode 100644 Pickle/Features/language-steps.feature
+ create mode 100644 Source/Pickle.Vanilla/LanguageSteps.cs
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..a481742 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -49,6 +49,8 @@ happen the steps fail and say so, instead of reporting every def as unpatched.
+ 
+ | Step | Does |
+ | --- | --- |
++| `the language is {string}` (When) | Switches the active language by folder prefix and waits for the reload |
++| `the language is {string}` (Then) | Checks which language is active |
+ | `mod {string} is loaded` | Matches by name or packageId, the same rule `@requires:` uses |
+ | `mod {string} is not loaded` | Proves a conflict guard fired |
+ | `mod {string} loads before {string}` | Checks the first mod's load order index comes before the second's |
+diff --git a/Pickle/Features/language-steps.feature b/Pickle/Features/language-steps.feature
+new file mode 100644
+index 0000000..e171dae
+--- /dev/null
++++ b/Pickle/Features/language-steps.feature
+@@ -0,0 +1,17 @@
++# Switching language is the one thing that empties LanguageDatabase.activeLanguage, and a dashboard
++# snapshot published in that window used to throw out of the runner and end the run with
++# exitReason "infrastructure-error" - blaming whichever scenario happened to be running. The proof
++# that it no longer does is structural rather than an assertion: on the broken code this file never
++# reaches its second scenario, and the run dies here.
++Feature: language steps
++
++  Scenario: switching language and coming back leaves the game with a language
++    When the language is "French"
++    Then the language is "French"
++    When the language is "English"
++    Then the language is "English"
++
++  # Reached only if the switch above did not take the run down with it.
++  Scenario: the run survived the switch
++    Then the language is "English"
++    And no errors were logged
+diff --git a/Source/Pickle.Vanilla/LanguageSteps.cs b/Source/Pickle.Vanilla/LanguageSteps.cs
+new file mode 100644
+index 0000000..27f9561
+--- /dev/null
++++ b/Source/Pickle.Vanilla/LanguageSteps.cs
+@@ -0,0 +1,52 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Threading.Tasks;
++using Verse;
++
++namespace RimWorks.Pickle.Vanilla;
++
++/// <summary>Switching the active language, for a suite that has a pass to run in each one.</summary>
++[PickleSteps]
++public class LanguageSteps {
++  /// <summary>Switches the active language and waits for the reload to finish.</summary>
++  /// <remarks>
++  /// <c>LanguageDatabase.SelectLanguage</c> does not finish inside the call: the game reloads the
++  /// language data, and until it does there is no active language at all - the log fills with
++  /// "No active language! Cannot translate from key" while it lasts. A scenario asserting straight
++  /// after the call reads the old language on a slow machine, so the wait belongs here rather than
++  /// in every suite that needs it.
++  /// </remarks>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="folderName">The language folder, by prefix: English, French, German.</param>
++  /// <returns>A task that completes once the language is active.</returns>
++  [When("the language is {string}", TimeoutSeconds = 40f)]
++  public async Task SetLanguage(PickleContext ctx, string folderName) {
++    // Folder names carry the native name too - "French (Français)" - so an exact match on "French"
++    // finds nothing. Exact first, so "Russian" cannot take "Russian (Русский)" by accident.
++    List<LoadedLanguage> all = LanguageDatabase.AllLoadedLanguages.ToList();
++    LoadedLanguage? language = all.FirstOrDefault(l => l.folderName == folderName)
++        ?? all.FirstOrDefault(l => l.folderName.StartsWith(folderName + " (", StringComparison.Ordinal));
++    ctx.Require(
++        language != null,
++        $"no language matching '{folderName}'. installed: {string.Join(", ", all.Select(l => l.folderName))}");
++
++    LanguageDatabase.SelectLanguage(language);
++    await ctx.WaitUntil(() => LanguageDatabase.activeLanguage == language, 35f);
++    ctx.Assert(
++        LanguageDatabase.activeLanguage == language,
++        $"the language did not become '{language!.folderName}' within 35s; it is " +
++        $"'{LanguageDatabase.activeLanguage?.folderName ?? "none at all"}'");
++  }
++
++  /// <summary>Asserts which language is active.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="folderName">The language folder, by prefix.</param>
++  [Then("the language is {string}")]
++  public void AssertLanguage(PickleContext ctx, string folderName) {
++    string? active = LanguageDatabase.activeLanguage?.folderName;
++    ctx.Assert(
++        active != null && (active == folderName || active.StartsWith(folderName + " (", StringComparison.Ordinal)),
++        $"expected the language to be '{folderName}'; it is '{active ?? "none at all"}'");
++  }
++}
+-- 
+2.52.0.windows.1
+

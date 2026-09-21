@@ -1,0 +1,61 @@
+From fcdeddf660d50059f24baa7500ec293d707f9204 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Sun, 20 Sep 2026 22:45:29 +0200
+Subject: [PATCH 2/5] fix(runner): never let a dashboard snapshot end a run
+
+The dashboard is a view of a run, not a part of it, yet PublishSnapshot was
+called with nothing between it and the runner. A snapshot builds from live game
+state and can meet that state mid-change - the previous commit is one such case,
+translating a label while the game holds no active language - and the exception
+travelled out through OnProgress, ended the run with exitReason
+"infrastructure-error", and was reported against whichever scenario happened to
+be running at the time.
+
+Catch it, log the first one, and carry on. A browser that misses a frame costs
+nothing. A run that dies costs the whole suite, and an unattended one leaves
+nothing behind to say why.
+
+The catch is deliberately wide and the null guard in DashboardStrings stays:
+the guard states a condition that is known and keeps its own error visible, this
+one is the boundary that stops an unknown from being fatal.
+
+AI-assisted: Claude Code
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Source/Pickle/Runtime/SuiteRunner.cs | 18 +++++++++++++++++-
+ 1 file changed, 17 insertions(+), 1 deletion(-)
+
+diff --git a/Source/Pickle/Runtime/SuiteRunner.cs b/Source/Pickle/Runtime/SuiteRunner.cs
+index dcca023..0c49a37 100644
+--- a/Source/Pickle/Runtime/SuiteRunner.cs
++++ b/Source/Pickle/Runtime/SuiteRunner.cs
+@@ -41,8 +41,24 @@ public static class SuiteRunner {
+       PickleHttpServer.ActiveSession = session;
+ 
+       Dictionary<(string SourcePath, int ScenarioIndex), ScenarioResult> published = new();
+-      void PublishSnapshot() =>
++
++      // The dashboard is a view of the run, not a part of it, so nothing it does may end one.
++      // A snapshot builds from live game state and can meet that state mid-change: translating a
++      // label while the game holds no active language threw here, and the exception travelled out
++      // through OnProgress, ended the run in "infrastructure-error", and was reported against
++      // whichever scenario happened to be running. Log the first failure and keep going. A browser
++      // that misses a frame costs nothing; a run that dies costs the whole suite.
++      bool snapshotFailureLogged = false;
++      void PublishSnapshot() {
++        try {
+           PickleHttpServer.Publish(RunnerSnapshot.Build(parsedFeatures, published, session, true));
++        } catch (Exception ex) {
++          if (!snapshotFailureLogged) {
++            snapshotFailureLogged = true;
++            Log.WarnTo(PickleLog.Channel, ex, "dashboard snapshot failed, the run continues without it");
++          }
++        }
++      }
+       session.OnProgress = PublishSnapshot;
+       PublishSnapshot();
+ 
+-- 
+2.52.0.windows.1
+
