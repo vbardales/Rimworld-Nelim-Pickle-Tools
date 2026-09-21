@@ -78,3 +78,36 @@ running about 16 ticks a second in that time, well under normal speed, because t
 frames slowly: roughly **one picture per 1.6 ticks, not per tick**. The steps did what they say - the gate fires
 on every rendered frame, and each frame carries at least one tick - but on this rig a picture per tick is not
 reachable. A machine that renders at 60 frames a second would give one per tick; this one does not.
+
+## Checks
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/FilmTicks/Check-Steps.ps1
+```
+
+Offline, a few seconds, no game: both patterns compile with Pickle's own expression engine, none is declared
+twice, none is ambiguous against Pickle's 202 patterns or the 12 suites' 409, and every line in the repository that
+uses these two verbs resolves. Passed on 2026-09-21. The filter for "every line resolves" is the two verbs, not the
+prefix, because the sibling tools share the `Nelim's Pickle Tools:` prefix and this script does not read their
+patterns.
+
+## What it rests on
+
+Written with Claude Code (Anthropic) under Nelim's direction and review, in the session that was finding why
+Anima Song's halo would not show. `../ATTRIBUTION.md` leaves the attribution of this folder to its own README, and
+this is it.
+
+- **Pickle** ([RimWorks/Rimworld-Pickle](https://github.com/RimWorks/Rimworld-Pickle), `rimworks.pickle`), which
+  GitHub reports under the **MIT licence** (`gh repo view`, 2026-09-21). The steps call only what it makes public
+  (`PickleDriver.AddFrameHook`, `CaptureFrameDetached`, `ReleaseFrameBuffers`, `ScreenshotCapture.FrameDirectory` and
+  `BuildFramePath`, `FilmEncoder`) and are loaded by it; nothing of Pickle is redistributed by this folder.
+- **Pickle's own film**, whose source (`Source/Pickle/Evidence/FilmstripRecorder.cs`) was read to see how it samples
+  and where its frames go. The steps follow its conventions - 960-pixel jpegs, a `<name>` folder under
+  `screenshots/film/`, encoding to `film.webm` - so that the report finds the result. **No source line of it is
+  copied**; the sampling rule (`FilmTickGate`) is new.
+- **`Upstream/patches/0002-pickle-film-every-n-ticks.patch`** carries the same rule as a change to Pickle's source, and
+  is therefore derived from that source. That answers **only** the first open item of `../ATTRIBUTION.md` in one
+  respect - Pickle declares MIT - and I did not edit that file. It is a licence field read on GitHub, not a legal
+  opinion, and whether a copy of the licence notice has to travel with a patch is left to the owner.
+- **Dependencies of the mod**: `rimworks.pickle` only, read from `Mod/About/About.xml`. The steps assembly
+  compiles against `Krafs.Rimworld.Ref` and `RimWorks.Pickle.Ref` (NuGet, compile-time stubs, not shipped).
