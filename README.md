@@ -19,6 +19,7 @@ icon and a preview; the tools are the folders beside it.
 | [`ClearScreen/`](ClearScreen/README.md) | Close every window another mod owns and keep them closed for the rest of the scenario, so a click is not swallowed by a log viewer or a notice | `nelim.pickletools.clearscreen` |
 | [`ClickDiagnostics/`](ClickDiagnostics/README.md) | Wait for a button to stand still, check nothing covers it, click it, and on a lost click print the pointer, the buttons under it and the window stack | `nelim.pickletools.clickdiagnostics` |
 | [`Headless/`](Headless/README.md) | Not a tool: the guide to testing a mod in the headless WSL install without taking the screen (the launcher, the queue and lock, staging, passes, reports). The scripts it describes live in the monorepo's `scripts/` | none |
+| [`InSuites/`](InSuites/README.md) | Not a tool: an index of the Pickle steps that stayed in a mod's own repository, too specific or too small to move here, with what each does and where it lives. Look here before writing a step | none |
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 | [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history — what each reads, and where to find it before writing it a second time | none |
 
