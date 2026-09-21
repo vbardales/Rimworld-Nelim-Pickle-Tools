@@ -1,0 +1,75 @@
+From e9f893ce900a69059abd8b02b8229a8dbf6c7651 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 23:25:48 +0200
+Subject: [PATCH 5/5] docs(steps): say that a cleared screen drops the
+ scenario's own windows too
+
+The step's documentation said it "keeps them shut for the rest of the scenario"
+and called it "Setup for any scenario that clicks". Both mislead: every window
+that opens after the clear screen is dropped, including one the scenario means
+to open, so a click whose effect is to open a window needs the suppression
+lifted first. The docs table and the step's summary now say so.
+
+A scenario states it as behaviour: the window is dropped, suppression is
+lifted, the same window opens. It is written last because it lifts suppression
+itself, and the third scenario relies on the second having left it on. The
+window that opens at the end is its own control.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                              |  2 +-
+ Pickle/Features/window-suppression.feature | 14 ++++++++++++++
+ Source/Pickle.Vanilla/UiSteps.cs           |  2 +-
+ 3 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index a3c60e9..bc9f634 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -519,7 +519,7 @@ while a follow is active.
+ | `I select {string}` | Selects a pawn or thing by name |
+ | `I open the {string} tab` | Opens a main tab by def name or label |
+ | `I close all dialogs` | Closes every open window |
+-| `the screen is clear` | Closes every window Pickle does not own, and keeps them shut for the rest of the scenario. Setup for any scenario that clicks |
++| `the screen is clear` | Closes every window Pickle does not own and drops every one that opens afterwards, the scenario's own included, until the scenario ends. Setup for a scenario that clicks on the map, a gizmo or the main tab bar; lift it with `windows are allowed to open again` before a click whose effect is to open a window |
+ | `windows are allowed to open again` | Lets the game open its own windows again, before the scenario ends |
+ | `window {string} is open` | Checks a window type is open |
+ | `window {string} is closed` | Checks a window type is closed |
+diff --git a/Pickle/Features/window-suppression.feature b/Pickle/Features/window-suppression.feature
+index 5a6c1cf..cb54708 100644
+--- a/Pickle/Features/window-suppression.feature
++++ b/Pickle/Features/window-suppression.feature
+@@ -29,3 +29,17 @@ Feature: window suppression
+     And a window Pickle does not own opens
+     Then window "Dialog_MessageBox" is open
+     And no errors were logged
++
++  # Documented in Docs/steps.md: a window the scenario itself means to open is dropped as well, and
++  # lifting suppression first is what lets it through. Written last on purpose: it lifts suppression
++  # itself, so it cannot sit between the scenarios above, where the third relies on the second
++  # having left it on. The window opening at the end is its own control: it shows that the
++  # dropped one was dropped by suppression and not by a window that never opened.
++  Scenario: a window the scenario means to open is dropped until suppression is lifted
++    Given the screen is clear
++    When a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is closed
++    When windows are allowed to open again
++    And a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is open
++    And no errors were logged
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index c457159..7eb31a2 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -149,7 +149,7 @@ public class UiSteps {
+     }
+   }
+ 
+-  /// <summary>Closes every window the runner does not own, and keeps them closed for the rest of the scenario.</summary>
++  /// <summary>Closes every window the runner does not own and drops every one that opens afterwards, the scenario's own included, until the scenario ends.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
+   // Closing once is not enough on a real load order: a log viewer that tails errors, or a mod
+-- 
+2.52.0.windows.1
+

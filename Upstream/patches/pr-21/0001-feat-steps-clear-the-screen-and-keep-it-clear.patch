@@ -1,7 +1,7 @@
 From 24c60c6d1352c18c0ada89ba755432d6b3305d4b Mon Sep 17 00:00:00 2001
 From: vbardales <virginie.bardales@gmail.com>
 Date: Sun, 20 Sep 2026 22:16:12 +0200
-Subject: [PATCH 1/4] feat(steps): clear the screen, and keep it clear
+Subject: [PATCH 1/5] feat(steps): clear the screen, and keep it clear
 
 A click step aims at a point on screen, so a window another mod owns over
 that point takes the click and the scenario reads as a dead button. Closing

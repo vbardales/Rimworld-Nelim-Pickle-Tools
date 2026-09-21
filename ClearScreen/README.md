@@ -24,7 +24,7 @@ the two steps does not leave the game unable to open anything.
 
 This is a copy of [RimWorks/Rimworld-Pickle#21](https://github.com/RimWorks/Rimworld-Pickle/pull/21), branch
 `feat/clear-the-screen` on `vbardales/Rimworld-Pickle`. It exists so a suite can use the steps with the stock
-Pickle, without a local build (`-PickleSrc`). **A change to one goes to the other.** Mirrored commit: `9ab3686`.
+Pickle, without a local build (`-PickleSrc`). **A change to one goes to the other.** Mirrored commit: `e9f893c`.
 The patch series is in `Upstream/patches/pr-21/`, the ledger row in `Upstream/PENDING.md`.
 
 | | Pull request | This folder |

@@ -1,7 +1,7 @@
 From 9ab3686443404351948f3764ecad951156ae72d5 Mon Sep 17 00:00:00 2001
 From: vbardales <virginie.bardales@gmail.com>
 Date: Mon, 21 Sep 2026 12:10:06 +0200
-Subject: [PATCH 4/4] test(steps): unit-test the suppression rule
+Subject: [PATCH 4/5] test(steps): unit-test the suppression rule
 
 The decision - which windows a cleared screen lets through - now lives in
 Pickle.Core, away from Verse, so it can be tested without a running game.

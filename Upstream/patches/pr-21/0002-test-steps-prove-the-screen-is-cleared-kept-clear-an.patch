@@ -1,7 +1,7 @@
 From 77626eb5e4bb244aabc1983a05e5cc1f237dc7a1 Mon Sep 17 00:00:00 2001
 From: vbardales <virginie.bardales@gmail.com>
 Date: Mon, 21 Sep 2026 11:33:16 +0200
-Subject: [PATCH 2/4] test(steps): prove the screen is cleared, kept clear, and
+Subject: [PATCH 2/5] test(steps): prove the screen is cleared, kept clear, and
  given back
 
 The change had no test. Pickle.Tests only references Pickle.Core, and

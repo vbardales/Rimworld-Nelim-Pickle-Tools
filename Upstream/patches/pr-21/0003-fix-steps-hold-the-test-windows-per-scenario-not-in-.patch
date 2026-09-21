@@ -1,7 +1,7 @@
 From 7280f5fedeb6736db04b6c7c66b253793a05fda8 Mon Sep 17 00:00:00 2001
 From: vbardales <virginie.bardales@gmail.com>
 Date: Mon, 21 Sep 2026 11:41:07 +0200
-Subject: [PATCH 3/4] fix(steps): hold the test windows per scenario, not in
+Subject: [PATCH 3/5] fix(steps): hold the test windows per scenario, not in
  statics
 
 The analyzer gate fails on S2696: instance methods must not write static
