@@ -41,7 +41,7 @@ made by `Art/preview.html` and a bicubic resize.
 
 - **`Upstream/` holds patches against Pickle's source.** A patch is derived from the code it patches. Pickle's
   licence has not been checked for this file, and it must be before this repository goes public.
-- **Attribution of the other tools** (`FilmTicks/`, `ResearchSteps/`, `ColonistRace/`) is not established here.
+- **Attribution of the other tools** (`FilmTicks/`, `ResearchSteps/`, `ColonistRace/`, `InspectTabs/`, `KeyedClick/`) is not established here.
 - **The image tool** is not named above.
 
 ## Thanks
