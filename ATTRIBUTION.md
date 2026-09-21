@@ -22,12 +22,23 @@ their own READMEs are where they say what they rest on. See "Open" below.
   They show its interface as evidence that a run happened. If its author objects to them, they go.
 - **Pickle** ([RimWorks/Rimworld-Pickle](https://github.com/RimWorks/Rimworld-Pickle), `rimworks.pickle`,
   [Workshop 3791648678](https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678)). The steps are written
-  against its API (`RimWorks.Pickle.Ref` from NuGet) and are loaded by it; nothing of Pickle is redistributed.
+  against its API (`RimWorks.Pickle.Ref` from NuGet) and are loaded by it; no binary of Pickle is redistributed.
+  **Licence: MIT, Copyright (c) 2026 Aaron Scherer.** Checked on 2026-09-21 by two routes that agree: the `LICENSE`
+  file of the Workshop copy, and the repository at GitHub (`gh api repos/RimWorks/Rimworld-Pickle`: licence MIT,
+  public; the `LICENSE` file there is byte-identical to the Workshop one).
 - **The settings hand-off between two launches** (`RimmsqolSandbox.cs`: a step sets a flag, never a hook, and a
   marker beside the settings file names the process that wrote it) is the technique of
   `SkillIcons/Tests/Pickle/Source/SettingsSandbox.cs`, by the same author.
 - **Development tools, not distributed:** Harmony and Lib.Harmony, Krafs.Rimworld.Ref, Mono.Cecil (used by the
   offline checks).
+
+## Derived from Pickle
+
+`Upstream/` holds `git format-patch` series against Pickle's `main`: changes proposed to it, which contain lines of
+its code as context and as the code they change. That is derived material, and Pickle's MIT licence allows it on
+one condition, that the copyright and permission notice travel with copies and substantial portions.
+`Upstream/LICENSE-Pickle` carries it, unchanged. The new code in those patches is written here and proposed to
+Pickle to be merged under its licence; a patch that is merged upstream is deleted from `Upstream/`.
 
 ## Made with AI
 
@@ -39,8 +50,6 @@ made by `Art/preview.html` and a bicubic resize.
 
 ## Open
 
-- **`Upstream/` holds patches against Pickle's source.** A patch is derived from the code it patches. Pickle's
-  licence has not been checked for this file, and it must be before this repository goes public.
 - **Attribution of the other tools** (`FilmTicks/`, `ResearchSteps/`, `ColonistRace/`, `InspectTabs/`, `KeyedClick/`) is not established here.
 - **The image tool** is not named above.
 
