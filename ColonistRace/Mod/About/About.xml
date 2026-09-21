@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Colonist race</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.colonistrace</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that give a colonist a Biotech xenotype, and that generate a colonist from any humanlike PawnKindDef (the way to reach a race a mod adds). Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See ColonistRace/README.md at the repository root.
+
+They sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's steps; when the same steps land in Pickle this mod's can go.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>
