@@ -69,3 +69,12 @@ dotnet test  FilmTicks/Tests/FilmTicks.Tests.csproj -c Release                  
 ```
 
 Intermediates go to `FilmTicks/.build/`, never inside `Mod/`, since the staging copies `Mod/` verbatim.
+
+## Measured, once (2026-09-21, WSL under Xvfb, Workshop Pickle)
+
+`every 1 ticks` around `I wait 90 ticks` at normal speed took **56 pictures in 5.7 s**, encoded to a webm with 53
+frames (three pictures were lost between the capture and the encode, which is not explained). The game was
+running about 16 ticks a second in that time, well under normal speed, because the software renderer draws
+frames slowly: roughly **one picture per 1.6 ticks, not per tick**. The steps did what they say - the gate fires
+on every rendered frame, and each frame carries at least one tick - but on this rig a picture per tick is not
+reachable. A machine that renders at 60 frames a second would give one per tick; this one does not.
