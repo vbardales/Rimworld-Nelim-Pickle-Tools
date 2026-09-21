@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Click diagnostics</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.clickdiagnostics</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps for a click that must land: wait until a button has stopped moving, check that nothing covers it, click it and, when the window it should open does not, print the pointer, the buttons under it and the window stack. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See ClickDiagnostics/README.md at the repository root.
+
+The steps sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

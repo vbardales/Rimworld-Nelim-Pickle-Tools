@@ -16,6 +16,14 @@ Nothing here has been released or tagged: this is a development-only tool, never
 - Identifiers: packageId `nelim.pickletools.rimmsqol`, assembly and namespace `Nelim.PickleTools.Rimmsqol`.
   The first version was `nelim.pickleshared.rimmsqol`, in the monorepo's `PickleShared/`.
 
+### ClickDiagnostics
+
+- Three Pickle steps for a click that must land: wait until a button has stood still for 12 frames, check that the
+  window under the pointer is the expected one and receives input, click and wait for a window, and on a lost click
+  print the pointer, the buttons under it (image buttons too, through a Harmony postfix) and the window stack.
+  Moved here on 2026-09-21 from Work Studio's suite (`ImageButtonProbe`, `WaitForButtonToSettle`, the window-stack
+  dump), and generalised. Compiled with 0 warnings, patterns checked, not played as steps yet.
+
 ### Repository
 
 - Icon (`Mod/About/ModIcon.png`, 128 x 128) and preview (`Mod/About/Preview.png`, 896 x 504), with their

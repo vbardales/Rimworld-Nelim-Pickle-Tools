@@ -15,6 +15,7 @@ icon and a preview; the tools are the folders beside it.
 | [`ResearchSteps/`](ResearchSteps/README.md) | Open a tab of the research window by def, label or key, and read what it lists | `nelim.pickletools.research` |
 | [`InspectTabs/`](InspectTabs/README.md) | Open one of a pawn's inspect tabs (Gear, Bio, Health, Social, Needs, Log) and check which one is open | `nelim.pickletools.inspecttabs` |
 | [`ColonistRace/`](ColonistRace/README.md) | A colonist of a Biotech xenotype, or of any humanlike pawn kind | `nelim.pickletools.colonistrace` |
+| [`ClickDiagnostics/`](ClickDiagnostics/README.md) | Wait for a button to stand still, check nothing covers it, click it, and on a lost click print the pointer, the buttons under it and the window stack | `nelim.pickletools.clickdiagnostics` |
 | [`Headless/`](Headless/README.md) | Not a tool: the guide to testing a mod in the headless WSL install without taking the screen (the launcher, the queue and lock, staging, passes, reports). The scripts it describes live in the monorepo's `scripts/` | none |
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 
