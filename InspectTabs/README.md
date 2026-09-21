@@ -32,8 +32,24 @@ The logic must not differ. The text of the steps does, on purpose: with the pref
 carries the pull request (the local integration build, or a later release) can be loaded together and no step is
 ambiguous.
 
-When the pull request merges and a Pickle release ships it: delete this folder and its row in `Upstream/PENDING.md`,
-and change the suites' step text to the unprefixed one.
+## The day it is merged
+
+A suite that needs the steps adds this mod to its pass map and runs on the stock Pickle: no `-PickleSrc`, no modified
+Pickle. When the pull request merges and a Pickle release ships it:
+
+1. Find every user. In the monorepo, the maps that name the mod and the scenarios that use its steps:
+
+   ```
+   grep -rl "nelim.pickletools.inspecttabs" --include=wsl-deps*.map .
+   grep -rl "Nelim's Pickle Tools: I open the" --include=*.feature .
+   ```
+
+2. In each map, delete the `nelim.pickletools.inspecttabs` line. In each scenario, drop the `Nelim's Pickle Tools: `
+   prefix from `I open the {string} inspect tab` and `the {string} inspect tab is open`.
+3. Delete this folder and its row in `Upstream/PENDING.md`.
+
+Do the first two steps before the third, and only once the Workshop Pickle carries the steps: a suite that loses the
+mod on a Pickle without them fails on an unknown step.
 
 ## Naming a tab
 
