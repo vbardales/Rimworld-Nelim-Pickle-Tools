@@ -1,0 +1,14 @@
+# Editors and local settings.
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+.claude/
+
+# Build intermediates and products, never distributed: every tool keeps them under its own .build/.
+.build/
+obj/
+bin/
+Source/obj/
+Source/bin/
