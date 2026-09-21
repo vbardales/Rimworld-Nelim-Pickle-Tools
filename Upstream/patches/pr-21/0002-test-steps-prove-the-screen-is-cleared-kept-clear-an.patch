@@ -1,0 +1,126 @@
+From 77626eb5e4bb244aabc1983a05e5cc1f237dc7a1 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 11:33:16 +0200
+Subject: [PATCH 2/4] test(steps): prove the screen is cleared, kept clear, and
+ given back
+
+The change had no test. Pickle.Tests only references Pickle.Core, and
+WindowSuppression lives with Verse.Window, so the check belongs in a
+scenario rather than in xunit.
+
+Four scenarios, on windows added straight to the stack: a main tab stays the
+current tab even when its window is dropped, so reopening it would do nothing
+and a stale result would read as a pass.
+
+They cover what the change claims: a cleared screen closes what is open and
+drops what opens next, a window Pickle owns is spared, the explicit step
+hands windows back, and - by never lifting suppression in one scenario and
+opening a window in the next - that [AfterScenario] lifts it anyway. That
+last one depends on the order they are written in, which the feature says.
+
+Co-Authored-By: Claude Opus 5 <noreply@anthropic.com>
+---
+ Pickle/Features/window-suppression.feature    | 31 +++++++++++
+ .../Pickle/Runtime/WindowSuppressionSteps.cs  | 52 +++++++++++++++++++
+ 2 files changed, 83 insertions(+)
+ create mode 100644 Pickle/Features/window-suppression.feature
+ create mode 100644 Source/Pickle/Runtime/WindowSuppressionSteps.cs
+
+diff --git a/Pickle/Features/window-suppression.feature b/Pickle/Features/window-suppression.feature
+new file mode 100644
+index 0000000..5a6c1cf
+--- /dev/null
++++ b/Pickle/Features/window-suppression.feature
+@@ -0,0 +1,31 @@
++# The scenarios run in order, and the third depends on it: it asserts that the suppression the
++# second one never lifted was lifted anyway, by [AfterScenario]. Moved or run alone, it passes
++# without proving anything.
++Feature: window suppression
++
++  Scenario: a cleared screen closes what is open, and drops what opens next
++    When a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is open
++    Given the screen is clear
++    Then window "Dialog_MessageBox" is closed
++    When a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is closed
++    And no errors were logged
++
++  Scenario: a window Pickle owns is spared
++    Given the screen is clear
++    When a window Pickle owns opens
++    Then window "TagClickTestWindow" is open
++    And no errors were logged
++
++  Scenario: suppression does not outlive the scenario that asked for it
++    When a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is open
++    And no errors were logged
++
++  Scenario: windows are allowed to open again, on demand
++    Given the screen is clear
++    When windows are allowed to open again
++    And a window Pickle does not own opens
++    Then window "Dialog_MessageBox" is open
++    And no errors were logged
+diff --git a/Source/Pickle/Runtime/WindowSuppressionSteps.cs b/Source/Pickle/Runtime/WindowSuppressionSteps.cs
+new file mode 100644
+index 0000000..b6120ca
+--- /dev/null
++++ b/Source/Pickle/Runtime/WindowSuppressionSteps.cs
+@@ -0,0 +1,52 @@
++using System.Linq;
++using System.Threading.Tasks;
++using Verse;
++
++namespace RimWorks.Pickle.Runtime;
++
++/// <summary>
++/// Opens windows so a scenario can watch what suppression does to them. The two openers assert
++/// nothing themselves: under suppression the window is meant not to arrive, and it is the
++/// scenario that says which outcome it expects, through the vanilla window steps.
++/// </summary>
++// Windows are added straight to the stack rather than through a tab or a dialog of the game's
++// own: a main tab stays the current tab even when its window is dropped, so reopening it later
++// would do nothing and the scenario would read a stale result as a pass.
++[PickleSteps]
++public class WindowSuppressionSteps {
++  private static Dialog_MessageBox? foreign;
++  private static TagClickTestWindow? own;
++
++  /// <summary>Opens a window belonging to the game, which suppression is meant to drop.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <returns>A task that completes once the stack has had frames to take the window.</returns>
++  [When("a window Pickle does not own opens")]
++  public async Task OpenForeignWindow(PickleContext ctx) {
++    foreign = new Dialog_MessageBox("pickle window suppression test");
++    Find.WindowStack.Add(foreign);
++    await ctx.WaitFrames(2);
++  }
++
++  /// <summary>Opens a window of Pickle's own, which suppression must never drop.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <returns>A task that completes once the stack has had frames to take the window.</returns>
++  [When("a window Pickle owns opens")]
++  public async Task OpenOwnWindow(PickleContext ctx) {
++    own = new TagClickTestWindow();
++    Find.WindowStack.Add(own);
++    await ctx.WaitFrames(2);
++  }
++
++  /// <summary>Takes both windows off the stack, whatever the scenario did with them.</summary>
++  // A scenario that fails midway would otherwise leave its window sitting over the next one,
++  // which is the very failure these steps exist to catch.
++  [AfterScenario]
++  public void CloseOpenedWindows() {
++    foreach (Window window in new Window?[] { foreign, own }.OfType<Window>()) {
++      Find.WindowStack.TryRemove(window, doCloseSound: false);
++    }
++
++    foreign = null;
++    own = null;
++  }
++}
+-- 
+2.52.0.windows.1
+
