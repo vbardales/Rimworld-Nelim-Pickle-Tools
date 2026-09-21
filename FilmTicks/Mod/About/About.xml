@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Film ticks</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.filmticks</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that film a stretch of a scenario one picture every N game ticks, instead of by the clock. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See FilmTicks/README.md at the repository root.
+
+It exists because Pickle's own @film takes ten pictures a second by the clock, and an effect that lives one tick in fifteen is caught by chance. The same feature, as a scenario tag, is proposed to Pickle itself; when it lands this mod's steps can go.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

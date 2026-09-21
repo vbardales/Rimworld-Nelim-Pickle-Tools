@@ -1,0 +1,9 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Set here, before Microsoft.Common.props is imported: setting them in the csproj is too late. -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\.build\tests-obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\.build\tests-bin\</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>
