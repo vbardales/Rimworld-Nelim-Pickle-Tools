@@ -12,7 +12,7 @@ stage_meaning: "the criteria of dansMonoRepo -> horsMonoRepo are not all met: th
 licence: original
 licence_at: "2026-09-21, same treatment as Nelim's Tech Level Fixes, by the owner's instruction: licence original, plain MIT, Copyright (c) 2026 Nelim, the same text (LICENSE, Mod/LICENSE, RimmsqolSteps/Mod/LICENSE; a first version copied from another repository carried a paragraph about Flavor Text and was replaced the same day). Verified by inspection of what is shipped: step assemblies and their C# source written here, no third-party code, text or art copied in. RIMMSQOL is studied and not reused, no licence found for it; Pickle is used through its API and not redistributed; see ATTRIBUTION.md"
 rights_reviewed_at: 2026-09-21
-explicit_prohibition_found: not checked for RIMMSQOL's Workshop page, see remaining
+explicit_prohibition_found: none found for RIMMSQOL in its About.xml, its shipped source or its Workshop description (read 2026-09-21 through Steam's API); its manual, bug thread and comments not read
 settings_audit: not_applicable
 localization: not_applicable
 translation_en: not_applicable
@@ -28,7 +28,7 @@ remaining:
   - "resolved 2026-09-21 23:18: the renamed RimmsqolSteps build was replayed through the map of FlavorTextExtendedFR pointing at PickleTools/RimmsqolSteps/Mod with the new packageId, four launches, all exitReason passed. The map and docs of FlavorTextExtendedFR that name it are still uncommitted in that repository."
   - "resolved 2026-09-21: Upstream/ holds patches against Pickle's source. Pickle is MIT, Copyright (c) 2026 Aaron Scherer, checked in the LICENSE of the Workshop copy and in the GitHub repository (byte-identical). Upstream/LICENSE-Pickle carries the notice, as MIT requires of copies; ATTRIBUTION.md declares the patches as derived. No longer a blocker for a public repository."
   - "open: attribution of FilmTicks, ResearchSteps, ColonistRace, InspectTabs and KeyedClick, written in other sessions, is not established here."
-  - "unverified: RIMMSQOL's Workshop page and description were not consulted for a licence or a prohibition; none was found in its About.xml, its shipped source or as a file."
+  - "partly resolved 2026-09-21: RIMMSQOL's Workshop description was read through Steam's API and holds no licence, permission or prohibition. Still unread: its manual and bug-report threads and the comments."
   - "unverified: RIMMSQOL's checkbox is wired to the calls the steps make (read from its source, not clicked); other customization mods; the French interface."
   - "open: the image tool that generated the icon and the preview is not named in ATTRIBUTION.md."
   - "note, justified non-applicability: settings, localization and translation are not applicable. The mod has no Defs, no Mod subclass, no settings page and no MainButtonDef, only step assemblies loaded by the test runner; its logs are technical and in English."
