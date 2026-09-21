@@ -2,7 +2,7 @@
 
 Nelim's Pickle Tools is original work, MIT (see `LICENSE`). This file says what it stands on, what it
 studied without reusing, and what is not settled. It covers the repository root and `RimmsqolSteps/`; the
-other folders (`FilmTicks/`, `ResearchSteps/`, `ColonistRace/`, `Upstream/`) were written in other sessions and
+other folders (`FilmTicks/`, `ResearchSteps/`, `ColonistRace/`, `InspectTabs/`, `KeyedClick/`, `Upstream/`) were written in other sessions and
 their own READMEs are where they say what they rest on. See "Open" below.
 
 ## Studied, not reused
