@@ -20,7 +20,7 @@ State as last seen, 2026-09-21. A row says what was actually done, not what is h
 
 ## Patch series
 
-`patches/pr-28`, `patches/pr-23` and `patches/pr-22` are `git format-patch` series against upstream `b3fda03`. All were checked by applying them to a fresh checkout of that commit: the resulting tree is identical to the tree of the PR branch on the fork. A `BASE.txt` in each says which head it is. When upstream merges a PR, delete its folder and its row here.
+`patches/pr-28`, `patches/pr-23`, `patches/pr-22` and `patches/pr-21` are `git format-patch` series against upstream `b3fda03`. All were checked by applying them to a fresh checkout of that commit: the resulting tree is identical to the tree of the PR branch on the fork. A `BASE.txt` in each says which head it is. When upstream merges a PR, delete its folder and its row here.
 
 `pr-21` is the one kept in step by hand: whenever `feat/clear-the-screen` moves, delete the old files in its folder, run `git format-patch b3fda03..<head> -o Upstream/patches/pr-21` from a checkout of the branch (use the new base if upstream `main` has moved), rewrite `BASE.txt`, apply the series to a fresh checkout of the base and check that its tree equals the branch head's, and update the row above.
 
