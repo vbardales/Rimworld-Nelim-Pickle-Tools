@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Reusable Pickle steps that drive RIMMSQOL (MalteSchulze.RIMMSqol, Workshop 1084452457) the way its
+    own interface does, to reveal and hide a MainButtonDef. Only Pickle loads this assembly: it lives
+    in a companion mod, never in a mod that goes to the Workshop. A suite stages it with one line in a
+    pass map, see ../README.md.
+
+    Bound against the REAL RIMMSqol.dll (1.6) rather than a copy or reflection strings, so a member a
+    step names that RIMMSqol has since renamed fails here, at build, and not in the middle of a WSL
+    run. Private=false: the game loads RIMMSqol before Pickle loads this assembly, exactly as
+    FlavorTextExtendedFR.PickleSteps binds FlavorText.dll.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Nelim.PickleShared.RimmsqolSteps</AssemblyName>
+    <RootNamespace>Nelim.PickleShared.Rimmsqol</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <DebugType>none</DebugType>
+    <OutputPath>..\Mod\Pickle\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+    <RimmsqolDll Condition="'$(RimmsqolDll)' == ''">C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\1084452457\1.6\Assemblies\RIMMSqol.dll</RimmsqolDll>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compile-time stubs only: the game, Harmony and the Pickle mod supply the real assemblies. -->
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" ExcludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="Lib.Harmony" Version="2.*" ExcludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="RimWorks.Pickle.Ref" Version="4.*" ExcludeAssets="runtime" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="RIMMSqol">
+      <HintPath>$(RimmsqolDll)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+</Project>

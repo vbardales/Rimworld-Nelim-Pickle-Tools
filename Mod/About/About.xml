@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>RIMMSQOL - Pickle steps (shared)</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickleshared.rimmsqol</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that reveal and hide a MainButtonDef through RIMMSQOL's own settings, the way its interface does, and assert what the main bar then draws. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See PickleShared/RimmsqolSteps/README.md at the repository root.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+    <li>
+      <packageId>MalteSchulze.RIMMSqol</packageId>
+      <displayName>RIMMSqol</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/1084452457</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+    <li>MalteSchulze.RIMMSqol</li>
+  </loadAfter>
+</ModMetaData>

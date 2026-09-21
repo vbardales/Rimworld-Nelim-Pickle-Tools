@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Intermediates stay out of the mod folder: the staging copies Mod/ verbatim, and an obj/ inside
+         it would travel with it. -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\.build\obj\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\.build\bin\</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>
