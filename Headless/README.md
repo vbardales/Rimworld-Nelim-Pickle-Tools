@@ -340,3 +340,24 @@ elim.dotnet10dotnet.exe`: the one on
   `-PickleSrc <folder>`, which is also how a patched Pickle is A/B-tested against the Workshop copy.
 - **Nothing is edited while a run is going.** Windows will not replace a `.sh` a running bash
   holds open, and a retry that is not idempotent applies a patch twice.
+- **The built-in waits have their own limits, and they are not the five seconds of a custom step.** Measured on
+  EponaInstrumentsRenew, 2026-09-21: `I wait N ticks` ran about 500 to 700 ticks per real second in the WSL
+  install and dies with `Step 'When I wait 3500 ticks' timed out after 5s`: chain waits of about 1,800 instead.
+  `I wait for bill "<recipe>" to finish` allows 120 real seconds and then trips the watchdog (`exitReason:
+  watchdog-timeout`, exit 2, **no scenario written**): a craft of 65,000 work does not fit, so film the
+  beginning of the work (a bill added, `a "UnfinishedSculpture" exists`) and show the finished product by a
+  capture of a spawned item.
+- **`I select {string}` is an exact match, not a substring.** It compares (case-insensitively) the thing's
+  `LabelCap`, or a pawn's short name, so a stuffed item is `Steel uilleann pipes (normal)`: stuff and quality
+  included. A miss lists the nearby candidates, which is how to learn the real label in another language.
+  (`the inspect pane shows {string}`, by contrast, is a substring.) Source: `UiSteps.cs`.
+- **A capture can name a thing in whatever language the pass runs in without the scenario knowing the word.**
+  Centre the camera on the thing's cell (`I move the camera to (x, y)`): the pointer sits at the centre of the
+  screen and the hover label at the bottom left names what is under it. One feature, run once per `-Language`,
+  gives one set of captures per language to compare by eye. Nothing asserts the text; a person reads it.
+- **`I spawn a "<def>" at (x, y)` works for a def made of stuff without naming one** (the game picks a default
+  stuff; the label shows it). Two items one cell apart overlap if their `drawSize` is large.
+- **A film is encoded by Pickle itself when `ffmpeg` is on the PATH** (`film.webm` in `screenshots/film/<feature>--<scenario>/`
+  and the frames deleted); otherwise the frames stay. Copy the video out before the next run, and re-encode to
+  mp4 for a viewer that does not play webm. The 3 MB full-resolution PNGs and hundreds of raw frames are not
+  worth committing: keep JPEGs, a contact sheet and the mp4.
