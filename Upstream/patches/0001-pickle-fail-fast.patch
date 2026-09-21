@@ -1,0 +1,150 @@
+diff --git a/Docs/autorun.md b/Docs/autorun.md
+index 9f4b8c8..6d04e4a 100644
+--- a/Docs/autorun.md
++++ b/Docs/autorun.md
+@@ -19,6 +19,7 @@ exits.
+ | `-pickle-seed=N` | Set the run seed. Pickle logs the seed it used |
+ | `-pickle-scenario-timeout=N` | Fail a scenario after N seconds |
+ | `-pickle-retry=N` | Give a failed scenario N more attempts. See [flaky scenarios](#flaky-scenarios) |
++| `-pickle-fail-fast` | Stop at the first failed scenario. The scenarios not played are reported as skipped, and the exit code is still 1 |
+ | `-pickle-set-name=NAME` | Label this run's reports. See [mod sets](#mod-sets) |
+ | `-pickle-run-timeout=N` | Stop the run after N minutes |
+ | `-pickle-max-film-seconds=N` | Seconds of footage a `@film` scenario keeps. Defaults to 60. Use `0` to film nothing |
+diff --git a/Source/Pickle/Autorun/AutorunBootstrap.cs b/Source/Pickle/Autorun/AutorunBootstrap.cs
+index 7dfacc3..1f4b97e 100644
+--- a/Source/Pickle/Autorun/AutorunBootstrap.cs
++++ b/Source/Pickle/Autorun/AutorunBootstrap.cs
+@@ -101,7 +101,7 @@ public static class AutorunBootstrap {
+       // it goes out on an interval. The first one is unconditional, so the files exist early.
+       Stopwatch sinceWrite = Stopwatch.StartNew();
+ 
+-      await SuiteRunner.Run(args.RunFilter, args.Seed, retries: args.Retries, onScenarioCompleted: scenario => {
++      await SuiteRunner.Run(args.RunFilter, args.Seed, retries: args.Retries, failFast: args.FailFast, onScenarioCompleted: scenario => {
+         accumulated.Add(scenario);
+         Watchdog.RecordProgress(accumulated);
+ 
+diff --git a/Source/Pickle/Autorun/PickleArgs.cs b/Source/Pickle/Autorun/PickleArgs.cs
+index 4ce5356..6ec6636 100644
+--- a/Source/Pickle/Autorun/PickleArgs.cs
++++ b/Source/Pickle/Autorun/PickleArgs.cs
+@@ -33,6 +33,9 @@ public sealed class PickleArgs {
+   /// <summary>Extra attempts a failed scenario gets. Zero runs each scenario once.</summary>
+   public int Retries { get; private set; }
+ 
++  /// <summary>Whether the run stops at the first failed scenario and reports the rest as skipped.</summary>
++  public bool FailFast { get; private set; }
++
+   /// <summary>Labels this run's reports, so a merged report can tell the mod sets apart.</summary>
+   public string? SetName { get; private set; }
+ 
+@@ -58,6 +61,7 @@ public sealed class PickleArgs {
+     int? cliScenarioTimeout = IntArg("-pickle-scenario-timeout");
+     string? cliSetName = NonEmptyArg("-pickle-set-name");
+     int? cliRetries = IntArg("-pickle-retry");
++    bool cliFailFast = GenCommandLine.CommandLineArgPassed("-pickle-fail-fast");
+     int? cliMaxFilm = IntArg("-pickle-max-film-seconds");
+     int? cliRunTimeout = IntArg("-pickle-run-timeout");
+     PickleRunMode.Mode cliMode = ModeArg();
+@@ -75,6 +79,7 @@ public sealed class PickleArgs {
+       Seed = cliSeed ?? config?.Seed ?? RunSession.DefaultSeed,
+       ScenarioTimeoutSeconds = cliScenarioTimeout ?? config?.ScenarioTimeoutSeconds ?? 120,
+       Retries = Math.Max(0, cliRetries ?? config?.Retries ?? 0),
++      FailFast = cliFailFast,
+       SetName = cliSetName ?? config?.SetName,
+       RunTimeoutMinutes = cliRunTimeout ?? config?.RunTimeoutMinutes ?? 60,
+       MaxFilmSeconds = cliMaxFilm ?? 60,
+diff --git a/Source/Pickle/Run/RunSession.cs b/Source/Pickle/Run/RunSession.cs
+index 65d960f..af1feca 100644
+--- a/Source/Pickle/Run/RunSession.cs
++++ b/Source/Pickle/Run/RunSession.cs
+@@ -112,6 +112,15 @@ public class RunSession {
+   /// <summary>Whether the run is stopped for either a break-on-failure or a manual pause.</summary>
+   public bool IsPaused => IsPausedForBreak || IsManuallyPaused;
+ 
++  /// <summary>Whether the run stops at the first failed scenario. Everything after it is reported as skipped.</summary>
++  public bool FailFast { get; set; }
++
++  /// <summary>The scenario that ended a fail-fast run, as <c>feature: scenario</c>, or <c>null</c> while none has.</summary>
++  public string? FailFastTrigger { get; private set; }
++
++  /// <summary>How many scenarios a fail-fast stop left unplayed.</summary>
++  public int FailFastSkipped { get; private set; }
++
+   /// <summary>Whether <see cref="RequestCancel"/> has been called for this run.</summary>
+   public bool CancelRequested { get; private set; }
+ 
+@@ -201,6 +210,24 @@ public class RunSession {
+         continue;
+       }
+ 
++      // After a fail-fast stop nothing else is played, but nothing is dropped from the report
++      // either: what was not run is listed as skipped, so a reader can tell 40 unplayed
++      // scenarios from 40 passed ones.
++      if (FailFastTrigger != null) {
++        ScenarioResult unplayed = new ScenarioResult(
++            scenario.Name,
++            plan.Name,
++            scenario.Tags,
++            ScenarioOutcome.Skipped,
++            new List<StepResult>(),
++            0);
++        results.Add(unplayed);
++        onScenarioCompleted?.Invoke(unplayed);
++        FailFastSkipped++;
++        scenarioIndex++;
++        continue;
++      }
++
+       // @requires:<mod> keeps a dlc scenario out of a run that has no dlc, reported as
+       // skipped rather than failed.
+       string? missingMod = RunOutcomes.MissingRequirement(scenario.Tags, ModLookup.IsLoaded);
+@@ -232,6 +259,10 @@ public class RunSession {
+         PassedCount++;
+       } else if (result.Outcome == ScenarioOutcome.Failed) {
+         FailedCount++;
++        if (FailFast && FailFastTrigger == null) {
++          FailFastTrigger = $"{plan.Name}: {scenario.Name}";
++          Log.WarnTo(PickleLog.Channel, "fail-fast: '{Trigger}' failed, the remaining scenarios are not played", [FailFastTrigger]);
++        }
+       }
+ 
+       scenarioIndex++;
+diff --git a/Source/Pickle/Runtime/SuiteRunner.cs b/Source/Pickle/Runtime/SuiteRunner.cs
+index dcca023..b336b1b 100644
+--- a/Source/Pickle/Runtime/SuiteRunner.cs
++++ b/Source/Pickle/Runtime/SuiteRunner.cs
+@@ -25,12 +25,14 @@ public static class SuiteRunner {
+   /// <param name="seed">The random seed handed to the run session.</param>
+   /// <param name="onScenarioCompleted">Invoked after each scenario finishes, in completion order.</param>
+   /// <param name="retries">How many times a failed scenario is retried before it counts as failed.</param>
++  /// <param name="failFast">Whether to stop at the first failed scenario; the rest are reported as skipped.</param>
+   /// <returns>Every scenario result from the run, across all discovered suites.</returns>
+   public static async Task<List<ScenarioResult>> Run(
+       string? filter = null,
+       int seed = RunSession.DefaultSeed,
+       Action<ScenarioResult>? onScenarioCompleted = null,
+-      int retries = 0) {
++      int retries = 0,
++      bool failFast = false) {
+     List<ScenarioResult> allResults = new();
+ 
+     try {
+@@ -38,6 +40,7 @@ public static class SuiteRunner {
+       List<(DiscoveredSuite Suite, FeaturePlan Plan)> parsedFeatures = ScenarioFilter.FilterFeatures(FeatureParser.ParseAll(discoveredSuites), filter);
+ 
+       RunSession session = new RunSession(stepTable, PickleDriver.Instance, discoveredSuites, stepsTypes, seed, retries);
++      session.FailFast = failFast;
+       PickleHttpServer.ActiveSession = session;
+ 
+       Dictionary<(string SourcePath, int ScenarioIndex), ScenarioResult> published = new();
+@@ -77,6 +80,10 @@ public static class SuiteRunner {
+         }
+       }
+ 
++      if (session.FailFastTrigger != null) {
++        Log.InfoTo(PickleLog.Channel, "fail-fast stopped the run after '{Trigger}': {Count} scenarios not played", [session.FailFastTrigger, session.FailFastSkipped]);
++      }
++
+       if (totalFailed == 0) {
+         Log.InfoTo(PickleLog.Channel, "suite passed");
+       } else {
