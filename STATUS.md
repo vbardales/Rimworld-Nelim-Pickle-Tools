@@ -1,15 +1,16 @@
 ---
 mod: Nelim's Pickle Tools
 packageId: nelim.pickletools
-repo: Rimworld-Nelim-Pickle-Tools
+repo: rimworld-nelim-pickle-tools
 remote: none yet (the GitHub repository does not exist; the name is proposed)
-visibility: public, intended
+visibility: public
+visibility_exception: "2026-09-21, owner decision in chat: public although the name is Nelim-prefixed, which defaults to private (user-stated convention). Same case as Nelim's Tech Level Fixes, where the user validated the same one-off exception on 2026-09-17. The decision is about visibility only: it does not create the repository, and pushing waits for the open points below."
 visibility_verified_at: not applicable, nothing is on GitHub
 detached: git repository of its own since 2026-09-21, still a folder of the monorepo checkout and excluded there locally; no remote
 stage: dansMonoRepo
 stage_meaning: "the criteria of dansMonoRepo -> horsMonoRepo are not all met: the repository is standalone and has its first commits, but no GitHub repository exists and nothing is pushed. Retained stage is the last fully established one."
 licence: original
-licence_at: "original work, MIT (LICENSE, Mod/LICENSE, RimmsqolSteps/Mod/LICENSE). RIMMSQOL is studied and not reused, no licence found for it; Pickle is used through its API and not redistributed; see ATTRIBUTION.md"
+licence_at: "2026-09-21, same treatment as Nelim's Tech Level Fixes, by the owner's instruction: licence original, plain MIT, Copyright (c) 2026 Nelim, the same text (LICENSE, Mod/LICENSE, RimmsqolSteps/Mod/LICENSE; a first version copied from another repository carried a paragraph about Flavor Text and was replaced the same day). Verified by inspection of what is shipped: step assemblies and their C# source written here, no third-party code, text or art copied in. RIMMSQOL is studied and not reused, no licence found for it; Pickle is used through its API and not redistributed; see ATTRIBUTION.md"
 rights_reviewed_at: 2026-09-21
 explicit_prohibition_found: not checked for RIMMSQOL's Workshop page, see remaining
 settings_audit: not_applicable
@@ -23,7 +24,7 @@ automated_tests: "RimmsqolSteps: Check-Bridge (10 checks), Check-Reader (13 case
 tested_on: "2026-09-21, in game, RimmsqolSteps only, BEFORE the rename: pass avec-rimmsqol of FlavorTextExtendedFR, four launches, all exitReason passed (evidence in RimmsqolSteps/evidence). The renamed build (packageId, assembly) has not been played."
 updated: 2026-09-21
 remaining:
-  - "defect (dansMonoRepo -> horsMonoRepo): no GitHub repository and no remote. The About.xml <url> and the Source code on GitHub link name https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools, which does not exist: the link is unverified, not known to be wrong."
+  - "defect (dansMonoRepo -> horsMonoRepo): no GitHub repository and no remote. The About.xml <url> and the Source code on GitHub link name https://github.com/vbardales/rimworld-nelim-pickle-tools, which does not exist: the link is unverified, not known to be wrong."
   - "unverified: the renamed RimmsqolSteps build. Replay pass avec-rimmsqol after pointing the map of FlavorTextExtendedFR at PickleTools/RimmsqolSteps/Mod with the new packageId."
   - "open: Upstream/ holds patches against Pickle's source; Pickle's licence has not been checked for that. Must be settled before the repository goes public (ATTRIBUTION.md)."
   - "open: attribution of FilmTicks, ResearchSteps, ColonistRace, InspectTabs and KeyedClick, written in other sessions, is not established here."
