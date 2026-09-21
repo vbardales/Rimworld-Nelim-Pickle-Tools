@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Inspect tabs</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.inspecttabs</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Needs, Log) and check which one is open. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See InspectTabs/README.md at the repository root.
+
+A copy of RimWorks/Rimworld-Pickle#31, kept in step with it until it merges. The steps sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's; when Pickle ships the same steps this mod's can go.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>
