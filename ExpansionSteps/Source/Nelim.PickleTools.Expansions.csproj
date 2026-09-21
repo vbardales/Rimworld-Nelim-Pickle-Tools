@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!--
+    Two steps that ask ModsConfig whether a mod or an expansion is active. Only Pickle loads this
+    assembly: it lives in a companion mod, never in a mod that goes to the Workshop. A suite stages it
+    with one line in a pass map, see ../README.md.
+  -->
+  <PropertyGroup>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Nelim.PickleTools.Expansions</AssemblyName>
+    <RootNamespace>Nelim.PickleTools.Expansions</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <Nullable>disable</Nullable>
+    <Deterministic>true</Deterministic>
+    <DebugType>none</DebugType>
+    <OutputPath>..\Mod\Pickle\Assemblies\</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Compile-time stubs only: the game and the Pickle mod supply the real assemblies. -->
+    <PackageReference Include="Krafs.Rimworld.Ref" Version="1.6.*-*" ExcludeAssets="runtime" PrivateAssets="all" />
+    <PackageReference Include="RimWorks.Pickle.Ref" Version="4.*" ExcludeAssets="runtime" PrivateAssets="all" />
+  </ItemGroup>
+
+</Project>

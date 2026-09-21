@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Expansions</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.expansions</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Two Pickle steps that ask ModsConfig whether an expansion is active, for a pass that leaves a DLC out. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See ExpansionSteps/README.md at the repository root.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

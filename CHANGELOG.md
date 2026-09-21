@@ -24,10 +24,18 @@ Nothing here has been released or tagged: this is a development-only tool, never
   Moved here on 2026-09-21 from Work Studio's suite (`ImageButtonProbe`, `WaitForButtonToSettle`, the window-stack
   dump), and generalised. Compiled with 0 warnings, patterns checked, not played as steps yet.
 
+### ExpansionSteps
+
+- Two Pickle steps that assert an expansion, or any mod, is active in `ModsConfig` by package id, for a pass that leaves a DLC
+  out (`!ludeon.rimworld.odyssey` in the pass map). Moved here on 2026-09-21 from Flavor Text Extended's suite, where they
+  passed in its `sans-odyssey` pass. Compiled with 0 warnings, patterns checked and unambiguous against 609 others, not played
+  as a shared mod yet.
+
 ### Repository
 
 - Icon (`Mod/About/ModIcon.png`, 128 x 128) and preview (`Mod/About/Preview.png`, 896 x 504), with their
   sources and the page that engraves the preview in `Art/`.
 - `LICENSE` (MIT), `ATTRIBUTION.md`, `STATUS.md`.
 - Other tools added by other sessions are recorded in their own folders: `FilmTicks/`, `ResearchSteps/`,
-  `ColonistRace/`, `InspectTabs/`, `KeyedClick/`, `Upstream/`.
+  `ColonistRace/`, `InspectTabs/`, `KeyedClick/`, `Upstream/`. Steps that live in a suite and could be taken from there are listed in the
+  README.
