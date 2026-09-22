@@ -1,10 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HarmonyLib;
 using RimWorld;
 using RimWorks.Pickle;
-using VEF.Factions;
 using Verse;
 
 namespace Nelim.PickleTools.VefFactions
@@ -28,7 +28,28 @@ namespace Nelim.PickleTools.VefFactions
         // A required marker a scenario put on a def, taken off again whatever happens. Static: the
         // def outlives the game, so a failed scenario must not leave the marker for the next one.
         private static FactionDef markedDef;
-        private static FactionDefExtension markedExtension;
+        private static DefModExtension markedExtension;
+
+        private static Type VefType(string name) => AccessTools.TypeByName("VEF.Factions." + name)
+            ?? throw new InvalidOperationException("VEF.Factions." + name + " not found: load Vanilla Expanded Framework for this scenario");
+
+        private static object StaticValue(Type type, string name) =>
+            AccessTools.Property(type, name)?.GetValue(null, null) ?? AccessTools.Field(type, name)?.GetValue(null);
+
+        private static object FieldValue(object instance, string name) => Traverse.Create(instance).Field(name).GetValue();
+
+        private static object Call(Type type, string method, params object[] args) =>
+            (AccessTools.Method(type, method) ?? throw new MissingMethodException(type.FullName, method)).Invoke(null, args);
+
+        private static object State() => StaticValue(VefType("NewFactionSpawningState"), "Instance")
+            ?? throw new InvalidOperationException("VEF new faction state is unavailable");
+
+        private static bool IsIgnored(FactionDef def) => (bool)(AccessTools.Method(State().GetType(), "IsIgnored")
+            ?? throw new MissingMethodException("VEF new faction state", "IsIgnored")).Invoke(State(), new object[] { def });
+
+        private static object ForcedData(FactionDef def) => FieldValue(Call(VefType("FactionDefExtension"), "Get", def), "forcedFactionData");
+
+        private static bool Forced(object data, string name) => (bool)FieldValue(data, name);
 
         [When("Nelim's Pickle Tools: the load has settled")]
         public async Task Settled(PickleContext ctx)
@@ -46,11 +67,11 @@ namespace Nelim.PickleTools.VefFactions
             ctx.Require(Current.Game != null && Find.World != null, "load a save first");
             var present = new HashSet<FactionDef>(Find.FactionManager.AllFactions.Select(f => f.def));
             var def = DefDatabase<FactionDef>.AllDefs
-                .Where(d => !d.isPlayer && !d.hidden && !present.Contains(d) && !NewFactionSpawningUtility.NeverSpawn(d))
+                .Where(d => !d.isPlayer && !d.hidden && !present.Contains(d) && !(bool)Call(VefType("NewFactionSpawningUtility"), "NeverSpawn", d))
                 .Where(d =>
                 {
-                    var forced = FactionDefExtension.Get(d).forcedFactionData;
-                    return !forced.forceAddFactionIfMissing && !forced.forcePlayerToAddFactionIfMissing;
+                    var forced = ForcedData(d);
+                    return !Forced(forced, "forceAddFactionIfMissing") && !Forced(forced, "forcePlayerToAddFactionIfMissing");
                 })
                 .OrderBy(d => d.defName)
                 .FirstOrDefault();
@@ -65,10 +86,13 @@ namespace Nelim.PickleTools.VefFactions
         public void MarkRequired(PickleContext ctx)
         {
             var def = ctx.Get<Chosen>().Def;
-            ctx.Require(def.GetModExtension<FactionDefExtension>() == null,
+            var extensionType = VefType("FactionDefExtension");
+            ctx.Require(def.modExtensions == null || !def.modExtensions.Any(extensionType.IsInstanceOfType),
                 $"{def.defName} already carries a FactionDefExtension; marking it would overwrite its mod's own");
-            markedExtension = new FactionDefExtension();
-            markedExtension.forcedFactionData.forcePlayerToAddFactionIfMissing = true;
+            markedExtension = (DefModExtension)Activator.CreateInstance(extensionType);
+            var forced = FieldValue(markedExtension, "forcedFactionData");
+            Traverse.Create(forced).Field("forcePlayerToAddFactionIfMissing").SetValue(true);
+            Traverse.Create(markedExtension).Field("forcedFactionData").SetValue(forced);
             def.modExtensions ??= new List<DefModExtension>();
             def.modExtensions.Add(markedExtension);
             markedDef = def;
@@ -112,14 +136,14 @@ namespace Nelim.PickleTools.VefFactions
         public void Ignored(PickleContext ctx)
         {
             var def = ctx.Get<Chosen>().Def;
-            ctx.Assert(NewFactionSpawningState.Instance.IsIgnored(def), $"{def.defName} is not on VEF's ignored list");
+            ctx.Assert(IsIgnored(def), $"{def.defName} is not on VEF's ignored list");
         }
 
         [Then("Nelim's Pickle Tools: the chosen faction is not ignored")]
         public void NotIgnored(PickleContext ctx)
         {
             var def = ctx.Get<Chosen>().Def;
-            ctx.Assert(!NewFactionSpawningState.Instance.IsIgnored(def), $"{def.defName} is on VEF's ignored list");
+            ctx.Assert(!IsIgnored(def), $"{def.defName} is on VEF's ignored list");
         }
 
         [Then("Nelim's Pickle Tools: the game log says the chosen faction was ignored")]
@@ -131,13 +155,13 @@ namespace Nelim.PickleTools.VefFactions
 
         // ---------------------------------------------------------------- helpers
 
-        private static IEnumerable<Dialog_NewFactionSpawning> Windows() =>
-            Find.WindowStack.Windows.OfType<Dialog_NewFactionSpawning>();
+        private static IEnumerable<object> Windows() =>
+            Find.WindowStack.Windows.Where(VefType("Dialog_NewFactionSpawning").IsInstanceOfType).Cast<object>();
 
-        private static FactionDef DefOf(Dialog_NewFactionSpawning w) =>
+        private static FactionDef DefOf(object w) =>
             Traverse.Create(w).Field("factionDef").GetValue<FactionDef>();
 
         private static HashSet<FactionDef> IgnoredSet() =>
-            Traverse.Create(NewFactionSpawningState.Instance).Field("ignoredFactions").GetValue<HashSet<FactionDef>>();
+            Traverse.Create(State()).Field("ignoredFactions").GetValue<HashSet<FactionDef>>();
     }
 }

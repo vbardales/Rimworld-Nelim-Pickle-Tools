@@ -9,6 +9,10 @@ Its behavior remains tied to VEF's `FactionDefExtension`, `NewFactionSpawningSta
 `Dialog_NewFactionSpawning` and private `ignoredFactions` field. Rebuild and replay its consumers when VEF
 changes. No VEF binary is shipped.
 
+The assembly now resolves VEF types only when a VEF scenario calls them. This keeps the aggregate
+step assembly loadable when VEF is absent. Its reflection calls still require a VEF replay before
+the changed implementation can be considered validated in game.
+
 ## Use from a suite
 
 Standalone development companion map:
@@ -37,8 +41,8 @@ powershell.exe -ExecutionPolicy Bypass -File PickleTools/VefFactionSteps/Check-S
 ```
 
 The check compiles the Cucumber expressions, scans for duplicate/ambiguous patterns and resolves current
-consumer lines. It is offline evidence only. The original QuietNewFactions scenarios passed in game on
-2026-09-20 with the suite-owned DLL; the promoted assembly has not yet been replayed.
+consumer lines. It is offline evidence only. The earlier promoted assembly passed the five
+QuietNewFactions scenarios from this repository; the late-binding change above still awaits replay.
 
 ## Attribution
 
