@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Interface scale</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.interfacescale</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>A Pickle step that sets the interface scale the way the Options page does, and the repair of Pickle's tag store that lets a click land at any scale but 100 percent. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See InterfaceScale/README.md at the repository root.
+
+It carries the same change as the pull request proposed to Pickle itself; when that lands this mod can go.</description>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+    </li>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>
