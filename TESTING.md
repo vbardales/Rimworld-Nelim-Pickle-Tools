@@ -8,7 +8,7 @@ are optional companions, excluded from the aggregate Workshop payload and valida
 - All thirteen distributed modules passed Release builds with .NET SDK 10.0.401: 0 warnings, 0 errors.
 - All thirteen available Check-*.ps1 scripts passed (patterns, bridge, reader, ownership).
 - FilmTicks unit tests: 7 passed, 0 failed, 0 skipped.
-- Elsewhere inventory matched sixteen local suites.
+- Elsewhere inventory currently matches nineteen local suites (2026-09-22 refresh); this is a source inventory, not runtime validation.
 - VefFactionSteps built with 0 warnings and 0 errors; its nine patterns compiled, were unique and
   unambiguous, and every QuietNewFactions consumer line resolved. This is offline evidence only.
 
