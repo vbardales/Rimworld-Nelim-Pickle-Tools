@@ -8,21 +8,25 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 | Suite | Source files | Step declarations | Feature files | Notes |
 |---|---:|---:|---:|---|
-| `AdaptiveStorageNeolithicRenew` | 2 | 7 | 11 | [AdaptiveStorageNeolithicRenew.md](AdaptiveStorageNeolithicRenew.md) |
+| `AdaptiveStorageNeolithicRenew` | 3 | 15 | 12 | [AdaptiveStorageNeolithicRenew.md](AdaptiveStorageNeolithicRenew.md) |
+| `AncientChineseBeastAndGeneExpandedRenew` | 1 | 17 | 8 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
 | `AnimaSong` | 1 | 21 | 2 | [AnimaSong.md](AnimaSong.md) |
-| `ArchitectStudio` | 5 | 63 | 22 | [ArchitectStudio.md](ArchitectStudio.md) |
+| `ArchitectStudio` | 5 | 60 | 19 | [ArchitectStudio.md](ArchitectStudio.md) |
 | `BillAutopilot` | 9 | 87 | 19 | [BillAutopilot.md](BillAutopilot.md) |
+| `ContentedLivestock` | 6 | 36 | 15 | [ContentedLivestock.md](ContentedLivestock.md) |
 | `DrumBathHygiene` | 1 | 20 | 4 | [DrumBathHygiene.md](DrumBathHygiene.md) |
 | `EponaInstrumentsRenew` | 0 | 0 | 8 | [EponaInstrumentsRenew.md](EponaInstrumentsRenew.md) |
 | `FieldworkCompanions` | 7 | 41 | 12 | [FieldworkCompanions.md](FieldworkCompanions.md) |
 | `FireworkStand` | 1 | 20 | 11 | [FireworkStand.md](FireworkStand.md) |
-| `FlavorText/FlavorTextExtended` | 1 | 12 | 6 | [FlavorTextExtended.md](FlavorTextExtended.md) |
-| `FlavorText/FlavorTextExtendedFR` | 7 | 26 | 17 | [FlavorTextExtendedFR.md](FlavorTextExtendedFR.md) |
-| `PickleToolsCheck` | 0 | 0 | 6 | [PickleToolsCheck.md](PickleToolsCheck.md) |
-| `SkillIcons` | 10 | 33 | 17 | [SkillIcons.md](SkillIcons.md) |
+| `FlavorText/FlavorTextExtended` | 1 | 13 | 7 | [FlavorTextExtended.md](FlavorTextExtended.md) |
+| `FlavorText/FlavorTextExtendedFR` | 7 | 28 | 18 | [FlavorTextExtendedFR.md](FlavorTextExtendedFR.md) |
+| `Housebroken` | 2 | 12 | 4 | [Housebroken.md](Housebroken.md) |
+| `JoyRescue` | 1 | 7 | 2 | [JoyRescue.md](JoyRescue.md) |
+| `RetroJoyRenew` | 0 | 0 | 1 | [RetroJoyRenew.md](RetroJoyRenew.md) |
+| `SkillIcons` | 7 | 29 | 17 | [SkillIcons.md](SkillIcons.md) |
 | `TailorMadeWaistlines` | 0 | 0 | 3 | [TailorMadeWaistlines.md](TailorMadeWaistlines.md) |
 | `TechLevelFixes` | 0 | 0 | 2 | [TechLevelFixes.md](TechLevelFixes.md) |
-| `WorkStudio` | 6 | 74 | 20 | [WorkStudio.md](WorkStudio.md) |
+| `WorkStudio` | 6 | 72 | 20 | [WorkStudio.md](WorkStudio.md) |
 
 ## Source files
 
@@ -30,6 +34,11 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 - `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/PublicationSteps.cs`: 2 step declarations.
 - `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/ResearchTabSteps.cs`: 5 step declarations.
+- `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/StuffSteps.cs`: 8 step declarations.
+
+### AncientChineseBeastAndGeneExpandedRenew
+
+- `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/CriticalHookSteps.cs`: 17 step declarations.
 
 ### AnimaSong
 
@@ -40,7 +49,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 - `ArchitectStudio/Tests/Pickle/Source/CategorySteps.cs`: 16 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/GroupSteps.cs`: 23 step declarations.
-- `ArchitectStudio/Tests/Pickle/Source/ModSteps.cs`: 24 step declarations.
+- `ArchitectStudio/Tests/Pickle/Source/ModSteps.cs`: 21 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/SettingsSandbox.cs`: 0 step declarations.
 
 ### BillAutopilot
@@ -54,6 +63,15 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 - `BillAutopilot/Tests/Pickle/Source/ShortcutSteps.cs`: 7 step declarations.
 - `BillAutopilot/Tests/Pickle/Source/StateSteps.cs`: 13 step declarations.
 - `BillAutopilot/Tests/Pickle/Source/StockSteps.cs`: 1 step declarations.
+
+### ContentedLivestock
+
+- `ContentedLivestock/Tests/Pickle/Source/AnimalSteps.cs`: 25 step declarations.
+- `ContentedLivestock/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
+- `ContentedLivestock/Tests/Pickle/Source/LanguageSteps.cs`: 1 step declarations.
+- `ContentedLivestock/Tests/Pickle/Source/SettingsSandbox.cs`: 0 step declarations.
+- `ContentedLivestock/Tests/Pickle/Source/SettingsSteps.cs`: 5 step declarations.
+- `ContentedLivestock/Tests/Pickle/Source/ShortcutSteps.cs`: 5 step declarations.
 
 ### DrumBathHygiene
 
@@ -79,7 +97,7 @@ No local C# source found in this suite. See its note for shared tools or histori
 
 ### FlavorText/FlavorTextExtended
 
-- `FlavorText/FlavorTextExtended/Tests/Pickle/Source/FlavorTextExtendedSteps.cs`: 12 step declarations.
+- `FlavorText/FlavorTextExtended/Tests/Pickle/Source/FlavorTextExtendedSteps.cs`: 13 step declarations.
 
 ### FlavorText/FlavorTextExtendedFR
 
@@ -87,26 +105,32 @@ No local C# source found in this suite. See its note for shared tools or histori
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/CookingSteps.cs`: 2 step declarations.
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/LanguageSteps.cs`: 2 step declarations.
-- `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/MealSteps.cs`: 6 step declarations.
+- `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/MealSteps.cs`: 8 step declarations.
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/SettingsSteps.cs`: 8 step declarations.
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/ShortcutSteps.cs`: 6 step declarations.
 
-### PickleToolsCheck
+### Housebroken
+
+- `Housebroken/Tests/Pickle/Source/HousebrokenSteps.cs`: 12 step declarations.
+- `Housebroken/Tests/Pickle/Source/SettingsSandbox.cs`: 0 step declarations.
+
+### JoyRescue
+
+- `JoyRescue/Tests/Pickle/Source/SettingsSteps.cs`: 7 step declarations.
+
+### RetroJoyRenew
 
 No local C# source found in this suite. See its note for shared tools or historical code.
 
 ### SkillIcons
 
 - `SkillIcons/Tests/Pickle/Source/AnimationSteps.cs`: 2 step declarations.
-- `SkillIcons/Tests/Pickle/Source/BioTabSteps.cs`: 1 step declarations.
 - `SkillIcons/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `SkillIcons/Tests/Pickle/Source/MainButtonBarSteps.cs`: 5 step declarations.
 - `SkillIcons/Tests/Pickle/Source/PassionSteps.cs`: 3 step declarations.
-- `SkillIcons/Tests/Pickle/Source/ScreenshotSteps.cs`: 2 step declarations.
 - `SkillIcons/Tests/Pickle/Source/SettingsSandbox.cs`: 2 step declarations.
 - `SkillIcons/Tests/Pickle/Source/SettingsSteps.cs`: 7 step declarations.
-- `SkillIcons/Tests/Pickle/Source/TextureOwnerSteps.cs`: 2 step declarations.
-- `SkillIcons/Tests/Pickle/Source/VerificationSteps.cs`: 9 step declarations.
+- `SkillIcons/Tests/Pickle/Source/VerificationSteps.cs`: 10 step declarations.
 
 ### TailorMadeWaistlines
 
@@ -121,6 +145,6 @@ No local C# source found in this suite. See its note for shared tools or histori
 - `WorkStudio/Tests/Pickle/Source/ColonySteps.cs`: 11 step declarations.
 - `WorkStudio/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `WorkStudio/Tests/Pickle/Source/EditorSteps.cs`: 36 step declarations.
-- `WorkStudio/Tests/Pickle/Source/ModSteps.cs`: 27 step declarations.
+- `WorkStudio/Tests/Pickle/Source/ModSteps.cs`: 25 step declarations.
 - `WorkStudio/Tests/Pickle/Source/PriorityProbe.cs`: 0 step declarations.
 - `WorkStudio/Tests/Pickle/Source/SettingsSandbox.cs`: 0 step declarations.

@@ -22,12 +22,14 @@ not a claim about every repository on GitHub or every deleted step in history.
 | [Firework Stand](FireworkStand.md) | Fuel, glow, effects, joy jobs and time-sensitive captures |
 | [Flavor Text Extended](FlavorTextExtended.md) | Category membership, recipe products, meal names and save/reload identity |
 | [Flavor Text Extended - Francais](FlavorTextExtendedFR.md) | Cooking, translated meal names, settings and shortcuts |
+| [Housebroken](Housebroken.md) | Settings dialog, persisted values and hidden MainButton shortcut |
+| [Joy Rescue](JoyRescue.md) | Settings dialog, persisted values and hidden MainButton shortcut |
+| [Retro Joy Renew](RetroJoyRenew.md) | Feature-only recreation Def and colony checks |
 | [SkillIcons](SkillIcons.md) | Passions, animation getters, texture ownership, settings and restart hand-off |
 | [Work Studio](WorkStudio.md) | Work priorities, backstories, editor interactions, patch and window diagnostics |
 | [TailorMade Waistlines](TailorMadeWaistlines.md) | Historical assertions at commit 9988515; current suite has no local C# steps |
 | [Epona Instruments Renew](EponaInstrumentsRenew.md) | Features only: crafting, captures, listening and save/reload |
 | [Tech Level Fixes](TechLevelFixes.md) | Features only: bare and source-mod passes |
-| [PickleToolsCheck](PickleToolsCheck.md) | Tooling probes using shared tools, not a gameplay step library |
 
 ## Reading and reusing a note
 
@@ -37,8 +39,9 @@ not a claim about every repository on GitHub or every deleted step in history.
   scenario hooks. Inspect the method and its helpers, then adapt it or promote it deliberately.
 - A copied phrase gets the new suite's name. Pickle resolves steps across all active assemblies; a C#
   namespace does not prevent ambiguous phrases. A promoted tool uses `Nelim's Pickle Tools:`.
-- A second consumer is a reason to review promotion, not proof that an extraction is already safe.
-  Keep mod-specific assertions in their owning suite; migrate callers and check patterns when promoting.
+- A second consumer requires promotion into PickleTools. Keep a step in its owning suite only while it has
+  exactly one consumer. On the second use, extract the generic part, prefix its text, migrate both callers
+  and check patterns before deleting the duplicate implementations.
 - Keep one maintained note per suite. Existing entries for historical code must name a commit.
 
 ## Known overlap to review before extracting code

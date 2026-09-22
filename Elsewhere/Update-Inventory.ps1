@@ -24,6 +24,9 @@ foreach ($file in $files) {
     if ($relative -notmatch '^(?<owner>.+)/tests/pickle/(?<part>Source/.+\.cs|Mod/Pickle/Features/.+\.feature)$') { continue }
     $owner = $Matches.owner
     $part = $Matches.part
+    # The absolute-path rg scan can still return PickleTools files despite the glob exclusion.
+    # Keep this catalogue scoped to consumers outside the owner repository.
+    if ($owner -eq 'PickleTools' -or $owner.StartsWith('PickleTools/')) { continue }
     if (-not $suites.ContainsKey($owner)) {
         $suites[$owner] = @{ Sources = @(); Features = 0; Steps = 0 }
     }
