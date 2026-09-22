@@ -39,7 +39,8 @@ language. Verify distinct processes and final settings cleanup; rereading inside
 Biotech checks additionally need a Biotech-absent pass confirming suite requirement skips. Record all DLCs.
 No declared incompatibility is currently established, so no conflict pass is claimed.
 
-The aggregate probe suite still needs assembling from existing probes and executing. Change per-tool tags
+The aggregate probe suite is in `Tests/Pickle/`; its minimal probe overlays the generated aggregate payload.
+Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.
 

@@ -1,0 +1,7 @@
+# The pass that plays lost-click-probe.feature: windows that make a click lose itself, so the report of a
+# failed `window {string} is open` can be read. Every scenario in it is EXPECTED to fail.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.lostclickprobe.map -Filter lost-click-probe.feature -PickleSrc <the build>
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.lostclickprobe   path:PickleTools/Upstream/tests/lost-click-probe/Mod

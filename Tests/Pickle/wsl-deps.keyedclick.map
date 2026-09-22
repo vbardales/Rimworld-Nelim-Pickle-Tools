@@ -1,0 +1,10 @@
+# The pass that plays pickletools-keyedclick.feature: the keyed click step of PickleTools, played against stock Pickle.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.keyedclick.map -Filter pickletools-keyedclick.feature
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.keyedclick.map -Filter pickletools-keyedclick.feature -Language French
+#
+# The second line is what the step is for: on a French game a scenario that spells the English label out
+# cannot find its button, and this one can.
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.keyedclick   path:PickleTools/KeyedClick/Mod

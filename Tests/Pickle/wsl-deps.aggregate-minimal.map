@@ -1,0 +1,3 @@
+# The release bundle replaces PickleTools/Mod for this aggregate probe.  Keep optional
+# integrations absent: this establishes that their assemblies do not break startup.
+nelim.pickletools path:PickleTools/.build/aggregate-current/Mod
