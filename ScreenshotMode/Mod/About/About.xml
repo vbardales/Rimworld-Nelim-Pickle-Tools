@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Screenshot mode</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.screenshotmode</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <description>Development-only Pickle steps that hide RimWorld HUD and Pickle panels while retaining the open non-Pickle window for a review capture. No gameplay content or scenarios.</description>
+  <modDependencies>
+    <li><packageId>rimworks.pickle</packageId><displayName>Pickle</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl></li>
+  </modDependencies>
+  <loadAfter><li>rimworks.pickle</li></loadAfter>
+</ModMetaData>
