@@ -37,6 +37,7 @@ remaining:
   - "resolved, 2026-09-22: ScreenshotStudio declares rimworks.pickle and ludeon.rimworld.ideology in About.xml. Its zen fixture is exported, passed construction/save-reload and a separate-process direct load, and is the documented default for presentation/screenshot scenarios. It remains outside the aggregate Workshop payload as an optional companion; see ScreenshotStudio/STATUS.md."
   - "resolved, 2026-09-22: About.xml and ATTRIBUTION.md explicitly name Claude Code, OpenAI Codex and DALL-E, following the AI-attribution rule in PUBLISHING.md."
   - "unverified, 2026-09-22 audit: no aggregate bundle run has established startup, step discovery or teardown with optional RIMMSQOL absent; no aggregate English/French, restart, DLC-absent or reviewed-capture evidence exists."
+  - "failed probe, 2026-09-22: the first complete aggregate-minimal report in evidence/aggregate/2026-09-22-minimal-en-dlc-id is 0/1. Cucumber messages show the first step failed because Pickle's test-colony fixture was discovered twice: stage-pickle-wsl.sh activated rimworks.pickle once as baseline and again as the bundle's hard dependency. The launcher deduplication and a main-menu-only probe are pending replay; no aggregate pass is claimed."
   - "resolved, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The migrated optional companion replayed from PickleTools/QuietNewFactions with 5/5 scenarios passed; this does not certify the aggregate bundle."
 ---
 # Status
