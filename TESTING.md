@@ -1,6 +1,7 @@
 # Testing PickleTools
 
-Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. ScreenshotStudio is excluded.
+Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. ScreenshotStudio is an optional
+companion, excluded from the aggregate Workshop payload and validated independently.
 
 ## Offline results - 2026-09-22
 
@@ -13,6 +14,15 @@ Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. Screens
 
 Current 1.0.0 logs: `.build/release-checks-1.0.0`. Each script covers its documented scan scope. ColonistRace and InspectTabs
 have no individual Check-Steps script in this snapshot. These checks do not prove aggregate runtime safety.
+
+## Screenshot fixture default
+
+For Pickle presentation and screenshot scenarios, use `nelim-zen-meadow-studio` as the default saved fixture.
+Stage `nelim.pickletools.screenshotstudio` and `nelim.pickletools.clearscreen` through
+`Tests/Pickle/wsl-deps.studio.map`, then load that save explicitly. The zen fixture passed construction,
+save/reload and a separate-process direct load on 2026-09-22; its evidence is under
+`ScreenshotStudio/evidence/2026-09-22-zen/`. It uses the tested five-DLC profile. Do not replace a functional
+scenario's fixture unless the zen save establishes all of that scenario's documented preconditions.
 
 ## Runtime matrix - pending
 

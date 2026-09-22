@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+  <testsuite name="Reuse the saved flower meadow studio" tests="1" failures="0" skipped="0" flakes="0" time="51.976">
+    <testcase name="Load the exported fixture without rebuilding the scenery" classname="Reuse the saved flower meadow studio" time="51.976">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+Attachment: studio-overview -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-overview--step0.png
+Attachment: studio-emblem -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-emblem--step0.png
+Attachment: studio-workshop -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-workshop--step0.png
+Attachment: studio-kitchen -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-kitchen--step0.png
+Attachment: studio-home -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-home--step0.png
+Attachment: studio-display -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-display--step0.png
+Attachment: studio-flowers -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-flowers--step0.png
+Attachment: studio-pond -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-pond--step0.png
+Attachment: studio-zen -&gt; /mnt/c/Users/nelim/Documents/rimworld/pickle-reports/screenshots/manual--studio-zen--step0.png
+</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

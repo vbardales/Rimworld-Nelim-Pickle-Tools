@@ -32,9 +32,9 @@ remaining:
   - "partly resolved 2026-09-21: RIMMSQOL's Workshop description was read through Steam's API and holds no licence, permission or prohibition. Still unread: its manual and bug-report threads and the comments."
   - "unverified: RIMMSQOL's checkbox is wired to the calls the steps make (read from its source, not clicked); other customization mods; the French interface."
   - "note, justified non-applicability: settings, localization and translation are not applicable. The mod has no Defs, no Mod subclass, no settings page and no MainButtonDef, only step assemblies loaded by the test runner; its logs are technical and in English."
-  - "2026-09-22 owner decision: prepare GitHub and Workshop releases. No item or PublishedFileId exists yet. Local candidate packaging does not certify later audit gates or authorize claiming runtime coverage."
+  - "resolved, 2026-09-22: the private Workshop item is 3806142401. Mod/About/PublishedFileId.txt records it and release packaging preserves it; this prevents a later upload from creating a duplicate item."
   - "resolved, 2026-09-22: root ATTRIBUTION.md is now copied to Mod/ATTRIBUTION.md and their SHA256 hashes match. Regenerate the release archive from the final reviewed tree."
-  - "resolved, 2026-09-22: ScreenshotStudio now declares rimworks.pickle and ludeon.rimworld.ideology in About.xml. It remains excluded from the release candidate. Its zen fixture export and final replay are pending the owner WSL reservation; see ScreenshotStudio/STATUS.md."
+  - "resolved, 2026-09-22: ScreenshotStudio declares rimworks.pickle and ludeon.rimworld.ideology in About.xml. Its zen fixture is exported, passed construction/save-reload and a separate-process direct load, and is the documented default for presentation/screenshot scenarios. It remains outside the aggregate Workshop payload as an optional companion; see ScreenshotStudio/STATUS.md."
   - "resolved, 2026-09-22: About.xml and ATTRIBUTION.md explicitly name Claude Code, OpenAI Codex and DALL-E, following the AI-attribution rule in PUBLISHING.md."
   - "unverified, 2026-09-22 audit: no aggregate bundle run has established startup, step discovery or teardown with optional RIMMSQOL absent; no aggregate English/French, restart, DLC-absent or reviewed-capture evidence exists."
   - "unverified, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The old suite-owned DLL passed five scenarios on 2026-09-20; that result does not certify the new shared DLL or the aggregate bundle."
@@ -76,7 +76,7 @@ are documented; no repositories were relocated and no workflow stage changed.
 Owner requested both distribution targets. Thirteen general-purpose companion folders retain their packageIds
 and paths; one aggregate Workshop payload requires only Pickle; RIMMSQOL remains optional. Missing MIT notices were
 added to eight Mod folders, descriptions/source links aligned, and the packaging script includes family art.
-ScreenshotStudio is excluded pending its own documentation, provenance and validation.
+ScreenshotStudio is an optional companion with completed documentation, provenance and zen-fixture validation. It remains outside the aggregate Workshop payload; its zen save is the default for presentation and screenshot scenarios.
 
 Eleven selected Release builds passed, and all twelve available Check-*.ps1 scripts passed against the local
 installed dependencies. Logs are in `.build/release-checks`. These are offline results only; no game was

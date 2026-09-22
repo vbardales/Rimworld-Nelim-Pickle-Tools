@@ -124,7 +124,10 @@ Feature: Example Mod research interface
 ```
 
 `test-colony` is supplied by the installed Pickle used by existing suites; verify the fixture exists in the
-build being staged. A custom fixture belongs in the test companion and needs documented DLC/mod requirements.
+build being staged. For presentation or screenshot scenarios, PickleTools' default is instead the packaged
+`nelim-zen-meadow-studio`: stage ScreenshotStudio and ClearScreen through `wsl-deps.studio.map` and load it
+explicitly. A functional scenario keeps `test-colony` or another custom fixture when it needs specific
+preconditions. A custom fixture belongs in the test companion and needs documented DLC/mod requirements.
 Reload before independent scenarios. Reacquire pawns/windows after a load: old object references are stale.
 Use `@same-world` only for an intentional dependency on the preceding scenario, not as a general speed trick.
 

@@ -6,10 +6,13 @@ $root = Split-Path $PSScriptRoot
 $source = Join-Path $root 'ScreenshotStudio'
 $fixture = Join-Path $source 'Mod/Pickle/Fixtures/nelim-zen-meadow-studio.rws'
 $verification = Join-Path $source 'evidence/2026-09-22-zen/verification.json'
-foreach ($file in @($fixture,$verification,"$source/Mod/Pickle/Fixtures/LICENSE-Pickle","$source/Mod/LICENSE","$source/README.md","$source/STATUS.md")) {
+$fixtureLoad = Join-Path $source 'evidence/2026-09-22-zen/fixture-load-summary.json'
+foreach ($file in @($fixture,$verification,$fixtureLoad,"$source/Mod/Pickle/Fixtures/LICENSE-Pickle","$source/Mod/LICENSE","$source/README.md","$source/STATUS.md")) {
     if (-not (Test-Path -LiteralPath $file -PathType Leaf)) { throw "ScreenshotStudio is not ready: missing $file" }
 }
 $proof = Get-Content -LiteralPath $verification -Raw | ConvertFrom-Json
+$loadProof = Get-Content -LiteralPath $fixtureLoad -Raw | ConvertFrom-Json
+if ($loadProof.exitReason -ne 'passed' -or $loadProof.passed -ne 1 -or $loadProof.failed -ne 0) { throw 'ScreenshotStudio fixture load proof did not pass' }
 $hash = (Get-FileHash -LiteralPath $fixture -Algorithm SHA256).Hash
 if ($proof.save_sha256 -ne $hash) { throw 'ScreenshotStudio fixture does not match its export evidence' }
 [xml]$save = Get-Content -LiteralPath $fixture -Raw
@@ -31,5 +34,5 @@ Copy-Item $verification "$Destination/verification.json"
     fixture='nelim-zen-meadow-studio'; save_sha256=$hash
     assembly_sha256=(Get-FileHash $dlls[0].FullName -Algorithm SHA256).Hash
     dependencies=@($about.ModMetaData.modDependencies.li.packageId)
-    independentFixtureLoadValidated=$false
+    independentFixtureLoadValidated=$true
 } | ConvertTo-Json -Depth 5 | Set-Content "$Destination/manifest.json" -Encoding UTF8

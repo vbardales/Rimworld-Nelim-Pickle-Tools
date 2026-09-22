@@ -1,0 +1,23 @@
+{
+  "save_sha256": "eb292c3e2f8d8975209bc1cfaa9a01618b368bb40e2895384962b9cab0c28230",
+  "save_bytes": 11709575,
+  "fixture": "/mnt/c/Users/nelim/Documents/rimworld/PickleTools/ScreenshotStudio/Mod/Pickle/Fixtures/nelim-zen-meadow-studio.rws",
+  "game": "RimWorld 1.6.4871, WSL Ubuntu-24.04, Xvfb",
+  "build_scenario": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "exitReason": "passed",
+    "setName": "studio",
+    "scenarios": [
+      {
+        "name": "Build the meadow and verify that the studio survives a save reload",
+        "outcome": "Passed",
+        "durationMs": 86711,
+        "attempts": 1
+      }
+    ]
+  }
+}

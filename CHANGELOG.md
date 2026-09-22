@@ -10,6 +10,8 @@ Nothing here has been released or tagged. GitHub and Workshop candidate preparat
 - Promote QuietNewFactions' VEF workflow vocabulary into `VefFactionSteps` and migrate its suite to the shared module.
 - Record licences, studied projects, AI assistance and DALL-E image provenance in the distributed attribution.
 - Runtime validation of the aggregate bundle remains pending and must be recorded before publication.
+- Add ScreenshotStudio as an optional companion. Its zen meadow is the default fixture for presentation and
+  screenshot scenarios; construction/save-reload and separate-process fixture loading both passed.
 
 ## 0.1.0-rc.1 - local candidate, 2026-09-22
 

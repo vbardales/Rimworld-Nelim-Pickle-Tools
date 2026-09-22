@@ -15,7 +15,7 @@ Add this line to that suite's explicit pass map (UTF-8, LF line endings):
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 ```
 
-Once the completed fixture is installed, use:
+For Pickle presentation and screenshot scenarios, load the supplied default fixture:
 
 ```gherkin
 Given the save "nelim-zen-meadow-studio" is loaded
@@ -64,12 +64,14 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/Pickle-Status.ps1
 powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.studio.map -Filter flower-meadow-studio.feature -Label "Flower meadow screenshot colony"
 ```
 
-The scenario builds from `studio-base`, checks the meadow and stations, performs a save/reload,
-checks all mosaic colors and garden features again, writes `Nelim-Zen-Meadow-Studio.rws` into WSL's Saves directory and
-captures nine views without the interface plus one overview with it.
-`load-flower-meadow-studio.feature` verifies the exported fixture in a new game process without rebuilding it.
-The initial non-zen fixture is retained under `nelim-flower-meadow-studio` as an earlier alternative;
-the current integrity assertions target the zen version.
+The construction scenario builds from `studio-base`, checks the meadow and stations, performs a save/reload,
+checks all mosaic colors and garden features again, writes `Nelim-Zen-Meadow-Studio.rws` into WSL's Saves directory,
+and captures one overview with the interface. `load-flower-meadow-studio.feature` then verifies the exported fixture
+in a new game process without rebuilding it and takes the nine presentation views without the interface. This keeps
+the reusable screenshots tied to the saved fixture that downstream suites actually load.
+`nelim-zen-meadow-studio` is the default fixture for presentation and screenshot scenarios. The initial
+non-zen `nelim-flower-meadow-studio` remains only as a historical alternative; current integrity assertions
+target the zen version.
 Use `Use-Wsl.ps1` under the same queue/lock for any WSL copy or other preparation work.
 Never launch the Windows game, bypass the launcher, or create/release the owner's reservation.
 

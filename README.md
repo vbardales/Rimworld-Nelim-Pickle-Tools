@@ -32,8 +32,10 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 | [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history — what each reads, and where to find it before writing it a second time | none |
 
-The optional [ScreenshotStudio](ScreenshotStudio/README.md) supplies a zen flower-meadow save and camera presets.
-It is packaged separately with `Release/Prepare-Release.ps1 -IncludeScreenshotStudio`; see its status for export readiness.
+The optional [ScreenshotStudio](ScreenshotStudio/README.md) supplies the default saved fixture for Pickle
+presentation and screenshot scenarios: `nelim-zen-meadow-studio`. Stage it explicitly with ClearScreen through
+`wsl-deps.studio.map`; it is packaged separately with `Release/Prepare-Release.ps1 -IncludeScreenshotStudio`.
+Functional scenarios retain an explicitly chosen fixture when their preconditions require one.
 
 ## Steps still owned by a suite
 
