@@ -64,7 +64,9 @@ namespace Nelim.PickleTools.Rimmsqol
         public void PutBack(PickleContext ctx)
         {
             // Game types only until RIMMSQOL is known to be there.
-            if (!RimmsqolBridge.IsLoaded()) return;
+            // Do not ask the bridge to load when this optional mod is absent: the bridge's
+            // signatures include RIMMSQOL types, and this hook runs for every bundle scenario.
+            if (!ModsConfig.IsActive(RimmsqolBridge.PackageId)) return;
 
             string marker;
             try { marker = MarkerPath(ctx); }
