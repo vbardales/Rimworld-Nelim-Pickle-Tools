@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>PickleTools - research window steps (shared)</name>
   <author>Nelim</author>
@@ -6,7 +6,13 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>Reusable Pickle steps that open a tab of the research window by def name, by label or by translation key, and read what it lists. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See PickleTools/ResearchSteps/README.md at the repository root.</description>
+  <description>Reusable Pickle steps that open a tab of the research window by def name, by label or by translation key, and read what it lists. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See PickleTools/ResearchSteps/README.md at the repository root.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
       <packageId>rimworks.pickle</packageId>
@@ -17,4 +23,5 @@
   <loadAfter>
     <li>rimworks.pickle</li>
   </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
 </ModMetaData>

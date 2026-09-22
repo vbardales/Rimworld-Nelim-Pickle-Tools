@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Texture owner check</name>
+  <author>nelim</author>
+  <packageId>nelim.pickletest.textureowner</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Throwaway stand-in mod so scripts/Run-PickleWsl.ps1 can play the PickleTools/TextureOwner steps. Ships no texture on purpose. Delete after the run.</description>
+</ModMetaData>

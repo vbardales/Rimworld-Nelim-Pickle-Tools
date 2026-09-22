@@ -7,7 +7,7 @@ Two Pickle steps that keep other mods' windows off the screen for the length of 
 | `Nelim's Pickle Tools: the screen is clear` | closes every window Pickle does not own, and drops every one that opens afterwards, until the scenario ends |
 | `Nelim's Pickle Tools: windows are allowed to open again` | lifts it early |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists
@@ -99,11 +99,14 @@ Compiles the patterns with Pickle's own expression engine and checks that neithe
 suite in the repository or against Pickle's vocabulary. No game, a few seconds.
 
 The probe is `PickleToolsCheck/Tests/Pickle/Mod/Pickle/Features/pickletools-clearscreen.feature`, in the
-`clearscreen` pass (`wsl-deps.clearscreen.map`): four scenarios, played with the stock Pickle and nothing else
+`clearscreen` pass (`wsl-deps.clearscreen.map`): four scenarios designed to run with stock Pickle and nothing else
 modified. Each check that a window is dropped comes with a control that the same kind of window opens when
 suppression is off, because "is closed" also holds when nothing ever tried to open it.
 
 ## What has and has not been played
+
+This closes non-Pickle windows, including the settings window a suite may want to test. It is not
+screenshot mode, which hides the HUD. See the [authoring guide](../Authoring/README.md).
 
 **Nothing of this copy has been played yet.** It compiles with 0 warnings and 0 errors, the two patterns pass
 `Check-Steps.ps1`, and the probe's step lines all resolve.

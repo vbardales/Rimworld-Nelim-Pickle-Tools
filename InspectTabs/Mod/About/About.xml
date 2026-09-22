@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nelim's Pickle Tools - Inspect tabs</name>
   <author>Nelim</author>
@@ -6,9 +6,15 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>Reusable Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Needs, Log) and check which one is open. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See InspectTabs/README.md at the repository root.
+  <description>Reusable Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Needs, Log) and check which one is open. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See InspectTabs/README.md at the repository root.
 
-A copy of RimWorks/Rimworld-Pickle#31, kept in step with it until it merges. The steps sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's; when Pickle ships the same steps this mod's can go.</description>
+A copy of RimWorks/Rimworld-Pickle#31, kept in step with it until it merges. The steps sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's; when Pickle ships the same steps this mod's can go.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
       <packageId>rimworks.pickle</packageId>
@@ -19,4 +25,5 @@ A copy of RimWorks/Rimworld-Pickle#31, kept in step with it until it merges. The
   <loadAfter>
     <li>rimworks.pickle</li>
   </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
 </ModMetaData>

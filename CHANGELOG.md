@@ -1,6 +1,24 @@
 # Changelog
 
-Nothing here has been released or tagged: this is a development-only tool, never published to the Workshop.
+Nothing here has been released or tagged. GitHub and Workshop candidate preparation is now authorized.
+
+## 1.0.0 - publication candidate, 2026-09-22
+
+- Package thirteen reusable Pickle step modules as one `nelim.pickletools` Workshop item, with only Pickle
+  required globally and test-specific integrations remaining optional.
+- Add suite-authoring, testing and release documentation; consolidate the inventory of suite-owned steps.
+- Promote QuietNewFactions' VEF workflow vocabulary into `VefFactionSteps` and migrate its suite to the shared module.
+- Record licences, studied projects, AI assistance and DALL-E image provenance in the distributed attribution.
+- Runtime validation of the aggregate bundle remains pending and must be recorded before publication.
+
+## 0.1.0-rc.1 - local candidate, 2026-09-22
+
+- Prepare one Workshop bundle with thirteen modules and a GitHub archive with development companions, preserving packageIds
+  and source paths. ScreenshotStudio remains excluded as scene-specific work in progress.
+- Include MIT notices in every payload, shared presentation assets, dependency metadata, source links,
+  DLL SHA256 hashes and archive checksums. Publication and runtime validation are still pending.
+- Add a new suite authoring guide and consolidate the Elsewhere catalogue with a checked sixteen-suite inventory.
+- Correct dependency tags, restart arrays, report retention, scaled diagnostics and upstream migration guidance.
 
 ## Unreleased
 
@@ -31,6 +49,13 @@ Nothing here has been released or tagged: this is a development-only tool, never
   out (`!ludeon.rimworld.odyssey` in the pass map). Moved here on 2026-09-21 from Flavor Text Extended's suite, where they
   passed in its `sans-odyssey` pass. Compiled with 0 warnings, patterns checked and unambiguous against 609 others, not played
   as a shared mod yet.
+
+### VefFactionSteps
+
+- Promote QuietNewFactions' nine VEF workflow steps into a shared, prefixed module. The suite now consumes
+  that module through an explicit pass map and no longer ships a private step DLL.
+- Built with 0 warnings and 0 errors; all patterns compile and are unique and unambiguous in the repository.
+  The former suite-owned DLL passed five scenarios on 2026-09-20, but the promoted DLL has not been replayed.
 
 ### Repository
 

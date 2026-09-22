@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nelim's Pickle Tools</name>
   <author>Nelim</author>
@@ -7,18 +7,29 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>Shared tooling for testing RimWorld mods with Pickle, the Gherkin runner that plays scenarios in a real game. Each tool is a companion mod that holds Pickle steps: reveal and hide a main-bar button through RIMMSQOL, film a scenario every N ticks, open the research window by name, give a scenario a colonist of any xenotype or kind. Development only: never published to the Workshop, no Defs, nothing to play. This mod as a whole carries only the identity of the repository; the tools are the folders beside it.
+  <description>Developer utilities for writing and running RimWorld 1.6 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url] tests. One bundle includes research and inspect tabs, colonist state, texture ownership, expansion and VEF faction checks, filming, keyed clicks, interface-scale repair, clear-screen tools, click diagnostics and optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url] integration.
 
-IF I GO QUIET
+Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url]. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] and mods targeted by particular tests are OPTIONAL: install them only for scenarios that need them. No gameplay content or test saves included. Do not enable this bundle together with its separate development companions: they contain the same steps.
+
+Some utilities have been submitted upstream to Pickle. If equivalent functionality is integrated and released in a supported Pickle version, those utilities will be removed from this bundle in favor of the upstream implementation.
+
+This is a release candidate. Aggregate runtime validation is pending; see TESTING.md and STATUS.md in the repository for exact coverage and limitations.
+
+MIT, Copyright (c) 2026 Nelim. Code and documentation include Claude Code (Anthropic) and OpenAI Codex under human direction. The icon and preview were generated with DALL-E (OpenAI); see ATTRIBUTION.md for provenance and credits. Thanks to the authors of the projects and libraries this tool works with.
+
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
 
-AI-GENERATED
-The code, the checks and the documents were written with Claude (Anthropic) under human direction and review. The icon and the preview were generated with an AI image model.
-
-THANKS
-To Malte Schulze for shipping RIMMSQOL's source, to the authors of Pickle, and to the authors of Harmony.
-
-See ATTRIBUTION.md and the MIT licence in the repository.
-
 [url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+    <li>MalteSchulze.RIMMSqol</li>
+    <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+  </loadAfter>
 </ModMetaData>

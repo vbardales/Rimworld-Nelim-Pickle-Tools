@@ -7,7 +7,7 @@ Two steps that ask `ModsConfig` whether an expansion, or any mod, is **active**,
 | `Nelim's Pickle Tools: the expansion {string} is active` | passes when `ModsConfig.IsActive(<packageId>)` is true |
 | `Nelim's Pickle Tools: the expansion {string} is not active` | passes when it is false |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists

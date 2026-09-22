@@ -12,8 +12,8 @@ launches it, `Tests/Pickle/Run-Pickle.ps1 -Launch` included, which refuses.
 
 ## Running one
 
-`powershell.exe`, not `pwsh`: PowerShell 7 is not installed here, and a session following a
-`pwsh` line gets "pwsh n est pas reconnu" before anything else happens. Nothing here needs 7.
+Examples use Windows PowerShell (`powershell.exe`); they do not require PowerShell 7.
+For suite design, start with the [authoring guide](../Authoring/README.md).
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod SkillIcons
@@ -222,8 +222,9 @@ mounts the same test mod in between can erase what the first left (2026-09-21, S
 own runs did). `-Then` takes the lock once, **stages once**, and launches the game once per filter, in
 order. Staging again would rewrite the config and the settings the first launch left for the second, so
 the later launches skip it. A launch that does not pass ends the sequence with its own code. Each
-launch's report, `Player.log` included, is kept in `pickle-reports-archive\MMdd-HHmm-seq<n>`, because the
-next launch overwrites `pickle-reports`. `-Then` without `-Filter` is refused (exit 9).
+intermediate launch's report, `Player.log` included, is kept in `pickle-reports-archive\MMdd-HHmm-seq<n>`, because the
+next launch overwrites `pickle-reports`. The final report remains there; preserve it too. For multiple
+continuations, pass a PowerShell string array as in the authoring guide. `-Then` without `-Filter` is refused (exit 9).
 
 Seen working on 2026-09-21: `-Filter warning-steps.feature -Then warning-steps.feature` ran two launches under
 one lock, the second said it skipped the staging, both 5/5 passed, exit 0. What that shows is the mechanism, not
@@ -251,7 +252,7 @@ log with the lock held (kept), old log with no lock (removed).
 
 ## Where Pickle's own tooling lives
 
-This folder is the launcher and the WSL harness. What sits ON Pickle lives in `PickleTools/` (a repository of its own,
+This folder documents the launcher and WSL harness in the collection's `scripts/`. What sits ON Pickle lives in `PickleTools/` (a repository of its own,
 development only): shared steps as companion mods, staged with `<packageId> path:PickleTools/<Tool>/Mod` in a pass map
 (see "A pass without a DLC, and a mod that has no Workshop id" above), and `PickleTools/Upstream/`, the ledger and the
 patches of what waits for a merge at Pickle. To test a patch on this machine, build it and pass the folder to
@@ -259,14 +260,14 @@ patches of what waits for a merge at Pickle. To test a patch on this machine, bu
 
 ## What happens to your report
 
-Nothing is overwritten unarchived, with one exception that is now closed. Each launch copies the previous
+The normal launch path copies the previous
 `pickle-reports` into `pickle-reports-archive` before Pickle writes over it:
 
 - a finished run: `MMdd-HHmm`, the folder of that run's report;
 - a run that left a `Player.log` and **no report** (stalled, killed with its session, crashed): `MMdd-HHmm-nosummary`.
   Until 2026-09-21 the next launch deleted such a log unread;
 - a run the stall guard killed: its log is also kept in `stalled-<Mod>-MMdd-HHmm`;
-- a `-Then` sequence: one `MMdd-HHmm-seq<n>` per launch.
+- a `-Then` sequence: one `MMdd-HHmm-seq<n>` per intermediate launch; the final report remains in `pickle-reports`.
 
 The launcher keeps the 5 newest `MMdd-HHmm*` folders and removes older ones. It never removes a folder named by
 hand, one holding a `keep.txt`, or a `stalled-*` one. What has to outlive that (publication captures) belongs in the mod's
@@ -344,7 +345,7 @@ ahead of Harmony; this does not authorize staging Prepatcher, which AUDIT.md exc
 - **Never switch language inside a scenario.** `LanguageDatabase.SelectLanguage` does not finish
   inside the call, and every frame until it does has no active language at all. Run twice with
   `-Language` instead.
-- **Pickle fails any step over five seconds.** A step that waits declares `TimeoutSeconds` on its
+- **The default step timeout is five seconds unless overridden.** A step that waits declares `TimeoutSeconds` on its
   attribute and waits with `ctx.WaitUntil`, or it dies with a bare timeout that names nothing.
 - **The game logs in UTC.** A report's timestamps are two hours behind the machine in summer.
   Comparing them naively is how a fresh report reads as a stale one.

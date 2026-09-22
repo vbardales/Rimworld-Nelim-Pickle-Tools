@@ -9,7 +9,13 @@ game, and not only unit-tested, before anyone merges it.
 | `make-bundle.sh <name> <PR>...` | Fetch upstream, merge the named PRs, build every project the game loads, run Pickle's unit tests, lay the folder out, and check it ships the same DLLs as the Workshop build |
 | `run-on-bundle.sh <folder> <filter>` | Play one filter of a mod's suite against a bundle on the headless WSL install, and keep only a report that is provably that run's |
 
-```
+Run from **Git Bash on Windows** (the helpers use `cygpath` and Windows executables).
+Set `REPO` explicitly to the collection root rather than relying on the relative default.
+
+```bash
+cd /c/Users/nelim/Documents/rimworld/PickleTools/Upstream/bundles
+export REPO=/c/Users/nelim/Documents/rimworld
+export DOTNET=/c/Users/nelim/.dotnet10/dotnet.exe
 ./make-bundle.sh picker_bundle_23 23               # PR 23 alone
 ./make-bundle.sh picker_bundle_19_21 19 21         # two together
 MOD=ArchitectStudio ./run-on-bundle.sh ~/pickle-bundles/out/picker_bundle_23 16-language-review.feature
@@ -36,6 +42,9 @@ features green.
 
 ## What they cannot prove
 
+Check report freshness, `exitReason`, expected scenario counts and captures using the
+[authoring guide](../../Authoring/README.md). A matching command line alone is not a complete-run verdict.
+
 - **That the bundle was the Pickle the game loaded.** The launcher's `override:` line is the only trace and its
   own output truncates it. The real proof is a scenario that can only pass on the patched Pickle, which is what
   the PR's regression scenario is for.
@@ -44,8 +53,8 @@ features green.
 
 ## Requirements
 
-- A **.NET 10 SDK.** Pickle uses C# 14 and targets `net10.0` for its tests; the machine's default is 8 and fails
-  on `.slnx` and on the `field` keyword. `DOTNET` defaults to `~/.dotnet/dotnet.exe`, which is a 10. The
+- A **.NET 10 SDK.** Pickle uses C# 14 and targets `net10.0` for its tests. Verify the chosen executable with
+  `"$DOTNET" --version`; the default `~/.dotnet/dotnet.exe` does not guarantee its version. The
   scripts build the projects individually, targeting `net472` for the game.
 - The machine lock and queue: `run-on-bundle.sh` goes through `Run-PickleWsl.ps1`, so it waits its turn, up to
   `WAIT` minutes (240 by default) and never touches a game it did not start.

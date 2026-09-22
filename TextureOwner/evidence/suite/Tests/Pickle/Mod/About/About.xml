@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Texture owner check - tests</name>
+  <author>nelim</author>
+  <packageId>nelim.pickletest.textureowner.tests</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Companion of the stand-in mod: holds the features, and ships Contested. Loads last of all.</description>
+</ModMetaData>

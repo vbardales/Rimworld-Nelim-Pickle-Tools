@@ -8,7 +8,7 @@ Three Pickle steps for a click that must land, and a report that says why when i
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` | Hovers the button and asserts that the window under the pointer is the named one (by short or full type name, base types included) and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` | Clicks the button, waits up to 60 frames for the named window, and when it does not open prints what the click met. |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists
@@ -37,8 +37,10 @@ rectangle, `absorbInputAroundWindow`, `GetsInput`, and, for an `ImmediateWindow`
 
 `ButtonProbe` is a Harmony postfix on every `Widgets.ButtonText` and `Widgets.ButtonImage*` overload, installed
 by the first step that needs it. It records the rectangle of each button drawn in the last two frames, converted
-with `GUIUtility.GUIToScreenRect` during `Repaint` only, which is the way Pickle converts its own, so the numbers
-compare. It changes nothing in Pickle.
+with `GUIUtility.GUIToScreenRect` during `Repaint` only. It changes nothing in Pickle.
+At scales other than 100%, that conversion can mix coordinate spaces (see
+[InterfaceScale](../InterfaceScale/README.md)). Do not assume these raw probe rectangles match a corrected
+Pickle tag store when the InterfaceScale repair or its upstream equivalent is active.
 
 Buttons are named by the translation key their label comes from, so a scenario runs in any language. A key nothing
 translates fails with a message that names the key and the active language.

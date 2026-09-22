@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Texture owner</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.textureowner</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Two Pickle steps that ask which running mod answers for a texture path, and how many running mods ship it. For a retexture that shares paths with another retexture: if its loadAfter stopped winning, every scenario would stay green while players saw the other mod's textures. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See TextureOwner/README.md at the repository root.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
+</ModMetaData>

@@ -30,12 +30,13 @@ Every text below carried the mod's own name, so a copy needs no renaming beyond 
 | `the settings file on disk holds {float} for the pants band`, `the mod reads its settings file again` | Writes through the mod's own `WriteSettings`, reads the file the game wrote, parses the value with an invariant culture, and reloads the way a restart does. SkillIcons' `VerificationSteps.cs` has the same round trip, generalised further |
 | A `[BeforeScenario]`/`[AfterScenario]` settings sandbox | Copies the mod's settings file aside **as a file**, resets to defaults, and restores afterwards, so a run does not leave her sliders where a test left them; a game that dies mid-scenario leaves the backup, and the next scenario restores it before doing anything else. Deliberately avoids the mod's own `WriteSettings` for the reset, which would sweep TailorMade's texture cache and repaint a map that may not exist |
 
-## Superseded, do not copy
+## Screenshot mode: historical code, not replaced by ClearScreen
 
 `I hide the interface around the windows on screen` / `I bring the interface back` turned on the
 game's screenshot mode and cleared `drawInScreenshotMode` on Pickle's own runner windows, restoring
-from an `[AfterScenario]` as well. [`ClearScreen/`](../ClearScreen/README.md) carries Pickle PR #21
-and does this properly; Work Studio's `ModSteps.cs` has the same idea by assembly name.
+from an `[AfterScenario]` as well. [`ClearScreen/`](../ClearScreen/README.md) closes non-Pickle windows;
+it does not hide the HUD while keeping the window being photographed. For a live version of this screenshot
+technique, inspect Work Studio's `ModSteps.cs` or Adaptive Storage Neolithic Renew's `PublicationSteps.cs`.
 
 ## Also worth knowing from this suite, without being steps
 

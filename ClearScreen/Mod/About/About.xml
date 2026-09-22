@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nelim's Pickle Tools - Clear screen</name>
   <author>Nelim</author>
@@ -6,9 +6,15 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>Pickle steps that close every window another mod owns and keep them closed for the rest of the scenario, so a click is not swallowed by a log viewer or a notice. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See ClearScreen/README.md at the repository root.
+  <description>Pickle steps that close every window another mod owns and keep them closed for the rest of the scenario, so a click is not swallowed by a log viewer or a notice. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See ClearScreen/README.md at the repository root.
 
-It is the same pair of steps as the one proposed to Pickle itself as a pull request; when that lands this mod can go.</description>
+It is the same pair of steps as the one proposed to Pickle itself as a pull request; when that lands this mod can go.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>
@@ -26,4 +32,5 @@ It is the same pair of steps as the one proposed to Pickle itself as a pull requ
     <li>brrainz.harmony</li>
     <li>rimworks.pickle</li>
   </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
 </ModMetaData>

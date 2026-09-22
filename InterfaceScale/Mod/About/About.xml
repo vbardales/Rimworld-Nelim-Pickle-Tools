@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <ModMetaData>
   <name>Nelim's Pickle Tools - Interface scale</name>
   <author>Nelim</author>
@@ -6,9 +6,15 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
-  <description>A Pickle step that sets the interface scale the way the Options page does, and the repair of Pickle's tag store that lets a click land at any scale but 100 percent. Development only: never published, no Defs, no features. A suite stages it with one line in a pass map. See InterfaceScale/README.md at the repository root.
+  <description>A Pickle step that sets the interface scale the way the Options page does, and the repair of Pickle's tag store that lets a click land at any scale but 100 percent. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See InterfaceScale/README.md at the repository root.
 
-It carries the same change as the pull request proposed to Pickle itself; when that lands this mod can go.</description>
+It carries the same change as the pull request proposed to Pickle itself; when that lands this mod can go.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
       <packageId>brrainz.harmony</packageId>
@@ -24,4 +30,5 @@ It carries the same change as the pull request proposed to Pickle itself; when t
     <li>brrainz.harmony</li>
     <li>rimworks.pickle</li>
   </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
 </ModMetaData>

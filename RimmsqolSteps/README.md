@@ -5,7 +5,7 @@ assert what the main bar then draws. `MOD_SETTINGS.md` requires every mod with s
 shortcut that is hidden by default and that RIMMSQOL can reveal; every suite so far tested only its own side
 of that (`buttonVisible` moved by hand). These steps drive RIMMSQOL.
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` in a pass
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` in a pass
 that also stages RIMMSQOL, and writes its own features. The demonstration is
 `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Mod/Pickle/Features/12` to `15-rimmsqol-*.feature`.
 
@@ -51,8 +51,10 @@ checkbox**: that the checkbox is wired to `set("Visible", …)` is read from RIM
 
    Harmony is not repeated: the staging puts it first everywhere. The order is the file's order, and the steps
    mod hard-depends on both Pickle and RIMMSQOL. The folder's own `About.xml` packageId must match the one written.
-2. Play it only in that pass, named: `-DepMap wsl-deps.avec-rimmsqol.map`. Tag the features `@wip @rimmsqol` so
-   the other passes skip them; without RIMMSQOL staged the first step stops with a sentence instead of a
+2. Select `-DepMap wsl-deps.avec-rimmsqol.map`. Tag features with both
+   `@requires:MalteSchulze.RIMMSqol` and `@requires:nelim.pickletools.rimmsqol`.
+   `@rimmsqol` is only a filter label; `@wip` marks unfinished work and needs `-IncludeWip`.
+   Without RIMMSQOL staged the first step stops with a sentence instead of a
    `TypeLoadException` (nothing in a `[PickleSteps]` signature names a RIMMSqol type).
 3. Write features with the vocabulary below. Every text is unique across the repository and Pickle
    (`Check-Steps.ps1` proves it).
@@ -88,7 +90,10 @@ check, and a `@review` capture that is green shows only that the path ran.
 ## Restarts, and what a dead run leaves behind
 
 A restart is two processes. The demonstration is a chain of three launches under one hold of the lock (`-Then`
-stages once and keeps the profile), `-Filter <writer> -Then <reader>,<last>`:
+stages once and keeps the profile). From PowerShell, pass a real array:
+`& ./scripts/Run-PickleWsl.ps1 -Mod <mod> -DepMap wsl-deps.avec-rimmsqol.map -Filter <writer> -Then @('<reader>', '<last>')`.
+With `powershell.exe -File`, a comma string can instead become one filter in one process; see the
+[authoring guide](../Authoring/README.md).
 
 1. reveal, then **keep**: `RIMMSQOL's choices are kept for the next launch` is the **last** step, so a scenario
    that fails before it leaves nothing;

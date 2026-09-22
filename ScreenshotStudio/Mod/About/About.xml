@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Screenshot Studio</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.screenshotstudio</packageId>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <modDependencies>
+    <li><packageId>rimworks.pickle</packageId><displayName>Pickle</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl></li>
+    <li><packageId>ludeon.rimworld.ideology</packageId><displayName>Ideology</displayName></li>
+  </modDependencies>
+  <description>Development-only Pickle steps for a Japanese-garden-inspired screenshot colony: flower meadow, amber icon mosaic, open timber pavilions, bonsai, pond and dry garden. Uses vanilla and Ideology objects; the supplied fixture was tested with all five DLC. Code and documentation by OpenAI Codex under Nelim's direction. The mosaic derives from the owner's supplied icon. No gameplay patches or custom saved definitions.</description>
+</ModMetaData>

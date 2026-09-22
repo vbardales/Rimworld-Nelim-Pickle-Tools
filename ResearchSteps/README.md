@@ -3,13 +3,15 @@
 Reusable Pickle steps that **open a tab of the research window by def name, by the label a player reads, or by a
 translation key**, and read what the window then lists.
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` with one line in a
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` with one line in a
 pass map and writes its own features. The demonstration is `AdaptiveStorageNeolithicRenew/Tests/Pickle/Mod/Pickle/Features/`
 `08` to `10-pickletools-research*.feature`.
 
 **Temporary.** These steps exist while [RimWorks/Rimworld-Pickle#33](https://github.com/RimWorks/Rimworld-Pickle/pull/33) is
-open. It carries the same idea by def name only (`I open the research tab {string}`). When it is merged, move the features to
-its texts and delete this folder. The texts here carry the prefix `Nelim's Pickle Tools: ` (as `KeyedClick/` and `InspectTabs/` do) so the two never make a line ambiguous while both are loaded; to move a feature to the PR's texts, delete the prefix.
+open in the recorded local review. It carries the same idea by def name only (`I open the research tab {string}`).
+Migrate only when the installed Pickle build supplies the required equivalent steps. Removing the prefix is
+not a general migration: label/key and cost variants here are not all supplied by that proposal.
+The prefix `Nelim's Pickle Tools: ` keeps the shared vocabulary distinct while both implementations are loaded.
 
 ## Why a step at all
 
@@ -21,18 +23,19 @@ that `ResearchTabDef`, which is what a click on the tab runs.
 
 ## Using it from a suite
 
-1. A pass map (`<Mod>/Tests/Pickle/wsl-deps.avec-pickletools.map`), repeating the mod's own line if it has one, because a
-   named map replaces the default:
+1. A pass map (`<Mod>/Tests/Pickle/wsl-deps.avec-pickletools.map`) listing the shared tool and any optional
+   integrations required by this pass. Named maps do not merge with another map:
 
    ```
-   adaptive.storage.framework   3033901359
    nelim.pickletools.research   path:PickleTools/ResearchSteps/Mod
    ```
 
-2. Tag the features `@wip @pickletools` so a pass without the steps skips them, and play them in that pass:
-   `-DepMap wsl-deps.avec-pickletools.map -Filter <feature> -IncludeWip`.
-3. Write features with the vocabulary below. Every text is unique across the repository and Pickle
-   (`Check-Steps.ps1` proves it).
+   Resolve the main mod's hard dependency ids in `wsl-ids.map`; they are staged separately.
+2. Tag features `@requires:nelim.pickletools.research` and select
+   `-DepMap wsl-deps.avec-pickletools.map -Filter <feature>`. `@pickletools` is only a filter label;
+   `@wip` requires `-IncludeWip` and is not a dependency check.
+3. Write features with the vocabulary below. `Check-Steps.ps1` checks the patterns and feature lines it scans;
+   see the [authoring guide](../Authoring/README.md) for its limits and the full suite workflow.
 
 ### Vocabulary
 

@@ -10,7 +10,6 @@ namespace Nelim.PickleTools.ScreenshotMode
     [PickleSteps]
     public sealed class ScreenshotModeSteps
     {
-        private const string Prefix = "Nelim's Pickle Tools: ";
         private readonly Dictionary<Window, bool> previous = new Dictionary<Window, bool>();
         private bool wasActive;
         private bool enabled;
@@ -21,7 +20,7 @@ namespace Nelim.PickleTools.ScreenshotMode
                 .StartsWith("RimWorks.Pickle", StringComparison.OrdinalIgnoreCase);
         }
 
-        [When(Prefix + "screenshot mode is enabled around the open windows")]
+        [When("Nelim's Pickle Tools: screenshot mode is enabled around the open windows")]
         public async Task Enable(PickleContext ctx)
         {
             Restore();
@@ -45,7 +44,7 @@ namespace Nelim.PickleTools.ScreenshotMode
             await ctx.WaitFrames(3);
         }
 
-        [When(Prefix + "screenshot mode is disabled")]
+        [When("Nelim's Pickle Tools: screenshot mode is disabled")]
         public void Disable(PickleContext ctx)
         {
             Restore();

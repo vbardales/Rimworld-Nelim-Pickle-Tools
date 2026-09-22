@@ -7,7 +7,7 @@ Two things in one assembly, because they are one change to Pickle:
 | `Nelim's Pickle Tools: the interface scale is {int} percent` | sets `Prefs.UIScale` the way the Options page does, for the length of the scenario, and puts it back afterwards |
 | the tag store repair (no step: it needs no line of Gherkin) | put in place before every scenario of the run, so that a **click lands at any interface scale**, not only at 100 |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists
@@ -67,6 +67,10 @@ and change the one prefix in the scenarios that used the step.
 2. **The repair needs nothing else.** It applies to every scenario of the run, so a suite that already clicks at
    another scale passes without a change.
 3. To set a scale from a scenario:
+
+   The example uses an English label. For French, use the localized label or stage
+   [KeyedClick](../KeyedClick/README.md) and its translation-key step. Tag features that need this tool
+   `@requires:nelim.pickletools.interfacescale`.
 
    ```gherkin
    Given the main menu is open

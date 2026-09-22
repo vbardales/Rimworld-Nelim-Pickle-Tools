@@ -19,7 +19,7 @@ it found:
 | `Nelim's Pickle Tools: {string} is of race {string}` | the race def name: `Human`, or a race a mod adds |
 | `Nelim's Pickle Tools: {string} is at the {word} stage of life` | `Baby`, `Newborn`, `Child` or `Adult`; the failure adds the age |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
 
 ## Why it exists
@@ -38,8 +38,8 @@ a field. So the way to a race with another body is to **generate** the pawn from
 needs no dependency on that mod: the kind is looked up by name. A Biotech xenotype is the other way, and it is a
 change of genes, not of race.
 
-**Not verified against Humanoid Alien Races.** It is not installed on this machine (neither in `RimWorld/Mods`
-nor in the Workshop folder), so the kind step has only been played with a vanilla humanlike kind. Open: which kind
+**Not verified against Humanoid Alien Races.** No in-game result is recorded below, including for the vanilla
+kind. The generic lookup is intended to support humanlike races; that is not runtime evidence. Open: which kind
 names a given race mod defines, and whether a body type that a step sets without validating it is one the race can
 draw (a race that lists its own body types may draw nothing for another).
 
@@ -61,7 +61,7 @@ draw (a race that lists its own body types may draw nothing for another).
 Given a colonist "Slim" exists
 And "Slim" is 30 years old
 And Nelim's Pickle Tools: "Slim" xenotype is "Genie"
-Then "Slim" body is drawn from "Things/Pawn/Humanlike/Bodies/Naked_Thin"
+Then Nelim's Pickle Tools: "Slim" has body type Thin
 
 Given Nelim's Pickle Tools: a colonist "Farmer" of kind "Villager" exists
 ```

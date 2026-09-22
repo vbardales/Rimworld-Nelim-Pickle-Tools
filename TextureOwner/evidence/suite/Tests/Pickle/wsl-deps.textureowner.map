@@ -1,0 +1,16 @@
+# The pass that plays the two pickletools-textureowner features: the texture owner steps of PickleTools, played
+# against stock Pickle, beside two fixture mods that ship known paths so the load order is known.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleToolsCheckTextureOwner -DepMap wsl-deps.textureowner.map -Filter 'pickletools-textureowner.feature,pickletools-textureowner-refusals.feature' -IncludeWip
+#
+# Load order of what reaches the game, last wins (staged in the order of this file, then the stand-in mod,
+# then its tests companion): the tool, First, Second, [stand-in, ships nothing], tests companion.
+#   Contested  shipped by First, Second, the tests companion   -> the tests companion answers
+#   Pair       shipped by First, Second                        -> Second answers
+#   Alone      shipped by First                                -> First answers
+#   Nowhere    shipped by nobody
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.textureowner          path:PickleTools/TextureOwner/Mod
+nelim.pickletest.textureowner.first     path:PickleToolsCheckTextureOwner/Fixtures/First
+nelim.pickletest.textureowner.second    path:PickleToolsCheckTextureOwner/Fixtures/Second

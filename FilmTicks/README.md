@@ -7,7 +7,7 @@ Two Pickle steps that film **a stretch of a scenario, one picture every N game t
 | `Nelim's Pickle Tools: I film every {int} ticks as {string}` | starts filming; the name is the film's folder in the report |
 | `Nelim's Pickle Tools: I stop filming` | waits ten frames for the last pictures to land, then encodes the video |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists
@@ -18,15 +18,16 @@ the interesting part uses up the 60-second cap first. These steps film only betw
 picture is decided by the tick counter, not the stopwatch.
 
 The same feature, as a scenario tag (`@film-ticks:N`), is written against Pickle itself on the branch
-`feat/film-every-n-ticks` of a local clone, and is meant to go upstream as a pull request. **When it lands, this
-mod's steps can go.** Until then these work on the Workshop build of Pickle as it is: everything they use
+`feat/film-every-n-ticks` of a local clone, and is meant to go upstream as a pull request. Migrate only after
+the installed build provides equivalent behavior: a whole-scenario tag does not replace a mid-scenario start.
+These steps use public Workshop Pickle APIs:
 (`PickleDriver.AddFrameHook`, `CaptureFrameDetached`, `ReleaseFrameBuffers`, `ScreenshotCapture`, `FilmEncoder`)
 is public.
 
 ## What it does and does not give you
 
-- At **normal speed** the game runs about one tick per rendered frame, so `every 1 ticks` gives one picture per
-  tick. The tick counter is read on each rendered frame.
+- The tick counter is read on each rendered frame. Even at **normal speed**, one picture per tick is not
+  guaranteed: rendering may lag behind simulation (see the measured result below).
 - Where **several ticks run between two frames** - Pickle's fast mode, which drives sixty ticks a frame - a
   picture lands on the first frame after the interval and cannot show the ticks in between. Use `@watch` so waits
   pass real time, and do not set the game above normal speed for the filmed stretch.
@@ -46,9 +47,9 @@ is public.
    ```
 
    Select it with `-DepMap <the map>`. The folder's own `About.xml` packageId must match the one written.
-2. Tag the scenarios that use it `@wip`, so a pass without the mod skips them, and run them with
-   `-pickle-include-wip` **and a filter**: the launcher refuses the flag without one, because it has been seen to
-   empty a selection while reporting success.
+2. Tag scenarios `@requires:nelim.pickletools.filmticks` so a pass without the tool skips them.
+   Use `@wip` only for unfinished scenarios and opt in with `-IncludeWip`; a narrow `-Filter` is useful
+   during development but the launcher does not require one. See the [authoring guide](../Authoring/README.md).
 3. Write the scenario, with the filmed stretch between the two steps:
 
    ```gherkin

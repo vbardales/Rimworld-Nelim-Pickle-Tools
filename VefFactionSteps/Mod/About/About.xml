@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - VEF factions</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.veffactions</packageId>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
+  <supportedVersions><li>1.6</li></supportedVersions>
+  <description>Reusable Pickle steps for Vanilla Expanded Framework's new-faction workflow: select a missing faction, invoke VEF's check, inspect its dialog and ignored state, and temporarily mark a faction as required. Developer tooling; no Defs or scenarios.
+
+Requires Pickle and Vanilla Expanded Framework when staged as a standalone companion. In the aggregate PickleTools bundle, VEF remains optional and scenarios must declare it with @requires.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
+  <modDependencies>
+    <li><packageId>rimworks.pickle</packageId><displayName>Pickle</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl></li>
+    <li><packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId><displayName>Vanilla Expanded Framework</displayName><steamWorkshopUrl>steam://url/CommunityFilePage/2023507013</steamWorkshopUrl></li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+    <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+  </loadAfter>
+</ModMetaData>

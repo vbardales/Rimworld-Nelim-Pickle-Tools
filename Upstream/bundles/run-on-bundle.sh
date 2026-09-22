@@ -46,6 +46,11 @@ if [ -f "$log" ] && grep -a "Command line arguments" "$log" | grep -aq -- "-pick
    && [ "$(stat -c %Y "$log")" -ge "$start" ]; then
   cp "$REPO/pickle-reports/junit.xml" "$OUT/$label.junit.xml" 2>/dev/null
   cp "$log" "$OUT/$label.Player.log"
+  # The captures of THIS run only: the screenshots folder is never emptied, so a file older than the
+  # launch belongs to an earlier run, and reading it as this run's is the same mistake as the report.
+  mkdir -p "$OUT/$label.screenshots"
+  find "$REPO/pickle-reports/screenshots" -type f -newermt "@$start" -exec cp -t "$OUT/$label.screenshots" {} + 2>/dev/null
+  echo "captures of this run: $(ls "$OUT/$label.screenshots" 2>/dev/null | wc -l) in $OUT/$label.screenshots"
   echo "report: ours (its command line is -pickle-run=$FILTER), kept in $OUT/$label.*"
   grep -B3 "<failure" "$OUT/$label.junit.xml" 2>/dev/null | grep -o 'testcase name="[^"]*"' | sed 's/^/  failed: /'
 else

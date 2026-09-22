@@ -7,7 +7,7 @@ Two Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Nee
 | `Nelim's Pickle Tools: I open the {string} inspect tab` | Opens an inspect tab on the selected thing through `InspectPaneUtility.OpenTab`, which switches the main tabs root to Inspect on its own and toggles only a closed tab. Refuses a tab the selection carries but hides. |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` | Waits for the named tab to be the one the pane has open, then asserts it. |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
 
 ## Why it exists

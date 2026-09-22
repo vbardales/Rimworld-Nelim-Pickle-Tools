@@ -1,44 +1,71 @@
-# Steps that live in a mod's own repository
+# Steps owned by other suites
 
-**Not a tool.** This is the ledger of Pickle steps that exist, are written and are *not* here:
-they sit in one mod's own `Tests/Pickle/Source/`, or only in its history, because they were judged
-specific to that mod or too small to be worth a package of their own.
+This is the single catalogue for Pickle steps kept in a mod's own repository, and for known historical
+steps removed from a suite. The companion tools are listed in the [main README](../README.md).
+Before writing a step, look there and here. These notes are not stageable packages.
 
-It exists for one reason: **a step that nobody can find gets written twice.** A mod that needs one
-of the things below should come here first, read what it did, and then either lift it from the
-repository named or ask for it to be promoted into a package beside this file.
+## Coverage
 
-A step is promoted when a second mod needs it. Until then, keeping it in the mod that needed it
-first is cheaper than maintaining a package — but saying so out loud is what makes that choice
-reversible rather than a loss.
+The [local inventory](INVENTORY.md) lists every suite found by the scanner, its source files, declaration
+count and feature count. The 2026-09-22 review included Git-ignored standalone repositories and nested
+FlavorText repositories; directory-link aliases were not counted twice. It is a local checkout inventory,
+not a claim about every repository on GitHub or every deleted step in history.
 
-## TailorMade Waistlines
+| Suite | What to look for |
+|---|---|
+| [Adaptive Storage Neolithic Renew](AdaptiveStorageNeolithicRenew.md) | Research tabs, project overlap, publication screenshot mode |
+| [Anima Song](AnimaSong.md) | Float-menu actions, toggle gizmos, hearing, maintained motes sampled by ticks |
+| [Architect Studio](ArchitectStudio.md) | Categories/groups, Harmony ownership, settings sandbox, key-binding UI |
+| [Bill Autopilot](BillAutopilot.md) | Bills, stock, profiles, letters and integration assertions |
+| [Drum Bath Hygiene](DrumBathHygiene.md) | Needs, carried filth, bathing jobs and diagnostic waits |
+| [Fieldwork Companions](FieldworkCompanions.md) | Animal training/master, harvest gestures, yields, settings and translation checks |
+| [Firework Stand](FireworkStand.md) | Fuel, glow, effects, joy jobs and time-sensitive captures |
+| [Flavor Text Extended](FlavorTextExtended.md) | Category membership, recipe products, meal names and save/reload identity |
+| [Flavor Text Extended - Francais](FlavorTextExtendedFR.md) | Cooking, translated meal names, settings and shortcuts |
+| [Quiet New Factions](QuietNewFactions.md) | VEF faction spawning, ignored state and required-faction fixture |
+| [SkillIcons](SkillIcons.md) | Passions, animation getters, texture ownership, settings and restart hand-off |
+| [Work Studio](WorkStudio.md) | Work priorities, backstories, editor interactions, patch and window diagnostics |
+| [TailorMade Waistlines](TailorMadeWaistlines.md) | Historical assertions at commit 9988515; current suite has no local C# steps |
+| [Epona Instruments Renew](EponaInstrumentsRenew.md) | Features only: crafting, captures, listening and save/reload |
+| [Tech Level Fixes](TechLevelFixes.md) | Features only: bare and source-mod passes |
+| [PickleToolsCheck](PickleToolsCheck.md) | Tooling probes using shared tools, not a gameplay step library |
 
-Repository: `TailorMadeWaistlines` (`nelim.tailormade.waistlines`), suite under `Tests/Pickle/`.
+## Reading and reusing a note
 
-Its four assertion features and the step assembly that served them were written on 2026-09-20 and
-**removed the same evening**, the suite being left to captures only. Nothing of this is live: the
-code is in that repository's history at commit `9988515`, `Tests/Pickle/Source/`, and it built
-warning-free against the stock Pickle at the time.
+- Source presence, compilation, scenario execution and visual review are separate facts. Dated run notes
+  were preserved from the previous catalogues; this cleanup did not replay or revalidate them.
+- Do not stage another suite's assembly as a general tool. It may reference that mod's classes or carry
+  scenario hooks. Inspect the method and its helpers, then adapt it or promote it deliberately.
+- A copied phrase gets the new suite's name. Pickle resolves steps across all active assemblies; a C#
+  namespace does not prevent ambiguous phrases. A promoted tool uses `Nelim's Pickle Tools:`.
+- A second consumer is a reason to review promotion, not proof that an extraction is already safe.
+  Keep mod-specific assertions in their owning suite; migrate callers and check patterns when promoting.
+- Keep one maintained note per suite. Existing entries for historical code must name a commit.
 
-| Step | What it did | Generic? |
-| --- | --- | --- |
-| `TailorMade Waistlines patched {string}` | Reads `Harmony.GetPatchInfo` on a `Type::Member` written as one string and asserts the mod's Harmony id is among the owners. Names the owners it did find when it fails, which is what turns "the sliders do nothing" into "the method was renamed upstream" | **Yes** — any mod that patches another mod's internals wants this, and a renamed target fails silently otherwise |
-| `the band patch route is settled` | Reads a static flag the mod sets at startup after testing its own patch, attaches which of two routes is live, and fails if the startup self-test never logged — so the route is never reported from an untested default | No. The two-route fallback is this mod's design |
-| `the TailorMade Waistlines shortcut is neither drawn nor greyed out` | Reads `MainButtonDef.buttonVisible`, then `Worker.Visible` and `Worker.Disabled`, because "hidden by default" is a drawn state and a greyed button fails the same requirement as a shown one | **Yes** — every mod with a hidden MainButtons shortcut has this exact criterion. `RimmsqolSteps/` asserts what the bar draws after RIMMSQOL reveals it; this is the before, without RIMMSQOL |
-| `the settings window open is {mod}'s own` | Reads the private `mod` field of `Dialog_ModSettings` and checks the type, so a shortcut that opens *someone else's* settings page fails | **Yes**, trivially generalised to a packageId |
-| `every settings key resolves in the language the game runs in` | `key.CanTranslate()` over the keys the settings window draws, against the language actually loaded — which a file-level check outside the game cannot know, and which a mistyped `Languages` folder name silently loses | **Yes** — the one in-game half of the l10n gate |
-| `I let TailorMade bake what the map draws` / `TailorMade's fitted textures were swept` / `the pawns on the map are drawn again` | Counts TailorMade's own `TexBake.Stats()` before and after closing the settings window, to prove the cache was emptied and refilled rather than a value merely changing | No. Reaches into TailorMade |
-| `the fitting that claims {string} is recorded` / `the band decides the fit of {string}` | Resolves `TailorMade.PatternRegistry.Resolve` for a garment and reports which pattern claimed it, so a capture says on its own face whether the band or a native-fit pattern produced the image | No. Reaches into TailorMade |
-| `the settings file on disk holds {float} for {field}` / `the mod reads its settings file again` | Writes through the mod's own `WriteSettings`, reads the file the game wrote, and reloads it the way a restart does | Half. The shape is generic; the field names are not |
-| `I hide the interface around the windows on screen` / `I bring the interface back` | Turns on the game's screenshot mode and clears `drawInScreenshotMode` on Pickle's own runner windows, which otherwise sit in the corner of every capture. Restored from an `[AfterScenario]` too, so a scenario that dies does not leave the game without its interface | **Superseded** — `ClearScreen/` carries Pickle PR #21 and does this properly |
+## Known overlap to review before extracting code
 
-The four marked **Yes** are the ones worth asking for. None has a second taker yet, which is why
-none is a package.
+| Concern | Existing owners | Boundary |
+|---|---|---|
+| Hide HUD and Pickle panels for publication | WorkStudio, ArchitectStudio, SkillIcons, FieldworkCompanions, AdaptiveStorageNeolithicRenew; TailorMade history | Uses screenshot mode and drawInScreenshotMode. ClearScreen closes non-Pickle windows and is not a replacement |
+| Harmony patch ownership | WorkStudio, ArchitectStudio, FieldworkCompanions; TailorMade history | Parameterise the Harmony id and method lookup; keep mod-specific startup probes separate |
+| Settings dialog ownership and persistence | SkillIcons, FieldworkCompanions, WorkStudio, ArchitectStudio, FlavorTextExtendedFR; TailorMade history | In-process reread is not a process restart; preserve file backup/restore and use the launcher's -Then for restart chains |
+| Research, inspect tabs, texture ownership, click diagnostics | See the relevant suite notes and shared tools | Shared versions exist; source copies remaining in a suite are not proof that migration finished |
 
-## How to add a mod here
+These are extraction candidates, not completed migrations. No step DLL, feature or pass map was changed.
 
-One section per repository, one row per step: the step text as a scenario writes it, what it
-actually reads (the field, the method, the file — not the intention), and whether it is generic.
-Say where it lives: a path if it is live, a commit if it is only in the history. A row that cannot
-name what its step reads is a row nobody can act on.
+## Maintaining coverage
+
+From the collection root:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/Elsewhere/Update-Inventory.ps1
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/Elsewhere/Update-Inventory.ps1 -Check
+```
+
+The first writes INVENTORY.md after checking that every discovered suite has a note. The second is read-only
+and rejects a stale snapshot or a missing note. It uses rg, includes ignored repositories, does not follow
+links, and counts source declarations rather than resolving expressions. It is not a runtime or ambiguity test.
+When a new suite appears, add its note, inspect its code and regenerate. See the script for the precise scope.
+
+The former [ELSEWHERE.md](../ELSEWHERE.md) and [InSuites/](../InSuites/README.md) remain as redirects so old links
+still lead here; do not add entries to them.

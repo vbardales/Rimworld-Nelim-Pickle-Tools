@@ -6,7 +6,7 @@ One Pickle step that clicks a button **by the translation key its label comes fr
 | --- | --- |
 | `Nelim's Pickle Tools: I click button keyed {string}` | resolves the key with the game's own `Translate()`, then clicks the button drawn under that label |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
 
 ## Why it exists

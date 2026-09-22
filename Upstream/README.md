@@ -12,7 +12,7 @@ landed.
 | Path | What |
 |---|---|
 | `PENDING.md` | The ledger: every change and idea, its upstream reference, its state, and what proves it |
-| `patches/` | Unmerged code as patches against Pickle `main` (`git apply --ignore-whitespace`) |
+| `patches/` | Unmerged code: follow each series' base/application instructions; format-patch series use `git am`, standalone diffs may use `git apply` |
 | `bundles/` | Upstream `main` plus named PRs, built and staged as a mod folder to play a PR before it merges (`make-bundle.sh`, `run-on-bundle.sh`; written by the ArchitectStudio session, see its README) |
 | `tests/` | Throwaway features that exercise a patch, kept because the patch is worthless without them |
 

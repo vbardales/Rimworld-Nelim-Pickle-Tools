@@ -8,7 +8,7 @@ named in a step: the mod is a parameter, so any retexture can use them.
 | `Nelim's Pickle Tools: the texture {string} is answered by the mod {string}` | passes when the **last** running mod that ships the path is the one whose packageId is given |
 | `Nelim's Pickle Tools: the texture {string} is shipped by at least {int} running mod(s)` | passes when at least that many running mods ship the path |
 
-Development only. Never published, no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
+Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
 
 ## Why it exists
