@@ -51,4 +51,5 @@ one upload directory with About directly underneath. Earlier per-tool archives a
 Before publication: complete the ordered PUBLISHING.md audit, review presentation and run the aggregate
 minimal/integration probes. Commit the
 final source, rebuild/check and regenerate before tagging. Publish one Workshop item, record its real id,
-and attach the regenerated assets to the verified GitHub tag. No item id is currently assigned.
+and attach the regenerated assets to the verified GitHub tag. The private Workshop item is `3806142401`;
+`About/PublishedFileId.txt` must remain in every upload so an update cannot create a duplicate item.

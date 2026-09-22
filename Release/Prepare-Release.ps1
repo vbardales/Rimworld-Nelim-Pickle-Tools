@@ -12,6 +12,7 @@ New-Item -ItemType Directory -Path $tree -Force | Out-Null
 $bundle = Join-Path $tree 'Mod'
 New-Item -ItemType Directory -Path "$bundle/About","$bundle/Pickle/Assemblies" -Force | Out-Null
 Copy-Item "$root/Mod/About/About.xml","$root/Mod/About/ModIcon.png","$root/Mod/About/Preview.png" "$bundle/About/"
+if (Test-Path "$root/Mod/About/PublishedFileId.txt") { Copy-Item "$root/Mod/About/PublishedFileId.txt" "$bundle/About/" }
 Copy-Item "$root/LICENSE","$root/ATTRIBUTION.md" $bundle
 $manifest = @()
 $ids = @{}
@@ -39,7 +40,7 @@ foreach ($tool in $tools) {
     Copy-Item $dlls[0].FullName "$bundle/Pickle/Assemblies/"
 }
 Compress-Archive -Path "$bundle/*" -DestinationPath "$out/PickleTools-$Version-workshop.zip"
-foreach ($doc in @('README.md','LICENSE','ATTRIBUTION.md','STATUS.md','CHANGELOG.md','TESTING.md')) { Copy-Item "$root/$doc" $tree }
+foreach ($doc in @('README.md','LICENSE','ATTRIBUTION.md','STATUS.md','CHANGELOG.md','TESTING.md','PUBLICATION.md')) { Copy-Item "$root/$doc" $tree }
 foreach ($folder in @('Authoring','Headless','Elsewhere','Release')) { Copy-Item "$root/$folder" $tree -Recurse }
 New-Item -ItemType Directory -Path "$tree/Upstream" | Out-Null
 Copy-Item "$root/Upstream/README.md","$root/Upstream/PENDING.md","$root/Upstream/LICENSE-Pickle" "$tree/Upstream/"
