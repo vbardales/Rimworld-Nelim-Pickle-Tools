@@ -19,7 +19,6 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `FlavorText/FlavorTextExtended` | 1 | 12 | 6 | [FlavorTextExtended.md](FlavorTextExtended.md) |
 | `FlavorText/FlavorTextExtendedFR` | 7 | 26 | 17 | [FlavorTextExtendedFR.md](FlavorTextExtendedFR.md) |
 | `PickleToolsCheck` | 0 | 0 | 6 | [PickleToolsCheck.md](PickleToolsCheck.md) |
-| `QuietNewFactions` | 0 | 0 | 3 | [QuietNewFactions.md](QuietNewFactions.md) |
 | `SkillIcons` | 10 | 33 | 17 | [SkillIcons.md](SkillIcons.md) |
 | `TailorMadeWaistlines` | 0 | 0 | 3 | [TailorMadeWaistlines.md](TailorMadeWaistlines.md) |
 | `TechLevelFixes` | 0 | 0 | 2 | [TechLevelFixes.md](TechLevelFixes.md) |
@@ -93,10 +92,6 @@ No local C# source found in this suite. See its note for shared tools or histori
 - `FlavorText/FlavorTextExtendedFR/Tests/Pickle/Source/ShortcutSteps.cs`: 6 step declarations.
 
 ### PickleToolsCheck
-
-No local C# source found in this suite. See its note for shared tools or historical code.
-
-### QuietNewFactions
 
 No local C# source found in this suite. See its note for shared tools or historical code.
 

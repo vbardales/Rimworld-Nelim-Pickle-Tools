@@ -22,7 +22,6 @@ not a claim about every repository on GitHub or every deleted step in history.
 | [Firework Stand](FireworkStand.md) | Fuel, glow, effects, joy jobs and time-sensitive captures |
 | [Flavor Text Extended](FlavorTextExtended.md) | Category membership, recipe products, meal names and save/reload identity |
 | [Flavor Text Extended - Francais](FlavorTextExtendedFR.md) | Cooking, translated meal names, settings and shortcuts |
-| [Quiet New Factions](QuietNewFactions.md) | VEF faction spawning, ignored state and required-faction fixture |
 | [SkillIcons](SkillIcons.md) | Passions, animation getters, texture ownership, settings and restart hand-off |
 | [Work Studio](WorkStudio.md) | Work priorities, backstories, editor interactions, patch and window diagnostics |
 | [TailorMade Waistlines](TailorMadeWaistlines.md) | Historical assertions at commit 9988515; current suite has no local C# steps |
