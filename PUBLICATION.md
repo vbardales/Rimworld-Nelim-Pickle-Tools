@@ -82,6 +82,8 @@ The global `WORKSHOP_COMMENTS.md` register controls duplicates.
 - Harmony (`2009463077`): already posted for the collection; add PickleTools to `Covers`, do not repost.
 - Vanilla Expanded Framework (`2023507013`): posted on 2026-09-22 after item 3806142401 became public.
 
+Sarg Bjornson replied on the VEF Workshop page on 2026-09-22: “Not much of an enthusiast of anything touched by the vile offspring, sorry”. Record the response as a refusal of enthusiasm for the project; do not request an endorsement or post a follow-up thank-you. The optional VEF integration and its attribution remain factual.
+
 ### Vanilla Expanded Framework — posted
 
 ```text
