@@ -37,6 +37,10 @@ presentation and screenshot scenarios: `nelim-zen-meadow-studio`. Stage it expli
 `wsl-deps.studio.map`; it is packaged separately with `Release/Prepare-Release.ps1 -IncludeScreenshotStudio`.
 Functional scenarios retain an explicitly chosen fixture when their preconditions require one.
 
+[Quiet New Factions](QuietNewFactions/README.md) is a second optional companion: it suppresses VEF's repeated
+missing-faction dialog while preserving factions VEF marks required. It remains outside the aggregate payload because
+VEF is a load-time dependency; its suite stages it explicitly with `PickleTools/QuietNewFactions`.
+
 ## Steps still owned by a suite
 
 See [Elsewhere/](Elsewhere/README.md) for the single catalogue, one note per suite, historical code,

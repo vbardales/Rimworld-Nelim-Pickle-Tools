@@ -47,7 +47,7 @@ ExampleMod/
 The test companion's `About.xml` has a unique packageId, a clear display name such as
 `Example Mod - Pickle tests`, supported versions, and dependencies/loadAfter for Pickle and the mod under
 test. Copy the structure, not the identity, from an existing companion such as
-`QuietNewFactions/Tests/Pickle/Mod/About/About.xml`. Test-only dependencies must not become gameplay dependencies.
+`PickleTools/QuietNewFactions/Tests/Pickle/Mod/About/About.xml`. Test-only dependencies must not become gameplay dependencies.
 Keep the companion and PickleTools out of the Workshop payload.
 
 Use the actual capitalization shown by the filesystem, especially on Linux. The shared staging script expects

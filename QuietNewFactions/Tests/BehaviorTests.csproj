@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <Managed Condition="'$(Managed)' == ''">C:\Program Files (x86)\Steam\steamapps\common\RimWorld\RimWorldWin64_Data\Managed</Managed>
+    <VefDir Condition="'$(VefDir)' == ''">C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\2023507013\1.6\Assemblies</VefDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Lib.Harmony" Version="2.4.2" />
+    <Reference Include="Assembly-CSharp"><HintPath>$(Managed)/Assembly-CSharp.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="UnityEngine.CoreModule"><HintPath>$(Managed)/UnityEngine.CoreModule.dll</HintPath><Private>false</Private></Reference>
+    <Reference Include="VEF"><HintPath>$(VefDir)/VEF.dll</HintPath><Private>false</Private></Reference>
+    <!-- The shipped assembly, not a rebuild: the test must judge what the mod delivers. -->
+    <Reference Include="QuietNewFactions"><HintPath>../Mod/Assemblies/QuietNewFactions.dll</HintPath></Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- Tests/Pickle/Source/*.cs needs RimWorks.Pickle attributes this project does not
+         reference; the default SDK glob would otherwise sweep them in and fail the build. -->
+    <Compile Remove="Pickle/**/*.cs" />
+  </ItemGroup>
+
+</Project>

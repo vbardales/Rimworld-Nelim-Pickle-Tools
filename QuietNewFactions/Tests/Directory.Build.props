@@ -1,0 +1,10 @@
+<Project>
+
+  <PropertyGroup>
+    <!-- Same reason as Source/Directory.Build.props: nothing of the build may land in Mod/,
+         which the Workshop uploader sends as it stands. -->
+    <BaseIntermediateOutputPath>$(MSBuildThisFileDirectory)..\.build\obj-tests\</BaseIntermediateOutputPath>
+    <BaseOutputPath>$(MSBuildThisFileDirectory)..\.build\bin-tests\</BaseOutputPath>
+  </PropertyGroup>
+
+</Project>

@@ -5,6 +5,10 @@ Promoted on 2026-09-22 from `QuietNewFactions/Tests/Pickle/Source/FactionSteps.c
 longer owns a source project or DLL. Existing runtime results belong to the removed suite-owned DLL;
 the promoted assembly has only offline build and expression-check evidence.
 
+The actual Quiet New Factions companion, its Harmony patch, test suite and historical evidence now live at
+`PickleTools/QuietNewFactions/`. This note stays only as the record of the step extraction; it is not an
+external owner of code anymore.
+
 | Step family | What the source reads or changes | Reuse boundary |
 |---|---|---|
 | `the load has settled` | Waits for `LongEventHandler.AnyEventNowOrWaiting` to clear, then three frames | Generic waiting pattern; retain an explicit timeout and rename the unprefixed text |

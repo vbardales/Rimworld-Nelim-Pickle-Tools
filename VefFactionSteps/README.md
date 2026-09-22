@@ -27,7 +27,7 @@ Tag consuming features with both requirements:
 For the aggregate Workshop bundle, replace the first tag with `@requires:nelim.pickletools`; VEF remains
 optional. Do not enable the standalone companion and aggregate bundle together.
 
-All phrases begin with `Nelim's Pickle Tools:`. See QuietNewFactions's features for complete examples.
+All phrases begin with `Nelim's Pickle Tools:`. See `QuietNewFactions/Tests/Pickle/Mod/Pickle/Features/` for complete examples.
 
 ## Build and checks
 

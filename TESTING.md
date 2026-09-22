@@ -1,7 +1,7 @@
 # Testing PickleTools
 
-Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. ScreenshotStudio is an optional
-companion, excluded from the aggregate Workshop payload and validated independently.
+Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. ScreenshotStudio and Quiet New Factions
+are optional companions, excluded from the aggregate Workshop payload and validated independently.
 
 ## Offline results - 2026-09-22
 
@@ -32,7 +32,7 @@ Two dependency sets in English and French: **four baseline launches**, plus rest
 |---|---|---|
 | Minimal | Game, Pickle and its required dependencies, bundle, dedicated test companion; no RIMMSQOL or other optional targets | General modules discovered once, no missing types/assemblies at startup or teardown, representative success/refusal cases; optional scenarios skipped by requirement |
 | RIMMSQOL | Minimal plus RIMMSQOL | UI/action/file assertions and cleanup, general modules still work, no duplicate expressions |
-| VEF factions | Minimal plus Vanilla Expanded Framework and Quiet New Factions | The promoted QuietNewFactions scenarios pass with the aggregate bundle; required and optional factions retain their expected dialog/ignore behavior |
+| VEF factions | Minimal plus Vanilla Expanded Framework and the optional Quiet New Factions companion | The promoted QuietNewFactions scenarios pass with the aggregate bundle; required and optional factions retain their expected dialog/ignore behavior |
 
 Also run the RIMMSQOL writer/reader/reset chain in separate processes under one `-Then` lock in each
 language. Verify distinct processes and final settings cleanup; rereading inside one process is not a restart.

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Quiet New Factions</name>
+  <author>Nelim</author>
+  <packageId>nelim.quietnewfactions</packageId>
+  <url>https://github.com/vbardales/Rimworld-Nelim-Quiet-New-Factions</url>
+  <modVersion>1.0.0</modVersion>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Stops Vanilla Expanded Framework's "new faction" window from coming back on every load.
+
+When a save lacks a faction that an active mod provides, VEF opens a window for it at each load. Its "skip" button records nothing, so the window returns next time; only "ignore" is remembered, in the save. This mod answers "ignore" for you, for every faction the window would show.
+
+A faction that its mod marks as required is left alone: VEF's own window still opens for it, since that window refuses both skip and ignore for such a faction.
+
+Each ignored faction is written to the log: "[Quiet New Factions] defName (mod) ignored in this save."
+
+To add a faction to an existing save after all, remove this mod for one load, or use VEF's own tools.
+
+The choice is stored by VEF in the save, not by this mod: removing this mod later changes nothing for factions already ignored.
+
+AI-GENERATED
+
+This mod's code was written with Claude Code (Anthropic) under human direction, review and testing.
+
+THANKS
+
+Oskar Potocki and the Vanilla Expanded team, for the framework this adjusts.
+Andreas Pardeike for Harmony.</description>
+  <modDependencies>
+    <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+    <li>
+      <packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+      <displayName>Vanilla Expanded Framework</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2023507013</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>brrainz.harmony</li>
+    <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+  </loadAfter>
+</ModMetaData>

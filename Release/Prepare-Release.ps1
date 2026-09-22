@@ -1,6 +1,6 @@
 <# Creates local candidate archives; never tags, uploads or publishes. #>
 [CmdletBinding()]
-param([string]$Version = '0.1.0-rc.1', [switch]$IncludeScreenshotStudio)
+param([string]$Version = '0.1.0-rc.1', [switch]$IncludeScreenshotStudio, [switch]$IncludeQuietNewFactions)
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+(-[A-Za-z0-9.]+)?$') { throw 'Invalid version' }
 $root = Split-Path $PSScriptRoot
@@ -50,6 +50,10 @@ $revision = (& git -C $root rev-parse HEAD).Trim()
 if ($IncludeScreenshotStudio) {
     & "$PSScriptRoot/Package-ScreenshotStudio.ps1" -Destination "$tree/ScreenshotStudio"
     Compress-Archive -Path "$tree/ScreenshotStudio" -DestinationPath "$out/PickleTools-$Version-screenshot-studio.zip"
+}
+if ($IncludeQuietNewFactions) {
+    & "$PSScriptRoot/Package-QuietNewFactions.ps1" -Destination "$tree/QuietNewFactions"
+    Compress-Archive -Path "$tree/QuietNewFactions" -DestinationPath "$out/PickleTools-$Version-quiet-new-factions.zip"
 }
 Compress-Archive -Path $tree -DestinationPath "$out/PickleTools-$Version-github.zip"
 Get-ChildItem $out -Filter '*.zip' | ForEach-Object { '{0}  {1}' -f (Get-FileHash $_.FullName -Algorithm SHA256).Hash,$_.Name } | Set-Content "$out/SHA256SUMS.txt" -Encoding ASCII

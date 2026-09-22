@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Quiet New Factions - Pickle tests</name>
+  <author>Nelim</author>
+  <packageId>nelim.quietnewfactions.pickletests</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>In-game functional tests for Nelim's Quiet New Factions, run by Pickle. Development only: never published.
+
+One scenario marks a faction as required for its own duration; the marker is removed afterwards, and it lives in memory only, so a restart clears it too.</description>
+  <modDependencies>
+    <li>
+      <packageId>nelim.quietnewfactions</packageId>
+      <displayName>Nelim's Quiet New Factions</displayName>
+    </li>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+    <li>
+      <packageId>nelim.pickletools.veffactions</packageId>
+      <displayName>Nelim's Pickle Tools - VEF faction steps</displayName>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>nelim.quietnewfactions</li>
+    <li>rimworks.pickle</li>
+    <li>nelim.pickletools.veffactions</li>
+  </loadAfter>
+</ModMetaData>

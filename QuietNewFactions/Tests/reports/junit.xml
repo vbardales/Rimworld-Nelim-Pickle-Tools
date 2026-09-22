@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<testsuites>
+  <testsuite name="Quiet New Factions loads on top of VEF" tests="1" failures="0" skipped="0" flakes="0" time="0.153">
+    <testcase name="the mod loads after the framework it patches" classname="Quiet New Factions loads on top of VEF" time="0.153">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite name="a faction the world lacks is ignored without a window" tests="3" failures="0" skipped="0" flakes="0" time="41.267">
+    <testcase name="loading the fixture leaves no window open" classname="a faction the world lacks is ignored without a window" time="12.364">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+    <testcase name="VEF's check ignores the faction instead of asking" classname="a faction the world lacks is ignored without a window" time="9.080">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+    <testcase name="the choice is kept in the save, and the next load asks nothing" classname="a faction the world lacks is ignored without a window" time="19.823">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+  </testsuite>
+  <testsuite name="a required faction still gets VEF's window" tests="1" failures="0" skipped="0" flakes="0" time="8.262">
+    <testcase name="the window opens and nothing is ignored" classname="a required faction still gets VEF's window" time="8.262">
+      <system-out>Attachment: smoke-attachment -&gt; smoke test attachment content
+</system-out>
+    </testcase>
+  </testsuite>
+</testsuites>

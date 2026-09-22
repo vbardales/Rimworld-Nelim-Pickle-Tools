@@ -37,7 +37,7 @@ remaining:
   - "resolved, 2026-09-22: ScreenshotStudio declares rimworks.pickle and ludeon.rimworld.ideology in About.xml. Its zen fixture is exported, passed construction/save-reload and a separate-process direct load, and is the documented default for presentation/screenshot scenarios. It remains outside the aggregate Workshop payload as an optional companion; see ScreenshotStudio/STATUS.md."
   - "resolved, 2026-09-22: About.xml and ATTRIBUTION.md explicitly name Claude Code, OpenAI Codex and DALL-E, following the AI-attribution rule in PUBLISHING.md."
   - "unverified, 2026-09-22 audit: no aggregate bundle run has established startup, step discovery or teardown with optional RIMMSQOL absent; no aggregate English/French, restart, DLC-absent or reviewed-capture evidence exists."
-  - "unverified, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The old suite-owned DLL passed five scenarios on 2026-09-20; that result does not certify the new shared DLL or the aggregate bundle."
+  - "resolved, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The migrated optional companion replayed from PickleTools/QuietNewFactions with 5/5 scenarios passed; this does not certify the aggregate bundle."
 ---
 # Status
 
@@ -116,9 +116,11 @@ verified. This confirms archive structure only, not aggregate runtime behavior.
 
 The nine VEF faction workflow steps were moved from QuietNewFactions into `VefFactionSteps`, renamed with
 the `Nelim's Pickle Tools:` prefix, built with 0 warnings and 0 errors, and checked against Pickle and the
-local suites. QuietNewFactions now stages the shared standalone module through an explicit pass map and no
-longer contains its source project or step DLL. The historical five-scenario pass remains evidence for the
-removed local DLL only; the shared module and aggregate bundle still require an in-game replay.
+local suites. The actual `nelim.quietnewfactions` companion has also been copied under
+`QuietNewFactions/`: source, package, tests, reports and proposal are preserved there, outside the aggregate
+payload because VEF is a load-time dependency. Its rebuilt DLL passes the six offline compatibility checks;
+a 2026-09-22 WSL headless replay from the new location passed all five scenarios. The former repository is
+redundant once this migration is pushed.
 
 ## Final publication audit and 1.0.0 offline candidate — 2026-09-22
 

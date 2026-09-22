@@ -29,11 +29,11 @@ Standalone packageIds are not aliases supplied by the bundle. Migrate tags and m
 
 In source checkouts, the root Mod holds metadata; the generated aggregate is under `.build/releases`.
 Point a local bundle test map at that generated Mod directory. Existing per-tool source paths remain valid.
-ScreenshotStudio is an optional companion, excluded from the Workshop aggregate and default archives.
-Use `-IncludeScreenshotStudio` to add its separate archive and GitHub companion. Packaging refuses to
-proceed until the zen fixture and matching export evidence exist. Its DLC requirements do not affect
-the bundle. Only this opt-in companion carries a save, its upstream licence and export evidence.
-See [studio status](../ScreenshotStudio/STATUS.md) for validation limits.
+ScreenshotStudio and Quiet New Factions are optional companions, excluded from the Workshop aggregate and
+default archives. Use `-IncludeScreenshotStudio` and `-IncludeQuietNewFactions` to add their separate GitHub
+archives. ScreenshotStudio packaging refuses to proceed until the zen fixture and matching export evidence exist;
+its DLC requirements do not affect the bundle. Quiet New Factions requires VEF and Harmony, so it must never be
+merged into the aggregate payload. See the respective companion statuses for validation limits.
 
 ## Prepare
 
