@@ -80,9 +80,9 @@ The global `WORKSHOP_COMMENTS.md` register controls duplicates.
 - Pickle (`3791648678`): already posted for the collection; add PickleTools to `Covers`, do not repost.
 - RIMMSQOL (`1084452457`): already posted for the collection; add PickleTools to `Covers`, do not repost.
 - Harmony (`2009463077`): already posted for the collection; add PickleTools to `Covers`, do not repost.
-- Vanilla Expanded Framework (`2023507013`): draft below. Post only after item 3806142401 is public.
+- Vanilla Expanded Framework (`2023507013`): posted on 2026-09-22 after item 3806142401 became public.
 
-### Vanilla Expanded Framework — drafted
+### Vanilla Expanded Framework — posted
 
 ```text
 [b]Thank you, Vanilla Expanded Framework![/b] 🥒✨
