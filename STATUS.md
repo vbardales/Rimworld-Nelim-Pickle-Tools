@@ -38,6 +38,7 @@ remaining:
   - "resolved, 2026-09-22: About.xml and ATTRIBUTION.md explicitly name Claude Code, OpenAI Codex and DALL-E, following the AI-attribution rule in PUBLISHING.md."
   - "unverified, 2026-09-22 audit: no aggregate bundle run has established startup, step discovery or teardown with optional RIMMSQOL absent; no aggregate English/French, restart, DLC-absent or reviewed-capture evidence exists."
   - "failed probe, 2026-09-22: the first complete aggregate-minimal report in evidence/aggregate/2026-09-22-minimal-en-dlc-id is 0/1. Cucumber messages show the first step failed because Pickle's test-colony fixture was discovered twice: stage-pickle-wsl.sh activated rimworks.pickle once as baseline and again as the bundle's hard dependency. The launcher deduplication and a main-menu-only probe are pending replay; no aggregate pass is claimed."
+  - "pending, 2026-09-22: Pickle v4.8.4 is the preTest baseline; its official release archive SHA256 and assembly version were checked, and PR #20 is included. Minimal and Biotech-absent bundle probes were queued against this archive with -PickleSrc. No result from this version has been reviewed yet."
   - "resolved, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The migrated optional companion replayed from PickleTools/QuietNewFactions with 5/5 scenarios passed; this does not certify the aggregate bundle."
 ---
 # Status

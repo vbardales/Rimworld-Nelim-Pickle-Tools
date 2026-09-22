@@ -26,6 +26,13 @@ scenario's fixture unless the zen save establishes all of that scenario's docume
 
 ## Runtime matrix - pending
 
+Current preTest baseline: [Pickle v4.8.4](https://github.com/RimWorks/Rimworld-Pickle/releases/tag/v4.8.4),
+published 2026-09-22 and including upstream PR #20. The official `Pickle-4.8.4.zip` has SHA256
+`088911EA5C29FE91D2AEE5C668BCDEF60061955AE75D38E1EA29E0B39CDBD93C`; its `RimWorks.Pickle.Core.dll`
+reports assembly version `4.8.4.0`. It is unpacked locally at `.build/upstream-v4.8.4/Pickle` and passed to
+`Run-PickleWsl.ps1 -PickleSrc` for the queued aggregate probes. Earlier runs against the staged Workshop
+copy are historical evidence, not validation of this baseline. No v4.8.4 in-game result is claimed yet.
+
 Two dependency sets in English and French: **four baseline launches**, plus restart sequences below.
 
 | Set | Content | Required checks |

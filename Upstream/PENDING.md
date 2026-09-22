@@ -1,5 +1,9 @@
 # Pending at Pickle
 
+PreTest baseline update, 2026-09-22: Pickle v4.8.4 has been released with PR #20. The aggregate
+PickleTools tests are queued against its official release archive; the rows below retain their own
+recorded evidence dates and must not be read as v4.8.4 game validation.
+
 State as last seen, 2026-09-21. The three rows on PR 23, the six PRs together and the bundles are as reported by the ArchitectStudio session, who measured them; they are not measurements of mine. A row says what was actually done, not what is hoped.
 
 | Item | Upstream | State | Proof | Next |
