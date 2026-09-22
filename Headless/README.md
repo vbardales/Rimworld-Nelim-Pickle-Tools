@@ -29,6 +29,7 @@ launches under `xvfb-run`, and releases the lock in a `finally`.
 | `-Mod` | The mod whose `Tests/Pickle/` suite runs. `--list` on the staging script names them |
 | `-Filter` | A Pickle filter. Default: the companion mod's display name, read from its About.xml |
 | `-Language` | A prefix — `English`, `French`, `German`. Resolved against the install, see below |
+| `-DepMap` | A pass map such as `wsl-deps.avec-oracle.map`; omitted means no optional map, including no automatic `wsl-deps.map` |
 | `-Then` | More filters, played after `-Filter`: one game launch each, under one hold of the lock. A restart test is `-Filter write.feature -Then read.feature` |
 | `-IncludeWip` | Play `@wip` scenarios too, see below |
 | `-KeepArchives` | Dated report archives kept, 5 by default; older ones removed, hand-named ones never |
@@ -37,8 +38,23 @@ launches under `xvfb-run`, and releases the lock in a `finally`.
 | `-RunTimeoutMinutes` | Pickle's own deadline, 45 by default |
 | `-StallMinutes` | Kill a start that never finishes, 5 by default |
 
-Exit codes: Pickle's own 0/1/2, then 3 stalled, 4 reserved, 5 (in `Run-Pickle.ps1`) the Windows
-launch is refused, 6 the game relaunched under a held lock.
+The WSL launcher's exit codes distinguish machine availability from run failures:
+
+| Code | Meaning |
+|---|---|
+| 0 | Successful run; check the fresh report and its coverage before claiming validation |
+| 1 | Failed scenarios or another launch/process failure; read the report and log |
+| 2 | Machine busy or lock unavailable; no run launched |
+| 3 | Stall guard stopped the game |
+| 4 | Machine reserved, with `-NoWait` |
+| 5 | Incomplete run detected: in-progress verdict, or no fresh report after an otherwise successful process exit |
+| 6 | Game relaunched while the lock was held |
+| 7 | Queue wait exceeded `-MaxWaitMinutes` |
+| 8 | Pickle's own exit code 2, remapped to distinguish it from machine occupancy |
+| 9 | `-Then` supplied without `-Filter` |
+
+By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
+The separate Windows `Tests/Pickle/Run-Pickle.ps1 -Launch` refusal uses code 5; it is not the WSL code 5.
 
 ## The lock is about the machine, not about RimWorld
 
@@ -307,8 +323,11 @@ as the launch: it refuses without `--lock-held` when the lock is taken.
 
 A suite that needs to assert against mods the mod does not depend on — a mod whose whole job is
 patching others declares no dependency on its targets — names them in
-`<Mod>/Tests/Pickle/wsl-deps.map`, one `packageId workshopId` per line. Those are staged and
-activated. Prefix a line with `first:` to load it ahead of Harmony.
+`<Mod>/Tests/Pickle/wsl-deps.<name>.map`, one `packageId workshopId` per line, and selects it with
+`-DepMap wsl-deps.<name>.map`. Those mods are staged and activated. Without `-DepMap`, the launcher
+sets `PICKLE_DEPMAP=none`, so even an existing `wsl-deps.map` is ignored. The staging script's legacy
+fallback to that file does not apply through the launcher. Prefix a line with `first:` to load it
+ahead of Harmony; this does not authorize staging Prepatcher, which AUDIT.md excludes.
 
 ## Traps this harness was built out of
 
@@ -334,8 +353,7 @@ activated. Prefix a line with `first:` to load it ahead of Harmony.
 - **Building Pickle itself: the root `Pickle.slnx`, never `Source/Pickle.slnx`.** The latter omits
   the two backend projects, and what you get is not a missing file but `no tags recorded this
   frame` on every click - which reads exactly like Concord failing to start, so the hunt goes to
-  the wrong place. Build with the .NET 10 SDK at `C:Users
-elim.dotnet10dotnet.exe`: the one on
+  the wrong place. Build with the .NET 10 SDK at `C:\Users\nelim\.dotnet10\dotnet.exe`: the one on
   PATH is 8 and dies on the C# 14 `field` keyword in RunnerWindow.cs. Then stage that build with
   `-PickleSrc <folder>`, which is also how a patched Pickle is A/B-tested against the Workshop copy.
 - **Nothing is edited while a run is going.** Windows will not replace a `.sh` a running bash

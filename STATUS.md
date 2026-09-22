@@ -37,5 +37,9 @@ remaining:
 ---
 # Status
 
-See the front matter. `stage` is `dansMonoRepo`, and the reason is the missing GitHub repository, not the quality
-of the tools. `RimmsqolSteps/README.md` says what was played and what was not.
+See the front matter. `stage` is `horsMonoRepo`: the standalone repository and its first GitHub push
+were recorded on 2026-09-21. Later workflow transitions are not certified here.
+`RimmsqolSteps/README.md` says what was played and what was not.
+
+Documentation correction, 2026-09-22: this paragraph now agrees with the existing front matter.
+No new audit or test result is claimed; the stage and evidence dates above are unchanged.
