@@ -26,7 +26,19 @@ scenario's fixture unless the zen save establishes all of that scenario's docume
 
 ## Runtime matrix - pending
 
-Current preTest baseline: [Pickle v4.8.4](https://github.com/RimWorks/Rimworld-Pickle/releases/tag/v4.8.4),
+**Baseline moved to [Pickle v4.9.1](https://github.com/RimWorks/Rimworld-Pickle/releases/tag/v4.9.1) on
+2026-09-23** (v4.9.0 added `!` exclusions and extension-less feature names in the run filter; v4.9.1 refuses camera
+steps while the world view is open). The official `Pickle-4.9.1.zip` has SHA256
+`8C5BA4C17FBBD2A953EF3CE2661919D29D46F757D7CC3BFC14B0D1F096B7610B`, equal to the digest GitHub publishes for the
+asset; its `RimWorks.Pickle.dll` reports assembly version `4.9.1.0`; it is unpacked at
+`.build/upstream-v4.9.1/Pickle`. **One probe has run on it**: the English minimal aggregate smoke, filter
+`aggregate-minimal,aggregate-no-biotech,!aggregate-no-biotech`, `exitReason: passed`, 1 of 1, the only scenario in
+the report being the minimal one (the excluded feature was not played), report in
+`evidence/aggregate/2026-09-23-v4.9.1-minimal-en-filter/`. That shows the two filter changes and a startup on the new
+version with the generated payload; it is **not** the matrix, and every pass below listed as v4.8.4 has not been
+replayed on 4.9.1.
+
+Previous baseline: [Pickle v4.8.4](https://github.com/RimWorks/Rimworld-Pickle/releases/tag/v4.8.4),
 published 2026-09-22 and including upstream PR #20. The official `Pickle-4.8.4.zip` has SHA256
 `088911EA5C29FE91D2AEE5C668BCDEF60061955AE75D38E1EA29E0B39CDBD93C`; its `RimWorks.Pickle.Core.dll`
 reports assembly version `4.8.4.0`. It is unpacked locally at `.build/upstream-v4.8.4/Pickle` and passed to
