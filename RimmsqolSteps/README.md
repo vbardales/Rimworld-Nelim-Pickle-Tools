@@ -56,6 +56,10 @@ checkbox**: that the checkbox is wired to `set("Visible", …)` is read from RIM
    `@rimmsqol` is only a filter label; `@wip` marks unfinished work and needs `-IncludeWip`.
    Without RIMMSQOL staged the first step stops with a sentence instead of a
    `TypeLoadException` (nothing in a `[PickleSteps]` signature names a RIMMSqol type).
+   The aggregate's `[AfterScenario]` hook also checks `ModsConfig` before it touches the typed
+   RIMMSQOL bridge. This matters even when a scenario uses no RIMMSQOL step: Pickle runs every
+   installed hook. The corrected bundle passed both v4.8.4 English minimal smoke probes with
+   RIMMSQOL absent on 2026-09-23; see `../evidence/aggregate/` and `../STATUS.md`.
 3. Write features with the vocabulary below. Every text is unique across the repository and Pickle
    (`Check-Steps.ps1` proves it).
 
