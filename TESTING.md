@@ -37,7 +37,7 @@ the English main-menu smoke probe with the default DLC set (1/1) and without Bio
 `evidence/aggregate/2026-09-22-v4.8.4-fixed-no-biotech-en/`. The first attempts had failed 0/1 during
 scenario teardown; the reports remain alongside these passes. These smoke probes do not cover the full matrix.
 
-Two dependency sets in English and French: **four baseline launches**, plus restart sequences below.
+Three dependency sets in English and French: **six baseline launches**, plus restart sequences below.
 
 | Set | Content | Required checks |
 |---|---|---|
@@ -53,6 +53,9 @@ No declared incompatibility is currently established, so no conflict pass is cla
 The aggregate probe suite is in `Tests/Pickle/`; its minimal probe overlays the generated aggregate payload.
 `QuietNewFactions/Tests/Pickle/wsl-deps.pickletools.map` stages the same bundle for the VEF-present replay,
 and its feature tags require the bundle plus VEF. VEF remains optional for the bundle itself.
+That English replay passed 5/5 on 2026-09-23 with the report archived at
+`evidence/aggregate/2026-09-23-v4.8.4-vef-en/`. The game exited 137 after writing the complete report;
+the launcher recorded `exitReason: passed`. French VEF and the RIMMSQOL matrix remain pending.
 Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.
