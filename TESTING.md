@@ -53,9 +53,10 @@ No declared incompatibility is currently established, so no conflict pass is cla
 The aggregate probe suite is in `Tests/Pickle/`; its minimal probe overlays the generated aggregate payload.
 `QuietNewFactions/Tests/Pickle/wsl-deps.pickletools.map` stages the same bundle for the VEF-present replay,
 and its feature tags require the bundle plus VEF. VEF remains optional for the bundle itself.
-That English replay passed 5/5 on 2026-09-23 with the report archived at
-`evidence/aggregate/2026-09-23-v4.8.4-vef-en/`. The game exited 137 after writing the complete report;
-the launcher recorded `exitReason: passed`. French VEF and the RIMMSQOL matrix remain pending.
+The English and French VEF replays each passed 5/5 on 2026-09-23, with reports archived at
+`evidence/aggregate/2026-09-23-v4.8.4-vef-en/` and
+`evidence/aggregate/2026-09-23-v4.8.4-vef-fr/`. The game exited 137 after writing each complete
+report; the launcher recorded `exitReason: passed`. The RIMMSQOL matrix remains pending.
 Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.
