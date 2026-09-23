@@ -90,6 +90,10 @@ required explicit check: source guards alone do not prove it.
 
 ## Evidence and acceptance
 
+Reports and captures stay **on disk** under `evidence/` (ignored by git). The text summary of each run is in
+[`docs/runs/`](docs/runs/README.md): `aggregate.md` is regenerated from the reports by `Summarize-Aggregate.ps1`.
+The `evidence/...` paths quoted in this file name folders on the machine that ran the passes.
+
 Retain command, map, language/DLC set, source revision, DLL hashes, fresh report, exitReason,
 expected/executed/skipped counts, startup Player.log and reviewed captures. Missing/skipped required
 scenarios and partial reports are unverified, not passed. Update STATUS without promoting blocked gates.
