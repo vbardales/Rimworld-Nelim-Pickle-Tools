@@ -1,0 +1,4 @@
+b3fda03 (RimWorks/Rimworld-Pickle main, checked against upstream main after it had moved to 8c68680;
+no rebase was needed). Head of the PR branch on the fork: a1293b0 (feat/button-stands-still). PR 34 on
+RimWorks/Rimworld-Pickle. One commit, applied with `git apply --ignore-whitespace` to a fresh checkout
+of b3fda03: the resulting tree (de62d57) is identical to the PR branch head's tree.

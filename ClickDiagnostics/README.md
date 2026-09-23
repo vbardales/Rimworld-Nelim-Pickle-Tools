@@ -89,7 +89,13 @@ that number is a judgement, not a measurement of every layout.
 Written here first because a suite needed them; each is a candidate for a pull request to Pickle, see
 `Upstream/PENDING.md`:
 
-- **A wait for a tag to stand still** (`the button {string} stands still`).
+- **A wait for a tag to stand still** (`the button {string} stands still`). **Open as
+  [RimWorks/Rimworld-Pickle#34](https://github.com/RimWorks/Rimworld-Pickle/pull/34)**, as
+  `I wait until button {string} stands still` / `I wait until tag {string} stands still`, 12 frames.
+  This tool's own step counts 12 *repeats* after the first sighting, so 13 frames, not reconciled with
+  the PR's count. Keep this copy in step until the PR merges and ships: a change asked for in review is
+  made here too. When it lands, delete this step (and, if the report step below moves with it, that one)
+  and change the callers' prefix to Pickle's own words.
 - **A lost-click report**: when a `click` step is followed by a failed `window ... is open`, print the pointer, the
   buttons under it and the window stack.
 

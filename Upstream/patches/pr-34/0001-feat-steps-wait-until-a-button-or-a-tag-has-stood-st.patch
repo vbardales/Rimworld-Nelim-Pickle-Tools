@@ -1,0 +1,432 @@
+From a1293b0dc5dfb180e68b02c32a0a6737e46b56a8 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 23:33:54 +0200
+Subject: [PATCH] feat(steps): wait until a button or a tag has stood still
+ before a click
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                                 | 11 +++
+ Pickle/Features/still-steps.feature           | 22 +++++
+ Source/Pickle.Core/Ui/StillnessTracker.cs     | 50 ++++++++++
+ Source/Pickle.Tests/StillnessTrackerTests.cs  | 96 +++++++++++++++++++
+ Source/Pickle.Vanilla/UiSteps.cs              | 21 ++++
+ Source/Pickle/PickleContext.cs                | 50 ++++++++++
+ Source/Pickle/Runtime/DriftingButtonSteps.cs  | 44 +++++++++
+ Source/Pickle/Runtime/DriftingButtonWindow.cs | 35 +++++++
+ 8 files changed, 329 insertions(+)
+ create mode 100644 Pickle/Features/still-steps.feature
+ create mode 100644 Source/Pickle.Core/Ui/StillnessTracker.cs
+ create mode 100644 Source/Pickle.Tests/StillnessTrackerTests.cs
+ create mode 100644 Source/Pickle/Runtime/DriftingButtonSteps.cs
+ create mode 100644 Source/Pickle/Runtime/DriftingButtonWindow.cs
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..cffafa8 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -514,6 +514,8 @@ while a follow is active.
+ | `I click {string}` | Clicks a tagged widget |
+ | `I click button {string}` | Clicks a vanilla button by label. Pickle tags those for you |
+ | `I click gizmo {string}` | Runs a gizmo on the current selection |
++| `I wait until button {string} stands still` | Waits until a button has been drawn at the same place for 12 frames in a row, so a click does not land on a layout still settling |
++| `I wait until tag {string} stands still` | The same wait for a widget registered under a tag |
+ | `I hover {string}` | Moves the pointer onto a tagged widget |
+ | `I press key {string}` | Sends a real key through XTEST, so `Input.GetKeyDown` sees it. Accepts `Escape`, `Return`, `Space`, `Tab`, `Delete`, `Backspace`, a letter, or a digit |
+ | `I select {string}` | Selects a pawn or thing by name |
+@@ -536,6 +538,15 @@ Windows. Linux also needs a real X display. macOS has no backend, so those four
+ throw there. Every other step here works anywhere.
+ See [running tests](running.md).
+ 
++A click counts only when the press and the release land on the same control. A window that
++is still laying itself out can move a button between the two, for instance a window that
++opens narrow and then widens with the button anchored to its right edge. The rect Pickle
++recorded was right at every frame and the click still counts for nothing. Put
++`I wait until button "Save" stands still` before the click in that case. It waits until the
++rect has been identical for 12 frames in a row, and fails with the tag and the last rect it
++saw when the button never appears, or never stops moving, within 20 seconds. Twelve frames
++is a fifth of a second at 60 fps: a judgement about layouts that settle, not a measurement.
++
+ Vanilla warns constantly, so there is no blanket `no warnings were logged`. Every warning
+ step names a substring, and a warning never fails a scenario on its own the way an error
+ does.
+diff --git a/Pickle/Features/still-steps.feature b/Pickle/Features/still-steps.feature
+new file mode 100644
+index 0000000..fd051db
+--- /dev/null
++++ b/Pickle/Features/still-steps.feature
+@@ -0,0 +1,22 @@
++Feature: waiting for a control to stand still
++
++  # The window opens with its button sliding for 20 frames, a stand-in for a layout that is still
++  # settling. Pickle resolves a tag once and clicks where it stood, so a click sent during the
++  # slide lands on empty space and IMGUI counts nothing.
++
++  Scenario: a click sent while the button slides is lost
++    Given a window whose button drifts for 20 frames
++    When I click button "Drifting"
++    Then the drifting button was not clicked
++
++  Scenario: waiting for the button to stand still first lets the click count
++    Given a window whose button drifts for 20 frames
++    When I wait until button "Drifting" stands still
++    And I click button "Drifting"
++    Then the drifting button was clicked
++
++  Scenario: the same wait, by tag
++    Given a window whose button drifts for 20 frames
++    When I wait until tag "btn:Drifting" stands still
++    And I click "btn:Drifting"
++    Then the drifting button was clicked
+diff --git a/Source/Pickle.Core/Ui/StillnessTracker.cs b/Source/Pickle.Core/Ui/StillnessTracker.cs
+new file mode 100644
+index 0000000..773a2da
+--- /dev/null
++++ b/Source/Pickle.Core/Ui/StillnessTracker.cs
+@@ -0,0 +1,50 @@
++using System;
++
++namespace RimWorks.Pickle.Core.Ui;
++
++/// <summary>
++/// Counts how many frames in a row a value has been the same. A step feeds it one observation per
++/// frame and asks whether the value has stood still long enough. It holds no RimWorld type, so the
++/// counting stays unit testable; the caller supplies the rectangle.
++/// </summary>
++/// <typeparam name="T">The observed value, compared with <see cref="IEquatable{T}.Equals(T)"/>.</typeparam>
++public sealed class StillnessTracker<T>
++    where T : struct, IEquatable<T> {
++  private readonly int framesRequired;
++
++  /// <summary>Initializes a new instance.</summary>
++  /// <param name="framesRequired">How many frames in a row the value must be identical.</param>
++  public StillnessTracker(int framesRequired) {
++    if (framesRequired < 1) {
++      throw new ArgumentOutOfRangeException(nameof(framesRequired), framesRequired, "at least one frame is required");
++    }
++
++    this.framesRequired = framesRequired;
++  }
++
++  /// <summary>How many frames in a row, up to and including the latest, the value was identical.</summary>
++  public int StillFrames { get; private set; }
++
++  /// <summary>Whether the value has been identical for the required number of frames.</summary>
++  public bool HasStoodStill => StillFrames >= framesRequired;
++
++  /// <summary>Whether any observation has held a value.</summary>
++  public bool EverSeen => LastSeen.HasValue;
++
++  /// <summary>The latest value observed, kept when a later frame observes nothing.</summary>
++  public T? LastSeen { get; private set; }
++
++  /// <summary>Records one frame.</summary>
++  /// <param name="value">What the frame held, or <c>null</c> when it held nothing.</param>
++  // A frame that holds nothing is not a still frame: the control was gone or being redrawn, so
++  // the run starts again the next time it appears.
++  public void Observe(T? value) {
++    if (!value.HasValue) {
++      StillFrames = 0;
++      return;
++    }
++
++    StillFrames = LastSeen.HasValue && StillFrames > 0 && LastSeen.Value.Equals(value.Value) ? StillFrames + 1 : 1;
++    LastSeen = value;
++  }
++}
+diff --git a/Source/Pickle.Tests/StillnessTrackerTests.cs b/Source/Pickle.Tests/StillnessTrackerTests.cs
+new file mode 100644
+index 0000000..8b6d910
+--- /dev/null
++++ b/Source/Pickle.Tests/StillnessTrackerTests.cs
+@@ -0,0 +1,96 @@
++using System;
++using RimWorks.Pickle.Core.Ui;
++using Xunit;
++
++namespace RimWorks.Pickle.Tests;
++
++public class StillnessTrackerTests {
++  [Fact]
++  public void New_HasSeenNothingAndHasNotStoodStill() {
++    StillnessTracker<int> tracker = new(3);
++
++    Assert.False(tracker.EverSeen);
++    Assert.False(tracker.HasStoodStill);
++    Assert.Equal(0, tracker.StillFrames);
++    Assert.Null(tracker.LastSeen);
++  }
++
++  [Fact]
++  public void Observe_ThatManyIdenticalFrames_HasStoodStill() {
++    StillnessTracker<int> tracker = new(3);
++
++    tracker.Observe(7);
++    tracker.Observe(7);
++    Assert.False(tracker.HasStoodStill);
++
++    tracker.Observe(7);
++    Assert.True(tracker.HasStoodStill);
++    Assert.Equal(3, tracker.StillFrames);
++  }
++
++  [Fact]
++  public void Observe_AChangeRestartsTheRun() {
++    StillnessTracker<int> tracker = new(3);
++
++    tracker.Observe(7);
++    tracker.Observe(7);
++    tracker.Observe(8);
++
++    Assert.Equal(1, tracker.StillFrames);
++    Assert.Equal((int?)8, tracker.LastSeen);
++    Assert.False(tracker.HasStoodStill);
++  }
++
++  [Fact]
++  public void Observe_AMissingFrameRestartsTheRunAndKeepsTheLastValue() {
++    StillnessTracker<int> tracker = new(3);
++
++    tracker.Observe(7);
++    tracker.Observe(7);
++    tracker.Observe(null);
++    tracker.Observe(7);
++
++    Assert.Equal(1, tracker.StillFrames);
++    Assert.Equal((int?)7, tracker.LastSeen);
++    Assert.True(tracker.EverSeen);
++  }
++
++  [Fact]
++  public void Observe_ReturningAfterAGapToTheSameValueDoesNotCountTheGap() {
++    StillnessTracker<int> tracker = new(2);
++
++    tracker.Observe(7);
++    tracker.Observe(null);
++    tracker.Observe(7);
++
++    Assert.False(tracker.HasStoodStill);
++  }
++
++  [Fact]
++  public void Observe_OnlyMissingFrames_NeverSeen() {
++    StillnessTracker<int> tracker = new(2);
++
++    tracker.Observe(null);
++    tracker.Observe(null);
++
++    Assert.False(tracker.EverSeen);
++    Assert.Null(tracker.LastSeen);
++  }
++
++  [Fact]
++  public void Observe_AfterStandingStill_StaysStillWhileUnchanged() {
++    StillnessTracker<int> tracker = new(2);
++
++    tracker.Observe(5);
++    tracker.Observe(5);
++    tracker.Observe(5);
++
++    Assert.True(tracker.HasStoodStill);
++    Assert.Equal(3, tracker.StillFrames);
++  }
++
++  [Fact]
++  public void Constructor_LessThanOneFrame_Throws() {
++    Assert.Throws<ArgumentOutOfRangeException>(() => new StillnessTracker<int>(0));
++  }
++}
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index f222ba2..f7a59c5 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -57,6 +57,27 @@ public class UiSteps {
+     await ctx.Click($"btn:{label}");
+   }
+ 
++  /// <summary>Waits until a button has been drawn at the same place for a dozen frames in a row.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="label">The button's label.</param>
++  /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
++  // A click that lands while the layout is still settling can be lost between press and release. A
++  // dozen frames is a fifth of a second at 60 fps: a judgement about layouts that settle, not a
++  // measurement of every one.
++  [When("I wait until button {string} stands still", TimeoutSeconds = 35f)]
++  public async Task WaitUntilButtonStandsStill(PickleContext ctx, string label) {
++    await ctx.WaitUntilStill($"btn:{label}");
++  }
++
++  /// <summary>Waits until a tagged widget has been drawn at the same place for a dozen frames in a row.</summary>
++  /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
++  /// <param name="tag">The tag the target element was registered under.</param>
++  /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
++  [When("I wait until tag {string} stands still", TimeoutSeconds = 35f)]
++  public async Task WaitUntilTagStandsStill(PickleContext ctx, string tag) {
++    await ctx.WaitUntilStill(tag);
++  }
++
+   /// <summary>Presses a key.</summary>
+   /// <param name="ctx">The scenario's context, for assertions, requirements, and waits.</param>
+   /// <param name="key">The key to press.</param>
+diff --git a/Source/Pickle/PickleContext.cs b/Source/Pickle/PickleContext.cs
+index a41c2e7..eaa1015 100644
+--- a/Source/Pickle/PickleContext.cs
++++ b/Source/Pickle/PickleContext.cs
+@@ -1,6 +1,7 @@
+ using System;
+ using System.Collections.Generic;
+ using System.Threading.Tasks;
++using RimWorks.Pickle.Core.Ui;
+ using RimWorks.Pickle.Input;
+ using RimWorks.Pickle.Runtime;
+ using UnityEngine;
+@@ -156,6 +157,55 @@ public class PickleContext {
+     await WaitFrames(1);
+   }
+ 
++  /// <summary>Waits until a tagged rect has been recorded at the same place for a number of frames in a
++  /// row. Throws if the tag never appears, or never stops moving, within the time allowed.</summary>
++  /// <param name="tag">The tag a mod's <c>OnGUI</c> recorded with <see cref="PickleUI.Tag"/>.</param>
++  /// <param name="frames">How many frames in a row the rect must be identical.</param>
++  /// <param name="timeoutSeconds">How long to wait, in real time, before giving up.</param>
++  /// <returns>A task that completes once the rect has stood still.</returns>
++  // Click resolves a tag once and presses where it stood. IMGUI counts a click only when press and
++  // release land on the same control, so a control that is still being laid out (a window that opens
++  // narrow and then widens, with the button anchored to its right edge) can move between the two and
++  // the click counts for nothing. The rect Pickle stored was right at every frame; waiting is the cure.
++  public async Task WaitUntilStill(string tag, int frames = 12, float timeoutSeconds = 20f) {
++    StillnessTracker<Rect> tracker = new(frames);
++    float deadline = Time.realtimeSinceStartup + timeoutSeconds;
++
++    while (true) {
++      // Tags read during an Update are the ones OnGUI recorded on the frame before.
++      if (TagStore.TryGet(tag, out Rect rect, out bool duplicate)) {
++        if (duplicate) {
++          TagInteractor.TryResolve(tag, out _, out string? ambiguity);
++          throw new InvalidOperationException(ambiguity ?? $"tag '{tag}' is ambiguous");
++        }
++
++        tracker.Observe(rect);
++      } else {
++        tracker.Observe(null);
++      }
++
++      if (tracker.HasStoodStill) {
++        return;
++      }
++
++      if (Time.realtimeSinceStartup >= deadline) {
++        break;
++      }
++
++      await WaitFrames(1);
++    }
++
++    if (!tracker.EverSeen) {
++      throw new InvalidOperationException(
++          $"{TagInteractor.DescribeMiss(tag)}. It was not recorded in {timeoutSeconds:0.##}s, so there is nothing to wait for");
++    }
++
++    Assert(
++        false,
++        $"tag '{tag}' never stood still for {frames} frames in a row within {timeoutSeconds:0.##}s; last seen at "
++            + $"{tracker.LastSeen}. A click on a control that is still moving can be lost between press and release.");
++  }
++
+   /// <summary>Sends a key press through the active input backend.</summary>
+   /// <param name="key">The key to press.</param>
+   /// <returns>A task that completes two frames after the key is sent, so the game has processed it.</returns>
+diff --git a/Source/Pickle/Runtime/DriftingButtonSteps.cs b/Source/Pickle/Runtime/DriftingButtonSteps.cs
+new file mode 100644
+index 0000000..7f56852
+--- /dev/null
++++ b/Source/Pickle/Runtime/DriftingButtonSteps.cs
+@@ -0,0 +1,44 @@
++using System.Linq;
++using RimWorks.Pickle.Core.Steps;
++using Verse;
++
++namespace RimWorks.Pickle.Runtime;
++
++/// <summary>Steps that open a window with a button still sliding into place, so the steps that wait for
++/// a control to stand still have one to wait for. Fixtures for the runner's own features, undocumented.</summary>
++[PickleSteps]
++public class DriftingButtonSteps {
++  /// <summary>Opens a window whose button slides for a number of frames and then stays put.</summary>
++  /// <param name="ctx">The running scenario's context.</param>
++  /// <param name="frames">How many frames the button keeps sliding after the window opens.</param>
++  [Given("a window whose button drifts for {int} frames")]
++  public void WindowWithDriftingButton(PickleContext ctx, int frames) {
++    DriftingButtonWindow.Clicked = false;
++    Find.WindowStack.Add(new DriftingButtonWindow(frames));
++  }
++
++  /// <summary>Passes when the drifting button received a click.</summary>
++  /// <param name="ctx">The running scenario's context.</param>
++  [Then("the drifting button was clicked")]
++  public void DriftingButtonWasClicked(PickleContext ctx) {
++    ctx.Assert(DriftingButtonWindow.Clicked, "the click on the drifting button did not count");
++  }
++
++  /// <summary>Passes when the drifting button received no click, because a click sent while it slid missed it.</summary>
++  /// <param name="ctx">The running scenario's context.</param>
++  [Then("the drifting button was not clicked")]
++  public void DriftingButtonWasNotClicked(PickleContext ctx) {
++    ctx.Assert(!DriftingButtonWindow.Clicked, "the click on the drifting button counted");
++  }
++
++  /// <summary>Closes the fixture window, so a scenario that fails half way leaves nothing over the next.</summary>
++  /// <param name="ctx">The running scenario's context.</param>
++  [AfterScenario]
++  public void CloseDriftingButtonWindow(PickleContext ctx) {
++    foreach (Window window in Find.WindowStack.Windows.ToArray()) {
++      if (window is DriftingButtonWindow) {
++        Find.WindowStack.TryRemove(window, doCloseSound: false);
++      }
++    }
++  }
++}
+diff --git a/Source/Pickle/Runtime/DriftingButtonWindow.cs b/Source/Pickle/Runtime/DriftingButtonWindow.cs
+new file mode 100644
+index 0000000..f8efb38
+--- /dev/null
++++ b/Source/Pickle/Runtime/DriftingButtonWindow.cs
+@@ -0,0 +1,35 @@
++using UnityEngine;
++using Verse;
++
++namespace RimWorks.Pickle.Runtime;
++
++/// <summary>A window whose button slides toward its resting place for a number of frames after the
++/// window opens, then stays there. Stands in for a layout that is still settling.</summary>
++internal class DriftingButtonWindow : Window {
++  internal const string Label = "Drifting";
++
++  private const float SlidePerFrame = 60f;
++  private const float ButtonWidth = 120f;
++
++  private readonly int driftFrames;
++  private readonly int openedFrame = Time.frameCount;
++
++  public DriftingButtonWindow(int driftFrames) {
++    this.driftFrames = driftFrames;
++    doCloseX = false;
++    doCloseButton = false;
++    layer = WindowLayer.Dialog;
++    windowRect = new Rect(60f, 200f, 1500f, 140f);
++  }
++
++  internal static bool Clicked { get; set; }
++
++  public override void DoWindowContents(Rect inRect) {
++    int framesLeft = Mathf.Max(0, driftFrames - (Time.frameCount - openedFrame));
++    Rect buttonRect = new Rect(10f + (framesLeft * SlidePerFrame), 10f, ButtonWidth, 40f);
++
++    if (Widgets.ButtonText(buttonRect, Label)) {
++      Clicked = true;
++    }
++  }
++}
+-- 
+2.52.0.windows.1
+
