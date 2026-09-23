@@ -56,7 +56,9 @@ and its feature tags require the bundle plus VEF. VEF remains optional for the b
 The English and French VEF replays each passed 5/5 on 2026-09-23, with reports archived at
 `evidence/aggregate/2026-09-23-v4.8.4-vef-en/` and
 `evidence/aggregate/2026-09-23-v4.8.4-vef-fr/`. The game exited 137 after writing each complete
-report; the launcher recorded `exitReason: passed`. The RIMMSQOL matrix remains pending.
+report; the launcher recorded `exitReason: passed`. The English RIMMSQOL-present bridge smoke probe
+passed 1/1 with its report at `evidence/aggregate/2026-09-23-v4.8.4-rimmsqol-en/`.
+Settings changes, restart and the French RIMMSQOL pass remain pending.
 Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.
