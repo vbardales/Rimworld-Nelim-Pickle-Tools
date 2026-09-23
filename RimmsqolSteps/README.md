@@ -141,7 +141,7 @@ Offline, run on 2026-09-21:
 Pass `avec-rimmsqol` of `FlavorTextExtendedFR` (English, `-Then` chain, one hold of the lock, 15 mods staged in the
 order written in the map, all loaded): four launches, **every one `exitReason: passed`, scenarios played = scenarios
 discovered**: launch 1 feature 12 (3 of 3), launch 2 feature 13 (1 of 1), launch 3 feature 14 (1 of 1), launch 4
-feature 15 (1 of 1). Reports and log lines in `evidence/2026-09-21/`.
+feature 15 (1 of 1). Reports and log lines were kept in `evidence/2026-09-21/` (on disk, no longer in git); the text summary is `docs/runs/2026-09-21-rimmsqol.md`.
 
 **Replayed after the move and the rename, the same evening (23:12 to 23:18).** The same command against the
 renamed build (`nelim.pickletools.rimmsqol`, assembly `Nelim.PickleTools.Rimmsqol`, staged from
@@ -185,7 +185,7 @@ log lines say "reveald" and "hided" (the verb plus "d"); left as is so that the 
 - `Mod/` the companion mod the staging copies (`About/About.xml`, `Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll`,
   built). Nothing else may be put here: the staging copies it verbatim.
 - `Check-Steps.ps1`, `Check-Bridge.ps1`, `Check-Reader.ps1` the offline checks.
-- `evidence/2026-09-21/` the four captures and the step log lines of the first run.
+- `evidence/2026-09-21/` the four captures and the step log lines of the first run (on disk, not in git; summary in `docs/runs/2026-09-21-rimmsqol.md`).
 - `.build/` intermediates, not part of anything.
 - Rebuild after any change to `Source/`, then run both checks; the DLLs of steps are loaded at game start, so a
   report produced without a restart after a rebuild does not test the rebuild.
