@@ -56,8 +56,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
             Rect? last = null;
             var stable = 0;
             var clock = Stopwatch.StartNew();
-            for (var frame = 0; frame < FramesToGiveUp && stable < FramesToStandStill
-                                && clock.Elapsed.TotalSeconds < SecondsToGiveUp; frame++)
+            var frame = 0;
+            for (; frame < FramesToGiveUp && stable < FramesToStandStill
+                   && clock.Elapsed.TotalSeconds < SecondsToGiveUp; frame++)
             {
                 await ctx.WaitFrames(1);
                 var now = ButtonProbe.LatestRect(label);
@@ -65,10 +66,13 @@ namespace Nelim.PickleTools.ClickDiagnostics
                 last = now;
             }
 
+            var waited = $"{frame} frames in {clock.Elapsed.TotalSeconds:0.#} s" +
+                (frame < FramesToGiveUp && stable < FramesToStandStill
+                    ? $" (the {SecondsToGiveUp} s clock ended the wait before the {FramesToGiveUp}-frame limit)" : "");
             ctx.Assert(last.HasValue,
-                $"no button labelled '{label}' (key '{key}') was drawn in {FramesToGiveUp} frames, so there is nothing to wait for");
+                $"no button labelled '{label}' (key '{key}') was drawn in {waited}, so there is nothing to wait for");
             ctx.Assert(stable >= FramesToStandStill,
-                $"the button '{label}' never stood still for {FramesToStandStill} frames in a row; last seen at {last}. " +
+                $"the button '{label}' never stood still for {FramesToStandStill} frames in a row in {waited}; last seen at {last}. " +
                 "Clicking a control that is still moving loses the click between press and release.");
         }
 
