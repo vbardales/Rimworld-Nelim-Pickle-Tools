@@ -222,8 +222,17 @@ mounts the same test mod in between can erase what the first left (2026-09-21, S
 own runs did). `-Then` takes the lock once, **stages once**, and launches the game once per filter, in
 order. Staging again would rewrite the config and the settings the first launch left for the second, so
 the later launches skip it. A launch that does not pass ends the sequence with its own code. Each
-intermediate launch's report, `Player.log` included, is kept in `pickle-reports-archive\MMdd-HHmm-seq<n>`, because the
-next launch overwrites `pickle-reports`. The final report remains there; preserve it too. For multiple
+intermediate launch's report, `Player.log` included, is kept in `pickle-reports-archive\MMdd-HHmm-seq<n>` by default, because the
+next launch overwrites `pickle-reports`. Pass `-EvidenceDir <Mod>/Tests/Pickle/Evidence/<run>` for durable evidence:
+the launcher copies intermediate reports to `seq1`, `seq2`, etc. and the final report to the last `seq<n>`
+**while it still owns the lock**, before `UNLOCK`. The destination must not already contain those folders.
+If an intermediate launch fails, its own report is still copied to its `seq<n>` and the sequence stops;
+later `seq<n>` folders are not created. If it writes no fresh report, only its current `Player.log`
+and `no-report.txt` are kept, never a stale summary from the previous suite. The same fallback
+applies to early stall/relaunch exits.
+Keep only reports needed for the mod's verdict; remove superseded or duplicate evidence deliberately,
+not by relying on the rolling archive. Without `-EvidenceDir`, the final report remains in `pickle-reports`;
+preserve it before the next run. For multiple
 continuations, pass a PowerShell string array as in the authoring guide. `-Then` without `-Filter` is refused (exit 9).
 
 Seen working on 2026-09-21: `-Filter warning-steps.feature -Then warning-steps.feature` ran two launches under
@@ -267,7 +276,12 @@ The normal launch path copies the previous
 - a run that left a `Player.log` and **no report** (stalled, killed with its session, crashed): `MMdd-HHmm-nosummary`.
   Until 2026-09-21 the next launch deleted such a log unread;
 - a run the stall guard killed: its log is also kept in `stalled-<Mod>-MMdd-HHmm`;
-- a `-Then` sequence: one `MMdd-HHmm-seq<n>` per intermediate launch; the final report remains in `pickle-reports`.
+- a `-Then` sequence without `-EvidenceDir`: one `MMdd-HHmm-seq<n>` per intermediate launch; the final report remains in `pickle-reports`.
+
+With `-EvidenceDir`, all launches in a `-Then` sequence are copied to the named mod directory as `seq<n>`
+before the lock is released; a single launch is copied directly to that directory. This is the durable
+handoff, not the rolling archive. Check `exitReason` and discovered/played counts in each copied report,
+then clean up irrelevant copies in the mod once the verdict is recorded.
 
 The launcher keeps the 5 newest `MMdd-HHmm*` folders and removes older ones. It never removes a folder named by
 hand, one holding a `keep.txt`, or a `stalled-*` one. What has to outlive that (publication captures) belongs in the mod's
