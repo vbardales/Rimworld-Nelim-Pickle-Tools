@@ -56,6 +56,46 @@ The WSL launcher's exit codes distinguish machine availability from run failures
 By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
 The separate Windows `Tests/Pickle/Run-Pickle.ps1 -Launch` refusal uses code 5; it is not the WSL code 5.
 
+## Choosing what to run: filter terms
+
+`-Filter` is one Pickle filter: terms separated by commas. Since **Pickle 4.9.0** a term can be excluded, and a
+feature can be named without its extension.
+
+| Term | Picks |
+|---|---|
+| `Mod display name` | every scenario of that mod's suite (the default) |
+| `file` or `file.feature` | every scenario of that file. The extension is optional since 4.9.0 |
+| `@tag` | every scenario carrying the tag |
+| `file::text` | the scenarios of that file whose name contains `text` |
+| `::text` | the scenarios of any file whose name contains `text` |
+| `file:24` | the scenario declared on line 24 |
+| `!term` | **excludes** what `term` would pick. New in 4.9.0 |
+
+How the terms combine, read from Pickle's `ScenarioFilter` (4.9.0) and its `Docs/autorun.md`:
+
+- Commas are OR for the picks. Pickle applies every pick first, then drops whatever an exclusion matches, so **an
+  exclusion always wins** over a pick of the same scenario.
+- An excluded scenario is **not in the run at all**. It is not reported as skipped. That is different from a
+  `@requires:` skip, which is counted. Do not use `!` where a report has to show the skip (the aggregate matrix in
+  `TESTING.md` asks for the optional scenarios to be skipped *by requirement*).
+- A filter with **only** exclusions keeps every scenario of every suite the game discovered, not only the
+  companion's. Always name the mod first: `'Mod display name,!@known-defect'`.
+- A filter that matches nothing is still an error (Pickle exits 2), and a lone `!` with nothing after it is ignored.
+- Quote the filter. PowerShell: single quotes. Interactive bash or zsh treat a bare `!` as history expansion.
+  The launcher hands the filter to the game through an environment variable, so it is not re-parsed by a shell.
+- `-Then` takes the same terms, one launch each. `'write'` and `'read'` now do what `'write.feature'` and
+  `'read.feature'` did.
+
+Where it is useful in this collection (none of these was applied to another mod's repository by this note):
+
+| Situation | Filter |
+|---|---|
+| A suite whose plain run is red by design. SkillIcons' `STATUS.md` says so for two features: one needs Oracle staged, one refuses to pass when its writer ran in the same process | `'SkillIcons - Pickle tests,!16-texture-contest,!13-restart-read'`. It leaves both features where they are, which the proposal to move them to a second suite did not |
+| A fast loop while editing, without the capture scenarios | `'Mod display name,!@review'`. **Not a certification**: `Authoring/README.md` section 7 requires the `@review` captures to be opened |
+| A scenario that fails for a known, recorded reason and should stay in the suite as documentation | Tag it `@known-defect` and run `'Mod display name,!@known-defect'`; drop the exclusion to work on it. A proposal, not a convention adopted anywhere yet. `@wip` stays what it is: unfinished, opted in with `-IncludeWip` |
+| A two-process restart chain | `-Filter 'write' -Then 'read','reset'` |
+| One feature of a suite that has several | `'aggregate-minimal'` instead of `'aggregate-minimal.feature'` |
+
 ## The lock is about the machine, not about RimWorld
 
 What the lock protects is **occupancy of the WSL machine**, not a game. A build, a steamcmd
