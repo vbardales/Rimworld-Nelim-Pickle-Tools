@@ -59,6 +59,10 @@ The English and French VEF replays each passed 5/5 on 2026-09-23, with reports a
 report; the launcher recorded `exitReason: passed`. The English RIMMSQOL-present bridge smoke probe
 passed 1/1 with its report at `evidence/aggregate/2026-09-23-v4.8.4-rimmsqol-en/`.
 Settings changes, restart and the French RIMMSQOL pass remain pending.
+The French minimal/without-Biotech and French RIMMSQOL bridge passes, plus the English settings-cleanup
+probe, were attempted on 2026-09-23 but stopped before game launch when WSL's root filesystem became
+read-only. Their `no-report.txt` files are infrastructure records, not test results. Do not create or
+retry a Pickle ticket until the owner explicitly authorizes it.
 Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.
