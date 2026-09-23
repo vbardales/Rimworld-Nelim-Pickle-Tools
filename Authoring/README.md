@@ -181,8 +181,13 @@ The status call is read-only. Follow the [Headless guide](../Headless/README.md)
 `AUDIT.md`: no Windows launch, no second game, no manual staging, no removal of somebody else's run or
 reservation. Shared WSL builds/downloads also go through `Use-Wsl.ps1`.
 
-Filters accept the companion's **display name**, a feature filename, `file.feature::scenario name`, `::name`
-or a tag. Commas combine selections with OR; they are not an intersection. A filter does not stage its tools.
+Filters accept the companion's **display name**, a feature filename (the `.feature` extension is optional since
+Pickle 4.9.0), `file::scenario name`, `::name` or a tag. Commas combine selections with OR; they are not an
+intersection. Since 4.9.0 a `!` in front of a term **excludes** it, and an exclusion beats a pick of the same
+scenario: `'Mod display name,!@known-defect'`. Name the mod first (an exclusion-only filter runs every suite the
+game discovered), and do not exclude what a report must show as skipped by requirement.
+[`Headless/README.md`](../Headless/README.md#choosing-what-to-run-filter-terms) has the table and the cases.
+A filter does not stage its tools.
 For a two-process restart test use `-Filter write.feature -Then read.feature`. For more than one continuation,
 call the PowerShell script from PowerShell with an actual string array, for example
 `& ./scripts/Run-PickleWsl.ps1 -Mod ExampleMod -Filter write.feature -Then @('read.feature', 'reset.feature')`.
