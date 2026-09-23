@@ -10,7 +10,7 @@ WSL under Xvfb. Local files: `ScreenshotStudio/evidence/` (no longer tracked, ex
 | `2026-09-22-zen-preview` | The same scenario, kept as the earlier zen preview run | passed, 1/1 |
 | `2026-09-22-zen` | The final construction, save and reload run, on which the fixture `nelim-zen-meadow-studio.rws` (11 709 575 bytes, SHA256 `eb292c3e2f8d8975209bc1cfaa9a01618b368bb40e2895384962b9cab0c28230`) was exported. RimWorld 1.6.4871, WSL Ubuntu-24.04, Xvfb | passed, 1/1, 86 711 ms |
 | `2026-09-22-zen/fixture-load-*` | The exported fixture loaded directly in a separate process | passed, 1/1, 14.2 s |
-| `2026-09-22-zen/presentation-captures/` | Nine PNGs (`studio-overview`, `-flowers`, `-zen`, `-pond`, `-emblem`, `-display`, `-workshop`, `-kitchen`, `-home`), each 4 to 5.5 MB, and a contact sheet | one report, passed |
+| `2026-09-22-zen/presentation-captures/` | Nine images, JPEG since 2026-09-23 (minified from the PNG originals, 4 to 5.5 MB each, now under 0.8 MB; `studio-overview`, `-flowers`, `-zen`, `-pond`, `-emblem`, `-display`, `-workshop`, `-kitchen`, `-home`), and a contact sheet | one report, passed |
 
 **Not shown here**: what the captures look like, and whether they were reviewed; `ScreenshotStudio/STATUS.md` is
 where that is claimed. This file carries neither the images nor a judgement of them.
