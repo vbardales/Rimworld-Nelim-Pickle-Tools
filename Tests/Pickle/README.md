@@ -9,4 +9,6 @@ The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`;
 `aggregate-no-biotech.feature` against it to check startup and step discovery without that DLC.
 `wsl-deps.aggregate-rimmsqol.map` adds optional RIMMSQOL to the aggregate payload; run
 `aggregate-rimmsqol.feature` against it to exercise the bridge without changing user settings.
+`aggregate-rimmsqol-settings.feature` checks a temporary choice and its after-scenario cleanup
+using vanilla's normally hidden `Inspect` button. It refuses to edit an existing choice.
 `lost-click-probe.feature` is diagnostic and deliberately fails; it is not a green acceptance pass.
