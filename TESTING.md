@@ -30,8 +30,12 @@ Current preTest baseline: [Pickle v4.8.4](https://github.com/RimWorks/Rimworld-P
 published 2026-09-22 and including upstream PR #20. The official `Pickle-4.8.4.zip` has SHA256
 `088911EA5C29FE91D2AEE5C668BCDEF60061955AE75D38E1EA29E0B39CDBD93C`; its `RimWorks.Pickle.Core.dll`
 reports assembly version `4.8.4.0`. It is unpacked locally at `.build/upstream-v4.8.4/Pickle` and passed to
-`Run-PickleWsl.ps1 -PickleSrc` for the queued aggregate probes. Earlier runs against the staged Workshop
-copy are historical evidence, not validation of this baseline. No v4.8.4 in-game result is claimed yet.
+`Run-PickleWsl.ps1 -PickleSrc` for the aggregate probes. Earlier runs against the staged Workshop
+copy are historical evidence, not validation of this baseline. On 2026-09-23 the corrected bundle passed
+the English main-menu smoke probe with the default DLC set (1/1) and without Biotech (1/1), with reports in
+`evidence/aggregate/2026-09-23-v4.8.4-fixed-minimal-en/` and
+`evidence/aggregate/2026-09-22-v4.8.4-fixed-no-biotech-en/`. The first attempts had failed 0/1 during
+scenario teardown; the reports remain alongside these passes. These smoke probes do not cover the full matrix.
 
 Two dependency sets in English and French: **four baseline launches**, plus restart sequences below.
 
@@ -47,6 +51,8 @@ Biotech checks additionally need a Biotech-absent pass confirming suite requirem
 No declared incompatibility is currently established, so no conflict pass is claimed.
 
 The aggregate probe suite is in `Tests/Pickle/`; its minimal probe overlays the generated aggregate payload.
+`QuietNewFactions/Tests/Pickle/wsl-deps.pickletools.map` stages the same bundle for the VEF-present replay,
+and its feature tags require the bundle plus VEF. VEF remains optional for the bundle itself.
 Extend it from the existing module probes, then execute the required matrix. Change per-tool tags
 to `@requires:nelim.pickletools`, retaining actual optional target/DLC tags. Unchanged standalone tags would
 skip and cannot certify the bundle. Historical standalone runs are not aggregate results.

@@ -2,7 +2,7 @@
 # refuses both skip and ignore, so ignoring it here would defeat that mod. No such faction is
 # guaranteed in the mod list, so the scenario marks one for its own duration and removes the marker
 # afterwards.
-@requires:nelim.pickletools.veffactions
+@requires:nelim.pickletools
 @requires:OskarPotocki.VanillaFactionsExpanded.Core
 Feature: a required faction still gets VEF's window
 

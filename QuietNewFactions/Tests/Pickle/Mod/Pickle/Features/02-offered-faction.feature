@@ -4,7 +4,7 @@
 #
 # The fixture was not made with this mod list, so loading it already runs VEF's check once.
 # "a faction the world lacks is chosen" takes one faction back off the ignored list to replay it.
-@requires:nelim.pickletools.veffactions
+@requires:nelim.pickletools
 @requires:OskarPotocki.VanillaFactionsExpanded.Core
 Feature: a faction the world lacks is ignored without a window
 

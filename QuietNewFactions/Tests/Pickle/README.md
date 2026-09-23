@@ -32,9 +32,9 @@ dotnet build PickleTools/VefFactionSteps/Source -c Release
 powershell.exe -ExecutionPolicy Bypass -File PickleTools/VefFactionSteps/Check-Steps.ps1
 ```
 
-`wsl-deps.pickletools.map` maps `nelim.pickletools.veffactions` to that local module for development.
-The historical five-scenario pass used the former suite-owned DLL. The promoted shared assembly still
-needs an in-game replay before it can inherit that runtime evidence.
+`wsl-deps.pickletools.map` stages the generated `nelim.pickletools` aggregate payload. The suite's
+dependency and feature tags use the bundle package ID while VEF remains required only for this suite.
+The historical five-scenario pass used the standalone shared assembly; the aggregate needs its own replay.
 
 ## Run
 

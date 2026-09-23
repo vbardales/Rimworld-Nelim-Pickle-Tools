@@ -20,13 +20,13 @@ One scenario marks a faction as required for its own duration; the marker is rem
       <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
     </li>
     <li>
-      <packageId>nelim.pickletools.veffactions</packageId>
-      <displayName>Nelim's Pickle Tools - VEF faction steps</displayName>
+      <packageId>nelim.pickletools</packageId>
+      <displayName>Nelim's Pickle Tools</displayName>
     </li>
   </modDependencies>
   <loadAfter>
     <li>nelim.quietnewfactions</li>
     <li>rimworks.pickle</li>
-    <li>nelim.pickletools.veffactions</li>
+    <li>nelim.pickletools</li>
   </loadAfter>
 </ModMetaData>
