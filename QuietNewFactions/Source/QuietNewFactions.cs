@@ -10,6 +10,9 @@ public sealed class QuietNewFactionsMod : Mod
 {
     public QuietNewFactionsMod(ModContentPack content) : base(content)
     {
+        if (!ModsConfig.IsActive("OskarPotocki.VanillaFactionsExpanded.Core"))
+            return;
+
         new Harmony("nelim.quietnewfactions").PatchAll();
     }
 }
