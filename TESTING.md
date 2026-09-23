@@ -98,6 +98,35 @@ Retain command, map, language/DLC set, source revision, DLL hashes, fresh report
 expected/executed/skipped counts, startup Player.log and reviewed captures. Missing/skipped required
 scenarios and partial reports are unverified, not passed. Update STATUS without promoting blocked gates.
 
+### What to keep after a test, and what to delete
+
+Launch with `-EvidenceDir evidence/aggregate/<date>-<pickle version>-<pass>` so the report is copied out of the
+shared, rolling `pickle-reports` before the next run overwrites it. The copy is clean; a folder copied by hand from
+`pickle-reports` was once 1 GB because it dragged the shared `screenshots/` of every earlier run along.
+
+| Keep, per pass | Why |
+|---|---|
+| `summary.json` and `summary.md` | The verdict: `exitReason`, counts, scenario names. Read `exitReason` first |
+| `junit.xml` and `messages.ndjson` | The per-step outcome and the failure messages; a failed step is diagnosed from these |
+| `Player.log` | Startup, load order, dropped mods, errors outside the scenarios |
+| `evidence-complete.txt` or `no-report.txt` | Says the copy is whole, or that the launcher left no report (infrastructure, not a result) |
+| The `@review` captures and films the pass exists to produce, **minified to JPEG** | Human review outcome; about 250 KB to 0.7 MB each, against 2.4 to 5.5 MB as PNG |
+| One line in [`docs/runs/`](docs/runs/README.md) | The history. Regenerate `aggregate.md` with `Summarize-Aggregate.ps1` **before** deleting a folder |
+
+| Delete | When |
+|---|---|
+| `screenshots/` copied whole from `pickle-reports` | Never keep it. It holds other runs' captures and failure shots |
+| `report.html` | Optional once the verdict is recorded: the largest file of a text-only run (1.5 MB of 1.6 MB) |
+| A report of a failed or infrastructure-error attempt | Once its line is in `aggregate.md` and its cause is written in `STATUS.md` |
+| A report superseded by a newer one for the same scenario and the same revision | When the newer one exists, unless the older one is the **only** proof of a check the newer run did not repeat (a Biotech-absent pass, a language, a VEF-present pass) |
+| Any report on a superseded build (an older Pickle version, an older payload) | After the pass is repeated on the current one: it proves nothing about the current build |
+
+**Never delete a report that a `STATUS.md` field or a tracked file points to.** Repoint the field to its row in
+`docs/runs/aggregate.md` first, then delete. Two files stay tracked although `evidence/` is ignored, because a script
+reads them (`ScreenshotStudio/evidence/2026-09-22-zen/verification.json` and `fixture-load-summary.json`).
+The rule comes from the collection's `AGENTS.md` ("Test evidence"): the disk was full at 3 GB free with 10 GB of
+evidence here.
+
 Check both archives: one Workshop root About, thirteen intended DLLs, licence/attribution, no dependency
 DLLs or saves, exact packageId and only Pickle as a direct hard dependency. Verify SHA256SUMS and each DLL
 hash against the build. Remaining publication gates are listed in [Release](Release/README.md).
