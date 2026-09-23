@@ -6,6 +6,8 @@
   The reports themselves (Player.log, screenshots, junit.xml, report.html) are not in git: evidence/ is ignored.
   This keeps the one thing worth reading later, a table of what each pass said, in a text file that is.
   A folder without a summary.json is listed as NO REPORT with the first line of its no-report.txt, never as a result.
+  Rows already in aggregate.md whose folder is no longer on disk are KEPT: deleting a superseded report (the disk
+  rule in AGENTS.md) must not delete its line. A folder still on disk overwrites its own row.
   A -Then chain keeps one folder per launch (seq1, seq2, ...): each is a row.
 
 .EXAMPLE
@@ -30,16 +32,24 @@ function Row($name, $folder) {
     "| $name | $($j.exitReason) | $($j.passed)/$($j.total) (failed $($j.failed), skipped $($j.skipped)) | $names |"
 }
 
-$rows = foreach ($d in Get-ChildItem -LiteralPath $dir -Directory | Sort-Object Name) {
-    $chain = Get-ChildItem -LiteralPath $d.FullName -Directory -Filter 'seq*' -ErrorAction SilentlyContinue | Sort-Object Name
-    if ($chain) { foreach ($s in $chain) { Row "$($d.Name)/$($s.Name)" $s.FullName } } else { Row $d.Name $d.FullName }
+$byFolder = [ordered]@{}
+if (Test-Path -LiteralPath $out) {
+    foreach ($line in Get-Content -LiteralPath $out) {
+        if ($line -match '^\| (20\d\d-\d\d-\d\d[^ ]*) \|') { $byFolder[$Matches[1]] = $line }
+    }
 }
+foreach ($d in Get-ChildItem -LiteralPath $dir -Directory | Sort-Object Name) {
+    $chain = Get-ChildItem -LiteralPath $d.FullName -Directory -Filter 'seq*' -ErrorAction SilentlyContinue | Sort-Object Name
+    if ($chain) { foreach ($s in $chain) { $byFolder["$($d.Name)/$($s.Name)"] = Row "$($d.Name)/$($s.Name)" $s.FullName } }
+    else { $byFolder[$d.Name] = Row $d.Name $d.FullName }
+}
+$rows = $byFolder.Keys | Sort-Object | ForEach-Object { $byFolder[$_] }
 
 $text = @(
     '# Aggregate passes: what each report said',
     '',
     "Generated $(Get-Date -Format 'yyyy-MM-dd HH:mm') by ``Summarize-Aggregate.ps1`` from ``evidence/aggregate/`` on the machine that ran them.",
-    'The reports are not in git. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.',
+    'The reports are not in git and the superseded ones are deleted (AGENTS.md, Test evidence); their rows stay. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.',
     'The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without one ran against the staged Workshop copy.',
     '',
     '| Folder | exitReason | Scenarios passed/total | Scenarios |',
