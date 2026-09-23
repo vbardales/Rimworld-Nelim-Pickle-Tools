@@ -1,5 +1,9 @@
 # Pending at Pickle
 
+PreTest baseline update, 2026-09-23: Pickle v4.9.1 is the baseline (v4.9.0 added `!` exclusions to the run filter, a
+change of upstream's own, not one of our PRs; v4.9.1 fixes camera steps in the world view). Our nine open PRs (#19, #21,
+#22, #23, #28, #31, #32, #33, #34) were still open when this was written; only #20 is merged. Details in `TESTING.md`.
+
 PreTest baseline update, 2026-09-22: Pickle v4.8.4 has been released with PR #20. The aggregate
 PickleTools tests are queued against its official release archive; the rows below retain their own
 recorded evidence dates and must not be read as v4.8.4 game validation.
