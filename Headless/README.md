@@ -90,7 +90,7 @@ Where it is useful in this collection (none of these was applied to another mod'
 
 | Situation | Filter |
 |---|---|
-| A suite whose plain run is red by design. SkillIcons' `STATUS.md` says so for two features: one needs Oracle staged, one refuses to pass when its writer ran in the same process | `'SkillIcons - Pickle tests,!16-texture-contest,!13-restart-read'`. It leaves both features where they are, which the proposal to move them to a second suite did not |
+| A suite whose plain run is red by design. SkillIcons' `STATUS.md` says so for two features: one needs Oracle staged, one refuses to pass when its writer ran in the same process | `'SkillIcons - Pickle tests,!16-texture-contest,!12-restart-write,!13-restart-read'`. **Exclude the writer with its reader.** `12-restart-write` keeps its settings file on purpose (it stands the sandbox down) and only `13-restart-read` puts things back, so excluding 13 alone would leave the written values on disk. Play the pair in its own chain, `-Filter '12-restart-write' -Then '13-restart-read'`. This leaves the features where they are, which the proposal to move them to a second suite did not |
 | A fast loop while editing, without the capture scenarios | `'Mod display name,!@review'`. **Not a certification**: `Authoring/README.md` section 7 requires the `@review` captures to be opened |
 | A scenario that fails for a known, recorded reason and should stay in the suite as documentation | Tag it `@known-defect` and run `'Mod display name,!@known-defect'`; drop the exclusion to work on it. A proposal, not a convention adopted anywhere yet. `@wip` stays what it is: unfinished, opted in with `-IncludeWip` |
 | A two-process restart chain | `-Filter 'write' -Then 'read','reset'` |
