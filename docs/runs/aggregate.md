@@ -1,7 +1,7 @@
 # Aggregate passes: what each report said
 
-Generated 2026-09-23 19:13 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
-The reports are not in git. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.
+Generated 2026-09-23 20:13 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
+The reports are not in git and the superseded ones are deleted (AGENTS.md, Test evidence); their rows stay. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.
 The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without one ran against the staged Workshop copy.
 
 | Folder | exitReason | Scenarios passed/total | Scenarios |
