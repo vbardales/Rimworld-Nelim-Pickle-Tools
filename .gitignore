@@ -18,3 +18,6 @@ Source/bin/
 # to read, not something the repository carries. Copy the one screenshot or message that matters
 # into a README or a PR description instead of committing the folder.
 evidence/
+
+# Textures are shipped as PNG; a compiled .dds is a build product, not a source.
+*.dds
