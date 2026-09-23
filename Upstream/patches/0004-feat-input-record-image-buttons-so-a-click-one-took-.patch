@@ -1,0 +1,198 @@
+From 7a7a7663b74c80ea7aa885ec7eaf068eadb997fb Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 23:40:51 +0200
+Subject: [PATCH 4/4] feat(input): record image buttons so a click one took
+ shows in the report
+
+Pickle records Widgets.ButtonText only, so a Widgets.ButtonImage control
+that takes a click leaves no trace and the lost-click report cannot name
+it. Postfix every ButtonImage* overload (Harmony) and inject at the tail
+of each (Concord), both through one PickleHooks method, and keep the rect
+with the other drawn controls. The overloads chain into each other, so a
+control reported by several is listed once.
+
+This commit stands apart from the report on purpose: it puts a hook on
+widgets Pickle did not touch before. Dropping it leaves the report as it
+was, with ButtonText only.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                                 |  5 +++--
+ Source/Pickle.Core/Ui/LostClickReport.cs      |  9 +++++++--
+ .../Pickle.Patches.Concord/ConcordBackend.cs  | 13 ++++++++++++
+ .../Pickle.Patches.Harmony/HarmonyBackend.cs  | 20 +++++++++++++++++++
+ Source/Pickle.Tests/LostClickReportTests.cs   | 14 +++++++++++++
+ Source/Pickle/Patching/PickleHooks.cs         |  6 ++++++
+ 6 files changed, 63 insertions(+), 4 deletions(-)
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 8d042db..cf95ec6 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -585,8 +585,9 @@ When the scenario has clicked before the step fails, the message adds what that
+   `absorbInputAroundWindow`, `WindowStack.GetsInput`, whether its rect holds the pointer, and, for
+   an `ImmediateWindow`, the method that draws it.
+ 
+-It states what it saw and names no cause. Pickle records `Widgets.ButtonText` only, so a control
+-drawn some other way does not appear among the controls.
++It states what it saw and names no cause. The controls it lists are the buttons Pickle sees drawn:
++`Widgets.ButtonText`, and any `Widgets.ButtonImage*` overload, listed as `ButtonImage`. A control
++drawn some other way does not appear.
+ 
+ A step of your own can append the same report to its failure message with
+ `PickleContext.DescribeLastClick()`, which returns null before any click.
+diff --git a/Source/Pickle.Core/Ui/LostClickReport.cs b/Source/Pickle.Core/Ui/LostClickReport.cs
+index ef50779..131d3f7 100644
+--- a/Source/Pickle.Core/Ui/LostClickReport.cs
++++ b/Source/Pickle.Core/Ui/LostClickReport.cs
+@@ -11,13 +11,18 @@ namespace RimWorks.Pickle.Core.Ui;
+ /// and names no cause. Pure so it stays unit testable; the game side only gathers the inputs.
+ /// </summary>
+ public static class LostClickReport {
+-  /// <summary>The controls whose rectangle holds a point, in the order they were drawn.</summary>
++  /// <summary>The controls whose rectangle holds a point, in the order they were drawn. A control
++  /// that several overloads of one widget each report is listed once, at its first draw.</summary>
+   /// <param name="drawn">Every control drawn in the frame.</param>
+   /// <param name="x">The point's horizontal position.</param>
+   /// <param name="y">The point's vertical position.</param>
+   /// <returns>The controls under the point, first drawn first.</returns>
+   public static IReadOnlyList<DrawnControl> ControlsAt(IEnumerable<DrawnControl> drawn, float x, float y) {
+-    return [.. drawn.Where(control => control.Box.Contains(x, y)).OrderBy(control => control.Order)];
++    return [.. drawn
++        .Where(control => control.Box.Contains(x, y))
++        .OrderBy(control => control.Order)
++        .GroupBy(control => (control.Widget, control.Label, control.Box.X, control.Box.Y, control.Box.Width, control.Box.Height))
++        .Select(group => group.First())];
+   }
+ 
+   /// <summary>Formats the report.</summary>
+diff --git a/Source/Pickle.Patches.Concord/ConcordBackend.cs b/Source/Pickle.Patches.Concord/ConcordBackend.cs
+index e61afe5..2f40f2c 100644
+--- a/Source/Pickle.Patches.Concord/ConcordBackend.cs
++++ b/Source/Pickle.Patches.Concord/ConcordBackend.cs
+@@ -1,4 +1,5 @@
+ using System;
++using System.Linq;
+ using System.Reflection;
+ using System.Xml;
+ using Concord;
+@@ -47,6 +48,12 @@ public class ConcordBackend : IPatchBackend {
+     PickleHooks.AfterButtonText(rect, label);
+   }
+ 
++  /// <summary>Tail injection on every <c>Widgets.ButtonImage*</c> overload that lets Pickle record the image button under the pointer.</summary>
++  /// <param name="butRect">The rect the button was drawn in.</param>
++  public static void AfterButtonImage(Rect butRect) {
++    PickleHooks.AfterButtonImage(butRect);
++  }
++
+   /// <summary>Head injection on <see cref="WindowStack.Add"/> that can drop a window autorun wants suppressed.</summary>
+   /// <param name="window">The window about to be added.</param>
+   /// <returns><see cref="Control.Cancel"/> to skip adding the window, <see cref="Control.Continue"/> to let it through.</returns>
+@@ -120,6 +127,12 @@ public class ConcordBackend : IPatchBackend {
+         Injection(nameof(AfterButtonText)),
+         At.Tail);
+ 
++    // Every overload: each is its own method and a control may call any of them.
++    foreach (MethodInfo overload in typeof(Widgets).GetMethods(BindingFlags.Public | BindingFlags.Static)
++        .Where(method => method.Name.StartsWith("ButtonImage", StringComparison.Ordinal))) {
++      Patcher.Patch(overload, Injection(nameof(AfterButtonImage)), At.Tail);
++    }
++
+     Patcher.Patch(
+         typeof(WindowStack).GetMethod(nameof(WindowStack.Add)),
+         Injection(nameof(BeforeWindowAdd)),
+diff --git a/Source/Pickle.Patches.Harmony/HarmonyBackend.cs b/Source/Pickle.Patches.Harmony/HarmonyBackend.cs
+index 5a59f12..a26464c 100644
+--- a/Source/Pickle.Patches.Harmony/HarmonyBackend.cs
++++ b/Source/Pickle.Patches.Harmony/HarmonyBackend.cs
+@@ -1,3 +1,7 @@
++using System;
++using System.Collections.Generic;
++using System.Linq;
++using System.Reflection;
+ using System.Xml;
+ using HarmonyLib;
+ using RimWorks.Pickle.Patching;
+@@ -45,6 +49,12 @@ public class HarmonyBackend : IPatchBackend {
+     PickleHooks.AfterButtonText(rect, label);
+   }
+ 
++  /// <summary>Postfix on every <c>Widgets.ButtonImage*</c> overload that lets Pickle record the image button under the pointer.</summary>
++  /// <param name="butRect">The rect the button was drawn in.</param>
++  public static void ButtonImagePostfix(Rect butRect) {
++    PickleHooks.AfterButtonImage(butRect);
++  }
++
+   /// <summary>Prefix on <see cref="WindowStack.Add"/> that can drop a window autorun wants suppressed.</summary>
+   /// <param name="window">The window about to be added.</param>
+   /// <returns><c>false</c> to skip adding the window, <c>true</c> to let it through.</returns>
+@@ -106,6 +116,11 @@ public class HarmonyBackend : IPatchBackend {
+             [typeof(Rect), typeof(string), typeof(bool), typeof(bool), typeof(Color), typeof(bool), typeof(TextAnchor?)]),
+         postfix: Handler(nameof(ButtonTextPostfix)));
+ 
++    // Every overload: each is its own method and a control may call any of them.
++    foreach (MethodInfo overload in ImageButtonOverloads()) {
++      harmony.Patch(overload, postfix: Handler(nameof(ButtonImagePostfix)));
++    }
++
+     harmony.Patch(
+         typeof(WindowStack).GetMethod(nameof(WindowStack.Add)),
+         prefix: Handler(nameof(AddPrefix)));
+@@ -115,6 +130,11 @@ public class HarmonyBackend : IPatchBackend {
+         postfix: Handler(nameof(MainMenuControlsPostfix)));
+   }
+ 
++  private static IEnumerable<MethodInfo> ImageButtonOverloads() {
++    return typeof(Widgets).GetMethods(BindingFlags.Public | BindingFlags.Static)
++        .Where(method => method.Name.StartsWith("ButtonImage", StringComparison.Ordinal));
++  }
++
+   private static HarmonyMethod Handler(string name) {
+     return new HarmonyMethod(typeof(HarmonyBackend).GetMethod(name));
+   }
+diff --git a/Source/Pickle.Tests/LostClickReportTests.cs b/Source/Pickle.Tests/LostClickReportTests.cs
+index 1e5cbcb..7d4c006 100644
+--- a/Source/Pickle.Tests/LostClickReportTests.cs
++++ b/Source/Pickle.Tests/LostClickReportTests.cs
+@@ -53,6 +53,20 @@ public class LostClickReportTests {
+     Assert.Equal([2, 7], [.. under.Select(c => c.Order)]);
+   }
+ 
++  [Fact]
++  public void ControlsAt_ListsOnceAControlEveryOverloadOfItsWidgetReported() {
++    var box = new ScreenBox(1740f, 45f, 20f, 20f);
++    DrawnControl[] drawn = [
++        new("ButtonImage", null, box, 4),
++        new("ButtonImage", null, box, 5),
++        new("ButtonText", "Same place", box, 6),
++    ];
++
++    IReadOnlyList<DrawnControl> under = LostClickReport.ControlsAt(drawn, 1750f, 55f);
++
++    Assert.Equal([4, 6], [.. under.Select(c => c.Order)]);
++  }
++
+   [Fact]
+   public void Format_NamesTheClickTheRecordedRectAndTheThreePointerReadings() {
+     string text = Report([], []);
+diff --git a/Source/Pickle/Patching/PickleHooks.cs b/Source/Pickle/Patching/PickleHooks.cs
+index 52bd810..8bd7a9d 100644
+--- a/Source/Pickle/Patching/PickleHooks.cs
++++ b/Source/Pickle/Patching/PickleHooks.cs
+@@ -42,6 +42,12 @@ public static class PickleHooks {
+     WidgetCapture.AfterButtonText(rect, label);
+   }
+ 
++  /// <summary>Runs after any <c>Widgets.ButtonImage*</c> overload draws, letting <see cref="DrawnControls"/> record it so a click it took can be explained.</summary>
++  /// <param name="butRect">The rect the button occupies.</param>
++  public static void AfterButtonImage(Rect butRect) {
++    DrawnControls.Record("ButtonImage", null, butRect);
++  }
++
+   /// <summary>
+   /// False drops the window. Autorun suppresses windows opened while a fixture loads.
+   /// </summary>
+-- 
+2.52.0.windows.1
+

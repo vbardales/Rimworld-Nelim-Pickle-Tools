@@ -1,0 +1,689 @@
+From d37a68536d82b43b52bfa18a4117c36ae51d3104 Mon Sep 17 00:00:00 2001
+From: vbardales <virginie.bardales@gmail.com>
+Date: Mon, 21 Sep 2026 23:38:22 +0200
+Subject: [PATCH 3/4] feat(steps): say what a click met when the window it
+ should open does not
+
+`window {string} is open` failed with "open windows: ImmediateWindow,
+ImmediateWindow", which identifies nothing. When the scenario has clicked,
+the message now adds the tag clicked, the rect Pickle recorded for it, the
+pointer before and after the click and now, every ButtonText drawn under the
+pointer in draw order, and the window stack top first with each window's
+type, assembly, layer, rect, absorbInputAroundWindow, GetsInput, whether it
+holds the pointer and, for an ImmediateWindow, the method that draws it.
+
+It is a diagnostic: it states what it saw and names no cause. The logic that
+formats it sits in Pickle.Core and is unit tested; the game side only
+gathers the inputs. PickleContext.DescribeLastClick() exposes it to other
+steps.
+
+Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>
+---
+ Docs/steps.md                               |  23 ++-
+ Source/Pickle.Core/Ui/ClickRecords.cs       | 172 ++++++++++++++++++++
+ Source/Pickle.Core/Ui/LostClickReport.cs    | 101 ++++++++++++
+ Source/Pickle.Tests/LostClickReportTests.cs | 128 +++++++++++++++
+ Source/Pickle.Vanilla/UiSteps.cs            |   6 +-
+ Source/Pickle/Input/ClickReport.cs          |  57 +++++++
+ Source/Pickle/Input/DrawnControls.cs        |  35 ++++
+ Source/Pickle/Input/WidgetCapture.cs        |   2 +
+ Source/Pickle/PickleContext.cs              |  13 ++
+ Source/Pickle/Runtime/PickleDriver.cs       |   1 +
+ 10 files changed, 536 insertions(+), 2 deletions(-)
+ create mode 100644 Source/Pickle.Core/Ui/ClickRecords.cs
+ create mode 100644 Source/Pickle.Core/Ui/LostClickReport.cs
+ create mode 100644 Source/Pickle.Tests/LostClickReportTests.cs
+ create mode 100644 Source/Pickle/Input/ClickReport.cs
+ create mode 100644 Source/Pickle/Input/DrawnControls.cs
+
+diff --git a/Docs/steps.md b/Docs/steps.md
+index 1df0902..8d042db 100644
+--- a/Docs/steps.md
++++ b/Docs/steps.md
+@@ -519,7 +519,7 @@ while a follow is active.
+ | `I select {string}` | Selects a pawn or thing by name |
+ | `I open the {string} tab` | Opens a main tab by def name or label |
+ | `I close all dialogs` | Closes every open window |
+-| `window {string} is open` | Checks a window type is open |
++| `window {string} is open` | Checks a window type is open. After a click, a failure also reports where the click went, see [a click that opened nothing](#a-click-that-opened-nothing) |
+ | `window {string} is closed` | Checks a window type is closed |
+ | `the inspect pane shows {string}` | Checks the selected thing's label |
+ | `no errors were logged` | Fails if the game logged an error during the scenario |
+@@ -569,3 +569,24 @@ PickleUI.Tag("my-button", buttonRect);
+ 
+ Vanilla buttons need no tagging. Pickle records them by label, so
+ `I click button "Research"` works out of the box.
++
++## A click that opened nothing
++
++A click can open nothing for reasons the step cannot see from the outside, and
++`window {string} is open` then fails with a list of type names. Several windows can share a type
++name, `ImmediateWindow` above all, so the list identifies nothing.
++
++When the scenario has clicked before the step fails, the message adds what that click met:
++
++- The tag clicked, the rect Pickle had recorded for it, and the pointer before the click, after it,
++  and now.
++- Every control drawn under the pointer in the last frame, in draw order.
++- The window stack, top first. Each window shows its type and assembly, its layer and rect,
++  `absorbInputAroundWindow`, `WindowStack.GetsInput`, whether its rect holds the pointer, and, for
++  an `ImmediateWindow`, the method that draws it.
++
++It states what it saw and names no cause. Pickle records `Widgets.ButtonText` only, so a control
++drawn some other way does not appear among the controls.
++
++A step of your own can append the same report to its failure message with
++`PickleContext.DescribeLastClick()`, which returns null before any click.
+diff --git a/Source/Pickle.Core/Ui/ClickRecords.cs b/Source/Pickle.Core/Ui/ClickRecords.cs
+new file mode 100644
+index 0000000..b505132
+--- /dev/null
++++ b/Source/Pickle.Core/Ui/ClickRecords.cs
+@@ -0,0 +1,172 @@
++namespace RimWorks.Pickle.Core.Ui;
++
++/// <summary>A rectangle in the space Pickle records tags in, with the same half-open edges as Unity's <c>Rect</c>.</summary>
++public readonly struct ScreenBox {
++  /// <summary>Creates a box from its top-left corner and its size.</summary>
++  /// <param name="x">Left edge.</param>
++  /// <param name="y">Top edge.</param>
++  /// <param name="width">Width.</param>
++  /// <param name="height">Height.</param>
++  public ScreenBox(float x, float y, float width, float height) {
++    X = x;
++    Y = y;
++    Width = width;
++    Height = height;
++  }
++
++  /// <summary>Left edge.</summary>
++  public float X { get; }
++
++  /// <summary>Top edge.</summary>
++  public float Y { get; }
++
++  /// <summary>Width.</summary>
++  public float Width { get; }
++
++  /// <summary>Height.</summary>
++  public float Height { get; }
++
++  /// <summary>Horizontal centre, the point a click on this box lands on.</summary>
++  public float CenterX => X + (Width / 2f);
++
++  /// <summary>Vertical centre, the point a click on this box lands on.</summary>
++  public float CenterY => Y + (Height / 2f);
++
++  /// <summary>True when the point is inside; the right and bottom edges are outside, as in Unity.</summary>
++  /// <param name="pointX">The point's horizontal position.</param>
++  /// <param name="pointY">The point's vertical position.</param>
++  /// <returns>Whether the box holds the point.</returns>
++  public bool Contains(float pointX, float pointY) {
++    return pointX >= X && pointX < X + Width && pointY >= Y && pointY < Y + Height;
++  }
++
++  /// <inheritdoc/>
++  public override string ToString() {
++    return "(x " + LostClickReport.Num(X) + ", y " + LostClickReport.Num(Y) + ", w " + LostClickReport.Num(Width) + ", h " + LostClickReport.Num(Height) + ")";
++  }
++}
++
++/// <summary>A control that was drawn during a frame, in the order it was drawn.</summary>
++public sealed class DrawnControl {
++  /// <summary>Creates a record of one drawn control.</summary>
++  /// <param name="widget">The widget method that drew it, such as <c>ButtonText</c>.</param>
++  /// <param name="label">Its text, or null for a control that has none.</param>
++  /// <param name="box">Where it was drawn.</param>
++  /// <param name="order">Its position in that frame's draw order, first drawn is 0.</param>
++  public DrawnControl(string widget, string? label, ScreenBox box, int order) {
++    Widget = widget;
++    Label = label;
++    Box = box;
++    Order = order;
++  }
++
++  /// <summary>The widget method that drew it, such as <c>ButtonText</c>.</summary>
++  public string Widget { get; }
++
++  /// <summary>Its text, or null for a control that has none.</summary>
++  public string? Label { get; }
++
++  /// <summary>Where it was drawn.</summary>
++  public ScreenBox Box { get; }
++
++  /// <summary>Its position in that frame's draw order, first drawn is 0.</summary>
++  public int Order { get; }
++}
++
++/// <summary>One window of the stack and what decides whether a click reaches it.</summary>
++public sealed class StackedWindow {
++  /// <summary>Creates a record of one window.</summary>
++  /// <param name="index">Its position in the stack, the last one is on top.</param>
++  /// <param name="typeName">The window's type name.</param>
++  /// <param name="assemblyName">The assembly the window's type comes from.</param>
++  /// <param name="layer">The window layer it is drawn on.</param>
++  /// <param name="box">Its rectangle.</param>
++  /// <param name="absorbsInput">Whether it absorbs input around itself.</param>
++  /// <param name="getsInput">Whether the game would deliver a click to it.</param>
++  /// <param name="holdsPointer">Whether its rectangle holds the pointer.</param>
++  /// <param name="drawnBy">For a window that carries no identity of its own, the method that draws it.</param>
++  public StackedWindow(
++      int index,
++      string typeName,
++      string assemblyName,
++      string layer,
++      ScreenBox box,
++      bool absorbsInput,
++      bool getsInput,
++      bool holdsPointer,
++      string? drawnBy) {
++    Index = index;
++    TypeName = typeName;
++    AssemblyName = assemblyName;
++    Layer = layer;
++    Box = box;
++    AbsorbsInput = absorbsInput;
++    GetsInput = getsInput;
++    HoldsPointer = holdsPointer;
++    DrawnBy = drawnBy;
++  }
++
++  /// <summary>Its position in the stack, the last one is on top.</summary>
++  public int Index { get; }
++
++  /// <summary>The window's type name.</summary>
++  public string TypeName { get; }
++
++  /// <summary>The assembly the window's type comes from.</summary>
++  public string AssemblyName { get; }
++
++  /// <summary>The window layer it is drawn on.</summary>
++  public string Layer { get; }
++
++  /// <summary>Its rectangle.</summary>
++  public ScreenBox Box { get; }
++
++  /// <summary>Whether it absorbs input around itself.</summary>
++  public bool AbsorbsInput { get; }
++
++  /// <summary>Whether the game would deliver a click to it.</summary>
++  public bool GetsInput { get; }
++
++  /// <summary>Whether its rectangle holds the pointer.</summary>
++  public bool HoldsPointer { get; }
++
++  /// <summary>For a window that carries no identity of its own, the method that draws it.</summary>
++  public string? DrawnBy { get; }
++}
++
++/// <summary>What a click step did, kept so a later failure can say where it landed.</summary>
++public sealed class ClickAttempt {
++  /// <summary>Creates a record of one click.</summary>
++  /// <param name="tag">The tag that was clicked.</param>
++  /// <param name="recorded">The rectangle Pickle had recorded for the tag; the click goes to its centre.</param>
++  /// <param name="pointerBefore">Where the game read the pointer before the click.</param>
++  /// <param name="pointerAfter">Where the game read the pointer once the click was sent.</param>
++  /// <param name="frameAtClick">The frame count when the click was sent.</param>
++  public ClickAttempt(
++      string tag,
++      ScreenBox recorded,
++      (float X, float Y) pointerBefore,
++      (float X, float Y) pointerAfter,
++      int frameAtClick) {
++    Tag = tag;
++    Recorded = recorded;
++    PointerBefore = pointerBefore;
++    PointerAfter = pointerAfter;
++    FrameAtClick = frameAtClick;
++  }
++
++  /// <summary>The tag that was clicked.</summary>
++  public string Tag { get; }
++
++  /// <summary>The rectangle Pickle had recorded for the tag; the click goes to its centre.</summary>
++  public ScreenBox Recorded { get; }
++
++  /// <summary>Where the game read the pointer before the click.</summary>
++  public (float X, float Y) PointerBefore { get; }
++
++  /// <summary>Where the game read the pointer once the click was sent.</summary>
++  public (float X, float Y) PointerAfter { get; }
++
++  /// <summary>The frame count when the click was sent.</summary>
++  public int FrameAtClick { get; }
++}
+diff --git a/Source/Pickle.Core/Ui/LostClickReport.cs b/Source/Pickle.Core/Ui/LostClickReport.cs
+new file mode 100644
+index 0000000..ef50779
+--- /dev/null
++++ b/Source/Pickle.Core/Ui/LostClickReport.cs
+@@ -0,0 +1,101 @@
++using System.Collections.Generic;
++using System.Globalization;
++using System.Linq;
++using System.Text;
++
++namespace RimWorks.Pickle.Core.Ui;
++
++/// <summary>
++/// Writes what a click met when it opened nothing: where the pointer was, which drawn controls hold
++/// it, and the window stack with what decides whether each window receives input. It states facts
++/// and names no cause. Pure so it stays unit testable; the game side only gathers the inputs.
++/// </summary>
++public static class LostClickReport {
++  /// <summary>The controls whose rectangle holds a point, in the order they were drawn.</summary>
++  /// <param name="drawn">Every control drawn in the frame.</param>
++  /// <param name="x">The point's horizontal position.</param>
++  /// <param name="y">The point's vertical position.</param>
++  /// <returns>The controls under the point, first drawn first.</returns>
++  public static IReadOnlyList<DrawnControl> ControlsAt(IEnumerable<DrawnControl> drawn, float x, float y) {
++    return [.. drawn.Where(control => control.Box.Contains(x, y)).OrderBy(control => control.Order)];
++  }
++
++  /// <summary>Formats the report.</summary>
++  /// <param name="click">The last click of the scenario.</param>
++  /// <param name="pointerNow">Where the game reads the pointer now.</param>
++  /// <param name="framesSince">How many frames have passed since the click.</param>
++  /// <param name="drawn">Every control drawn in the last frame.</param>
++  /// <param name="windows">The window stack, bottom first, as the game holds it.</param>
++  /// <returns>Several lines of text, none of them a conclusion.</returns>
++  public static string Format(
++      ClickAttempt click,
++      (float X, float Y) pointerNow,
++      int framesSince,
++      IReadOnlyList<DrawnControl> drawn,
++      IReadOnlyList<StackedWindow> windows) {
++    var text = new StringBuilder();
++
++    text.Append("the last click of this scenario was on '").Append(click.Tag).Append("', ")
++        .Append(framesSince.ToString(CultureInfo.InvariantCulture)).AppendLine(" frame(s) ago");
++    text.Append("  Pickle recorded the tag at ").Append(click.Recorded)
++        .Append(", centre ").AppendLine(Point((click.Recorded.CenterX, click.Recorded.CenterY)));
++    text.Append("  pointer before the click ").Append(Point(click.PointerBefore))
++        .Append(", after it ").Append(Point(click.PointerAfter))
++        .Append(", now ").AppendLine(Point(pointerNow));
++
++    IReadOnlyList<DrawnControl> under = ControlsAt(drawn, pointerNow.X, pointerNow.Y);
++    text.AppendLine("controls drawn under the pointer, in draw order:");
++    if (under.Count == 0) {
++      text.AppendLine("  none");
++    }
++
++    foreach (DrawnControl control in under) {
++      text.Append("  ").Append(control.Widget);
++      if (control.Label != null) {
++        text.Append(" '").Append(control.Label).Append('\'');
++      }
++
++      text.Append(" at ").Append(control.Box).Append(", drawn #")
++          .AppendLine(control.Order.ToString(CultureInfo.InvariantCulture));
++    }
++
++    text.AppendLine("windows, top first:");
++    if (windows.Count == 0) {
++      text.Append("  none");
++    }
++
++    int top = windows.Count == 0 ? -1 : windows.Max(w => w.Index);
++    foreach (StackedWindow window in windows.OrderByDescending(w => w.Index)) {
++      text.Append("  #").Append(window.Index.ToString(CultureInfo.InvariantCulture));
++      if (window.Index == top) {
++        text.Append(" top");
++      }
++
++      text.Append(' ').Append(window.TypeName).Append(" [").Append(window.AssemblyName).Append("] layer=")
++          .Append(window.Layer).Append(" rect=").Append(window.Box)
++          .Append(" absorbInputAroundWindow=").Append(Flag(window.AbsorbsInput))
++          .Append(" getsInput=").Append(Flag(window.GetsInput))
++          .Append(" holdsPointer=").Append(Flag(window.HoldsPointer));
++
++      if (window.DrawnBy != null) {
++        text.Append(" drawnBy=").Append(window.DrawnBy);
++      }
++
++      text.AppendLine();
++    }
++
++    return text.ToString().TrimEnd();
++  }
++
++  internal static string Num(float value) {
++    return value.ToString("0.##", CultureInfo.InvariantCulture);
++  }
++
++  private static string Flag(bool value) {
++    return value ? "true" : "false";
++  }
++
++  private static string Point((float X, float Y) point) {
++    return "(" + LostClickReport.Num(point.X) + ", " + LostClickReport.Num(point.Y) + ")";
++  }
++}
+diff --git a/Source/Pickle.Tests/LostClickReportTests.cs b/Source/Pickle.Tests/LostClickReportTests.cs
+new file mode 100644
+index 0000000..1e5cbcb
+--- /dev/null
++++ b/Source/Pickle.Tests/LostClickReportTests.cs
+@@ -0,0 +1,128 @@
++using System.Collections.Generic;
++using System.Linq;
++using RimWorks.Pickle.Core.Ui;
++using Xunit;
++
++namespace RimWorks.Pickle.Tests;
++
++public class LostClickReportTests {
++  private static readonly ClickAttempt Click = new(
++      "btn:Work types...",
++      new ScreenBox(1700f, 40f, 100f, 30f),
++      (10f, 20f),
++      (1750f, 55f),
++      100);
++
++  private static StackedWindow Window(int index, string type, bool absorbs, bool gets, bool holds, string? drawnBy = null) {
++    return new StackedWindow(index, type, "Assembly-CSharp", "GameUI", new ScreenBox(0f, 0f, 200f, 100f), absorbs, gets, holds, drawnBy);
++  }
++
++  private static string Report(IReadOnlyList<DrawnControl> drawn, IReadOnlyList<StackedWindow> windows) {
++    return LostClickReport.Format(Click, (1750f, 55f), 300, drawn, windows);
++  }
++
++  [Fact]
++  public void ScreenBox_Contains_TreatsRightAndBottomEdgesAsOutside() {
++    var box = new ScreenBox(10f, 10f, 20f, 20f);
++
++    Assert.True(box.Contains(10f, 10f));
++    Assert.True(box.Contains(29.9f, 29.9f));
++    Assert.False(box.Contains(30f, 15f));
++    Assert.False(box.Contains(15f, 30f));
++    Assert.False(box.Contains(9.9f, 15f));
++  }
++
++  [Fact]
++  public void ScreenBox_Centre_IsTheMiddle() {
++    var box = new ScreenBox(1700f, 40f, 100f, 30f);
++
++    Assert.Equal(1750f, box.CenterX);
++    Assert.Equal(55f, box.CenterY);
++  }
++
++  [Fact]
++  public void ControlsAt_KeepsOnlyControlsHoldingThePointerInDrawOrder() {
++    DrawnControl[] drawn = [
++        new("ButtonImage", null, new ScreenBox(1740f, 45f, 20f, 20f), 7),
++        new("ButtonText", "Elsewhere", new ScreenBox(0f, 0f, 50f, 50f), 3),
++        new("ButtonText", "Work types...", new ScreenBox(1700f, 40f, 100f, 30f), 2),
++    ];
++
++    IReadOnlyList<DrawnControl> under = LostClickReport.ControlsAt(drawn, 1750f, 55f);
++
++    Assert.Equal([2, 7], [.. under.Select(c => c.Order)]);
++  }
++
++  [Fact]
++  public void Format_NamesTheClickTheRecordedRectAndTheThreePointerReadings() {
++    string text = Report([], []);
++
++    Assert.Contains("'btn:Work types...'", text);
++    Assert.Contains("300 frame(s) ago", text);
++    Assert.Contains("(x 1700, y 40, w 100, h 30), centre (1750, 55)", text);
++    Assert.Contains("pointer before the click (10, 20), after it (1750, 55), now (1750, 55)", text);
++  }
++
++  [Fact]
++  public void Format_WithNothingUnderThePointerAndNoWindow_SaysNone() {
++    string text = Report([], []);
++
++    Assert.Contains("controls drawn under the pointer, in draw order:\n  none", text.Replace("\r\n", "\n"));
++    Assert.EndsWith("windows, top first:\n  none", text.Replace("\r\n", "\n"));
++  }
++
++  [Fact]
++  public void Format_ListsControlsUnderThePointerWithWidgetLabelAndDrawOrder() {
++    DrawnControl[] drawn = [
++        new("ButtonText", "Work types...", new ScreenBox(1700f, 40f, 100f, 30f), 2),
++        new("ButtonImage", null, new ScreenBox(1740f, 45f, 20f, 20f), 7),
++    ];
++
++    string text = Report(drawn, []);
++
++    Assert.Contains("ButtonText 'Work types...' at (x 1700, y 40, w 100, h 30), drawn #2", text);
++    Assert.Contains("ButtonImage at (x 1740, y 45, w 20, h 20), drawn #7", text);
++    Assert.True(text.IndexOf("drawn #2", System.StringComparison.Ordinal) < text.IndexOf("drawn #7", System.StringComparison.Ordinal));
++  }
++
++  [Fact]
++  public void Format_ListsWindowsTopFirstAndMarksTheTop() {
++    StackedWindow[] windows = [
++        Window(0, "MainTabWindow_Work", false, false, true),
++        Window(1, "ImmediateWindow", true, true, false, "Some.Mod.Overlay+<>c.Draw [SomeMod]"),
++    ];
++
++    string text = Report([], windows);
++
++    Assert.True(text.IndexOf("#1 top ImmediateWindow", System.StringComparison.Ordinal)
++        < text.IndexOf("#0 MainTabWindow_Work", System.StringComparison.Ordinal));
++    Assert.DoesNotContain("#0 top", text);
++  }
++
++  [Fact]
++  public void Format_ReportsWhatDecidesWhetherAWindowReceivesInput() {
++    string text = Report([], [Window(0, "MainTabWindow_Work", true, false, true)]);
++
++    Assert.Contains("[Assembly-CSharp] layer=GameUI rect=(x 0, y 0, w 200, h 100)", text);
++    Assert.Contains("absorbInputAroundWindow=true getsInput=false holdsPointer=true", text);
++  }
++
++  [Fact]
++  public void Format_NamesTheDrawingMethodOfAnImmediateWindowOnly() {
++    string text = Report([], [
++        Window(0, "Dialog_Plain", false, true, false),
++        Window(1, "ImmediateWindow", false, true, false, "Some.Mod.Overlay.Draw [SomeMod]"),
++    ]);
++
++    Assert.Contains("drawnBy=Some.Mod.Overlay.Draw [SomeMod]", text);
++    Assert.Equal(1, text.Split(["drawnBy="], System.StringSplitOptions.None).Length - 1);
++  }
++
++  [Fact]
++  public void Format_StatesNoCause() {
++    string text = Report([], [Window(0, "ImmediateWindow", true, true, true)]);
++
++    Assert.DoesNotContain("because", text);
++    Assert.DoesNotContain("swallow", text);
++  }
++}
+diff --git a/Source/Pickle.Vanilla/UiSteps.cs b/Source/Pickle.Vanilla/UiSteps.cs
+index f222ba2..458d847 100644
+--- a/Source/Pickle.Vanilla/UiSteps.cs
++++ b/Source/Pickle.Vanilla/UiSteps.cs
+@@ -97,11 +97,15 @@ public class UiSteps {
+   /// <returns>A task that completes when the step finishes. A failed assertion faults it.</returns>
+   // A page transition takes more than the one frame this used to wait, and how many more
+   // depends on the machine, so it waits on the window rather than on a frame count.
++  // The open windows are only type names, and an ImmediateWindow's says nothing, so after a click
++  // the message carries what the click met: where the pointer was, what was drawn under it, and the
++  // window stack with what decides whether each window receives input.
+   [Then("window {string} is open")]
+   public async Task AssertWindowOpen(PickleContext ctx, string windowName) {
+     await ctx.AssertEventually(
+         () => IsWindowOpen(windowName),
+-        () => $"window '{windowName}' should be open; open windows: {DescribeOpenWindows()}");
++        () => $"window '{windowName}' should be open; open windows: {DescribeOpenWindows()}"
++            + (ctx.DescribeLastClick() is { } lastClick ? $"\n{lastClick}" : string.Empty));
+   }
+ 
+   /// <summary>Asserts a window with the given type name is not open.</summary>
+diff --git a/Source/Pickle/Input/ClickReport.cs b/Source/Pickle/Input/ClickReport.cs
+new file mode 100644
+index 0000000..1ba3bd6
+--- /dev/null
++++ b/Source/Pickle/Input/ClickReport.cs
+@@ -0,0 +1,57 @@
++using System.Collections.Generic;
++using RimWorks.Pickle.Core.Ui;
++using UnityEngine;
++using Verse;
++
++namespace RimWorks.Pickle.Input;
++
++/// <summary>Gathers, from the running game, what <see cref="LostClickReport"/> writes about.</summary>
++internal static class ClickReport {
++  public static ClickAttempt Attempt(string tag, Rect recorded, Vector2 before, int frame) {
++    Vector2 after = Verse.UI.MousePositionOnUIInverted;
++    return new ClickAttempt(
++        tag,
++        new ScreenBox(recorded.x, recorded.y, recorded.width, recorded.height),
++        (before.x, before.y),
++        (after.x, after.y),
++        frame);
++  }
++
++  public static string Describe(ClickAttempt click) {
++    Vector2 pointer = Verse.UI.MousePositionOnUIInverted;
++    return LostClickReport.Format(click, (pointer.x, pointer.y), Time.frameCount - click.FrameAtClick, DrawnControls.All, Windows(pointer));
++  }
++
++  private static List<StackedWindow> Windows(Vector2 pointer) {
++    WindowStack stack = Find.WindowStack;
++    var windows = new List<StackedWindow>();
++
++    for (int i = 0; i < stack.Windows.Count; i++) {
++      Window window = stack.Windows[i];
++      Rect rect = window.windowRect;
++      windows.Add(new StackedWindow(
++          i,
++          window.GetType().Name,
++          window.GetType().Assembly.GetName().Name,
++          window.layer.ToString(),
++          new ScreenBox(rect.x, rect.y, rect.width, rect.height),
++          window.absorbInputAroundWindow,
++          stack.GetsInput(window),
++          rect.Contains(pointer),
++          DrawnBy(window)));
++    }
++
++    return windows;
++  }
++
++  // An ImmediateWindow carries no identity of its own: two of them read the same in a list of open
++  // windows. The method that draws it is what tells them apart, and its assembly says whose it is.
++  private static string? DrawnBy(Window window) {
++    if (window is not ImmediateWindow { doWindowFunc: { } draw }) {
++      return null;
++    }
++
++    System.Reflection.MethodInfo method = draw.Method;
++    return $"{method.DeclaringType?.FullName}.{method.Name} [{method.DeclaringType?.Assembly.GetName().Name}]";
++  }
++}
+diff --git a/Source/Pickle/Input/DrawnControls.cs b/Source/Pickle/Input/DrawnControls.cs
+new file mode 100644
+index 0000000..4d93c6a
+--- /dev/null
++++ b/Source/Pickle/Input/DrawnControls.cs
+@@ -0,0 +1,35 @@
++using System.Collections.Generic;
++using RimWorks.Pickle.Core.Ui;
++using UnityEngine;
++
++namespace RimWorks.Pickle.Input;
++
++/// <summary>
++/// Every control Pickle saw drawn in the last frame, in draw order. <see cref="TagStore"/> keeps one
++/// rect per tag and forgets the order, so it cannot say which controls hold a point; a click that
++/// opened nothing needs exactly that.
++/// </summary>
++internal static class DrawnControls {
++  private static readonly List<DrawnControl> Drawn = [];
++
++  public static IReadOnlyList<DrawnControl> All => Drawn;
++
++  public static void Record(string widget, string? label, Rect rect) {
++    if (!TagStore.SessionActive) {
++      return;
++    }
++
++    // Same gate and same conversion as TagStore.Record, so a rect kept here and one kept there
++    // are in one space and can be compared.
++    if (Event.current == null || Event.current.type != EventType.Repaint) {
++      return;
++    }
++
++    Rect screenRect = GUIUtility.GUIToScreenRect(rect);
++    Drawn.Add(new DrawnControl(widget, label, new ScreenBox(screenRect.x, screenRect.y, screenRect.width, screenRect.height), Drawn.Count));
++  }
++
++  public static void BeginFrame() {
++    Drawn.Clear();
++  }
++}
+diff --git a/Source/Pickle/Input/WidgetCapture.cs b/Source/Pickle/Input/WidgetCapture.cs
+index 35f7007..09fdbc4 100644
+--- a/Source/Pickle/Input/WidgetCapture.cs
++++ b/Source/Pickle/Input/WidgetCapture.cs
+@@ -9,6 +9,8 @@ namespace RimWorks.Pickle.Input;
+ /// </summary>
+ internal static class WidgetCapture {
+   public static void AfterButtonText(Rect rect, string label) {
++    DrawnControls.Record("ButtonText", label, rect);
++
+     if (string.IsNullOrEmpty(label)) {
+       return;
+     }
+diff --git a/Source/Pickle/PickleContext.cs b/Source/Pickle/PickleContext.cs
+index a41c2e7..7177ba2 100644
+--- a/Source/Pickle/PickleContext.cs
++++ b/Source/Pickle/PickleContext.cs
+@@ -1,6 +1,7 @@
+ using System;
+ using System.Collections.Generic;
+ using System.Threading.Tasks;
++using RimWorks.Pickle.Core.Ui;
+ using RimWorks.Pickle.Input;
+ using RimWorks.Pickle.Runtime;
+ using UnityEngine;
+@@ -14,6 +15,7 @@ public class PickleContext {
+   private readonly List<AssertRecord> asserts = [];
+   private readonly List<(string Name, string Content)> attachments = [];
+   private readonly Dictionary<Type, object> bag = new();
++  private ClickAttempt? lastClick;
+ 
+   /// <summary>Every assert made in this scenario so far, passed or failed.</summary>
+   public IReadOnlyList<AssertRecord> Asserts => asserts;
+@@ -132,9 +134,20 @@ public class PickleContext {
+       throw new InvalidOperationException(error ?? "Failed to resolve tag");
+     }
+ 
++    Vector2 before = Verse.UI.MousePositionOnUIInverted;
+     await MovePointerTo(rect.center);
+     InputBackends.Current.Click(rect.center);
+     await WaitFrames(2);
++    lastClick = ClickReport.Attempt(tag, rect, before, Time.frameCount);
++  }
++
++  /// <summary>Says where the last click of this scenario landed and what was under the pointer: the
++  /// pointer before and after it, the rect Pickle recorded, every drawn control under the pointer in
++  /// draw order, and the window stack. A step that asserts something a click should have caused can
++  /// append it to its failure message.</summary>
++  /// <returns>The report, or null when this scenario has not clicked anything.</returns>
++  public string? DescribeLastClick() {
++    return lastClick == null ? null : ClickReport.Describe(lastClick);
+   }
+ 
+   /// <summary>Waits for a tagged rect to appear and moves the pointer onto it, without clicking.
+diff --git a/Source/Pickle/Runtime/PickleDriver.cs b/Source/Pickle/Runtime/PickleDriver.cs
+index 8a275b4..37e8d89 100644
+--- a/Source/Pickle/Runtime/PickleDriver.cs
++++ b/Source/Pickle/Runtime/PickleDriver.cs
+@@ -360,6 +360,7 @@ public class PickleDriver : MonoBehaviour {
+ 
+     // BeginFrame() after ScanWaits: steps during Update(N) see tags from OnGUI(N-1), then we clear for OnGUI(N).
+     TagStore.BeginFrame();
++    DrawnControls.BeginFrame();
+   }
+ 
+   private void ScanWaits() {
+-- 
+2.52.0.windows.1
+
