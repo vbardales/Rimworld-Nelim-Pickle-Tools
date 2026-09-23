@@ -16,7 +16,7 @@ counts and the scenario names without the folder.
 - **One verdict per row, from the report.** Read `exitReason` before the counts. A folder with a `no-report.txt`
   and no `summary.json` is an infrastructure record, listed as NO REPORT, never as a pass or a failure.
 - **Say what was not shown.** A summary that lists only what passed misleads; each file ends with its limits.
-- **Screenshots stay on disk.** Where one matters, describe it in a sentence here. Do not commit the image.
+- **Screenshots stay on disk, minified.** Kept captures are JPEG at full size (about 90 % less than PNG); a screenshot folder is never copied whole from `pickle-reports/screenshots`, which holds other runs. Where one matters, describe it in a sentence here. Do not commit the image.
 - **Exceptions still tracked although `evidence/` is ignored** (a tracked file stays tracked):
   `ScreenshotStudio/evidence/2026-09-22-zen/verification.json` and `fixture-load-summary.json`, which
   `Release/Package-ScreenshotStudio.ps1` reads to refuse a fixture that does not match its export; and
