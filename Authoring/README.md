@@ -211,10 +211,13 @@ the HUD while retaining chosen windows; ClearScreen instead closes non-Pickle wi
 settings window being tested. A film samples rendered frames, not every simulated tick; headless audio is not
 human listening evidence.
 
-Copy the useful report, log and media into the mod's own evidence directory before another run overwrites the
-shared folder. Keep pass name, language, filter, revision/local changes, staged build identity, expected/actual
-counts, verdict and human review outcome together. Five retained archives are temporary storage, not evidence
-preservation. A `-Then` sequence leaves its final report in `pickle-reports`; preserve that one too.
+Launch with `-EvidenceDir` so the report is copied into the mod's own evidence directory before another run
+overwrites the shared folder. Keep pass name, language, filter, revision/local changes, staged build identity,
+expected/actual counts, verdict and human review outcome together. Five retained archives are temporary storage, not
+evidence preservation. A `-Then` sequence leaves its final report in `pickle-reports`; preserve that one too.
+What to keep and what to delete afterwards (summary, junit, messages, Player.log, minified `@review` captures; never a
+whole `screenshots/` folder; one line per run in `docs/runs/`) is in
+[TESTING.md](../TESTING.md#what-to-keep-after-a-test-and-what-to-delete).
 
 Record cleanup and residual state. Update STATUS.md with validated, defective, unverified or justified
 not-applicable findings, without promoting an earlier blocked gate on the strength of a later isolated check.
