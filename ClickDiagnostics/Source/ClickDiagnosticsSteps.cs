@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
@@ -31,6 +32,10 @@ namespace Nelim.PickleTools.ClickDiagnostics
         // shorter than a player's reaction.
         private const int FramesToStandStill = 12;
         private const int FramesToGiveUp = 300;
+
+        // Pickle kills a step at its declared timeout with a bare message. Under a software renderer the
+        // game may run at a few frames a second, so 300 frames can outlast that: give up on the clock too.
+        private const int SecondsToGiveUp = 25;
         private const int FramesToOpen = 60;
 
         /// <summary>
@@ -50,7 +55,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
 
             Rect? last = null;
             var stable = 0;
-            for (var frame = 0; frame < FramesToGiveUp && stable < FramesToStandStill; frame++)
+            var clock = Stopwatch.StartNew();
+            for (var frame = 0; frame < FramesToGiveUp && stable < FramesToStandStill
+                                && clock.Elapsed.TotalSeconds < SecondsToGiveUp; frame++)
             {
                 await ctx.WaitFrames(1);
                 var now = ButtonProbe.LatestRect(label);
@@ -110,13 +117,18 @@ namespace Nelim.PickleTools.ClickDiagnostics
             var label = Label(ctx, key);
             ButtonProbe.EnsureInstalled();
 
+            // Windows of that name already open: a click that opened nothing must not pass because one
+            // was sitting on the stack from an earlier step.
+            var alreadyOpen = new HashSet<Window>(
+                Find.WindowStack.Windows.Where(window => IsNamed(window.GetType(), windowName)));
+
             var beforeClick = UI.MousePositionOnUIInverted;
             await ctx.Click($"btn:{label}");
 
             for (var frame = 0; frame < FramesToOpen; frame++)
             {
                 await ctx.WaitFrames(1);
-                if (Find.WindowStack.Windows.Any(window => IsNamed(window.GetType(), windowName)))
+                if (Find.WindowStack.Windows.Any(window => IsNamed(window.GetType(), windowName) && !alreadyOpen.Contains(window)))
                 {
                     return;
                 }
