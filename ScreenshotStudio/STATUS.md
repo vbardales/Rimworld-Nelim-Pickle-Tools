@@ -12,7 +12,7 @@ The optional archive is blocked until the zen save and matching export evidence 
 - The zen fixture was exported after the final 1/1 construction/save/reload run, then loaded directly in a separate WSL/Xvfb process: 1/1 passed in 14.178 seconds. Evidence: `evidence/2026-09-22-zen/`.
 - After moving presentation captures to the direct-load scenario, that scenario passed again: 1/1,
   `exitReason: passed`, 51.976 seconds. All nine interface-free views were visually inspected together;
-  PNGs, report and contact sheet are in `evidence/2026-09-22-zen/presentation-captures/`.
+  the captures (JPEG since 2026-09-23, minified from the PNG originals), report and contact sheet are in `evidence/2026-09-22-zen/presentation-captures/`.
 - The component declares Pickle and Ideology dependencies. All five DLC are used in the tested profile;
   operation without individual DLC is unverified.
 - This is a paused photographic set, not a tested long-running survival colony. Roofs are deliberately omitted.
