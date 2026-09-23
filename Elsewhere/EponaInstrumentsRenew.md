@@ -31,7 +31,9 @@ The rest of the suite uses Pickle's own steps only. Recipes worth reading in the
 - `20-craft-and-film.feature`: a crafting scene on the test colony (research finished, bench built, materials at the
   stockpile, a colonist with the work type on priority 1), two waits of 1,800 ticks so the colonist starts the bill,
   the step above, a capture of the product.
-- `30-play-and-listen.feature`: a performance scene (colonist with a high Artistic skill and the Art work type on
-  priority 1, the provider's `MusicSpot` built, the instrument spawned) and the two sound steps.
+- `30-play-and-listen.feature`: a performance scene (colonist with a high Artistic skill, the provider's `MusicSpot`
+  built, the instrument spawned), the step `{string} is offered the music joy and starts it` (asks the provider's own
+  `JoyGiverDef` `MusicPlay` for its job and starts it; the WORK route only serves venues that are instruments) and the
+  two sound steps.
 - `05-text-screens.feature`: names in whatever language the pass runs without writing them: centre the camera on the
   cell, the hover label at the bottom left names what is under the pointer.
