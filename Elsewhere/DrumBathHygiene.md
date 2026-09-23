@@ -69,3 +69,13 @@ These cost runs, and none of them is specific to a drum:
    to end every scenario that exercises the code, not a few of them, and `no errors were logged` cannot see a warning at all.
 8. **An absence is only a test if something proves the code ran.** `has no thought X` is as true when the component never
    started as when it worked. Put a positive marker that only a running component can produce in the same scenario.
+9. **`TryTakeOrderedJob` returns true for a job that ends inside `StartJob`.** Build an ordered job the way the mod
+   under test builds its own (which target index holds the thing, which the cell; read its job giver), not the
+   way `MakeJob(def, thing)` suggests: a driver whose first toil fails on a null target or a refused reservation
+   ends the job at once, the order step passes, and the colonist still ends up doing the thing when the mod's joy giver
+   or work giver sends them on its own schedule. It looks like a slow success, and passes or fails scenario by scenario
+   from one run to the next. A step that orders a job should also note, at that instant, what the pawn's current job
+   and the target's reservations are, so the wait that fails ninety seconds later can say why.
+10. **The game gives a pawn its needs back when its hediffs change** (`Pawn_NeedsTracker.AddOrRemoveNeedsAsAppropriate`).
+    A need taken off a pawn by hand before an action that adds a hediff is back afterwards. Add the hediff first and
+    take the need off second, in the same step, or assert the precondition again after the action.
