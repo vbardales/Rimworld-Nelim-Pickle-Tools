@@ -7,4 +7,6 @@ The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`;
 `Release/Prepare-Release.ps1` before running it. The other maps stage the named development companion.
 `wsl-deps.aggregate-no-biotech.map` stages the same payload with Biotech inactive; run
 `aggregate-no-biotech.feature` against it to check startup and step discovery without that DLC.
+`wsl-deps.aggregate-rimmsqol.map` adds optional RIMMSQOL to the aggregate payload; run
+`aggregate-rimmsqol.feature` against it to exercise the bridge without changing user settings.
 `lost-click-probe.feature` is diagnostic and deliberately fails; it is not a green acceptance pass.
