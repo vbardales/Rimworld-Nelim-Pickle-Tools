@@ -56,6 +56,12 @@ draw (a race that lists its own body types may draw nothing for another).
    Pickle build (`-PickleSrc`), not from here.
 2. Set a body type **after** the xenotype: the genes choose the body type whenever one is added or removed, so a
    body type set before is overwritten.
+3. **A xenotype with several body-type genes has no fixed body type.** The game keeps every body-type gene the pawn has and picks
+   one **at random** each time the genes change (`PawnGenerator.GetBodyTypeFor`, called by `Pawn_GeneTracker.Notify_GenesChanged`;
+   read from `Assembly-CSharp` on 2026-09-24). In Biotech, Hussar lists `Body_Standard` and `Body_Hulk` and comes out Male or Hulk
+   by chance; Neanderthal, Pigskin and Highmate are in the same case. Only Genie (`Body_Thin`) and Yttakin (`Body_Hulk`) are
+   deterministic, so those are the ones to assert on. A test that expected Hussar to be Hulk failed with `it has Male`: a wrong
+   expectation, not a fault of the step, which only calls `Pawn_GeneTracker.SetXenotype`.
 
 ```gherkin
 Given a colonist "Slim" exists
