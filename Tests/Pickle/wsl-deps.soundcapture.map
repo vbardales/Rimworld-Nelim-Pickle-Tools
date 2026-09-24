@@ -1,0 +1,7 @@
+# The pass that plays pickletools-soundcapture.feature: the optional SoundCapture tool, staged alone. It is not part of
+# the aggregate bundle.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.soundcapture.map -Filter pickletools-soundcapture
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.soundcapture   path:PickleTools/SoundCapture/Mod
