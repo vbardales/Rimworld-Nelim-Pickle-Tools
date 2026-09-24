@@ -29,7 +29,9 @@ function Row($name, $folder) {
     $j = Get-Content -LiteralPath $sj -Raw | ConvertFrom-Json
     $names = ($j.scenarios | ForEach-Object { $_.name -replace '\|', '/' }) -join '; '
     if ($names.Length -gt 150) { $names = $names.Substring(0, 147) + '...' }
-    "| $name | $($j.exitReason) | $($j.passed)/$($j.total) (failed $($j.failed), skipped $($j.skipped)) | $names |"
+    # A scenario that passed only on a retry is counted as flaky, not passed: it is not a clean pass.
+    $flaky = if ($null -ne $j.flaky) { ", flaky $($j.flaky)" } else { '' }
+    "| $name | $($j.exitReason) | $($j.passed)/$($j.total) (failed $($j.failed), skipped $($j.skipped)$flaky) | $names |"
 }
 
 $byFolder = [ordered]@{}
