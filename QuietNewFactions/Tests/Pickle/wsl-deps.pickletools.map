@@ -1,1 +1,7 @@
+# The VEF-present pass of Quiet New Factions, with the PickleTools bundle. VEF is only a loadAfter of the mod now, so the
+# staging no longer copies it as a hard dependency: it is named here, before the bundle. Ids read from its own About.xml.
+#   OskarPotocki.VanillaFactionsExpanded.Core, Workshop 2023507013 (Vanilla Expanded Framework)
+# The first VEF run of Pickle 4.9.1 (2026-09-24) failed on 'mod OskarPotocki.VanillaFactionsExpanded.Core is not loaded' because
+# this line was missing.
+OskarPotocki.VanillaFactionsExpanded.Core   2023507013
 nelim.pickletools path:PickleTools/.build/aggregate-current/Mod
