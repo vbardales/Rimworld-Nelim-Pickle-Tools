@@ -13,6 +13,7 @@ not a claim about every repository on GitHub or every deleted step in history.
 
 | Suite | What to look for |
 |---|---|
+| [A Certain Series - Creatures and Hair Renew](ACertainSeriesCreaturesAndHairRenew.md) | Body-part labels, innate shots counted per tick, trader stocks, egg incubation, butchering; source only, never run |
 | [Adaptive Storage Neolithic Renew](AdaptiveStorageNeolithicRenew.md) | Research tabs, project overlap, publication screenshot mode |
 | [Anima Song](AnimaSong.md) | Float-menu actions, toggle gizmos, hearing, maintained motes sampled by ticks |
 | [Architect Studio](ArchitectStudio.md) | Categories/groups, Harmony ownership, settings sandbox, key-binding UI |
