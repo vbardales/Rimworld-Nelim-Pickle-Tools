@@ -51,17 +51,18 @@ The WSL launcher's exit codes distinguish machine availability from run failures
 | 6 | Game relaunched while the lock was held |
 | 7 | Queue wait exceeded `-MaxWaitMinutes` |
 | 8 | Pickle's own exit code 2, remapped to distinguish it from machine occupancy |
-| 9 | **Two causes, told apart by the message.** (a) The machine could not write: before staging, `run-pickle-wsl.sh` writes a probe file into the game's Config folder and into `pickle-reports`; on failure it prints `INFRASTRUCTURE` with the folder and the cause and no game is started. (b) `-Then` supplied without `-Filter` (message `-Then demande -Filter`), refused before anything is queued |
+| 9 | The machine could not write: before staging, `run-pickle-wsl.sh` writes a probe file into the game's Config folder and into `pickle-reports`; on failure it prints `INFRASTRUCTURE` with the folder and the cause and no game is started |
+| 10 | Wrong call: `-Then` supplied without `-Filter`, refused before anything is queued or launched. Fix the call; the machine is fine |
 
 By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
 The separate Windows `Tests/Pickle/Run-Pickle.ps1 -Launch` refusal uses code 5; it is not the WSL code 5.
 
-**Code 9 as a machine fault is neither a scenario failure (1) nor a busy machine (2). Do not retry before fixing the machine.**
+**Code 9 is neither a scenario failure (1) nor a busy machine (2). Do not retry before fixing the machine.**
 The usual causes are an ext4 root remounted read-only (`errors=remount-ro` after a disk error) or a full disk; after a
 read-only remount, run `wsl.exe --shutdown` from Windows and start WSL again. The game itself writes `Knowledge.xml`
 and `LastPlayedVersion.txt` into its Config folder at the main menu, so an unwritable Config fails a launch even when
-staging worked. The launcher's header (`scripts/Run-PickleWsl.ps1`, codes 0 to 9) is the source of truth for this table,
-and lists 9 only in its machine meaning: the `-Then` refusal shares the number.
+staging worked. The launcher's header (`scripts/Run-PickleWsl.ps1`, codes 0 to 10) is the source of truth for this table.
+Until 2026-09-24 the `-Then` usage error also exited 9; it exits 10 now, so a caller can switch on the number.
 
 Pickle also probes its own `-pickle-report-dir`, and if it cannot write there it falls back to the save folder. The
 launcher then finds no `summary.json` newer than the launch and writes `no-report.txt`: that reads as **NO REPORT, never
@@ -284,7 +285,7 @@ applies to early stall/relaunch exits.
 Keep only reports needed for the mod's verdict; remove superseded or duplicate evidence deliberately,
 not by relying on the rolling archive. Without `-EvidenceDir`, the final report remains in `pickle-reports`;
 preserve it before the next run. For multiple
-continuations, pass a PowerShell string array as in the authoring guide. `-Then` without `-Filter` is refused (exit 9).
+continuations, pass a PowerShell string array as in the authoring guide. `-Then` without `-Filter` is refused (exit 10).
 
 Seen working on 2026-09-21: `-Filter warning-steps.feature -Then warning-steps.feature` ran two launches under
 one lock, the second said it skipped the staging, both 5/5 passed, exit 0. What that shows is the mechanism, not
