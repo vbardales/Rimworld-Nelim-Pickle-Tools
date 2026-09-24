@@ -131,6 +131,18 @@ preconditions. A custom fixture belongs in the test companion and needs document
 Reload before independent scenarios. Reacquire pawns/windows after a load: old object references are stale.
 Use `@same-world` only for an intentional dependency on the preceding scenario, not as a general speed trick.
 
+**A quickstart instead of a save** (Pickle 4.9.1; no suite of this collection uses it yet). If
+[Quickstarts](https://github.com/RimWorks/Rimworld-Quickstarts) is installed, a scenario tagged `@quickstart:ClassName`
+builds its starting world from that quickstart's C# instead of loading a fixture. The name is the quickstart's class, the one
+`-quickstart=` takes. The colony is the same every time, nothing is versioned, and nothing goes stale when a def changes.
+The cost is that the world is regenerated on every run, as long as world generation takes; `@same-world` skips the rebuild
+between two scenarios, as it does for a save. A scenario cannot carry the tag and also run `the save "..." is loaded`: Pickle
+rejects that feature at startup, and the rest of the suite still loads. Pickle finds Quickstarts by reflection, so it stays
+optional: a scenario that asks for a quickstart without the mod fails saying so. Read from Pickle's `Docs/authoring.md`
+("A quickstart instead of a save") and `QuickstartTag.cs`. **Nobody here has staged Quickstarts or played a `@quickstart:`
+scenario**, so how it behaves in the headless WSL launcher is unknown, and the saved fixtures stay the default in this
+collection.
+
 Use defNames/type names for Def-based UI and translation keys for keyed buttons. A DefInjected path is not a
 Keyed key. Set `-Language English` or `-Language French` at launch; never switch language within a scenario.
 
@@ -197,6 +209,24 @@ string is one Pickle filter and can select both features inside one process.
 Rebuild before launch: Pickle loads step DLLs when the game starts. Changing a DLL during a run does not change
 the code that run is testing. A patched Pickle needs the complete root `Pickle.slnx` build and its dependencies,
 staged with `-PickleSrc`; a step mentioned in an open PR is not automatically present in the Workshop build.
+
+**What Pickle stops on a failure, and what it does not** (read from the source of Pickle 4.9.1 on 2026-09-24). There is **no
+option that stops a run at the first failed scenario**: the scenario loop plays every scenario, only a cancel request ends
+it, and "fail-fast" appears nowhere in Pickle's code, docs or configuration. (Our own patch `Upstream/patches/0001`, never
+played, would add one.) What does stop:
+
+- **Inside a scenario**, once a step fails the remaining steps are skipped. Always.
+- **A game error** logged during a step fails the scenario, unless it is tagged `@allow-errors`.
+- **Time limits**: `@timeout:N` or `-pickle-scenario-timeout` (120 s by default) bound one scenario, `-pickle-run-timeout` bounds
+  the run (60 minutes by default, the launcher passes its own), and the watchdog ends the process.
+- **"Break on failure"** pauses the game on the failed step with the broken state intact, but only in the in-game runner and
+  the browser dashboard. It is **disabled in an autorun**, so it cannot be used headless.
+
+`-pickle-retry=N` and `@retry:N` give a failed scenario more attempts. A scenario that passes only on a retry is reported as
+**passed** and is also counted in `flaky` (`summary.json`, JUnit `flakes`); the exit code stays 0, so read `flaky` yourself and
+do not let such a scenario certify a gate. To keep a run short, filter it (see
+[Headless](../Headless/README.md#choosing-what-to-run-filter-terms)) or chain launches with `-Then`, which stops at the first
+launch that does not pass. The exit code of an autorun is 1 if any scenario failed, 2 if the watchdog ended it, otherwise 0.
 
 ## 7. Read evidence before changing STATUS.md
 
