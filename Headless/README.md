@@ -31,6 +31,7 @@ launches under `xvfb-run`, and releases the lock in a `finally`.
 | `-Language` | A prefix — `English`, `French`, `German`. Resolved against the install, see below |
 | `-DepMap` | A pass map such as `wsl-deps.avec-oracle.map`; omitted means no optional map, including no automatic `wsl-deps.map` |
 | `-Then` | More filters, played after `-Filter`: one game launch each, under one hold of the lock. A restart test is `-Filter write.feature -Then read.feature` |
+| `-ThenWithout` | packageIds taken out of the mod list before every launch after the first of a `-Then` sequence: a launch that loads a saved game without the mod that saved it. See below |
 | `-IncludeWip` | Play `@wip` scenarios too, see below |
 | `-KeepArchives` | Dated report archives kept, 5 by default; older ones removed, hand-named ones never |
 | `-PickleSrc` | A locally built Pickle mod folder instead of the Workshop copy |
@@ -286,6 +287,23 @@ Keep only reports needed for the mod's verdict; remove superseded or duplicate e
 not by relying on the rolling archive. Without `-EvidenceDir`, the final report remains in `pickle-reports`;
 preserve it before the next run. For multiple
 continuations, pass a PowerShell string array as in the authoring guide. `-Then` without `-Filter` is refused (exit 10).
+
+**A launch that has to run without a mod: `-ThenWithout`.** It takes packageIds and removes them from
+`ModsConfig.xml`, and from `staged-mods.txt`, before every launch after the first of a `-Then` sequence. Use it
+to prove that a game saved with a mod still loads when the mod is gone: the first launch saves the game and
+hands the file to a companion that does not depend on the mod (`Pickle/Fixtures/<name>.rws` of that companion,
+where Pickle finds a save), the second launch loads it as a fixture. The launcher edits the list itself, after
+the first game has closed and while it still holds the lock; doing it from inside the first game is not
+reliable, since a game can rewrite `ModsConfig.xml` when it quits. Without `-ThenWithout` nothing is removed,
+and the launch that stages is never touched. Added on 2026-09-24 for Housebroken's TF-18, added to the
+launcher in the monorepo (`scripts/Run-PickleWsl.ps1`, `scripts/run-pickle-wsl.sh`). **Written, not yet seen
+running:** the first real use is Housebroken's `wsl-deps.tf18.map` pass, whose result goes in that mod's
+`docs/runs/`.
+
+```powershell
+& ./scripts/Run-PickleWsl.ps1 -Mod Housebroken -DepMap wsl-deps.tf18.map -Filter 34-tf18-write `
+    -Then removal-check -ThenWithout nelim.housebroken,nelim.housebroken.pickletests
+```
 
 Seen working on 2026-09-21: `-Filter warning-steps.feature -Then warning-steps.feature` ran two launches under
 one lock, the second said it skipped the staging, both 5/5 passed, exit 0. What that shows is the mechanism, not
