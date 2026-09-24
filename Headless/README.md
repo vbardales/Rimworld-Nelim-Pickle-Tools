@@ -51,10 +51,21 @@ The WSL launcher's exit codes distinguish machine availability from run failures
 | 6 | Game relaunched while the lock was held |
 | 7 | Queue wait exceeded `-MaxWaitMinutes` |
 | 8 | Pickle's own exit code 2, remapped to distinguish it from machine occupancy |
-| 9 | `-Then` supplied without `-Filter` |
+| 9 | **Two causes, told apart by the message.** (a) The machine could not write: before staging, `run-pickle-wsl.sh` writes a probe file into the game's Config folder and into `pickle-reports`; on failure it prints `INFRASTRUCTURE` with the folder and the cause and no game is started. (b) `-Then` supplied without `-Filter` (message `-Then demande -Filter`), refused before anything is queued |
 
 By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
 The separate Windows `Tests/Pickle/Run-Pickle.ps1 -Launch` refusal uses code 5; it is not the WSL code 5.
+
+**Code 9 as a machine fault is neither a scenario failure (1) nor a busy machine (2). Do not retry before fixing the machine.**
+The usual causes are an ext4 root remounted read-only (`errors=remount-ro` after a disk error) or a full disk; after a
+read-only remount, run `wsl.exe --shutdown` from Windows and start WSL again. The game itself writes `Knowledge.xml`
+and `LastPlayedVersion.txt` into its Config folder at the main menu, so an unwritable Config fails a launch even when
+staging worked. The launcher's header (`scripts/Run-PickleWsl.ps1`, codes 0 to 9) is the source of truth for this table,
+and lists 9 only in its machine meaning: the `-Then` refusal shares the number.
+
+Pickle also probes its own `-pickle-report-dir`, and if it cannot write there it falls back to the save folder. The
+launcher then finds no `summary.json` newer than the launch and writes `no-report.txt`: that reads as **NO REPORT, never
+as a pass** (see [`docs/runs/aggregate.md`](../docs/runs/aggregate.md), where such a row is not a result).
 
 ## Choosing what to run: filter terms
 
