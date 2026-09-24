@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Sound capture</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.soundcapture</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Pickle steps that record what the game plays between two steps and assert that something was heard. Optional developer tooling: no Defs, no features, nothing runs unless a scenario asks for it. A suite stages it with one line in a pass map. See SoundCapture/README.md at the repository root.
+
+It needs ffmpeg on the PATH of the game and an audio server (PulseAudio) to record from. On the WSL test install the game plays into the sink WSLg provides, so the same sound also reaches the Windows speakers.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.
+
+MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and provenance.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
+</ModMetaData>
