@@ -29,7 +29,7 @@ function Row($name, $folder) {
     $j = Get-Content -LiteralPath $sj -Raw | ConvertFrom-Json
     $names = ($j.scenarios | ForEach-Object { $_.name -replace '\|', '/' }) -join '; '
     if ($names.Length -gt 150) { $names = $names.Substring(0, 147) + '...' }
-    # A scenario that passed only on a retry is counted as flaky, not passed: it is not a clean pass.
+    # A scenario that passed only on a retry is counted as passed AND in flaky (Pickle: Outcome Passed, Attempts > 1), and the exit code stays 0: flaky > 0 is a pass that needed retries.
     $flaky = if ($null -ne $j.flaky) { ", flaky $($j.flaky)" } else { '' }
     "| $name | $($j.exitReason) | $($j.passed)/$($j.total) (failed $($j.failed), skipped $($j.skipped)$flaky) | $names |"
 }
