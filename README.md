@@ -25,6 +25,7 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`ClickDiagnostics/`](ClickDiagnostics/README.md) | Wait for a button to stand still, check nothing covers it, click it, and on a lost click print the pointer, the buttons under it and the window stack | `nelim.pickletools.clickdiagnostics` |
 | [`TextureOwner/`](TextureOwner/README.md) | Assert which running mod answers for a texture path, and that a path is shipped by at least N mods: the check a retexture needs when its `loadAfter` is all that makes it win over another retexture | `nelim.pickletools.textureowner` |
 | [`KeyedClick/`](KeyedClick/README.md) | Click a button by its translation key | `nelim.pickletools.keyedclick` |
+| [`HoverSteps/`](HoverSteps/README.md) | Hover a tooltip region by the text of its tooltip (literal, keyed, or a part of it), wait for the game to draw it, and assert it: the check a page full of checkboxes and sliders needs, since Pickle only tags button labels | `nelim.pickletools.hoversteps` |
 | [`SoundCapture/`](SoundCapture/README.md) | **Optional.** Record what the game plays between two steps and assert something was heard; not in the bundle | `nelim.pickletools.soundcapture` |
 | [`InterfaceScale/`](InterfaceScale/README.md) | Set interface scale and repair recorded button rectangles for scaled clicks | `nelim.pickletools.interfacescale` |
 | [`ScreenshotMode/`](ScreenshotMode/README.md) | Hide the HUD and Pickle-owned windows around an already-open subject window for a review capture | `nelim.pickletools.screenshotmode` |
