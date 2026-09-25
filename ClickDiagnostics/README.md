@@ -4,7 +4,7 @@ Three Pickle steps for a click that must land, and a report that says why when i
 
 | Step | What it does |
 | --- | --- |
-| `Nelim's Pickle Tools: the button keyed {string} has stood still` | Waits until the button has been drawn at the same place for 12 frames in a row. Fails if it never appears or never stops moving. |
+| `Nelim's Pickle Tools: the button keyed {string} has stood still` | Waits until the button has been drawn at the same place for 60 frames in a row and two seconds. Fails if it never appears or never stops moving. |
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` | Hovers the button and asserts that the window under the pointer is the named one (by short or full type name, base types included) and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` | Clicks the button, waits up to 60 frames for the named window, and when it does not open prints what the click met. |
 
@@ -81,7 +81,7 @@ and the failure report were played in a run that produced the trace above, and t
 but not replayed afterwards. What has never been seen in a game: the three steps as steps, the failure report of
 `is reachable in` (both branches), and the `ButtonImage*` half of the probe on a real lost click.
 
-`Nelim's Pickle Tools: the button keyed ... has stood still` waits 12 frames, which is a fifth of a second at 60 fps;
+`Nelim's Pickle Tools: the button keyed ... has stood still` waited 12 frames until 2026-09-25 (a fifth of a second at 60 fps), and now waits 60 frames and two seconds, because the Work Tab window stayed narrow past twelve and widened afterwards;
 that number is a judgement, not a measurement of every layout.
 
 ## Two of these could go to Pickle

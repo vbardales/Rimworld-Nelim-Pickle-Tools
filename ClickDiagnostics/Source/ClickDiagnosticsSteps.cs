@@ -28,9 +28,12 @@ namespace Nelim.PickleTools.ClickDiagnostics
     [PickleSteps]
     public class ClickDiagnosticsSteps
     {
-        // A dozen frames is a fifth of a second at 60 fps: longer than any layout settling measured, and
-        // shorter than a player's reaction.
-        private const int FramesToStandStill = 12;
+        // Twelve frames were enough on 2026-09-21, when the layout settled after about ten; on 2026-09-25 the
+        // same window (Work Tab) stayed narrow past twelve frames and widened after the wait had passed, so the
+        // click landed on the button at its narrow position and the layout moved before the release. A count of
+        // frames says little on a software renderer, so the button has to stand still for a duration too.
+        private const int FramesToStandStill = 60;
+        private const double SecondsToStandStill = 2.0;
         private const int FramesToGiveUp = 300;
 
         // Pickle kills a step at its declared timeout with a bare message. Under a software renderer the
@@ -42,7 +45,7 @@ namespace Nelim.PickleTools.ClickDiagnostics
         private static string storeAfterHover = "(no hover step ran before the click)";
 
         /// <summary>
-        /// Waits until the button has been drawn at the same place for a dozen frames in a row.
+        /// Waits until the button has been drawn at the same place for sixty frames in a row and two seconds.
         /// </summary>
         // Measured on Work Studio's button under Work Tab: the tab window is drawn narrow for about ten
         // frames after it opens and then widens to the full screen, and the button is anchored to its right
@@ -59,23 +62,32 @@ namespace Nelim.PickleTools.ClickDiagnostics
             Rect? last = null;
             var stable = 0;
             var clock = Stopwatch.StartNew();
+            var still = Stopwatch.StartNew();
             var frame = 0;
-            for (; frame < FramesToGiveUp && stable < FramesToStandStill
+            for (; frame < FramesToGiveUp && (stable < FramesToStandStill || still.Elapsed.TotalSeconds < SecondsToStandStill)
                    && clock.Elapsed.TotalSeconds < SecondsToGiveUp; frame++)
             {
                 await ctx.WaitFrames(1);
                 var now = ButtonProbe.LatestRect(label);
-                stable = now.HasValue && last.HasValue && now.Value == last.Value ? stable + 1 : 0;
+                var unchanged = now.HasValue && last.HasValue && now.Value == last.Value;
+                stable = unchanged ? stable + 1 : 0;
+                if (!unchanged)
+                {
+                    still.Restart();
+                }
+
                 last = now;
             }
 
+            var settled = stable >= FramesToStandStill && still.Elapsed.TotalSeconds >= SecondsToStandStill;
+
             var waited = $"{frame} frames in {clock.Elapsed.TotalSeconds:0.#} s" +
-                (frame < FramesToGiveUp && stable < FramesToStandStill
+                (frame < FramesToGiveUp && !settled
                     ? $" (the {SecondsToGiveUp} s clock ended the wait before the {FramesToGiveUp}-frame limit)" : "");
             ctx.Assert(last.HasValue,
                 $"no button labelled '{label}' (key '{key}') was drawn in {waited}, so there is nothing to wait for");
-            ctx.Assert(stable >= FramesToStandStill,
-                $"the button '{label}' never stood still for {FramesToStandStill} frames in a row in {waited}; last seen at {last}. " +
+            ctx.Assert(settled,
+                $"the button '{label}' never stood still for {FramesToStandStill} frames and {SecondsToStandStill} s in a row in {waited}; last seen at {last}. " +
                 "Clicking a control that is still moving loses the click between press and release.");
         }
 

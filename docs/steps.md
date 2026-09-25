@@ -26,7 +26,7 @@ Package `nelim.pickletools.clickdiagnostics`. In the bundle (`Mod/Pickle/Assembl
 
 | Step | Does |
 | --- | --- |
-| `Nelim's Pickle Tools: the button keyed {string} has stood still` (When) | Waits until the button has been drawn at the same place for a dozen frames in a row. |
+| `Nelim's Pickle Tools: the button keyed {string} has stood still` (When) | Waits until the button has been drawn at the same place for sixty frames in a row and two seconds. |
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` (Then) | Hovers the button and asserts the window under the pointer is the named one, and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` (When) | Clicks the button and waits for the named window to open; when it does not, says what the click met. |
 
