@@ -1,6 +1,6 @@
 # Testing PickleTools
 
-Scope: one `nelim.pickletools` bundle, thirteen general-purpose modules. ScreenshotStudio and Quiet New Factions
+Scope: one `nelim.pickletools` bundle, fourteen general-purpose modules. ScreenshotStudio and Quiet New Factions
 are optional companions, excluded from the aggregate Workshop payload and validated independently.
 
 ## Offline results - 2026-09-22
