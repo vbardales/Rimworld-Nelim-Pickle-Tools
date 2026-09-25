@@ -60,7 +60,11 @@ Put it at the end of the scenario, after the steps that open the screens: what t
 - `Tests/` (xunit, net8.0, no game): the reading of the log, the four checks, the failing cases, the threshold, the `apart from` variant.
   `dotnet test` in `LoadAudit/Tests`.
 - `Check-Steps.ps1`: the patterns compile with Pickle's own engine, none is declared twice or ambiguous.
-- In game: `Tests/Pickle/.../pickletools-loadaudit.feature`, pass map `wsl-deps.loadaudit.map`. **Not played yet** (2026-09-25).
+- In game: `Tests/Pickle/.../pickletools-loadaudit.feature`, pass map `wsl-deps.loadaudit.map`. **Played once, 2026-09-25, in English: 1 of 1.** It audited the tool's own mod: the step
+  read the game log (314 lines, through `Application.consoleLogPath`), found no finding, and had no translation to compare (English active). **What that does not show:** the tool's mod has
+  **0 types and 0 defs** (the game does not load an assembly from `Pickle/Assemblies/`; Pickle does), so the reading of a mod's assemblies and defs has **not been seen working on a real mod**,
+  and neither has a failing side in game. The first suite to use it on a mod with assemblies and defs is its real test; its `load-audit` attachment says how many types and defs were read
+  (a mod that has code and shows `0 types` means the profile is wrong: tell this repository).
 
 ## Build
 
