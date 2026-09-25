@@ -55,6 +55,13 @@ function Read-Patterns($dir, $source) {
         foreach ($m in [regex]::Matches($text, $attr)) {
             [pscustomobject]@{ Source = $source; File = $f.Name; Pattern = ($m.Groups[1].Value -replace '\\\\', '\' -replace '\\"', '"') }
         }
+        # A file that declares `const string Prefix = "..."` and writes its attributes as Prefix + "..." (ScreenshotStudio).
+        $pre = [regex]::Match($text, 'const string Prefix\s*=\s*"((?:[^"\\]|\\.)*)"')
+        if ($pre.Success) {
+            foreach ($m in [regex]::Matches($text, '\[(?:Given|When|Then)\(Prefix\s*\+\s*"((?:[^"\\]|\\.)*)"')) {
+                [pscustomobject]@{ Source = $source; File = $f.Name; Pattern = (($pre.Groups[1].Value + $m.Groups[1].Value) -replace '\\\\', '\' -replace '\\"', '"') }
+            }
+        }
     }
 }
 
