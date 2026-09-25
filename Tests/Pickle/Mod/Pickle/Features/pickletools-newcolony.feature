@@ -1,6 +1,6 @@
 # The optional NewColony tool: a colony started from the main menu, with the choices fixed, up to a playable paused map.
 #
-# NOT PLAYED YET (2026-09-25). The first run is the probe: it answers whether the step can change the scene from Entry to Play and
+# THE FEATURE HERE IS NOT PLAYED (my probe was cancelled so the costly test would run once): Creatures of Ki played the step in its own suite, red then green after a fix (NewColony/README.md). The first run was the probe: it answers whether the step can change the scene from Entry to Play and
 # hand a normal scenario back. What it asserts is only what the game says of its own state; a new colony is not reproducible, so it is played once,
 # in an initial or a final pass, never for a fix or an exploration (NewColony/README.md).
 #
