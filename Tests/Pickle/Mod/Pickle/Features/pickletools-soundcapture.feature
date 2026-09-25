@@ -24,3 +24,12 @@ Feature: PickleTools sound capture
     And Nelim's Pickle Tools: I let 6 real seconds go by
     And Nelim's Pickle Tools: I stop recording the sound
     Then Nelim's Pickle Tools: the sound recorded as "main-menu" is not silent
+
+  Scenario: with the music and the ambience muted the main menu records silence
+    Given the main menu is open
+    And Nelim's Pickle Tools: the game volume is 80 percent
+    And Nelim's Pickle Tools: the game music and ambience are muted
+    When Nelim's Pickle Tools: I record the sound as "main-menu-muted"
+    And Nelim's Pickle Tools: I let 4 real seconds go by
+    And Nelim's Pickle Tools: I stop recording the sound
+    Then Nelim's Pickle Tools: the sound recorded as "main-menu-muted" is silent
