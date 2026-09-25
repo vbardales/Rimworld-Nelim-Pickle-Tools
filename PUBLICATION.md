@@ -26,7 +26,7 @@ Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]
 
 Some utilities have been submitted upstream to Pickle. If equivalent functionality is integrated and released in a supported Pickle version, those utilities will be removed from this bundle in favor of the upstream implementation.
 
-Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
+Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart, on the 13 tools of the first release. The steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
 
 [h1]If I go quiet[/h1]
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
@@ -116,7 +116,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. T
 [b]Changed[/b]
 [list]
 [*]Click diagnostics: the stand-still wait says how long it waited and gives up on the clock; a window open before the click does not count.
-[*]Tested against Pickle 4.9.1 in English and French.
+[*]Tested against Pickle 4.9.1 in English and French: the tools of 1.0.0 as a bundle, the steps added here in scenarios of their own (TESTING.md lists what was played).
 [/list]
 ```
 
@@ -141,7 +141,7 @@ Only Pickle is required globally. Mods and DLC exercised by particular scenarios
 
 The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublished` gates and the fail-fast conditions: no red scenario without a green replay, the gallery, the owner's manual validations, a dry-run of the exact commit, the full SHA, and a rollback target chosen beforehand; the rollback target is `v1.0.0`, the commit `2dc9845`. No tag or release is made by hand: the workflow creates them after a successful upload.
 
-**The description must be true at the moment it replaces the page.** It says the bundle was "tested against Pickle 4.9.1 in English and French ... and across a game restart"; that holds for the thirteen-module bundle (`docs/runs/aggregate.md`) and not yet for the fourteen-module payload, whose HoverSteps has no scenario played. If the matrix is not replayed with the fourteen modules before a publish, reword that sentence to what was played (in both `About.xml` and this file: a new commit, a new SHA, a new dry-run).
+**The description must be true at the moment it replaces the page.** Its "tested" sentence holds for the thirteen-module bundle (`docs/runs/aggregate.md`) and was reworded on 2026-09-25 (the owner chose to reword rather than replay the matrix): it now says the matrix ran on the thirteen tools of the first release, and that the steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. Replaying the matrix with the fourteen modules would let the sentence say more; until then, change it in both `About.xml` and this file together (a new commit, a new SHA, a new dry-run).
 
 The Steam description above is the text for that release: it no longer calls the bundle a release candidate. An upload from the game does not send the description again, so it is sent by the CI with `update_description` (its dry-run prints the text, its size and its diff against the page), or pasted by hand on the Steam page. `Mod/About/About.xml` carries the same text.
 
@@ -176,7 +176,7 @@ release: the live page still says release candidate; 8000 bytes maximum, no stra
 size, hash and diff against the live page, which is the review. No gallery folder is declared: no capture exists yet.
 
 **Rollback.** `v1.0.0` (`2dc9845`) cannot be a CI rollback target: it has no `.github` and its `Mod/` has no DLL. For the first CI
-publication the rollback is Steam's own "rÃ©tablir cette version" in the item's change history (the 1.0.0 uploaded on 2026-09-22 is
+publication the rollback is Steam's own "rétablir cette version" in the item's change history (the 1.0.0 uploaded on 2026-09-22 is
 there), chosen by the owner before the publish. Once 1.1.0 is published from a commit that holds the payload and the workflow, that
 commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
 
