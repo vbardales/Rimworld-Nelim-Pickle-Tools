@@ -6,12 +6,12 @@ be looked at or asserted. These steps name a region **by the text of its tooltip
 
 | Step | What it does |
 | --- | --- |
-| `Nelim's Pickle Tools: I hover over the tooltip keyed {string}` | resolves the key with the game's own `Translate()`, hovers the region whose tooltip reads that, and waits for the tooltip to be drawn |
-| `Nelim's Pickle Tools: I hover over the tooltip reading {string}` | the same, for the exact text |
-| `Nelim's Pickle Tools: I hover over the tooltip containing {string}` | the same, for a part of the text; fails and lists the regions on screen if none or several match |
-| `Nelim's Pickle Tools: the tooltip keyed {string} is drawn` | asserts it is on screen now |
-| `Nelim's Pickle Tools: the tooltip containing {string} is drawn` | the same, by a part of the text |
-| `Nelim's Pickle Tools: no tooltip is drawn` | asserts none is |
+| `Nelim's Pickle Tools: I hover over the tooltip keyed {string}` | Resolves the key with the game's own `Translate()`, hovers the region whose tooltip reads that, and waits for the tooltip to be drawn |
+| `Nelim's Pickle Tools: I hover over the tooltip reading {string}` | Hovers the region whose tooltip reads exactly this text, and waits for the tooltip to be drawn |
+| `Nelim's Pickle Tools: I hover over the tooltip containing {string}` | Hovers the region whose tooltip contains this text, and waits for it to be drawn; fails and lists the regions on screen if none or several match |
+| `Nelim's Pickle Tools: the tooltip keyed {string} is drawn` | Asserts the tooltip whose text is the translation of this key is on screen now |
+| `Nelim's Pickle Tools: the tooltip containing {string} is drawn` | Asserts a tooltip containing this text is on screen now |
+| `Nelim's Pickle Tools: no tooltip is drawn` | Asserts no tooltip is on screen |
 
 Take the capture with the usual `I take a screenshot "..."` step **after** the hover step: the tooltip is drawn
 by then and stays as long as the pointer stays.
