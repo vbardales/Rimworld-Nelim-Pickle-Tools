@@ -146,6 +146,39 @@ collection.
 Use defNames/type names for Def-based UI and translation keys for keyed buttons. A DefInjected path is not a
 Keyed key. Set `-Language English` or `-Language French` at launch; never switch language within a scenario.
 
+### Waiting: fast mode, `@watch`, and three different timeouts
+
+Read on 2026-09-25 from Pickle's `Docs/authoring.md`, `Docs/autorun.md` and its source (`RunSession`, `SimSteps`,
+`PickleDriver`, `Watchdog`, `PickleArgs`), after a question from Flavor Text Extended - Français. **Not played by us, and the
+copy of the source read is not established as v4.9.1's** (see `docs/PROTOCOLS-READ.md`).
+
+- **Fast mode is the autorun default** (`-pickle-mode=fast`). `I wait {int} ticks` then drives the game's tick loop by hand,
+  sixty ticks per rendered frame, so the wait costs about the same real time whatever the machine's speed (the WSL install
+  measured about 500 to 700 ticks a second, see `Headless/README.md`).
+- **`@watch` on a scenario (or a feature) puts that scenario in watch mode**, and the mode is restored after it. `I wait {int}
+  ticks` then waits on the **game's own tick loop**: 60 ticks a second at normal speed on a machine that keeps up, and
+  as slow as the machine on one that does not. Flavor Text Extended's cooking scenario saw about 13 ticks a second on a loaded
+  machine. Pickle sets the speed to Normal if the game is paused, and does nothing else about speed (`game speed is fast` is a
+  step of its own). `-pickle-mode=watch` does the same for a whole run. Use `@watch` when a film must show real time; do not use
+  it to wait for a pawn's work on a slow machine.
+- **Filming**: `@film` and FilmTicks work in both modes. In fast mode several ticks run between two frames, so a picture lands
+  on the first frame after the interval and cannot show the ticks in between (`FilmTicks/README.md`); `@watch` is what gives
+  one picture per tick, at the price of the real time.
+- **Three timeouts, not one.** (1) A step's own `TimeoutSeconds`, else (2) the `@timeout:N` tag, else 5 seconds: this is the
+  limit **of one step**, and the tag on a scenario or on the feature line is inherited by every scenario of it (the parser
+  merges the feature tags). (3) The **watchdog**: `-pickle-scenario-timeout=N` (default **120 s**) kills the whole run when
+  one scenario has lasted that long, whatever `@timeout` says, and the run then has no report; `-pickle-run-timeout=N`
+  (minutes, 60 by default, the launcher passes its own) bounds the run. `@timeout:300` therefore cannot stretch a scenario past
+  120 s; pass `-pickle-scenario-timeout=N` with `Run-PickleWsl.ps1 -Extra`. The launcher does not set it (checked in
+  `scripts/run-pickle-wsl.sh` and `Run-PickleWsl.ps1`), so every suite runs under the 120 s default. Flavor Text Extended's
+  observation that `@timeout:300` on the Feature line was ignored while one on a Scenario line worked is **not explained** by
+  this reading, since the source merges the feature tags; it is worth a run that prints the resolved tags.
+- **To film or wait for a craft that needs real work on a slow machine**, the documented levers are: keep fast mode and slice
+  the wait (`I wait 1800 ticks`, repeated, each under the 5 s step limit at the measured tick rate), `I wait for bill ... to
+  finish` (120 s cap, then the watchdog), and `I wait for a "<def>" to exist` (30 s cap). None of them has been tried on a
+  cook by us. `Headless/README.md` records the safe pattern: film the beginning of the work and show the finished product by a
+  capture of a spawned item.
+
 ## 5. Add C# only for a missing observation or action
 
 Inspect the relevant shared tool and suite notes first. A new class uses `[PickleSteps]`; each method takes
