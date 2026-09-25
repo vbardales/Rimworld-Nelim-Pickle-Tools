@@ -126,7 +126,7 @@ namespace Nelim.PickleTools.NewColony
                 "new-colony",
                 $"scenario {scenarioDef.defName}, storyteller {storytellerDef.defName}, difficulty {difficultyDef.defName}, seed \"{seed}\", " +
                 $"map {mapSize} by {mapSize}, tile {Find.GameInitData?.startingTile.ToString() ?? Find.CurrentMap.Tile.ToString()}, " +
-                $"{Find.CurrentMap.mapPawns.FreeColonistsCount} colonists ({colonists}), paused, generated in {clock.Elapsed.TotalSeconds:0.0} s");
+                $"{Find.CurrentMap.mapPawns.FreeColonistsCount} colonists ({colonists}), paused, generated in {clock.Elapsed.TotalSeconds:0.0} s. A new colony is not reproducible and costs minutes on a shared machine: play it once, in an initial or a final pass, never for a fix or an exploration.");
         }
 
         // The choices are the scenario's own: what one scenario sets does not reach the next.
