@@ -12,7 +12,7 @@ A merge alone is insufficient if the change is not shipped or does not cover the
 ## The committed payload
 
 The publish workflow uploads `Mod/` exactly as committed and has no build step (a DLL built on the runner differed from the tested
-one in another mod). So `Mod/Pickle/Assemblies` holds the thirteen tool DLLs, each a byte-for-byte copy of the DLL tracked in its
+one in another mod). So `Mod/Pickle/Assemblies` holds the fourteen tool DLLs, each a byte-for-byte copy of the DLL tracked in its
 tool's `Mod/Pickle/Assemblies` (the one the tests played):
 
 ```powershell
@@ -26,7 +26,7 @@ then `-SyncMod`. Keep `Source/`, `.build/` and any evidence out of `Mod/`.
 ## Distribution
 
 One GitHub release and **one Steam Workshop item**; local preparation only, not published.
-The bundle is `nelim.pickletools`, with thirteen modules in `Pickle/Assemblies`. Pickle is its only direct
+The bundle is `nelim.pickletools`, with fourteen modules in `Pickle/Assemblies`. Pickle is its only direct
 hard dependency. RIMMSQOL and other targets of particular tests stay optional, including in Steam's
 required-items list. RIMMSQOL scenarios require `@requires:MalteSchulze.RIMMSqol`; VEF faction scenarios
 require `@requires:OskarPotocki.VanillaFactionsExpanded.Core`.
