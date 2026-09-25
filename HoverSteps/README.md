@@ -48,8 +48,12 @@ them makes the first scenario say so, by name, instead of hovering nothing.
 
 ## Checked, and not
 
-Compiled against the reference assemblies with no warning. Runtime behavior is recorded with the first suite that
-uses it (Housebroken, `Tests/Pickle/.../32-language-review.feature`); see that suite's `docs/runs/`.
+Compiled against the reference assemblies with no warning. `Check-Steps.ps1` (2026-09-25): the six patterns compile,
+none is declared twice, none is ambiguous against 1207 other expressions (Pickle's, the suites' and the sibling tools'),
+and every hover line of the features in the repository resolves. **In the bundle since the 1.1.0 preparation** (the owner,
+2026-09-25). **Not played in this repository**: runtime behavior is to be recorded with the first suite that uses it
+(Housebroken, `Tests/Pickle/.../32-language-review.feature`, see that suite's `docs/runs/`, where no run of it is recorded
+yet), and a green scenario here is still to be written.
 
 Known limits: two regions with the same tooltip text are the same tag, and Pickle reports it as ambiguous; a
 tooltip whose text changes every frame cannot be named; at an interface scale other than 100 the region rect
