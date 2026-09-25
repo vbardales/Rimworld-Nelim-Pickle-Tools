@@ -1,1 +1,3 @@
 nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

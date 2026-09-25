@@ -1,2 +1,4 @@
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
