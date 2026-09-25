@@ -61,11 +61,15 @@ Put it at the end of the scenario, after the steps that open the screens: what t
   `dotnet test` in `LoadAudit/Tests`.
 - `Check-Steps.ps1`: the patterns compile with Pickle's own engine, none is declared twice or ambiguous.
 - In game: `Tests/Pickle/.../pickletools-loadaudit.feature`, pass map `wsl-deps.loadaudit.map`. **Played once, 2026-09-25, in English: 1 of 1.** It audited the tool's own mod: the step
-  read the game log (314 lines, through `Application.consoleLogPath`), found no finding, and had no translation to compare (English active). **What that does not show:** the tool's mod has
-  **0 types and 0 defs** (the game does not load an assembly from `Pickle/Assemblies/`; Pickle does), so the reading of a mod's assemblies and defs has **not been seen working on a real mod**,
-  and neither has a failing side in game. The first suite to use it on a mod with assemblies and defs is its real test; its `load-audit` attachment says how many types and defs were read
-  (a mod that has code and shows `0 types` means the profile is wrong: tell this repository).
-
+  read the game log (314 lines, through `Application.consoleLogPath`), found no finding, and had no translation to compare (English active). That mod has **0 types and 0 defs** (the game does not
+  load an assembly from `Pickle/Assemblies/`; Pickle does), so this run showed neither the reading of a mod's assemblies and defs nor the failing side.
+- **Played on a real mod by another suite, 2026-09-25 (Many Happy Returns, first real run):** the attachment read `542 log lines read, 14 types, 6 defs; 1 finding(s), 0 translation problem(s)`. So the profile
+  of assemblies and defs works on a mod with code, and **the failing side was seen**: the step reported `[warning] line 63: Mod Many Happy Returns - Pickle tests dependency (nelim.manyhappyreturns) needs to have
+  <downloadUrl> and/or <steamWorkshopUrl> specified`, a real warning (a test dependency with no URL), which the suite then fixed at the source. The `Mod X did not load any content` lines of mods without content
+  did not trigger it, as documented. Two things that run showed, to know:
+  1. **The warning was attributed because its text names the mod's assembly**, and it was about the mod's *test companion*, which it named by its display name. The mod under test is therefore blamed for a defect of
+     the companion that stages it: defensible, since the warning comes from the mod's own test setup, but it can surprise. Read the line before fixing the wrong mod.
+  2. **Attribution by a word of the message is coarse**: a message that names an assembly of the mod, whoever logged it, is the mod's. A companion or another mod that mentions it will be attributed to it.
 ## Build
 
 ```powershell
