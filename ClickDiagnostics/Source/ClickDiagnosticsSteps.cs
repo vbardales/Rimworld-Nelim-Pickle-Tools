@@ -153,7 +153,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
                     : "No window on the stack absorbs input, so nothing sits above the button; this message does not say " +
                       "which cause it was: compare where the button was drawn with where the pointer was, both printed below.") +
                 $"\nPointer before the click {beforeClick}, after it {pointer}." +
-                "\nWhere the button was drawn, as Pickle records it (the click goes to the centre):\n" +
+                "\nPickle's tag store right after the hover step:\n" + storeAfterHover +
+                "\nPickle's tag store just before the click:\n" + storeBeforeClick +
+                "\nWhere the button was drawn, as the probe saw it (the click goes to the centre of the STORED rectangle):\n" +
                 ButtonProbe.DescribeText(label) +
                 "\nButtons on the pointer, in draw order (Pickle does not tag image buttons):\n" +
                 ButtonProbe.Describe(pointer) +
