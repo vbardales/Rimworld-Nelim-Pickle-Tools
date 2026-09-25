@@ -108,7 +108,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. T
 
 [b]Added[/b]
 [list]
-[*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, whatever its xenotype's body-type genes.
+[*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, whatever its xenotype's body-type genes, or the body of a child.
 [*]Hover steps: hover a tooltip by its text and check that it is drawn.
 [*]Screenshot mode can turn developer mode off for a capture that keeps the interface.
 [/list]
@@ -180,4 +180,4 @@ publication the rollback is Steam's own "rétablir cette version" in the item's 
 there), chosen by the owner before the publish. Once 1.1.0 is published from a commit that holds the payload and the workflow, that
 commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
 
-`HoverSteps` joins the payload in this release (the owner, 2026-09-25): `Prepare-Release.ps1` lists fourteen tools and the workflow requires the fourteen DLLs. Its steps have not been played in this repository yet, see `STATUS.md`.
+`HoverSteps` joins the payload in this release (the owner, 2026-09-25): `Prepare-Release.ps1` lists fourteen tools and the workflow requires the fourteen DLLs. Its scenario was played once on 2026-09-25, in English, and passed (1 of 1); see `STATUS.md`.
