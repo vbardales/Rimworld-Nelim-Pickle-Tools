@@ -108,6 +108,61 @@ namespace Nelim.PickleTools.SoundCapture.Tests
             }
         }
 
+        [Fact]
+        public void AFilmRecordsInStereoAtCdQualityAndASoundOnlyKeepsTheDefault()
+        {
+            Assert.Contains("-ar 44100 -ac 2", SoundAnalysis.RecordArguments("RDPSink.monitor", "a.wav", 120, 44100, 2));
+            Assert.Contains("-ar 22050 -ac 1", SoundAnalysis.RecordArguments("RDPSink.monitor", "a.wav", 120));
+        }
+
+        // The mux is only worth trusting if it gives one file that has both streams, an even picture, and the picture's length.
+        [Fact]
+        public void FfmpegPutsTheSoundIntoTheVideoAsH264AndAac()
+        {
+            if (!Ffmpeg("-version", out _))
+            {
+                return;
+            }
+
+            string folder = Path.Combine(Path.GetTempPath(), "soundcapture-tests-" + Guid.NewGuid().ToString("N"));
+            Directory.CreateDirectory(folder);
+            try
+            {
+                string film = Path.Combine(folder, "film.webm");
+                string sound = Path.Combine(folder, "sound.wav");
+                string mp4 = Path.Combine(folder, "film-sound.mp4");
+
+                // Three seconds of picture, on purpose an odd 181 high, and five seconds of sound: the sound must be cut to the picture.
+                if (!Ffmpeg($"-hide_banner -loglevel error -f lavfi -i \"testsrc=size=320x181:rate=10:duration=3\" -c:v libvpx \"{film}\"", out _))
+                {
+                    return; // this ffmpeg has no vp8 encoder: nothing to mux here
+                }
+
+                Assert.True(Ffmpeg($"-hide_banner -loglevel error -f lavfi -i \"sine=frequency=440:duration=5\" -ar 44100 -ac 2 \"{sound}\"", out _));
+
+                if (!Ffmpeg(SoundAnalysis.MuxArguments(film, sound, mp4), out string report))
+                {
+                    if (report.Contains("Unknown encoder") || report.Contains("libx264") || report.Contains("aac"))
+                    {
+                        return; // this ffmpeg has no H.264 or AAC encoder
+                    }
+
+                    Assert.Fail("the mux failed: " + report);
+                }
+
+                Ffmpeg(SoundAnalysis.ProbeArguments(mp4), out string probe);
+                Assert.Contains("Video: h264", probe);
+                Assert.Contains("Audio: aac", probe);
+                Assert.Contains("320x180", probe); // the odd 181 became 180
+                Assert.Matches(@"Duration: 00:00:0[23]\.", probe); // the picture's three seconds, not the sound's five
+                Assert.DoesNotContain("Duration: 00:00:05", probe);
+            }
+            finally
+            {
+                Directory.Delete(folder, true);
+            }
+        }
+
         private static bool Ffmpeg(string arguments, out string stderr)
         {
             stderr = string.Empty;
