@@ -1,12 +1,29 @@
 # Changelog
 
-No tag and no GitHub release exist: the CI creates both after a successful Steam upload. A `v1.0.0` tag and release made by hand on 2026-09-22 were deleted on 2026-09-25, for that reason.
-
 ## [Unreleased]
 
-The content of the 1.0.0 candidate, below, and of the `Unreleased` tool notes at the end of this file. It is dated and renamed `## [1.0.0]` when the publication is prepared.
+Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol.
 
-### 1.0.0 candidate, 2026-09-22
+### Added
+
+- ColonistRace: `Nelim's Pickle Tools: {string} body type is {word}` (`Male`, `Female`, `Thin`, `Fat`, `Hulk`) gives a pawn a body type that is certain, by removing every body-type gene and adding the one of that type (`Body_Standard` for Male and Female), then reads the type back. Played 2 of 2 on Pickle v4.9.1.
+- ScreenshotMode: steps that turn developer mode off for a capture that keeps the interface.
+- HoverSteps (hover a tooltip region by its text) and SoundCapture (optional: record the game's sound, and assert that the game holds a playing sound). **Neither is in the bundle**: `Release/Prepare-Release.ps1` lists thirteen tools and names neither.
+
+### Changed
+
+- ClickDiagnostics: the stand-still wait says how long it really waited and gives up on the clock; a window already open before the click does not count.
+- The interface-scale scenario clicks by the key of its label, so it also plays in French.
+- The step vocabulary checks (`Check-Steps.ps1`) read the sibling tools and attributes written as `Prefix + "..."`.
+
+### Tested
+
+- The aggregate bundle on Pickle v4.9.1, English and French: minimal, Biotech absent, RIMMSQOL bridge and settings, the RIMMSQOL restart chain, the five tool features together (11 of 11 in each language) and the VEF-present pass (5 of 5 in each language). See `docs/runs/aggregate.md`.
+
+## [1.0.0] - 2026-09-22
+
+First release: Steam Workshop item `3806142401` (uploaded 2026-09-22 11:59 UTC) and GitHub release `v1.0.0`, tag on `2dc9845`. The GitHub release was deleted by mistake on 2026-09-25 and recreated the same day, with its original text and on the same commit; **its three attached files** (`PickleTools-1.0.0-github.zip`, `PickleTools-1.0.0-workshop.zip` and `SHA256SUMS.txt`, sha256 `0cf9bbd5...`, `867f1137...`, `55832413...`) **could not be recovered** and are missing from the recreated release. The commit whose `Mod/` was uploaded to Steam is not recorded.
+### Added
 
 - Package thirteen reusable Pickle step modules as one `nelim.pickletools` Workshop item, with only Pickle
   required globally and test-specific integrations remaining optional.
@@ -17,7 +34,7 @@ The content of the 1.0.0 candidate, below, and of the `Unreleased` tool notes at
 - Add ScreenshotStudio as an optional companion. Its zen meadow is the default fixture for presentation and
   screenshot scenarios; construction/save-reload and separate-process fixture loading both passed.
 
-### 0.1.0-rc.1 - local candidate, 2026-09-22
+### Earlier candidate, 0.1.0-rc.1, 2026-09-22
 
 - Prepare one Workshop bundle with thirteen modules and a GitHub archive with development companions, preserving packageIds
   and source paths. ScreenshotStudio remains excluded as scene-specific work in progress.
@@ -26,7 +43,7 @@ The content of the 1.0.0 candidate, below, and of the `Unreleased` tool notes at
 - Add a new suite authoring guide and consolidate the Elsewhere catalogue with a checked sixteen-suite inventory.
 - Correct dependency tags, restart arrays, report retention, scaled diagnostics and upstream migration guidance.
 
-### Tool notes
+### Tool notes at the time of the release
 
 #### RimmsqolSteps
 
@@ -71,7 +88,3 @@ The content of the 1.0.0 candidate, below, and of the `Unreleased` tool notes at
 - Other tools added by other sessions are recorded in their own folders: `FilmTicks/`, `ResearchSteps/`,
   `ColonistRace/`, `InspectTabs/`, `KeyedClick/`, `Upstream/`. Steps that live in a suite and could be taken from there are listed in the
   README.
-
-## [0.1.0] - 2026-09-22
-
-Creation of the Workshop item (a `publishIdFile`), the only Steam upload so far: item `3806142401`, uploaded at 11:59 UTC, 736,291 bytes, one subscriber, visibility public as read from Steam's public API on 2026-09-25 (`visibility` 0). `Mod/About/PublishedFileId.txt` was committed in `2dc9845`. **The commit whose `Mod/` was uploaded is not recorded**, so this entry cannot say what the item holds; the upload predates the dry-run and the tag rules of `PUBLISHING.md`. It does not say the bundle is tested.
