@@ -50,15 +50,22 @@ namespace Nelim.PickleTools.ColonistRace
         /// endogenes, adds the one gene of the type asked for (Body_Standard for Male and Female, whose body follows
         /// the gender; leaving the pawn with no body-type gene is not certain either, the game then takes the body type
         /// from the adulthood backstory or draws Thin one time in two), redraws the pawn and reads the body type back, failing with what it found if it is not the
-        /// one asked for. The gender is set beforehand: nothing here recomputes it. A child or a baby keeps the
-        /// body type of its age whatever its genes, so the step refuses one. Without Biotech there are no genes and
-        /// the body type is set directly.
+        /// one asked for. The gender is set beforehand: nothing here recomputes it. An adult word (Thin, Fat, Hulk, Male,
+        /// Female) refuses a child or a baby, whose body follows its age whatever its genes; <c>Child</c> and <c>Baby</c> are
+        /// the words for those, see SetJuvenileBodyType. Without Biotech there are no genes and the body type is set directly.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} body type is {word}")]
         public void SetBodyType(PickleContext ctx, string nickname, string bodyType)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no body type");
+
+            string word = bodyType.ToLowerInvariant();
+            if (word == "child" || word == "baby")
+            {
+                SetJuvenileBodyType(ctx, pawn, nickname, word == "child" ? BodyTypeDefOf.Child : BodyTypeDefOf.Baby);
+                return;
+            }
 
             BodyTypeDef wanted;
             GeneticBodyType? geneType = null;
@@ -84,13 +91,8 @@ namespace Nelim.PickleTools.ColonistRace
                     wanted = BodyTypeDefOf.Hulk;
                     geneType = GeneticBodyType.Hulk;
                     break;
-                case "child":
-                case "baby":
-                    throw new ArgumentException(
-                        $"'{bodyType}' is not a body type a gene gives but the body of an age: set the age with " +
-                        "'\"Name\" is N years old' and read it back with 'has body type'");
                 default:
-                    throw new ArgumentException($"unknown body type '{bodyType}'; supported: Male, Female, Thin, Fat, Hulk");
+                    throw new ArgumentException($"unknown body type '{bodyType}'; supported: Male, Female, Thin, Fat, Hulk (adults), Child, Baby (children)");
             }
 
             ctx.Require(
@@ -134,6 +136,30 @@ namespace Nelim.PickleTools.ColonistRace
                 pawn.story.bodyType == wanted,
                 $"pawn '{nickname}' should have body type {wanted.defName} after this step; it has {actual}, with the genes " +
                 (pawn.genes == null ? "(none, no Biotech)" : string.Join(", ", pawn.genes.GenesListForReading.Select(g => g.def.defName))));
+        }
+
+        /// <summary>
+        /// A child's or a baby's body is decided by its age, not by a gene, and setting the age of a pawn (<c>"Name" is N years
+        /// old</c>) does not recompute it: a pawn made an adult and aged to eight keeps its adult body. So <c>body type is
+        /// Child</c> and <c>body type is Baby</c> ask the game for the body type of the pawn's CURRENT stage of life
+        /// (<c>PawnGenerator.GetBodyTypeFor</c>, which returns Baby or Child for a juvenile), store it, redraw and read it back:
+        /// it fails, saying what it found, if the pawn's stage is not the one asked for. The pawn must already be a child or a
+        /// baby (set the age first) and Biotech must be active, since there are no children without it.
+        /// </summary>
+        private static void SetJuvenileBodyType(PickleContext ctx, Pawn pawn, string nickname, BodyTypeDef wanted)
+        {
+            ctx.Require(ModsConfig.BiotechActive, "a child's or a baby's body type needs Biotech, and it is not active in this run");
+            ctx.Require(
+                pawn.DevelopmentalStage != DevelopmentalStage.Adult,
+                $"pawn '{nickname}' is an adult; make it a child first with '\"{nickname}\" is 8 years old'");
+
+            pawn.story.bodyType = PawnGenerator.GetBodyTypeFor(pawn);
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+
+            ctx.Assert(
+                pawn.story.bodyType == wanted,
+                $"pawn '{nickname}' should have body type {wanted.defName} after this step; it has {pawn.story.bodyType?.defName ?? "(none)"}, " +
+                $"being at the {pawn.DevelopmentalStage} stage of life, aged {pawn.ageTracker?.AgeBiologicalYears} years");
         }
 
         /// <summary>
