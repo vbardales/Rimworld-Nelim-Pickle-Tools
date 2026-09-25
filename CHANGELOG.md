@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1.1.0 is published from that commit, not from the head of `main`**):
+
+- ClickDiagnostics: a failed click also prints what Pickle's tag store held after the hover and before the click (commit `8f03eed`, made by another session). The payload DLL follows it. **Not played in game** at the time of this note.
+
 ## [1.1.0] - 2026-09-25
 
 Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol, and HoverSteps is added. The version number is proposed and awaits the owner's confirmation.
