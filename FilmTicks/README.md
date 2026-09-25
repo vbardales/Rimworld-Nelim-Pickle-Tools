@@ -66,7 +66,7 @@ is public.
 
 ```powershell
 dotnet build FilmTicks/Source/Nelim.PickleTools.FilmTicks.csproj -c Release      # net48, output in Mod/Pickle/Assemblies
-dotnet test  FilmTicks/Tests/FilmTicks.Tests.csproj -c Release                   # needs a .NET 10 SDK
+dotnet test  FilmTicks/Tests/FilmTicks.Tests.csproj -c Release                   # net8.0, runs on the default SDK
 ```
 
 Intermediates go to `FilmTicks/.build/`, never inside `Mod/`, since the staging copies `Mod/` verbatim.
