@@ -52,9 +52,10 @@ lists no body-type step, which agrees with `ColonistRace/` still supplying one. 
   on 2026-09-25 (`STATUS.md`).
 - **Fail fast (2026-09-25) needs, before a `publish`**: no red scenario without a green replay, the Workshop gallery, the
   owner's manual validations, a dry-run of the exact commit, the full 40-character SHA, the owner's approval of
-  `steam-production`, and a rollback target chosen beforehand. Two scenarios are red by construction and must be repaired or
+  `steam-production`, and a rollback target chosen beforehand. Two scenarios were red by construction and had to be repaired or
   removed with a reason first: `lost-click-probe` (fails on purpose) and `pickletools-soundcapture` (audio sink measured
-  silent).
+  silent). The first was rewritten on 2026-09-25 to assert the symptom (the page does not open) plus a control, so it is green
+  when the click is lost as intended (first play queued); the second waits for the game-side check (ticket f3c5).
 
 ## Findings, and what was done about them (2026-09-25)
 
