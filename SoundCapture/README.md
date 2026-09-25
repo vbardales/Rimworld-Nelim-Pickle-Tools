@@ -94,6 +94,11 @@ earlier test was the stalled sink. The steps now compare the length of the file 
 recording and attach `sound-short` (and repeat it in the failure of `is not silent`) when the file holds much less than the real time. The cure is on the machine: restart WSL's audio
 (`wsl --shutdown` between runs, which stops every session's run) after checking Windows' output device.
 
+**Played, 2026-09-25, in English: 1 of 1** (`pickletools-soundfilm`, `docs/runs/aggregate.md` row `2026-09-25-v4.9.1-soundfilm-en`, the mp4 and the wav kept under `evidence/aggregate/`): an **11.9 s** `film-sound.mp4` of the main menu
+(H.264 960x540 at 7.4 pictures a second, the software renderer being slow, AAC stereo 44.1 kHz), the sound as long as the picture, present from the first second to the last (-25 dB at the start, the menu music peaking at
+-14.3 dB), and the recorder's file as long as the real time. Two earlier attempts had failed for reasons outside the step: the stalled WSLg audio above, then a crash of the game at startup (exit 139).
+**Only a person watching says whether picture and sound are in step**; the owner had not yet opened it when this was written.
+
 **What a run of the video proves, and what it does not.** That the mp4 exists and that its sound is not silent (the peak is measured on
 `sound.wav`). Whether the picture and the sound are **in step**, and whether the sound is the right one, only a person watching the mp4
 says: the two start in one step, but no clapperboard has been filmed to measure the offset. The mux runs on the game's main thread
