@@ -11,7 +11,7 @@ The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`;
 `aggregate-rimmsqol.feature` against it to exercise the bridge without changing user settings.
 `aggregate-rimmsqol-settings.feature` checks a temporary choice and its after-scenario cleanup
 using vanilla's normally hidden `Inspect` button. It refuses to edit an existing choice.
-`lost-click-probe.feature` asserts the two lost-click symptoms (the page does not open) and a control, so it is green when the click is lost as it should be; the copy that fails on purpose, to read the report's text, is `Upstream/tests/lost-click-probe.feature`.
+`lost-click-probe` is no longer a feature of this suite (deleted 2026-09-25: its probe windows leave Pickle no tag to click, see TESTING.md); `wsl-deps.lostclickprobe.map` remains for the diagnostic copy in Upstream/tests. The diagnostic copy, which fails on purpose to show the report a lost click prints, is `Upstream/tests/lost-click-probe.feature`.
 
 **A pass that stages one tool on its own ends with the `StandaloneBase` overlay.** The staging activates the mod under test,
 `PickleTools/Mod`, and since 2026-09-25 that folder carries the fourteen bundle DLLs (they are what the publish workflow uploads). A
