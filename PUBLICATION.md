@@ -141,6 +141,8 @@ Only Pickle is required globally. Mods and DLC exercised by particular scenarios
 
 The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublished` gates and the fail-fast conditions: no red scenario without a green replay, the gallery, the owner's manual validations, a dry-run of the exact commit, the full SHA, and a rollback target chosen beforehand; the rollback target is `v1.0.0`, the commit `2dc9845`. No tag or release is made by hand: the workflow creates them after a successful upload.
 
+**The description must be true at the moment it replaces the page.** It says the bundle was "tested against Pickle 4.9.1 in English and French ... and across a game restart"; that holds for the thirteen-module bundle (`docs/runs/aggregate.md`) and not yet for the fourteen-module payload, whose HoverSteps has no scenario played. If the matrix is not replayed with the fourteen modules before a publish, reword that sentence to what was played (in both `About.xml` and this file: a new commit, a new SHA, a new dry-run).
+
 The Steam description above is the text for that release: it no longer calls the bundle a release candidate. An upload from the game does not send the description again, so it is sent by the CI with `update_description` (its dry-run prints the text, its size and its diff against the page), or pasted by hand on the Steam page. `Mod/About/About.xml` carries the same text.
 
 **The payload is committed.** The workflow uploads `Mod/` as committed and has no build step, so `Mod/Pickle/Assemblies` holds the
