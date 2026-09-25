@@ -55,11 +55,15 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/Use-Wsl.ps1 -Reason 'SoundC
 **Checked on 2026-09-25: the dry run only** (it printed the plan and listed the WSL game that was running as a reason it would
 refuse). No junction was created and no game was launched.
 
-## Why the WSL run was silent, probably, and what Windows lacks
+## Why the WSL run was silent, now measured, and what Windows lacks
 
 - **The WSL staging writes `volumeMaster 0`** into the profile's `Prefs.xml` (`scripts/stage-pickle-wsl.sh`), so the game is
-  muted there by design. The -91 dB of 2026-09-24 is very likely that, and not a missing audio output. A step that sets
-  `Prefs.VolumeMaster` (a property that applies itself, in memory) would tell; the launcher above writes a volume of 0.8. Not tried.
+  muted there by design, and that was the -91 dB of 2026-09-24. **Confirmed on 2026-09-25**: with the step `the game volume is 80 percent`,
+  the same scenario, in the WSL install, recorded a **peak of -16.2 dB** (threshold -60), `exitReason: passed`, 1 of 1, and the owner heard
+  the main menu's music on her Windows speakers while it ran (the WSLg sink is the way out). So the headless game does open an audio
+  output and the recorder does capture it; nothing needed a Windows game for that. Whether the rule of the owner (alone, on Windows)
+  still holds is hers to say. What the recording does not say is that it is the RIGHT sound: the `sound.wav` of that run is kept in
+  `evidence/aggregate/2026-09-25-v4.9.1-soundcapture-volume-en/` to be listened to. The launcher above writes a volume of 0.8.
 - **On Windows, ffmpeg has nothing to record the output with.** `ffmpeg -list_devices true -f dshow -i dummy` lists the webcam and
   "Microphone Array (Realtek(R) Audio)" only: no "Stereo Mix", no loopback device, and this ffmpeg has no WASAPI input. Recording
   the mix takes either enabling a loopback device in Windows' sound settings or a small recorder on the Core Audio loopback API
