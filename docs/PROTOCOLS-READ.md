@@ -46,18 +46,28 @@ lists no body-type step, which agrees with `ColonistRace/` still supplying one. 
   removed with a reason first: `lost-click-probe` (fails on purpose) and `pickletools-soundcapture` (audio sink measured
   silent).
 
-## Findings not acted on (the owner decides)
+## Findings, and what was done about them (2026-09-25)
 
-- A `v1.0.0` tag and a GitHub release "PickleTools 1.0.0" exist since 2026-09-22 (commit 2dc9845, 89 commits behind), while
-  `CHANGELOG.md` says nothing was released or tagged and the CI is meant to create both after a successful upload. The
-  publish workflow refuses an existing tag.
-- The repository has no `.github/workflows`, so no dry-run or `publish` pipeline is set up here.
-- `CHANGELOG.md` headings are `## 1.0.0 - ...`; the publish workflow reads a `## [<version>]` section, and `AUDIT.md` wants a
-  `## [0.1.0]` entry for the creation of the item.
-- `PUBLICATION.md` says the item is "currently private" and, a few lines later, that a comment was posted "after item
-  3806142401 became public"; `WORKSHOP_COMMENTS.md` says the same. Which is true is for the owner to say.
-- `ATTRIBUTION.md` does not name `HoverSteps`, `ScreenshotMode` or `SoundCapture`.
-
+- **Fixed: the hand-made `v1.0.0` tag and GitHub release** (commit 2dc9845, 89 commits behind) were deleted, tag included
+  (the release text and asset digests were kept outside the repository first). The CI creates both after a successful upload,
+  and its workflow refuses an existing tag. `CHANGELOG.md` now says no tag or release exists.
+- **Fixed: `CHANGELOG.md`** now has `## [Unreleased]` (the 1.0.0 candidate, to be dated and renamed `## [1.0.0]` when
+  the publication is prepared) above a `## [0.1.0]` entry for the creation of the item. That entry says the commit whose
+  `Mod/` was uploaded is **not recorded**.
+- **Fixed: the item is public, not private.** Steam's public API returns it (`visibility` 0, created and updated
+  2026-09-22 11:59 UTC, one upload, one subscriber), and it returns nothing for a private item. `PUBLICATION.md` and
+  `STATUS.md` said private; both are corrected. The root `PUBLISHING.md` still says "fiche Workshop privÃ©e" for
+  PickleTools: it is not a file of this repository, so it is left for the owner.
+- **Fixed: `ATTRIBUTION.md`** now names ClearScreen, InterfaceScale, ClickDiagnostics, ExpansionSteps, HoverSteps,
+  ScreenshotMode, ScreenshotStudio, TextureOwner and SoundCapture, with the limit of that record (commit trailers and
+  READMEs, not a line-by-line audit). `Mod/ATTRIBUTION.md` is the same file (hash checked).
+- **Not fixed, needs a decision: no `.github/workflows`.** The publish workflow uploads `Mod/` as committed, and
+  this repository's `Mod/` holds only the metadata and the artwork: the thirteen DLLs are assembled into
+  `.build/aggregate-current/Mod` by `Release/Prepare-Release.ps1`. A workflow generated now could only publish a bundle
+  without its steps. Either the assembled payload is committed under `Mod/` (thirteen DLLs duplicated from the tool
+  folders, `Prepare-Release.ps1` changed to write there), or the workflow builds it. Neither was done unasked.
+- **Not fixed: the Steam page description** still says "release candidate, validation pending"; it can only be edited by hand
+  on the Steam page, or sent by a publish with `update_description`.
 ## Corrections made after reading
 
 - A .NET 10 SDK exists at `C:\Users\nelim\.dotnet10` (10.0.401, used to build Pickle, see `Headless/README.md`); the SDK on the
