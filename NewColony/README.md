@@ -40,14 +40,16 @@ exploration**, and once. A scenario that uses it takes minutes of generation and
 
 ## Status
 
-**Written 2026-09-25, not played.** It compiles (0 warnings), and its patterns compile with Pickle's engine and are not ambiguous. The open
-question is whether a step can change the scene from Entry to Play and hand the game back to a normal scenario, which is what the first
-run (`pickletools-newcolony.feature`) answers; this section is to be rewritten with its result. Whether the same seed gives the same
-colonists is deliberately not tested: see above.
+**Played once by another suite on 2026-09-25 (Creatures of Ki, all DLCs on, scenario Crashlanded): it failed, and the first version was wrong.** What that run showed:
+the change of scene works (the map was generated in 4.2 s and the game was playable, paused), but with **Ideology** active the player faction had no ideoligion,
+so the scenario's starting meals threw (`NullReferenceException` in `FoodUtility.HasHumanMeatEatingRequiredPrecept`, from `GenerateGoodIngredients`) and the
+starting pawns never arrived: a map with **no colonist**. The step now chooses the classic ideoligion the way the new-colony screens do
+(`Page_ChooseIdeoPreset`: generate it, make it the player's and every faction's, drop the unused ones) before the scenario is set up, and it **fails if the map has no colonist**.
+It also pops the random states the game's code left pushed inside the seeded draw (the game had warned `Random state stack is not empty`).
+**The fixed step has not been played yet.** Whether the same seed gives the same colonists is deliberately not tested: see above.
 
-Where it comes from: `Root_Play.SetupForQuickTestPlay` and `PageUtility.InitGameStart` of `Assembly-CSharp` 1.6, decompiled on
-2026-09-25. It is a copy of what the game's own developer quick start does, with the choices fixed.
-
+Where it comes from: `Root_Play.SetupForQuickTestPlay`, `PageUtility.InitGameStart` and, for Ideology, `Page_ChooseIdeoPreset` of `Assembly-CSharp` 1.6, decompiled on
+2026-09-25: a copy of what the game's developer quick start and its new-colony pages do, with the choices fixed.
 ## Using it from a suite
 
 ```
