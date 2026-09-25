@@ -1,6 +1,6 @@
 # Sound capture - Pickle steps (optional)
 
-Eleven Pickle steps: seven that record **what the game plays** between two steps (two of them as a video with its sound) and measure it, one that sets the game's master volume, and three that assert what the **game itself** holds as playing (no audio device involved). It is an
+Fourteen Pickle steps: seven that record **what the game plays** between two steps (two of them as a video with its sound) and measure it, four that set the game's volumes (master, music, ambience, and both muted), and three that assert what the **game itself** holds as playing (no audio device involved). It is an
 optional companion: nothing runs unless a scenario asks for it, nothing in Pickle or in the launcher changes, and it is
 not part of the aggregate bundle.
 
@@ -14,6 +14,9 @@ not part of the aggregate bundle.
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 | `Nelim's Pickle Tools: the sound recorded as {string} is silent` | The same measure, asserting the level is below -80 dB |
 | `Nelim's Pickle Tools: the game volume is {int} percent` | Sets the game's master volume for the scenario (the WSL staging writes 0, which mutes the game) and puts the value found back afterwards; nothing is saved to disk |
+| `Nelim's Pickle Tools: the game music volume is {int} percent` | The game's background music, apart from the master volume (which would cut the effects a recording wants to hear as well). Put back after the scenario, nothing saved to disk |
+| `Nelim's Pickle Tools: the game ambient volume is {int} percent` | The same for the ambience |
+| `Nelim's Pickle Tools: the game music and ambience are muted` | Both at 0: a recording then holds what a mod plays and not the menu or map music (Anima Song measured a peak of -14.3 dB from the background music alone on a whole film) |
 | `Nelim's Pickle Tools: the game is playing a sound` | Passes as soon as the game holds a live sustainer, a playing one-shot sample or the main menu's music, waiting up to ten real seconds; the failure lists what the game held |
 | `Nelim's Pickle Tools: the game is playing the sound {string}` | The same for one sound def by name: a live sustainer or a playing one-shot started from it |
 
@@ -85,8 +88,9 @@ is not done: it would take a change in Pickle, and these two steps need none.
 
 **When the audio server stalls, the recording is short and silent (seen 2026-09-25).** The first play of the video (ticket `56ae`, 21 s of scenario) left a `sound.wav` of 1.5 s, all
 at -91 dB, while the volume step had run: WSLg's PulseAudio had begun logging `[rdp-sink] q overrun, queuing locally` every few seconds at the moment the run started,
-which is a sink whose channel to Windows drains nothing, and even `ffmpeg -sources pulse` returned nothing. A sink with no stream also sends the recorder no data at all
-(a recording of an idle sink does not end by itself: `-t` counts the data it receives). The steps now compare the length of the file with the real time of the
+which is a sink whose channel to Windows drains nothing, and even `ffmpeg -sources pulse` returned nothing. A first version of this note said that an idle sink also sends
+the recorder no data; **that was wrong**: after the restart, a 5 s recording of the idle sink ended in 5.9 s and held 5.1 s of silence, so a healthy idle sink delivers silence in real time. What hung the
+earlier test was the stalled sink. The steps now compare the length of the file with the real time of the
 recording and attach `sound-short` (and repeat it in the failure of `is not silent`) when the file holds much less than the real time. The cure is on the machine: restart WSL's audio
 (`wsl --shutdown` between runs, which stops every session's run) after checking Windows' output device.
 
