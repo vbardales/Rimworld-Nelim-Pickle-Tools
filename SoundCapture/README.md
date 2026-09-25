@@ -24,15 +24,44 @@ not part of the aggregate bundle.
   not left as the test set it.
 
 This is an **exception to the absolute rule of `AUDIT.md` that no session launches the Windows game**, given by the owner for
-these tests only, on this date. `AUDIT.md` itself is not changed here. **Nothing has been launched on Windows for it, and none
-is to be until the owner asks for that run**; the existing launcher (`Run-PickleWsl.ps1`) is WSL only and
-`Tests/Pickle/Run-Pickle.ps1 -Launch` refuses, so there is also no launcher for this yet.
+these tests only on 2026-09-25 and now written in `AUDIT.md` itself (protocols repository). **Nothing has been launched on
+Windows for it, and none is to be until the owner asks for that run.**
 
-**What remains to be tested there: the recording.** The tool records through PulseAudio (`-f pulse`, source `RDPSink.monitor`),
-which is a WSL thing. On Windows it needs another source: `ffmpeg.exe` is installed (WinGet, 8.1 full build), and a capture of
-the output goes through DirectShow (`-f dshow`, a "Stereo Mix" or loopback device) or another loopback driver; the source
-is set by `PICKLETOOLS_SOUND_SOURCE`, but the input format (`-f pulse`) is not yet a setting. **Not written, not tried.**
-The game-side steps (`the game is playing a sound`, `... the sound {string}`) need none of this and run anywhere.
+**The launcher: `SoundCapture/Run-Windows.ps1`**, for this case only (and for the owner's own listening: `-Watch` plays the
+waits in real time, `-Volume` sets the master volume). It does nothing without `-Go`; the default is a dry run that checks the
+machine and prints the plan. What it does with `-Go -UnderLock`, and only through `scripts/Use-Wsl.ps1`, which queues, takes the
+machine lock and logs it:
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File scripts/Use-Wsl.ps1 -Reason 'SoundCapture on Windows (owner exception)' `
+  -Command "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/nelim/Documents/rimworld/PickleTools/SoundCapture/Run-Windows.ps1 -Go -UnderLock"
+```
+
+1. Refuses if the Windows game or the WSL game is running, or Steam is not (the Workshop copies of Harmony and Pickle must be
+   installed; `-PickleSrc` puts a local Pickle build in their place).
+2. **Changes the mod list without touching hers**: the game is started with `-savedatafolder` on a profile of its own
+   (`.build/windows-sound/profile`), where it writes `Config/ModsConfig.xml` (Harmony, Core, the DLC, Pickle, the test companion and
+   the map's mods, read from `Tests/Pickle/wsl-deps.soundcapture.map`) and `Config/Prefs.xml`. Her `ModsConfig.xml`, `Prefs.xml`,
+   saves and settings are never opened. `-savedatafolder` is what the game documents for this; **not yet seen working here**.
+3. Puts the test companion and the map's local mods in the game's `Mods/` folder as junctions named `zz-picklesound-*` and
+   **removes them in a `finally`**, comparing the folder's listing before and after (exit 3 if they differ).
+4. Runs Pickle's autorun with the filter, waits for the game to end by itself, and closes only the process it started if it
+   outlives its timeout plus a margin. Copies the report to `-EvidenceDir`, and reads `exitReason` before the counts.
+
+**Checked on 2026-09-25: the dry run only** (it printed the plan and listed the WSL game that was running as a reason it would
+refuse). No junction was created and no game was launched.
+
+## Why the WSL run was silent, probably, and what Windows lacks
+
+- **The WSL staging writes `volumeMaster 0`** into the profile's `Prefs.xml` (`scripts/stage-pickle-wsl.sh`), so the game is
+  muted there by design. The -91 dB of 2026-09-24 is very likely that, and not a missing audio output. A step that sets
+  `Prefs.VolumeMaster` (a property that applies itself, in memory) would tell; the launcher above writes a volume of 0.8. Not tried.
+- **On Windows, ffmpeg has nothing to record the output with.** `ffmpeg -list_devices true -f dshow -i dummy` lists the webcam and
+  "Microphone Array (Realtek(R) Audio)" only: no "Stereo Mix", no loopback device, and this ffmpeg has no WASAPI input. Recording
+  the mix takes either enabling a loopback device in Windows' sound settings or a small recorder on the Core Audio loopback API
+  (a console tool on NAudio's `WasapiLoopbackCapture`). **Neither is written or tried.**
+
+**What remains to be tested there: the recording.** The tool records through PulseAudio (-f pulse, source RDPSink.monitor), which is a WSL thing, and its input format is not yet a setting (PICKLETOOLS_SOUND_SOURCE names only the source). The game-side steps (	he game is playing a sound, ... the sound {string}) need none of this and run anywhere.
 
 ## What it needs
 
