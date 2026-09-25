@@ -84,7 +84,17 @@ Intermediates go to `ColonistRace/.build/`, never inside `Mod/`, since the stagi
 
 ## Verification
 
-Built with 0 warnings, 0 errors. **Nothing played in a game yet** as of 2026-09-21: the five scenarios that will
-play the seven steps (`Genie` gives Thin, `Hussar` gives Hulk, a body type set after the xenotype wins, a colonist
-of the vanilla kind `Villager` dressed and read back, a girl of eight read back as a female child) are queued on
-the WSL machine. This section is to be rewritten with the run's result.
+Built with 0 warnings, 0 errors. **Played in game on 2026-09-25, in English, on Pickle 4.9.1** (`pickletools-colonistrace-bodytype`, pass map
+`wsl-deps.colonistrace.map`; `docs/runs/aggregate.md`, rows `2026-09-25-v4.9.1-colonistrace-child` and `-child2`):
+
+- **A pawn with two body-type genes gets each body type asked for in turn** (Hussar through Thin, Fat, Hulk, Male; the xenotype kept): passed.
+- **A female pawn gets the Female body when no gene is left** (Hulk, then Female): passed.
+- **A child gets the body of a child** (`body type is Child`, read back as Child, at the Child stage of life): **failed once**, then passed.
+  The first play logged `Failed to find any textures at .../ShirtButton_Child`: the pawn still wore an adult's shirt, which has no child texture, and
+  the redraw's error failed the scenario. The step now first takes off what the stage may not wear (to the inventory), and the scenario passed (1 of 1).
+  The two adult scenarios ran on the build before that change, which did not touch their path.
+
+The steps these scenarios use, and so have played: `body type is {word}` (Thin, Fat, Hulk, Male, Female, Child), `xenotype is {string}`, and the reads
+`has gender`, `has body type`, `has xenotype`, `is at the {word} stage of life`. **Not played in a game**: `a colonist {string} of kind {string} exists`, `is of race {string}`,
+`Baby` for the body type, and any race a mod adds (Humanoid Alien Races). Not played in French, and not with a Biotech-less game (the steps that need
+Biotech say so and stop, unplayed).
