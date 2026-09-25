@@ -1,0 +1,30 @@
+{
+  "templateStamp": "683151266dd1",
+  "workshopId": "3806142401",
+  "packageId": "nelim.pickletools",
+  "releaseTitle": "Nelim's Pickle Tools {version}",
+  "requirePaths": [
+    "Pickle/Assemblies/Nelim.PickleTools.ClearScreen.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.ClickDiagnostics.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.ColonistRace.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.Expansions.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.FilmTicks.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.InspectTabs.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.InterfaceScale.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.KeyedClick.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.ResearchSteps.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.ScreenshotMode.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.TextureOwner.dll",
+    "Pickle/Assemblies/Nelim.PickleTools.VefFactions.dll"
+  ],
+  "forbidPaths": [
+    "Source",
+    ".build"
+  ],
+  "previewFile": "About/Preview.png",
+  "description": {
+    "file": "PUBLICATION.md",
+    "heading": "^## Steam description$"
+  }
+}
