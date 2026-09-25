@@ -1,6 +1,6 @@
 # Aggregate passes: what each report said
 
-Generated 2026-09-25 13:43 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
+Generated 2026-09-25 14:36 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
 The reports are not in git and the superseded ones are deleted (AGENTS.md, Test evidence); their rows stay. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.
 The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without one ran against the staged Workshop copy.
 
@@ -57,5 +57,6 @@ The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without 
 | 2026-09-24-v4.9.1-vef-en | failed | 0/5 (failed 1, skipped 4, flaky 0) | the mod loads after the framework it patches; loading the fixture leaves no window open; VEF's check ignores the faction instead of asking; the cho... |
 | 2026-09-24-v4.9.1-vef-en-rerun | passed | 5/5 (failed 0, skipped 0, flaky 0) | the mod loads after the framework it patches; loading the fixture leaves no window open; VEF's check ignores the faction instead of asking; the cho... |
 | 2026-09-24-v4.9.1-vef-fr-final | passed | 5/5 (failed 0, skipped 0, flaky 0) | the mod loads after the framework it patches; loading the fixture leaves no window open; VEF's check ignores the faction instead of asking; the cho... |
+| 2026-09-25-v4.9.1-colonistrace-bodytype-fix | passed | 2/2 (failed 0, skipped 0, flaky 0) | a pawn with two body-type genes gets each body type asked for, in turn; a female pawn gets the Female body when no gene is left |
 | 2026-09-25-v4.9.1-interfacescale-fr-fix | passed | 1/1 (failed 0, skipped 0, flaky 0) | a button is clickable at another interface scale |
 | 2026-09-25-v4.9.1-tools-fr-final2 | passed | 11/11 (failed 0, skipped 0, flaky 0) | the inspect tabs open on a selected pawn, by short name, type name and label key; a button is clickable at another interface scale; a cleared scree... |
