@@ -52,6 +52,24 @@ Played **once** with one draw. **Not checked:** the `Random state stack` warning
 
 Where it comes from: `Root_Play.SetupForQuickTestPlay`, `PageUtility.InitGameStart` and, for Ideology, `Page_ChooseIdeoPreset` of `Assembly-CSharp` 1.6, decompiled on
 2026-09-25: a copy of what the game's developer quick start and its new-colony pages do, with the choices fixed.
+## A use case to copy: proving that generation works with the mod active (Creatures of Ki, at the owner's request)
+
+**What it is for.** Showing that the game can **generate** a world and a first map with the mod active. Creatures of Ki adds an animal with `wildBiomes` and spawn weights, values that only world and map generation read.
+No saved game can show it, since a save is made after generation. Every other scenario of that suite loads a fixture colony saved **without** the mod, so the mod is added to a colony that already exists and generation is never exercised.
+
+**What the scenario asserts, and nothing about the colony obtained.** `Given the main menu is open`, `the new colony's seed is "..."`, `a new colony is started`, then only that a def of the mod exists
+(`def "Teshi" of type "PawnKindDef" exists`), `no warnings from mod "<mod name>"` and `no errors were logged`. It reads no colonist, no tile, no map content, so it holds for any draw.
+The colony is random and never the same twice, so a colony-dependent assertion would be a coin flip. **Green means one clean draw, not every draw**; a red may not replay, so keep the `new-colony`
+attachment (choices, tile, colonists) with the report: it is the only record of which draw it was.
+
+**When.** Once, in an initial or a final validation, never in a fix or an exploration loop; in its own ticket, with its own pass map
+(`nelim.pickletools.newcolony   path:PickleTools/NewColony/Mod`), the feature tagged `@requires:nelim.pickletools.newcolony`, and `-Extra "-pickle-scenario-timeout=400"`.
+Anything that must repeat is played on a fixture colony instead.
+
+**Who should use it.** A mod whose defs matter to generation: animals with `wildBiomes` or `commonality`, plants, terrain, biome or world-generation patches, things with a scatterer or a gen step,
+starting items, scenario or faction changes. A mod that only adds items, UI or recipes has nothing that generation can break and should not spend the machine on it.
+
+Verdict of that suite's first successful use: green on its revision `1fcc51f` after the fix above, 6.4 s, 3 colonists, classic ideoligion (one draw).
 ## Using it from a suite
 
 ```
