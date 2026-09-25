@@ -1,9 +1,9 @@
 <#
 Creates local candidate archives; never tags, uploads or publishes.
 
-  -SyncMod    copies the thirteen tool DLLs (each tool's tracked Mod/Pickle/Assemblies) and ATTRIBUTION.md into the
+  -SyncMod    copies the fourteen tool DLLs (each tool's tracked Mod/Pickle/Assemblies) and ATTRIBUTION.md into the
               repository's own Mod/, which is what the publish workflow uploads as committed. Commit the result.
-  -Check      changes nothing: fails if Mod/Pickle/Assemblies is not exactly the thirteen tool DLLs, byte for byte, or
+  -Check      changes nothing: fails if Mod/Pickle/Assemblies is not exactly the fourteen tool DLLs, byte for byte, or
               if Mod/ATTRIBUTION.md differs from the root one. Run it before every release.
   -Rebuild    with -Check: also rebuilds each tool from Source/ into a temporary folder and REPORTS (NOTE, never a failure)
               the tools whose rebuild is not byte-identical to the tracked DLL. It is informational: the package references
@@ -18,7 +18,7 @@ param([string]$Version = '0.1.0-rc.1', [switch]$IncludeScreenshotStudio, [switch
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+(-[A-Za-z0-9.]+)?$') { throw 'Invalid version' }
 $root = Split-Path $PSScriptRoot
-$tools = @('ClearScreen','ClickDiagnostics','ColonistRace','ExpansionSteps','FilmTicks','InspectTabs','InterfaceScale','KeyedClick','ResearchSteps','RimmsqolSteps','ScreenshotMode','TextureOwner','VefFactionSteps')
+$tools = @('ClearScreen','ClickDiagnostics','ColonistRace','ExpansionSteps','FilmTicks','HoverSteps','InspectTabs','InterfaceScale','KeyedClick','ResearchSteps','RimmsqolSteps','ScreenshotMode','TextureOwner','VefFactionSteps')
 
 if ($SyncMod -or $Check) {
     $target = Join-Path $root 'Mod/Pickle/Assemblies'
