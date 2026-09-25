@@ -8,7 +8,8 @@ Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickD
 
 - ColonistRace: `Nelim's Pickle Tools: {string} body type is {word}` (`Male`, `Female`, `Thin`, `Fat`, `Hulk`) gives a pawn a body type that is certain, by removing every body-type gene and adding the one of that type (`Body_Standard` for Male and Female), then reads the type back. Played 2 of 2 on Pickle v4.9.1.
 - ScreenshotMode: steps that turn developer mode off for a capture that keeps the interface.
-- HoverSteps (hover a tooltip region by its text) and SoundCapture (optional: record the game's sound, and assert that the game holds a playing sound). **Neither is in the bundle**: `Release/Prepare-Release.ps1` lists thirteen tools and names neither.
+- HoverSteps (hover a tooltip region by its text, six steps) **joins the bundle**, now fourteen modules. It has an offline check (`HoverSteps/Check-Steps.ps1`); its steps were not yet played in this repository.
+- SoundCapture (optional: record the game's sound, and assert that the game holds a playing sound). **Not in the bundle**.
 
 ### Changed
 
