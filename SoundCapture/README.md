@@ -11,6 +11,29 @@ not part of the aggregate bundle.
 | `Nelim's Pickle Tools: I stop recording the sound` | Ends the recording, checks the file, attaches `sound-file` and `sound-note` to the report |
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` / `... is silent` | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 
+## Where and how to run it: alone, and on Windows (the owner, 2026-09-25)
+
+**Any test that uses SoundCapture is run ALONE, and on the Windows install**, not in the headless WSL install:
+
+- **Alone**: no other Pickle test queued with it or around it. A recording listens to the machine's whole audio output, so
+  anything else playing pollutes it, and the run takes the owner's machine and delays her.
+- **On Windows**: the WSL install produced one measurement, silence at -91 dB, with no explanation (see below), and nothing
+  proves the game plays into that sink at all. The Windows game is the one with real audio.
+- **The mod list is changed for the run, then put back**: stage the test companion and this tool, note the list first, and
+  restore exactly that list afterwards (`ModsConfig.xml`), the way any audit restores what it changed. The owner's mod list is
+  not left as the test set it.
+
+This is an **exception to the absolute rule of `AUDIT.md` that no session launches the Windows game**, given by the owner for
+these tests only, on this date. `AUDIT.md` itself is not changed here. **Nothing has been launched on Windows for it, and none
+is to be until the owner asks for that run**; the existing launcher (`Run-PickleWsl.ps1`) is WSL only and
+`Tests/Pickle/Run-Pickle.ps1 -Launch` refuses, so there is also no launcher for this yet.
+
+**What remains to be tested there: the recording.** The tool records through PulseAudio (`-f pulse`, source `RDPSink.monitor`),
+which is a WSL thing. On Windows it needs another source: `ffmpeg.exe` is installed (WinGet, 8.1 full build), and a capture of
+the output goes through DirectShow (`-f dshow`, a "Stereo Mix" or loopback device) or another loopback driver; the source
+is set by `PICKLETOOLS_SOUND_SOURCE`, but the input format (`-f pulse`) is not yet a setting. **Not written, not tried.**
+The game-side steps (`the game is playing a sound`, `... the sound {string}`) need none of this and run anywhere.
+
 ## What it needs
 
 - `ffmpeg` on the PATH of the game, and an audio server to record from. On the WSL test install the game plays into the
