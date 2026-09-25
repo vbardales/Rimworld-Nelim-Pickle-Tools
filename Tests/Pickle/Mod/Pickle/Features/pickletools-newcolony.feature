@@ -1,8 +1,8 @@
 # The optional NewColony tool: a colony started from the main menu, with the choices fixed, up to a playable paused map.
 #
 # NOT PLAYED YET (2026-09-25). The first run is the probe: it answers whether the step can change the scene from Entry to Play and
-# hand a normal scenario back. What it asserts is only what the game says of its own state; that the colonists are the same for the
-# same seed is a second question (see NewColony/README.md).
+# hand a normal scenario back. What it asserts is only what the game says of its own state; a new colony is not reproducible, so it is played once,
+# in an initial or a final pass, never for a fix or an exploration (NewColony/README.md).
 #
 #   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.newcolony.map -Filter pickletools-newcolony
 @requires:nelim.pickletools.newcolony
