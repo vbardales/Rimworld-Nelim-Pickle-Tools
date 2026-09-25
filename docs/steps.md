@@ -2,13 +2,12 @@
 
 The Pickle steps this repository ships, one table per tool. **Pickle's own steps are in its catalogue:
 [Docs/steps.md](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md)** (defs, mods, fixtures, pawns,
-simulation, interface...); look there first, and here for what Pickle does not have. Every step here starts with
-`Nelim's Pickle Tools:` so it can never be ambiguous with one of Pickle's, and is staged with one line of a pass map
-("Using a tool from a suite" in the [README](../README.md)).
+simulation, interface...); look there first, and here for what Pickle does not have. Every step starts with `Nelim's Pickle Tools:`, which keeps it from being ambiguous with one of Pickle's, **except 17 of them: RimmsqolSteps (17)**. Those texts have no prefix, so nothing in the text protects them: each tool's `Check-Steps.ps1` matches every step line of every feature of the repository against Pickle's own vocabulary and the other tools', and fails on an ambiguity. It is staged with one line
+of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-80 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+86 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -37,7 +36,7 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 
 | Step | Does |
 | --- | --- |
-| `Nelim's Pickle Tools: {string} xenotype is {string}` (Given) | Gives a pawn a Biotech xenotype and redraws it. ) sets the body type as it goes. The endogenes the pawn was born with are kept, so a pawn already carrying one of those keeps it alongside the new ones. |
+| `Nelim's Pickle Tools: {string} xenotype is {string}` (Given) | Gives a pawn a Biotech xenotype and redraws it. The game removes the pawn's xenogenes and adds the xenotype's genes one by one, so a gene that carries a body type (Body_Thin, Body_Hulk...) sets the body type as it goes. The endogenes the pawn was born with are kept, so a pawn already carrying one of those keeps it alongside the new ones. |
 | `Nelim's Pickle Tools: {string} body type is {word}` (Given) | Gives a pawn a body type the game cannot draw at random: `Thin`, `Fat` or `Hulk`, or `Male` / `Female` (the plain body of that gender). The game keeps every body-type gene a pawn has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard and Body_Hulk) has no fixed body type. |
 | `Nelim's Pickle Tools: a colonist {string} of kind {string} exists` (Given) | Generates a colonist from a humanlike PawnKindDef, the way "a colonist exists" does from the plain colonist kind, and does nothing if a colonist by that nickname already exists. The race is the kind's, so a kind from a race mod gives a pawn of that race, with that race's body types. |
 | `Nelim's Pickle Tools: {string} has gender {word}` (Then) | Asserts a pawn's gender, `male` or `female`, case insensitive. |
@@ -102,6 +101,19 @@ Package `nelim.pickletools.keyedclick`. In the bundle (`Mod/Pickle/Assemblies`).
 | --- | --- |
 | `Nelim's Pickle Tools: I click button keyed {string}` (When) | resolves the key with the game's own `Translate()`, then clicks the button drawn under that label |
 
+## NewColony
+
+Package `nelim.pickletools.newcolony`. Not in the bundle: a companion staged by a pass map. [README](../NewColony/README.md).  
+
+| Step | Does |
+| --- | --- |
+| `Nelim's Pickle Tools: the new colony's seed is {string}` (Given) | The seed of the world; also seeds the draw of the starting tile and of the colonists. Default `picklecolony` |
+| `Nelim's Pickle Tools: the new colony's map size is {int}` (Given) | Cells a side, 25 to 500. Default 75 |
+| `Nelim's Pickle Tools: the new colony's scenario is {string}` (Given) | A `ScenarioDef` by name. Default `Crashlanded`; an unknown name fails and lists the scenarios the game has |
+| `Nelim's Pickle Tools: the new colony's storyteller is {string}` (Given) | A `StorytellerDef`. Default `Cassandra` |
+| `Nelim's Pickle Tools: the new colony's difficulty is {string}` (Given) | A `DifficultyDef`. Default `Rough` |
+| `Nelim's Pickle Tools: a new colony is started` (Given) | From the main menu: sets the game up as the developer quick start does, with the choices below, generates the world (5 percent of the planet), picks a starting tile, then takes the last new-colony page's path (`PageUtility.InitGameStart`): the scene "Play" is loaded, the map is generated, the game is put on pause. |
+
 ## ResearchSteps
 
 Package `nelim.pickletools.research`. In the bundle (`Mod/Pickle/Assemblies`). [README](../ResearchSteps/README.md).  
@@ -109,7 +121,7 @@ Package `nelim.pickletools.research`. In the bundle (`Mod/Pickle/Assemblies`). [
 | Step | Does |
 | --- | --- |
 | `Nelim's Pickle Tools: I open the research tab {string}` (When) | By def name first, then by the label the tab is drawn with, in the language the game runs in. |
-| `Nelim's Pickle Tools: I open the research tab keyed {string}` (When) | By translation key: the key is translated and the result is matched against the tabs' labels, so a scenario naming the key runs in any language. Translate()` resolves. |
+| `Nelim's Pickle Tools: I open the research tab keyed {string}` (When) | By translation key: the key is translated and the result is matched against the tabs' labels, so a scenario naming the key runs in any language. It only reaches a tab whose label comes from a Keyed string; a def's label injected by DefInjected has no key that `.Translate()` resolves. |
 | `Nelim's Pickle Tools: the research window is on the tab {string}` (Then) | The window is on that tab, it drew a selected record for it, and its contents are revealed. |
 | `Nelim's Pickle Tools: the research window labels the tab {string} as {string}` (Then) | The label of the tab's record, which the window built from `LabelCap` when it opened. |
 | `Nelim's Pickle Tools: the research window lists the project {string}` (Then) | The project is one the window lists on its current tab: among the visible projects whose tab is the selected one, the very list `ListProjects` draws from, and not hidden. By def name or by label. |
@@ -132,7 +144,7 @@ Package `nelim.pickletools.rimmsqol`. In the bundle (`Mod/Pickle/Assemblies`). [
 | `RIMMSQOL forgets its choice for the main button {string}` (When) | The reset cross beside the list entry: the choice is dropped and the def goes back to what its mod shipped. |
 | `RIMMSQOL's settings file records the main button {string} as {word}` (Then) | reads the **file**, not memory: `visible`, or `hidden` (configured, not true) |
 | `RIMMSQOL's settings file records no choice for the main button {string}` (Then) | no file, no entry, or no Visible choice in the entry |
-| `the main bar draws the button {string}` (Then) | Visible, hence a cell) and the worker is not Disabled, which is what turns the cell grey. md forbids a greyed shortcut as firmly as a visible one. |
+| `the main bar draws the button {string}` (Then) | Both halves, because a def can be in the bar and dead: the bar visits it (Worker.Visible, hence a cell) and the worker is not Disabled, which is what turns the cell grey. MOD_SETTINGS.md forbids a greyed shortcut as firmly as a visible one. |
 | `the main bar does not draw the button {string}` (Then) | it has no cell |
 | `the main bar's button {string} is activated` (When) | What the bar's own click ends up calling. InterfaceTryActivate, not Activate: it is the method DoButton invokes, tutorial checks included. |
 | `RIMMSQOL's own window is opened on its list of main buttons` (When) | Waits for its own frames, as every step that opens a Dialog_ModSettings must: the dialog force-pauses the game, so a tick wait in the scenario can never be satisfied. RIMMSQOL builds its whole menu on the first frame, which can take seconds, hence the timeout. |
@@ -174,7 +186,7 @@ Package `nelim.pickletools.soundcapture`. Not in the bundle: a companion staged 
 | `Nelim's Pickle Tools: I film with sound as {string}` (When) | A video WITH its sound: the recorder and the film start in the same step, so the sound and the picture begin together (to within ffmpeg's start, a fraction of a second). Pickle's own @film has no sound, and FilmTicks films by game ticks, whose length is not the length of the sound. |
 | `Nelim's Pickle Tools: I let {int} real seconds go by` (When) | Waits real seconds, frame by frame (in the main menu no tick passes, so `I wait {int} ticks` cannot be used). 1 to 45 |
 | `Nelim's Pickle Tools: I stop recording the sound` (When) | Ends the recording, checks the file, attaches `sound-file` and `sound-note` to the report |
-| `Nelim's Pickle Tools: I stop filming with sound` (When) | Ends both, has Pickle's encoder make the video from the pictures at the rate they were taken (so it lasts as long as the sound), and puts the sound into it: `film-sound.mp4`, H.264 and AAC, which Windows plays as it is, in `screenshots/film/pickletools-sound--<name>/`; it also keeps `sound.wav` and Pickle's silent `film.webm`. The soun... |
+| `Nelim's Pickle Tools: I stop filming with sound` (When) | Ends both, has Pickle's encoder make the video from the pictures at the rate they were taken (so it lasts as long as the sound), and puts the sound into it: `film-sound.mp4`, H.264 and AAC, which Windows plays as it is, in `screenshots/film/pickletools-sound--<name>/`; it also keeps `sound.wav` and Pickle's silent `film.webm`. |
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` (Then) | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 | `Nelim's Pickle Tools: the sound recorded as {string} is silent` (Then) | The same measure, asserting the level is below -80 dB |
 | `Nelim's Pickle Tools: the game volume is {int} percent` (Given) | Sets the game's master volume for the scenario (the WSL staging writes 0, which mutes the game) and puts the value found back afterwards; nothing is saved to disk |
