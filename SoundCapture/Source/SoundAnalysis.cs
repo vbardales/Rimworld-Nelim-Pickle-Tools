@@ -17,14 +17,32 @@ namespace Nelim.PickleTools.SoundCapture
 
         public const string DefaultSource = "RDPSink.monitor";
 
-        public static string RecordArguments(string source, string file, int maxSeconds)
+        public static string RecordArguments(string source, string file, int maxSeconds, int rate = 22050, int channels = 1)
         {
-            return $"-hide_banner -loglevel error -y -f pulse -i {source} -ar 22050 -ac 1 -t {maxSeconds} \"{file}\"";
+            return $"-hide_banner -loglevel error -y -f pulse -i {source} -ar {rate} -ac {channels} -t {maxSeconds} \"{file}\"";
+        }
+
+        /// <summary>
+        /// The picture of a film and the sound recorded beside it, in one mp4 that Windows plays as it is (H.264 and AAC).
+        /// The film is a webm, so the picture is encoded again; the sides are made even, which yuv420p needs. The sound is
+        /// cut to the picture's length, since the recorder starts and stops a little either side of it.
+        /// </summary>
+        public static string MuxArguments(string film, string sound, string output)
+        {
+            return $"-hide_banner -loglevel error -y -i \"{film}\" -i \"{sound}\" -map 0:v:0 -map 1:a:0 " +
+                   "-vf \"scale=trunc(iw/2)*2:trunc(ih/2)*2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p " +
+                   $"-c:a aac -b:a 160k -shortest -movflags +faststart \"{output}\"";
         }
 
         public static string VolumeDetectArguments(string file)
         {
             return $"-hide_banner -nostats -i \"{file}\" -af volumedetect -f null -";
+        }
+
+        /// <summary>What ffmpeg says of a file: its streams and its length, on the error output.</summary>
+        public static string ProbeArguments(string file)
+        {
+            return $"-hide_banner -i \"{file}\"";
         }
 
         private static readonly Regex MaxVolume =
