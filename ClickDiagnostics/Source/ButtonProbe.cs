@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -150,6 +152,49 @@ namespace Nelim.PickleTools.ClickDiagnostics
 
             return string.Join("\n", matches.Select(s =>
                 $"  Widgets.ButtonText '{label}' drawn at {s.Screen}, centre {s.Screen.center}"));
+        }
+
+
+        /// <summary>
+        /// What Pickle's own tag store holds for the button, read by reflection (<c>TagStore</c> is internal to
+        /// Pickle): every property and field of the entry, so a stale or duplicated rectangle shows up next to
+        /// the one the probe saw drawn. Read it BEFORE the click: a store refreshed by later frames no longer
+        /// says what the click resolved.
+        /// </summary>
+        internal static string DescribeTagStore(string label)
+        {
+            try
+            {
+                var storeType = AccessTools.TypeByName("RimWorks.Pickle.Input.TagStore");
+                if (storeType == null)
+                {
+                    return "  (RimWorks.Pickle.Input.TagStore not found)";
+                }
+
+                var store = AccessTools.Field(storeType, "Store")?.GetValue(null) as IDictionary;
+                if (store == null)
+                {
+                    return "  (TagStore.Store is not a dictionary)";
+                }
+
+                var key = "btn:" + label;
+                if (!store.Contains(key))
+                {
+                    return $"  no entry for '{key}' among the {store.Count} the store holds";
+                }
+
+                var entry = store[key];
+                var flags = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+                var values = entry.GetType().GetProperties(flags)
+                    .Where(property => property.GetIndexParameters().Length == 0)
+                    .Select(property => property.Name + " = " + property.GetValue(entry))
+                    .Concat(entry.GetType().GetFields(flags).Select(field => field.Name + " = " + field.GetValue(entry)));
+                return $"  '{key}' ({store.Count} entries in the store, frame {Time.frameCount}): " + string.Join(", ", values);
+            }
+            catch (Exception exception)
+            {
+                return "  (could not read the tag store: " + exception.Message + ")";
+            }
         }
 
         /// <summary>

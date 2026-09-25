@@ -38,6 +38,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
         private const int SecondsToGiveUp = 25;
         private const int FramesToOpen = 60;
 
+        // What Pickle's tag store held right after the hover step, kept for the failure message of the click.
+        private static string storeAfterHover = "(no hover step ran before the click)";
+
         /// <summary>
         /// Waits until the button has been drawn at the same place for a dozen frames in a row.
         /// </summary>
@@ -93,6 +96,7 @@ namespace Nelim.PickleTools.ClickDiagnostics
             await ctx.WaitFrames(2);
 
             var pointer = UI.MousePositionOnUIInverted;
+            storeAfterHover = $"  pointer {pointer}\n{ButtonProbe.DescribeTagStore(label)}";
             var under = Find.WindowStack.GetWindowAt(pointer);
             ctx.Assert(under != null,
                 $"'{label}' is under no window at all; the pointer is at {pointer}\nWindow stack, top first:\n{DescribeStack(pointer)}");
@@ -127,6 +131,7 @@ namespace Nelim.PickleTools.ClickDiagnostics
                 Find.WindowStack.Windows.Where(window => IsNamed(window.GetType(), windowName)));
 
             var beforeClick = UI.MousePositionOnUIInverted;
+            var storeBeforeClick = ButtonProbe.DescribeTagStore(label);
             await ctx.Click($"btn:{label}");
 
             for (var frame = 0; frame < FramesToOpen; frame++)
