@@ -43,6 +43,100 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Gives a pawn a body type the game cannot draw at random: <c>Thin</c>, <c>Fat</c> or <c>Hulk</c>, or
+        /// <c>Male</c> / <c>Female</c> (the plain body of that gender). The game keeps every body-type gene a pawn
+        /// has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard
+        /// and Body_Hulk) has no fixed body type. This step removes ALL the pawn's body-type genes, xenogenes and
+        /// endogenes, adds the one gene of the type asked for (Body_Standard for Male and Female, whose body follows
+        /// the gender; leaving the pawn with no body-type gene is not certain either, the game then takes the body type
+        /// from the adulthood backstory or draws Thin one time in two), redraws the pawn and reads the body type back, failing with what it found if it is not the
+        /// one asked for. The gender is set beforehand: nothing here recomputes it. A child or a baby keeps the
+        /// body type of its age whatever its genes, so the step refuses one. Without Biotech there are no genes and
+        /// the body type is set directly.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} body type is {word}")]
+        public void SetBodyType(PickleContext ctx, string nickname, string bodyType)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no body type");
+
+            BodyTypeDef wanted;
+            GeneticBodyType? geneType = null;
+            switch (bodyType.ToLowerInvariant())
+            {
+                case "male":
+                    wanted = BodyTypeDefOf.Male;
+                    geneType = GeneticBodyType.Standard;
+                    break;
+                case "female":
+                    wanted = BodyTypeDefOf.Female;
+                    geneType = GeneticBodyType.Standard;
+                    break;
+                case "thin":
+                    wanted = BodyTypeDefOf.Thin;
+                    geneType = GeneticBodyType.Thin;
+                    break;
+                case "fat":
+                    wanted = BodyTypeDefOf.Fat;
+                    geneType = GeneticBodyType.Fat;
+                    break;
+                case "hulk":
+                    wanted = BodyTypeDefOf.Hulk;
+                    geneType = GeneticBodyType.Hulk;
+                    break;
+                case "child":
+                case "baby":
+                    throw new ArgumentException(
+                        $"'{bodyType}' is not a body type a gene gives but the body of an age: set the age with " +
+                        "'\"Name\" is N years old' and read it back with 'has body type'");
+                default:
+                    throw new ArgumentException($"unknown body type '{bodyType}'; supported: Male, Female, Thin, Fat, Hulk");
+            }
+
+            ctx.Require(
+                pawn.DevelopmentalStage == DevelopmentalStage.Adult,
+                $"pawn '{nickname}' is at the {pawn.DevelopmentalStage} stage of life, and the game gives a child or a baby " +
+                "the body type of its age whatever its genes; set an adult age first");
+
+            if (geneType == GeneticBodyType.Standard)
+            {
+                BodyTypeDef ofGender = pawn.gender == Gender.Female ? BodyTypeDefOf.Female : BodyTypeDefOf.Male;
+                ctx.Require(
+                    wanted == ofGender,
+                    $"pawn '{nickname}' is {pawn.gender}, so with the standard body gene its body type is {ofGender.defName}, " +
+                    $"not {wanted.defName}; set its gender first");
+            }
+
+            if (pawn.genes == null)
+            {
+                pawn.story.bodyType = wanted;
+            }
+            else
+            {
+                foreach (Gene gene in pawn.genes.GenesListForReading.Where(g => g.def.bodyType != null).ToList())
+                {
+                    pawn.genes.RemoveGene(gene);
+                }
+
+                if (geneType != null)
+                {
+                    GeneDef def = DefDatabase<GeneDef>.GetNamedSilentFail("Body_" + geneType)
+                        ?? DefDatabase<GeneDef>.AllDefsListForReading.FirstOrDefault(g => g.bodyType == geneType);
+                    ctx.Require(def != null, $"the game has no gene for the {bodyType} body type");
+                    pawn.genes.AddGene(def, true);
+                }
+            }
+
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+
+            string actual = pawn.story.bodyType?.defName ?? "(none)";
+            ctx.Assert(
+                pawn.story.bodyType == wanted,
+                $"pawn '{nickname}' should have body type {wanted.defName} after this step; it has {actual}, with the genes " +
+                (pawn.genes == null ? "(none, no Biotech)" : string.Join(", ", pawn.genes.GenesListForReading.Select(g => g.def.defName))));
+        }
+
+        /// <summary>
         /// Generates a colonist from a humanlike PawnKindDef, the way "a colonist exists" does from the plain
         /// colonist kind, and does nothing if a colonist by that nickname already exists. The race is the
         /// kind's, so a kind from a race mod gives a pawn of that race, with that race's body types.
