@@ -21,8 +21,19 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod Arch
 powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod SkillIcons -Filter '::changed values'
 ```
 
-This is the only entry point. It takes the machine lock, archives the previous report, stages,
+`Run-PickleWsl.ps1` is the only thing that starts the game. It takes the machine lock, archives the previous report, stages,
 launches under `xvfb-run`, and releases the lock in a `finally`.
+
+**Since 2026-09-24 a session does not call it: it files a request** (`AUDIT.md`, "Déposer un run au lieu de le lancer"):
+
+```powershell
+powershell.exe -ExecutionPolicy Bypass -File Rimworld-Ticket-Dispatcher\scripts\Submit-PickleRun.ps1 -Mod <Mod> -Owner local_<session id> -Label '<what is tested>' [-Filter ...] [-Language ...] [-DepMap ...] [-Then ...] -EvidenceDir <folder relative to the root>
+```
+
+One pass is one request (`-List` shows them, `-Cancel <id>` withdraws one that has not started). A worker detached from any
+session calls `Run-PickleWsl.ps1` one request after another, with `-MaxWaitMinutes 600`, and replays a launch that exited 7 up
+to three times. The options and the codes below are the launcher's, and what the worker passes it. TicketDispatcher wakes the
+owner at `START`, `END` and `RUN_DONE`; a session arms no watcher of its own.
 
 | Option | Effect |
 |---|---|
@@ -46,13 +57,14 @@ The WSL launcher's exit codes distinguish machine availability from run failures
 | 0 | Successful run; check the fresh report and its coverage before claiming validation |
 | 1 | Failed scenarios or another launch/process failure; read the report and log |
 | 2 | Machine busy or lock unavailable; no run launched |
-| 3 | Stall guard stopped the game |
+| 3 | Stall guard stopped the game: a start that never finishes, **or a game that Pickle's own watchdog killed inside a scenario** (`pickle: watchdog tripped after 120s`, mostly on a scenario that waits on ticks on a loaded machine; see `-pickle-scenario-timeout` in `Authoring/README.md`) |
 | 4 | Machine reserved, with `-NoWait` |
 | 5 | Incomplete run detected: in-progress verdict, or no fresh report after an otherwise successful process exit |
 | 6 | Game relaunched while the lock was held |
 | 7 | Queue wait exceeded `-MaxWaitMinutes` |
 | 8 | Pickle's own exit code 2, remapped to distinguish it from machine occupancy |
 | 9 | The machine could not write: before staging, `run-pickle-wsl.sh` writes a probe file into the game's Config folder and into `pickle-reports`; on failure it prints `INFRASTRUCTURE` with the folder and the cause and no game is started |
+| 99 | Written by the request worker, not by the launcher: the launcher itself threw (`launcher threw`). Pickle's verdict is kept when it is known; read the request's log |
 | 10 | Wrong call: `-Then` supplied without `-Filter`, refused before anything is queued or launched. Fix the call; the machine is fine |
 
 By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
@@ -328,6 +340,15 @@ A second hang, the same evening, showed that killing harder is not enough: the l
 when no lock is held, a game is running, and its `Player.log` has been silent for `StallMinutes + 2`
 (`ORPHAN` in the machine log). Tested on a decoy process in three situations: fresh log (kept), old
 log with the lock held (kept), old log with no lock (removed).
+
+**The TicketDispatcher's rule completes the waiter's** (2026-09-24): a holder that is dead while its WSL game still runs, with a
+Pickle runner whose dashboard has moved for nothing in 5 minutes (no scenario, no count, no step: a scenario can stay displayed a
+long time while its steps advance), gets the game stopped (`stop-game-wsl.sh`) and its request put back in the queue, and its
+owner is told by message. The waiter's rule covers no lock held and a silent `Player.log`; the dispatcher's covers a lock held by
+a dead process. Both are the only exceptions to "never close a running game".
+
+**The game's stderr is printed in the run's log**, before the line "code de sortie Pickle" (monorepo commit `0a37e7e8`), so a
+crash of the game itself shows there and not only in `Player.log`.
 
 ## Where Pickle's own tooling lives
 
