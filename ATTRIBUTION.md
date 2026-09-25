@@ -48,6 +48,14 @@ folder READMEs retain narrower implementation and verification details.
   this repository's style and prefixed to avoid ambiguity. **KeyedClick** likewise mirrors pull request 19.
   Both were written with Claude Sonnet/Claude Code. Their patch copies are derived from MIT-licensed Pickle
   and carry Pickle's notice in `Upstream/LICENSE-Pickle`; no Pickle binary is redistributed.
+- **ClearScreen** and **InterfaceScale** mirror the logic submitted in Pickle pull requests 21 and 23, and carry Pickle's
+  notice through `Upstream/LICENSE-Pickle`; **ClickDiagnostics** was moved here from Work Studio's suite and
+  generalised, and **ExpansionSteps** from Flavor Text Extended's suite (same author, see `CHANGELOG.md`). **HoverSteps**,
+  **ScreenshotMode**, **ScreenshotStudio**, **TextureOwner** and **SoundCapture** are original work by Nelim with Claude
+  Sonnet/Claude Code, under human direction and review. For all of these the record is the commit history (the
+  `Co-Authored-By` trailers) and each folder's README: no third-party source line is recorded as copied, and the code was
+  not audited line by line for provenance. **SoundCapture** drives `ffmpeg` and reads a PulseAudio source through it; neither
+  is redistributed, and the tool is not part of the bundle.
 - **Development tools, not distributed:** Harmony and Lib.Harmony, Krafs.Rimworld.Ref, Mono.Cecil (used by the
   offline checks).
 
