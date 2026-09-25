@@ -1,0 +1,7 @@
+# The pass that plays pickletools-colonistrace-bodytype.feature: the ColonistRace steps, staged alone from the repository
+# (the aggregate bundle carries the same DLL; this is the line a suite writes to use these steps without the bundle).
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.colonistrace.map -Filter pickletools-colonistrace-bodytype
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
