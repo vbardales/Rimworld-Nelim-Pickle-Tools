@@ -1,9 +1,10 @@
 # Colonist race - Pickle steps (shared)
 
-Two Pickle steps that give a scenario a colonist whose body is not the plain human one:
+Three Pickle steps that give a scenario a colonist whose body is not the plain human one:
 
 | Step | What it does |
 | --- | --- |
+| `Nelim's Pickle Tools: {string} body type is {word}` | A body type that is certain: `Male`, `Female`, `Thin`, `Fat` or `Hulk`, case insensitive. It removes **every** body-type gene the pawn has (xenogenes and endogenes), adds the one gene of that type (`Body_Standard` for `Male` and `Female`, whose body then follows the gender; **a pawn left with no body-type gene is not certain**: with none, the game takes the body type from the adulthood backstory or draws Thin one time in two, `PawnGenerator.GetBodyTypeFor`, which a first run of this step showed by giving a female Hussar Thin), redraws the pawn and **reads the body type back**, failing with the body type found and the genes the pawn holds if it is not the one asked for. Set the gender **before**: nothing here recomputes it, and `Male` on a female pawn fails saying so. `Child` and `Baby` are not body types a gene gives but the body of an age (the game keeps it whatever the genes), so they are refused with that explanation: set the age with `"Name" is N years old` and read the result with `has body type`. A child or a baby pawn is refused for the same reason. Without Biotech there are no genes and the body type is set directly. Needs the pawn to be an adult. |
 | `Nelim's Pickle Tools: {string} xenotype is {string}` | `Pawn_GeneTracker.SetXenotype`: the pawn's xenogenes are removed and the xenotype's genes added one by one, then the pawn is redrawn. A gene that carries a body type (`Body_Thin`, `Body_Hulk`...) sets the body type as it is added, on a pawn that is not a child. The pawn's endogenes stay, so a pawn born with one keeps it beside the new ones. Case insensitive. An unknown name fails and lists every xenotype the game has. Needs Biotech. |
 | `Nelim's Pickle Tools: a colonist {string} of kind {string} exists` | Generates a colonist of the player's faction from a `PawnKindDef` and spawns it near the colonists, as `a colonist {string} exists` does for the plain colonist kind. Does nothing if that colonist exists. The kind's race is the pawn's race. Refuses a kind that is not humanlike, and an unknown one lists how many humanlike kinds exist and the first thirty. |
 
@@ -60,7 +61,8 @@ draw (a race that lists its own body types may draw nothing for another).
    one **at random** each time the genes change (`PawnGenerator.GetBodyTypeFor`, called by `Pawn_GeneTracker.Notify_GenesChanged`;
    read from `Assembly-CSharp` on 2026-09-24). In Biotech, Hussar lists `Body_Standard` and `Body_Hulk` and comes out Male or Hulk
    by chance; Neanderthal, Pigskin and Highmate are in the same case. Only Genie (`Body_Thin`) and Yttakin (`Body_Hulk`) are
-   deterministic, so those are the ones to assert on. A test that expected Hussar to be Hulk failed with `it has Male`: a wrong
+   deterministic, so those are the ones to assert on **after a xenotype step alone**; to get a certain body type on any pawn use
+   `body type is {word}` above. A test that expected Hussar to be Hulk failed with `it has Male`: a wrong
    expectation, not a fault of the step, which only calls `Pawn_GeneTracker.SetXenotype`.
 
 ```gherkin
