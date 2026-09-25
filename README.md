@@ -1,5 +1,6 @@
 # Nelim's Pickle Tools
 
+**Looking for a step? [docs/steps.md](docs/steps.md) lists every step of this repository, generated from the sources; Pickle's own steps are in [its catalogue](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md).**
 **Writing a new suite? Start with the [authoring guide](Authoring/README.md)** for layout, pass maps,
 dependency tags, step design, restart tests and evidence requirements.
 
