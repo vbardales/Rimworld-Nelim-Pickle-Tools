@@ -2,24 +2,25 @@
 
 ## [1.1.0] - 2026-09-25
 
-Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol. The version number is proposed and awaits the owner's confirmation.
+Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol, and HoverSteps is added. The version number is proposed and awaits the owner's confirmation.
 
 ### Added
 
-- ColonistRace: `Nelim's Pickle Tools: {string} body type is {word}` (`Male`, `Female`, `Thin`, `Fat`, `Hulk`) gives a pawn a body type that is certain, by removing every body-type gene and adding the one of that type (`Body_Standard` for Male and Female), then reads the type back. Played 2 of 2 on Pickle v4.9.1.
+- ColonistRace: `Nelim's Pickle Tools: {string} body type is {word}` (`Male`, `Female`, `Thin`, `Fat`, `Hulk`, and `Child` or `Baby` for a young pawn) gives a pawn a body type that is certain: an adult word removes every body-type gene and adds the one of that type (`Body_Standard` for Male and Female), `Child` and `Baby` ask the game for the body of the pawn's stage of life and first take off the apparel that stage may not wear; the type is then read back. Played 3 of 3 on Pickle v4.9.1, in English (the adult words, and `Child`); `Baby` and French not played.
 - ScreenshotMode: steps that turn developer mode off for a capture that keeps the interface.
-- HoverSteps (hover a tooltip region by its text, six steps) **joins the bundle**, now fourteen modules. It has an offline check (`HoverSteps/Check-Steps.ps1`); its steps were not yet played in this repository.
-- SoundCapture (optional: record the game's sound, and assert that the game holds a playing sound). **Not in the bundle**.
+- HoverSteps (hover a tooltip region by its text, six steps) **joins the bundle**, now fourteen modules. It has an offline check (`HoverSteps/Check-Steps.ps1`) and one scenario (the tooltip of the autosave interval in the options dialog, hovered by its key and drawn), played 1 of 1 on Pickle v4.9.1 in English; not played in French.
+- SoundCapture (optional: record the game's sound, film with its sound, and assert that the game holds a playing sound), NewColony (optional: start a new colony) and LoadAudit (optional: check the game log for one mod). **None is in the bundle.**
 
 ### Changed
 
 - ClickDiagnostics: the stand-still wait says how long it really waited and gives up on the clock; a window already open before the click does not count.
-- The Workshop payload is committed under `Mod/` (the thirteen DLLs, copied from the tools by `Release/Prepare-Release.ps1 -SyncMod` and checked by `-Check`), so the publish workflow uploads exactly what was tested.
+- The Workshop payload is committed under `Mod/` (the fourteen DLLs, copied from the tools by `Release/Prepare-Release.ps1 -SyncMod` and checked by `-Check`), so the publish workflow uploads exactly what was tested.
 - The interface-scale scenario clicks by the key of its label, so it also plays in French.
 - The step vocabulary checks (`Check-Steps.ps1`) read the sibling tools and attributes written as `Prefix + "..."`.
 
 ### Tested
 
+- On Pickle v4.9.1, in English, the scenarios of the steps added since 1.0.0: the body type step 3 of 3, the hover step 1 of 1. They were not replayed together with the rest of the matrix below, which ran on the thirteen tools of 1.0.0.
 - The aggregate bundle on Pickle v4.9.1, English and French: minimal, Biotech absent, RIMMSQOL bridge and settings, the RIMMSQOL restart chain, the five tool features together (11 of 11 in each language) and the VEF-present pass (5 of 5 in each language). See `docs/runs/aggregate.md`.
 
 ## [1.0.0] - 2026-09-22
