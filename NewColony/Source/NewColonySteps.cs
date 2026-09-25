@@ -92,6 +92,7 @@ namespace Nelim.PickleTools.NewColony
 
             // The random state is seeded for everything that draws: the world (which also takes the seed as text), the tile,
             // and the colonists the scenario generates while it is chosen.
+            int depthBefore = RandStackDepth();
             Rand.PushState(GenText.StableStringHash(seed));
             try
             {
@@ -99,9 +100,21 @@ namespace Nelim.PickleTools.NewColony
                     WorldCoverage, seed, OverallRainfall.Normal, OverallTemperature.Normal, OverallPopulation.Normal, LandmarkDensity.Normal);
                 Find.GameInitData.ChooseRandomStartingTile();
                 Find.GameInitData.mapSize = mapSize;
+                if (ModsConfig.IdeologyActive)
+                {
+                    ChooseClassicIdeoligion();
+                }
+
                 Find.Scenario.PostIdeoChosen();
             }
             finally
+            {
+                Rand.PopState();
+            }
+
+            // Code the game runs inside the seeded state may push without popping; the game then warns that the stack is not empty.
+            int leftOver = RandStackDepth() - depthBefore;
+            for (int i = 0; i < leftOver; i++)
             {
                 Rand.PopState();
             }
@@ -121,12 +134,17 @@ namespace Nelim.PickleTools.NewColony
 
             Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
 
+            ctx.Assert(
+                Find.CurrentMap.mapPawns.FreeColonistsCount > 0,
+                "the new colony has a map and no colonist on it: the scenario's starting pawns did not arrive (look for an error from the map generation in the log)");
+
             string colonists = string.Join(", ", Find.CurrentMap.mapPawns.FreeColonists.Select(pawn => pawn.LabelShortCap));
             ctx.Attach(
                 "new-colony",
                 $"scenario {scenarioDef.defName}, storyteller {storytellerDef.defName}, difficulty {difficultyDef.defName}, seed \"{seed}\", " +
                 $"map {mapSize} by {mapSize}, tile {Find.GameInitData?.startingTile.ToString() ?? Find.CurrentMap.Tile.ToString()}, " +
-                $"{Find.CurrentMap.mapPawns.FreeColonistsCount} colonists ({colonists}), paused, generated in {clock.Elapsed.TotalSeconds:0.0} s. A new colony is not reproducible and costs minutes on a shared machine: play it once, in an initial or a final pass, never for a fix or an exploration.");
+                $"{Find.CurrentMap.mapPawns.FreeColonistsCount} colonists ({colonists}), " + (ModsConfig.IdeologyActive ? "classic ideoligion, " : string.Empty) +
+                (leftOver > 0 ? $"{leftOver} random state(s) the game left pushed were popped, " : string.Empty) + $"paused, generated in {clock.Elapsed.TotalSeconds:0.0} s. A new colony is not reproducible and costs minutes on a shared machine: play it once, in an initial or a final pass, never for a fix or an exploration.");
         }
 
         // The choices are the scenario's own: what one scenario sets does not reach the next.
@@ -138,6 +156,48 @@ namespace Nelim.PickleTools.NewColony
             scenario = "Crashlanded";
             storyteller = "Cassandra";
             difficulty = "Rough";
+        }
+
+        // What the new-colony screens do with Ideology when the player takes the classic ideoligion (Page_ChooseIdeoPreset, PostOpen and DoClassic,
+        // read from Assembly-CSharp on 2026-09-25): a classic ideoligion is generated, becomes the player's and every faction's, and the ideoligions
+        // nobody uses are dropped. Without it the player faction has no ideoligion and the starting meals of the scenario throw (seen 2026-09-25 by a
+        // suite that ran the first version of this step with all the DLCs on: a NullReferenceException in FoodUtility.HasHumanMeatEatingRequiredPrecept,
+        // the map made, no colonist on it).
+        private static void ChooseClassicIdeoligion()
+        {
+            Faction player = Faction.OfPlayer;
+            CultureDef culture;
+            if (!DefDatabase<CultureDef>.AllDefs.Where(c => player.def.allowedCultures.Contains(c)).TryRandomElement(out culture))
+            {
+                culture = DefDatabase<CultureDef>.AllDefs.RandomElement();
+            }
+
+            Ideo classic = IdeoGenerator.GenerateClassicIdeo(culture, new IdeoGenerationParms(player.def), false);
+            Find.IdeoManager.classicMode = true;
+            player.ideos.SetPrimary(classic);
+            foreach (Ideo ideo in Find.IdeoManager.IdeosListForReading)
+            {
+                ideo.initialPlayerIdeo = false;
+            }
+
+            classic.initialPlayerIdeo = true;
+            Find.IdeoManager.Add(classic);
+            foreach (Faction faction in Find.FactionManager.AllFactions)
+            {
+                if (faction.ideos != null)
+                {
+                    faction.ideos.RemoveAll();
+                    faction.ideos.SetPrimary(classic);
+                }
+            }
+
+            Find.IdeoManager.RemoveUnusedStartingIdeos();
+        }
+
+        private static int RandStackDepth()
+        {
+            var stack = typeof(Rand).GetField("stateStack", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static)?.GetValue(null);
+            return (stack as System.Collections.ICollection)?.Count ?? 0;
         }
 
         private static bool IsPlayable()
