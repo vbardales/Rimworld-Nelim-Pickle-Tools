@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  A shell that takes the place of PickleTools/Mod in a pass that stages ONE tool on its own.
+
+  The staging activates the mod under test, PickleTools/Mod, unless a pass map activates a mod of the same packageId. Since the
+  fourteen step DLLs of the bundle are committed under PickleTools/Mod/Pickle/Assemblies (what the publish workflow uploads), a pass
+  that also stages a tool by itself loads every step twice and Pickle refuses the scenario: "Ambiguous step". A pass map of a single
+  tool ends with `nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod`, which puts this empty shell where the
+  bundle would have been. The aggregate passes overlay the generated payload instead and need no such line.
+  Test companion: no DLL, no Defs, never published.
+-->
+<ModMetaData>
+  <name>Nelim's Pickle Tools - standalone pass shell</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>An empty stand-in for the Pickle Tools bundle in a test pass that stages one tool alone. Developer test companion; contains nothing.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>
