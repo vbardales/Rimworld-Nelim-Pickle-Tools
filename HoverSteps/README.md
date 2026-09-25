@@ -51,9 +51,12 @@ them makes the first scenario say so, by name, instead of hovering nothing.
 Compiled against the reference assemblies with no warning. `Check-Steps.ps1` (2026-09-25): the six patterns compile,
 none is declared twice, none is ambiguous against 1207 other expressions (Pickle's, the suites' and the sibling tools'),
 and every hover line of the features in the repository resolves. **In the bundle since the 1.1.0 preparation** (the owner,
-2026-09-25). **Not played in this repository**: runtime behavior is to be recorded with the first suite that uses it
-(Housebroken, `Tests/Pickle/.../32-language-review.feature`, see that suite's `docs/runs/`, where no run of it is recorded
-yet), and a green scenario here is still to be written.
+2026-09-25). **Played in this repository, 2026-09-25, in English, once: 1 of 1** (`pickletools-hoversteps`, pass map `wsl-deps.hoversteps.map`, Pickle 4.9.1;
+`docs/runs/aggregate.md`, row `2026-09-25-v4.9.1-hoversteps-en3`). The scenario opens the options dialog by key, hovers the tooltip of
+the autosave interval (`AutosaveIntervalTooltip`) and asserts it drawn; the capture shows the tooltip under the row, with the game's text. An earlier
+play failed on a key that the game's volume slider does not register (`MasterVolumeTooltip`): the failure listed the tooltips on screen and one of them was taken,
+which is what the step's failure is for. **Not played in French**, and not with the suite that uses it most (Housebroken,
+`Tests/Pickle/.../32-language-review.feature`, where no run of it is recorded yet).
 
 Known limits: two regions with the same tooltip text are the same tag, and Pickle reports it as ambiguous; a
 tooltip whose text changes every frame cannot be named; at an interface scale other than 100 the region rect
