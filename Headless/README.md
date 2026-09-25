@@ -207,6 +207,14 @@ The set name is engraved in the report by `-pickle-set-name`, so two passes can 
 `merge-reports.py` instead of one replacing the meaning of the other. Without `-DepMap` the pass
 is called `sans-facultatifs`.
 
+**A trap: the last line of a pass map needs its newline** (found by the Ebbbs Renew session on 2026-09-25, cause read in `scripts/stage-pickle-wsl.sh`). The staging reads the map
+with `while read -r pid wid _; do ... done < "$DEPMAP"` (twice: the pass map and the ids map), and `read` returns non-zero on a last line with no `\n`, so the body of the loop **does not run for that line**:
+the variables are filled and the line is lost. Nothing says so. Ebbbs Renew had two one-mod maps with no closing newline and no final comment: the staging printed `staged: 11 mods` without them, printed `overlay: <the map>` all the same, and the
+`@requires` scenarios were **skipped** (`'X' is not loaded`) with `exitReason` passed and exit 0. A first suspicion, a dependency on Harmony, was wrong. Maps that end with a newline or a comment loaded fine.
+**End every map with a newline** (an editor that adds none, or `printf` without `\n`, is how it goes missing). Check a map with `tail -c1 <map> | xxd` (it must show `0a`), or in PowerShell that the file text ends with a line break.
+Two things would remove the trap and are for whoever owns the staging script, not done here: `while read -r pid wid _ || [[ -n "$pid" ]]` in both loops, or a refusal with a message; and the launcher printing the `staged:` list and flagging an optional the map names that is not in it.
+The staging output is kept in the dispatcher's log for each request now, which is what made the cause findable.
+
 The third kind is the one people forget: a pass **with a mod declared incompatible**, to go and
 look at whether the incompatibility is still true. An `incompatibleWith` ages - the other mod can
 be fixed, rewritten, or stop patching what it patched - and one never replayed forbids a
