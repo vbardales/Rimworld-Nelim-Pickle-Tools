@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-88 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+91 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -199,6 +199,9 @@ Package `nelim.pickletools.soundcapture`. Not in the bundle: a companion staged 
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` (Then) | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 | `Nelim's Pickle Tools: the sound recorded as {string} is silent` (Then) | The same measure, asserting the level is below -80 dB |
 | `Nelim's Pickle Tools: the game volume is {int} percent` (Given) | Sets the game's master volume for the scenario (the WSL staging writes 0, which mutes the game) and puts the value found back afterwards; nothing is saved to disk |
+| `Nelim's Pickle Tools: the game music volume is {int} percent` (Given) | The game's background music and its ambience, apart from the master volume: a recording that must hear only what a mod plays cannot use the master volume, which would cut the effects it wants to hear. `Prefs.VolumeMusic` and `Prefs.VolumeAmbient` store and apply at once, are not saved to disk here, and are put back after the scenario. |
+| `Nelim's Pickle Tools: the game ambient volume is {int} percent` (Given) | The same for the ambience |
+| `Nelim's Pickle Tools: the game music and ambience are muted` (Given) | Both at 0: a recording then holds what a mod plays and not the menu or map music (Anima Song measured a peak of -14.3 dB from the background music alone on a whole film) |
 
 ## TextureOwner
 
