@@ -15,13 +15,23 @@ it, nothing in Pickle or in the launcher changes, and it is not part of the aggr
 
 The choices are the scenario's own and go back to their defaults afterwards. Set them **before** the start step, which must follow `Given the main menu is open`.
 
+## When to play it, and what it does not prove
+
+**A new colony is not reproducible, so it is played sparingly** (the owner's rule, 2026-09-25): **in an initial or a final pass, never for a fix or an
+exploration**, and once. A scenario that uses it takes minutes of generation and holds the machine that long.
+
+- **Nothing about the colonists is proven reproducible.** The seed fixes the world and, as far as the game's draw goes, the starting tile; the colonists
+  are drawn under the same seeded state, but that is an assumption no run has checked, and this tool does not replay a scenario to check it. Write scenarios
+  that hold for **any** three colonists (a colony exists, the game is paused, no error was logged), not for these names.
+- It stays **out of the bundle** and behind its own package and tag: a mod's ordinary pass never stages it, so it cannot be played by accident. A pass
+  that wants it names it (`nelim.pickletools.newcolony` in the map) and tags the feature `@requires:nelim.pickletools.newcolony`.
+
 ## Status
 
 **Written 2026-09-25, not played.** It compiles (0 warnings), and its patterns compile with Pickle's engine and are not ambiguous. The open
 question is whether a step can change the scene from Entry to Play and hand the game back to a normal scenario, which is what the first
-run (`pickletools-newcolony.feature`) answers; this section is to be rewritten with its result. Not yet known either: whether the
-same seed gives the same colonists (the world and the tile are drawn from it; the colonists are drawn under the same seeded state,
-which is an assumption until the scenario is played twice).
+run (`pickletools-newcolony.feature`) answers; this section is to be rewritten with its result. Whether the same seed gives the same
+colonists is deliberately not tested: see above.
 
 Where it comes from: `Root_Play.SetupForQuickTestPlay` and `PageUtility.InitGameStart` of `Assembly-CSharp` 1.6, decompiled on
 2026-09-25. It is a copy of what the game's own developer quick start does, with the choices fixed.
