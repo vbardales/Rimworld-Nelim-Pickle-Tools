@@ -24,7 +24,7 @@ Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]
 
 Some utilities have been submitted upstream to Pickle. If equivalent functionality is integrated and released in a supported Pickle version, those utilities will be removed from this bundle in favor of the upstream implementation.
 
-Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
+Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart, on the 13 tools of the first release. The steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
 
 [h1]If I go quiet[/h1]
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
