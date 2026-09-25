@@ -5,6 +5,16 @@ at the owner's request. A version is the last commit that touched the file in th
 12 characters of the SHA256 of the file **as read**. When a hash below no longer matches, the document changed and must be
 read again before it is relied on. Line counts are those of the file read.
 
+**Where they live now.** On 2026-09-25 (monorepo commit `90d51374`) the protocol documents (`AGENTS`, `AUDIT`, `PUBLISHING`,
+`TRANSLATIONS`, `STYLE_RIMWORLD`, `MOD_SETTINGS`, `EXTERNAL_TOOLS`, `scripts/PICKLE-WSL`, `scripts/SEARCHING`,
+`scripts/Tests/README`) left the monorepo: the repository **`vbardales/Rimworld-protocols`** owns them, with the collection
+folder as its work tree (git dir `Documents\rimworld-protocols.git`). The commits below are the monorepo's, from before the move.
+Checked again after it: `AGENTS.md` (3a1d2cb), `AUDIT.md` (f3dc1e4, the uncommitted edit read here is now committed),
+`MOD_SETTINGS.md` and `TRANSLATIONS.md` (b83933b) have **the same hashes as read**. **`PUBLISHING.md` has changed**
+(now 3d83491eb5bf, commit 04aa365, "drop a paragraph written twice": the duplicated paragraph noticed while reading; not
+re-read) and `STYLE_RIMWORLD.md` has changed (f27a0a9e1398, irrelevant here). `EXTERNAL_TOOLS.md` gained an entry for
+Just Start (28069db, pushed).
+
 Documents of the collection root (`Documents\rimworld`, monorepo HEAD `48a19e4b`):
 
 | Document | Read | Version | Useful here? |
