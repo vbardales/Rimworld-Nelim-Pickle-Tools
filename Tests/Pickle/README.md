@@ -11,4 +11,4 @@ The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`;
 `aggregate-rimmsqol.feature` against it to exercise the bridge without changing user settings.
 `aggregate-rimmsqol-settings.feature` checks a temporary choice and its after-scenario cleanup
 using vanilla's normally hidden `Inspect` button. It refuses to edit an existing choice.
-`lost-click-probe.feature` is diagnostic and deliberately fails; it is not a green acceptance pass.
+`lost-click-probe.feature` asserts the two lost-click symptoms (the page does not open) and a control, so it is green when the click is lost as it should be; the copy that fails on purpose, to read the report's text, is `Upstream/tests/lost-click-probe.feature`.
