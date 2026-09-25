@@ -8,7 +8,7 @@ simulation, interface...); look there first, and here for what Pickle does not h
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-78 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+80 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -171,8 +171,10 @@ Package `nelim.pickletools.soundcapture`. Not in the bundle: a companion staged 
 | `Nelim's Pickle Tools: the game is playing a sound` (Then) | Passes as soon as the game holds one sound that is playing, and waits up to ten real seconds for one: a menu's music and a click's sample do not start on the frame a scenario asks. The failure lists what the game held, so that "no sound" and "no way to look" are told apart. |
 | `Nelim's Pickle Tools: the game is playing the sound {string}` (Then) | Passes when a live sustainer, or a playing one-shot, was started from the sound def of that name (for example `MIC_Ocarina_Play`). The menu's music is not a def, so it never satisfies this one. |
 | `Nelim's Pickle Tools: I record the sound as {string}` (When) | Starts `ffmpeg` on the monitor of the audio sink and writes `sound.wav` in the report, under the name |
+| `Nelim's Pickle Tools: I film with sound as {string}` (When) | A video WITH its sound: the recorder and the film start in the same step, so the sound and the picture begin together (to within ffmpeg's start, a fraction of a second). Pickle's own @film has no sound, and FilmTicks films by game ticks, whose length is not the length of the sound. |
 | `Nelim's Pickle Tools: I let {int} real seconds go by` (When) | Waits real seconds, frame by frame (in the main menu no tick passes, so `I wait {int} ticks` cannot be used). 1 to 45 |
 | `Nelim's Pickle Tools: I stop recording the sound` (When) | Ends the recording, checks the file, attaches `sound-file` and `sound-note` to the report |
+| `Nelim's Pickle Tools: I stop filming with sound` (When) | Ends both, has Pickle's encoder make the video from the pictures at the rate they were taken (so it lasts as long as the sound), and puts the sound into it: `film-sound.mp4`, H.264 and AAC, which Windows plays as it is, in `screenshots/film/pickletools-sound--<name>/`; it also keeps `sound.wav` and Pickle's silent `film.webm`. The soun... |
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` (Then) | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 | `Nelim's Pickle Tools: the sound recorded as {string} is silent` (Then) | The same measure, asserting the level is below -80 dB |
 | `Nelim's Pickle Tools: the game volume is {int} percent` (Given) | Sets the game's master volume for the scenario (the WSL staging writes 0, which mutes the game) and puts the value found back afterwards; nothing is saved to disk |
