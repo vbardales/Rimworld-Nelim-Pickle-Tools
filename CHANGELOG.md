@@ -1,8 +1,8 @@
 # Changelog
 
-## [Unreleased]
+## [1.1.0] - 2026-09-25
 
-Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol.
+Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol. The version number is proposed and awaits the owner's confirmation.
 
 ### Added
 
@@ -13,6 +13,7 @@ Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickD
 ### Changed
 
 - ClickDiagnostics: the stand-still wait says how long it really waited and gives up on the clock; a window already open before the click does not count.
+- The Workshop payload is committed under `Mod/` (the thirteen DLLs, copied from the tools by `Release/Prepare-Release.ps1 -SyncMod` and checked by `-Check`), so the publish workflow uploads exactly what was tested.
 - The interface-scale scenario clicks by the key of its label, so it also plays in French.
 - The step vocabulary checks (`Check-Steps.ps1`) read the sibling tools and attributes written as `Prefix + "..."`.
 
