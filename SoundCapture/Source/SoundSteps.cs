@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorks.Pickle.Evidence;
+using RimWorks.Pickle.Runtime;
 using Verse;
 
 namespace Nelim.PickleTools.SoundCapture
@@ -39,14 +40,42 @@ namespace Nelim.PickleTools.SoundCapture
             public string Source;
             public Process Process;
             public readonly StringBuilder Errors = new StringBuilder();
+
+            // Set when the recording is also a film: pictures by the clock, from the moment ffmpeg is started.
+            public bool Film;
+            public Action Hook;
+            public int Frames;
+            public bool Capped;
+            public Stopwatch Clock;
         }
 
         // Static: the step that starts a recording and the one that ends it share no object.
         private static Recording active;
         private static readonly Dictionary<string, string> Recorded = new Dictionary<string, string>();
 
+        // Ten pictures a second, as Pickle's own @film, at the width it uses because the jpeg encode runs on the main thread.
+        private const int PictureEveryMilliseconds = 100;
+        private const int FrameWidth = 960;
+        private const int MaxFrames = 600;
+
         [When("Nelim's Pickle Tools: I record the sound as {string}")]
         public async Task Start(PickleContext ctx, string name)
+        {
+            await Begin(ctx, name, false);
+        }
+
+        /// <summary>
+        /// A video WITH its sound: the recorder and the film start in the same step, so the sound and the picture begin
+        /// together (to within ffmpeg's start, a fraction of a second). Pickle's own @film has no sound, and FilmTicks
+        /// films by game ticks, whose length is not the length of the sound.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I film with sound as {string}", TimeoutSeconds = 30)]
+        public async Task StartFilm(PickleContext ctx, string name)
+        {
+            await Begin(ctx, name, true);
+        }
+
+        private async Task Begin(PickleContext ctx, string name, bool film)
         {
             ctx.Assert(active == null, $"already recording \"{active?.Name}\": stop that recording first");
 
@@ -57,14 +86,32 @@ namespace Nelim.PickleTools.SoundCapture
                 File.Delete(file);
             }
 
+            if (film)
+            {
+                foreach (string frame in Directory.GetFiles(directory, "*.jpg"))
+                {
+                    File.Delete(frame);
+                }
+
+                foreach (string old in new[] { "film.webm", "film-sound.mp4" })
+                {
+                    File.Delete(Path.Combine(directory, old));
+                }
+            }
+
             string source = Environment.GetEnvironmentVariable("PICKLETOOLS_SOUND_SOURCE");
             if (string.IsNullOrWhiteSpace(source))
             {
                 source = SoundAnalysis.DefaultSource;
             }
 
-            var recording = new Recording { Name = name, File = file, Source = source };
-            var start = new ProcessStartInfo("ffmpeg", SoundAnalysis.RecordArguments(source, file, MaxSeconds))
+            var recording = new Recording { Name = name, File = file, Source = source, Film = film };
+
+            // A sound that goes into a video is kept at CD quality; a sound that is only measured needs no more than this.
+            string arguments = film
+                ? SoundAnalysis.RecordArguments(source, file, MaxSeconds, 44100, 2)
+                : SoundAnalysis.RecordArguments(source, file, MaxSeconds);
+            var start = new ProcessStartInfo("ffmpeg", arguments)
             {
                 UseShellExecute = false,
                 CreateNoWindow = true,
@@ -94,11 +141,20 @@ namespace Nelim.PickleTools.SoundCapture
             recording.Process.BeginErrorReadLine();
             active = recording;
 
+            if (film)
+            {
+                // Before the wait below, so that the picture starts with the sound and not twenty frames after it.
+                recording.Clock = Stopwatch.StartNew();
+                recording.Hook = () => OnFrame(recording);
+                PickleDriver.Instance.AddFrameHook(recording.Hook);
+            }
+
             // A source that does not exist, or no audio server at all, makes ffmpeg exit at once with a message.
             await ctx.WaitFrames(20);
             if (recording.Process.HasExited)
             {
                 active = null;
+                EndFilm(recording);
                 ctx.Assert(false,
                     $"ffmpeg stopped at once (exit {recording.Process.ExitCode}) while recording '{source}': {ErrorsOf(recording)}" +
                     "Is there an audio server (PULSE_SERVER) and does the source exist? `ffmpeg -sources pulse` lists them.");
@@ -120,12 +176,27 @@ namespace Nelim.PickleTools.SoundCapture
         public async Task Stop(PickleContext ctx)
         {
             ctx.Assert(active != null, "no recording is running: start one with \"I record the sound as ...\"");
+            ctx.Assert(!active.Film, $"\"{active.Name}\" is a film with sound: end it with \"I stop filming with sound\"");
+            await End(ctx);
+        }
 
-            // The last buffers are still on their way from the audio server.
+        // The encode of the pictures and the mux run on the main thread, as those of FilmTicks do: a few seconds, so the step has room.
+        [When("Nelim's Pickle Tools: I stop filming with sound", TimeoutSeconds = 120)]
+        public async Task StopFilm(PickleContext ctx)
+        {
+            ctx.Assert(active != null, "no film is running: start one with \"I film with sound as ...\"");
+            ctx.Assert(active.Film, $"\"{active.Name}\" is a sound only: end it with \"I stop recording the sound\"");
+            await End(ctx);
+        }
+
+        private async Task End(PickleContext ctx)
+        {
+            // The last buffers are still on their way from the audio server, and the last pictures still being written.
             await ctx.WaitFrames(10);
             Recording recording = active;
             active = null;
 
+            EndFilm(recording);
             Finish(recording);
             ctx.Assert(File.Exists(recording.File) && new FileInfo(recording.File).Length > 44,
                 $"\"{recording.Name}\" left no sound file at {recording.File}: {ErrorsOf(recording)}");
@@ -134,6 +205,83 @@ namespace Nelim.PickleTools.SoundCapture
             ctx.Attach("sound-file", recording.File);
             ctx.Attach("sound-note", $"\"{recording.Name}\": recorded from '{recording.Source}', {new FileInfo(recording.File).Length} bytes. " +
                                      "It also played on the Windows speakers. Listening to the file is what says the sound is the right one.");
+
+            if (recording.Film)
+            {
+                Mux(ctx, recording);
+            }
+        }
+
+        private static void OnFrame(Recording recording)
+        {
+            if (recording.Frames >= MaxFrames)
+            {
+                recording.Capped = true;
+                return;
+            }
+
+            // By the clock, not by the frame: the picture of a second is ten pictures however slowly the game draws.
+            if (recording.Clock.ElapsedMilliseconds < recording.Frames * (long)PictureEveryMilliseconds)
+            {
+                return;
+            }
+
+            PickleDriver.Instance.CaptureFrameDetached(
+                ScreenshotCapture.BuildFramePath(FeatureFolder, recording.Name, recording.Frames), FrameWidth);
+            recording.Frames++;
+        }
+
+        // Takes the frame hook off and stops the clock; the pictures are encoded later, once the sound has stopped as well.
+        private static void EndFilm(Recording recording)
+        {
+            if (!recording.Film || recording.Hook == null)
+            {
+                return;
+            }
+
+            PickleDriver.Instance.RemoveFrameHook(recording.Hook);
+            recording.Hook = null;
+            PickleDriver.Instance.ReleaseFrameBuffers();
+            recording.Clock.Stop();
+        }
+
+        private static void Mux(PickleContext ctx, Recording recording)
+        {
+            string directory = ScreenshotCapture.FrameDirectory(FeatureFolder, recording.Name);
+            ctx.Assert(recording.Frames > 0, $"\"{recording.Name}\" took no picture: no rendered frame came between the two steps.");
+            ctx.Assert(FilmEncoder.Available, "the film cannot be encoded: no ffmpeg that Pickle's encoder can use on the PATH");
+
+            // As FilmTicks does: the pictures are encoded at the rate they were taken, so the video lasts as long as the sound.
+            double seconds = Math.Max(recording.Clock.Elapsed.TotalSeconds, 0.1);
+            double fps = recording.Frames / seconds;
+            string webm = FilmEncoder.TryEncode(directory, fps);
+            ctx.Assert(webm != null && File.Exists(webm), $"Pickle's encoder made no video from the {recording.Frames} pictures of \"{recording.Name}\"");
+
+            string mp4 = Path.Combine(directory, "film-sound.mp4");
+            var start = new ProcessStartInfo("ffmpeg", SoundAnalysis.MuxArguments(webm, recording.File, mp4))
+            {
+                UseShellExecute = false,
+                CreateNoWindow = true,
+                RedirectStandardError = true,
+            };
+
+            string report;
+            int exit;
+            using (Process process = Process.Start(start))
+            {
+                report = process.StandardError.ReadToEnd();
+                process.WaitForExit(90000);
+                exit = process.HasExited ? process.ExitCode : -1;
+            }
+
+            ctx.Assert(exit == 0 && File.Exists(mp4) && new FileInfo(mp4).Length > 0,
+                $"ffmpeg could not put the sound into the video (exit {exit}): {report.Trim()}");
+
+            ctx.Attach("film-file", mp4);
+            ctx.Attach("film-note", $"\"{recording.Name}\": {recording.Frames} pictures in {seconds:0.0} s" +
+                                    (recording.Capped ? $", stopped at the {MaxFrames}-picture cap" : string.Empty) +
+                                    $", with the sound, in {mp4}. The picture and the sound start together to within ffmpeg's start; " +
+                                    "watching and listening to the file is what says they are in step.");
         }
 
         [Then("Nelim's Pickle Tools: the sound recorded as {string} is not silent")]
@@ -163,6 +311,7 @@ namespace Nelim.PickleTools.SoundCapture
             {
                 Recording recording = active;
                 active = null;
+                EndFilm(recording);
                 Finish(recording);
             }
         }
