@@ -12,3 +12,10 @@ The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`;
 `aggregate-rimmsqol-settings.feature` checks a temporary choice and its after-scenario cleanup
 using vanilla's normally hidden `Inspect` button. It refuses to edit an existing choice.
 `lost-click-probe.feature` asserts the two lost-click symptoms (the page does not open) and a control, so it is green when the click is lost as it should be; the copy that fails on purpose, to read the report's text, is `Upstream/tests/lost-click-probe.feature`.
+
+**A pass that stages one tool on its own ends with the `StandaloneBase` overlay.** The staging activates the mod under test,
+`PickleTools/Mod`, and since 2026-09-25 that folder carries the fourteen bundle DLLs (they are what the publish workflow uploads). A
+pass that also stages `PickleTools/<Tool>/Mod` would load every step of that tool twice and Pickle would refuse the scenario as
+"Ambiguous step" (seen in the first play of the hover steps, 2026-09-25). So each single-tool map ends with
+`nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod`, an empty shell with the same packageId that takes the
+bundle's place. The aggregate maps overlay the generated payload instead and need nothing.
