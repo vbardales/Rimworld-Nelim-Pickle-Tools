@@ -47,11 +47,17 @@ namespace Nelim.PickleTools.SoundCapture
             public int Frames;
             public bool Capped;
             public Stopwatch Clock;
+
+            // Real time from the start of the recorder to its stop, to compare with the length of the file it left.
+            public readonly Stopwatch Elapsed = Stopwatch.StartNew();
+            public int Rate = 22050;
+            public int Channels = 1;
         }
 
         // Static: the step that starts a recording and the one that ends it share no object.
         private static Recording active;
         private static readonly Dictionary<string, string> Recorded = new Dictionary<string, string>();
+        private static readonly Dictionary<string, string> Short = new Dictionary<string, string>();
 
         // Ten pictures a second, as Pickle's own @film, at the width it uses because the jpeg encode runs on the main thread.
         private const int PictureEveryMilliseconds = 100;
@@ -105,7 +111,7 @@ namespace Nelim.PickleTools.SoundCapture
                 source = SoundAnalysis.DefaultSource;
             }
 
-            var recording = new Recording { Name = name, File = file, Source = source, Film = film };
+            var recording = new Recording { Name = name, File = file, Source = source, Film = film, Rate = film ? 44100 : 22050, Channels = film ? 2 : 1 };
 
             // A sound that goes into a video is kept at CD quality; a sound that is only measured needs no more than this.
             string arguments = film
@@ -202,6 +208,13 @@ namespace Nelim.PickleTools.SoundCapture
                 $"\"{recording.Name}\" left no sound file at {recording.File}: {ErrorsOf(recording)}");
 
             Recorded[recording.Name] = recording.File;
+            string shortNote = ShortRecording(recording);
+            if (shortNote != null)
+            {
+                Short[recording.Name] = shortNote;
+                ctx.Attach("sound-short", shortNote);
+            }
+
             ctx.Attach("sound-file", recording.File);
             ctx.Attach("sound-note", $"\"{recording.Name}\": recorded from '{recording.Source}', {new FileInfo(recording.File).Length} bytes. " +
                                      "It also played on the Windows speakers. Listening to the file is what says the sound is the right one.");
@@ -291,7 +304,8 @@ namespace Nelim.PickleTools.SoundCapture
             ctx.Attach("sound-level", $"\"{name}\": peak {peak:0.0} dB, the threshold is above {SoundAnalysis.NotSilentAboveDb:0} dB");
             ctx.Assert(SoundAnalysis.IsNotSilent(peak),
                 $"the sound recorded as \"{name}\" peaks at {peak:0.0} dB, not above {SoundAnalysis.NotSilentAboveDb:0} dB: " +
-                "the recorder heard nothing the game played (no audio output in the game, another sink, or nothing was played).");
+                "the recorder heard nothing the game played (no audio output in the game, another sink, or nothing was played)." +
+                (Short.ContainsKey(name) ? " " + Short[name] : string.Empty));
         }
 
         [Then("Nelim's Pickle Tools: the sound recorded as {string} is silent")]
@@ -339,6 +353,22 @@ namespace Nelim.PickleTools.SoundCapture
                 process.Kill();
                 process.WaitForExit(2000);
             }
+        }
+
+        // An audio server that delivers nothing (an idle sink, or a stalled one: the WSLg rdp-sink of 2026-09-25) leaves a file that holds a
+        // fraction of the real time, and a video whose sound would then be out of step. Say so instead of leaving a bare level.
+        private static string ShortRecording(Recording recording)
+        {
+            double held = Math.Max(new FileInfo(recording.File).Length - 44, 0) / (double)(recording.Rate * recording.Channels * 2);
+            double real = recording.Elapsed.Elapsed.TotalSeconds;
+            if (held >= real * 0.8)
+            {
+                return null;
+            }
+
+            return $"\"{recording.Name}\": the file holds {held:0.0} s of sound for {real:0.0} s of recording. The audio server delivered data for only part of the time " +
+                   "(an idle sink sends nothing, and a stalled one sends nothing at all: see the WSLg pulseaudio.log for \"rdp-sink ... q overrun\"). " +
+                   "A level measured on it says little, and a video made with it would be out of step.";
         }
 
         private static string ErrorsOf(Recording recording)
