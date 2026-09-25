@@ -67,6 +67,12 @@ The WSL launcher's exit codes distinguish machine availability from run failures
 | 99 | Written by the request worker, not by the launcher: the launcher itself threw (`launcher threw`). Pickle's verdict is kept when it is known; read the request's log |
 | 10 | Wrong call: `-Then` supplied without `-Filter`, refused before anything is queued or launched. Fix the call; the machine is fine |
 
+**Exit 139** is not one of the launcher's codes: it is the game process killed by a segmentation fault (signal 11), reported as it is. Read on 2026-09-25 by the TicketDispatcher session,
+two of that day's 139 (Fieldwork Companions, the removal pass; Ancient Chinese Beast, a pass of the evening) show the same signature in `Player.log`: SIGSEGV **during the start**, just after
+`Log viewer sink registered` and `StaticConstructorOnStartupUtility.CallAll`, with a native stack in Mono's garbage collector (`GC_mark_from`, `GC_mark_some`,
+`GC_collect_a_little_inner`, `mono_gc_register_root`). Two different mods, no report, the same stack: it looks like a fault of the game or of the machine, not of a mod. **Cause not established**;
+other 139 of the same day were not read, so they are not known to be the same. Before blaming a mod for a 139, read its `Player.log`: a native stack in the garbage collector at the start is not its doing.
+
 By default the launcher queues; `-NoWait` requests an immediate refusal when unavailable.
 The separate Windows `Tests/Pickle/Run-Pickle.ps1 -Launch` refusal uses code 5; it is not the WSL code 5.
 
@@ -178,6 +184,13 @@ Two refusals, so a seed cannot be inert in silence either: its name must be
 `Mod_<folder>_<Class>.xml` with `<folder>` a staged mod's folder (a Workshop dependency's folder is
 its Workshop id), and it must be well-formed XML. The seed decides the outcome of the pass, so the
 mod's `TESTING.md` should say what it contains and where it came from.
+
+**What a run writes stays for the next run of the same mod** (found by the Entity Gazing session on 2026-09-25, from the comment in `stage-pickle-wsl.sh`:
+"the Config folder is NOT wiped between passes"). Only the files listed in `seeded-files.txt`, the seeds the staging itself copied, are removed at the next staging.
+A settings file that the game or the mod wrote during a pass is not in that list, so a pass that leaves non-default values hands them to the next run of that mod.
+It usually goes unseen, because Scribe leaves out a value equal to its default; it bites a mod with a restart or a settings test, which is exactly the one that changes them.
+To make a pass start from known settings, seed the file (above) with the values the pass must start from, an all-defaults file included: the staging then overwrites
+whatever the last run left and removes the seed afterwards. Entity Gazing did that (`Tests/Pickle/config/sans-facultatifs/`).
 
 ## One mod, several passes
 
