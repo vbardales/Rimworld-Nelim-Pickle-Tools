@@ -1,6 +1,6 @@
 # Sound capture - Pickle steps (optional)
 
-Nine Pickle steps: five that record **what the game plays** between two steps and measure it, one that sets the game's master volume, and three that assert what the **game itself** holds as playing (no audio device involved). It is an
+Eleven Pickle steps: seven that record **what the game plays** between two steps (two of them as a video with its sound) and measure it, one that sets the game's master volume, and three that assert what the **game itself** holds as playing (no audio device involved). It is an
 optional companion: nothing runs unless a scenario asks for it, nothing in Pickle or in the launcher changes, and it is
 not part of the aggregate bundle.
 
@@ -9,6 +9,8 @@ not part of the aggregate bundle.
 | `Nelim's Pickle Tools: I record the sound as {string}` | Starts `ffmpeg` on the monitor of the audio sink and writes `sound.wav` in the report, under the name |
 | `Nelim's Pickle Tools: I let {int} real seconds go by` | Waits real seconds, frame by frame (in the main menu no tick passes, so `I wait {int} ticks` cannot be used). 1 to 45 |
 | `Nelim's Pickle Tools: I stop recording the sound` | Ends the recording, checks the file, attaches `sound-file` and `sound-note` to the report |
+| `Nelim's Pickle Tools: I film with sound as {string}` | **A video with its sound.** Starts the recorder (CD quality, stereo) and a film by the clock, ten pictures a second, in the same step, so the picture and the sound begin together (to within ffmpeg's start, a fraction of a second). Pickle's own `@film` has no sound, and `FilmTicks` films by game ticks, whose length is not the sound's. Works from the main menu, where there are no ticks |
+| `Nelim's Pickle Tools: I stop filming with sound` | Ends both, has Pickle's encoder make the video from the pictures at the rate they were taken (so it lasts as long as the sound), and puts the sound into it: `film-sound.mp4`, H.264 and AAC, which Windows plays as it is, in `screenshots/film/pickletools-sound--<name>/`; it also keeps `sound.wav` and Pickle's silent `film.webm`. The sound is cut to the picture's length. Attaches `film-file` and `film-note`. The name can then go to `the sound recorded as ... is not silent`. Up to 600 pictures (a minute) |
 | `Nelim's Pickle Tools: the sound recorded as {string} is not silent` | Measures the loudest sample with ffmpeg's `volumedetect`: not silent means above -60 dB, silent below -80 dB |
 | `Nelim's Pickle Tools: the sound recorded as {string} is silent` | The same measure, asserting the level is below -80 dB |
 | `Nelim's Pickle Tools: the game volume is {int} percent` | Sets the game's master volume for the scenario (the WSL staging writes 0, which mutes the game) and puts the value found back afterwards; nothing is saved to disk |
@@ -77,5 +79,11 @@ install (2026-09-24): an idle monitor reads -91.0 dB and a 440 Hz test tone -18.
 nelim.pickletools.soundcapture   path:PickleTools/SoundCapture/Mod
 ```
 
-and tag the feature `@requires:nelim.pickletools.soundcapture`. Muxing the sound into a Pickle `@film` video is not done: the
-file sits beside the report, and a person can play both.
+and tag the feature `@requires:nelim.pickletools.soundcapture`. A video with its sound is `I film with sound as "name"` ... `I stop
+filming with sound` (feature `pickletools-soundfilm.feature`). Muxing the sound into a Pickle `@film` video itself (a scenario tag)
+is not done: it would take a change in Pickle, and these two steps need none.
+
+**What a run of the video proves, and what it does not.** That the mp4 exists and that its sound is not silent (the peak is measured on
+`sound.wav`). Whether the picture and the sound are **in step**, and whether the sound is the right one, only a person watching the mp4
+says: the two start in one step, but no clapperboard has been filmed to measure the offset. The mux runs on the game's main thread
+(a few seconds), like the encode of FilmTicks.
