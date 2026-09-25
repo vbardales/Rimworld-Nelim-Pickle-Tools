@@ -1,4 +1,5 @@
-# RUN ALONE AND ON WINDOWS (the owner, 2026-09-25): a test that records the sound is played by itself, with no other test around it,
+# PLAYED IN WSL, 2026-09-25, at 80 percent volume: 1 of 1, peak -16.2 dB (the WSL profile mutes the game unless a step raises the
+# volume, which is why the first run read silence); the owner heard the menu music on her speakers. RUN ALONE AND ON WINDOWS (the owner, 2026-09-25): a test that records the sound is played by itself, with no other test around it,
 # on the Windows install, with the mod list changed for the run and put back after. Not on the WSL install, where it measured silence
 # once (-91 dB) without an explanation. Nothing has been launched on Windows for it; the launcher is SoundCapture/Run-Windows.ps1, see SoundCapture/README.md. The recording input
 # of the tool is PulseAudio only, so a Windows run needs a source the tool does not have yet.
