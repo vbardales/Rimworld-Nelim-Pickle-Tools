@@ -49,3 +49,17 @@ QuietNewFactions scenarios from this repository; the late-binding change above s
 Original work for Quiet New Factions, written with Claude Code (Anthropic) under Nelim's direction and
 review, then promoted and namespaced with OpenAI Codex. VEF was studied and referenced but not copied.
 Pickle supplies the step API. See the repository ATTRIBUTION.md and included MIT licence.
+
+## Steps
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the load has settled` | Waits until the game has no long event running or waiting (VEF runs its check after the load), then three frames |
+| `Nelim's Pickle Tools: a faction the world lacks is chosen` | Picks a faction the loaded world does not have and VEF would offer (not the player's, not hidden), and remembers it as the chosen one for the steps that follow |
+| `Nelim's Pickle Tools: the chosen faction is marked required by its mod` | Gives the chosen faction VEF's own extension that marks it required, refusing if it already carries one, and takes it off again after the scenario |
+| `Nelim's Pickle Tools: VEF runs its new faction check` | Calls VEF's own on-game-loaded check by reflection, then waits three frames; fails, saying so, if VEF changed |
+| `Nelim's Pickle Tools: no new faction window is open` | Asserts no new-faction window is open, and lists the factions of the ones that are |
+| `Nelim's Pickle Tools: a new faction window is open for the chosen faction` | Asserts a new-faction window is open for the chosen faction, and lists the ones that are open |
+| `Nelim's Pickle Tools: the chosen faction is ignored in this save` | Asserts the chosen faction is on VEF's ignored list |
+| `Nelim's Pickle Tools: the chosen faction is not ignored` | Asserts the chosen faction is not on VEF's ignored list |
+| `Nelim's Pickle Tools: the game log says the chosen faction was ignored` | Asserts the log holds a Quiet New Factions line for the chosen faction |
