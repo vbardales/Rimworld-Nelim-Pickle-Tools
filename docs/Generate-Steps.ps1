@@ -47,11 +47,20 @@ function Get-Summary([string]$text, [int]$index) {
     $s = ($s -replace '\s+', ' ').Trim()
     $s = $s -replace '&lt;', '<' -replace '&gt;', '>' -replace '&amp;', '&'
     # the first sentences, up to about 340 characters
-    $sent = [regex]::Matches($s, '[^.]*\.(?:\s|$)') | ForEach-Object { $_.Value.Trim() }
-    if (-not $sent) { return $s }
+    return Shorten $s
+}
+
+# Whole sentences up to about 340 characters. A sentence ends at a period followed by a space, so a period inside `Class.Method`
+# does not end it. A first sentence longer than that is cut at a word, never inside a code span.
+function Shorten([string]$s) {
+    $sent = [regex]::Split($s.Trim(), '(?<=\.)\s+(?=\S)')
     $take = ''
     foreach ($x in $sent) { if (($take + ' ' + $x).Length -gt 340 -and $take) { break }; $take = ($take + ' ' + $x).Trim() }
-    return $take
+    if ($take.Length -le 340) { return $take }
+    $cut = $take.Substring(0, 337)
+    $cut = $cut.Substring(0, $cut.LastIndexOf(' '))
+    if ((($cut.ToCharArray() | Where-Object { $_ -eq '`' }).Count % 2) -eq 1) { $cut = $cut.Substring(0, $cut.LastIndexOf('`')).TrimEnd() }
+    return $cut.TrimEnd(',', ';', ':', ' ') + '...'
 }
 
 $readmeRows = @{}
@@ -69,9 +78,7 @@ function Get-ReadmeRow([string]$toolDir, [string]$pattern) {
     }
     $d = $readmeRows[$toolDir][$pattern]
     if (-not $d) { return '' }
-    $d = [regex]::Replace($d, '\s+', ' ').Trim()
-    if ($d.Length -gt 340) { $d = $d.Substring(0, 337) + '...' }
-    return $d
+    return Shorten ([regex]::Replace($d, '\s+', ' ').Trim())
 }
 
 $bundleDlls = @()
@@ -81,6 +88,7 @@ if (Test-Path $modAsm) { $bundleDlls = @(Get-ChildItem $modAsm -Filter '*.dll' |
 $sections = @()
 $empty = @()
 $total = 0
+$unprefixed = [ordered]@{}
 foreach ($dir in Get-ChildItem $root -Directory | Sort-Object Name) {
     $src = Join-Path $dir.FullName 'Source'
     if (-not (Test-Path $src)) { continue }
@@ -107,6 +115,8 @@ foreach ($dir in Get-ChildItem $root -Directory | Sort-Object Name) {
     $dll = @(Get-ChildItem (Join-Path $dir.FullName 'Mod\Pickle\Assemblies') -Filter '*.dll' -ErrorAction SilentlyContinue | ForEach-Object Name)
     $inBundle = ($dll.Count -gt 0) -and ($bundleDlls -contains $dll[0])
     $total += $steps.Count
+    $bare = @($steps | Where-Object { $_.Pattern -notlike "Nelim's Pickle Tools:*" })
+    if ($bare.Count) { $unprefixed[$dir.Name] = $bare.Count }
     $lines = @()
     $lines += "## $($dir.Name)"
     $lines += ''
@@ -122,14 +132,20 @@ foreach ($dir in Get-ChildItem $root -Directory | Sort-Object Name) {
     $sections += ($lines -join "`n")
 }
 
+$bareTotal = 0; foreach ($n in $unprefixed.Values) { $bareTotal += $n }
+if ($bareTotal -eq 0) {
+    $prefixLine = "Every step here starts with ``Nelim's Pickle Tools:`` so it can never be ambiguous with one of Pickle's."
+} else {
+    $names = ($unprefixed.Keys | ForEach-Object { "$_ ($($unprefixed[$_]))" }) -join ', '
+    $prefixLine = "Every step starts with ``Nelim's Pickle Tools:``, which keeps it from being ambiguous with one of Pickle's, **except $bareTotal of them: $names**. Those texts have no prefix, so nothing in the text protects them: each tool's ``Check-Steps.ps1`` matches every step line of every feature of the repository against Pickle's own vocabulary and the other tools', and fails on an ambiguity."
+}
 $head = @"
 # Steps of Nelim's Pickle Tools
 
 The Pickle steps this repository ships, one table per tool. **Pickle's own steps are in its catalogue:
 [Docs/steps.md](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md)** (defs, mods, fixtures, pawns,
-simulation, interface...); look there first, and here for what Pickle does not have. Every step here starts with
-``Nelim's Pickle Tools:`` so it can never be ambiguous with one of Pickle's, and is staged with one line of a pass map
-("Using a tool from a suite" in the [README](../README.md)).
+simulation, interface...); look there first, and here for what Pickle does not have. $prefixLine It is staged with one line
+of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the ``[Given]``, ``[When]`` and ``[Then]`` attributes of each tool's ``Source/`` and the first
 sentences of the summary above them: do not edit it, run ``docs/Generate-Steps.ps1`` (``-Check`` verifies that it is current).
