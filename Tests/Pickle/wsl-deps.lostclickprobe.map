@@ -1,11 +1,9 @@
-# The pass that plays lost-click-probe.feature: windows that make a click lose itself, and the symptom asserted (the page does not
-# open), with the keyed click that makes it play in French too. The deliberately failing copy that shows the report's text is
-# Upstream/tests/lost-click-probe.feature and runs with the same map.
+# The pass for the DIAGNOSTIC copy of the lost-click probe, Upstream/tests/lost-click-probe.feature (not part of the suite: it is
+# expected to fail, to show the report a lost click prints). Played on 2026-09-25 it failed one step earlier than intended:
+# "tag 'btn:New colony' not found; known tags: no tags recorded this frame", the probe windows leaving Pickle no tag to click.
 #
-#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.lostclickprobe.map -Filter lost-click-probe
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.lostclickprobe.map -Filter lost-click-probe.feature -PickleSrc <build>
 #
 # `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
-nelim.pickletools.keyedclick       path:PickleTools/KeyedClick/Mod
 nelim.pickletools.lostclickprobe   path:PickleTools/Upstream/tests/lost-click-probe/Mod
-# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
