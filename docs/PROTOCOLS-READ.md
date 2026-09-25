@@ -64,11 +64,13 @@ lists no body-type step, which agrees with `ColonistRace/` still supplying one. 
 - **Fixed: `ATTRIBUTION.md`** now names ClearScreen, InterfaceScale, ClickDiagnostics, ExpansionSteps, HoverSteps,
   ScreenshotMode, ScreenshotStudio, TextureOwner and SoundCapture, with the limit of that record (commit trailers and
   READMEs, not a line-by-line audit). `Mod/ATTRIBUTION.md` is the same file (hash checked).
-- **Not fixed, put to the CI/CD session: no `.github/workflows`.** The publish workflow uploads `Mod/` as committed, and
-  this repository's `Mod/` holds only the metadata and the artwork: the thirteen DLLs are assembled into
-  `.build/aggregate-current/Mod` by `Release/Prepare-Release.ps1`. A workflow generated now could only publish a bundle
-  without its steps. Either the assembled payload is committed under `Mod/` (thirteen DLLs duplicated from the tool
-  folders, `Prepare-Release.ps1` changed to write there), or the workflow builds it. Neither was done unasked.
+- **Fixed on the CI/CD session's answer (2026-09-25): the publish workflow and the payload.** `Mod/` only held the metadata and
+  the artwork, and the workflow uploads it as committed. The thirteen DLLs are now committed under `Mod/Pickle/Assemblies`
+  (`Release/Prepare-Release.ps1 -SyncMod`, checked by `-Check`), and `.github/` holds the manual publish workflow generated from
+  `Rimworld-Release-Admin` 2ce34a3 with all thirteen DLLs required, its 49 tests passing. No dry-run and no publish was run. A
+  rebuild from source is **not** byte-identical to the tracked DLLs (floating package references), so the gate is the hash
+  comparison, not a rebuild. `v1.0.0` (`2dc9845`) cannot be a CI rollback target (no `.github`, no DLL in its `Mod/`): the first
+  rollback is Steam's own "rétablir cette version", chosen by the owner.
 - **Fixed for the next release: the description** (`Mod/About/About.xml` and `PUBLICATION.md`) no longer says release candidate; the live
   Steam page still does until a publish with `update_description` or a manual edit.
 ## Corrections made after reading
