@@ -18,6 +18,7 @@ Developer tools for writing and running RimWorld 1.6 [url=https://steamcommunity
 [*]Check texture ownership, active expansions and optional mods.
 [*]Capture tick-based films and clean review screenshots.
 [*]Click translated buttons and diagnose missed clicks or interface-scale issues.
+[*]Hover a tooltip by its text and check what is drawn.
 [*]Exercise optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] workflows.
 [/list]
 
@@ -108,6 +109,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. T
 [b]Added[/b]
 [list]
 [*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, whatever its xenotype's body-type genes.
+[*]Hover steps: hover a tooltip by its text and check that it is drawn.
 [*]Screenshot mode can turn developer mode off for a capture that keeps the interface.
 [/list]
 
@@ -142,9 +144,9 @@ The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublish
 The Steam description above is the text for that release: it no longer calls the bundle a release candidate. An upload from the game does not send the description again, so it is sent by the CI with `update_description` (its dry-run prints the text, its size and its diff against the page), or pasted by hand on the Steam page. `Mod/About/About.xml` carries the same text.
 
 **The payload is committed.** The workflow uploads `Mod/` as committed and has no build step, so `Mod/Pickle/Assemblies` holds the
-thirteen tool DLLs, copied byte for byte from the tools by `Release/Prepare-Release.ps1 -SyncMod`. Before every release run
+fourteen tool DLLs, copied byte for byte from the tools by `Release/Prepare-Release.ps1 -SyncMod`. Before every release run
 `powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Prepare-Release.ps1 -Check` (exit 1 on any difference); commit,
-then dry-run that exact commit. The workflow requires all thirteen DLLs, so an incomplete payload fails the dry-run instead of
+then dry-run that exact commit. The workflow requires all fourteen DLLs, so an incomplete payload fails the dry-run instead of
 shipping a bundle without steps, and forbids `Source` and `.build` in `Mod/`.
 
 **The workflow** (`.github/`, generated on 2026-09-25 from `Rimworld-Release-Admin` at 2ce34a3, its 49 tests passing) is
@@ -158,6 +160,7 @@ bash Rimworld-Release-Admin/scripts/generate-publish-workflow.sh PickleTools \
   --require Pickle/Assemblies/Nelim.PickleTools.ClearScreen.dll   --require Pickle/Assemblies/Nelim.PickleTools.ClickDiagnostics.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.ColonistRace.dll  --require Pickle/Assemblies/Nelim.PickleTools.Expansions.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.FilmTicks.dll     --require Pickle/Assemblies/Nelim.PickleTools.InspectTabs.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.HoverSteps.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.InterfaceScale.dll --require Pickle/Assemblies/Nelim.PickleTools.KeyedClick.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.ResearchSteps.dll --require Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.ScreenshotMode.dll --require Pickle/Assemblies/Nelim.PickleTools.TextureOwner.dll \
@@ -175,4 +178,4 @@ publication the rollback is Steam's own "rÃ©tablir cette version" in the item'
 there), chosen by the owner before the publish. Once 1.1.0 is published from a commit that holds the payload and the workflow, that
 commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
 
-`HoverSteps` is not among the thirteen tools `Prepare-Release.ps1` lists, so it is not in the payload; whether it joins is undecided.
+`HoverSteps` joins the payload in this release (the owner, 2026-09-25): `Prepare-Release.ps1` lists fourteen tools and the workflow requires the fourteen DLLs. Its steps have not been played in this repository yet, see `STATUS.md`.
