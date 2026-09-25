@@ -22,7 +22,8 @@
     powershell.exe -ExecutionPolicy Bypass -File scripts/Use-Wsl.ps1 -Reason 'SoundCapture on Windows (owner exception)' `
       -Command "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/nelim/Documents/rimworld/PickleTools/SoundCapture/Run-Windows.ps1 -Go -UnderLock"
 
-  Only the owner asks for this run. The game ends itself (Pickle's autorun exits); if it outlives -RunTimeoutMinutes plus a
+  FOR THE OWNER'S OWN USE, and no session launches it: the owner's rule of 2026-09-25 that let sessions run SoundCapture tests here
+  was withdrawn the same day, the WSL recording fine (AUDIT.md). Kept for her manual listening. The game ends itself (Pickle's autorun exits); if it outlives -RunTimeoutMinutes plus a
   margin, this script closes the process IT started, and says so.
 
 .PARAMETER Filter    A Pickle filter (default: the SoundCapture scenarios).
