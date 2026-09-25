@@ -7,6 +7,8 @@ hiding RimWorld's HUD, developer controls and every Pickle-owned window.
 | --- | --- |
 | `Nelim's Pickle Tools: screenshot mode is enabled around the open windows` | Keeps open non-Pickle windows, hides the HUD and Pickle panels. Fails when there is no non-Pickle window to review. |
 | `Nelim's Pickle Tools: screenshot mode is disabled` | Restores the prior window flags and screenshot-mode state. |
+| `Nelim's Pickle Tools: developer mode is turned off for the capture` | Sets `Prefs.DevMode` to false and waits three frames. For a capture that must keep the full interface (a main tab and its tab bar), which screenshot mode would hide: the runner starts the game with developer mode on, and its toolbar would show. |
+| `Nelim's Pickle Tools: developer mode is restored` | Puts developer mode back. Optional: the `AfterScenario` hook does it. |
 
 The second step is optional: an `AfterScenario` hook restores the state even if the scenario
 fails. A scenario must open and assert its subject before enabling the mode, then wait for frames

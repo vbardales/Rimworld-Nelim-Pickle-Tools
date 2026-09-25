@@ -50,10 +50,41 @@ namespace Nelim.PickleTools.ScreenshotMode
             Restore();
         }
 
+        // Screenshot mode hides the developer controls, but it also hides the main tab bar, which some
+        // captures need (a main tab's panel is only recognisable with the bar under it). This step is for
+        // those: it turns developer mode off and leaves the rest of the interface as a player sees it.
+        // The runner starts the game with developer mode on, so a full-interface capture shows its
+        // toolbar unless this runs first.
+        [When("Nelim's Pickle Tools: developer mode is turned off for the capture")]
+        public async Task DeveloperModeOff(PickleContext ctx)
+        {
+            if (!developerModeChanged) developerModeBefore = Prefs.DevMode;
+            developerModeChanged = true;
+            Prefs.DevMode = false;
+            await ctx.WaitFrames(3);
+        }
+
+        [When("Nelim's Pickle Tools: developer mode is restored")]
+        public void DeveloperModeRestored(PickleContext ctx)
+        {
+            RestoreDeveloperMode();
+        }
+
         [AfterScenario]
         public void RestoreAfterScenario(PickleContext ctx)
         {
             Restore();
+            RestoreDeveloperMode();
+        }
+
+        private bool developerModeBefore;
+        private bool developerModeChanged;
+
+        private void RestoreDeveloperMode()
+        {
+            if (!developerModeChanged) return;
+            Prefs.DevMode = developerModeBefore;
+            developerModeChanged = false;
         }
 
         private void Restore()
