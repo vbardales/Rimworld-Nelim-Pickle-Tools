@@ -83,6 +83,13 @@ and tag the feature `@requires:nelim.pickletools.soundcapture`. A video with its
 filming with sound` (feature `pickletools-soundfilm.feature`). Muxing the sound into a Pickle `@film` video itself (a scenario tag)
 is not done: it would take a change in Pickle, and these two steps need none.
 
+**When the audio server stalls, the recording is short and silent (seen 2026-09-25).** The first play of the video (ticket `56ae`, 21 s of scenario) left a `sound.wav` of 1.5 s, all
+at -91 dB, while the volume step had run: WSLg's PulseAudio had begun logging `[rdp-sink] q overrun, queuing locally` every few seconds at the moment the run started,
+which is a sink whose channel to Windows drains nothing, and even `ffmpeg -sources pulse` returned nothing. A sink with no stream also sends the recorder no data at all
+(a recording of an idle sink does not end by itself: `-t` counts the data it receives). The steps now compare the length of the file with the real time of the
+recording and attach `sound-short` (and repeat it in the failure of `is not silent`) when the file holds much less than the real time. The cure is on the machine: restart WSL's audio
+(`wsl --shutdown` between runs, which stops every session's run) after checking Windows' output device.
+
 **What a run of the video proves, and what it does not.** That the mp4 exists and that its sound is not silent (the peak is measured on
 `sound.wav`). Whether the picture and the sound are **in step**, and whether the sound is the right one, only a person watching the mp4
 says: the two start in one step, but no clapperboard has been filmed to measure the offset. The mux runs on the game's main thread
