@@ -15,45 +15,24 @@ not part of the aggregate bundle.
 | `Nelim's Pickle Tools: the game is playing a sound` | Passes as soon as the game holds a live sustainer, a playing one-shot sample or the main menu's music, waiting up to ten real seconds; the failure lists what the game held |
 | `Nelim's Pickle Tools: the game is playing the sound {string}` | The same for one sound def by name: a live sustainer or a playing one-shot started from it |
 
-## Where and how to run it: alone, and on Windows (the owner, 2026-09-25)
+## Where to run it: the WSL, like any test (the owner, 2026-09-25)
 
-**Any test that uses SoundCapture is run ALONE, and on the Windows install**, not in the headless WSL install:
+A test that uses SoundCapture runs in the headless WSL install as a small ticket, like the others. Earlier on 2026-09-25 a rule
+said "alone, and on Windows"; **it was withdrawn the same day**, because the WSL records fine (peak -16.2 dB, see below), and
+`AUDIT.md` says so. Two things to know:
 
-- **Alone**: no other Pickle test queued with it or around it. A recording listens to the machine's whole audio output, so
-  anything else playing pollutes it, and the run takes the owner's machine and delays her.
-- **On Windows**: the WSL install produced one measurement, silence at -91 dB, with no explanation (see below), and nothing
-  proves the game plays into that sink at all. The Windows game is the one with real audio.
-- **The mod list is changed for the run, then put back**: stage the test companion and this tool, note the list first, and
-  restore exactly that list afterwards (`ModsConfig.xml`), the way any audit restores what it changed. The owner's mod list is
-  not left as the test set it.
+- **The WSL profile mutes the game** (`volumeMaster 0`), so a scenario that records starts with
+  `Nelim's Pickle Tools: the game volume is 80 percent`; without it the recording reads silence (-91 dB).
+- **The sound also plays on the owner's speakers** for the few seconds of the recording, while being recorded: the recorder taps
+  the monitor of the WSLg sink, which does not take the sound away from it (the owner heard the menu music during the recorded
+  run of 2026-09-25). Keep a recording to a few seconds.
 
-This is an **exception to the absolute rule of `AUDIT.md` that no session launches the Windows game**, given by the owner for
-these tests only on 2026-09-25 and now written in `AUDIT.md` itself (protocols repository). **Nothing has been launched on
-Windows for it, and none is to be until the owner asks for that run.**
-
-**The launcher: `SoundCapture/Run-Windows.ps1`**, for this case only (and for the owner's own listening: `-Watch` plays the
-waits in real time, `-Volume` sets the master volume). It does nothing without `-Go`; the default is a dry run that checks the
-machine and prints the plan. What it does with `-Go -UnderLock`, and only through `scripts/Use-Wsl.ps1`, which queues, takes the
-machine lock and logs it:
-
-```powershell
-powershell.exe -ExecutionPolicy Bypass -File scripts/Use-Wsl.ps1 -Reason 'SoundCapture on Windows (owner exception)' `
-  -Command "powershell.exe -NoProfile -ExecutionPolicy Bypass -File C:/Users/nelim/Documents/rimworld/PickleTools/SoundCapture/Run-Windows.ps1 -Go -UnderLock"
-```
-
-1. Refuses if the Windows game or the WSL game is running, or Steam is not (the Workshop copies of Harmony and Pickle must be
-   installed; `-PickleSrc` puts a local Pickle build in their place).
-2. **Changes the mod list without touching hers**: the game is started with `-savedatafolder` on a profile of its own
-   (`.build/windows-sound/profile`), where it writes `Config/ModsConfig.xml` (Harmony, Core, the DLC, Pickle, the test companion and
-   the map's mods, read from `Tests/Pickle/wsl-deps.soundcapture.map`) and `Config/Prefs.xml`. Her `ModsConfig.xml`, `Prefs.xml`,
-   saves and settings are never opened. `-savedatafolder` is what the game documents for this; **not yet seen working here**.
-3. Puts the test companion and the map's local mods in the game's `Mods/` folder as junctions named `zz-picklesound-*` and
-   **removes them in a `finally`**, comparing the folder's listing before and after (exit 3 if they differ).
-4. Runs Pickle's autorun with the filter, waits for the game to end by itself, and closes only the process it started if it
-   outlives its timeout plus a margin. Copies the report to `-EvidenceDir`, and reads `exitReason` before the counts.
-
-**Checked on 2026-09-25: the dry run only** (it printed the plan and listed the WSL game that was running as a reason it would
-refuse). No junction was created and no game was launched.
+**The Windows game is still the owner's, and no session launches it.** `SoundCapture/Run-Windows.ps1` exists for the owner's own
+use, to listen in a profile of its own (`-savedatafolder`, so her `ModsConfig.xml` and `Prefs.xml` are never opened; it adds two
+junctions `zz-picklesound-*` to the game's `Mods/` folder and removes them in a `finally`, comparing the listing before and after).
+It does nothing without `-Go`; the default is a dry run that checks the machine and prints the plan (checked that way only).
+`-Watch` plays the waits in real time and `-Volume` sets the master volume. It is not a session's launcher, and recording on
+Windows (no loopback device for ffmpeg there) is not needed for the tests.
 
 ## Why the WSL run was silent, now measured, and what Windows lacks
 
