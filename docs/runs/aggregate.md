@@ -1,6 +1,6 @@
 # Aggregate passes: what each report said
 
-Generated 2026-09-25 20:40 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
+Generated 2026-09-25 21:47 by `Summarize-Aggregate.ps1` from `evidence/aggregate/` on the machine that ran them.
 The reports are not in git and the superseded ones are deleted (AGENTS.md, Test evidence); their rows stay. Read `exitReason` before the counts; a NO REPORT row is an infrastructure record, not a result.
 The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without one ran against the staged Workshop copy.
 
@@ -65,6 +65,7 @@ The Pickle version is in the folder name (`v4.8.4`, `v4.9.1`); a folder without 
 | 2026-09-25-v4.9.1-hoversteps-en2 | failed | 0/1 (failed 1, skipped 0, flaky 0) | a tooltip of the options dialog is hovered by its key and is drawn |
 | 2026-09-25-v4.9.1-hoversteps-en3 | passed | 1/1 (failed 0, skipped 0, flaky 0) | a tooltip of the options dialog is hovered by its key and is drawn |
 | 2026-09-25-v4.9.1-interfacescale-fr-fix | passed | 1/1 (failed 0, skipped 0, flaky 0) | a button is clickable at another interface scale |
+| 2026-09-25-v4.9.1-loadaudit-en | passed | 1/1 (failed 0, skipped 0, flaky 0) | the tool's own mod has a clean load, with and without a known message set aside |
 | 2026-09-25-v4.9.1-lostclickprobe-en | failed | 1/3 (failed 2, skipped 0, flaky 0) | a window covers the button and an image button in it takes the click; a window that absorbs input elsewhere swallows the click; control, with nothi... |
 | 2026-09-25-v4.9.1-soundcapture-volume-en | passed | 1/1 (failed 0, skipped 0, flaky 0) | the game's sound reaches the recorder from the main menu |
 | 2026-09-25-v4.9.1-tools-fr-final2 | passed | 11/11 (failed 0, skipped 0, flaky 0) | the inspect tabs open on a selected pawn, by short name, type name and label key; a button is clickable at another interface scale; a cleared scree... |
