@@ -1,6 +1,6 @@
 # Publication
 
-Steam Workshop item **3806142401**, currently private. `Mod/About/PublishedFileId.txt` is part of the
+Steam Workshop item **3806142401**, **public** as read from Steam's public API on 2026-09-25 (`visibility` 0, created and last updated 2026-09-22 11:59 UTC, one upload, one subscriber; the API returns nothing for a private item). Earlier text here called it private; the item was made public after its creation, and the VEF thank-you below was posted after that. `Mod/About/PublishedFileId.txt` is part of the
 published payload and must never be deleted: losing it can create a duplicate item on the next upload.
 
 ## Steam description
@@ -113,8 +113,8 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3806142401
 Only Pickle is required globally. Mods and DLC exercised by particular scenarios remain optional.
 ```
 
-## Before making the item public
+## Before the 1.0.0 upload
 
-Upload while private, subscribe to the real Workshop item and complete the aggregate runtime matrix in
-`TESTING.md`. Confirm that Steam retained item id 3806142401, the single Pickle dependency and the intended
-preview. Tag and publish GitHub release `v1.0.0` only after that validation.
+The item is already public and holds the 2026-09-22 upload, whose commit is not recorded (see `CHANGELOG.md`, `[0.1.0]`). The 1.0.0 goes out by the CI, after AUDIT.md's `tested` and `prepublished` gates and the fail-fast conditions: no red scenario without a green replay, the gallery, the owner's manual validations, a dry-run of the exact commit, the full SHA, and a rollback target chosen beforehand. No tag or release is made by hand: the workflow creates `v1.0.0` and the release after a successful upload.
+
+The Steam description above says this is a release candidate with runtime validation pending. The page description is not sent again by an upload from the game, so its correction is a manual edit on the Steam page, or an `update_description` publish once a workflow exists (see `STATUS.md`).
