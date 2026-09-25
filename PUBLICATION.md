@@ -1,6 +1,6 @@
 # Publication
 
-Steam Workshop item **3806142401**, **public** as read from Steam's public API on 2026-09-25 (`visibility` 0, created and last updated 2026-09-22 11:59 UTC, one upload, one subscriber; the API returns nothing for a private item). Earlier text here called it private; the item was made public after its creation, and the VEF thank-you below was posted after that. `Mod/About/PublishedFileId.txt` is part of the
+Steam Workshop item **3806142401**, **public** as read from Steam's public API on 2026-09-25 (`visibility` 0, created and last updated 2026-09-22 11:59 UTC, one upload, one subscriber; the API returns nothing for a private item). **Version 1.0.0 was released on 2026-09-22** (the Steam upload, and the GitHub release `v1.0.0` on `2dc9845`). Earlier text here called the item private; it was made public after its creation, and the VEF thank-you below was posted after that. `Mod/About/PublishedFileId.txt` is part of the
 published payload and must never be deleted: losing it can create a duplicate item on the next upload.
 
 ## Steam description
@@ -14,7 +14,7 @@ Developer tools for writing and running RimWorld 1.6 [url=https://steamcommunity
 
 [list]
 [*]Open and inspect research and pawn tabs.
-[*]Create and verify colonists, xenotypes and humanlike pawn kinds.
+[*]Create and verify colonists: xenotypes, humanlike pawn kinds and body types.
 [*]Check texture ownership, active expansions and optional mods.
 [*]Capture tick-based films and clean review screenshots.
 [*]Click translated buttons and diagnose missed clicks or interface-scale issues.
@@ -25,7 +25,7 @@ Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]
 
 Some utilities have been submitted upstream to Pickle. If equivalent functionality is integrated and released in a supported Pickle version, those utilities will be removed from this bundle in favor of the upstream implementation.
 
-This is a release candidate. Aggregate runtime validation is pending; see TESTING.md and STATUS.md in the repository for exact coverage and limitations.
+Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
 
 [h1]If I go quiet[/h1]
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
@@ -98,6 +98,26 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3806142401
 
 ## Steam change notes
 
+Proposed for the next release (the version number is the owner's and the CI/CD session's to confirm; a new step suggests a minor version):
+
+```text
+[h3]1.1.0[/h3]
+
+[b]Added[/b]
+[list]
+[*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, whatever its xenotype's body-type genes.
+[*]Screenshot mode can turn developer mode off for a capture that keeps the interface.
+[/list]
+
+[b]Changed[/b]
+[list]
+[*]Click diagnostics: the stand-still wait says how long it waited and gives up on the clock; a window open before the click does not count.
+[*]Tested against Pickle 4.9.1 in English and French.
+[/list]
+```
+
+The first release:
+
 ```text
 [h3]1.0.0 — first release[/h3]
 
@@ -113,8 +133,12 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3806142401
 Only Pickle is required globally. Mods and DLC exercised by particular scenarios remain optional.
 ```
 
-## Before the 1.0.0 upload
+## Before the next upload
 
-The item is already public and holds the 2026-09-22 upload, whose commit is not recorded (see `CHANGELOG.md`, `[0.1.0]`). The 1.0.0 goes out by the CI, after AUDIT.md's `tested` and `prepublished` gates and the fail-fast conditions: no red scenario without a green replay, the gallery, the owner's manual validations, a dry-run of the exact commit, the full SHA, and a rollback target chosen beforehand. No tag or release is made by hand: the workflow creates `v1.0.0` and the release after a successful upload.
+The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublished` gates and the fail-fast conditions: no red scenario without a green replay, the gallery, the owner's manual validations, a dry-run of the exact commit, the full SHA, and a rollback target chosen beforehand; the rollback target is `v1.0.0`, the commit `2dc9845`. No tag or release is made by hand: the workflow creates them after a successful upload.
 
-The Steam description above says this is a release candidate with runtime validation pending. The page description is not sent again by an upload from the game, so its correction is a manual edit on the Steam page, or an `update_description` publish once a workflow exists (see `STATUS.md`).
+The Steam description above is the text for that release: it no longer calls the bundle a release candidate. An upload from the game does not send the description again, so it is sent by the CI with `update_description` (its dry-run prints the text, its size and its diff against the page), or pasted by hand on the Steam page. `Mod/About/About.xml` carries the same text.
+
+The payload is not committed: `Mod/` holds the metadata and the artwork, and `Release/Prepare-Release.ps1` assembles the thirteen step DLLs into `.build/aggregate-current/Mod`. A workflow that uploads `Mod/` as committed would send no steps; see the question put to the CI/CD session in `docs/PROTOCOLS-READ.md`.
+
+`HoverSteps` is not among the thirteen tools `Prepare-Release.ps1` lists; whether it joins the bundle is undecided.
