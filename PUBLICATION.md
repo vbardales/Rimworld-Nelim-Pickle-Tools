@@ -98,7 +98,9 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3806142401
 
 ## Steam change notes
 
-Proposed for the next release (the version number is the owner's and the CI/CD session's to confirm; a new step suggests a minor version):
+The publish workflow reads the fenced block under the heading `### <version>`. The version number 1.1.0 is proposed (a new step suggests a minor version) and awaits the owner's confirmation.
+
+### 1.1.0
 
 ```text
 [h3]1.1.0[/h3]
@@ -116,7 +118,7 @@ Proposed for the next release (the version number is the owner's and the CI/CD s
 [/list]
 ```
 
-The first release:
+### 1.0.0
 
 ```text
 [h3]1.0.0 — first release[/h3]
@@ -139,6 +141,38 @@ The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublish
 
 The Steam description above is the text for that release: it no longer calls the bundle a release candidate. An upload from the game does not send the description again, so it is sent by the CI with `update_description` (its dry-run prints the text, its size and its diff against the page), or pasted by hand on the Steam page. `Mod/About/About.xml` carries the same text.
 
-The payload is not committed: `Mod/` holds the metadata and the artwork, and `Release/Prepare-Release.ps1` assembles the thirteen step DLLs into `.build/aggregate-current/Mod`. A workflow that uploads `Mod/` as committed would send no steps; see the question put to the CI/CD session in `docs/PROTOCOLS-READ.md`.
+**The payload is committed.** The workflow uploads `Mod/` as committed and has no build step, so `Mod/Pickle/Assemblies` holds the
+thirteen tool DLLs, copied byte for byte from the tools by `Release/Prepare-Release.ps1 -SyncMod`. Before every release run
+`powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Prepare-Release.ps1 -Check` (exit 1 on any difference); commit,
+then dry-run that exact commit. The workflow requires all thirteen DLLs, so an incomplete payload fails the dry-run instead of
+shipping a bundle without steps, and forbids `Source` and `.build` in `Mod/`.
 
-`HoverSteps` is not among the thirteen tools `Prepare-Release.ps1` lists; whether it joins the bundle is undecided.
+**The workflow** (`.github/`, generated on 2026-09-25 from `Rimworld-Release-Admin` at 2ce34a3, its 49 tests passing) is
+`publish-tag.yml`, dispatched with `ref`, `version` and `mode` (`dry-run` or `publish`). The command that wrote it, to be rerun with
+`--replace` when the template moves:
+
+```bash
+bash Rimworld-Release-Admin/scripts/generate-publish-workflow.sh PickleTools \
+  --workshop-id 3806142401 --package-id nelim.pickletools \
+  --release-title "Nelim's Pickle Tools {version}" \
+  --require Pickle/Assemblies/Nelim.PickleTools.ClearScreen.dll   --require Pickle/Assemblies/Nelim.PickleTools.ClickDiagnostics.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.ColonistRace.dll  --require Pickle/Assemblies/Nelim.PickleTools.Expansions.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.FilmTicks.dll     --require Pickle/Assemblies/Nelim.PickleTools.InspectTabs.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.InterfaceScale.dll --require Pickle/Assemblies/Nelim.PickleTools.KeyedClick.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.ResearchSteps.dll --require Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.ScreenshotMode.dll --require Pickle/Assemblies/Nelim.PickleTools.TextureOwner.dll \
+  --require Pickle/Assemblies/Nelim.PickleTools.VefFactions.dll --forbid Source --forbid .build \
+  --description-file PUBLICATION.md --description-heading '^## Steam description$'
+```
+
+The change note is the fenced block under `### 1.1.0` in "Steam change notes"; the release notes are the `## [1.1.0]` section of
+`CHANGELOG.md`; the description is the block under "Steam description", sent only with `update_description` (turn it on for this
+release: the live page still says release candidate; 8000 bytes maximum, no straight double quote, no backslash). The dry-run prints its
+size, hash and diff against the live page, which is the review. No gallery folder is declared: no capture exists yet.
+
+**Rollback.** `v1.0.0` (`2dc9845`) cannot be a CI rollback target: it has no `.github` and its `Mod/` has no DLL. For the first CI
+publication the rollback is Steam's own "rÃ©tablir cette version" in the item's change history (the 1.0.0 uploaded on 2026-09-22 is
+there), chosen by the owner before the publish. Once 1.1.0 is published from a commit that holds the payload and the workflow, that
+commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
+
+`HoverSteps` is not among the thirteen tools `Prepare-Release.ps1` lists, so it is not in the payload; whether it joins is undecided.
