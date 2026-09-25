@@ -2,7 +2,7 @@
 # start in one step, and the end step encodes the pictures and puts the sound into one mp4 (H.264 and AAC, which Windows plays as
 # it is), `film-sound.mp4` in the report's `screenshots/film/pickletools-sound--<name>/`.
 #
-# NOT PLAYED YET. What a run proves: the file exists and the sound in it is not silent. What only a person can say: that the picture
+# PLAYED 2026-09-25 after a first attempt read -91 dB (the WSLg audio stalled, see SoundCapture/README.md) and a second crashed at startup (exit 139): 1 of 1, an 11.9 s mp4 with the menu music (peak -14.3 dB), the picture at 7.4 pictures a second because the software renderer draws slowly. What a run proves: the file exists and the sound in it is not silent. What only a person can say: that the picture
 # and the sound are in step, and that the sound is the right one. Open the mp4, watch and listen.
 #
 # The sound also plays on the owner's speakers for the few seconds of the scenario (the WSLg sink is the way out).
