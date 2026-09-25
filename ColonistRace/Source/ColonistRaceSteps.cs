@@ -153,6 +153,15 @@ namespace Nelim.PickleTools.ColonistRace
                 pawn.DevelopmentalStage != DevelopmentalStage.Adult,
                 $"pawn '{nickname}' is an adult; make it a child first with '\"{nickname}\" is 8 years old'");
 
+            // What the pawn wears was chosen for an adult, and a piece with no texture for a child's body (the vanilla button-down shirt
+            // has no ShirtButton_Child) makes the redraw log an error that fails the scenario. The game does the same when a pawn
+            // grows into a stage: it takes off what that stage may not wear. Nothing is destroyed; it goes to the inventory.
+            if (pawn.apparel != null)
+            {
+                DevelopmentalStage stage = pawn.DevelopmentalStage;
+                pawn.apparel.DropAllOrMoveAllToInventory(apparel => (apparel.def.apparel.developmentalStageFilter & stage) == 0);
+            }
+
             pawn.story.bodyType = PawnGenerator.GetBodyTypeFor(pawn);
             pawn.Drawer.renderer.SetAllGraphicsDirty();
 
