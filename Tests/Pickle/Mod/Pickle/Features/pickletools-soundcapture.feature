@@ -19,6 +19,7 @@ Feature: PickleTools sound capture
 
   Scenario: the game's sound reaches the recorder from the main menu
     Given the main menu is open
+    And Nelim's Pickle Tools: the game volume is 80 percent
     When Nelim's Pickle Tools: I record the sound as "main-menu"
     And I click button "New colony"
     And Nelim's Pickle Tools: I let 6 real seconds go by
