@@ -35,8 +35,9 @@ asset; its `RimWorks.Pickle.dll` reports assembly version `4.9.1.0`; it is unpac
 `aggregate-minimal,aggregate-no-biotech,!aggregate-no-biotech`, `exitReason: passed`, 1 of 1, the only scenario in
 the report being the minimal one (the excluded feature was not played), report in
 `evidence/aggregate/2026-09-23-v4.9.1-minimal-en-filter/`. That shows the two filter changes and a startup on the new
-version with the generated payload; it is **not** the matrix, and every pass below listed as v4.8.4 has not been
-replayed on 4.9.1.
+version with the generated payload; it is **not** the matrix by itself. The matrix was then replayed on 4.9.1 on
+2026-09-23 and 2026-09-25 (rows `v4.9.1` of [`docs/runs/aggregate.md`](docs/runs/aggregate.md)); the passes still open
+are listed in `remaining` of `STATUS.md`.
 
 Previous baseline: [Pickle v4.8.4](https://github.com/RimWorks/Rimworld-Pickle/releases/tag/v4.8.4),
 published 2026-09-22 and including upstream PR #20. The official `Pickle-4.8.4.zip` has SHA256
@@ -87,6 +88,27 @@ Never enable bundle and standalone companions together. Preserve existing settin
 Launch only through Run-PickleWsl.ps1 when the audit workflow permits it; see [Authoring](Authoring/README.md)
 and [Headless](Headless/README.md). No Windows game launch. Without RIMMSQOL, startup/reflection/JIT is a
 required explicit check: source guards alone do not prove it.
+
+## Functional scenarios and their scope
+
+The functional scenarios are the Gherkin features of `Tests/Pickle/Mod/Pickle/Features/`: each one names its precondition
+(`Given`), its action (`When`) and its expected result (`Then`), and a step that fails says the state it found. Gherkin
+holds only what a running game alone can show; everything else is checked offline (`Check-*.ps1`, the unit tests, the
+behaviour checks, all listed under `automated_tests` in `STATUS.md`).
+
+| Tool | Feature | Why it needs the game | What stays manual, and why |
+|---|---|---|---|
+| Bundle startup, no Biotech, RIMMSQOL bridge | `aggregate-minimal`, `aggregate-no-biotech`, `aggregate-rimmsqol`, `aggregate-rimmsqol-settings` | startup, step discovery, teardown, optional-mod reflection cannot be judged from source | none |
+| RIMMSQOL restart hand-off | `aggregate-rimmsqol-restart-1-reveal`, `-2-hide`, `-3-forget` | a choice surviving a restart needs separate processes | the click on RIMMSQOL's own checkbox (the steps call what the checkbox calls; not clicked) |
+| ClearScreen, InterfaceScale, KeyedClick, InspectTabs | `pickletools-clearscreen`, `interface-scale`, `pickletools-keyedclick`, `inspect-tabs` | a window, a scaled click, a translated label and a tab exist only in the game | none |
+| ColonistRace | `tools`, `pickletools-colonistrace-bodytype` | genes, body types and races are game rules | none |
+| ClickDiagnostics | `pickletools-clickdiagnostics` (passing case) | pointer position against a real button | the failure-report messages: no green scenario can produce them (`lost-click-probe` fails on purpose and is a diagnostic, not an acceptance pass) |
+| SoundCapture (optional, outside the bundle) | `pickletools-soundcapture` | sound on the audio sink | the scenario cannot pass as written: the sink measured silent (-91 dB) and the cause is not established; a game-side check is proposed, listening stays by ear |
+| ScreenshotStudio, ScreenshotMode | `flower-meadow-studio`, `load-flower-meadow-studio` | a saved fixture and a captured image | the captured images are read by a person (`@review`), in English and in French |
+| VEF factions | QuietNewFactions' own suite | VEF's dialog is a game window | none |
+
+**No XML tests**: the repository ships no Defs and no XML patches, only step assemblies loaded by the test runner, so
+there is no XML to test; nothing artificial is added to fill the box.
 
 ## Evidence and acceptance
 
