@@ -1,6 +1,8 @@
-# The pass that plays interface-scale.feature: the interface scale step and the tag store repair of PickleTools.
+# The pass that plays interface-scale.feature: the interface scale step and the tag store repair of PickleTools. The scenario
+# clicks its button by the key the label comes from, so that it also plays in French: KeyedClick is staged with it.
 #
 #   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.interfacescale.map -Filter interface-scale.feature
 #
 # `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
 nelim.pickletools.interfacescale   path:PickleTools/InterfaceScale/Mod
+nelim.pickletools.keyedclick       path:PickleTools/KeyedClick/Mod
