@@ -82,3 +82,13 @@ Icon pattern: derived from the image supplied by the owner in this task. The ori
 The seed save is a private working copy of Pickle's `test-colony.rws`, with pre-existing scene objects
 removed from the set area. It does not modify the upstream fixture. Pickle's MIT notice is retained
 beside the seed. No upstream code is copied into the studio assembly.
+
+## Steps
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the flower meadow studio is prepared` | Builds the flower meadow studio on the current map: the terrain, the plants (bonsai among them), the dry garden and the props the presentation captures are taken in |
+| `Nelim's Pickle Tools: I frame the studio {string}` | Points the camera at one named shot of the studio and sets its zoom |
+| `Nelim's Pickle Tools: the flower meadow studio is intact` | Asserts the studio is still what it was built as: its plants and terrain are present |
+| `Nelim's Pickle Tools: studio presentation mode is enabled` | Turns on the game's screenshot mode for a presentation capture, remembering its previous state to put it back |
+| `Nelim's Pickle Tools: I save the flower meadow studio` | Saves the studio as the fixture `Nelim-Zen-Meadow-Studio` |
