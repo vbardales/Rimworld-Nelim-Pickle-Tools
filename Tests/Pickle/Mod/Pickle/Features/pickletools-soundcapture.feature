@@ -1,3 +1,8 @@
+# RUN ALONE AND ON WINDOWS (the owner, 2026-09-25): a test that records the sound is played by itself, with no other test around it,
+# on the Windows install, with the mod list changed for the run and put back after. Not on the WSL install, where it measured silence
+# once (-91 dB) without an explanation. Nothing has been launched on Windows for it; see SoundCapture/README.md. The recording input
+# of the tool is PulseAudio only, so a Windows run needs a source the tool does not have yet.
+#
 # The optional SoundCapture tool: the game's sound, recorded between two steps and measured. English only, because it
 # clicks a button by its label; the sound does not depend on the language.
 #
