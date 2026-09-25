@@ -34,3 +34,11 @@ Feature: PickleTools colonist body type
     Then Nelim's Pickle Tools: "Fern" has body type Hulk
     When Nelim's Pickle Tools: "Fern" body type is Female
     Then Nelim's Pickle Tools: "Fern" has body type Female
+
+  Scenario: a child gets the body of a child, which setting the age alone does not give
+    Given a colonist "Kid" exists
+    And "Kid" is 8 years old
+    And "Kid" gender is male
+    When Nelim's Pickle Tools: "Kid" body type is Child
+    Then Nelim's Pickle Tools: "Kid" has body type Child
+    And Nelim's Pickle Tools: "Kid" is at the Child stage of life
