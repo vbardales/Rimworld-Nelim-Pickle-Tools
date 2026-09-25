@@ -4,7 +4,10 @@
 # hand a normal scenario back. What it asserts is only what the game says of its own state; a new colony is not reproducible, so it is played once,
 # in an initial or a final pass, never for a fix or an exploration (NewColony/README.md).
 #
-#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.newcolony.map -Filter pickletools-newcolony
+# RISK: not reproducible, minutes of generation, and Pickle's watchdog kills a scenario at 120 s: pass -Extra "-pickle-scenario-timeout=400".
+# A ticket of its own, once, in an initial or a final pass.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.newcolony.map -Filter pickletools-newcolony -Extra "-pickle-scenario-timeout=400"
 @requires:nelim.pickletools.newcolony
 Feature: PickleTools new colony
 
