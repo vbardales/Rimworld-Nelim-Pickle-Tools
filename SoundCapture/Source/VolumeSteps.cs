@@ -17,6 +17,8 @@ namespace Nelim.PickleTools.SoundCapture
     public class VolumeSteps
     {
         private static float? original;
+        private static float? originalMusic;
+        private static float? originalAmbient;
 
         [Given("Nelim's Pickle Tools: the game volume is {int} percent")]
         public void SetVolume(PickleContext ctx, int percent)
@@ -35,6 +37,46 @@ namespace Nelim.PickleTools.SoundCapture
                 $"(it was {original} before; game {Prefs.VolumeGame}, music {Prefs.VolumeMusic}, ambient {Prefs.VolumeAmbient}, UI {Prefs.VolumeUI})");
         }
 
+        /// <summary>
+        /// The game's background music and its ambience, apart from the master volume: a recording that must hear only what a mod plays
+        /// cannot use the master volume, which would cut the effects it wants to hear. <c>Prefs.VolumeMusic</c> and
+        /// <c>Prefs.VolumeAmbient</c> store and apply at once, are not saved to disk here, and are put back after the scenario.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the game music volume is {int} percent")]
+        public void SetMusicVolume(PickleContext ctx, int percent)
+        {
+            ctx.Assert(percent >= 0 && percent <= 100, $"a volume between 0 and 100 percent, not {percent}");
+            if (originalMusic == null)
+            {
+                originalMusic = Prefs.VolumeMusic;
+            }
+
+            float wanted = percent / 100f;
+            Prefs.VolumeMusic = wanted;
+            ctx.Assert(Math.Abs(Prefs.VolumeMusic - wanted) < 0.001f, $"the music volume should read {wanted} after the step; it reads {Prefs.VolumeMusic}");
+        }
+
+        [Given("Nelim's Pickle Tools: the game ambient volume is {int} percent")]
+        public void SetAmbientVolume(PickleContext ctx, int percent)
+        {
+            ctx.Assert(percent >= 0 && percent <= 100, $"a volume between 0 and 100 percent, not {percent}");
+            if (originalAmbient == null)
+            {
+                originalAmbient = Prefs.VolumeAmbient;
+            }
+
+            float wanted = percent / 100f;
+            Prefs.VolumeAmbient = wanted;
+            ctx.Assert(Math.Abs(Prefs.VolumeAmbient - wanted) < 0.001f, $"the ambient volume should read {wanted} after the step; it reads {Prefs.VolumeAmbient}");
+        }
+
+        [Given("Nelim's Pickle Tools: the game music and ambience are muted")]
+        public void MuteMusicAndAmbience(PickleContext ctx)
+        {
+            SetMusicVolume(ctx, 0);
+            SetAmbientVolume(ctx, 0);
+        }
+
         [AfterScenario]
         public void RestoreVolume()
         {
@@ -42,6 +84,18 @@ namespace Nelim.PickleTools.SoundCapture
             {
                 Prefs.VolumeMaster = original.Value;
                 original = null;
+            }
+
+            if (originalMusic != null)
+            {
+                Prefs.VolumeMusic = originalMusic.Value;
+                originalMusic = null;
+            }
+
+            if (originalAmbient != null)
+            {
+                Prefs.VolumeAmbient = originalAmbient.Value;
+                originalAmbient = null;
             }
         }
     }
