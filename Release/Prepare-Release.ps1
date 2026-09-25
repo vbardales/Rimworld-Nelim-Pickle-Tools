@@ -5,6 +5,7 @@ Creates local candidate archives; never tags, uploads or publishes.
               repository's own Mod/, which is what the publish workflow uploads as committed. Commit the result.
   -Check      changes nothing: fails if Mod/Pickle/Assemblies is not exactly the fourteen tool DLLs, byte for byte, or
               if Mod/ATTRIBUTION.md differs from the root one. Run it before every release.
+              -Check also runs docs/Generate-Steps.ps1 -Check: the step catalogue must be current.
   -Rebuild    with -Check: also rebuilds each tool from Source/ into a temporary folder and REPORTS (NOTE, never a failure)
               the tools whose rebuild is not byte-identical to the tracked DLL. It is informational: the package references
               float (RimWorks.Pickle.Ref 4.*, Krafs.Rimworld.Ref 1.6.*), so a rebuild differs even when the source did not
@@ -46,6 +47,8 @@ if ($SyncMod -or $Check) {
     }
     if ((Get-FileHash "$root/ATTRIBUTION.md" -Algorithm SHA256).Hash -ne (Get-FileHash "$root/Mod/ATTRIBUTION.md" -Algorithm SHA256).Hash) { $problems += 'Mod/ATTRIBUTION.md differs from ATTRIBUTION.md' }
     foreach ($needed in 'About/About.xml','About/ModIcon.png','About/Preview.png','About/PublishedFileId.txt','LICENSE') { if (-not (Test-Path "$root/Mod/$needed")) { $problems += "missing from Mod/: $needed" } }
+    $stepsDoc = & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'docs/Generate-Steps.ps1') -Check
+    if ($LASTEXITCODE -ne 0) { $problems += 'docs/steps.md is not current: run docs/Generate-Steps.ps1'; $stepsDoc | ForEach-Object { $problems += "  $_" } }
     if ($Rebuild) {
         $temp = Join-Path ([IO.Path]::GetTempPath()) ('pickletools-rebuild-' + [guid]::NewGuid().ToString('N'))
         New-Item -ItemType Directory -Path $temp | Out-Null
