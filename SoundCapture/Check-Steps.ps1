@@ -152,7 +152,7 @@ foreach ($file in $featureFiles) {
     foreach ($raw in [IO.File]::ReadAllLines($file.FullName)) {
         if ($raw.Trim() -notmatch '^(Given|When|Then|And|But)\s+(.+)$') { continue }
         $step = $Matches[2].Trim()
-        if ($step -notmatch "^Nelim's Pickle Tools: (I record the sound|I let [0-9]+ real seconds|I stop recording the sound|the sound recorded as)") { continue }
+        if ($step -notmatch "^Nelim's Pickle Tools: (I record the sound|I let [0-9]+ real seconds|I stop recording the sound|I film with sound|I stop filming with sound|the game volume|the game is playing|the sound recorded as)") { continue }
         $all = @($myExprs + $otherExprs | Where-Object { $_.Regex.IsMatch($step) })
         if ($all.Count -eq 0) { $unresolved += "$($file.Name): $step" }
     }
