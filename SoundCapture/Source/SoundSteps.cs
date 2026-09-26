@@ -282,8 +282,15 @@ namespace Nelim.PickleTools.SoundCapture
             int exit;
             using (Process process = Process.Start(start))
             {
-                report = process.StandardError.ReadToEnd();
-                process.WaitForExit(90000);
+                // Read on the side: a blocking ReadToEnd first would never let the wait below time out.
+                Task<string> reading = process.StandardError.ReadToEndAsync();
+                if (!process.WaitForExit(90000))
+                {
+                    process.Kill();
+                    process.WaitForExit(2000);
+                }
+
+                report = reading.Wait(2000) ? reading.Result : string.Empty;
                 exit = process.HasExited ? process.ExitCode : -1;
             }
 
