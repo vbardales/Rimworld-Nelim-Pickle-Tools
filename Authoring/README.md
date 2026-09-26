@@ -202,6 +202,28 @@ Await every `WaitUntil`, `WaitFrames`, `WaitTicks` and `AssertEventually` from a
 A discarded Task can make a test pass without waiting for its assertion. Do not use Thread.Sleep or Task.Delay
 to wait for game behavior.
 
+`ctx.Get<T>()` **throws** `InvalidOperationException` when nothing of that type was set (read in the decompiled `PickleContext`,
+2026-09-26); it never returns null. A step that needs "the value if there is one" must catch it: `ctx.Get<T>() ?? new T()` fails at
+the first call.
+
+Lessons from the first real run of AlphaMythologyRenew's suite (2026-09-26), sent by that session and **not checked by PickleTools**;
+treat them as leads:
+- After `I save and reload`, every object kept from before (a Pawn, a Thing) belongs to the game that was replaced: find it again by
+  name on the current map, and in an `[AfterScenario]` destroy only what is `Spawned` on `Find.CurrentMap`, never a kept reference.
+- A pass with no seed (`config/<pass>/`) inherits the settings file the previous pass left. The reader of a restart pair must write
+  the defaults to disk (`WriteSettings()` after `ResetToDefaults()`), not only set them in memory.
+- Repeated tries with an explosion: fires spread over the scenery and burn the colony between tries. Put fires out
+  (`ThingDefOf.Fire`) and clear corpses and items at each try.
+- A care comparison (near or far from a source): draft every colonist (`drafter.Drafted = true`), or one heals the other, or they walk,
+  and the comparison no longer measures the source.
+- 1.6: the `ShieldBelt` class is gone, the belt is apparel with a `CompShield`, whose energy is read by reflection. For any private API
+  called by reflection, check its signature in the step with a `ctx.Require` whose message says what changed.
+- `Scenario Outline` with `Examples` works for looping over defs; `@requires:<packageId>` also works for a DLC (`ludeon.rimworld.biotech`).
+- To reproduce a VEF path without referencing VEF: `GenTypes.GetTypeInAnyAssembly("VEF....")`, `Activator.CreateInstance`, and a call
+  through the game's base class (`ThinkNode.TryIssueJobPackage`).
+- Evidence: the pictures of `I take a screenshot` are named `manual--...`; keep only those opened and read, the rest (report.html,
+  failure captures) goes quickly.
+
 How the waits count (read from the decompiled `PickleDriver` of the Pickle installed on 2026-09-26, Workshop 3791648678; re-read
 it when Pickle changes): `WaitUntil(cond, seconds)` counts **real time** (`Time.realtimeSinceStartup`, the deadline is fixed when
 you call it, however slowly the game runs) and evaluates `cond` **once per rendered Unity frame**, in `PickleDriver.Update`, right
