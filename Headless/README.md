@@ -329,9 +329,10 @@ where Pickle finds a save), the second launch loads it as a fixture. The launche
 the first game has closed and while it still holds the lock; doing it from inside the first game is not
 reliable, since a game can rewrite `ModsConfig.xml` when it quits. Without `-ThenWithout` nothing is removed,
 and the launch that stages is never touched. Added on 2026-09-24 for Housebroken's TF-18, added to the
-launcher in the monorepo (`scripts/Run-PickleWsl.ps1`, `scripts/run-pickle-wsl.sh`). **Written, not yet seen
-running:** the first real use is Housebroken's `wsl-deps.tf18.map` pass, whose result goes in that mod's
-`docs/runs/`.
+launcher in the monorepo (`scripts/Run-PickleWsl.ps1`, `scripts/run-pickle-wsl.sh`). **Seen running on
+2026-09-25:** Housebroken's `wsl-deps.tf18.map` pass, `34-tf18-write` then the `Removal` companion, passed 2 of 2
+(that mod's `docs/runs/2026-09-25.md`; read there, not replayed here). A hand-over of the saved game to the companion
+is that mod's own step, not the launcher's.
 
 ```powershell
 & ./scripts/Run-PickleWsl.ps1 -Mod Housebroken -DepMap wsl-deps.tf18.map -Filter 34-tf18-write `
