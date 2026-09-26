@@ -91,6 +91,7 @@ namespace Nelim.PickleTools.VefFactions
                 $"{def.defName} already carries a FactionDefExtension; marking it would overwrite its mod's own");
             markedExtension = (DefModExtension)Activator.CreateInstance(extensionType);
             var forced = FieldValue(markedExtension, "forcedFactionData");
+            ctx.Require(forced != null, "this version of VEF gives a new FactionDefExtension no forcedFactionData to mark");
             Traverse.Create(forced).Field("forcePlayerToAddFactionIfMissing").SetValue(true);
             Traverse.Create(markedExtension).Field("forcedFactionData").SetValue(forced);
             def.modExtensions ??= new List<DefModExtension>();
@@ -156,7 +157,9 @@ namespace Nelim.PickleTools.VefFactions
         // ---------------------------------------------------------------- helpers
 
         private static IEnumerable<object> Windows() =>
-            Find.WindowStack.Windows.Where(VefType("Dialog_NewFactionSpawning").IsInstanceOfType).Cast<object>();
+            AccessTools.TypeByName("VEF.Factions.Dialog_NewFactionSpawning") is Type dialog
+                ? Find.WindowStack.Windows.Where(dialog.IsInstanceOfType).Cast<object>()
+                : Enumerable.Empty<object>();
 
         private static FactionDef DefOf(object w) =>
             Traverse.Create(w).Field("factionDef").GetValue<FactionDef>();
