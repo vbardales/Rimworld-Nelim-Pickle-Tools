@@ -117,6 +117,13 @@ foreach ($dir in $suiteDirs | Sort-Object -Unique) {
     $suites++
     foreach ($p in Read-Patterns $src ('suite:' + (Split-Path $dir -Leaf))) { $others += $p }
 }
+# The sibling tools of this repository (SoundCapture, ...) are steps assemblies too, and a pass may stage
+# several of them together: a film line that one of them defines is not unknown.
+$toolsRoot = Split-Path $here -Parent
+foreach ($d in Get-ChildItem -LiteralPath $toolsRoot -Directory -ErrorAction SilentlyContinue |
+         Where-Object { $_.FullName -ne $here -and (Test-Path -LiteralPath (Join-Path $_.FullName 'Source')) }) {
+    foreach ($p in Read-Patterns (Join-Path $d.FullName 'Source') ('tool:' + $d.Name)) { $others += $p }
+}
 $otherExprs = @()
 foreach ($o in $others) {
     try { $otherExprs += [pscustomobject]@{ Source = $o.Source; Pattern = $o.Pattern; Regex = (New-Expr $o.Pattern).Regex } } catch { }   # their own check reports those
