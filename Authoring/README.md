@@ -202,6 +202,17 @@ Await every `WaitUntil`, `WaitFrames`, `WaitTicks` and `AssertEventually` from a
 A discarded Task can make a test pass without waiting for its assertion. Do not use Thread.Sleep or Task.Delay
 to wait for game behavior.
 
+How the waits count (read from the decompiled `PickleDriver` of the Pickle installed on 2026-09-26, Workshop 3791648678; re-read
+it when Pickle changes): `WaitUntil(cond, seconds)` counts **real time** (`Time.realtimeSinceStartup`, the deadline is fixed when
+you call it, however slowly the game runs) and evaluates `cond` **once per rendered Unity frame**, in `PickleDriver.Update`, right
+after `FrameHook` and before the frame's picture, not once per game tick. `cond` runs on the main thread; an exception it throws
+ends the wait with that exception. `WaitFrames(n)` counts frames. `WaitTicks(n)` counts game ticks and is the only one of the three
+that **unpauses** a paused game (to speed 1, outside the fast run mode): a `WaitUntil` on a state that only the ticks bring about
+waits for ever on a paused game and then times out. A state that lasts fewer ticks than the game runs between two frames can be
+missed by a `WaitUntil`: at normal speed that takes a state of a few ticks, not 240; for a brief state latch it in a hook instead
+(`PickleDriver.Instance.AddFrameHook` runs per frame, as SoundCapture does; Pickle has no per-tick hook, so a per-tick latch is a
+Harmony postfix on the game's tick or a `GameComponent.GameComponentTick`, removed in an `[AfterScenario]`).
+
 The default step deadline is five seconds unless overridden. A step waiting up to 30 seconds needs an
 attribute such as `[Then("Example Mod: ...", TimeoutSeconds = 35f)]`, and the scenario/run deadline must also
 allow it. Modal settings windows pause ticks: use frames to wait for layout. A timeout is not a reason to
