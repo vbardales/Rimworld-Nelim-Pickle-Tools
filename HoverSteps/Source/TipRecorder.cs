@@ -54,7 +54,19 @@ namespace Nelim.PickleTools.HoverSteps
         private static void BeforeTipRegion(Rect rect, TipSignal tip)
         {
             if (record == null) return;
-            var text = tip.textGetter != null ? tip.textGetter() : tip.text;
+            // The game calls a tip's text getter only for the region the pointer is over; this prefix calls it for every region on every repaint.
+            // A getter that reads what is under the pointer can throw for a region that is not hovered, and an exception here would spoil the
+            // game's own drawing of that window: skip such a region, it just has no tag.
+            string text;
+            try
+            {
+                text = tip.textGetter != null ? tip.textGetter() : tip.text;
+            }
+            catch (Exception)
+            {
+                return;
+            }
+
             if (string.IsNullOrEmpty(text)) return;
             record.Invoke(null, new object[] { TagPrefix + text, rect });
         }
