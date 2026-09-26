@@ -16,3 +16,12 @@ Feature: PickleTools new colony
     And Nelim's Pickle Tools: the new colony's seed is "pickle-probe"
     When Nelim's Pickle Tools: a new colony is started
     Then no errors were logged
+
+  # Written 2026-09-26, not played: Many Happy Returns saw a new colony whose colonists were not on the map when the start step returned (it counts pods too).
+  # It costs a new colony: play it in the same ticket as the scenario above only if an initial or a final pass is running; never for a fix.
+  Scenario: the colonists of a new colony land on the map, and nothing is logged as an error
+    Given the main menu is open
+    And Nelim's Pickle Tools: the new colony's seed is "pickle-probe"
+    When Nelim's Pickle Tools: a new colony is started
+    And Nelim's Pickle Tools: the new colony's colonists have landed
+    Then no errors were logged
