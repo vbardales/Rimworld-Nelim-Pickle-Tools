@@ -147,6 +147,47 @@ namespace Nelim.PickleTools.NewColony
                 (leftOver > 0 ? $"{leftOver} random state(s) the game left pushed were popped, " : string.Empty) + $"paused, generated in {clock.Elapsed.TotalSeconds:0.0} s. A new colony is not reproducible and costs minutes on a shared machine: play it once, in an initial or a final pass, never for a fix or an exploration.");
         }
 
+        /// <summary>
+        /// The start step counts the colonists the map holds (<c>FreeColonistsCount</c>), which includes pawns still in a drop pod or a
+        /// container. This one lets the game run, at the fast speed, until every one of them is spawned on the map, then pauses again.
+        /// It does not close the scenario's intro dialog: a dialog that pauses the game keeps the pods from landing, and the step then
+        /// fails with the state of each colonist instead of waiting for ever.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the new colony's colonists have landed", TimeoutSeconds = 120)]
+        public async Task ColonistsLanded(PickleContext ctx)
+        {
+            ctx.Require(Current.ProgramState == ProgramState.Playing && Find.CurrentMap != null, "start a new colony first");
+
+            var clock = Stopwatch.StartNew();
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Fast;
+            try
+            {
+                while (!AllSpawned())
+                {
+                    ctx.Assert(clock.Elapsed.TotalSeconds < 90, "the colonists did not all land within 90 s: " + ColonistStates());
+                    await ctx.WaitFrames(5);
+                }
+            }
+            finally
+            {
+                Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+            }
+
+            ctx.Attach("new-colony-landed", $"{Find.CurrentMap.mapPawns.FreeColonistsSpawnedCount} colonists spawned after {clock.Elapsed.TotalSeconds:0.0} s: " + ColonistStates());
+        }
+
+        private static bool AllSpawned()
+        {
+            var pawns = Find.CurrentMap.mapPawns;
+            return pawns.FreeColonistsCount > 0 && pawns.FreeColonistsSpawnedCount == pawns.FreeColonistsCount;
+        }
+
+        private static string ColonistStates()
+        {
+            return string.Join("; ", Find.CurrentMap.mapPawns.FreeColonists.Select(pawn =>
+                $"{pawn.LabelShortCap} spawned {pawn.Spawned}, downed {pawn.Downed}, in {(pawn.holdingOwner?.Owner?.GetType().Name ?? "no container")}"));
+        }
+
         // The choices are the scenario's own: what one scenario sets does not reach the next.
         [AfterScenario]
         public void Reset()
