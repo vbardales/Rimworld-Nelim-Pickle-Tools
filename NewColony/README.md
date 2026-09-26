@@ -12,6 +12,7 @@ it, nothing in Pickle or in the launcher changes, and it is not part of the aggr
 | `Nelim's Pickle Tools: the new colony's scenario is {string}` | A `ScenarioDef` by name. Default `Crashlanded`; an unknown name fails and lists the scenarios the game has |
 | `Nelim's Pickle Tools: the new colony's storyteller is {string}` | A `StorytellerDef`. Default `Cassandra` |
 | `Nelim's Pickle Tools: the new colony's difficulty is {string}` | A `DifficultyDef`. Default `Rough` |
+| `Nelim's Pickle Tools: the new colony's colonists have landed` | After the start step. The start step counts the colonists the map holds, pods and containers included; this one runs the game at the fast speed until every one is spawned on the map (90 s at most, the step's timeout is 120), then pauses again. It does not close the scenario's intro dialog: a dialog that pauses the game keeps the pods from landing, and the step then fails naming each colonist's state (spawned, downed, container). Attaches `new-colony-landed`. **Written 2026-09-26 after Many Happy Returns saw 0 spawned colonists; not played yet** |
 
 The choices are the scenario's own and go back to their defaults afterwards. Set them **before** the start step, which must follow `Given the main menu is open`.
 
