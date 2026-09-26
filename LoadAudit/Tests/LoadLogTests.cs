@@ -61,6 +61,18 @@ namespace Nelim.PickleTools.LoadAudit.Tests
         }
 
         [Fact]
+        public void AMessageThatNamesTheDottedAssemblyOfTheModIsAFindingButAPrefixOfItIsNot()
+        {
+            var entries = LoadLog.Parse(new[]
+            {
+                Line("ERROR", "Vanilla", "Could not load file or assembly Nelim.Example, Version=1.0.0.0"),
+                Line("ERROR", "Vanilla", "Could not load Nelim.ExampleOther.dll"),
+            });
+
+            Assert.Equal(1, LoadLog.Audit(entries, Mod()).Single().Line);
+        }
+
+        [Fact]
         public void AnErrorTheGameTaggedToTheModIsAFindingAndItsInfoIsNot()
         {
             var entries = LoadLog.Parse(new[]
