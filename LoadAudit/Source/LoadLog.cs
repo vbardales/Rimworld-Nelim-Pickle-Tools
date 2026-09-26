@@ -119,15 +119,38 @@ namespace Nelim.PickleTools.LoadAudit
                 }
             }
 
-            foreach (Match word in Word.Matches(entry.Message))
+            foreach (string assembly in mod.AssemblyNames)
             {
-                if (mod.AssemblyNames.Contains(word.Value))
+                if (NamesAssembly(entry.Message, assembly))
                 {
-                    return "its message names the mod's assembly " + word.Value;
+                    return "its message names the mod's assembly " + assembly;
                 }
             }
 
             return null;
+        }
+
+        // An assembly name has dots and hyphens ("Nelim.PickleTools.X"), which the word pattern splits: look for the whole name, between characters that cannot belong to a name.
+        private static bool NamesAssembly(string message, string assembly)
+        {
+            if (string.IsNullOrEmpty(assembly))
+            {
+                return false;
+            }
+
+            for (int at = message.IndexOf(assembly, StringComparison.OrdinalIgnoreCase); at >= 0;
+                 at = message.IndexOf(assembly, at + 1, StringComparison.OrdinalIgnoreCase))
+            {
+                int end = at + assembly.Length;
+                bool before = at == 0 || !(char.IsLetterOrDigit(message[at - 1]) || message[at - 1] == '_');
+                bool after = end >= message.Length || !(char.IsLetterOrDigit(message[end]) || message[end] == '_');
+                if (before && after)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
 
         /// <summary>The game's message about a definition that does not resolve or does not hold together, and whether one of the mod's defs is in it.</summary>
