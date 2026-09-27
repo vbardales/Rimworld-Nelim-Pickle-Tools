@@ -62,6 +62,24 @@ Windows (no loopback device for ffmpeg there) is not needed for the tests.
   can be set with the environment variable `PICKLETOOLS_SOUND_SOURCE`.
 - **The sound also reaches the Windows speakers**, because that sink is the way out of WSL. Keep a recording to a few seconds.
 
+## A lead, not yet a known cause: positional sustain sounds may not reach the recording
+
+2026-09-27, EponaInstrumentsRenew's first real instrument capture: the game confirmed the sound playing (`GameSoundSteps`,
+a live sustainer of `MIC_Ocarina_Play`) and the recorder was not silent, but a person listening to `film-sound.mp4` heard
+only ambient game noise, none of the instrument. The camera sat on the sound's own position (distance under 1 cell); the
+sound's `SubSoundDef` has no `onCamera` (so it is 3D/positional) and `distRange` 5-25, the same on every instrument this
+mod's provider defines (systemic to the provider, not this one sound). RimWorld's own volume math applies no distance
+falloff itself (`Verse.Sound.Sample.Volume`); a 3D sound's distance attenuation is Unity's own, driven by the real Unity
+`AudioListener`'s position, which is a scene component this repository cannot inspect by reading code. The game's camera
+transform IS updated to a moved position every frame (`CameraDriver.ApplyPositionToGameObject`, called from its own
+per-frame update after `JumpToCurrentMapLoc`), so "the camera never really moved" is not the explanation; if the
+`AudioListener` sits where the camera does, a distance under 1 cell is well inside a 5-25 minimum-to-maximum range and
+should be loud, not silent - which argues against a simple listener-too-far read and for something else in the WSLg audio
+path being specific to positional/3D sound (2D or `onCamera` sounds, like the menu music this tool recorded cleanly
+before, are not affected). **Not established**: where the `AudioListener` actually is, and whether it tracks the camera in
+this WSLg install. Until this is understood, do not assume a `SoundCapture` recording that measures "not silent" carries a
+positional/3D game sound; corroborate with `GameSoundSteps` (the game started it) and by ear (the file carries it).
+
 ## What it shows, and what it does not
 
 The level is measured, not the content. A recording that is not silent shows that the game's sound reached the sink; it does
