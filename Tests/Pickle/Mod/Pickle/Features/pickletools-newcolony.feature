@@ -23,5 +23,6 @@ Feature: PickleTools new colony
     Given the main menu is open
     And Nelim's Pickle Tools: the new colony's seed is "pickle-probe"
     When Nelim's Pickle Tools: a new colony is started
+    And Nelim's Pickle Tools: any open message dialog is accepted
     And Nelim's Pickle Tools: the new colony's colonists have landed
     Then no errors were logged
