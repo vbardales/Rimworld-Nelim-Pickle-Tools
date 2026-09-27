@@ -7,6 +7,7 @@ Three Pickle steps for a click that must land, and a report that says why when i
 | `Nelim's Pickle Tools: the button keyed {string} has stood still` | Waits until the button has been drawn at the same place for 60 frames in a row and two seconds. Fails if it never appears or never stops moving. |
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` | Hovers the button and asserts that the window under the pointer is the named one (by short or full type name, base types included) and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` | Clicks the button, waits up to 60 frames for the named window, and when it does not open prints what the click met. |
+| `Nelim's Pickle Tools: I move the mouse to ({int}, {int})` | Moves the OS pointer there directly, in GUI-space coordinates (top-left origin), with no tag and no tooltip: for parking the pointer away from a capture's subject when nothing tagged is at hand to hover instead (a bottom-bar button, for one: the bar draws no tag) |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
