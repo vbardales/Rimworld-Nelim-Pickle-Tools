@@ -148,10 +148,32 @@ namespace Nelim.PickleTools.NewColony
         }
 
         /// <summary>
+        /// Accepts every open <c>Dialog_MessageBox</c> (its accept action if it has one, then closes it), the way a click on its
+        /// first button would. A scenario's intro message (Crashlanded's "The three of you awake in your cryptosleep sarcophagi...",
+        /// for one) is one of these, and <c>Dialog_MessageBox</c> sets <c>forcePause = true</c>: while it is open,
+        /// <c>TickManager.ForcePaused</c> is true whatever <c>CurTimeSpeed</c> is set to (<c>Find.WindowStack.WindowsForcePause</c>),
+        /// so no tick runs and nothing lands. Confirmed on Many Happy Returns' run 3efc (2026-09-27): the colonists stayed in
+        /// <c>ActiveTransporterInfo</c> for the whole 90 s of "colonists have landed" because this dialog was still open.
+        /// Does nothing, and does not fail, when no such dialog is open: safe to call whether or not the scenario has one.
+        /// </summary>
+        [When("Nelim's Pickle Tools: any open message dialog is accepted")]
+        public async Task AcceptMessageDialogs(PickleContext ctx)
+        {
+            foreach (Dialog_MessageBox dialog in Find.WindowStack.Windows.OfType<Dialog_MessageBox>().ToList())
+            {
+                (dialog.acceptAction ?? dialog.buttonAAction)?.Invoke();
+                dialog.Close();
+            }
+
+            await ctx.WaitFrames(2);
+        }
+
+        /// <summary>
         /// The start step counts the colonists the map holds (<c>FreeColonistsCount</c>), which includes pawns still in a drop pod or a
         /// container. This one lets the game run, at the fast speed, until every one of them is spawned on the map, then pauses again.
-        /// It does not close the scenario's intro dialog: a dialog that pauses the game keeps the pods from landing, and the step then
-        /// fails with the state of each colonist instead of waiting for ever.
+        /// It does not close the scenario's intro dialog itself: run "any open message dialog is accepted" first, or a dialog that
+        /// force-pauses the game keeps the pods from landing, and this step then fails with the state of each colonist instead of
+        /// waiting for ever.
         /// </summary>
         [When("Nelim's Pickle Tools: the new colony's colonists have landed", TimeoutSeconds = 120)]
         public async Task ColonistsLanded(PickleContext ctx)
