@@ -21,6 +21,15 @@ The research window draws its tabs as `TabRecord`s through `TabDrawer.DrawTabsOv
 click: they open the window (`MainTabsRoot.SetCurrentTab`) and run the `clickedAction` of the tab record the window built for
 that `ResearchTabDef`, which is what a click on the tab runs.
 
+## A risk seen once, not confirmed
+
+2026-09-27, ACertainSeriesCreaturesAndHairRenew's full Chinese pass (`af3e`): two captures of the research panel showed
+every project's box with no text at all, only its cost (1000, 2000...), across the whole tree, not only that mod's own
+projects. That suite was not hurt by it (a project's position among its neighbours confirmed which one it was, matching
+the English and French captures), but a suite that reads the panel's text in Simplified Chinese through these steps
+would be. Seen once, in one suite, not reproduced or looked into here: treat it as a lead, not as a known defect of
+these steps.
+
 ## Using it from a suite
 
 1. A pass map (`<Mod>/Tests/Pickle/wsl-deps.avec-pickletools.map`) listing the shared tool and any optional
