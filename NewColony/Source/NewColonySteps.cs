@@ -1,6 +1,7 @@
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorld;
@@ -147,14 +148,22 @@ namespace Nelim.PickleTools.NewColony
                 (leftOver > 0 ? $"{leftOver} random state(s) the game left pushed were popped, " : string.Empty) + $"paused, generated in {clock.Elapsed.TotalSeconds:0.0} s. A new colony is not reproducible and costs minutes on a shared machine: play it once, in an initial or a final pass, never for a fix or an exploration.");
         }
 
+        private static readonly FieldInfo CurNodeField =
+            typeof(Dialog_NodeTree).GetField("curNode", BindingFlags.NonPublic | BindingFlags.Instance);
+
         /// <summary>
-        /// Accepts every open <c>Dialog_MessageBox</c> (its accept action if it has one, then closes it), the way a click on its
-        /// first button would. A scenario's intro message (Crashlanded's "The three of you awake in your cryptosleep sarcophagi...",
-        /// for one) is one of these, and <c>Dialog_MessageBox</c> sets <c>forcePause = true</c>: while it is open,
-        /// <c>TickManager.ForcePaused</c> is true whatever <c>CurTimeSpeed</c> is set to (<c>Find.WindowStack.WindowsForcePause</c>),
-        /// so no tick runs and nothing lands. Confirmed on Many Happy Returns' run 3efc (2026-09-27): the colonists stayed in
-        /// <c>ActiveTransporterInfo</c> for the whole 90 s of "colonists have landed" because this dialog was still open.
-        /// Does nothing, and does not fail, when no such dialog is open: safe to call whether or not the scenario has one.
+        /// Accepts every open dialog of the two kinds a scenario's own intro can be, the way a click on its first option or
+        /// button would: <c>Dialog_MessageBox</c> (its accept action if it has one, then closed) and <c>Dialog_NodeTree</c> (its
+        /// current node's first, non-disabled option: its action if it has one, closed if the option resolves the tree, moved
+        /// to its linked node otherwise - repeated until the dialog closes or a node offers nothing usable). Both force-pause the
+        /// game (<c>forcePause = true</c>): while either is open, <c>TickManager.ForcePaused</c> is true whatever
+        /// <c>CurTimeSpeed</c> is set to (<c>Find.WindowStack.WindowsForcePause</c>), so no tick runs and nothing lands.
+        ///
+        /// Crashlanded's own intro ("The three of you awake in your cryptosleep sarcophagi...") is a <c>Dialog_NodeTree</c>
+        /// (<c>ScenPart_GameStartDialog.PostGameStart</c>, read 2026-09-27), not a <c>Dialog_MessageBox</c>: the first version of
+        /// this step only handled the latter, found none, and passed doing nothing while this dialog stayed open - confirmed on
+        /// Many Happy Returns' runs 3efc and 7b8c, colonists stuck in <c>ActiveTransporterInfo</c> for the full 90 s of
+        /// "colonists have landed" both times. Does nothing, and does not fail, when no such dialog is open.
         /// </summary>
         [When("Nelim's Pickle Tools: any open message dialog is accepted")]
         public async Task AcceptMessageDialogs(PickleContext ctx)
@@ -165,7 +174,44 @@ namespace Nelim.PickleTools.NewColony
                 dialog.Close();
             }
 
+            foreach (Dialog_NodeTree dialog in Find.WindowStack.Windows.OfType<Dialog_NodeTree>().ToList())
+            {
+                AcceptNodeTree(ctx, dialog);
+            }
+
             await ctx.WaitFrames(2);
+        }
+
+        // curNode is protected on Dialog_NodeTree; DiaOption.Activate() (what a real click runs) is protected too, so its three
+        // effects are replicated here instead of reflected into: close on resolveTree, run its action, or follow its link.
+        private static void AcceptNodeTree(PickleContext ctx, Dialog_NodeTree dialog)
+        {
+            for (int guard = 0; guard < 20; guard++)
+            {
+                var node = (DiaNode)CurNodeField.GetValue(dialog);
+                ctx.Require(node != null, "Dialog_NodeTree.curNode is null: nothing to accept, and no page to read an option from");
+
+                DiaOption option = node.options.FirstOrDefault(o => !o.disabled);
+                if (option == null)
+                {
+                    return;
+                }
+
+                option.action?.Invoke();
+                if (option.resolveTree)
+                {
+                    dialog.Close();
+                    return;
+                }
+
+                DiaNode next = option.linkLateBind != null ? option.linkLateBind() : option.link;
+                if (next == null)
+                {
+                    return;
+                }
+
+                CurNodeField.SetValue(dialog, next);
+            }
         }
 
         /// <summary>
