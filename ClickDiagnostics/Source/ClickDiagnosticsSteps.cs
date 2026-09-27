@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
+using RimWorks.Pickle.Input;
 using UnityEngine;
 using Verse;
 
@@ -43,6 +44,20 @@ namespace Nelim.PickleTools.ClickDiagnostics
 
         // What Pickle's tag store held right after the hover step, kept for the failure message of the click.
         private static string storeAfterHover = "(no hover step ran before the click)";
+
+        /// <summary>
+        /// Moves the OS pointer to a fixed point of the screen, with no tag and no tooltip involved: for a capture where a pawn's
+        /// selection bracket, name label or tooltip must not draw over the subject, and there is nothing to hover instead (the
+        /// control that would draw one is untagged, as the bottom bar's buttons are, or there is none at hand). Coordinates are
+        /// GUI space (top-left origin, as Pickle's own Hover takes them), not the game's screen space.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I move the mouse to \\({int}, {int}\\)")]
+        public async Task MoveMouseTo(PickleContext ctx, int x, int y)
+        {
+            InputBackends.EnsureAvailable();
+            InputBackends.Current.MoveTo(new Vector2(x, y));
+            await ctx.WaitFrames(2);
+        }
 
         /// <summary>
         /// Waits until the button has been drawn at the same place for sixty frames in a row and two seconds.
