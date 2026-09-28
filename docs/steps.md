@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-108 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+110 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -111,6 +111,7 @@ Package `nelim.pickletools.inspecttabs`. In the bundle (`Mod/Pickle/Assemblies`)
 | Step | Does |
 | --- | --- |
 | `Nelim's Pickle Tools: I open the {string} inspect tab` (When) | Opens an inspect tab on the selected thing, naming it by type or label key. |
+| `Nelim's Pickle Tools: I select the thing of def {string} at \({int}, {int}\)` (When) | Selects the one thing of a def on a cell, language independent: Pickle's own `I select {string}` takes a label, which is text in the language of the run. Clears the selection first. A cell with none, or with two of that def, is refused, and the message lists what the cell holds, so the scenario never selects "one of them" by luck. |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` (Then) | Asserts the named inspect tab is the one currently open. |
 
 ## InterfaceScale
@@ -128,6 +129,7 @@ Package `nelim.pickletools.keyedclick`. In the bundle (`Mod/Pickle/Assemblies`).
 | Step | Does |
 | --- | --- |
 | `Nelim's Pickle Tools: I click button keyed {string}` (When) | resolves the key with the game's own `Translate()`, then clicks the button drawn under that label |
+| `Nelim's Pickle Tools: I click the gizmo keyed {string}` (When) | Runs the gizmo of the current selection whose label is the translation of a key, the way Pickle's `I click gizmo {string}` runs the one whose label it is given as text (same lookup, same `ProcessInput`), so a scenario passes in every language. |
 
 ## LoadAudit
 
