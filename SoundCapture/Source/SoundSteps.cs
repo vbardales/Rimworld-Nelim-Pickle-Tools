@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
@@ -254,8 +255,25 @@ namespace Nelim.PickleTools.SoundCapture
 
             PickleDriver.Instance.RemoveFrameHook(recording.Hook);
             recording.Hook = null;
-            PickleDriver.Instance.ReleaseFrameBuffers();
+            ReleaseFrameBuffers();
             recording.Clock.Stop();
+        }
+
+        // Pickle 4.x has PickleDriver.ReleaseFrameBuffers(). Pickle 5.0.0 removed it (its scratch texture is now the internal static
+        // FrameCapture.Release()), so a direct call throws MissingMethodException at the end of every film there. Ask for whichever
+        // exists; when neither does the texture is only left for the game to free, which costs memory, not correctness.
+        private static void ReleaseFrameBuffers()
+        {
+            MethodInfo onDriver = typeof(PickleDriver).GetMethod("ReleaseFrameBuffers", BindingFlags.Public | BindingFlags.Instance);
+            if (onDriver != null)
+            {
+                onDriver.Invoke(PickleDriver.Instance, null);
+                return;
+            }
+
+            typeof(PickleDriver).Assembly.GetType("RimWorks.Pickle.Runtime.FrameCapture")
+                ?.GetMethod("Release", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static)
+                ?.Invoke(null, null);
         }
 
         private static void Mux(PickleContext ctx, Recording recording)
