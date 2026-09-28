@@ -47,6 +47,29 @@ namespace Nelim.PickleTools.InspectTabs
         }
 
         /// <summary>
+        /// Selects the one thing of a def on a cell, language independent: Pickle's own <c>I select {string}</c> takes a label,
+        /// which is text in the language of the run. Clears the selection first. A cell with none, or with two of that def, is
+        /// refused, and the message lists what the cell holds, so the scenario never selects "one of them" by luck.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I select the thing of def {string} at \\({int}, {int}\\)")]
+        public void SelectThingOfDefAt(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no current map is loaded; load a save first with 'the save ... is loaded'");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+
+            List<Thing> here = cell.GetThingList(map).ToList();
+            List<Thing> matching = here.Where(thing => string.Equals(thing.def.defName, defName, StringComparison.OrdinalIgnoreCase)).ToList();
+            string held = here.Count == 0 ? Nothing : string.Join(", ", here.Select(thing => thing.def.defName));
+            ctx.Require(matching.Count > 0, $"no thing of def '{defName}' at ({x}, {z}); the cell holds: {held}");
+            ctx.Require(matching.Count == 1, $"{matching.Count} things of def '{defName}' at ({x}, {z}), so none is picked for you; the cell holds: {held}");
+
+            Find.Selector.ClearSelection();
+            Find.Selector.Select(matching[0], false, true);
+        }
+
+        /// <summary>
         /// Asserts the named inspect tab is the one currently open.
         /// </summary>
         // Waits the way 'window is open' does: a tab opened by a real click lands a frame or two
