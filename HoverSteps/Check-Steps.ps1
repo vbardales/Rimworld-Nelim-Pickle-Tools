@@ -27,7 +27,7 @@
   powershell.exe -ExecutionPolicy Bypass -File PickleTools/HoverSteps/Check-Steps.ps1
 #>
 param(
-    [string]$PickleAssemblies = 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\3791648678\Assemblies',
+    [string]$PickleAssemblies = $(if (Test-Path 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\3791648678\1.6\Assemblies') { 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\3791648678\1.6\Assemblies' } else { 'C:\Program Files (x86)\Steam\steamapps\workshop\content\294100\3791648678\Assemblies' }),
     [string]$Cecil = "$env:USERPROFILE\.nuget\packages\mono.cecil\0.11.5\lib\net40\Mono.Cecil.dll"
 )
 $ErrorActionPreference = 'Stop'
