@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using Verse;
@@ -36,6 +39,34 @@ namespace Nelim.PickleTools.KeyedClick
                     + $"active language: {LanguageDatabase.activeLanguage?.FriendlyNameEnglish ?? Nothing}");
 
             await ctx.Click($"btn:{key.Translate()}");
+        }
+
+        /// <summary>
+        /// Runs the gizmo of the current selection whose label is the translation of a key, the way Pickle's
+        /// <c>I click gizmo {string}</c> runs the one whose label it is given as text (same lookup, same
+        /// <c>ProcessInput</c>), so a scenario passes in every language. The label is the key's translation with no
+        /// argument: a gizmo whose label is built with arguments ("{0} tiles") is not found by its key alone; the miss
+        /// lists the gizmos the selection offers, so the difference shows.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I click the gizmo keyed {string}")]
+        public void ClickGizmoKeyed(PickleContext ctx, string key)
+        {
+            ctx.Require(
+                key.CanTranslate(),
+                $"no translation is loaded for '{key}', so no gizmo label can be built from it. "
+                    + $"active language: {LanguageDatabase.activeLanguage?.FriendlyNameEnglish ?? Nothing}");
+
+            string label = key.Translate().ToString();
+            List<Gizmo> offered = Find.Selector.SelectedObjectsListForReading.OfType<Thing>().SelectMany(thing => thing.GetGizmos()).ToList();
+            Command gizmo = offered.OfType<Command>().FirstOrDefault(
+                command => string.Equals(command.LabelCap, label, StringComparison.OrdinalIgnoreCase));
+            if (gizmo == null)
+            {
+                string names = string.Join(", ", offered.OfType<Command>().Select(command => command.LabelCap.ToString()).Where(text => !string.IsNullOrEmpty(text)).OrderBy(text => text, StringComparer.OrdinalIgnoreCase));
+                ctx.Require(false, $"no gizmo labeled '{label}' (key '{key}') on the current selection. available gizmos: {(names.Length > 0 ? names : Nothing)}");
+            }
+
+            gizmo.ProcessInput(null);
         }
     }
 }
