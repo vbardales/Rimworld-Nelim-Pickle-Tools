@@ -42,15 +42,49 @@ namespace Nelim.PickleTools.CoatSteps
                 + "patch that did not apply: check that its def was patched, then raise the number of animals.";
         }
 
-        /// <summary>Null or in [0, count): an index past the list means the texPath list was edited under the code.</summary>
-        public static string IndexInRange(string label, int? coat, int alternateCount)
+        /// <summary>
+        /// At least K of the N animals carry an extra coat (index 0 or more). Counts animals, not different coats: the
+        /// step for rare coats, where the chance is 5 percent and asking for several distinct ones would be luck.
+        /// </summary>
+        public static string AtLeastCarrying(string kind, IList<int?> coats, int wanted)
         {
-            if (!coat.HasValue || (coat.Value >= 0 && coat.Value < alternateCount))
+            if (wanted < 1)
+            {
+                return "asking for " + wanted + " animals with an extra coat says nothing: ask for at least 1";
+            }
+
+            int carrying = coats.Count(c => c.HasValue);
+            if (carrying >= wanted)
             {
                 return null;
             }
 
-            return label + " drew coat " + coat.Value + " but its kind carries " + alternateCount + " alternate graphics";
+            return "of " + coats.Count + " animals of kind " + kind + ", " + carrying + " carry an extra coat and " + wanted
+                + " were wanted (" + Describe(coats) + "). At a low chance a red with few animals may be bad luck; raise the number of animals before suspecting the patch.";
+        }
+
+        /// <summary>No animal of the kind carries an extra coat: for a pass where a patch must not apply.</summary>
+        public static string NoneCarrying(string kind, IList<int?> coats)
+        {
+            int carrying = coats.Count(c => c.HasValue);
+            if (carrying == 0)
+            {
+                return null;
+            }
+
+            return carrying + " of " + coats.Count + " animals of kind " + kind + " carry an extra coat where none was expected (" + Describe(coats) + ")";
+        }
+
+
+        /// <summary>The resolved graphic's path against the coat's own texPath; case is ignored, as ContentFinder keys are not case-folded but a mismatch by case is still a typo worth naming.</summary>
+        public static string DrawnPath(string label, int coat, string expected, string drawn)
+        {
+            if (string.Equals(expected, drawn, System.StringComparison.OrdinalIgnoreCase))
+            {
+                return null;
+            }
+
+            return label + " carries coat " + coat + " whose texture is '" + expected + "' but the renderer built a graphic from '" + drawn + "'";
         }
 
         /// <summary>The same coat before and after a reload, by name: a re-roll would reshuffle the pen.</summary>

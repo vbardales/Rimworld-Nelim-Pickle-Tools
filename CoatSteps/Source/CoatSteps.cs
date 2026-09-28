@@ -41,7 +41,35 @@ namespace Nelim.PickleTools.CoatSteps
         [Given("Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned")]
         public void SpawnAdults(PickleContext ctx, int count, string kindDefName) => SpawnAnimals(ctx, count, kindDefName, true);
 
-        private static void SpawnAnimals(PickleContext ctx, int count, string kindDefName, bool adults)
+        // For a review capture: the batch packed within four cells of the map centre so one frame can hold it. The wide
+        // spawns above are for the statistics, which need no picture. Wording from ColorfulCoatsCatsAndDogsRenew.
+        [Given("Nelim's Pickle Tools: {int} animals of kind {string} are spawned close together")]
+        public void SpawnClose(PickleContext ctx, int count, string kindDefName) => SpawnAnimals(ctx, count, kindDefName, false, CloseRadius);
+
+        [Given("Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned close together")]
+        public void SpawnAdultsClose(PickleContext ctx, int count, string kindDefName) => SpawnAnimals(ctx, count, kindDefName, true, CloseRadius);
+
+        // Paused first, so nothing wanders out of frame between the jump and the picture. The zoom is the one the
+        // Dalmatians suite settled on (8) after its first captures showed a dog a few pixels wide; Cats and Dogs uses 9.
+        // The 2-cell offset in z is not decoration: the pointer stays at the screen centre and the tooltip of what is
+        // under it is drawn into the picture, so the camera looks slightly past the batch and leaves the batch above it.
+        [When("Nelim's Pickle Tools: I frame the animals of kind {string}", TimeoutSeconds = 15f)]
+        public async Task Frame(PickleContext ctx, string kindDefName)
+        {
+            List<Pawn> animals = Animals(ctx, kindDefName);
+            int x = (int)animals.Average(p => p.Position.x);
+            int z = (int)animals.Average(p => p.Position.z);
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+            Find.Selector.ClearSelection();
+            Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z - 2));
+            Find.CameraDriver.SetRootSize(9f);
+            await ctx.WaitFrames(5);
+        }
+
+        private const int WideRadius = 60;
+        private const int CloseRadius = 4;
+
+        private static void SpawnAnimals(PickleContext ctx, int count, string kindDefName, bool adults, int radius = WideRadius)
         {
             ctx.Require(count > 0, "spawning " + count + " animals says nothing: ask for at least 1");
             PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindDefName);
@@ -54,10 +82,10 @@ namespace Nelim.PickleTools.CoatSteps
             var placed = new List<IntVec3>();
             for (int i = 1; i <= count; i++)
             {
-                IntVec3 cell = FindCell(map, placed);
+                IntVec3 cell = FindCell(map, placed, radius);
                 ctx.Require(
                     cell.IsValid,
-                    "could not place animal " + i + " of " + count + " of kind " + kindDefName + ": no clear area within 60 cells of the map centre; "
+                    "could not place animal " + i + " of " + count + " of kind " + kindDefName + ": no clear area within " + radius + " cells of the map centre; "
                     + placed.Count + " were placed. Clear the area or ask for fewer.");
 
                 PawnGenerationRequest request = adults
@@ -78,9 +106,9 @@ namespace Nelim.PickleTools.CoatSteps
             return ages != null && ages.Count > 0 ? ages[ages.Count - 1].minAge : 0f;
         }
 
-        private static IntVec3 FindCell(Map map, List<IntVec3> taken)
+        private static IntVec3 FindCell(Map map, List<IntVec3> taken, int maxRadius)
         {
-            for (int radius = 4; radius <= 60; radius += 4)
+            for (int radius = 4; radius <= maxRadius; radius += 4)
             {
                 if (CellFinder.TryFindRandomCellNear(map.Center, map, radius, c => Clear(map, c, taken), out IntVec3 found, 400))
                 {
@@ -140,6 +168,62 @@ namespace Nelim.PickleTools.CoatSteps
             List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
             string problem = CoatVerdicts.DistinctExtraCoats(kindDefName, coats, wanted);
             ctx.Assert(problem == null, problem);
+        }
+
+        [Then("Nelim's Pickle Tools: among the animals of kind {string}, at least {int} carry an extra coat")]
+        public async Task AtLeastExtra(PickleContext ctx, string kindDefName, int wanted)
+        {
+            List<Pawn> animals = await Settled(ctx, kindDefName);
+            List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
+            string problem = CoatVerdicts.AtLeastCarrying(kindDefName, coats, wanted);
+            ctx.Assert(problem == null, problem);
+        }
+
+        [Then("Nelim's Pickle Tools: no animal of kind {string} carries an extra coat")]
+        public async Task NoExtra(PickleContext ctx, string kindDefName)
+        {
+            List<Pawn> animals = await Settled(ctx, kindDefName);
+            List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
+            string problem = CoatVerdicts.NoneCarrying(kindDefName, coats);
+            ctx.Assert(problem == null, problem);
+        }
+
+        // The deterministic check: the graphic the renderer BUILT for the pawn, read from its render tree, against the
+        // texture path of the coat the index names. Not the def looked up by index twice, which would be true by
+        // construction. PawnRenderer.BodyGraphic is public and needs no drawn frame once the tree is initialised;
+        // Graphic.path is a public field and survives GetColoredVersion (decompiled from 1.6, not played).
+        // AlternateGraphic.texPath is private, so it is read by reflection and the step stops with a sentence if that
+        // field is renamed.
+        private static readonly System.Reflection.FieldInfo AlternateTexPath =
+            typeof(AlternateGraphic).GetField("texPath", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+
+        [Then("Nelim's Pickle Tools: each animal of kind {string} that carries an extra coat is drawn with that coat's own texture")]
+        public async Task DrawnWithItsCoat(PickleContext ctx, string kindDefName)
+        {
+            ctx.Require(AlternateTexPath != null && AlternateTexPath.FieldType == typeof(string),
+                "Verse.AlternateGraphic.texPath as a string is gone in this build: the coat's texture cannot be read");
+            List<Pawn> animals = await Settled(ctx, kindDefName);
+            int checkedCount = 0;
+            foreach (Pawn pawn in animals)
+            {
+                int index = pawn.GetGraphicIndex();
+                if (index < 0)
+                {
+                    continue;
+                }
+
+                pawn.Drawer.renderer.renderTree.EnsureInitialized(PawnRenderFlags.None);
+                Graphic drawn = pawn.Drawer.renderer.BodyGraphic;
+                ctx.Require(drawn != null, pawn.LabelShort + " has no resolved body graphic: the render tree did not produce one, so the coat drawn cannot be read");
+                var alternates = pawn.kindDef.alternateGraphics;
+                ctx.Require(alternates != null && index < alternates.Count, pawn.LabelShort + " reports coat " + index + " but its kind carries " + (alternates?.Count ?? 0));
+                string expected = (string)AlternateTexPath.GetValue(alternates[index]);
+                string problem = CoatVerdicts.DrawnPath(pawn.LabelShort, index, expected, drawn.path);
+                ctx.Assert(problem == null, problem);
+                checkedCount++;
+            }
+
+            ctx.Assert(checkedCount > 0, "none of the " + animals.Count + " animals of kind " + kindDefName + " carries an extra coat, so nothing was compared: spawn more, or use 'no animal ... carries an extra coat' where that is the claim");
         }
 
         [When("Nelim's Pickle Tools: I note the coats of the animals of kind {string}")]
