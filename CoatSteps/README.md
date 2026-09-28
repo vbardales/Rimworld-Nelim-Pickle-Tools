@@ -1,0 +1,40 @@
+# Coat steps - Pickle steps (shared)
+
+Steps for the mods that add `alternateGraphics` and `alternateGraphicChance` to animal `PawnKindDef`s (the Colorful Coats
+family). No mod, def or number is written in a step: the kind's defName and every count come from the feature.
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {int} animals of kind {string} are spawned` (Given) | Generates N animals of the kind, player faction, at random age, named `coat-1`... and places each in a clear area around the map centre: a cell counts only when the cells around it are free too, for big animals. Fails saying which animal could not be placed, never a silent short count |
+| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned` (Given) | The same, at the kind's last life stage. Use it when the alternate graphics may differ by stage |
+| `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | Counts the distinct non-null coat indices among the `coat-N` animals of that kind. On failure prints N, K and the coats seen, so bad luck reads differently from a patch that did not apply |
+| `Nelim's Pickle Tools: every animal of kind {string} has a coat within its kind's alternate graphics` (Then) | Each index is null or below the number of `alternateGraphics` the kind carries: catches a texPath list edited under the code |
+| `Nelim's Pickle Tools: I note the coats of the animals of kind {string}` (When) | Remembers each animal's coat by name |
+| `Nelim's Pickle Tools: each animal of kind {string} still has the coat noted for it` (Then) | After `I save and reload`: finds the animals again by name on the current map and compares |
+
+An `[AfterScenario]` destroys the `coat-N` animals still spawned on the current map.
+
+## Choosing N and K
+
+The chance applies to getting **any** extra coat; each single coat is rarer. With chance `c` and `m` extra coats, an animal
+draws a given coat with probability about `c/m`. Ask for K well below `m` and N large enough that missing K is negligible.
+
+## What it does not prove, and what is not played
+
+- **Not played yet.** Compiled against the reference stubs only. Whether `Pawn.overrideGraphicIndex` is set at spawn or at
+  the first draw is not established, so every reading waits 30 frames first; a run must show that is enough.
+- The coat is read by reflection from `Verse.Pawn.overrideGraphicIndex` (`Nullable<int>`). If the field is renamed the step
+  stops with a sentence; it does not pass on a null.
+- It says nothing about pixels: a coat index in range does not show the right texture on screen. That is a `@review`
+  capture for a person.
+- Lifestage-specific graphics are not asserted; use the adult variant to keep them out of the count.
+
+## Using it from a suite
+
+In the pass map, after the mods it needs, ending with a newline:
+
+```
+nelim.pickletools.coatsteps   path:PickleTools/CoatSteps/Mod
+```
+
+Build: `dotnet build CoatSteps/Source -c Release` (output goes to `Mod/Pickle/Assemblies/`, intermediates under `.build/`).
