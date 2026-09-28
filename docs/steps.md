@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-107 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+108 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -42,6 +42,7 @@ Package `nelim.pickletools.coatsteps`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: {int} animals of kind {string} are spawned close together` (Given) | The same, but every animal within four cells of the map centre so one frame can hold them: for a `@review` capture. A batch that does not fit fails saying which animal could not be placed. Wording and radius from the Cats and Dogs suite |
 | `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned close together` (Given) | The same, at the kind's last life stage |
 | `Nelim's Pickle Tools: I frame the animals of kind {string}` (When) | Pauses the game, clears the selection, centres the camera on the `coat-N` animals of the kind, two cells past them so the tooltip under the pointer stays off the batch, sets the zoom to 9, and waits five frames. Zoom from the Dalmatians suite (8) and Cats and Dogs (9) |
+| `Nelim's Pickle Tools: the pawn kind {string} keeps {int} alternate graphics at a chance of {string}` (Then) | Asserts the kind's number of `alternateGraphics` and its `alternateGraphicChance` (a number with a dot, `0.8`). Names the def type, for a defName shared by a ThingDef and a PawnKindDef, which Pickle's own field step refuses as ambiguous |
 | `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | Counts the distinct coat indices of `0` or more among the `coat-N` animals of that kind. On failure prints N, K and the coats seen, so bad luck reads differently from a patch that did not apply |
 | `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} carry an extra coat` (Then) | Counts animals whose coat index is `0` or more, not different coats: for rare coats (5 percent) where distinct coats would be luck. Prints N, K and the coats seen |
 | `Nelim's Pickle Tools: no animal of kind {string} carries an extra coat` (Then) | For a pass where a patch must not apply |

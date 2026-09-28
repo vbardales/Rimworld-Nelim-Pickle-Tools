@@ -161,6 +161,22 @@ namespace Nelim.PickleTools.CoatSteps
             return Animals(ctx, kindDefName);
         }
 
+        // Names the def type: "RG_Dodo" is both a ThingDef and a PawnKindDef, so Pickle's own field step refuses it.
+        [Then("Nelim's Pickle Tools: the pawn kind {string} keeps {int} alternate graphics at a chance of {string}")]
+        public void KindKeeps(PickleContext ctx, string kindDefName, int count, string chance)
+        {
+            PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindDefName);
+            ctx.Require(kind != null, "no pawn kind '" + kindDefName + "'");
+            ctx.Require(
+                float.TryParse(chance, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float wanted),
+                "'" + chance + "' is not a number: write the chance with a dot, like 0.8");
+            int actual = kind.alternateGraphics?.Count ?? 0;
+            ctx.Assert(actual == count, "pawn kind " + kindDefName + " carries " + actual + " alternate graphics and " + count + " were expected");
+            ctx.Assert(
+                System.Math.Abs(kind.alternateGraphicChance - wanted) < 0.0001f,
+                "pawn kind " + kindDefName + " has alternateGraphicChance " + kind.alternateGraphicChance.ToString(System.Globalization.CultureInfo.InvariantCulture) + " and " + chance + " was expected");
+        }
+
         [Then("Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn")]
         public async Task DistinctExtraCoats(PickleContext ctx, string kindDefName, int wanted)
         {
