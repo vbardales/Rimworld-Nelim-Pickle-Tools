@@ -37,11 +37,11 @@ Package `nelim.pickletools.coatsteps`. Not in the bundle: a companion staged by 
 
 | Step | Does |
 | --- | --- |
-| `Nelim's Pickle Tools: {int} animals of kind {string} are spawned` (Given) | (no description yet) |
-| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned` (Given) | (no description yet) |
-| `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | (no description yet) |
-| `Nelim's Pickle Tools: I note the coats of the animals of kind {string}` (When) | (no description yet) |
-| `Nelim's Pickle Tools: each animal of kind {string} still has the coat noted for it` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: {int} animals of kind {string} are spawned` (Given) | Generates N animals of the kind, player faction, at random age, named `coat-1`... and places each in a clear area around the map centre: a cell counts only when the cells around it are free too, for big animals. Fails saying which animal could not be placed, never a silent short count |
+| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned` (Given) | The same, at the kind's last life stage. Use it when the alternate graphics may differ by stage |
+| `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | Counts the distinct coat indices of `0` or more among the `coat-N` animals of that kind. On failure prints N, K and the coats seen, so bad luck reads differently from a patch that did not apply |
+| `Nelim's Pickle Tools: I note the coats of the animals of kind {string}` (When) | Remembers each animal's coat by name |
+| `Nelim's Pickle Tools: each animal of kind {string} still has the coat noted for it` (Then) | After `I save and reload`: finds the animals again by name on the current map and compares |
 
 ## ColonistRace
 
