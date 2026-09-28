@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-91 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+100 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -26,9 +26,22 @@ Package `nelim.pickletools.clickdiagnostics`. In the bundle (`Mod/Pickle/Assembl
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: I move the mouse to \({int}, {int}\)` (When) | Moves the OS pointer to a fixed point of the screen, with no tag and no tooltip involved: for a capture where a pawn's selection bracket, name label or tooltip must not draw over the subject, and there is nothing to hover instead (the control that would draw one is untagged, as the bottom bar's buttons are, or there is none at hand). |
 | `Nelim's Pickle Tools: the button keyed {string} has stood still` (When) | Waits until the button has been drawn at the same place for sixty frames in a row and two seconds. |
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` (Then) | Hovers the button and asserts the window under the pointer is the named one, and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` (When) | Clicks the button and waits for the named window to open; when it does not, says what the click met. |
+
+## CoatSteps
+
+Package `nelim.pickletools.coatsteps`. Not in the bundle: a companion staged by a pass map. [README](../CoatSteps/README.md).  
+
+| Step | Does |
+| --- | --- |
+| `Nelim's Pickle Tools: {int} animals of kind {string} are spawned` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: I note the coats of the animals of kind {string}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: each animal of kind {string} still has the coat noted for it` (Then) | (no description yet) |
 
 ## ColonistRace
 
@@ -122,6 +135,8 @@ Package `nelim.pickletools.newcolony`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: the new colony's storyteller is {string}` (Given) | A `StorytellerDef`. Default `Cassandra` |
 | `Nelim's Pickle Tools: the new colony's difficulty is {string}` (Given) | A `DifficultyDef`. Default `Rough` |
 | `Nelim's Pickle Tools: a new colony is started` (Given) | From the main menu: sets the game up as the developer quick start does, with the choices below, generates the world (5 percent of the planet), picks a starting tile, then takes the last new-colony page's path (`PageUtility.InitGameStart`): the scene "Play" is loaded, the map is generated, the game is put on pause. |
+| `Nelim's Pickle Tools: any open message dialog is accepted` (When) | Accepts every open dialog of the two kinds a scenario's own intro can be, the way a click on its first option or button would: `Dialog_MessageBox` (its accept action if it has one, then closed) and `Dialog_NodeTree` (its current node's first, non-disabled option: its action if it has one, closed if the option resolves the tree, moved... |
+| `Nelim's Pickle Tools: the new colony's colonists have landed` (When) | The start step counts the colonists the map holds (`FreeColonistsCount`), which includes pawns still in a drop pod or a container. This one lets the game run, at the fast speed, until every one of them is spawned on the map, then pauses again. |
 
 ## ResearchSteps
 
@@ -170,6 +185,7 @@ Package `nelim.pickletools.screenshotmode`. In the bundle (`Mod/Pickle/Assemblie
 | `Nelim's Pickle Tools: screenshot mode is disabled` (When) | Restores the prior window flags and screenshot-mode state. |
 | `Nelim's Pickle Tools: developer mode is turned off for the capture` (When) | Sets `Prefs.DevMode` to false and waits three frames. For a capture that must keep the full interface (a main tab and its tab bar), which screenshot mode would hide: the runner starts the game with developer mode on, and its toolbar would show. |
 | `Nelim's Pickle Tools: developer mode is restored` (When) | Puts developer mode back. Optional: the `AfterScenario` hook does it. |
+| `Nelim's Pickle Tools: the letters and the alerts are cleared from the screen` (When) | Clears the letter stack (public API: `LetterStack.RemoveLetter`) and the alerts readout's currently drawn list (private field, cleared by reflection: `AlertsReadout` has no public way to do this). |
 
 ## ScreenshotStudio
 
