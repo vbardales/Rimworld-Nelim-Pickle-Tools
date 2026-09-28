@@ -5,6 +5,7 @@ One Pickle step that clicks a button **by the translation key its label comes fr
 | Step | What it does |
 | --- | --- |
 | `Nelim's Pickle Tools: I click button keyed {string}` | resolves the key with the game's own `Translate()`, then clicks the button drawn under that label |
+| `Nelim's Pickle Tools: I click the gizmo keyed {string}` | Runs the gizmo of the current selection whose label is the key's translation, as Pickle's `I click gizmo {string}` does for a label given as text (same lookup, same `ProcessInput`), so a scenario passes in every language. Label without arguments only: a gizmo labelled with arguments ("{0} tiles") is not found by its key alone. A miss lists the gizmos the selection offers. **Written 2026-09-28 for Mechanoid Factory; not played** |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
