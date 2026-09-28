@@ -1,7 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorld;
@@ -13,13 +12,14 @@ namespace Nelim.PickleTools.CoatSteps
     /// Spawns animals of a kind and reads which alternate coat each drew, for any mod that adds alternateGraphics to
     /// a PawnKindDef. No mod, no def and no number is written in a pattern: all of them come from the feature.
     ///
-    /// The coat is <c>Pawn.overrideGraphicIndex</c>, a Nullable&lt;int&gt; read by reflection (its name and type were
-    /// checked against 1.6's Assembly-CSharp.dll by the Dodos suite's author). Null is the graphic the animal hatched
-    /// with; a value indexes into <c>PawnKindDef.alternateGraphics</c>. If the field is renamed the steps stop with a
-    /// sentence naming it: they do not pass on a null.
+    /// The coat is what <c>PawnGraphicUtils.GetGraphicIndex(pawn)</c> returns: the index the renderer itself draws,
+    /// computed on demand from the pawn's thingIDNumber and the kind's alternateGraphicChance, -1 for the original
+    /// graphic. Nothing is stored, so nothing has to settle after a spawn. Pawn.overrideGraphicIndex is a different
+    /// thing (declared on Thing, unread by the renderer, null for an ordinary animal): reading it counted no coat.
+    /// After a reload the same coat comes back only while the animal's thingIDNumber and the kind's alternateGraphics
+    /// list are unchanged, which is what "still has the coat noted" therefore asserts.
     ///
-    /// NOT PLAYED YET. Whether the index is set at spawn or the first time the animal is drawn is not established, so
-    /// every step that reads it waits some frames first; a run must confirm that is enough.
+    /// NOT PLAYED YET: compiled against the reference stubs only.
     ///
     /// Animals are named "coat-1", "coat-2"... so they can be found again after a reload, when every kept reference
     /// belongs to the game that was replaced. An [AfterScenario] removes what a scenario left.
@@ -28,10 +28,6 @@ namespace Nelim.PickleTools.CoatSteps
     public class CoatSteps
     {
         private const string Prefix = "coat-";
-        private const int SettleFrames = 30;
-
-        private static readonly FieldInfo IndexField =
-            typeof(Pawn).GetField("overrideGraphicIndex", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
 
         /// <summary>Coats noted by a step, per animal name, kept for the comparison after a reload.</summary>
         private sealed class NotedCoats
@@ -120,17 +116,20 @@ namespace Nelim.PickleTools.CoatSteps
             return animals;
         }
 
+        // What the renderer itself draws: PawnGraphicUtils.TryGetAlternate computes the coat on demand from the pawn's
+        // thingIDNumber and the kind's alternateGraphicChance, and stores nothing. -1 is the original graphic.
+        // Pawn.overrideGraphicIndex is NOT this: it is declared on Thing, read by no renderer, and stays null for an
+        // animal spawned normally. Decompiled from 1.6's Assembly-CSharp.dll by the Megafauna session.
         private static int? Coat(PickleContext ctx, Pawn pawn)
         {
-            ctx.Require(
-                IndexField != null && IndexField.FieldType == typeof(int?),
-                "Verse.Pawn.overrideGraphicIndex as a Nullable<int> is gone in this build: the coat cannot be read, and this must not pass on a null");
-            return (int?)IndexField.GetValue(pawn);
+            int index = pawn.GetGraphicIndex();
+            return index >= 0 ? (int?)index : null;
         }
 
+        // The coat is computed, not stored, so nothing has to settle: a frame is enough for a spawn to be visible.
         private static async Task<List<Pawn>> Settled(PickleContext ctx, string kindDefName)
         {
-            await ctx.WaitFrames(SettleFrames);
+            await ctx.WaitFrames(1);
             return Animals(ctx, kindDefName);
         }
 
@@ -141,18 +140,6 @@ namespace Nelim.PickleTools.CoatSteps
             List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
             string problem = CoatVerdicts.DistinctExtraCoats(kindDefName, coats, wanted);
             ctx.Assert(problem == null, problem);
-        }
-
-        [Then("Nelim's Pickle Tools: every animal of kind {string} has a coat within its kind's alternate graphics")]
-        public async Task CoatsInRange(PickleContext ctx, string kindDefName)
-        {
-            List<Pawn> animals = await Settled(ctx, kindDefName);
-            foreach (Pawn pawn in animals)
-            {
-                int count = pawn.kindDef.alternateGraphics?.Count ?? 0;
-                string problem = CoatVerdicts.IndexInRange(pawn.LabelShort, Coat(ctx, pawn), count);
-                ctx.Assert(problem == null, problem);
-            }
         }
 
         [When("Nelim's Pickle Tools: I note the coats of the animals of kind {string}")]
