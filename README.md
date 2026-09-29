@@ -3,6 +3,8 @@
 **Looking for a step? [docs/steps.md](docs/steps.md) lists every step of this repository, generated from the sources; Pickle's own steps are in [its catalogue](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md).**
 **Writing a new suite? Start with the [authoring guide](Authoring/README.md)** for layout, pass maps,
 dependency tags, step design, restart tests and evidence requirements.
+**Loading `test-colony` or `nelim-zen-meadow-studio`? [docs/FIXTURES.md](docs/FIXTURES.md)** lists what each holds:
+colonists, hostile things, free build areas, coordinates.
 
 Shared tooling for testing RimWorld mods with [Pickle](https://github.com/RimWorks/Rimworld-Pickle), the
 Gherkin runner that plays scenarios in a real game. Each tool is a **companion mod that holds Pickle steps** (an
