@@ -78,6 +78,29 @@ sculpting table (92, 121), a stove (150, 130), a butcher table (157, 130).
 (Night Change's `Driver.Clear` destroys every destroyable non-pawn thing on the cells it needs). No hostile
 things are on this map.
 
+**Zones, from `ScreenshotStudio/Source/StudioSteps.cs` (2026-09-29, read from source, not loaded in a game;
+searched for a screenshot of the whole studio to check against and found none)**, all offsets from the map
+centre `(125, 125)`:
+
+- **Indoor (the four pavilions, cutaway roofs, no roof over any of them):** workshop around **(96, 125)**
+  (`I frame the studio "workshop"`, zoom 12) — tailoring bench, stonecutter, sculpting table, two stools, a
+  shelf; kitchen around **(154, 125)** — stove, butcher table, a 2x2 table, two dining chairs, a shelf; home
+  around **(125, 154)** — three beds, three end tables, a 2x2 table, two dining chairs; **display** around
+  **(125, 96)** — furniture on the edges only, its own centre cell **(125, 96)** kept clear on purpose ("a large
+  empty centre for mod demonstrations", the source's own words) and asserted standable by `the flower meadow
+  studio is intact`.
+- **The central mosaic ("the smiley"):** a **33 x 33** tile block, roughly **x 109-141, z 109-141**, painted
+  cell by cell from `IconMosaic.Rows` (an ASCII bitmap in source): a black (`K`) outline, one yellow (`Y`) patch
+  near the top, one single white (`W`) pixel, the rest orange (`O`) — over 300 painted tiles, **most of them
+  orange**, with **solid orange blocks several cells wide and tall inside the shape** (not one single named
+  3x3 zone, several). Framed by `I frame the studio "emblem"` (zoom 20) or `"overview"` (zoom 45, the whole
+  studio). Checked cell by cell by `the flower meadow studio is intact`, so this shape is asserted on every
+  build of the fixture, not just read once.
+- **Outdoor named shots**, same offset scheme: flowers **(154, 98)**, pond **(153, 152)** (deep water at
+  (152,148), a bridge at (151,152)), zen **(97, 152)** (dry sand), all zoom 12-16. Outside the built pavilions
+  and the mosaic, the rest of the 250 x 250 map keeps the ruin, hives and sparse desert of `test-colony` (this
+  page's other column): the studio preparation only touches a ~90-cell radius around the centre.
+
 ## What to do with this
 
 - **Pick an origin from the first table**, not by feel, and make the builder assert what it needs (indoor room,
