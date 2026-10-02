@@ -21,3 +21,5 @@ evidence/
 
 # Textures are shipped as PNG; a compiled .dds is a build product, not a source.
 *.dds
+
+desktop.ini
