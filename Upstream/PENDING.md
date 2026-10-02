@@ -1,5 +1,12 @@
 # Pending at Pickle
 
+Update 2026-10-03 (release notes read with gh): **Pickle v6.1.0 (2026-10-02, 18:05) carries PR #42**: clear the screen, click a button by
+translation key, inspect tabs, research tab by def name, body type and its texture, interface scale, "a warning from mod {string} was
+logged" (closes #27), two dashboard fixes. v6.1.2 caps a screenshot file name (#48); v6.1.3 (21:20) fixes "no warnings from mod" when a
+packageId is given. Latest is **v6.1.3**. Our `Nelim's Pickle Tools:` duplicates are NOT removed: that needs a decision on the minimum
+Pickle version (a suite pinned to 6.0.x or older would lose the step) and a line-by-line comparison of the steps. The paragraph below
+is the earlier state, kept for the dates.
+
 Update 2026-10-02 (reported by the owner, not measured here): the maintainer merged **PR #42** on 2026-10-01 at 23:51, after
 v6.0.1 (20:09), with our commits for #19, #21, #22, #28, #31, #32, #33 and #23's step, "with some changes". Its commit list also carries the
 research tab, the body type, the inspect tabs, the warning-by-mod step and two dashboard fixes. **No Pickle release carries
