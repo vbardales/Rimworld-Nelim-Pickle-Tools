@@ -4,8 +4,20 @@ Update 2026-10-03 (release notes read with gh): **Pickle v6.1.0 (2026-10-02, 18:
 translation key, inspect tabs, research tab by def name, body type and its texture, interface scale, "a warning from mod {string} was
 logged" (closes #27), two dashboard fixes. v6.1.2 caps a screenshot file name (#48); v6.1.3 (21:20) fixes "no warnings from mod" when a
 packageId is given. Latest is **v6.1.3**. Our `Nelim's Pickle Tools:` duplicates are NOT removed: that needs a decision on the minimum
-Pickle version (a suite pinned to 6.0.x or older would lose the step) and a line-by-line comparison of the steps. The paragraph below
-is the earlier state, kept for the dates.
+Pickle version (a suite pinned to 6.0.x or older would lose the step) and a line-by-line comparison of the steps. Duplicates against Pickle v6.1.3 (Docs/steps.md read with gh, 2026-10-03): `the screen is clear`, `windows are allowed to open again`
+(ScreenshotMode), `I click button keyed {string}` (KeyedClick), `I open the {string} inspect tab`, `the {string} inspect tab is open`
+(InspectTabs), `the interface scale is {int} percent` (InterfaceScale), `{string} body type is {word}` (ColonistRace), `I open the research
+tab {string}`. NOT duplicates, kept: `I click the gizmo keyed`, `I open the research tab keyed`, `has body type`, the `has stood still`
+and `is reachable in` steps, the tooltip-keyed steps. Suites using the prefixed duplicates (partial count, the scan was stopped by its time
+limit): `the screen is clear` AnimalApparelCollarsAndKitRenew, ExtinguishRefuelablesCompatibilityPatchRenew, FireworkStand;
+`I click button keyed` ContentedLivestock, Housebroken, JoyRescue; the inspect-tab steps 12 mods (ACertainSeriesCreaturesAndHairRenew,
+AnimalsNaturally, CreaturesOfKiRenew, DrumBathHygiene, EntityGazing, HandMeDowns, ManyHappyReturns, MintchocoConfectionery, SkillIcons,
+TailorMadeWaistlines...). Removing the duplicates would break all of them, so they stay until each suite has moved to Pickle's own text
+and pins Pickle >= 6.1.0.
+
+#34: the maintainer proposed that `Click` follow the tag and re-arm
+while it waits; Virginie posted our agreement on 2026-10-03 (drop the stillness steps in favour of the re-arm), so nothing is left to
+write on our side unless the maintainer answers otherwise. The paragraph below is the earlier state, kept for the dates.
 
 Update 2026-10-02 (reported by the owner, not measured here): the maintainer merged **PR #42** on 2026-10-01 at 23:51, after
 v6.0.1 (20:09), with our commits for #19, #21, #22, #28, #31, #32, #33 and #23's step, "with some changes". Its commit list also carries the
