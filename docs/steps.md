@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-160 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+161 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -305,6 +305,7 @@ Package `nelim.pickletools.stagedecor`. Not in the bundle: a companion staged by
 | `Nelim's Pickle Tools: I lay the floor {string} from \({int}, {int}\) to \({int}, {int}\)` (Given) | Lays a floor (a TerrainDef: a carpet, a tile, soil) on every cell of the rectangle from the first corner to the second, and remembers what each cell held, so the removal step puts it back. Fails naming the first cell off the map or under a wall. |
 | `Nelim's Pickle Tools: the decor {string} at \({int}, {int}\) is lit` (Given) | Makes a placed light-giving thing burn: fills its fuel when it is refuelable (a torch, a campfire) and switches it on when it has a switch, then waits up to 10 seconds for the game to say it glows. Fails if the thing at the cell has no light, or does not glow (a lamp that needs power on a network that gives none says so). |
 | `Nelim's Pickle Tools: the roof is removed from \({int}, {int}\) to \({int}, {int}\)` (Given) | Takes the roof off a rectangle of cells (a test colony under a mountain roof is dark in a capture) and remembers each roof, so the removal step puts it back. A cell with no roof is left alone. |
+| `Nelim's Pickle Tools: the area from \({int}, {int}\) to \({int}, {int}\) is cleared` (Given) | Takes every thing off a rectangle of cells (plants, filth, items, buildings, blueprints; not pawns, motes or projectiles) so the capture shows bare ground, and remembers each one: the removal step spawns the same instances back at their cell and rotation. Floors and roofs stay (use the floor and roof steps). |
 | `Nelim's Pickle Tools: the decor is removed` (When) | Removes every thing the place step made and puts back every floor the lay step replaced, in one step. |
 
 ## TextureOwner

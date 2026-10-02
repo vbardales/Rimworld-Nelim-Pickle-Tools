@@ -22,7 +22,8 @@ A line of a pass map is `nelim.pickletools.<name>   path:PickleTools/<Folder>/Mo
 | Lay a floor on a rectangle | `I lay the floor {string} from ({int}, {int}) to ({int}, {int})` | StageDecor |
 | Make a torch / campfire burn | `the decor {string} at ({int}, {int}) is lit` | StageDecor |
 | Take the roof off a rectangle | `the roof is removed from ({int}, {int}) to ({int}, {int})` | StageDecor |
-| Remove all of it (things, floors, roofs) | `the decor is removed` (and after every scenario) | StageDecor |
+| Bare ground: take every thing off a rectangle (not pawns), put back at the end | `the area from ({int}, {int}) to ({int}, {int}) is cleared` | StageDecor |
+| Remove all of it (things, floors, roofs; also gives back what the clearing took) | `the decor is removed` (and after every scenario) | StageDecor |
 | One thing at a cell, Pickle's way | `I spawn a {string} at ({int}, {int})`, `I destroy the {string} at ({int}, {int})` | Pickle |
 | Put a colonist on a cell | `{string} stands at ({int}, {int})` | ColonistRace (`colonistrace`) |
 | ... and turn it | `{string} stands at ({int}, {int}) facing {word}` (North, East, South, West) | ColonistRace |
@@ -46,8 +47,7 @@ A line of a pass map is `nelim.pickletools.<name>   path:PickleTools/<Folder>/Mo
 
 ## Not available
 
-A frozen pose or animation, a neutral stance beyond "paused and without a job"; a step that clears an area of every thing and restores
-it (only what StageDecor placed comes off); a trader coming and a purchase; full-resolution capture (not known whether the launcher
+A frozen pose or animation, a neutral stance beyond "paused and without a job"; a trader coming and a purchase; full-resolution capture (not known whether the launcher
 reduces the picture); the map centre of a 250 x 250 map is (125, 125), so "relative to the centre" is arithmetic done by the author.
 What the sky and the lamps look like in the captured picture at a given hour is not established.
 
