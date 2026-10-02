@@ -1,0 +1,6 @@
+# The pass that plays pickletools-camerazoom.feature: the CameraZoom steps, staged alone from the repository.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.camerazoom.map -Filter pickletools-camerazoom
+nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

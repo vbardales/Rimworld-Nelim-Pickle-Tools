@@ -13,11 +13,12 @@ namespace Nelim.PickleTools.ClickDiagnostics
     /// <summary>
     /// Three steps for a click that must land, and a report that says why when it did not.
     /// <para>
-    /// Pickle resolves a button's tag, moves the pointer to its centre and presses. Two things it cannot
-    /// see make that fail with a message that names nothing: the button was still MOVING (IMGUI counts a
-    /// click only when press and release land on the same control), or something sat on top of it, or the
-    /// window holding it was not receiving input. The steps below wait, check, and on a lost click print
-    /// the pointer, every button drawn under it, and the window stack.
+    /// Pickle resolves a button's tag and takes the click at the widget: since Pickle 6.0.0 nothing moves a real
+    /// pointer, and a click lands when the armed rectangle matches the one the button is drawn at. Two things it
+    /// cannot see make that fail with a message that names nothing: the button was still MOVING (the armed
+    /// rectangle is never matched), or something sat on top of it, or the window holding it was not receiving
+    /// input. The steps below wait, check, and on a lost click print the point at the button's centre, every
+    /// button drawn there, and the window stack.
     /// </para>
     /// <para>
     /// Buttons are named by the translation key their label comes from, so a scenario keeps working in any
@@ -46,16 +47,21 @@ namespace Nelim.PickleTools.ClickDiagnostics
         private static string storeAfterHover = "(no hover step ran before the click)";
 
         /// <summary>
-        /// Moves the OS pointer to a fixed point of the screen, with no tag and no tooltip involved: for a capture where a pawn's
-        /// selection bracket, name label or tooltip must not draw over the subject, and there is nothing to hover instead (the
-        /// control that would draw one is untagged, as the bottom bar's buttons are, or there is none at hand). Coordinates are
-        /// GUI space (top-left origin, as Pickle's own Hover takes them), not the game's screen space.
+        /// Parks the pointer: drops whatever hover Pickle had armed, so no control is drawn as hovered and no tooltip or
+        /// selection bracket draws over the subject of a capture. Since Pickle 6.0.0 nothing moves a real pointer, so the
+        /// coordinates are only checked to be on the screen (GUI space, top-left origin) and the real pointer stays where the
+        /// display put it; a headless run never moves it.
         /// </summary>
         [When("Nelim's Pickle Tools: I move the mouse to \\({int}, {int}\\)")]
         public async Task MoveMouseTo(PickleContext ctx, int x, int y)
         {
-            InputBackends.EnsureAvailable();
-            InputBackends.Current.MoveTo(new Vector2(x, y));
+            ctx.Require(
+                x >= 0 && y >= 0 && x <= UI.screenWidth && y <= UI.screenHeight,
+                $"the point ({x}, {y}) is outside the screen, which is {UI.screenWidth} by {UI.screenHeight} in GUI space");
+            var request = HarmonyLib.AccessTools.TypeByName("RimWorks.Pickle.Input.InteractionRequest");
+            var clear = request == null ? null : HarmonyLib.AccessTools.Method(request, "Clear", Type.EmptyTypes);
+            ctx.Require(clear != null, "RimWorks.Pickle.Input.InteractionRequest.Clear() is not there in this Pickle build: it moved, this step has to follow");
+            clear.Invoke(null, null);
             await ctx.WaitFrames(2);
         }
 
@@ -111,22 +117,22 @@ namespace Nelim.PickleTools.ClickDiagnostics
         /// input.
         /// </summary>
         // Pickle's failure for a covered button is "tag not found", which reads like the button is missing
-        // when something is sitting on it. Hovering first is not politeness: Input.mousePosition is sampled
-        // once per frame, so the pointer has to be where the click will land a frame earlier for the
-        // question to mean anything. GetWindowAt only asks which rectangle holds the point; it cannot see a
-        // window that does not hold it but absorbs input around itself, which is why GetsInput is asked too.
+        // when something is sitting on it. The hover makes the button draw, so its rectangle is known; the point asked
+        // about is its centre. GetWindowAt only asks which rectangle holds the point; it cannot see a window that does
+        // not hold it but absorbs input around itself, which is why GetsInput is asked too.
         [Then("Nelim's Pickle Tools: the button keyed {string} is reachable in {string}", TimeoutSeconds = 30)]
         public async Task ButtonIsReachable(PickleContext ctx, string key, string windowName)
         {
             var label = Label(ctx, key);
+            ButtonProbe.EnsureInstalled();
             await ctx.Hover($"btn:{label}");
             await ctx.WaitFrames(2);
 
-            var pointer = UI.MousePositionOnUIInverted;
-            storeAfterHover = $"  pointer {pointer}\n{ButtonProbe.DescribeTagStore(label)}";
+            var pointer = CentreOf(ctx, label);
+            storeAfterHover = $"  centre of the button {pointer}\n{ButtonProbe.DescribeTagStore(label)}";
             var under = Find.WindowStack.GetWindowAt(pointer);
             ctx.Assert(under != null,
-                $"'{label}' is under no window at all; the pointer is at {pointer}\nWindow stack, top first:\n{DescribeStack(pointer)}");
+                $"'{label}' is under no window at all; the centre of the button is at {pointer}\nWindow stack, top first:\n{DescribeStack(pointer)}");
 
             ctx.Assert(Find.WindowStack.GetsInput(under),
                 $"'{label}' is drawn in {under.GetType().Name}, but that window is not receiving input: a window above it " +
@@ -142,10 +148,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
         /// Clicks the button and waits for the named window to open; when it does not, says what the click met.
         /// </summary>
         // The report used to be "window should be open; open windows: ImmediateWindow, ImmediateWindow" - two
-        // names that identify nothing. The pointer is read on both sides of the click: Pickle moves it to the
-        // centre of the rectangle it stored, so the two readings should agree and sit on the drawn button; a
-        // disagreement says something moved it, and a shared wrong place says the stored rectangle is not
-        // where the button is drawn. The stack is read while it is still as the click left it.
+        // names that identify nothing. The point asked about is the centre of the rectangle the probe saw the button
+        // drawn at; the tag store's own rectangle is printed beside it, so a disagreement between the two says the
+        // stored rectangle is not where the button is drawn. The stack is read while it is still as the click left it.
         [When("Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens", TimeoutSeconds = 30)]
         public async Task ClickAndExpectWindow(PickleContext ctx, string key, string windowName)
         {
@@ -157,7 +162,6 @@ namespace Nelim.PickleTools.ClickDiagnostics
             var alreadyOpen = new HashSet<Window>(
                 Find.WindowStack.Windows.Where(window => IsNamed(window.GetType(), windowName)));
 
-            var beforeClick = UI.MousePositionOnUIInverted;
             var storeBeforeClick = ButtonProbe.DescribeTagStore(label);
             await ctx.Click($"btn:{label}");
 
@@ -170,7 +174,7 @@ namespace Nelim.PickleTools.ClickDiagnostics
                 }
             }
 
-            var pointer = UI.MousePositionOnUIInverted;
+            var pointer = ButtonProbe.LatestRect(label).HasValue ? CentreOf(ctx, label) : Vector2.zero;
             var absorber = Find.WindowStack.Windows.Any(window => window.absorbInputAroundWindow);
 
             ctx.Assert(false,
@@ -178,13 +182,13 @@ namespace Nelim.PickleTools.ClickDiagnostics
                 (absorber
                     ? "A window on the stack absorbs input around itself - see below."
                     : "No window on the stack absorbs input, so nothing sits above the button; this message does not say " +
-                      "which cause it was: compare where the button was drawn with where the pointer was, both printed below.") +
-                $"\nPointer before the click {beforeClick}, after it {pointer}." +
+                      "which cause it was: compare where the button was drawn with the rectangle Pickle stored, both printed below.") +
+                $"\nCentre of the button as drawn {pointer}." +
                 "\nPickle's tag store right after the hover step:\n" + storeAfterHover +
                 "\nPickle's tag store just before the click:\n" + storeBeforeClick +
                 "\nWhere the button was drawn, as the probe saw it (the click goes to the centre of the STORED rectangle):\n" +
                 ButtonProbe.DescribeText(label) +
-                "\nButtons on the pointer, in draw order (Pickle does not tag image buttons):\n" +
+                "\nButtons drawn at that point, in draw order (Pickle does not tag image buttons):\n" +
                 ButtonProbe.Describe(pointer) +
                 "\nWindow stack, top first:\n" + DescribeStack(pointer));
         }
@@ -223,6 +227,17 @@ namespace Nelim.PickleTools.ClickDiagnostics
         /// is read from <c>doWindowFunc</c>: the declaring type and its assembly say which mod put it there.
         /// </para>
         /// </summary>
+        // The centre of the button as the probe last saw it drawn, in GUI space. A button never drawn is a broken
+        // precondition, not a lost click.
+        private static Vector2 CentreOf(PickleContext ctx, string label)
+        {
+            var screen = ButtonProbe.LatestRect(label);
+            ctx.Require(
+                screen.HasValue,
+                $"no button labelled '{label}' was drawn in the last two frames, so there is no point to ask about");
+            return screen.Value.center / Prefs.UIScale;
+        }
+
         internal static string DescribeStack(Vector2 pointer)
         {
             var stack = Find.WindowStack;
@@ -245,7 +260,7 @@ namespace Nelim.PickleTools.ClickDiagnostics
                     $"  #{i}{(i == windows.Count - 1 ? " top" : string.Empty)}  {window.GetType().Name} " +
                     $"[{window.GetType().Assembly.GetName().Name}]  layer={window.layer}  " +
                     $"rect={window.windowRect}  absorbsInput={window.absorbInputAroundWindow}  " +
-                    $"getsInput={stack.GetsInput(window)}  holdsPointer={window.windowRect.Contains(pointer)}" +
+                    $"getsInput={stack.GetsInput(window)}  holdsPoint={window.windowRect.Contains(pointer)}" +
                     drawnBy);
             }
 

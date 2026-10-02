@@ -55,6 +55,12 @@ The relayed observation: repeated construction near **(144-148, 155)** raised no
 Epona scenarios (a music spot at (146, 155), a table at (148, 155), items at (144, 155)); that is inside the
 ruin band and next to the batteries, and nothing wider was surveyed.
 
+**Needs Ideology (relayed, not checked here).** The AncientSalvage session reported on 2026-10-01 (evidence in
+`AncientSalvage/Tests/Pickle/Evidence/full-sans-ideology-en-2930cfd`) that `test-colony`, saved with the five DLC, does not
+play in a pass that removes Ideology: every scenario that loads it fails with "Exception ticking Larson ...
+NullReferenceException at Verse.Pawn_AgeTracker.AgeTickInterval", vanilla frames only. No control run without that mod. A pass
+without Ideology therefore cannot use this fixture; no Ideology-free fixture is known or planned here.
+
 **Not established:** biome and terrain of any cell, rivers or lakes, roofs (a roof grid exists, its content was
 not read), the research state, the hour of day at load (only the tick is known), beds owned by colonists.
 

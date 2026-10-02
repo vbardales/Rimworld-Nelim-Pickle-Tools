@@ -1,0 +1,9 @@
+# The pass that plays pickletools-staging.feature: the steps of a staged gallery capture, staged alone from the repository.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.staging.map -Filter pickletools-staging
+nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
+nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor   path:PickleTools/StageDecor/Mod
+nelim.pickletools.coatsteps   path:PickleTools/CoatSteps/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

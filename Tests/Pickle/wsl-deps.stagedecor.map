@@ -1,0 +1,6 @@
+# The pass that plays pickletools-stagedecor.feature: the StageDecor steps, staged alone from the repository.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.stagedecor.map -Filter pickletools-stagedecor
+nelim.pickletools.stagedecor   path:PickleTools/StageDecor/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

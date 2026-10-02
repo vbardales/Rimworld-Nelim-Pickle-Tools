@@ -38,7 +38,9 @@ namespace Nelim.PickleTools.KeyedClick
                 $"no translation is loaded for '{key}', so no label can be built from it. "
                     + $"active language: {LanguageDatabase.activeLanguage?.FriendlyNameEnglish ?? Nothing}");
 
-            await ctx.Click($"btn:{key.Translate()}");
+            // The game draws the label with its colour tags, Pickle stores the tag without them: build it from the stripped text
+            // (the blocker the maintainer fixed in the same step of PR 42: "the tag was built with color tags in, matched stripped").
+            await ctx.Click($"btn:{key.Translate().ToString().StripTags()}");
         }
 
         /// <summary>

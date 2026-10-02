@@ -46,3 +46,17 @@ nelim.pickletools.coatsteps   path:PickleTools/CoatSteps/Mod
 ```
 
 Build: `dotnet build CoatSteps/Source -c Release` (output goes to `Mod/Pickle/Assemblies/`, intermediates under `.build/`).
+
+## Placing animals on a chosen spot (2026-10-02)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned around \({int}, {int}\)` | Like `close together`, but centred on a cell and within 16 cells, a clear 3 by 3 around each so a large animal fits; names continue after the `coat-N` already there |
+| `Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned in a row from \({int}, {int}\), spacing {int}` | One animal every N cells towards +x on the first cell's z; every cell is checked before any animal is made |
+| `Nelim's Pickle Tools: the animals of kind {string} have food at {int} percent` | Sets the food need of the `coat-N` animals of the kind, e.g. a hungry bear for a mod that digs for food when hungry |
+
+Not played. Freezing the animals between framing and capture is the framing step's pause; nothing else freezes them.
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the animal {string} is given coat {int}` | Gives a named animal an alternate coat (-1 = the original). The coat is computed from the thing ID, so the step searches an ID that gives the index and reads it back; fails if the kind has too few coats or none of 20000 IDs gives it |

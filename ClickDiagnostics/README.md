@@ -1,13 +1,19 @@
 # Click diagnostics - Pickle steps (shared)
 
-Three Pickle steps for a click that must land, and a report that says why when it did not:
+Three Pickle steps for a click that must land, and a report that says why when it did not, plus one to park the pointer.
+
+**Pickle 6.0.0 (2026-09-30) removed the OS pointer.** A click is taken at the widget and nothing moves a real pointer, so what these
+steps said about "the pointer" was rewritten on 2026-10-02: the point asked about is now the **centre of the button as drawn**, and
+`I move the mouse to` no longer moves anything. **Compiled against the v6 reference, never played on Pickle 6.** The maintainer thinks the
+wait step is the wrong fix (re-arming the click each frame in `Click` would heal a drifting button; RimWorks/Rimworld-Pickle#34), so
+`has stood still` may go.
 
 | Step | What it does |
 | --- | --- |
 | `Nelim's Pickle Tools: the button keyed {string} has stood still` | Waits until the button has been drawn at the same place for 60 frames in a row and two seconds. Fails if it never appears or never stops moving. |
-| `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` | Hovers the button and asserts that the window under the pointer is the named one (by short or full type name, base types included) and that it receives input. |
+| `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` | Hovers the button and asserts that the window under the centre of the button is the named one (by short or full type name, base types included) and that it receives input. |
 | `Nelim's Pickle Tools: I click the button keyed {string} and the window {string} opens` | Clicks the button, waits up to 60 frames for the named window, and when it does not open prints what the click met. |
-| `Nelim's Pickle Tools: I move the mouse to ({int}, {int})` | Moves the OS pointer there directly, in GUI-space coordinates (top-left origin), with no tag and no tooltip: for parking the pointer away from a capture's subject when nothing tagged is at hand to hover instead (a bottom-bar button, for one: the bar draws no tag) |
+| `Nelim's Pickle Tools: I move the mouse to ({int}, {int})` | Drops the hover Pickle had armed (no control is drawn hovered, so no tooltip or selection bracket covers a capture's subject) and checks the point is on screen, in GUI space (top-left origin). It does not move a real pointer: none exists since Pickle 6 |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes
 its own scenarios.
@@ -29,8 +35,8 @@ invisible to it:
 - **The window holding the button was not receiving input.** `WindowStack.GetWindowAt` asks only which rectangle
   holds a point; `GetsInput` answers false to everything below the first window that absorbs input around itself.
 
-A lost click prints the pointer before and after, where the button was drawn, every button (of either kind) whose
-rectangle holds the pointer, in draw order, and the window stack top first, with each window's assembly, layer,
+A lost click prints the centre of the button as drawn, where Pickle stored it, every button (of either kind) whose
+rectangle holds that point, in draw order, and the window stack top first, with each window's assembly, layer,
 rectangle, `absorbInputAroundWindow`, `GetsInput`, and, for an `ImmediateWindow`, the method that draws it
 (`doWindowFunc.Method`, because its type name identifies nothing).
 

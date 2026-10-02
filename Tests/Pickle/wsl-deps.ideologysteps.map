@@ -1,0 +1,9 @@
+# The pass that plays pickletools-ideologysteps.feature: the IdeologySteps, staged alone from the repository.
+# A suite that uses these steps writes the same first line in its own pass map (with Ideology among its mods).
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.ideologysteps.map -Filter pickletools-ideologysteps
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.ideologysteps   path:PickleTools/IdeologySteps/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

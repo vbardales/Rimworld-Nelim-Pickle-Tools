@@ -7,12 +7,11 @@ using Verse;
 namespace Nelim.PickleTools.InterfaceScale
 {
     /// <summary>
-    /// Changes the interface scale the way the Options page does, for the length of a scenario - and puts
-    /// the tag store repair in place before any scenario of the run, so that a click lands at that scale.
+    /// Changes the interface scale the way the Options page does, for the length of a scenario.
     ///
-    /// This is the same step as the one proposed to Pickle itself, RimWorks/Rimworld-Pickle pull request
-    /// 23 (<c>the interface scale is {int} percent</c>, branch <c>fix/tag-rect-interface-scale</c> on the
-    /// fork). **When it lands, this mod's step can go**, and a scenario written against it changes one
+    /// This is the same step as the one Pickle took in RimWorks/Rimworld-Pickle pull request 42 (not yet released at the time of writing; the tag-store fix of
+    /// pull request 23 was dropped: Pickle 6.0.0 takes clicks at the widget, so no stored rect is converted). The step is <c>the interface scale is {int} percent</c>.
+    /// **When Pickle ships it, this mod's step can go**, and a scenario written against it changes one
     /// prefix. Until then the two are kept in step: a change asked for in review is made in both places.
     ///
     /// The pattern starts with "Nelim's Pickle Tools:". Pickle loads the steps of every installed suite
@@ -24,15 +23,6 @@ namespace Nelim.PickleTools.InterfaceScale
     {
         private float? scaleBeforeScenario;
 
-        // Before EVERY scenario of the run, whatever suite it belongs to: Pickle scans the step classes of
-        // all the suites for hooks. A suite that stages this mod gets a tag store that converts right at
-        // every scale without writing a line of Gherkin, which is the point - the scenarios that need it
-        // (a click at 150 percent) are the ones a suite already has.
-        [BeforeScenario]
-        public void RepairTagStore(PickleContext ctx)
-        {
-            TagStoreRepair.Ensure(ctx);
-        }
 
         // Writing Prefs.UIScale is not enough, and a scenario that only writes it tests nothing. Widgets are
         // laid out in UI.screenWidth/screenHeight, two cached fields that only Root.OnGUI recomputes, and a

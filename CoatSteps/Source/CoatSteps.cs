@@ -69,7 +69,7 @@ namespace Nelim.PickleTools.CoatSteps
         private const int WideRadius = 60;
         private const int CloseRadius = 4;
 
-        private static void SpawnAnimals(PickleContext ctx, int count, string kindDefName, bool adults, int radius = WideRadius)
+        private static void SpawnAnimals(PickleContext ctx, int count, string kindDefName, bool adults, int radius = WideRadius, IntVec3? around = null, IntVec3[] cells = null, int firstNumber = 1)
         {
             ctx.Require(count > 0, "spawning " + count + " animals says nothing: ask for at least 1");
             PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindDefName);
@@ -82,10 +82,10 @@ namespace Nelim.PickleTools.CoatSteps
             var placed = new List<IntVec3>();
             for (int i = 1; i <= count; i++)
             {
-                IntVec3 cell = FindCell(map, placed, radius);
+                IntVec3 cell = cells != null ? cells[i - 1] : FindCell(map, placed, radius, around ?? map.Center);
                 ctx.Require(
                     cell.IsValid,
-                    "could not place animal " + i + " of " + count + " of kind " + kindDefName + ": no clear area within " + radius + " cells of the map centre; "
+                    "could not place animal " + i + " of " + count + " of kind " + kindDefName + ": no clear area within " + radius + " cells of " + (around ?? map.Center) + "; "
                     + placed.Count + " were placed. Clear the area or ask for fewer.");
 
                 PawnGenerationRequest request = adults
@@ -93,11 +93,88 @@ namespace Nelim.PickleTools.CoatSteps
                         fixedBiologicalAge: AdultAge(kind))
                     : new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, forceGenerateNewPawn: true);
                 Pawn pawn = PawnGenerator.GeneratePawn(request);
-                pawn.Name = new NameSingle(Prefix + i);
+                pawn.Name = new NameSingle(Prefix + (firstNumber + i - 1));
                 GenSpawn.Spawn(pawn, cell, map, WipeMode.Vanish);
                 ctx.Require(pawn.Spawned, "animal " + i + " of kind " + kindDefName + " could not be placed at " + cell);
                 placed.Add(cell);
             }
+        }
+
+        private const int AroundRadius = 16;
+
+        private static int NextNumber(Map map)
+        {
+            return map.mapPawns.AllPawnsSpawned.Count(p => p.Name != null && p.LabelShort.StartsWith(Prefix)) + 1;
+        }
+
+        // Centred on a cell the author picks (free ground of the fixture), not on the map centre, and with a clear 3 by 3 around each
+        // animal so a large one fits. Names continue after the coat-N animals already there instead of starting again at 1.
+        [Given("Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned around \\({int}, {int}\\)")]
+        public void SpawnAdultsAround(PickleContext ctx, int count, string kindDefName, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no current map: load a save first");
+            SpawnAnimals(ctx, count, kindDefName, true, AroundRadius, new IntVec3(x, 0, z), null, NextNumber(map));
+        }
+
+        // A row on the z of the first cell, one animal every N cells towards +x: a specimen plate, small to large. Every cell is asked for
+        // before any animal is made, so a blocked row fails without leaving half of it on the map.
+        [Given("Nelim's Pickle Tools: {int} adult animals of kind {string} are spawned in a row from \\({int}, {int}\\), spacing {int}")]
+        public void SpawnAdultsInRow(PickleContext ctx, int count, string kindDefName, int x, int z, int spacing)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no current map: load a save first");
+            ctx.Require(spacing >= 1, "the spacing between animals is at least 1 cell, not " + spacing);
+            var cells = new IntVec3[count];
+            for (int i = 0; i < count; i++)
+            {
+                cells[i] = new IntVec3(x + i * spacing, 0, z);
+                ctx.Require(
+                    cells[i].InBounds(map) && cells[i].Standable(map) && cells[i].GetFirstPawn(map) == null,
+                    "the cell " + cells[i] + " of the row is outside the map, not standable, or already holds a pawn");
+            }
+
+            SpawnAnimals(ctx, count, kindDefName, true, WideRadius, null, cells, NextNumber(map));
+        }
+
+        // The need as a percentage, so a hungry animal can be staged (a mod that makes animals dig for food when hungry shows it).
+        [Given("Nelim's Pickle Tools: the animals of kind {string} have food at {int} percent")]
+        public void SetFood(PickleContext ctx, string kindDefName, int percent)
+        {
+            ctx.Require(percent >= 0 && percent <= 100, "food is 0 to 100 percent, not " + percent);
+            foreach (Pawn animal in Animals(ctx, kindDefName))
+            {
+                ctx.Require(animal.needs?.food != null, animal.LabelShort + " has no food need");
+                animal.needs.food.CurLevelPercentage = percent / 100f;
+                ctx.Assert(
+                    System.Math.Abs(animal.needs.food.CurLevelPercentage - percent / 100f) < 0.02f,
+                    animal.LabelShort + " should have food at " + percent + " percent; it has " + (int)(animal.needs.food.CurLevelPercentage * 100f));
+            }
+        }
+
+        // The coat is computed from the pawn's thingIDNumber and the kind's chance (nothing is stored), so it cannot be written; a thing ID
+        // that gives the index asked for is searched instead, among IDs above anything the game hands out in a short run, and the index
+        // is read back. -1 is the original graphic.
+        [Given("Nelim's Pickle Tools: the animal {string} is given coat {int}")]
+        public void GiveCoat(PickleContext ctx, string animalName, int coat)
+        {
+            Pawn animal = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.LabelShort == animalName);
+            ctx.Require(animal != null, "no animal named " + animalName + " is on the map: spawn it first");
+            int available = animal.kindDef.alternateGraphics?.Count ?? 0;
+            ctx.Require(coat >= -1 && coat < available, animal.LabelShort + " has " + available + " alternate coats (0 to " + (available - 1) + ", or -1 for the original), not " + coat);
+            int original = animal.thingIDNumber;
+            for (int id = 5000000; id < 5000000 + 20000; id++)
+            {
+                animal.thingIDNumber = id;
+                if (animal.GetGraphicIndex() == coat)
+                {
+                    animal.Drawer.renderer.SetAllGraphicsDirty();
+                    return;
+                }
+            }
+
+            animal.thingIDNumber = original;
+            ctx.Require(false, "no thing ID in 20000 tries gives " + animal.LabelShort + " the coat " + coat + "; the kind's alternateGraphicChance may make it unreachable");
         }
 
         private static float AdultAge(PawnKindDef kind)
@@ -106,11 +183,11 @@ namespace Nelim.PickleTools.CoatSteps
             return ages != null && ages.Count > 0 ? ages[ages.Count - 1].minAge : 0f;
         }
 
-        private static IntVec3 FindCell(Map map, List<IntVec3> taken, int maxRadius)
+        private static IntVec3 FindCell(Map map, List<IntVec3> taken, int maxRadius, IntVec3 center)
         {
             for (int radius = 4; radius <= maxRadius; radius += 4)
             {
-                if (CellFinder.TryFindRandomCellNear(map.Center, map, radius, c => Clear(map, c, taken), out IntVec3 found, 400))
+                if (CellFinder.TryFindRandomCellNear(center, map, radius, c => Clear(map, c, taken), out IntVec3 found, 400))
                 {
                     return found;
                 }

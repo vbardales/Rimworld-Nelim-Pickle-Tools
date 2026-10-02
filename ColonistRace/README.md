@@ -98,3 +98,53 @@ The steps these scenarios use, and so have played: `body type is {word}` (Thin, 
 `has gender`, `has body type`, `has xenotype`, `is at the {word} stage of life`. **Not played in a game**: `a colonist {string} of kind {string} exists`, `is of race {string}`,
 `Baby` for the body type, and any race a mod adds (Humanoid Alien Races). Not played in French, and not with a Biotech-less game (the steps that need
 Biotech say so and stop, unplayed).
+## Hairstyle in its own colours (2026-10-02)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: I let the hairstyle of {string} show its own colours` | Sets the colonist's hair colour to white and redraws it. The game multiplies the hairstyle texture by the hair colour, so a brown pawn lays brown over a white-tipped or multicoloured hairstyle (Accelerator's white spikes come out chestnut); white multiplies by one |
+| `Nelim's Pickle Tools: the hairstyle of {string} is drawn in its own colours` | Asserts the hair colour reads white; the failure prints the colour and the hairstyle |
+
+For a hairstyle gallery capture of any mod: set it before the screenshot, after the colonist and its hairstyle are in place. Ported from
+ACertainSeriesCreaturesAndHairRenew's local steps; **not played**, scenario `pickletools-colonistrace-hair.feature`. A colour forced on top
+by an effect (a Biotech gene, for one) is not undone, and the second step says what the game reports. Which hairstyle a pawn wears is
+not set here: use Pickle's own steps or the suite's.
+
+## Hairstyle, hair colour, tattoos, dyed garment (2026-10-02)
+
+Written for CrystalBall's staged workshop captures. **Not played.** Colours are RGB 0 to 255; each step sets the value, redraws the pawn and reads
+it back, failing with what the game reports.
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} hairstyle is {string}` | A `HairDef` by name; the hair colour is left alone |
+| `Nelim's Pickle Tools: {string} hair colour is rgb \({int}, {int}, {int}\)` | Any hair colour; a colour forced by a gene is not undone and the failure says so |
+| `Nelim's Pickle Tools: {string} face tattoo is {string}` / `... body tattoo is ...` | A `TattooDef` of that kind, or `none`. Needs Ideology; a tattoo of the other kind is refused |
+| `Nelim's Pickle Tools: the {string} worn by {string} is dyed rgb \({int}, {int}, {int}\)` | Dyes a worn garment by apparel def; fails if it is not worn or cannot take a colour |
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} wears {string} dyed rgb \({int}, {int}, {int}\)` | Dresses a colonist in a new garment of that apparel def, dyed; the garments that cannot be worn with it (same layer and body parts) go to the inventory. What the colonist wore is remembered once |
+| `Nelim's Pickle Tools: {string} gets back the clothes it had` | Takes off what the step above made and puts the original clothes back. Also run after every scenario (`[AfterScenario]`), so a failed one leaves the colonist as it was found |
+
+(Asked by DrumBathHygiene on 2026-10-02. Not played.)
+
+## Staging a colonist: place, face, remove, undyed clothes (2026-10-02)
+
+For staged gallery captures (rule of the day). **Not played.** The pawn stays where it is put while the game is paused (Pickle's own `game speed is paused`) and nothing gives it a job; it is not a pose (no step freezes an animation).
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} stands at \({int}, {int}\)` | Stops the colonist's job and walking and puts it on a standable cell |
+| `Nelim's Pickle Tools: {string} stands at \({int}, {int}\) facing {word}` | The same, turned North, East, South or West |
+| `Nelim's Pickle Tools: the colonist {string} is removed from the map` | Despawns the colonist (not destroyed; a reload brings the fixture back), for the studio actors standing on the camera cell |
+| `Nelim's Pickle Tools: {string} wears {string}` | Dresses the colonist in a new undyed garment of that apparel def, moving what clashes to the inventory; `gets back the clothes it had` undoes it |
+
+Not here: a head type or face shape, and a neutral pose.
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} head type is {string}` | A `HeadTypeDef` by name, refused if it is for the other gender |
+| `Nelim's Pickle Tools: the other colonists are out of frame` | Sends every colonist that no `stands at` step placed in this scenario to a standable cell near the far corner of the map, and puts each back after the scenario (for a studio's actors) |
+
+| `Nelim's Pickle Tools: {string} beard is {string}` | A `BeardDef` by name, or `none`; the failure lists the valid beards |
