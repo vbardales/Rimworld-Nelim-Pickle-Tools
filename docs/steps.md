@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-161 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+164 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -316,6 +316,16 @@ Package `nelim.pickletools.textureowner`. In the bundle (`Mod/Pickle/Assemblies`
 | --- | --- |
 | `Nelim's Pickle Tools: the texture {string} is answered by the mod {string}` (Then) | passes when the **last** running mod that ships the path is the one whose packageId is given |
 | `Nelim's Pickle Tools: the texture {string} is shipped by at least {int} running mod(s)` (Then) | passes when at least that many running mods ship the path |
+
+## TradeSteps
+
+Package `nelim.pickletools.tradesteps`. Not in the bundle: a companion staged by a pass map. [README](../TradeSteps/README.md).  
+
+| Step | Does |
+| --- | --- |
+| `Nelim's Pickle Tools: a trader of kind {string} has arrived` (Given) | Fires the trader-caravan incident with a forced trader kind (a TraderKindDef name such as Caravan_Outlander_BulkGoods) and waits up to 30 seconds for a pawn of that kind to stand on the map. Fails if the incident declines or nobody of that kind arrives. |
+| `Nelim's Pickle Tools: the trade window is open` (When) | Opens the game's trade window between the first free colonist and the trader that arrived, and waits for the session to be active. |
+| `Nelim's Pickle Tools: I buy {int} of {string} from the trader` (When) | Buys a number of a thing from the trader: finds the tradeable whose def is the named ThingDef (an animal's def is its race, for example Muffalo), sets the count so the game reads it as a purchase, and executes the deal. Fails naming what is wrong: no such tradeable, not enough in stock, too little silver, or the game refused the deal. |
 
 ## VefFactionSteps
 

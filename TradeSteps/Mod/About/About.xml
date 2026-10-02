@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModMetaData>
+  <name>Nelim's Pickle Tools - Trade steps</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.tradesteps</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Reusable Pickle steps that bring a trader to the map, open the trade window and buy from it. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See TradeSteps/README.md at the repository root.
+
+They sit under a text of their own ("Nelim's Pickle Tools: ...") so they can never be ambiguous with Pickle's steps.
+
+Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps.
+
+MIT, Copyright (c) 2026 Nelim.
+
+[url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+  <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
+</ModMetaData>

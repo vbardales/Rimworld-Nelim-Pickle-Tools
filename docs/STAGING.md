@@ -43,6 +43,7 @@ A line of a pass map is `nelim.pickletools.<name>   path:PickleTools/<Folder>/Mo
 | Animals in a row | `{int} adult animals of kind {string} are spawned in a row from ({int}, {int}), spacing {int}` | CoatSteps |
 | An animal's coat | `the animal {string} is given coat {int}` | CoatSteps |
 | An animal's hunger | `the animals of kind {string} have food at {int} percent` | CoatSteps |
+| A trader arrives, the trade window opens, a purchase | `a trader of kind {string} has arrived`, `the trade window is open`, `I buy {int} of {string} from the trader` | TradeSteps (`tradesteps`) |
 | Hide the interface | see `ScreenshotMode/README.md` | ScreenshotMode |
 
 ## Not available

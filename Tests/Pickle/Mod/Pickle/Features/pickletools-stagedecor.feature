@@ -14,3 +14,11 @@ Feature: PickleTools stage decor
     Then a "Campfire" is at (32, 32)
     When Nelim's Pickle Tools: the decor is removed
     Then no "Campfire" is at (32, 32)
+
+  Scenario: an area is cleared, then its things come back
+    Given I spawn a "Steel" at (31, 31)
+    When Nelim's Pickle Tools: the area from (30, 30) to (33, 33) is cleared
+    Then no "Steel" is at (31, 31)
+    When Nelim's Pickle Tools: the decor is removed
+    Then a "Steel" is at (31, 31)
+    When I destroy the "Steel" at (31, 31)
