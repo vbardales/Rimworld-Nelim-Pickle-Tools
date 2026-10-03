@@ -8,6 +8,8 @@ gallery capture is staged). **Compiled, never played.** They complement Pickle's
 | --- | --- |
 | `Nelim's Pickle Tools: I place the decor {string} at \({int}, {int}\)` | Places a thing of the `ThingDef` at a cell, made of its default stuff, and remembers it. Fails naming the cell if it is off the map or holds a pawn or a building |
 | `Nelim's Pickle Tools: I lay the floor {string} from \({int}, {int}\) to \({int}, {int}\)` | Lays a `TerrainDef` (carpet, tile, soil) on a rectangle and remembers what each cell held |
+| `Nelim's Pickle Tools: I lay the floor {string} from \({int}, {int}\) to \({int}, {int}\) painted {string}` | The same, then paints the cells with a `ColorDef` (`Structure_Cream`, `Structure_OrangePastel`...): laying a floor on a painted one drops its paint, this brings it back. Not played yet |
+| `Nelim's Pickle Tools: the plants from \({int}, {int}\) to \({int}, {int}\) are fully grown` | Sets every plant on a rectangle to full growth, so a tree a step spawned shows at adult size. Not played yet |
 | `Nelim's Pickle Tools: the decor is removed` | Destroys every thing placed by the first step and puts every floor back, last laid first |
 
 An `[AfterScenario]` does the same removal for a scenario that failed halfway. Only what is still spawned on the current map is touched: after a

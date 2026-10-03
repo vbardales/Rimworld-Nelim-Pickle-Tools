@@ -1,5 +1,15 @@
 # Pending at Pickle
 
+Update 2026-10-03, evening (read with gh): **latest is v6.4.0 (2026-10-03, 07:27)**, which is `main` at 0203eb9. Our **PR #50** ("answer a
+window instead of only suppressing it") was merged on 2026-10-02 at 22:56 and shipped in **v6.2.0**: the window-answer steps are in Pickle
+itself, so any prefixed duplicate of them can go once the suites pin Pickle >= 6.2.0. **PR #51** (`POST /gherkin`: run one-off Gherkin from
+the dashboard and stream one JSON object per line) merged 2026-10-03 01:08, and **PR #53** (step list rework and rerun on the Gherkin
+page) merged 06:59 and shipped in v6.4.0, both by the maintainer. Our **PR #54** (the dashboard serves on the next free port when 27750 is
+taken, `PickleHttpServer.cs` only) is open on top of 0203eb9, no human review yet, SonarQube Quality Gate passed with 0 new issues. A local
+build of v6.4.0 plus the #54 change is installed as `RimWorld/Mods/Pickle-local` (the C# 14 `field` workarounds in `RunnerWindow.cs` and
+`Dashboard.cs` are local only and are not in the PR); drop it for the Workshop Pickle once #54 is released. The duplicates list below was
+read against v6.1.3, not against v6.4.0.
+
 Update 2026-10-03 (release notes read with gh): **Pickle v6.1.0 (2026-10-02, 18:05) carries PR #42**: clear the screen, click a button by
 translation key, inspect tabs, research tab by def name, body type and its texture, interface scale, "a warning from mod {string} was
 logged" (closes #27), two dashboard fixes. v6.1.2 caps a screenshot file name (#48); v6.1.3 (21:20) fixes "no warnings from mod" when a
@@ -15,7 +25,8 @@ AnimalsNaturally, CreaturesOfKiRenew, DrumBathHygiene, EntityGazing, HandMeDowns
 TailorMadeWaistlines...). Removing the duplicates would break all of them, so they stay until each suite has moved to Pickle's own text
 and pins Pickle >= 6.1.0.
 
-#34: the maintainer proposed that `Click` follow the tag and re-arm
+#34 was CLOSED on 2026-10-03 (by Virginie's word, with a closing comment): nothing is left to push, the re-arm in `Click` is the
+maintainer's to write and I have not checked whether v6.4.0 has it. Earlier state: the maintainer proposed that `Click` follow the tag and re-arm
 while it waits; Virginie posted our agreement on 2026-10-03 (drop the stillness steps in favour of the re-arm), so nothing is left to
 write on our side unless the maintainer answers otherwise. The paragraph below is the earlier state, kept for the dates.
 

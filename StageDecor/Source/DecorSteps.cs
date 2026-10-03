@@ -77,6 +77,50 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Lays a floor like the plain step, then paints it with a colour def (Structure_Cream, Structure_OrangePastel, ...): a painted
+        /// floor of the studio loses its paint when another floor is laid on it, and this brings it back.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I lay the floor {string} from \\({int}, {int}\\) to \\({int}, {int}\\) painted {string}")]
+        public void LayPaintedFloor(PickleContext ctx, string terrainDefName, int x1, int z1, int x2, int z2, string colorDefName)
+        {
+            ColorDef color = DefDatabase<ColorDef>.GetNamedSilentFail(colorDefName);
+            ctx.Require(color != null, $"no colour def '{colorDefName}' in this game");
+            LayFloor(ctx, terrainDefName, x1, z1, x2, z2);
+            Map map = CurrentMap(ctx);
+            foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
+            {
+                map.terrainGrid.SetTerrainColor(c, color);
+            }
+
+            IntVec3 probe = CellRect.FromLimits(x1, z1, x2, z2).CenterCell;
+            ctx.Assert(
+                map.terrainGrid.ColorAt(probe) == color,
+                $"the floor at ({probe.x}, {probe.z}) should be painted {colorDefName}; the game reports {map.terrainGrid.ColorAt(probe)?.defName}");
+        }
+
+        /// <summary>
+        /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
+        public void GrowPlants(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            foreach (IntVec3 c in rect)
+            {
+                ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            }
+
+            foreach (IntVec3 c in rect)
+            {
+                foreach (Plant p in c.GetThingList(map).OfType<Plant>().ToList())
+                {
+                    p.Growth = 1f;
+                }
+            }
+        }
+
+        /// <summary>
         /// Makes a placed light-giving thing burn: fills its fuel when it is refuelable (a torch, a campfire) and switches it on when it has a
         /// switch, then waits up to 10 seconds for the game to say it glows. Fails if the thing at the cell has no light, or does not glow
         /// (a lamp that needs power on a network that gives none says so).
