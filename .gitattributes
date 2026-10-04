@@ -3,3 +3,4 @@
 *.jpg binary
 *.dll binary
 *.sh text eol=lf
+ScreenshotStudio/Mod/Pickle/Fixtures/Nelims-tribe.rws filter=lfs diff=lfs merge=lfs -text

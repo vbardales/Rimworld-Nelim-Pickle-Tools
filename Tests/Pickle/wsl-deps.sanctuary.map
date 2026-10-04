@@ -1,0 +1,9 @@
+# The passes of the Sanctuaire de Nelim: the studio fixtures (including Nelims-tribe), the camera steps, the stage decor and the clear screen.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.sanctuary.map -Filter pickletools-sanctuary-survey
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
