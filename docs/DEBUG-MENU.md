@@ -1,6 +1,6 @@
 # Menu de debug de RimWorld : ce qu'on peut câbler en steps
 
-Inventaire du menu de debug du jeu (Assembly-CSharp 1.6, relevé par réflexion le 2026-10-04), pour que les mods s'en inspirent quand ils écrivent leurs steps. **Rien ici n'est câblé dans PickleTools** : le menu apparaît ici comme une liste de pistes, pas comme des steps existants. Avant d'écrire un step, vérifier dans `docs/steps.md` et dans Pickle lui-même qu'il n'existe pas déjà.
+Inventaire du menu de debug du jeu (Assembly-CSharp 1.6, relevé par réflexion le 2026-10-04), pour que les mods s'en inspirent quand ils écrivent leurs steps. **Pickle sait déjà lancer une action sans argument** (voir plus bas) ; PickleTools n'ajoute rien. Ce document dit quelles entrées existent, lesquelles demandent une cible, et ce qui reste à écrire pour elles.
 
 Trois sections, comme les trois onglets du jeu : **Actions/outils** (412 entrées), **Réglages** (180 interrupteurs), **Production** (248 rapports).
 
@@ -19,7 +19,9 @@ Chaque entrée est une méthode statique marquée `[DebugAction(category, name, 
 
 ### Les clés d'un step générique
 
-Un step du genre `I run the debug action "<étiquette>"` pourrait chercher la méthode par son étiquette (champ `name`, ou le nom de la méthode coupé en mots quand `name` est vide) et l'appeler par réflexion. Il ne tient que pour les entrées sans argument ; celles qui arment un outil demandent une cellule ou un pion (voir les sections ci-dessous), et les actions marquées *destructive* devraient être refusées hors d'une fixture de test.
+**Pickle a déjà ce step** (relevé sur le dashboard de Pickle 6.4.1, 2026-10-04) : `I trigger debug action "<MéthodeDuJeu>"` et `I trigger debug action "<MéthodeDuJeu>" in category "<Catégorie>"`, ainsi que `dev mode is enabled`. Le nom attendu est celui de la **méthode** de la colonne « Méthode » ci-dessous (par exemple `FinishAllResearch`, catégorie `General`), pas l'étiquette affichée dans le menu : « Finish All Research » est refusé avec la suggestion « General/FinishAllResearch ». Joué sur la partie de Virginie (2026-10-04) : `FinishAllResearch` termine toute la recherche, donc débloque la moquette (`CarpetMaking`).
+
+Ce que Pickle ne couvre pas : les entrées qui arment un **outil** (carte, pion, monde) et attendent un clic. Elles demandent une cellule ou un pion, donc un step dédié par outil. Les actions marquées *destructive* (`DestroyAllThings`…) devraient être refusées hors d'une fixture de test.
 
 ## 1. Actions et outils
 
