@@ -7,7 +7,7 @@ using Verse;
 namespace Nelim.PickleTools.ScreenshotStudio
 {
     /// <summary>
-    /// Hides what the game draws without a setting for it: the stack counts under items and the name labels under pawns (a prefix on
+    /// Hides what the game draws without a setting for it: the status icons over buildings (no power, broken down), the stack counts under items and the name labels under pawns (a prefix on
     /// <c>ThingOverlays.ThingOverlaysOnGUI</c>), the mouse-over tooltips (<c>TooltipHandler.DoTooltipGUI</c>) and the learning helper's
     /// new cards (<c>LearningReadout.TryActivateConcept</c>). Each patch is installed on first use only; a scenario that never asks never has the
     /// game patched. Needs Harmony in the mod list.
@@ -16,7 +16,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched;
 
         public static bool Active { get; private set; }
         public static bool TooltipsHidden { get; private set; }
@@ -33,6 +33,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 {
                     harmony.Patch(AccessTools.Method(typeof(ThingOverlays), nameof(ThingOverlays.ThingOverlaysOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipOverlays)));
                     overlaysPatched = true;
+                }
+                if (!statusPatched)
+                {
+                    // The status icons over buildings (no power, power off, broken down, out of fuel): presentation mode hides them too.
+                    foreach (string name in new[] { "RenderNeedsPowerOverlay", "RenderPowerOffOverlay", "RenderBrokenDownOverlay", "RenderOutOfFuelOverlay" })
+                    {
+                        MethodInfo method = AccessTools.Method(typeof(OverlayDrawer), name);
+                        if (method != null) harmony.Patch(method, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipOverlays)));
+                    }
+                    statusPatched = true;
                 }
                 Active = true;
             }

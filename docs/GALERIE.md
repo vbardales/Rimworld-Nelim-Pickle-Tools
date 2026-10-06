@@ -30,7 +30,7 @@ Ajoutez `screenshotstudio` (et `camerazoom`, `stagedecor`, `inspecttabs`, `scree
 
 ## Sortie
 
-Les images partent dans le dossier de preuves de votre run. Copiez dans `Art/Gallery/` de votre mod uniquement vos propres images retenues. `Art/Gallery/0-preview.png` est produite par `scripts/Render-Preview.cjs` (voir `Art/Preview.config.json`), pas par un scénario.
+Les images partent dans le dossier de preuves de votre run. Copiez dans `Art/Gallery/` de votre mod uniquement vos propres images retenues. `Art/Gallery/0-preview.png` est produite par `scripts/Render-Preview.cjs` (voir `Art/Preview.config.json`), pas par un scénario. Nombre d'images : autant qu'on veut, tant que le TOTAL de la galerie reste sous 8 Mo et que CHAQUE image reste sous 2 Mo (Virginie, 2026-10-06 ; une limite à 8 images, annoncée plus tôt, était fausse).
 
 ## Joindre la session Pickle Tools
 
