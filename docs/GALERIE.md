@@ -49,6 +49,8 @@ Cases libres et meubles : `docs/SANCTUAIRE-CASES.md` donne, pour les lieux d'int
 
 Décor : `I place the decor "<def>" at (x, z)`, `I place the decor "<def>" at (x, z) fully grown` (plante adulte d'un seul step), `the plants from (x1, z1) to (x2, z2) are fully grown`, `the decor "<def>" at (x, z) is lit`, `the decor is removed` (StageDecor ; voir docs/steps.md). Ces steps ont été compilés, pas tous joués en jeu par Pickle Tools.
 
+Une série peut aussi photographier plusieurs fois le même coin d'un lieu, y compris à la même période de la journée : ce n'est pas un problème (Virginie, 2026-10-06). Il n'y a pas de coins nommés. Une série n'a pas besoin d'un lieu nommé différent par image (Virginie, 2026-10-06) : tous les mods peuvent rester dans UN seul lieu, voire le même pour toutes les images, et varier le sujet, l'heure (`I set the hour to N`) et la météo (`I set the weather to "<nom>"`). Choisir plusieurs lieux est permis, jamais obligatoire. `I set the hour` et `I set the weather` sont des steps de Pickle, pas de ScreenshotStudio.
+
 ## Aucun lieu ne convient
 
 Un mod peut vider un lieu nommé pour son besoin (`the sanctuary "<lieu>" is emptied`, animaux, meubles). Ce qu'il ne peut pas faire sans en parler à la session Pickle Tools : **créer un lieu au milieu de la nature**, par exemple dégager la bambouseraie pour s'y fabriquer un fond ou une scène. Cela ferait croire qu'aucun lieu existant ne convient parce qu'il n'est pas assez naturel, et cela ôterait le contrôle de proximité des smileys. Si rien ne convient, **prévenez la session Pickle Tools** en décrivant le besoin (taille, sol, fond, lumière, faune) : nous en discutons, nous recueillons les besoins et créons le lieu qui manque.
