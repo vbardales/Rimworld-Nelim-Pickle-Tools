@@ -107,6 +107,13 @@ namespace Nelim.PickleTools.CameraZoom
         public async Task FrameCell(PickleContext ctx, int x, int z, float size)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
+            // On the Sanctuary map a gallery shot names a place (docs/GALERIE.md); coordinates are tolerated, with a note in the run report.
+            if (Find.CurrentMap != null && Find.CurrentMap.Size.x == 250 && Find.CurrentMap.Size.z == 250)
+            {
+                string note = "Framing by cell ((" + x + ", " + z + ") at zoom " + size + ") on the Sanctuary map: name a place instead (\"I am at the sanctuary <place>\"); ask Pickle Tools for a named scene if none fits. See docs/GALERIE.md.";
+                Log.Warning("[framing] " + note);
+                ctx.Attach("framing-by-cell-warning", note);
+            }
             ctx.Require(size > 0f, $"a camera root size must be positive, not {size}");
             Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z));
             Find.CameraDriver.SetRootSize(size);

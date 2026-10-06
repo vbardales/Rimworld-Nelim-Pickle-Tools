@@ -3,7 +3,7 @@
 Feature: Sanctuaire places: one photograph per named place
 
   Background:
-    Given the save "Nelims-tribe-draft" is loaded
+    Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: all humans but "Nelim" are removed
     And Nelim's Pickle Tools: the eclipse of the map is ended
@@ -76,6 +76,12 @@ Feature: Sanctuaire places: one photograph per named place
     And I take a screenshot "sanctuary-enclosure-north"
     And Nelim's Pickle Tools: I am at the sanctuary "rice-paddies"
     And I take a screenshot "sanctuary-rice-paddies"
+    And Nelim's Pickle Tools: I am at the sanctuary "cotton-field"
+    And I take a screenshot "sanctuary-cotton-field"
+    And Nelim's Pickle Tools: I am at the sanctuary "rice-paddy"
+    And I take a screenshot "sanctuary-rice-paddy"
+    And Nelim's Pickle Tools: I am at the sanctuary "flower-garden"
+    And I take a screenshot "sanctuary-flower-garden"
     And Nelim's Pickle Tools: I am at the sanctuary "exhibition-zone"
     And I take a screenshot "sanctuary-exhibition-zone"
     And Nelim's Pickle Tools: I am at the sanctuary "dump"

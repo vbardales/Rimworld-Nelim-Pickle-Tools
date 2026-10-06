@@ -85,23 +85,27 @@ Ancien libellé, toujours valable : `Nelim's Pickle Tools: I frame the sanctuary
 | `overview-north`, `overview-south` | (125, 185) et (125, 65) | 60 | Vue d'ensemble en deux parties : la moitié haute (enclos, grange) puis la moitié basse. Une seule vue ne couvre pas les 250 cellules |
 | `house` | (190, 115) | 15 | Maison entière |
 | `hearth-hall` | (181, 115) | 12 | Salle de l'ermite (nom de Virginie) : le bâtiment principal, 19 x 19 cases. Lit de Nelim sur tapis blanc (nord-ouest), salon au tapis rose (nord-est), foyer central à pierres (centre), deux braséros (est), table à manger sur tapis blanc (sud-ouest). Des animaux y dorment : les retirer avec l'étape « the animals are removed » si le test veut la salle vide ; en japonais, irori no ma |
-| `statue-garden` | (155, 97) | 13 | Jardin aux statues, ou place des statues (noms de Virginie) : statues et sculptures au sud, et le champ de petites fleurs jaunes qu'elle y a intégré au nord, entre la rivière et le mur ouest de la maison ; large cadre de 75 x 42 cases |
-| `prestige-hall` | (196, 111) | 8.5 | Salle de prestige : table à manger sur tapis gris, porte ornée à l'est, piano blanc (sud-est), sol brun, 8 cases de large |
-| `ritual-hall` | (206, 117) | 8 | Salle des rituels, ou salle de l'idéologie (Temple, Sanctuaire) : sol à damier, barbier (station de coiffure), harpe, bibliothèque ; la plus à droite de la maison. Deux appareils y affichent l'éclair « sans courant » |
-| `terrace` | (197, 123) | 9 | Terrasse, ou véranda (noms de Virginie, confirmés sur sa capture) : zone de brique à ciel couvert, sol sombre, un piano noir, entre la salle aux foyers, la salle des rituels et l'extérieur |
+| `statue-garden` | (155, 97) | 13 | Jardin aux statues, ou place des statues (noms de Virginie) : statues et sculptures au sud, et le champ de petites fleurs jaunes qu'elle y a intégré au nord, entre la rivière et le mur ouest de la maison ; cadre d'environ 46 x 26 cases **Contient** : 1 encensoir, 4 grandes statues, 4 statues de pawn, 2 statues moyennes, 3 petites statues, des blocs de vaisseau, trois pots à bonsaï, un emblème au sol. |
+| `prestige-hall` | (196, 111) | 8.5 | Salle de prestige : table à manger sur tapis gris, porte ornée à l'est, piano blanc (sud-est), sol brun, 8 cases de large **Contient** : une zone de mariage, une armoire, 5 pots de fleurs, 4 pots à bonsaï, une table et 4 bancs, un piano blanc, une porte ornementale, 3 braseros. |
+| `ritual-hall` | (206, 117) | 8 | Salle des rituels, ou salle de l'idéologie (Temple, Sanctuaire) : sol à damier, barbier (station de coiffure), harpe, bibliothèque ; la plus à droite de la maison. Deux appareils y affichent l'éclair « sans courant » **Contient** : 1 reliquaire, un pot à bonsaï, 2 braseros tamisés, 3 haut-parleurs, 1 fauteuil, 1 barbier et son tabouret, 1 canapé, 1 harpe, 1 zone de fête, 1 zone de rituel, 1 boule à facettes, 1 tambour, 1 armoire, 1 pupitre, 1 pile vanométrique. |
+| `terrace` | (197, 123) | 9 | Terrasse, ou véranda (noms de Virginie, confirmés sur sa capture) : zone de brique à ciel couvert, sol sombre, un piano noir, entre la salle aux foyers, la salle des rituels et l'extérieur **Contient** : 1 clavecin et son tabouret, deux armoires, 1 jeu d'Ur, 1 mannequin, 1 pot à bonsaï, 1 feu de camp (ou brasero), un encensoir, 10 piliers, 5 balustrades. |
 | `plant-garden` | (190, 85) | 11 | Jardin des plantes (enclos du bas) |
-| `hut` | (140, 67) | 12 | Salon de thé (nom de Virginie) : la cabane de bois au bord de l'eau, table basse et deux sièges, banc en bas ; juste au-dessus du smiley `smiley-bottom-west`. Alias : `tea-room` |
+| `hut` | (141, 72) | 9 | Salon de thé (nom de Virginie) : la cabane de bois au bord de l'eau, table basse et deux sièges, banc en bas ; juste au-dessus du smiley `smiley-bottom-west`. Alias : `tea-room` **Contient** : 2 armoires, 1 commode, 1 table, deux bancs, 2 braseros tamisés. |
 | `fishing-zone` | (114, 68) | 12 | Même lieu que `water-zone` : c'est la zone de pêche (Virginie), la mare ronde du bas de la rivière, sans nénuphars ; à utiliser pour une scène de pêche ou de pêcheur |
-| `water-garden` | (167, 173) | 14 | Jardin aquatique (nom de Virginie, ex-`pools`) : mare avec nénuphars, fleurs mauves, canards, joncs sur les bords ; bambou au nord |
-| `gravel-yard` | (170, 143) | 14 | Cour de gravier |
-| `emerald-clearing` | (197, 152) | 12 | Carré libre A (14 x 14, x 191-204, z 146-159) : terre nue, la pile vanométrique en bordure est (x 205) |
+| `water-garden` | (167, 173) | 14 | Jardin aquatique (nom de Virginie, ex-`pools`) : mare avec nénuphars, fleurs mauves, canards, joncs sur les bords ; bambou au nord **Contient** : un grand sanctuaire et un petit sanctuaire de la forêt.. Rive brune à l'ouest (DrumBathHygiene, 2026-10-06) : bande de terre x 143-158, z 168-176 ; (139, 173) est EN EAU, mon estimation était fausse ; un trou sombre (terrier) en (149, 173) à éviter |
+| `gravel-yard` | (170, 143) | 11.2 | Cour de gravier |
+| `emerald-clearing` | (197, 152) | 9 | Carré A (14 x 14, x 191-204, z 146-159) : tapis vert vif de marquage (podium, motif en losanges) sur terre, entouré de fleurs ; la pile vanométrique est en bordure est (x 205). Pas un fond naturel |
 | `enclosure` | (158, 224) | 22 | Enclos total (nom de Virginie) : les deux enclos à animaux clôturés dans la bambouseraie du nord, 58 x 42 cases (x 130-187, z 204-245, 196 éléments de clôture), au nord du smiley `smiley-north` ; l'enclos du bas contient la zone de culture verte |
-| `enclosure-south` | (149, 214) | 12 | Le petit enclos, celui du bas (x 130-168, z 204-223) : il contient la zone de culture verte ; clos, avec des portails en (159, 207) au sud et (130, 219) à l'ouest, et en (148, 223) et (163, 223) vers l'enclos du haut |
-| `enclosure-north` | (166, 235) | 13 | L'enclos du haut (x 144-187, z 224-245, 44 x 22), au nord-est du précédent |
-| `rice-paddies` | (229, 114) | 20 | Rizières, ou « le champ » (noms de Virginie) : riz planté (106 plants, x 184-239, z 82-133) autour de la grand-place |
-| `cotton-field` | (211, 114) | 20 | Champ de coton : le grand smiley orange, au sud-est de la maison (nom de Virginie) ; estimation à confirmer |
-| `exhibition-zone` | (225, 168) | 21 | Zone d'expo (nom de Virginie, ex-`smiley-east`) : le grand smiley du sud-est, sol de moquette orange, un objet par case pour l'exposition ; 39 cases de large. Alias : `grand-place` (même lieu, regroupé le 2026-10-05) |
-| `calm-zone` | (193, 187) | 11 | Zone calme (nom de Virginie) : le rectangle blanc au-dessus de la zone d'expo. Position mesurée sur la vue d'ensemble, à confirmer | Alias : `cream-clearing`. Décalé de 20 cases vers la gauche (revue de Virginie) |
+| `enclosure-south` | (149, 214) | 12 | Le petit enclos, celui du bas (x 130-168, z 204-223) : il contient la zone de culture verte ; clos, avec des portails en (159, 207) au sud et (130, 219) à l'ouest, et en (148, 223) et (163, 223) vers l'enclos du haut **Contient** : des boîtes de ponte. |
+| `enclosure-north` | (166, 235) | 13 | L'enclos du haut (x 144-187, z 224-245, 44 x 22), au nord-est du précédent **Contient** : des portes en tissu pour animaux. |
+| `rice-paddies` | (229, 114) | 20 | Rizières (nom de Virginie) : riz planté (106 plants, x 184-239, z 82-133) autour de la grand-place |
+| `rice-paddy` | (230, 122) | 8 | Zone droite des rizières seulement, en gros plan : le sol brun et la lisière de forêt, à l'est de la maison. Estimé sur la capture de `rice-paddies` |
+| `flower-garden` | (154, 105) | 5 | Jardin des fleurs (lis et roses, à confirmer), au nord du champ de statues ; extrait du cadre de `statue-garden`, estimation |
+| `cotton-field` | (211, 114) | 15 | Champ de coton : le grand smiley orange, au sud-est de la maison (nom de Virginie) ; estimation à confirmer |
+| `exhibition-zone` | (218, 166) | 18 | Zone d'expo (nom de Virginie, ex-`smiley-east`) : le grand smiley du sud-est, sol de moquette orange, un objet par case pour l'exposition ; 39 cases de large. Alias : `grand-place` (même lieu, regroupé le 2026-10-05) |
+| `calm-zone` | (200, 187) | 11 | Zone calme (nom de Virginie) : le carré crème d'environ 11 x 11 cases (9 x 9 utiles, bord adouci), centré en (200, 187), recadré dessus le 2026-10-06 (le centre était (193, 187)) ; au-dessus de la zone d'expo. Mesuré sur la capture de midi, zoom 11 | Alias : `cream-clearing` **Contient** : à proximité, vers la droite : 2 monuments. |
+| `calm-zone-close` | (200, 185) | 2.8 | Gros plan du carré de `calm-zone` pour une rangée de 9 cases (demande d'AdaptiveStorageNeolithic) : cadre d'environ 10 x 5,6 cases, tout dans le carré crème ; à zoom 2,8 une case fait environ 190 pixels. Estimé sur la capture, à confirmer. Mettre les sujets en x 196-204, z 183-187 |
+| `bare-clearing` | (195, 152) | 5 | Clairière nue (AnimaSong, 2026-10-06) : le carré du podium d'emerald-clearing SANS son tapis vert, le sol est mis à nu à l'arrivée ; environ 18 x 10 cases (x 186-204, z 147-157), terre nue, bordure de fleurs en x 190 et au nord/sud, la pile vanométrique est hors cadre (x 205). Zone libre d'environ 14 x 14 pour un arbre et un cercle de colons ; à zoom 5, et jusqu'à zoom 6 sans toucher la pile. Estimé sur les captures, à confirmer |
 | `dump` | (49, 236) | 20 | Décharge (nom de Virginie) : le carré rose dans la clairière la plus haute, en haut à gauche de la carte. Position mesurée sur la capture (carré rose, bambouseraie clairsemée autour). Alias : `décharge` |
 | `smiley-southwest`, `smiley-bottom-west`, `smiley-bottom-centre`, `smiley-bottom-east`, `smiley-west`, `smiley-river`, `smiley-north` | voir la table des smileys | 15 | Les sept smileys de 19 x 19 |
 
@@ -133,13 +137,13 @@ Une pile vanométrique (`VanometricPowerCell`, 1 x 2, 1000 W en continu, sans co
 
 | Nom | Centre | Zoom | Ce que c'est |
 |---|---|---|---|
-| `sleeping-nook` | (177, 121) | 6.5 | Coin lit de Nelim, tapis blanc, dans la salle aux foyers |
-| `sofa-corner` | (187, 123) | 3.5 | Salon au tapis rose, dans la salle aux foyers |
-| `dining-nook` | (176, 108) | 3.7 | Table à manger sur tapis blanc, dans la salle aux foyers |
-| `fire-pit` | (181, 115) | 5 | Foyer central de la salle aux foyers |
-| `cloister` | (179, 130) | 7 | Cloître (渡り廊下) : galerie couverte de plancher de bois, à colonnes, au nord de la salle aux foyers, perpendiculaire à la rivière |
-| `river-bridge` | (135, 126) | 11 | Pont de bois sur la rivière |
-| `left-bank` | (112, 111) | 21 | Rive gauche (nom de Virginie) : la berge ouest de la rivière, du pont (en haut à droite) au smiley `smiley-west` (en bas à gauche), avec la bambouseraie dense entre les deux ; large cadre de 78 x 42 cases |
+| `sleeping-nook` | (177, 121) | 6.5 | Coin lit de Nelim, tapis blanc, dans la salle aux foyers **Contient** : 6 rideaux, des bancs, des tables de nuit, un lit royal, une commode, un pot à bonsaï, 1 mannequin. |
+| `sofa-corner` | (187, 123) | 3.5 | Salon au tapis rose, dans la salle aux foyers **Contient** : une petite bibliothèque, deux sofas et un fauteuil, une statue, deux pots de fleurs. |
+| `dining-nook` | (176, 108) | 3.7 | Table à manger sur tapis blanc, dans la salle aux foyers **Contient** : une table, deux chaises, un bureau et sa chaise, deux armoires, un pot de fleurs. |
+| `fire-pit` | (181, 115) | 5 | Foyer central de la salle aux foyers **Contient** : trois pots de fleurs, deux pots à bonsaï, une table de nuit, trois colonnes, des barrières, un foyer (âtre). |
+| `cloister` | (179, 130) | 7 | Cloître (渡り廊下) : galerie couverte de plancher de bois, à colonnes, au nord de la salle aux foyers, perpendiculaire à la rivière **Contient** : un pot à bonsaï, 7 colonnes, 3 balustrades, un jeu d'échecs, un tapis pour s'asseoir. |
+| `river-bridge` | (135, 126) | 11 | Pont de bois sur la rivière **Contient** : 1 pont et 1 télescope. |
+| `left-bank` | (112, 111) | 18.2 | Rive gauche (nom de Virginie) : la berge ouest de la rivière, du pont (en haut à droite) au smiley `smiley-west` (en bas à gauche), avec la bambouseraie dense entre les deux ; large cadre de 78 x 42 cases |
 | `right-bank` | (144, 132) | 11 | Rive droite : berge est de la rivière, côté maison |
 
 ## Nettoyer et dégager (étapes)
@@ -150,9 +154,11 @@ Une pile vanométrique (`VanometricPowerCell`, 1 x 2, 1000 W en continu, sans co
 - `Given Nelim's Pickle Tools: the roof is removed from the sanctuary "<nom>"` : retire tous les toits du lieu (murs gardés). Exception pour les tests, pas pour une capture de galerie : le toit fait partie du bâtiment photographié et sa suppression crée des ombres. Pour un lieu sombre, voir « Éclairer un lieu sombre » dans docs/GALERIE.md.
 - `Given Nelim's Pickle Tools: the power network is refreshed` : connecte les bâtiments alimentés qui n'ont encore aucun réseau (ceux qui en ont un ne sont pas touchés) et recalcule les réseaux. À appeler après avoir posé le bâtiment, avant la capture. Si l'icône « sans courant » reste, c'est un manque réel de puissance : une pile vanométrique fournit 1000 W ; si le bâtiment en demande davantage, poser une deuxième pile contre la première (`VanometricPowerCell` en (205, 154), par exemple).
 
+Cases libres et meubles par lieu (liste générée) : voir `docs/SANCTUAIRE-CASES.md`.
+
 ## Zoom minimum
 
-La caméra du jeu ne s'approche pas au-delà de la taille de racine 11 environ (mesuré : 49 pixels par case sur un écran de 1080 pixels, soit 22 cases de haut sur 39 de large). Les petits lieux (une pièce, la terrasse, le cloître, le foyer, la pile) sont donc tous cadrés à 11 : la photographie montre le lieu et ses abords. Pour un cadrage plus serré, le mod recadre l'image lui-même ; une demande d'un zoom plus proche n'aboutirait pas.
+La caméra du jeu seule ne s'approche pas au-delà de la taille de racine 11 environ (mesuré : 49 pixels par case sur un écran de 1080 pixels, soit 22 cases de haut sur 39 de large). Mais `I am at the sanctuary` / `I frame the sanctuary` lèvent cette limite (2 à 130) : après l'un d'eux, `the camera root size is set to N` et `I frame the cell (x, z) at zoom N` sont honorés (vérifié à 6). Le zoom par défaut de chaque lieu est celui de la colonne « zoom » ci-dessus.
 
 ## Le bâtiment nord : grange et ateliers
 
@@ -161,9 +167,9 @@ Au nord de la carte, collé à l'est de `enclosure-north` (x 187-218, z 229-245)
 | Nom | Centre | Zoom | Ce que c'est |
 |---|---|---|---|
 | `workshops` | (203, 237) | 11 | Le bâtiment entier, 32 x 17 cases |
-| `barn` | (193, 237) | 14 | La grange : grande salle de terre, à l'ouest, ouverte sur l'enclos (portes en (187, 232-233) et (187, 241)). Contient actuellement : une table de poker, une table de billard, des lits pour animaux (à vérifier sur la capture) |
-| `preindustrial-workshop` | (205, 237) | 11 | Atelier préindustriel : sol carrelé beige, établis, matériaux |
-| `postindustrial-workshop` | (214, 237) | 24 | Atelier postindustriel : sol clair, appareils (réfrigérateur, machines, générateur) |
+| `barn` | (193, 237) | 10.5 | La grange : grande salle de terre, à l'ouest, ouverte sur l'enclos (portes en (187, 232-233) et (187, 241)). Contient actuellement : une table de poker, une table de billard, des lits pour animaux (à vérifier sur la capture) **Contient** : des portes en tissu pour animaux. |
+| `preindustrial-workshop` | (205, 237) | 10.5 | Atelier préindustriel : sol carrelé beige, établis, matériaux |
+| `postindustrial-workshop` | (214, 237) | 18 | Atelier postindustriel : sol clair, appareils (réfrigérateur, machines, générateur) |
 
 **35 piles vanométriques** (`VanometricPowerCell`) bordent le mur est (x 219-221, z 228-246) et le côté nord (z 246, x 213-220) : l'atelier postindustriel est alimenté en permanence. Un mod qui photographie un objet électrique peut le poser dans cet atelier ou à côté d'une pile.
 
@@ -198,6 +204,6 @@ Retirés : `forest-edge`, `river-upstream`, `river-exit`, `power-cell`, `animal-
 Le jeu borne la taille de la caméra à **11 minimum, 60 maximum** (`CameraMapConfig.sizeRange`) : un zoom demandé à 8 donnait 11, à 70 donnait 60. Les mods de caméra (SimpleCameraSetting, Camera+) élargissent cette plage ; le step de cadrage du Sanctuaire fait la même chose lui-même, de 2 à 130, sans mod supplémentaire. Les lieux serrés (`sofa-corner`, `dining-nook`...) utilisent donc des zooms sous 11. Les deux vues d'ensemble gardent 60 : `overview-north` couvre z 125 à 245 et `overview-south` z 5 à 125.
 ## Noms d'usage reconnus (alias)
 
-Le nom d'un lieu est normalisé avant la recherche (accents retirés, minuscules, espaces, tirets bas et apostrophes remplacés par des tirets). Ces noms mènent aux lieux : `tea-room` à `hut` ; `statue-plaza` à `statue-garden` ; `hermit-hall` à `hearth-hall` ; `salle des rituels`, `salle de l'idéologie` à `ritual-hall` ; `véranda` à `terrace` ; `le champ`, `rizières` à `rice-paddies` ; `zone d'expo` à `exhibition-zone`.
+Le nom d'un lieu est normalisé avant la recherche (accents retirés, minuscules, espaces, tirets bas et apostrophes remplacés par des tirets). Ces noms mènent aux lieux : `tea-room` à `hut` ; `statue-plaza` à `statue-garden` ; `hermit-hall` à `hearth-hall` ; `salle des rituels`, `salle de l'idéologie` à `ritual-hall` ; `véranda` à `terrace`.
 
 Regroupés le 2026-10-05 : `grand-place` est un alias d'`exhibition-zone` (le même grand smiley) ; `cream-clearing` est un alias de `calm-zone`.

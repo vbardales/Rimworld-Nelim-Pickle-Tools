@@ -15,6 +15,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private const string Prefix = "Nelim's Pickle Tools: ";
         private const int CX = 125, CZ = 125, Radius = 90;
         private bool? originalScreenshotMode;
+        private bool[] originalOverlays;
+        private bool? originalColonistBar, originalLearningHelper;
         private static readonly Color Amber = new Color(0.90f, 0.51f, 0.08f);
         private static readonly Color Dark = new Color(0.22f, 0.15f, 0.10f);
         private static T Def<T>(string name) where T : Def => DefDatabase<T>.GetNamed(name);
@@ -219,9 +221,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         // from the studio centre, with the camera root size that frames each one. A suite names the place and never writes a coordinate.
         private static readonly (string Name, int X, int Z, float Size)[] SanctuarySites =
         {
-            ("overview-north", 125, 185, 60), ("overview-south", 125, 65, 60), ("house", 190, 115, 15), ("hearth-hall", 181, 115, 12), ("sleeping-nook", 177, 121, 6.5f), ("sofa-corner", 187, 123, 3.5f), ("dining-nook", 176, 108, 3.7f), ("fire-pit", 181, 115, 5f), ("cloister", 179, 130, 7f), ("statue-garden", 155, 97, 13), ("prestige-hall", 196, 111, 8.5f), ("ritual-hall", 206, 117, 8f), ("terrace", 197, 123, 9f), ("plant-garden", 190, 85, 11), ("hut", 140, 67, 12),
-            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 21), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 14), ("emerald-clearing", 197, 152, 12), ("enclosure", 158, 224, 22), ("workshops", 203, 237, 11), ("barn", 193, 237, 14), ("preindustrial-workshop", 205, 237, 14), ("postindustrial-workshop", 214, 237, 24), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
-            ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 20), ("exhibition-zone", 225, 168, 21), ("calm-zone", 193, 187, 11), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
+            ("overview-north", 125, 185, 60), ("overview-south", 125, 65, 60), ("house", 190, 115, 15), ("hearth-hall", 181, 115, 12), ("sleeping-nook", 177, 121, 6.5f), ("sofa-corner", 187, 123, 3.5f), ("dining-nook", 176, 108, 3.7f), ("fire-pit", 181, 115, 5f), ("cloister", 179, 130, 7f), ("statue-garden", 155, 97, 13), ("prestige-hall", 196, 111, 8.5f), ("ritual-hall", 206, 117, 8f), ("terrace", 197, 123, 9f), ("plant-garden", 190, 85, 11), ("hut", 141, 72, 9),
+            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 203, 237, 11), ("barn", 193, 237, 10.5f), ("preindustrial-workshop", 205, 237, 10.5f), ("postindustrial-workshop", 214, 237, 18), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
+            ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 15), ("rice-paddy", 230, 122, 8), ("flower-garden", 154, 105, 5), ("exhibition-zone", 218, 166, 18), ("calm-zone", 200, 187, 11), ("calm-zone-close", 200, 185, 2.8f), ("bare-clearing", 195, 152, 5), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
             ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
             ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15),
         };
@@ -229,10 +231,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         // Names that stay valid but point to another place (a duplicate Virginie asked to merge), and names that were removed (with what to use instead).
         private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryAliases = new System.Collections.Generic.Dictionary<string, string>
         {
-            { "tea-room", "hut" }, { "decharge", "dump" }, { "cream-clearing", "calm-zone" }, { "grand-place", "exhibition-zone" }, { "la-grand-place", "exhibition-zone" },
+            { "tea-room", "hut" }, { "exhibition-area", "exhibition-zone" }, { "cream-clearing", "calm-zone" }, { "grand-place", "exhibition-zone" },
             { "statue-plaza", "statue-garden" }, { "hermit-hall", "hearth-hall" },
             { "salle-des-rituels", "ritual-hall" }, { "salle-de-l-ideologie", "ritual-hall" }, { "veranda", "terrace" },
-            { "le-champ", "rice-paddies" }, { "rizieres", "rice-paddies" }, { "zone-d-expo", "exhibition-zone" }, { "clearing-a", "emerald-clearing" }, { "emerald-podium", "emerald-clearing" }, { "great-courtyard", "emerald-clearing" }, { "podium", "emerald-clearing" }, { "river", "left-bank" }, { "water-zone", "water-garden" },
+            { "clearing-a", "emerald-clearing" }, { "emerald-podium", "emerald-clearing" }, { "great-courtyard", "emerald-clearing" }, { "podium", "emerald-clearing" }, { "river", "left-bank" }, { "water-zone", "water-garden" },
         };
         private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryRetired = new System.Collections.Generic.Dictionary<string, string>
         {
@@ -266,6 +268,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public async Task FrameSanctuary(PickleContext ctx, string place)
         {
             var site = FindSite(ctx, place);
+            // The bare clearing is the podium square without its green carpet: the floor is bared as the place is framed.
+            if (site.Name == "bare-clearing") BareFloor(ctx, "bare-clearing");
             ctx.Require(Find.CurrentMap != null && Find.CurrentMap.Size.x >= 250 && Find.CurrentMap.Size.z >= 250, "Load the save \"Nelims-tribe\" first (a 250 by 250 map)");
             LiftZoomLimit();
             Find.Selector.ClearSelection();
@@ -316,6 +320,29 @@ namespace Nelim.PickleTools.ScreenshotStudio
             foreach (var t in doomed) if (!t.Destroyed) t.Destroy();
         }
 
+        // Bares the floor of a named place: every cell of the place gets the terrain of the ground just west of it, without paint, so a
+        // laid floor, a carpet or a marking painted on the ground (the green podium square) shows the bare ground. Roofs and things stay.
+        [Given(Prefix + "the floor of the sanctuary {string} is bared")]
+        [When(Prefix + "I bare the floor of the sanctuary {string}")]
+        public void BareFloor(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            var west = new IntVec3(Math.Max(0, r[0] - 3), 0, (r[2] + r[3]) / 2);
+            TerrainDef ground = west.GetTerrain(map);
+            if (ground == null || ground.IsWater || ground.passability == Traversability.Impassable) ground = Def<TerrainDef>("Soil");
+            for (int x = r[0]; x <= r[1]; x++)
+                for (int z = r[2]; z <= r[3]; z++)
+                {
+                    var c = new IntVec3(x, 0, z);
+                    if (!c.InBounds(map) || c.GetTerrain(map).IsWater) continue;
+                    map.terrainGrid.SetTerrain(c, ground);
+                    map.terrainGrid.SetTerrainColor(c, null);
+                }
+        }
+
         // A flower border around a free square, for the photographs: two to four cells wide, thinning outwards, the square itself untouched.
         // Cells that hold a building, water or soil that grows nothing are skipped; an existing plant on a chosen cell is replaced.
         [Given(Prefix + "a flower border is planted around the square from \\({int}, {int}\\) to \\({int}, {int}\\)")]
@@ -354,6 +381,80 @@ namespace Nelim.PickleTools.ScreenshotStudio
             int[] r = SanctuaryArea(site);
             var animals = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && p.Position.x >= r[0] && p.Position.x <= r[1] && p.Position.z >= r[2] && p.Position.z <= r[3]).ToList();
             foreach (var a in animals) a.DeSpawn();
+        }
+
+        // Sends every animal on the map away (despawned, not killed): for a frame wider than a place's own area, or a place the animals keep wandering back to.
+        [Given(Prefix + "all animals are removed")]
+        [When(Prefix + "I remove all animals")]
+        public void RemoveAllAnimals(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            foreach (var a in map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal).ToList()) a.DeSpawn();
+        }
+
+        // Moves the player's colonists (Nelim) to a far corner of the map, for a frame that must hold only the set. They are not removed: they are
+        // standing there when the scenario goes on. Pawns that cannot be placed stay where they are.
+        [Given(Prefix + "the colonists are sent to the map corner")]
+        [When(Prefix + "I send the colonists to the map corner")]
+        public void SendColonistsAway(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            foreach (var pawn in map.mapPawns.FreeColonistsSpawned.ToList())
+            {
+                IntVec3 cell;
+                if (!CellFinder.TryFindRandomCellNear(new IntVec3(4, 0, 4), map, 12, c => c.Standable(map) && c.GetFirstPawn(map) == null, out cell)) continue;
+                pawn.jobs?.StopAll();
+                pawn.pather?.StopDead();
+                pawn.Position = cell;
+                pawn.Notify_Teleported();
+            }
+        }
+
+        // Lists what stands in a named place, for a mod that must put a subject on a free cell: the standable cells with nothing on them, as runs per row
+        // (z: x1-x2), then the buildings and items with their cells, size and stack, and the stockpile zones. Written to the log and attached to the run.
+        [Then(Prefix + "the sanctuary {string} is listed")]
+        [Given(Prefix + "the sanctuary {string} is listed")]
+        [When(Prefix + "I list the sanctuary {string}")]
+        public void ListSanctuary(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("sanctuary " + site.Name + " x " + r[0] + "-" + r[1] + ", z " + r[2] + "-" + r[3]);
+            sb.AppendLine("free standable cells (nothing on them, no roof-less wall), runs per row z: x1-x2");
+            for (int z = r[3]; z >= r[2]; z--)
+            {
+                var runs = new System.Collections.Generic.List<string>();
+                int start = -1;
+                for (int x = r[0]; x <= r[1] + 1; x++)
+                {
+                    bool free = false;
+                    if (x <= r[1])
+                    {
+                        var c = new IntVec3(x, 0, z);
+                        free = c.InBounds(map) && c.Standable(map) && c.GetFirstThing<Pawn>(map) == null && c.GetThingList(map).All(th => !(th is Pawn) && th.def.category != ThingCategory.Building && th.def.category != ThingCategory.Item && th.def.category != ThingCategory.Plant);
+                    }
+                    if (free && start < 0) start = x;
+                    if (!free && start >= 0) { runs.Add(start == x - 1 ? start.ToString() : start + "-" + (x - 1)); start = -1; }
+                }
+                if (runs.Count > 0) sb.AppendLine(z + ": " + string.Join(", ", runs));
+            }
+            sb.AppendLine("buildings and items: def at (x, z) size WxH [stack]");
+            foreach (var th in map.listerThings.AllThings.Where(th => th.Position.x >= r[0] && th.Position.x <= r[1] && th.Position.z >= r[2] && th.Position.z <= r[3]
+                && (th.def.category == ThingCategory.Building || th.def.category == ThingCategory.Item) && !th.def.IsDoor && !th.def.defName.EndsWith("Wall")).OrderBy(th => th.Position.z).ThenBy(th => th.Position.x))
+                sb.AppendLine(th.def.defName + " at (" + th.Position.x + ", " + th.Position.z + ") size " + th.def.size.x + "x" + th.def.size.z + (th.def.category == ThingCategory.Item ? " [" + th.stackCount + "]" : ""));
+            sb.AppendLine("stockpile zones: cells");
+            foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Stockpile>())
+            {
+                var cells = zone.Cells.Where(c => c.x >= r[0] && c.x <= r[1] && c.z >= r[2] && c.z <= r[3]).ToList();
+                if (cells.Count > 0) sb.AppendLine(zone.label + ": " + cells.Count + " cells, x " + cells.Min(c => c.x) + "-" + cells.Max(c => c.x) + ", z " + cells.Min(c => c.z) + "-" + cells.Max(c => c.z));
+            }
+            Log.Message("[sanctuary list] " + sb);
+            ctx.Attach("sanctuary-list-" + site.Name, sb.ToString());
         }
 
         // Opens the sky over a named place: every roof on its cells is removed, walls stay. A roofed room is lit by lamps only; with the roof gone it
@@ -511,11 +612,45 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(map.terrainGrid.TerrainAt(Cell(-28,27)).defName == "Sand", "Missing dry garden");
         }
 
+        // Interface kept (a menu capture), but without the colonist bar at the top centre (it shows the colonist's name and portrait).
+        [Given(Prefix + "the colonist bar is hidden")]
+        [When(Prefix + "I hide the colonist bar")]
+        public void HideColonistBar(PickleContext ctx)
+        {
+            if (!originalColonistBar.HasValue) originalColonistBar = Find.PlaySettings.showColonistBar;
+            Find.PlaySettings.showColonistBar = false;
+        }
+
+        private static void ClearActiveConcepts()
+        {
+            var readout = Find.Tutor?.learningReadout;
+            var field = readout == null ? null : typeof(LearningReadout).GetField("activeConcepts", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+            var value = field?.GetValue(readout);
+            if (value is System.Collections.IList list) list.Clear();
+            else if (value is System.Collections.IDictionary dict) dict.Clear();
+        }
+
+        // Interface kept, but without the learning helper's tip boxes (top right).
+        [Given(Prefix + "the learning helper is hidden")]
+        [When(Prefix + "I hide the learning helper")]
+        public void HideLearningHelper(PickleContext ctx)
+        {
+            if (!originalLearningHelper.HasValue) originalLearningHelper = Find.PlaySettings.showLearningHelper;
+            Find.PlaySettings.showLearningHelper = false;
+            ClearActiveConcepts();
+        }
+
         [When(Prefix + "studio presentation mode is enabled")]
         public async Task Presentation(PickleContext ctx)
         {
             if (!originalScreenshotMode.HasValue) originalScreenshotMode = Find.UIRoot.screenshotMode.Active;
             Find.UIRoot.screenshotMode.Active = true;
+            // Stack counts and name labels: no setting in the game, so a patch skips them. Without Harmony the scenario goes on and says so.
+            try { OverlaySuppression.Begin(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[presentation] stack counts and name labels stay drawn: Harmony is not loaded (" + e.GetType().Name + ")"); }
+            // Overlays the interface switch leaves on the map: zone markers, beauty and room numbers, the learning helper.
+            if (originalOverlays == null) originalOverlays = new[] { Find.PlaySettings.showZones, Find.PlaySettings.showBeauty, Find.PlaySettings.showRoomStats, Find.PlaySettings.showLearningHelper };
+            Find.PlaySettings.showZones = false; Find.PlaySettings.showBeauty = false; Find.PlaySettings.showRoomStats = false; Find.PlaySettings.showLearningHelper = false;
             await ctx.WaitFrames(2);
         }
 
@@ -525,6 +660,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
             if (originalScreenshotMode.HasValue && Find.UIRoot != null)
                 Find.UIRoot.screenshotMode.Active = originalScreenshotMode.Value;
             originalScreenshotMode = null;
+            OverlaySuppression.End();
+            if (originalColonistBar.HasValue && Find.PlaySettings != null) Find.PlaySettings.showColonistBar = originalColonistBar.Value;
+            if (originalLearningHelper.HasValue && Find.PlaySettings != null) Find.PlaySettings.showLearningHelper = originalLearningHelper.Value;
+            originalColonistBar = null; originalLearningHelper = null;
+            if (originalOverlays != null && Find.PlaySettings != null)
+            {
+                var o = originalOverlays;
+                Find.PlaySettings.showZones = o[0]; Find.PlaySettings.showBeauty = o[1]; Find.PlaySettings.showRoomStats = o[2]; Find.PlaySettings.showLearningHelper = o[3];
+            }
+            originalOverlays = null;
         }
 
         [When(Prefix + "I save the flower meadow studio", TimeoutSeconds = 60)]

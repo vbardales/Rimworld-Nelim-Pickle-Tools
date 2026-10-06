@@ -129,7 +129,9 @@ namespace Nelim.PickleTools.ColonistRace
 
             if (!OriginalClothes.ContainsKey(pawn))
             {
+                // The first garment dressed in a scenario takes everything else off first (an outer cloak would hide the new shirt); the next ones add to it.
                 OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+                pawn.apparel.DropAllOrMoveAllToInventory(a => true);
             }
 
             pawn.apparel.DropAllOrMoveAllToInventory(a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
@@ -152,6 +154,21 @@ namespace Nelim.PickleTools.ColonistRace
         /// Takes off what the dyed-clothes step made and puts back what the colonist wore before. Does nothing for a colonist that step never
         /// dressed. Also run after every scenario, so a failed one leaves the colonist as it found it.
         /// </summary>
+        /// <summary>
+        /// Takes every garment off a colonist (to the inventory, nothing destroyed), so the garments dressed afterwards are the only ones drawn, an
+        /// outer cloak no longer covering a shirt. "gets back the clothes it had" puts them on again, and so does the end of the scenario.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is undressed")]
+        [When("Nelim's Pickle Tools: I undress {string}")]
+        public void Undress(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
+            if (!OriginalClothes.ContainsKey(pawn)) OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+            pawn.apparel.DropAllOrMoveAllToInventory(a => true);
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+        }
+
         [When("Nelim's Pickle Tools: {string} gets back the clothes it had")]
         public void GetsBack(PickleContext ctx, string nickname)
         {
@@ -364,7 +381,9 @@ namespace Nelim.PickleTools.ColonistRace
 
             if (!OriginalClothes.ContainsKey(pawn))
             {
+                // The first garment dressed in a scenario takes everything else off first (an outer cloak would hide the new shirt); the next ones add to it.
                 OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+                pawn.apparel.DropAllOrMoveAllToInventory(a => true);
             }
 
             pawn.apparel.DropAllOrMoveAllToInventory(a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));

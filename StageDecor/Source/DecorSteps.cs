@@ -49,6 +49,17 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Places a thing like "I place the decor" and, when it is a plant, brings it to full growth in the same step, so a flower or a bush shows at
+        /// its adult size without a second step. A thing that is not a plant is placed as it is.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} at \\({int}, {int}\\) fully grown")]
+        public void PlaceDecorGrown(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            PlaceDecor(ctx, thingDefName, x, z);
+            if (Placed.LastOrDefault() is Plant plant) plant.Growth = 1f;
+        }
+
+        /// <summary>
         /// Lays a floor (a TerrainDef: a carpet, a tile, soil) on every cell of the rectangle from the first corner to the second, and
         /// remembers what each cell held, so the removal step puts it back. Fails naming the first cell off the map or under a wall.
         /// </summary>

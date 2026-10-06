@@ -1,10 +1,18 @@
-# Captures de galerie: mode d'emploi commun (état 2026-10-05)
+# Captures de galerie: mode d'emploi commun (état 2026-10-06)
 
 Toutes les sessions de mod jouent leurs captures de galerie sur la même scène: la fixture **Nelims-tribe** (Sanctuaire de Nelim, carte 250 x 250).
 
 ## Statut
 
-La fixture finale n'est PAS encore installée dans `ScreenshotStudio/Mod/Pickle/Fixtures/`. Ne soumettez aucun ticket de galerie avant le message « fixture prête » de la session Pickle Tools. Les steps ci-dessous existent déjà dans le DLL ScreenshotStudio reconstruit, mais ce DLL n'est pas encore committé.
+La fixture finale est installée (2026-10-06) : `Nelims-tribe`, midi, sans éclipse, une seule colon (Nelim, c'est Virginie). Les steps ci-dessous existent dans le DLL ScreenshotStudio. Cadrages encore en revue par Virginie : left-bank, gravel-yard, emerald-clearing, barn, preindustrial-workshop, postindustrial-workshop, cotton-field, rice-paddy, flower-garden, hut, dump.
+
+## Personnages et animaux (Virginie, 2026-10-06)
+
+Si vous utilisez le Sanctuaire, le pawn principal est **Nelim** (Virginie, la seule colon de la fixture). Vous pouvez en créer d'autres si le sujet l'exige (`a colonist "<nom>" of kind "<kind>" exists`, voir docs/steps.md ColonistRace).
+
+Animaux de la fixture à utiliser avant d'en créer : les **thrumbos**, et les chiens, dans cet ordre de priorité : **Shogun** (labrador mâle), puis **Yuki** (husky femelle). Pour une scène sans animaux : `Given Nelim's Pickle Tools: all animals are removed`. Je n'ai pas vérifié ces noms dans la sauvegarde : d'après Virginie.
+
+Mods tiers dans les scénarios de capture (Virginie, 2026-10-06) : tout mod qui ajoute des vêtements, des tatouages, des armes, des animaux, des plantes ou des accessoires particuliers est acceptable dans un scénario de capture, comme sujet ou comme décor, à condition que le mod soit dans la liste du -DepMap du scénario.
 
 ## Steps
 
@@ -32,6 +40,14 @@ Les images partent dans le dossier de preuves de votre run. Copiez dans `Art/Gal
 ## Choisir un lieu
 
 Les mods ne voient un lieu que par son nom ou sa description. Avant de choisir, parcourez **tous** les lieux disponibles (table `SanctuarySites` de `ScreenshotStudio/Source/StudioSteps.cs`, ou `docs/SANCTUAIRE-LIEUX.md`) et lisez le nom et la description de chacun. N'en prenez pas un au hasard ni le premier venu: un lieu inconnu fait échouer le step avec la liste des lieux connus.
+
+Conseil de Virginie (2026-10-06) : quand le sujet est une fenêtre de jeu (fiche d'info, dialogue), choisissez `exhibition-zone` (alias `exhibition-area`, `grand-place`) : fond de moquette orange clair, un objet par case, plutôt qu'un intérieur à meubles.
+
+Sol peint ou posé (par exemple le carré vert vif d'`emerald-clearing`) : `Given Nelim's Pickle Tools: the floor of the sanctuary "<lieu>" is bared` (ou `When ... I bare the floor of the sanctuary "<lieu>"`) donne à chaque case du lieu le sol nu de la terre voisine, sans peinture ; murs, toits et objets restent. À jouer AVANT `I am at the sanctuary`. Ajouté le 2026-10-06, en cours de vérification.
+
+Cases libres et meubles : `docs/SANCTUAIRE-CASES.md` donne, pour les lieux d'intérieur et de galerie courants (sofa-corner, sleeping-nook, dining-nook, fire-pit, terrace, emerald-clearing, cloister, hearth-hall, prestige-hall, ritual-hall, calm-zone), les cases libres où poser un sujet et les meubles et étagères avec leurs piles. Pour un autre lieu ou après un changement de fixture : `Given Nelim's Pickle Tools: the sanctuary "<lieu>" is listed` (écrit dans le journal du jeu et joint au rapport). Le mode présentation masque aussi les compteurs de piles et les noms de pawns (Harmony requis dans la map).
+
+Décor : `I place the decor "<def>" at (x, z)`, `I place the decor "<def>" at (x, z) fully grown` (plante adulte d'un seul step), `the plants from (x1, z1) to (x2, z2) are fully grown`, `the decor "<def>" at (x, z) is lit`, `the decor is removed` (StageDecor ; voir docs/steps.md). Ces steps ont été compilés, pas tous joués en jeu par Pickle Tools.
 
 ## Aucun lieu ne convient
 

@@ -3,7 +3,7 @@
 Feature: Sanctuaire light: noon must be bright, and the framings must hold
 
   Scenario: light-shot: noon is bright, the overview and the grand place are framed
-    Given the save "Nelims-tribe-draft" is loaded
+    Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the light of the map is logged
     And Nelim's Pickle Tools: the eclipse of the map is ended

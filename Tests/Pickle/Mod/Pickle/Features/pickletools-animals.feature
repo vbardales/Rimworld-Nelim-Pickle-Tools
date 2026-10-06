@@ -3,7 +3,7 @@
 Feature: Animals staged for a photograph
 
   Scenario: animals-shot: a kitten, a juvenile, an adult and a named stage, framed by nickname
-    Given the save "Nelims-tribe-draft" is loaded
+    Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: an animal of kind "Cat" named "Mimi" is spawned at (197, 152) at life stage 0
     And Nelim's Pickle Tools: an animal of kind "Cat" named "Moka" is spawned at (199, 152) at life stage 1
