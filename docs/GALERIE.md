@@ -41,7 +41,7 @@ Les images partent dans le dossier de preuves de votre run. Copiez dans `Art/Gal
 
 Les mods ne voient un lieu que par son nom ou sa description. Avant de choisir, parcourez **tous** les lieux disponibles (table `SanctuarySites` de `ScreenshotStudio/Source/StudioSteps.cs`, ou `docs/SANCTUAIRE-LIEUX.md`) et lisez le nom et la description de chacun. N'en prenez pas un au hasard ni le premier venu: un lieu inconnu fait échouer le step avec la liste des lieux connus.
 
-Conseil de Virginie (2026-10-06) : quand le sujet est une fenêtre de jeu (fiche d'info, dialogue), choisissez `exhibition-zone` (alias `exhibition-area`, `grand-place`) : fond de moquette orange clair, un objet par case, plutôt qu'un intérieur à meubles.
+Conseil de Virginie (2026-10-06) : quand le sujet est une fenêtre de jeu PLEIN ÉCRAN (fiche d'info, dialogue qui recouvre la carte), choisissez `exhibition-zone` (alias `exhibition-area`, `grand-place`) : fond de moquette orange clair, un objet par case, plutôt qu'un intérieur à meubles. Un onglet d'inspection (l'onglet Santé d'un pion, un panneau qui laisse voir la carte) n'est pas plein écran : il reste dans le lieu de l'histoire, à son heure.
 
 Sol peint ou posé (par exemple le carré vert vif d'`emerald-clearing`) : `Given Nelim's Pickle Tools: the floor of the sanctuary "<lieu>" is bared` (ou `When ... I bare the floor of the sanctuary "<lieu>"`) donne à chaque case du lieu le sol nu de la terre voisine, sans peinture ; murs, toits et objets restent. À jouer AVANT `I am at the sanctuary`. Ajouté le 2026-10-06, en cours de vérification.
 
