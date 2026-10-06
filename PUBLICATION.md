@@ -54,11 +54,11 @@ in-game mod-list icon and stays in the payload; it is not an extra Workshop scre
 
 | Use | File | Verified |
 |---|---|---|
-| Workshop preview | `Mod/About/Preview.png` | 896 x 504, 538,239 bytes, opened on 2026-09-22 |
-| In-game mod icon | `Mod/About/ModIcon.png` | 128 x 128, 24,607 bytes, opened on 2026-09-22 |
+| Workshop preview | `Mod/About/Preview.png` | 896 x 504, 592,356 bytes (re-rendered on 2026-10-06 from `Art/Preview-source.png` by `scripts/Render-Preview.cjs`) |
+| In-game mod icon | `Mod/About/ModIcon.png` | 128 x 128, 23,948 bytes (re-rendered on 2026-10-06) |
+| Gallery position 0 | `Art/Gallery/0-preview.png` | Byte for byte the same file as `Mod/About/Preview.png` (checked with `cmp`, 2026-10-06), as `PUBLISHING.md` requires of every gallery |
 
-No additional gallery screenshot is claimed yet. Add one only after it has been produced and visually reviewed;
-the current aggregate runtime matrix is still pending.
+The gallery today is `Art/Gallery/0-preview.png` alone. Any further image goes in `Art/Gallery/` numbered `1-`, `2-`… in page order, only after it has been produced and visually reviewed, with as many images as wanted as long as the folder stays under 8 MB in all and each image under 2 MB (`PUBLISHING.md`). The folder holds only the images to upload. The gallery is not sent by the workflow: the dry-run lists its files as a reminder of the manual upload.
 
 ## Dependencies and DLC
 
@@ -167,13 +167,15 @@ bash Rimworld-Release-Admin/scripts/generate-publish-workflow.sh PickleTools \
   --require Pickle/Assemblies/Nelim.PickleTools.ResearchSteps.dll --require Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.ScreenshotMode.dll --require Pickle/Assemblies/Nelim.PickleTools.TextureOwner.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.VefFactions.dll --forbid Source --forbid .build \
-  --description-file PUBLICATION.md --description-heading '^## Steam description$'
+  --description-file PUBLICATION.md --description-heading '^## Steam description$' \n  --gallery-dir Art/Gallery
 ```
+
+`--gallery-dir Art/Gallery` is the command to run with the next `--replace`; the committed workflow in `.github/` was generated before it and does not declare the gallery yet (to regenerate by the rules of `Rimworld-Release-Admin/docs/OPERATIONS.md`, not by hand).
 
 The change note is the fenced block under `### 1.1.0` in "Steam change notes"; the release notes are the `## [1.1.0]` section of
 `CHANGELOG.md`; the description is the block under "Steam description", sent only with `update_description` (turn it on for this
 release: the live page still says release candidate; 8000 bytes maximum, no straight double quote, no backslash). The dry-run prints its
-size, hash and diff against the live page, which is the review. No gallery folder is declared: no capture exists yet.
+size, hash and diff against the live page, which is the review. The gallery folder is `Art/Gallery/` (position 0 only, see Images); the committed workflow does not declare it yet.
 
 **Rollback.** `v1.0.0` (`2dc9845`) cannot be a CI rollback target: it has no `.github` and its `Mod/` has no DLL. For the first CI
 publication the rollback is Steam's own "rétablir cette version" in the item's change history (the 1.0.0 uploaded on 2026-09-22 is
@@ -181,3 +183,5 @@ there), chosen by the owner before the publish. Once 1.1.0 is published from a c
 commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
 
 `HoverSteps` joins the payload in this release (the owner, 2026-09-25): `Prepare-Release.ps1` lists fourteen tools and the workflow requires the fourteen DLLs. Its scenario was played once on 2026-09-25, in English, and passed (1 of 1); see `STATUS.md`.
+
+**Tools not in the payload yet (2026-10-06).** The repository holds twenty-four tool DLLs; the payload above, the `Prepare-Release.ps1` list and the workflow's `--require` list carry fourteen. Ten are missing: `CameraZoom`, `CoatSteps`, `DefFields`, `IdeologySteps`, `LoadAudit`, `NewColony`, `ScreenshotStudio`, `SoundCapture`, `StageDecor`, `TradeSteps`. `ScreenshotStudio` is the Sanctuary de Nelim gallery stage that other mods use (named places, presentation mode, interface masks); it also needs the fixture `Nelims-tribe.rws` (about 31 MB), which is a test save, while the description says "No gameplay content or test saves included". The Sanctuary stage also has a minimal mod set (owner, 2026-10-07): TailorMade, WDI, Female Apparels (Continued), Female Bodies (Continued) and TailorMade Waistlines are meant to be part of the minimal mods of the Sanctuary, loaded with it in a scenario's `-DepMap`; none of them is a requirement of this Workshop item, and none is bundled in `Mod/`. Whether and how these tools join a release (and what the description then says) is the owner's decision; until then a mod that needs them uses this repository, not the Workshop item.
