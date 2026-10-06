@@ -345,3 +345,6 @@ Package `nelim.pickletools.veffactions`. In the bundle (`Mod/Pickle/Assemblies`)
 | `Nelim's Pickle Tools: the chosen faction is ignored in this save` (Then) | Asserts the chosen faction is on VEF's ignored list |
 | `Nelim's Pickle Tools: the chosen faction is not ignored` (Then) | Asserts the chosen faction is not on VEF's ignored list |
 | `Nelim's Pickle Tools: the game log says the chosen faction was ignored` (Then) | Asserts the log holds a Quiet New Factions line for the chosen faction |
+
+| `Nelim's Pickle Tools: {string} carries the item {string}` (Given) | Puts one item in the hands of a pawn (colonist or animal, by short name): makes the thing from its ThingDef and holds it with the carry tracker, which draws it on the pawn. Holds while the game is paused and nothing gives the pawn a job; drops what it carried first. Fails on an unknown def. Played: `carry-item` (Nelim, WoodLog). |
+| `Nelim's Pickle Tools: {string} carries {int} of the item {string}` (Given) | The same, with a stack (clamped to the def's stack limit). |

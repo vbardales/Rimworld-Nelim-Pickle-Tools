@@ -291,6 +291,39 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(pawn.Rotation == facing, $"{name} should face {facing}; it faces {pawn.Rotation}");
         }
 
+        /// <summary>
+        /// Puts one item in the hands of a pawn (colonist or animal, found by its short name), as a hauler carries it: the thing is made from the
+        /// def and held by the carry tracker, which draws it on the pawn. Holds while the game is paused and nothing gives the pawn a job; a pawn
+        /// already carrying something drops it first. Fails on an unknown def or when the pawn cannot carry it.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} carries the item {string}")]
+        public void CarriesItem(PickleContext ctx, string name, string defName)
+        {
+            CarryItems(ctx, name, 1, defName);
+        }
+
+        /// <summary>The same, with a stack of {int} items.</summary>
+        [Given("Nelim's Pickle Tools: {string} carries {int} of the item {string}")]
+        public void CarriesItems(PickleContext ctx, string name, int count, string defName)
+        {
+            CarryItems(ctx, name, count, defName);
+        }
+
+        private static void CarryItems(PickleContext ctx, string name, int count, string defName)
+        {
+            Pawn pawn = AnyPawn(ctx, name);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ctx.Require(pawn.carryTracker != null, $"{name} has no carry tracker");
+            if (pawn.carryTracker.CarriedThing != null) pawn.carryTracker.DestroyCarriedThing();
+            Thing thing = ThingMaker.MakeThing(def);
+            int wanted = Math.Max(1, Math.Min(count, def.stackLimit));
+            thing.stackCount = wanted;
+            int carried = pawn.carryTracker.TryStartCarry(thing, wanted, true);
+            ctx.Assert(carried > 0 && pawn.carryTracker.CarriedThing != null, $"{name} could not carry {wanted} {defName}");
+            Redraw(pawn);
+        }
+
         private static Rot4 Direction(string direction)
         {
             switch (direction.ToLowerInvariant())
