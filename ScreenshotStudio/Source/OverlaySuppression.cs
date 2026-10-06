@@ -16,11 +16,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched;
 
         public static bool Active { get; private set; }
         public static bool TooltipsHidden { get; private set; }
         public static bool HelperHidden { get; private set; }
+        public static bool ReadoutHidden { get; private set; }
+        public static bool AlertsHidden { get; private set; }
 
         public static void Begin()
         {
@@ -65,12 +67,42 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
-        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; }
+        public static void HideReadout()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!readoutPatched)
+                {
+                    harmony.Patch(AccessTools.Method(typeof(ResourceReadout), nameof(ResourceReadout.ResourceReadoutOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipReadout)));
+                    readoutPatched = true;
+                }
+                ReadoutHidden = true;
+            }
+        }
+
+        public static void HideAlerts()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!alertsPatched)
+                {
+                    harmony.Patch(AccessTools.Method(typeof(AlertsReadout), nameof(AlertsReadout.AlertsReadoutOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipAlerts)));
+                    alertsPatched = true;
+                }
+                AlertsHidden = true;
+            }
+        }
+
+        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; }
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
 
         private static bool SkipOverlays() => !Active;
         private static bool SkipTooltips() => !TooltipsHidden;
         private static bool SkipConcepts() => !HelperHidden;
+        private static bool SkipReadout() => !ReadoutHidden;
+        private static bool SkipAlerts() => !AlertsHidden;
     }
 }

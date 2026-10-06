@@ -225,7 +225,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 203, 237, 11), ("barn", 193, 237, 10.5f), ("preindustrial-workshop", 205, 237, 10.5f), ("postindustrial-workshop", 214, 237, 18), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
             ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 15), ("rice-paddy", 230, 122, 8), ("flower-garden", 154, 105, 5), ("exhibition-zone", 218, 166, 18), ("calm-zone", 200, 187, 11), ("calm-zone-close", 200, 185, 2.8f), ("bare-clearing", 195, 152, 5), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
             ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
-            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 205, 48, 14),
+            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 90, 140, 47),
         };
 
         // Names that stay valid but point to another place (a duplicate Virginie asked to merge), and names that were removed (with what to use instead).
@@ -596,6 +596,24 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             try { OverlaySuppression.HideTooltips(); }
             catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[tooltips] stay drawn: Harmony is not loaded"); }
+        }
+
+        // Interface kept (tabs, buttons), but without the resource list on the left.
+        [Given(Prefix + "the resource readout is hidden")]
+        [When(Prefix + "I hide the resource readout")]
+        public void HideResourceReadout(PickleContext ctx)
+        {
+            try { OverlaySuppression.HideReadout(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[readout] stays drawn: Harmony is not loaded"); }
+        }
+
+        // Interface kept (tabs, buttons), but without the alert boxes at the bottom right.
+        [Given(Prefix + "the alerts are hidden")]
+        [When(Prefix + "I hide the alerts")]
+        public void HideAlerts(PickleContext ctx)
+        {
+            try { OverlaySuppression.HideAlerts(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[alerts] stay drawn: Harmony is not loaded"); }
         }
 
         // Interface kept, but without the learning helper's tip boxes (top right).
