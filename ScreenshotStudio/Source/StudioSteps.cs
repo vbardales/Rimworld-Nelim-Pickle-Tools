@@ -401,60 +401,19 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "No loaded map");
+            var corners = new[] { new IntVec3(4, 0, 4), new IntVec3(map.Size.x - 5, 0, 4), new IntVec3(4, 0, map.Size.z - 5), new IntVec3(map.Size.x - 5, 0, map.Size.z - 5) };
             foreach (var pawn in map.mapPawns.FreeColonistsSpawned.ToList())
             {
-                IntVec3 cell;
-                if (!CellFinder.TryFindRandomCellNear(new IntVec3(4, 0, 4), map, 12, c => c.Standable(map) && c.GetFirstPawn(map) == null, out cell)) continue;
+                IntVec3 cell = IntVec3.Invalid;
+                foreach (var corner in corners)
+                    if (CellFinder.TryFindRandomCellNear(corner, map, 40, c => c.Standable(map) && c.GetFirstPawn(map) == null, out cell)) break;
+                ctx.Require(cell.IsValid, "No free standable cell near any map corner for " + pawn.LabelShort);
                 pawn.jobs?.StopAll();
                 pawn.pather?.StopDead();
                 pawn.Position = cell;
                 pawn.Notify_Teleported();
+                Log.Message("[colonists away] " + pawn.LabelShort + " moved to (" + cell.x + ", " + cell.z + ")");
             }
-        }
-
-        // Lists what stands in a named place, for a mod that must put a subject on a free cell: the standable cells with nothing on them, as runs per row
-        // (z: x1-x2), then the buildings and items with their cells, size and stack, and the stockpile zones. Written to the log and attached to the run.
-        [Then(Prefix + "the sanctuary {string} is listed")]
-        [Given(Prefix + "the sanctuary {string} is listed")]
-        [When(Prefix + "I list the sanctuary {string}")]
-        public void ListSanctuary(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            Map map = Find.CurrentMap;
-            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            var sb = new System.Text.StringBuilder();
-            sb.AppendLine("sanctuary " + site.Name + " x " + r[0] + "-" + r[1] + ", z " + r[2] + "-" + r[3]);
-            sb.AppendLine("free standable cells (nothing on them, no roof-less wall), runs per row z: x1-x2");
-            for (int z = r[3]; z >= r[2]; z--)
-            {
-                var runs = new System.Collections.Generic.List<string>();
-                int start = -1;
-                for (int x = r[0]; x <= r[1] + 1; x++)
-                {
-                    bool free = false;
-                    if (x <= r[1])
-                    {
-                        var c = new IntVec3(x, 0, z);
-                        free = c.InBounds(map) && c.Standable(map) && c.GetFirstThing<Pawn>(map) == null && c.GetThingList(map).All(th => !(th is Pawn) && th.def.category != ThingCategory.Building && th.def.category != ThingCategory.Item && th.def.category != ThingCategory.Plant);
-                    }
-                    if (free && start < 0) start = x;
-                    if (!free && start >= 0) { runs.Add(start == x - 1 ? start.ToString() : start + "-" + (x - 1)); start = -1; }
-                }
-                if (runs.Count > 0) sb.AppendLine(z + ": " + string.Join(", ", runs));
-            }
-            sb.AppendLine("buildings and items: def at (x, z) size WxH [stack]");
-            foreach (var th in map.listerThings.AllThings.Where(th => th.Position.x >= r[0] && th.Position.x <= r[1] && th.Position.z >= r[2] && th.Position.z <= r[3]
-                && (th.def.category == ThingCategory.Building || th.def.category == ThingCategory.Item) && !th.def.IsDoor && !th.def.defName.EndsWith("Wall")).OrderBy(th => th.Position.z).ThenBy(th => th.Position.x))
-                sb.AppendLine(th.def.defName + " at (" + th.Position.x + ", " + th.Position.z + ") size " + th.def.size.x + "x" + th.def.size.z + (th.def.category == ThingCategory.Item ? " [" + th.stackCount + "]" : ""));
-            sb.AppendLine("stockpile zones: cells");
-            foreach (var zone in map.zoneManager.AllZones.OfType<Zone_Stockpile>())
-            {
-                var cells = zone.Cells.Where(c => c.x >= r[0] && c.x <= r[1] && c.z >= r[2] && c.z <= r[3]).ToList();
-                if (cells.Count > 0) sb.AppendLine(zone.label + ": " + cells.Count + " cells, x " + cells.Min(c => c.x) + "-" + cells.Max(c => c.x) + ", z " + cells.Min(c => c.z) + "-" + cells.Max(c => c.z));
-            }
-            Log.Message("[sanctuary list] " + sb);
-            ctx.Attach("sanctuary-list-" + site.Name, sb.ToString());
         }
 
         // Opens the sky over a named place: every roof on its cells is removed, walls stay. A roofed room is lit by lamps only; with the roof gone it

@@ -115,7 +115,7 @@ Ancien libellé, toujours valable : `Nelim's Pickle Tools: I frame the sanctuary
 
 ## Vider un lieu
 
-Si un lieu est trop encombré pour un test, le scénario le vide : `Given Nelim's Pickle Tools: the sanctuary "<nom>" is emptied` (ou `When ... I empty the sanctuary "<nom>"`). Meubles, objets, plantes, saleté et cadavres disparaissent ; murs, portes et personnages restent. Pour les quatre pièces (`hearth-hall`, `prestige-hall`, `ritual-hall`, `terrace`, `cloister`) la zone est la pièce ; pour les autres lieux, la zone est le carré de la photo. La sauvegarde sur disque n'est pas modifiée : seul le run en cours est vidé.
+Si un lieu est trop encombré pour un test, le scénario le vide : `Given Nelim's Pickle Tools: the sanctuary "<nom>" is emptied` (ou `When ... I empty the sanctuary "<nom>"`). Meubles, objets, plantes (arbres, bambous), clôtures, saleté et cadavres disparaissent (tout bâtiment qui n'est ni un mur ni une porte) ; murs, portes et personnages restent. Pour les quatre pièces (`hearth-hall`, `prestige-hall`, `ritual-hall`, `terrace`, `cloister`) la zone est la pièce ; pour les autres lieux, la zone est le carré de la photo. La sauvegarde sur disque n'est pas modifiée : seul le run en cours est vidé.
 
 ## Captures à vide
 
