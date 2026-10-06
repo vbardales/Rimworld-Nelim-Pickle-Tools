@@ -15,6 +15,7 @@ it found:
 | Step | What it asserts |
 | --- | --- |
 | `Nelim's Pickle Tools: {string} has gender {word}` | `male` or `female`, case insensitive |
+| `Nelim's Pickle Tools: {string} gender is {word}` | Given. `male` or `female`; the plain body and a head of the other gender follow. Call it BEFORE body type, hairstyle and head type. **Not played in a game yet** |
 | `Nelim's Pickle Tools: {string} has body type {word}` | the `BodyTypeDef` defName, case insensitive |
 | `Nelim's Pickle Tools: {string} has xenotype {string}` | the xenotype def; a custom xenotype reads as the def it was built from, and the failure names the custom one. Needs Biotech |
 | `Nelim's Pickle Tools: {string} is of race {string}` | the race def name: `Human`, or a race a mod adds |

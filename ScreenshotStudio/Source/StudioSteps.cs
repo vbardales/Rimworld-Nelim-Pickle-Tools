@@ -215,6 +215,272 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(3);
         }
 
+        // The named places of the Sanctuaire de Nelim (the save "Nelims-tribe", docs/SANCTUAIRE-LIEUX.md): absolute map cells, not offsets
+        // from the studio centre, with the camera root size that frames each one. A suite names the place and never writes a coordinate.
+        private static readonly (string Name, int X, int Z, float Size)[] SanctuarySites =
+        {
+            ("overview-north", 125, 185, 60), ("overview-south", 125, 65, 60), ("house", 190, 115, 15), ("hearth-hall", 181, 115, 12), ("sleeping-nook", 177, 121, 6.5f), ("sofa-corner", 187, 123, 3.5f), ("dining-nook", 176, 108, 3.7f), ("fire-pit", 181, 115, 5f), ("cloister", 179, 130, 7f), ("statue-garden", 155, 97, 13), ("prestige-hall", 196, 111, 8.5f), ("ritual-hall", 206, 117, 8f), ("terrace", 197, 123, 9f), ("plant-garden", 190, 85, 11), ("hut", 140, 67, 12),
+            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 21), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 14), ("emerald-clearing", 197, 152, 12), ("enclosure", 158, 224, 22), ("workshops", 203, 237, 11), ("barn", 193, 237, 14), ("preindustrial-workshop", 205, 237, 14), ("postindustrial-workshop", 214, 237, 24), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
+            ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 20), ("exhibition-zone", 225, 168, 21), ("calm-zone", 193, 187, 11), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
+            ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
+            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15),
+        };
+
+        // Names that stay valid but point to another place (a duplicate Virginie asked to merge), and names that were removed (with what to use instead).
+        private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryAliases = new System.Collections.Generic.Dictionary<string, string>
+        {
+            { "tea-room", "hut" }, { "decharge", "dump" }, { "cream-clearing", "calm-zone" }, { "grand-place", "exhibition-zone" }, { "la-grand-place", "exhibition-zone" },
+            { "statue-plaza", "statue-garden" }, { "hermit-hall", "hearth-hall" },
+            { "salle-des-rituels", "ritual-hall" }, { "salle-de-l-ideologie", "ritual-hall" }, { "veranda", "terrace" },
+            { "le-champ", "rice-paddies" }, { "rizieres", "rice-paddies" }, { "zone-d-expo", "exhibition-zone" }, { "clearing-a", "emerald-clearing" }, { "emerald-podium", "emerald-clearing" }, { "great-courtyard", "emerald-clearing" }, { "podium", "emerald-clearing" }, { "river", "left-bank" }, { "water-zone", "water-garden" },
+        };
+        private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryRetired = new System.Collections.Generic.Dictionary<string, string>
+        {
+            { "forest-edge", "removed 2026-10-05" }, { "river-upstream", "removed 2026-10-05" }, { "river-exit", "removed 2026-10-05" }, { "power-cell", "removed 2026-10-05; the cell is beside \"clearing-a\"" },
+            { "animal-pen", "removed 2026-10-05; the pens moved up, use \"enclosure\"" }, { "bamboo-south", "removed 2026-10-05; ask Pickle Tools for a place instead of clearing the bamboo" }, { "bamboo-west", "removed 2026-10-05" },
+        };
+
+        // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange); SimpleCameraSetting and Camera+ widen it the same way. A tighter or wider frame needs the range widened first.
+        private static void LiftZoomLimit()
+        {
+            object config = Find.CameraDriver?.config;
+            var field = config?.GetType().GetField("sizeRange");
+            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(2f, 130f));
+            else Log.Warning("[frame] CameraMapConfig.sizeRange not found: the zoom stays limited to the game's own range");
+        }
+
+        private static (string Name, int X, int Z, float Size) FindSite(PickleContext ctx, string place)
+        {
+            // "Salon de thé", "salon_de_the" and "salon-de-the" are one name: accents dropped, case folded, spaces and underscores turned into hyphens.
+            place = new string(place.Normalize(System.Text.NormalizationForm.FormD).Where(c => System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark).ToArray()).Trim().ToLowerInvariant().Replace(' ', '-').Replace('_', '-').Replace('\x27', '-');
+            string name = SanctuaryAliases.TryGetValue(place, out string target) ? target : place;
+            string reason;
+            ctx.Require(!SanctuaryRetired.TryGetValue(place, out reason), "The sanctuary place \"" + place + "\" is gone (" + reason + "); known: " + string.Join(", ", SanctuarySites.Select(s => s.Name)));
+            var site = SanctuarySites.FirstOrDefault(s => s.Name == name);
+            ctx.Require(site.Name != null, "Unknown sanctuary place \"" + place + "\"; known: " + string.Join(", ", SanctuarySites.Select(s => s.Name)));
+            return site;
+        }
+
+        [Given(Prefix + "I am at the sanctuary {string}", TimeoutSeconds = 60f)]
+        [When(Prefix + "I frame the sanctuary {string}", TimeoutSeconds = 60f)]
+        public async Task FrameSanctuary(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            ctx.Require(Find.CurrentMap != null && Find.CurrentMap.Size.x >= 250 && Find.CurrentMap.Size.z >= 250, "Load the save \"Nelims-tribe\" first (a 250 by 250 map)");
+            LiftZoomLimit();
+            Find.Selector.ClearSelection();
+            Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(site.X, 0, site.Z));
+            Find.CameraDriver.SetRootSize(site.Size);
+            await ctx.WaitFrames(90); // the game eases the zoom over several frames (CameraZoom waits 90 too)
+            // The sky glow eases towards its target frame by frame (after a hour or a weather change it keeps moving for a while): wait until it holds still, so that two shots of one run have the same light.
+            float last = -1f; int still = 0;
+            for (int i = 0; i < 600 && still < 20; i++)
+            {
+                float glow = Find.CurrentMap.skyManager.CurSkyGlow;
+                still = Math.Abs(glow - last) < 0.0005f ? still + 1 : 0;
+                last = glow;
+                await ctx.WaitFrames(1);
+            }
+            Log.Message("[frame] " + place + ": asked (" + site.X + ", " + site.Z + ") zoom " + site.Size + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00"));
+        }
+
+        // The cells a named place covers, as (minX, maxX, minZ, maxZ). Rooms are listed because their walls and doors stay; every other
+        // place is the square of its camera size around its centre.
+        private static readonly System.Collections.Generic.Dictionary<string, int[]> SanctuaryRooms = new System.Collections.Generic.Dictionary<string, int[]>
+        {
+            ["hearth-hall"] = new[] { 172, 190, 106, 124 }, ["prestige-hall"] = new[] { 193, 200, 106, 117 },
+            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 198, 230, 244 }, ["preindustrial-workshop"] = new[] { 200, 210, 230, 244 }, ["postindustrial-workshop"] = new[] { 212, 217, 230, 244 }, ["cloister"] = new[] { 167, 192, 126, 131 },
+        };
+
+        private static int[] SanctuaryArea((string Name, int X, int Z, float Size) site)
+        {
+            int[] r;
+            if (SanctuaryRooms.TryGetValue(site.Name, out r)) return r;
+            int hx = Mathf.CeilToInt(site.Size * 16f / 9f), hz = Mathf.CeilToInt(site.Size);
+            return new[] { site.X - hx, site.X + hx, site.Z - hz, site.Z + hz };
+        }
+
+        // Empties a named place of everything a mod could trip over: furniture, items, plants, filth, corpses. Walls, doors and
+        // pawns stay. The save is not touched on disk, so a scenario that empties a place only changes its own run.
+        [Given(Prefix + "the sanctuary {string} is emptied")]
+        [When(Prefix + "I empty the sanctuary {string}")]
+        public void EmptySanctuary(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            var doomed = map.listerThings.AllThings.Where(t => t.Position.x >= r[0] && t.Position.x <= r[1] && t.Position.z >= r[2] && t.Position.z <= r[3]
+                && !(t is Pawn) && t.def.category != ThingCategory.Ethereal && t.def.category != ThingCategory.Projectile
+                && !(t.def.building != null && (t.def.IsDoor || t.def.defName.EndsWith("Wall") || t.def.building.isNaturalRock))).ToList();
+            foreach (var t in doomed) if (!t.Destroyed) t.Destroy();
+        }
+
+        // A flower border around a free square, for the photographs: two to four cells wide, thinning outwards, the square itself untouched.
+        // Cells that hold a building, water or soil that grows nothing are skipped; an existing plant on a chosen cell is replaced.
+        [Given(Prefix + "a flower border is planted around the square from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void FlowerBorder(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            string[] kinds = { "Plant_Dandelion", "Plant_Dandelion", "Plant_Daylily", "Plant_Rose" };
+
+            for (int x = x1 - 4; x <= x2 + 4; x++)
+                for (int z = z1 - 4; z <= z2 + 4; z++)
+                {
+                    int d = Math.Max(Math.Max(x1 - x, x - x2), Math.Max(z1 - z, z - z2));   // 1 = the ring touching the square
+                    if (d < 1 || d > 4) continue;
+                    if (Rand.Value > (d <= 2 ? 0.75f : 0.40f)) continue;
+                    var c = new IntVec3(x, 0, z);
+                    if (!c.InBounds(map) || c.GetFirstBuilding(map) != null || c.GetFirstItem(map) != null) continue;
+                    var def = Def<ThingDef>(kinds[Rand.Range(0, kinds.Length)]);
+                    if (c.GetTerrain(map).fertility <= 0f || c.GetTerrain(map).IsWater) continue;
+                    var old = c.GetPlant(map);
+                    if (old != null) old.Destroy();
+                    var p = (Plant)ThingMaker.MakeThing(def);
+                    p.Growth = 1f;
+                    GenSpawn.Spawn(p, c, map);
+                }
+        }
+
+        // Sends the animals standing in a named place away (despawned, not killed), for a photograph or a scene that wants the place to itself.
+        // The colonists stay. Same area as "is emptied".
+        [Given(Prefix + "the animals are removed from the sanctuary {string}")]
+        public void RemoveAnimals(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            var animals = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && p.Position.x >= r[0] && p.Position.x <= r[1] && p.Position.z >= r[2] && p.Position.z <= r[3]).ToList();
+            foreach (var a in animals) a.DeSpawn();
+        }
+
+        // Opens the sky over a named place: every roof on its cells is removed, walls stay. A roofed room is lit by lamps only; with the roof gone it
+        // is lit by the sun, so the photograph is bright. Same area as "is emptied".
+        [Given(Prefix + "the roof is removed from the sanctuary {string}")]
+        public void RemoveRoof(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            for (int x = r[0]; x <= r[1]; x++)
+                for (int z = r[2]; z <= r[3]; z++)
+                {
+                    var c = new IntVec3(x, 0, z);
+                    if (c.InBounds(map) && map.roofGrid.RoofAt(c) != null && !map.roofGrid.RoofAt(c).isThickRoof) map.roofGrid.SetRoof(c, null);
+                }
+        }
+
+        // Lets the game build its power nets now. A loaded or freshly spawned map holds its connections as pending work that only a tick would do, and the
+        // scenes run paused; connecting components by hand on top of that registers them twice, so the game is asked to do it itself.
+        // A building spawned next to a transmitter by a scene is usually connected on spawn; this makes it certain, and a net that still
+        // shows the unpowered icon after it is a real shortage (the supply is lower than the demand), not a missing connection.
+        [Given(Prefix + "the power network is refreshed")]
+        public async Task RefreshPower(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            map.powerNetManager.UpdatePowerNetsAndConnections_First();
+            await ctx.WaitFrames(3);
+        }
+
+        // Two checks for what a mod does at load without a screen to read it from: a window of a given type on the stack, and a collection kept by a
+        // world component. Both look by the type's simple name (the window) or full name (the component), so a scenario names what it means.
+        [Then(Prefix + "no window of the type {string} is open")]
+        public void NoWindowOfType(PickleContext ctx, string typeName)
+        {
+            var open = Find.WindowStack.Windows.Where(w => w.GetType().Name == typeName).ToList();
+            ctx.Assert(open.Count == 0, "The window " + typeName + " is open (" + open.Count + ")");
+        }
+
+        [Then(Prefix + "the world component {string} holds at least {int} entries in its field {string}")]
+        public void WorldComponentEntries(PickleContext ctx, string typeName, int atLeast, string field)
+        {
+            var comp = Find.World.components.FirstOrDefault(c => c.GetType().FullName == typeName);
+            ctx.Require(comp != null, "No world component " + typeName + "; found: " + string.Join(", ", Find.World.components.Select(c => c.GetType().FullName).Where(n => n.IndexOf("Faction", StringComparison.OrdinalIgnoreCase) >= 0)));
+            var f = comp.GetType().GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic);
+            ctx.Require(f != null, "No field " + field + " on " + typeName);
+            var value = f.GetValue(comp) as System.Collections.IEnumerable;
+            int n = 0; if (value != null) foreach (var _ in value) n++;
+            ctx.Assert(n >= atLeast, typeName + "." + field + " holds " + n + " entries, expected at least " + atLeast);
+        }
+
+        // Makes the map a one-colonist map: every humanlike pawn but the named one, and every humanlike corpse, vanishes. Animals stay.
+        [Given(Prefix + "all humans but {string} are removed")]
+        public void RemoveOtherHumans(PickleContext ctx, string keep)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            ctx.Require(map.mapPawns.AllPawnsSpawned.Any(p => p.Name != null && p.Name.ToStringShort == keep), "No pawn named " + keep + " on the map");
+            foreach (var p in map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Humanlike && (p.Name == null || p.Name.ToStringShort != keep)).ToList()) p.Destroy(DestroyMode.Vanish);
+            foreach (var c in map.listerThings.AllThings.OfType<Corpse>().Where(c => c.InnerPawn != null && c.InnerPawn.RaceProps.Humanlike).ToList()) c.Destroy(DestroyMode.Vanish);
+            ctx.Assert(map.mapPawns.AllPawnsSpawned.Count(p => p.RaceProps.Humanlike) == 1, "Expected one human left");
+        }
+
+        // Tidies the map: every haulable item that lies outside a stockpile or a storage building is merged into full stacks and put into the
+        // stockpile zones. Nothing is deleted; the stockpile must have room.
+        [Given(Prefix + "all loose items are put away")]
+        public void PutAwayLooseItems(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var cells = map.zoneManager.AllZones.OfType<Zone_Stockpile>().SelectMany(z => z.Cells).ToList();
+            ctx.Require(cells.Count > 0, "The map has no stockpile zone to put items into");
+            var loose = map.listerThings.AllThings.Where(t => t.def.category == ThingCategory.Item && t.Spawned && t.def.EverHaulable
+                && map.haulDestinationManager.SlotGroupAt(t.Position) == null).ToList();
+            var toPlace = new System.Collections.Generic.List<Thing>();
+            foreach (var g in loose.GroupBy(t => t.def))
+            {
+                var kept = new System.Collections.Generic.List<Thing>();
+                foreach (var t in g)
+                {
+                    bool merged = false;
+                    foreach (var s in kept)
+                        if (s.stackCount < s.def.stackLimit && s.CanStackWith(t)) { s.TryAbsorbStack(t, true); if (t.Destroyed || t.stackCount <= 0) { merged = true; break; } }
+                    if (!merged && !t.Destroyed) kept.Add(t);
+                }
+                toPlace.AddRange(kept);
+            }
+            var free = new System.Collections.Generic.Queue<IntVec3>(cells.Where(c => c.GetFirstItem(map) == null && c.GetFirstBuilding(map) == null));
+            ctx.Require(free.Count >= toPlace.Count, "The stockpiles have " + free.Count + " free cells for " + toPlace.Count + " stacks");
+            foreach (var t in toPlace)
+            {
+                if (t.Spawned) t.DeSpawn();
+                GenPlace.TryPlaceThing(t, free.Dequeue(), map, ThingPlaceMode.Direct);
+            }
+            int left = map.listerThings.AllThings.Count(t => t.def.category == ThingCategory.Item && t.Spawned && t.def.EverHaulable && map.haulDestinationManager.SlotGroupAt(t.Position) == null);
+            ctx.Assert(left == 0, left + " items are still outside a stockpile (" + toPlace.Count + " stacks were placed)");
+        }
+
+        // Sets a colonist's food need to full.
+        [Given(Prefix + "the pawn {string} is fully fed")]
+        public void FullyFed(PickleContext ctx, string name)
+        {
+            var p = Find.CurrentMap.mapPawns.AllPawnsSpawned.FirstOrDefault(x => x.Name != null && x.Name.ToStringShort == name);
+            ctx.Require(p != null && p.needs != null && p.needs.food != null, "No pawn named " + name + " with a food need");
+            p.needs.food.CurLevel = p.needs.food.MaxLevel;
+        }
+
+        // Removes every piece of filth on the map (blood, dirt, ash, vomit, insect jelly): it only spoils the photographs.
+        [Given(Prefix + "all filth is cleaned")]
+        public void CleanFilth(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            foreach (var f in map.listerThings.AllThings.OfType<Filth>().ToList()) if (!f.Destroyed) f.Destroy();
+            ctx.Assert(!map.listerThings.AllThings.OfType<Filth>().Any(), "Some filth is still on the map");
+        }
+
+        // Puts the research tree back to nothing researched: the Sanctuaire is a blank colony, so a mod that tests a research gate sees the gate.
+        [Given(Prefix + "all research is reset")]
+        public void ResetResearch(PickleContext ctx)
+        {
+            Find.ResearchManager.ResetAllProgress();
+            ctx.Assert(!DefDatabase<ResearchProjectDef>.AllDefsListForReading.Any(r => r.IsFinished && r.baseCost > 0f), "Some research is still finished");
+        }
+
         [Then(Prefix + "the flower meadow studio is intact")]
         public void Check(PickleContext ctx)
         {

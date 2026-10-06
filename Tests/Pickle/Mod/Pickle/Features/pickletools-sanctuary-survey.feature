@@ -1,5 +1,5 @@
-# Survey of the save "Nelims-tribe" (the Sanctuaire de Nelim): one frame, one screenshot per candidate site of docs/SANCTUAIRE-LIEUX.md,
-# to check from the pictures what the save's cells say. Not a regression test: it only moves the camera and takes screenshots.
+# Survey of the final save "Nelims-tribe" (2026-10-04 22:39): one frame, one screenshot per smiley, the finished river and the house with its animals,
+# to confirm from the pictures what docs/SANCTUAIRE-LIEUX.md reads in the file. Not a regression test: it only moves the camera and takes screenshots.
 # The save is ScreenshotStudio/Mod/Pickle/Fixtures/Nelims-tribe.rws (a copy of Virginie's "Nelim's tribe" of 2026-10-04, Git LFS, staged by the studio map).
 #
 #   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.sanctuary.map -Filter pickletools-sanctuary-survey
@@ -11,29 +11,27 @@ Feature: Survey of the Sanctuaire save
     And game speed is paused
 
   Scenario: each candidate site is framed and photographed
-    When Nelim's Pickle Tools: I frame the cell (190, 115) at zoom 15
-    And I take a screenshot "site-home"
-    And Nelim's Pickle Tools: I frame the cell (140, 73) at zoom 12
-    And I take a screenshot "site-hut"
-    And Nelim's Pickle Tools: I frame the cell (128, 110) at zoom 16
-    And I take a screenshot "site-river-middle"
-    And Nelim's Pickle Tools: I frame the cell (125, 20) at zoom 18
-    And I take a screenshot "site-river-south"
-    And Nelim's Pickle Tools: I frame the cell (177, 173) at zoom 17
-    And I take a screenshot "site-water-pools"
-    And Nelim's Pickle Tools: I frame the cell (170, 143) at zoom 17
-    And I take a screenshot "site-gravel-yard"
-    And Nelim's Pickle Tools: I frame the cell (190, 153) at zoom 12
-    And I take a screenshot "site-clearings"
-    And Nelim's Pickle Tools: I frame the cell (230, 120) at zoom 23
-    And I take a screenshot "site-plantation-east"
-    And Nelim's Pickle Tools: I frame the cell (20, 118) at zoom 25
-    And I take a screenshot "site-smiley-west"
-    And Nelim's Pickle Tools: I frame the cell (223, 168) at zoom 25
-    And I take a screenshot "site-smiley-east-sud"
+    When Nelim's Pickle Tools: I frame the cell (139, 56) at zoom 15
+    And I take a screenshot "site-smiley-bas-ouest"
+    And Nelim's Pickle Tools: I frame the cell (185, 56) at zoom 15
+    And I take a screenshot "site-smiley-bas-centre"
+    And Nelim's Pickle Tools: I frame the cell (230, 56) at zoom 15
+    And I take a screenshot "site-smiley-bas-est"
+    And Nelim's Pickle Tools: I frame the cell (93, 100) at zoom 15
+    And I take a screenshot "site-smiley-ouest"
+    And Nelim's Pickle Tools: I frame the cell (113, 160) at zoom 15
+    And I take a screenshot "site-smiley-riviere"
+    And Nelim's Pickle Tools: I frame the cell (176, 202) at zoom 15
+    And I take a screenshot "site-smiley-nord"
     And Nelim's Pickle Tools: I frame the cell (67, 177) at zoom 15
-    And I take a screenshot "site-smiley-southwest"
-    And Nelim's Pickle Tools: I frame the cell (46, 55) at zoom 17
-    And I take a screenshot "site-bamboo-west"
-    And Nelim's Pickle Tools: I frame the cell (170, 35) at zoom 17
-    And I take a screenshot "site-bamboo-south"
+    And I take a screenshot "site-smiley-sud-ouest"
+    And Nelim's Pickle Tools: I frame the cell (223, 168) at zoom 25
+    And I take a screenshot "site-smiley-grand-est-sud"
+    And Nelim's Pickle Tools: I frame the cell (114, 30) at zoom 20
+    And I take a screenshot "site-riviere-amont"
+    And Nelim's Pickle Tools: I frame the cell (114, 8) at zoom 14
+    And I take a screenshot "site-riviere-bord-de-carte"
+    And Nelim's Pickle Tools: I frame the cell (190, 115) at zoom 15
+    And I take a screenshot "site-maison-et-faune"
+    And Nelim's Pickle Tools: I frame the cell (177, 173) at zoom 17
+    And I take a screenshot "site-bassins"

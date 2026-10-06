@@ -93,6 +93,7 @@ namespace Nelim.PickleTools.ColonistRace
                 $"{nickname} does not wear '{apparelDefName}'; it wears {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName))}");
             Color wanted = Rgb(ctx, r, g, b);
             apparel.DesiredColor = wanted;
+            apparel.SetColor(wanted, false);  // the colour comp keeps its own colour (a fresh garment draws a random one), DesiredColor alone does not replace it
             apparel.Notify_ColorChanged();
             Redraw(pawn);
             Color read = apparel.DrawColor;
@@ -100,6 +101,10 @@ namespace Nelim.PickleTools.ColonistRace
                 Near(read, wanted),
                 $"the {apparelDefName} worn by {nickname} should be drawn in {wanted}; it is drawn in {read} (a garment with no colour comp, or a stuff colour that wins)");
         }
+
+        // What could explain a colour other than the one asked for, listed in the failure message.
+        private static string ColourFacts(Pawn pawn, Apparel apparel) =>
+            $"[desired {apparel.DesiredColor}, stuff {apparel.Stuff?.defName ?? "(none)"} {apparel.Stuff?.stuffProps?.color}, favourite colour {pawn.story?.favoriteColor}, ideo colour {pawn.Ideo?.Color}, colour comp {apparel.TryGetComp<CompColorable>() != null}, layers {string.Join("/", apparel.def.apparel.layers.Select(l => l.defName))}, worn: {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName + " " + a.DrawColor))}]";
 
         // What each pawn wore before a step dressed it, by the pawn itself: the original items are moved to the inventory (not destroyed) so
         // they can be put back. After a reload the pawn is another object and the entry is simply unused.
@@ -132,6 +137,7 @@ namespace Nelim.PickleTools.ColonistRace
             pawn.apparel.Wear(apparel, false);
             DressedIn.Add(apparel);
             apparel.DesiredColor = wanted;
+            apparel.SetColor(wanted, false);  // the colour comp keeps its own colour (a fresh garment draws a random one), DesiredColor alone does not replace it
             apparel.Notify_ColorChanged();
             Redraw(pawn);
 
@@ -139,7 +145,7 @@ namespace Nelim.PickleTools.ColonistRace
                 pawn.apparel.WornApparel.Contains(apparel),
                 $"{nickname} should wear '{apparelDefName}'; it wears {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName))}");
             Color read = apparel.DrawColor;
-            ctx.Assert(Near(read, wanted), $"the {apparelDefName} worn by {nickname} should be drawn in {wanted}; it is drawn in {read}");
+            ctx.Assert(Near(read, wanted), $"the {apparelDefName} worn by {nickname} should be drawn in {wanted}; it is drawn in {read}. " + ColourFacts(pawn, apparel));
         }
 
         /// <summary>
@@ -421,9 +427,14 @@ namespace Nelim.PickleTools.ColonistRace
             IntVec3 far = new IntVec3(anchor.x < map.Size.x / 2 ? map.Size.x - 6 : 5, 0, anchor.z < map.Size.z / 2 ? map.Size.z - 6 : 5);
             foreach (Pawn pawn in map.mapPawns.FreeColonistsSpawned.Where(p => !Subjects.Contains(p)).ToList())
             {
-                ctx.Require(
-                    CellFinder.TryFindRandomCellNear(far, map, 12, c => c.Standable(map) && c.GetFirstPawn(map) == null, out IntVec3 cell, 200),
-                    $"no standable cell near {far} to send {pawn.LabelShort} to");
+                // Widen the search when the far corner is dense (the Sanctuary's corners are bamboo forest), then take any standable cell at least 40 cells from the subject.
+                IntVec3 cell = IntVec3.Invalid;
+                bool found = false;
+                foreach (int radius in new[] { 12, 40, 100 })
+                    if (found = CellFinder.TryFindRandomCellNear(far, map, radius, c => c.Standable(map) && c.GetFirstPawn(map) == null, out cell, 200)) break;
+                if (!found)
+                    found = CellFinder.TryFindRandomCell(map, c => c.Standable(map) && c.GetFirstPawn(map) == null && c.DistanceTo(anchor) >= 40f, out cell);
+                ctx.Require(found, $"no standable cell near {far} or 40 cells from {anchor} to send {pawn.LabelShort} to");
                 Moved[pawn] = pawn.Position;
                 pawn.jobs?.StopAll();
                 pawn.pather?.StopDead();

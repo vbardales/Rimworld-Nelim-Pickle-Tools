@@ -1,7 +1,7 @@
 # Pending at Pickle
 
-Update 2026-10-04 (read with gh): **latest is v6.4.1 (2026-10-04, 16:59)**. Our **PR #54** (the dashboard serves on the next free port when
-27750 is taken) was merged by the maintainer on 2026-10-04 at 16:31 (`e2dab6e`) and ships in v6.4.1. The local `Pickle-local` build (v6.4.0 plus
+Update 2026-10-04 (read with gh): **latest is v6.4.1 (2026-10-04, 16:59 UTC, 18:59 in Virginie's GMT+2)**. Our **PR #54** (the dashboard serves on the next free port when
+27750 is taken) was merged by the maintainer on 2026-10-04 at 16:31 UTC (`e2dab6e`) and ships in v6.4.1. The local `Pickle-local` build (v6.4.0 plus
 the #54 change, with local-only C# 14 `field` workarounds) is no longer needed: use the Workshop Pickle once it is at 6.4.1. Still open on our
 side: which prefixed duplicates can go (read against v6.1.3, not yet against v6.4.1), and the mods' decision to pin Pickle >= 6.2.0.
 

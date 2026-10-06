@@ -54,6 +54,43 @@ namespace Nelim.PickleTools.ColonistRace
         /// Female) refuses a child or a baby, whose body follows its age whatever its genes; <c>Child</c> and <c>Baby</c> are
         /// the words for those, see SetJuvenileBodyType. Without Biotech there are no genes and the body type is set directly.
         /// </summary>
+        /// <summary>
+        /// Sets a pawn's gender, <c>male</c> or <c>female</c>, then makes the look agree with it: a Male or Female plain body follows the new
+        /// gender, and a head type reserved for the other gender is replaced by a head of the new gender. Call it BEFORE the body type, hairstyle
+        /// and head type steps, which read the gender. Redraws the pawn and reads the gender back.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} gender is {word}")]
+        public void SetGender(PickleContext ctx, string nickname, string gender)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Gender wanted;
+            switch (gender.ToLowerInvariant())
+            {
+                case "male": wanted = Gender.Male; break;
+                case "female": wanted = Gender.Female; break;
+                default: wanted = Gender.None; ctx.Require(false, $"gender must be male or female, not '{gender}'"); break;
+            }
+
+            ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no gender to set");
+            pawn.gender = wanted;
+            if (pawn.story.bodyType == BodyTypeDefOf.Male || pawn.story.bodyType == BodyTypeDefOf.Female)
+            {
+                pawn.story.bodyType = wanted == Gender.Female ? BodyTypeDefOf.Female : BodyTypeDefOf.Male;
+            }
+
+            if (pawn.story.headType != null && pawn.story.headType.gender != Gender.None && pawn.story.headType.gender != wanted)
+            {
+                HeadTypeDef head = DefDatabase<HeadTypeDef>.AllDefsListForReading.Where(h => h.randomChosen && (h.gender == wanted || h.gender == Gender.None)).RandomElementWithFallback();
+                if (head != null)
+                {
+                    pawn.story.headType = head;
+                }
+            }
+
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            ctx.Assert(pawn.gender == wanted, $"pawn '{nickname}' should be {wanted} after this step; it is {pawn.gender}");
+        }
+
         [Given("Nelim's Pickle Tools: {string} body type is {word}")]
         public void SetBodyType(PickleContext ctx, string nickname, string bodyType)
         {
