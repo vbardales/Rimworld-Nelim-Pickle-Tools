@@ -41,6 +41,8 @@ Les images partent dans le dossier de preuves de votre run. Copiez dans `Art/Gal
 
 Les mods ne voient un lieu que par son nom ou sa description. Avant de choisir, parcourez **tous** les lieux disponibles (table `SanctuarySites` de `ScreenshotStudio/Source/StudioSteps.cs`, ou `docs/SANCTUAIRE-LIEUX.md`) et lisez le nom et la description de chacun. N'en prenez pas un au hasard ni le premier venu: un lieu inconnu fait échouer le step avec la liste des lieux connus.
 
+Fenêtre plein écran sur fond de bambous (Virginie, 2026-10-06) : `window-backdrop-for-width` (centre (162, 49), zoom 18) pour une fenêtre LARGE de hauteur limitée : deux smileys (`smiley-bottom-west` et `smiley-bottom-centre`) dépassent dans les deux coins du haut, queue de cheval visible, sans le pavillon de thé. `window-backdrop-for-height` pour une fenêtre HAUTE : cadre encore à valider, ne l'utilisez pas avant que Pickle Tools le confirme. Retirez les animaux (`all animals are removed`) si vous voulez un fond vide.
+
 Conseil de Virginie (2026-10-06) : quand le sujet est une fenêtre de jeu PLEIN ÉCRAN (fiche d'info, dialogue qui recouvre la carte), choisissez `exhibition-zone` (alias `exhibition-area`, `grand-place`) : fond de moquette orange clair, un objet par case, plutôt qu'un intérieur à meubles. Un onglet d'inspection (l'onglet Santé d'un pion, un panneau qui laisse voir la carte) n'est pas plein écran : il reste dans le lieu de l'histoire, à son heure.
 
 Sol peint ou posé (par exemple le carré vert vif d'`emerald-clearing`) : `Given Nelim's Pickle Tools: the floor of the sanctuary "<lieu>" is bared` (ou `When ... I bare the floor of the sanctuary "<lieu>"`) donne à chaque case du lieu le sol nu de la terre voisine, sans peinture ; murs, toits et objets restent. À jouer AVANT `I am at the sanctuary`. Ajouté le 2026-10-06, en cours de vérification.
@@ -50,6 +52,10 @@ Cases libres et meubles : `docs/SANCTUAIRE-CASES.md` donne, pour les lieux d'int
 Décor : `I place the decor "<def>" at (x, z)`, `I place the decor "<def>" at (x, z) fully grown` (plante adulte d'un seul step), `the plants from (x1, z1) to (x2, z2) are fully grown`, `the decor "<def>" at (x, z) is lit`, `the decor is removed` (StageDecor ; voir docs/steps.md). Ces steps ont été compilés, pas tous joués en jeu par Pickle Tools.
 
 Une série peut aussi photographier plusieurs fois le même coin d'un lieu, y compris à la même période de la journée : ce n'est pas un problème (Virginie, 2026-10-06). Il n'y a pas de coins nommés. Une série n'a pas besoin d'un lieu nommé différent par image (Virginie, 2026-10-06) : tous les mods peuvent rester dans UN seul lieu, voire le même pour toutes les images, et varier le sujet, l'heure (`I set the hour to N`) et la météo (`I set the weather to "<nom>"`). Choisir plusieurs lieux est permis, jamais obligatoire. `I set the hour` et `I set the weather` sont des steps de Pickle, pas de ScreenshotStudio.
+
+Interface gardée (capture de menu) : `the colonist bar is hidden`, `the learning helper is hidden` (coupe aussi les NOUVELLES cartes d'aide tant que le scénario dure), `the tooltips are hidden` (plus d'infobulle de survol sur la carte), `I move the mouse to (x, y)` (ClickDiagnostics). Les repères de sélection restent si un pion est sélectionné. Ces steps passent par Harmony (carte de dépendances avec ClearScreen ou Harmony) ; compilés, pas tous joués.
+
+Scènes d'animaux : de préférence l'enclos du bas, `enclosure-south`, plus lisible que `enclosure-north` pour des animaux imposants ou des monstres ; l'enclos du haut convient aux animaux de la bambouseraie (pandas, par exemple). Conseil relayé par AnimalArk de la part de Virginie, 2026-10-06.
 
 ## Aucun lieu ne convient
 
