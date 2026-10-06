@@ -1,0 +1,10 @@
+{
+  "title":"Nelim's Pickle Tools","modIconSource":"ModIcon-source.png","titleSize":44,
+  "titleParts":[{"text":"Nelim's","font":"ui","scale":0.72},{"text":"Pickle Tools","breakBefore":true}],
+  "suffix":"","tag":"","tagInline":true,
+  "copyLines":["Shared Pickle steps for", "testing RimWorld mods."],
+  "layout":"panel","panelAnchor":"top-left","backgroundFile":"Preview-source.png","backgroundPosition":"center","backgroundSize":"cover",
+  "echo":{"file":"echo.png","preSized":true,"mode":"alpha","color":"var(--accent)","width":185,"height":170,"opacity":1,"veil":false,"panelTop":36,"panelRight":1,"panelWidth":32,"flipX":true},
+  "iconBadge":{"file":"ModIcon-badge.png","corner":"bottom-left","width":180,"translate":"12%, -12%","rotate":15,"radius":48,"outline":false,"veil":"radial","veilSize":250,"veilLeft":-45,"veilBottom":-45},
+  "palette":{"veil":"#233140","inkPrimary":"#F2ECE1","inkSecondary":"#A9BAD0","accent":"#75C900","badgeInk":"#17120E"}
+}
