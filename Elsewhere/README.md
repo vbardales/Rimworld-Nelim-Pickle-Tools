@@ -18,6 +18,7 @@ not a claim about every repository on GitHub or every deleted step in history.
 | [Anima Song](AnimaSong.md) | Float-menu actions, toggle gizmos, hearing, maintained motes sampled by ticks |
 | [Architect Studio](ArchitectStudio.md) | Categories/groups, Harmony ownership, settings sandbox, key-binding UI |
 | [Bill Autopilot](BillAutopilot.md) | Bills, stock, profiles, letters and integration assertions |
+| [Creatures of Ki Renew](CreaturesOfKiRenew.md) | Frozen poses: two animals mate (heart fleck), an animal carries an item |
 | [Drum Bath Hygiene](DrumBathHygiene.md) | Needs, carried filth, bathing jobs and diagnostic waits |
 | [Fieldwork Companions](FieldworkCompanions.md) | Animal training/master, harvest gestures, yields, settings and translation checks |
 | [Firework Stand](FireworkStand.md) | Fuel, glow, effects, joy jobs and time-sensitive captures |
