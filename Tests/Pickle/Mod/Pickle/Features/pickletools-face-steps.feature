@@ -27,8 +27,8 @@ Feature: Eye colour and facial expression of a colonist (Nals Facial Animation)
     And Nelim's Pickle Tools: "Nelim" eye colour is rgb (150, 60, 200)
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 1.2
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "violet-eyes-normal"
     When Nelim's Pickle Tools: "Nelim" facial expression is "moodCheerful"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 1.2
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "cheerful"
