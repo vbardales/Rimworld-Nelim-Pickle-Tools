@@ -292,7 +292,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [When(Prefix + "I let {int} ticks pass", TimeoutSeconds = 240f)]
         public async Task LetTicksPass(PickleContext ctx, int ticks)
         {
-            await ctx.WaitTicks(ticks);
+            // Not ctx.WaitTicks: after Pickle's own "I wait N ticks" the game stayed paused and this wait never ended (ACertainSeries run 9b0c, 240 s for 208 ticks).
+            // The game is set to its fastest speed, the tick counter is awaited, and the speed it had is put back.
+            var tm = Find.TickManager;
+            TimeSpeed before = tm.CurTimeSpeed;
+            int target = tm.TicksGame + ticks;
+            tm.CurTimeSpeed = TimeSpeed.Ultrafast;
+            try { await ctx.WaitUntil(() => Find.TickManager.TicksGame >= target, 235f); }
+            finally { Find.TickManager.CurTimeSpeed = before; }
         }
 
         // Any map: centre the camera on the rectangle and take the smallest root size that holds it whole (1080p frame: 2N cells tall, about 3.56N wide), plus one cell of margin on each side.
