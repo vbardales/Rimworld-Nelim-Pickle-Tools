@@ -117,3 +117,5 @@ Mods de corps, dans cet ordre de chargement (modèle : `TailorMadeWaistlines/Tes
 ## Attendre des ticks sans « timed out after 5s »
 
 `I wait N ticks` est un step de Pickle avec le délai par défaut de 5 s : en mode rapide (500 à 700 ticks par seconde sur WSL), 800 à 1000 ticks passent en 2 s, mais sur une machine chargée ils dépassent 5 s. Utilisez `When Nelim's Pickle Tools: I let N ticks pass` (même attente, délai de 240 s).
+
+Les textes flottants (« +80 », nombres de dégâts) restent dessinés en mode présentation et avec `the item and name labels are hidden` : seuls les compteurs de piles et les noms disparaissent (correctif du 2026-10-07 : avant, tout `ThingOverlays` était sauté, motes comprises ; non revu sur photo).

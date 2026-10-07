@@ -124,7 +124,17 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
 
-        private static bool SkipOverlays() => !Active;
+        // Stack counts and name labels are skipped, but the floating texts (text motes: "+80", damage numbers) are the scene's own and stay drawn.
+        private static bool SkipOverlays()
+        {
+            if (!Active) return true;
+            if (UnityEngine.Event.current.type != UnityEngine.EventType.Repaint || Find.CurrentMap == null) return false;
+            var rect = Find.CameraDriver.CurrentViewRect;
+            var list = Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.HasGUIOverlay);
+            for (int i = 0; i < list.Count; i++)
+                if (list[i] is MoteText mote && rect.Contains(mote.Position)) { try { mote.DrawGUIOverlay(); } catch (Exception e) { Log.Warning("[presentation] text mote not drawn: " + e.Message); } }
+            return false;
+        }
         private static bool SkipTooltips() => !TooltipsHidden;
         private static bool SkipConcepts() => !HelperHidden;
         private static bool SkipReadout() => !ReadoutHidden;
