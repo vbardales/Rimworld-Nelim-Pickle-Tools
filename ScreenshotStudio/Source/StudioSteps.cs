@@ -217,31 +217,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(3);
         }
 
-        // The named places of the Sanctuaire de Nelim (the save "Nelims-tribe", docs/SANCTUAIRE-LIEUX.md): absolute map cells, not offsets
-        // from the studio centre, with the camera root size that frames each one. A suite names the place and never writes a coordinate.
-        private static readonly (string Name, int X, int Z, float Size)[] SanctuarySites =
-        {
-            ("overview-north", 125, 185, 60), ("overview-south", 125, 65, 60), ("house", 190, 115, 15), ("hearth-hall", 181, 115, 12), ("sleeping-nook", 177, 121, 6.5f), ("sofa-corner", 187, 123, 3.5f), ("dining-nook", 176, 108, 3.7f), ("fire-pit", 181, 115, 5f), ("cloister", 179, 130, 7f), ("statue-garden", 155, 97, 13), ("prestige-hall", 196, 111, 8.5f), ("ritual-hall", 206, 117, 8f), ("terrace", 197, 123, 9f), ("plant-garden", 190, 85, 11), ("hut", 141, 72, 9),
-            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 214, 226, 21), ("barn", 196, 237, 8.5f), ("preindustrial-workshop", 223, 237, 8.5f), ("postindustrial-workshop", 235, 215, 8f), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
-            ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 15), ("rice-paddy", 230, 122, 8), ("flower-garden", 154, 105, 5), ("exhibition-zone", 218, 166, 18), ("calm-zone", 200, 187, 11), ("calm-zone-close", 200, 185, 2.8f), ("bare-clearing", 195, 152, 5), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
-            ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
-            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("infirmary", 207, 56, 14), ("infirmary-pawns", 202, 52, 6f), ("infirmary-animals", 213, 52, 6f), ("pediatrics", 207, 61, 7f), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 90, 140, 47),
-        };
-
-        // Names that stay valid but point to another place (a duplicate Virginie asked to merge), and names that were removed (with what to use instead).
-        private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryAliases = new System.Collections.Generic.Dictionary<string, string>
-        {
-            { "tea-room", "hut" }, { "exhibition-area", "exhibition-zone" }, { "cream-clearing", "calm-zone" }, { "grand-place", "exhibition-zone" },
-            { "statue-plaza", "statue-garden" }, { "hermit-hall", "hearth-hall" },
-            { "salle-des-rituels", "ritual-hall" }, { "salle-de-l-ideologie", "ritual-hall" }, { "veranda", "terrace" },
-            { "clearing-a", "emerald-clearing" }, { "emerald-podium", "emerald-clearing" }, { "great-courtyard", "emerald-clearing" }, { "podium", "emerald-clearing" }, { "river", "left-bank" }, { "water-zone", "water-garden" },
-        };
-        private static readonly System.Collections.Generic.Dictionary<string, string> SanctuaryRetired = new System.Collections.Generic.Dictionary<string, string>
-        {
-            { "forest-edge", "removed 2026-10-05" }, { "river-upstream", "removed 2026-10-05" }, { "river-exit", "removed 2026-10-05" }, { "power-cell", "removed 2026-10-05; the cell is beside \"clearing-a\"" },
-            { "animal-pen", "removed 2026-10-05; the pens moved up, use \"enclosure\"" }, { "bamboo-south", "removed 2026-10-05; ask Pickle Tools for a place instead of clearing the bamboo" }, { "bamboo-west", "removed 2026-10-05" },
-        };
-
         // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange); SimpleCameraSetting and Camera+ widen it the same way. A tighter or wider frame needs the range widened first.
         private static void LiftZoomLimit()
         {
@@ -249,44 +224,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
             var field = config?.GetType().GetField("sizeRange");
             if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(2f, 130f));
             else Log.Warning("[frame] CameraMapConfig.sizeRange not found: the zoom stays limited to the game's own range");
-        }
-
-        private static (string Name, int X, int Z, float Size) FindSite(PickleContext ctx, string place)
-        {
-            // "Salon de thé", "salon_de_the" and "salon-de-the" are one name: accents dropped, case folded, spaces and underscores turned into hyphens.
-            place = new string(place.Normalize(System.Text.NormalizationForm.FormD).Where(c => System.Globalization.CharUnicodeInfo.GetUnicodeCategory(c) != System.Globalization.UnicodeCategory.NonSpacingMark).ToArray()).Trim().ToLowerInvariant().Replace(' ', '-').Replace('_', '-').Replace('\x27', '-');
-            string name = SanctuaryAliases.TryGetValue(place, out string target) ? target : place;
-            string reason;
-            ctx.Require(!SanctuaryRetired.TryGetValue(place, out reason), "The sanctuary place \"" + place + "\" is gone (" + reason + "); known: " + string.Join(", ", SanctuarySites.Select(s => s.Name)));
-            var site = SanctuarySites.FirstOrDefault(s => s.Name == name);
-            ctx.Require(site.Name != null, "Unknown sanctuary place \"" + place + "\"; known: " + string.Join(", ", SanctuarySites.Select(s => s.Name)));
-            return site;
-        }
-
-        [When(Prefix + "I frame the sanctuary {string}", TimeoutSeconds = 60f)]
-        public Task FrameSanctuary_Alt(PickleContext ctx, string place) => FrameSanctuary(ctx, place);
-        [Given(Prefix + "I am at the sanctuary {string}", TimeoutSeconds = 60f)]
-        public async Task FrameSanctuary(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            // The bare clearing is the podium square without its green carpet: the floor is bared as the place is framed.
-            if (site.Name == "bare-clearing") BareFloor(ctx, "bare-clearing");
-            ctx.Require(Find.CurrentMap != null && Find.CurrentMap.Size.x >= 250 && Find.CurrentMap.Size.z >= 250, "Load the save \"Nelims-tribe\" first (a 250 by 250 map)");
-            LiftZoomLimit();
-            Find.Selector.ClearSelection();
-            Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(site.X, 0, site.Z));
-            Find.CameraDriver.SetRootSize(site.Size);
-            await ctx.WaitFrames(90); // the game eases the zoom over several frames (CameraZoom waits 90 too)
-            // The sky glow eases towards its target frame by frame (after a hour or a weather change it keeps moving for a while): wait until it holds still, so that two shots of one run have the same light.
-            float last = -1f; int still = 0;
-            for (int i = 0; i < 600 && still < 20; i++)
-            {
-                float glow = Find.CurrentMap.skyManager.CurSkyGlow;
-                still = Math.Abs(glow - last) < 0.0005f ? still + 1 : 0;
-                last = glow;
-                await ctx.WaitFrames(1);
-            }
-            Log.Message("[frame] " + place + ": asked (" + site.X + ", " + site.Z + ") zoom " + site.Size + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00"));
         }
 
         // Pickle's own "I wait {int} ticks" keeps the default 5 s step deadline: on a loaded machine 800 to 1000 ticks overrun it (ACertainSeries gallery runs f885, bdf1). Same wait, long deadline.
@@ -309,7 +246,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             ctx.Require(Find.CurrentMap != null, "Load a map first");
             if (Find.CurrentMap.Size.x >= 250 && Find.CurrentMap.Size.z >= 250)
-                Log.Warning("[frame] rectangle on the Sanctuary map: a suite names a place (I frame the sanctuary \"...\") and writes no coordinate. Add the place to SanctuarySites or document why a raw rectangle is needed.");
+                Log.Warning("[frame] rectangle on the Sanctuary map: a suite names a place (Nelim's Sanctuary: I frame the sanctuary \"...\") and writes no coordinate. Add the place to SanctuaryBacklot or document why a raw rectangle is needed.");
             int minX = Math.Min(x1, x2), maxX = Math.Max(x1, x2), minZ = Math.Min(z1, z2), maxZ = Math.Max(z1, z2);
             float w = maxX - minX + 1 + 2, h = maxZ - minZ + 1 + 2;
             float size = Math.Max(h / 2f, w / 3.56f);
@@ -319,63 +256,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(90);
             Log.Message("[frame] rectangle (" + minX + ", " + minZ + ") to (" + maxX + ", " + maxZ + "): root size " + size.ToString("0.0") + ", camera at " + Find.CameraDriver.MapPosition);
-        }
-
-        // The cells a named place covers, as (minX, maxX, minZ, maxZ). Rooms are listed because their walls and doors stay; every other
-        // place is the square of its camera size around its centre.
-        private static readonly System.Collections.Generic.Dictionary<string, int[]> SanctuaryRooms = new System.Collections.Generic.Dictionary<string, int[]>
-        {
-            ["hearth-hall"] = new[] { 172, 190, 106, 124 }, ["prestige-hall"] = new[] { 193, 200, 106, 117 },
-            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 204, 230, 244 }, ["preindustrial-workshop"] = new[] { 218, 228, 230, 244 }, ["postindustrial-workshop"] = new[] { 233, 238, 208, 222 }, ["cloister"] = new[] { 167, 192, 126, 131 }, ["infirmary-pawns"] = new[] { 197, 206, 48, 56 }, ["infirmary-animals"] = new[] { 208, 217, 48, 56 }, ["pediatrics"] = new[] { 197, 217, 58, 64 }, ["infirmary"] = new[] { 197, 217, 48, 64 },
-        };
-
-        private static int[] SanctuaryArea((string Name, int X, int Z, float Size) site)
-        {
-            int[] r;
-            if (SanctuaryRooms.TryGetValue(site.Name, out r)) return r;
-            int hx = Mathf.CeilToInt(site.Size * 16f / 9f), hz = Mathf.CeilToInt(site.Size);
-            return new[] { site.X - hx, site.X + hx, site.Z - hz, site.Z + hz };
-        }
-
-        // Empties a named place of everything a mod could trip over: furniture, items, plants, filth, corpses. Walls, doors and
-        // pawns stay. The save is not touched on disk, so a scenario that empties a place only changes its own run.
-        [When(Prefix + "I empty the sanctuary {string}")]
-        public void EmptySanctuary_Alt(PickleContext ctx, string place) { EmptySanctuary(ctx, place); }
-        [Given(Prefix + "the sanctuary {string} is emptied")]
-        public void EmptySanctuary(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            Map map = Find.CurrentMap;
-            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            var doomed = map.listerThings.AllThings.Where(t => t.Position.x >= r[0] && t.Position.x <= r[1] && t.Position.z >= r[2] && t.Position.z <= r[3]
-                && !(t is Pawn) && t.def.category != ThingCategory.Ethereal && t.def.category != ThingCategory.Projectile
-                && !(t.def.building != null && (t.def.IsDoor || t.def.defName.EndsWith("Wall") || t.def.building.isNaturalRock))).ToList();
-            foreach (var t in doomed) if (!t.Destroyed) t.Destroy();
-        }
-
-        // Bares the floor of a named place: every cell of the place gets the terrain of the ground just west of it, without paint, so a
-        // laid floor, a carpet or a marking painted on the ground (the green podium square) shows the bare ground. Roofs and things stay.
-        [When(Prefix + "I bare the floor of the sanctuary {string}")]
-        public void BareFloor_Alt(PickleContext ctx, string place) { BareFloor(ctx, place); }
-        [Given(Prefix + "the floor of the sanctuary {string} is bared")]
-        public void BareFloor(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            Map map = Find.CurrentMap;
-            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            var west = new IntVec3(Math.Max(0, r[0] - 3), 0, (r[2] + r[3]) / 2);
-            TerrainDef ground = west.GetTerrain(map);
-            if (ground == null || ground.IsWater || ground.passability == Traversability.Impassable) ground = Def<TerrainDef>("Soil");
-            for (int x = r[0]; x <= r[1]; x++)
-                for (int z = r[2]; z <= r[3]; z++)
-                {
-                    var c = new IntVec3(x, 0, z);
-                    if (!c.InBounds(map) || c.GetTerrain(map).IsWater) continue;
-                    map.terrainGrid.SetTerrain(c, ground);
-                    map.terrainGrid.SetTerrainColor(c, null);
-                }
         }
 
         // A flower border around a free square, for the photographs: two to four cells wide, thinning outwards, the square itself untouched.
@@ -403,47 +283,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
                     p.Growth = 1f;
                     GenSpawn.Spawn(p, c, map);
                 }
-        }
-
-        // Sends the animals standing in a named place away (despawned, not killed), for a photograph or a scene that wants the place to itself.
-        // The colonists stay. Same area as "is emptied".
-        [Given(Prefix + "the animals are removed from the sanctuary {string}")]
-        public void RemoveAnimals(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            Map map = Find.CurrentMap;
-            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            var animals = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && p.Position.x >= r[0] && p.Position.x <= r[1] && p.Position.z >= r[2] && p.Position.z <= r[3]).ToList();
-            foreach (var a in animals) a.DeSpawn();
-        }
-
-        // Unlike "the animals are removed", which acts once, this keeps a place free of animals until the scenario ends: every frame, an animal that
-        // has walked into the area is despawned (the animals of the Sanctuary come back through the doors). Same area as "is emptied". Several places can be kept.
-        private static readonly System.Collections.Generic.List<Action> KeepOutHooks = new System.Collections.Generic.List<Action>();
-
-        [Given(Prefix + "the animals are kept out of the sanctuary {string}")]
-        public void KeepAnimalsOut(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            ctx.Require(Find.CurrentMap != null && Find.CurrentMap.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            Action hook = () =>
-            {
-                Map map = Find.CurrentMap;
-                if (map == null) return;
-                foreach (var a in map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && p.Position.x >= r[0] && p.Position.x <= r[1] && p.Position.z >= r[2] && p.Position.z <= r[3]).ToList()) a.DeSpawn();
-            };
-            hook();
-            KeepOutHooks.Add(hook);
-            RimWorks.Pickle.Runtime.PickleDriver.Instance.AddFrameHook(hook);
-        }
-
-        [AfterScenario]
-        public void StopKeepingAnimalsOut()
-        {
-            foreach (var hook in KeepOutHooks) RimWorks.Pickle.Runtime.PickleDriver.Instance?.RemoveFrameHook(hook);
-            KeepOutHooks.Clear();
         }
 
         // Sends every animal on the map away (despawned, not killed): for a frame wider than a place's own area, or a place the animals keep wandering back to.
@@ -479,23 +318,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 pawn.Notify_Teleported();
                 Log.Message("[colonists away] " + pawn.LabelShort + " moved to (" + cell.x + ", " + cell.z + ")");
             }
-        }
-
-        // Opens the sky over a named place: every roof on its cells is removed, walls stay. A roofed room is lit by lamps only; with the roof gone it
-        // is lit by the sun, so the photograph is bright. Same area as "is emptied".
-        [Given(Prefix + "the roof is removed from the sanctuary {string}")]
-        public void RemoveRoof(PickleContext ctx, string place)
-        {
-            var site = FindSite(ctx, place);
-            Map map = Find.CurrentMap;
-            ctx.Require(map != null && map.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
-            int[] r = SanctuaryArea(site);
-            for (int x = r[0]; x <= r[1]; x++)
-                for (int z = r[2]; z <= r[3]; z++)
-                {
-                    var c = new IntVec3(x, 0, z);
-                    if (c.InBounds(map) && map.roofGrid.RoofAt(c) != null && !map.roofGrid.RoofAt(c).isThickRoof) map.roofGrid.SetRoof(c, null);
-                }
         }
 
         // Lets the game build its power nets now. A loaded or freshly spawned map holds its connections as pending work that only a tick would do, and the
