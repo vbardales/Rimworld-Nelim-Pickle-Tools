@@ -289,7 +289,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Any map: centre the camera on the rectangle and take the smallest root size that holds it whole (1080p frame: 2N cells tall, about 3.56N wide), plus one cell of margin on each side.
-        [Given(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
         [When(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
         public async Task FrameRectangle(PickleContext ctx, int x1, int z1, int x2, int z2)
         {
