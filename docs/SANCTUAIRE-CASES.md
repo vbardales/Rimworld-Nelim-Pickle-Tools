@@ -1,6 +1,6 @@
 # Cases libres et meubles par lieu (liste du 2026-10-06)
 
-Généré par le step `Nelim's Pickle Tools: the sanctuary "<lieu>" is listed` (feature `pickletools-sanctuary-list.feature`) sur la fixture Nelims-tribe. Les coordonnées sont des cases (x, z), z croît vers le haut. « Cases libres » : praticables, sans bâtiment, objet, plante ni pion, par rangée z : plages x. « Bâtiments et objets » : définition, case de départ, taille ; les objets posés sur une étagère ont la même case que l'étagère, avec leur pile entre crochets. Régénérer le fichier si la fixture change.
+Généré autrefois par un step `the sanctuary "<lieu>" is listed`, aujourd hui absent de la source sur la fixture Nelims-tribe. Les coordonnées sont des cases (x, z), z croît vers le haut. « Cases libres » : praticables, sans bâtiment, objet, plante ni pion, par rangée z : plages x. « Bâtiments et objets » : définition, case de départ, taille ; les objets posés sur une étagère ont la même case que l'étagère, avec leur pile entre crochets. Régénérer le fichier si la fixture change.
 
 ## sofa-corner x 180-194, z 119-127
 
