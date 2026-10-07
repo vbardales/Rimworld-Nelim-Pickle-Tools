@@ -166,10 +166,10 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 // The first garment dressed in a scenario takes everything else off first (an outer cloak would hide the new shirt); the next ones add to it.
                 OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
-                pawn.apparel.DropAllOrMoveAllToInventory(a => true);
+                StowApparel(pawn, a => true);
             }
 
-            pawn.apparel.DropAllOrMoveAllToInventory(a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
+            StowApparel(pawn, a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
             var apparel = (Apparel)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
             pawn.apparel.Wear(apparel, false);
             DressedIn.Add(apparel);
@@ -224,6 +224,16 @@ namespace Nelim.PickleTools.ColonistRace
 
             OriginalClothes.Clear();
             DressedIn.Clear();
+        }
+
+        // Takes garments off into the inventory, never onto the ground: a garment dropped where the colonist stands shows up beside whatever the scene is about.
+        private static void StowApparel(Pawn pawn, System.Func<Apparel, bool> which)
+        {
+            foreach (Apparel a in pawn.apparel.WornApparel.Where(which).ToList())
+            {
+                pawn.apparel.Remove(a);
+                if (pawn.inventory == null || !pawn.inventory.innerContainer.TryAdd(a, false)) a.Destroy();
+            }
         }
 
         private static void Restore(Pawn pawn)
@@ -451,10 +461,10 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 // The first garment dressed in a scenario takes everything else off first (an outer cloak would hide the new shirt); the next ones add to it.
                 OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
-                pawn.apparel.DropAllOrMoveAllToInventory(a => true);
+                StowApparel(pawn, a => true);
             }
 
-            pawn.apparel.DropAllOrMoveAllToInventory(a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
+            StowApparel(pawn, a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
             var apparel = (Apparel)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
             pawn.apparel.Wear(apparel, false);
             DressedIn.Add(apparel);
