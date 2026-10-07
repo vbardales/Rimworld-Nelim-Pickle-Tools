@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-214 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+216 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -79,6 +79,8 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: a colonist {string} of kind {string} exists` (Given) | Generates a colonist from a humanlike PawnKindDef, the way "a colonist exists" does from the plain colonist kind, and does nothing if a colonist by that nickname already exists. The race is the kind's, so a kind from a race mod gives a pawn of that race, with that race's body types. |
 | `Nelim's Pickle Tools: {string} eye colour is rgb \({int}, {int}, {int}\)` (Given) | Gives a colonist an eye colour, RGB 0 to 255, in Nals Facial Animation's eyeball controller (both eyes, so no heterochromia), and reads it back through the mod's own colour. A colour forced by a gene (EyeGenes3 for instance) is not undone: if the mod keeps reading the gene, the step fails saying what the mod reports. |
 | `Nelim's Pickle Tools: {string} facial expression is {string}` (Given) | Plays a Nals Facial Animation expression on a colonist by `FaceAnimationDef` name (for example `normal`, `blink`, `laydown`, `SocialRelax`): the mod's own temporary animation, started now. The names are those of the mod's animation defs; a name that does not exist fails with the list of valid ones. |
+| `Nelim's Pickle Tools: {string} has the gene {string}` (Given) | Gives a colonist a gene by its def name and redraws it. Any gene of the pawn that shares an exclusion tag with the new one is removed first (an eye colour replaces the previous eye colour, which the game would otherwise refuse to combine), then the gene is added as an endogene. |
+| `Nelim's Pickle Tools: {string} holds the gene {string}` (Then) | Asserts that a colonist holds a gene, by its def name. The failure lists the genes the pawn holds. |
 | `Nelim's Pickle Tools: I let the hairstyle of {string} show its own colours` (When) | Sets the colonist's hair colour to white and redraws the pawn, so its hairstyle is drawn in its own colours. The colour is the pawn's for the rest of the scenario (the scenario's pawn is not saved unless the scenario saves). |
 | `Nelim's Pickle Tools: the hairstyle of {string} is drawn in its own colours` (Then) | Asserts that the colonist's hair colour reads white, to 0.01; the failure prints the colour and the hairstyle. |
 | `Nelim's Pickle Tools: {string} hairstyle is {string}` (Given) | Gives a colonist a hairstyle by `HairDef` name and redraws it. The hair colour is left as it is. |
