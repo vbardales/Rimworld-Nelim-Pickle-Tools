@@ -293,6 +293,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public async Task FrameRectangle(PickleContext ctx, int x1, int z1, int x2, int z2)
         {
             ctx.Require(Find.CurrentMap != null, "Load a map first");
+            if (Find.CurrentMap.Size.x >= 250 && Find.CurrentMap.Size.z >= 250)
+                Log.Warning("[frame] rectangle on the Sanctuary map: a suite names a place (I frame the sanctuary \"...\") and writes no coordinate. Add the place to SanctuarySites or document why a raw rectangle is needed.");
             int minX = Math.Min(x1, x2), maxX = Math.Max(x1, x2), minZ = Math.Min(z1, z2), maxZ = Math.Max(z1, z2);
             float w = maxX - minX + 1 + 2, h = maxZ - minZ + 1 + 2;
             float size = Math.Max(h / 2f, w / 3.56f);
