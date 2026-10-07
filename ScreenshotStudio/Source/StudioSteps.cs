@@ -225,7 +225,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 214, 226, 21), ("barn", 196, 237, 8.5f), ("preindustrial-workshop", 223, 237, 8.5f), ("postindustrial-workshop", 235, 215, 8f), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
             ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 15), ("rice-paddy", 230, 122, 8), ("flower-garden", 154, 105, 5), ("exhibition-zone", 218, 166, 18), ("calm-zone", 200, 187, 11), ("calm-zone-close", 200, 185, 2.8f), ("bare-clearing", 195, 152, 5), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
             ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
-            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 90, 140, 47),
+            ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("infirmary", 207, 56, 14), ("infirmary-pawns", 202, 52, 6f), ("infirmary-animals", 213, 52, 6f), ("pediatrics", 207, 61, 7f), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 90, 140, 47),
         };
 
         // Names that stay valid but point to another place (a duplicate Virginie asked to merge), and names that were removed (with what to use instead).
@@ -326,7 +326,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static readonly System.Collections.Generic.Dictionary<string, int[]> SanctuaryRooms = new System.Collections.Generic.Dictionary<string, int[]>
         {
             ["hearth-hall"] = new[] { 172, 190, 106, 124 }, ["prestige-hall"] = new[] { 193, 200, 106, 117 },
-            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 204, 230, 244 }, ["preindustrial-workshop"] = new[] { 218, 228, 230, 244 }, ["postindustrial-workshop"] = new[] { 233, 238, 208, 222 }, ["cloister"] = new[] { 167, 192, 126, 131 },
+            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 204, 230, 244 }, ["preindustrial-workshop"] = new[] { 218, 228, 230, 244 }, ["postindustrial-workshop"] = new[] { 233, 238, 208, 222 }, ["cloister"] = new[] { 167, 192, 126, 131 }, ["infirmary-pawns"] = new[] { 197, 206, 48, 56 }, ["infirmary-animals"] = new[] { 208, 217, 48, 56 }, ["pediatrics"] = new[] { 197, 217, 58, 64 }, ["infirmary"] = new[] { 197, 217, 48, 64 },
         };
 
         private static int[] SanctuaryArea((string Name, int X, int Z, float Size) site)

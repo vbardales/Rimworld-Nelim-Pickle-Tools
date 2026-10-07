@@ -217,3 +217,12 @@ La grange a été agrandie et les deux ateliers ont été éloignés pour qu'auc
 - **Vue d'ensemble** `workshops` : `(214, 226)` zoom 21.
 Photos lues : run 889e. Le sol entre la grange et l'atelier préindustriel est de la terre lichen (violet-brun) : à revoir.
 Mise à jour (run a7ca, photo lue) : l'extension est de la grange est meublée (12 couchages et 4 braseros en plus) et le vide entre la grange et l'atelier préindustriel est replanté de bambou (70 %).
+
+## Infirmerie et pédiatrie (2026-10-07)
+
+Un bâtiment de x 196-218, z 47-65, en calcaire clair, trois salles sous un seul toit (photos lues : run a793).
+- `infirmary-pawns` `(202, 52)` zoom 6 : salle des pions, x 197-206, z 48-56, sol vert pastel. 6 lits d'hôpital, 6 moniteurs de signes vitaux, 2 étagères de médicaments.
+- `infirmary-animals` `(213, 52)` zoom 6 : salle des animaux, x 208-217, z 48-56, sol crème. 10 couchages.
+- `pediatrics` `(207, 61)` zoom 7 : x 197-217, z 58-64, sol rose pastel. 6 petits lits, tabourets, fauteuils, plantes en pot, commode.
+- `infirmary` `(207, 56)` zoom 14 : le bâtiment entier.
+Deux portes extérieures au sud (x 202 et 212), trois portes intérieures. Définitions du jeu de base seulement (pas de berceaux, qui demandent Biotech) ; pas de table d'opération dans le jeu de base : la chirurgie se fait sur le lit d'hôpital. 16 torches : le toit rend l'intérieur sombre (« Lit 50 % »).
