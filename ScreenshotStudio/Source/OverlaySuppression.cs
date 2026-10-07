@@ -41,7 +41,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                     foreach (string name in new[] { "RenderNeedsPowerOverlay", "RenderPowerOffOverlay", "RenderBrokenDownOverlay", "RenderOutOfFuelOverlay" })
                     {
                         MethodInfo method = AccessTools.Method(typeof(OverlayDrawer), name);
-                        if (method != null) harmony.Patch(method, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipOverlays)));
+                        if (method != null) harmony.Patch(method, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipStatusIcons)));
                     }
                     statusPatched = true;
                 }
@@ -132,9 +132,11 @@ namespace Nelim.PickleTools.ScreenshotStudio
             var rect = Find.CameraDriver.CurrentViewRect;
             var list = Find.CurrentMap.listerThings.ThingsInGroup(ThingRequestGroup.HasGUIOverlay);
             for (int i = 0; i < list.Count; i++)
-                if (list[i] is MoteText mote && rect.Contains(mote.Position)) { try { mote.DrawGUIOverlay(); } catch (Exception e) { Log.Warning("[presentation] text mote not drawn: " + e.Message); } }
+                if (list[i] is MoteText mote && rect.Contains(mote.Position)) { var anchor = Verse.Text.Anchor; var font = Verse.Text.Font; try { mote.DrawGUIOverlay(); } catch (Exception e) { Log.Warning("[presentation] text mote not drawn: " + e.Message); } finally { Verse.Text.Anchor = anchor; Verse.Text.Font = font; } }
             return false;
         }
+        // The status icons (no power, broken down...) are drawn from the map update, not from OnGUI: no GUI call may be made there, so they are only skipped.
+        private static bool SkipStatusIcons() => !Active;
         private static bool SkipTooltips() => !TooltipsHidden;
         private static bool SkipConcepts() => !HelperHidden;
         private static bool SkipReadout() => !ReadoutHidden;
