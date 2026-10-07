@@ -97,3 +97,19 @@ Décaler le sujet pour laisser un panneau à gauche (inspecteur d'environ 500 px
 ## Cadrer un rectangle (sujet + animal)
 
 Step : `When Nelim's Pickle Tools: I frame the rectangle from (x1, z1) to (x2, z2)`. Centre la caméra sur le rectangle, prend N = max(hauteur/2, largeur/3,56), une cellule de marge de chaque côté. Compilé, pas encore vu sur une photo. Sans ce step : garder l'animal à moins de 0,8·N cellules du centre en hauteur (z) et 1,5·N en largeur (x), moins une cellule pour la taille du corps.
+
+## Corps et apparence sur le Sanctuaire (source : TailorMadeWaistlines, 2026-10-07)
+
+Prouvé = galeries vertes de TailorMadeWaistlines lues à l'œil. Le reste est marqué « non vérifié ».
+
+Mods de corps, dans cet ordre de chargement (modèle : `TailorMadeWaistlines/Tests/Pickle/wsl-deps.gallery.map`) :
+
+1. `tiagocc0.FemaleBodyVariants` (3798082132), 2. `tiagocc0.FemaleApparelVariants` (3799726535), 3. `wdi.realistic.bodies` (3527486510 : corps 512 px sans jambes, aucun visage ni taille), 4. `ab.vplrf` (2986402536 : pantalons visibles 128 px, exige son seed de réglages), 5. `astryl.tailormade` (optionnel).
+
+- **FBV et FAV avant WDI.** WDI déclare `loadAfter` sur les deux ; leurs `Naked_*_Female` sont des copies des corps de base et masquent ceux de WDI si elles chargent après (les femmes Thin/Fat/Hulk ont alors le mauvais corps : prouvé). Le tri automatique du staging lit ces `loadAfter` ; dépendances dures et incompatibilités de ces mods : non vérifiées.
+- **Steps** (ColonistRace, préfixe `Nelim's Pickle Tools:`) : `"X" body type is Thin|Male|Female|Fat|Hulk|Child`, `"X" gender is ...`, `"X" is 8 years old`, `"X" wears "Apparel_BasicShirt" dyed rgb (230, 224, 206)`. Exemple vert : `TailorMadeWaistlines/Tests/Pickle/Mod/Pickle/Features/05-gallery.feature` (« ten bodies, four outfits »), preuves dans `docs/runs/README.md` de ce dépôt (galeries 15 à 35).
+- **Seed AB** : un mod stagé par `path:` lit `Mod_local-<packageId>_<Classe>.xml` ; sans seed AB ne dessine rien. Le dossier d'un mod n'existe que s'il est le mod testé.
+- **Le 1er `wears` déshabille tout seul** : les anciens habits vont maintenant à l'inventaire (plus au sol), rendus en fin de scénario.
+- **Pour charger le mod de coupe d'un autre dans une passe** : `TailorMadeWaistlines/docs/USING-WAISTLINES-IN-ANOTHER-MODS-GALLERY.md`.
+- **Cadrage serré d'un pion** : `I frame the sanctuary "<lieu>"` avec le zoom du lieu, ou `I frame the rectangle from (x1, z1) to (x2, z2)`; voir « Zoom : ce que vaut le nombre N ».
+- **Non éprouvés** : repaint et cache de rendu, cheveux, pose assise. Manques côté outils : pose assise et placement en cercle, step qui fixe tête et visage, seed AB auto-généré pour une passe étrangère. La teinte d'un vêtement lâché au sol est correcte (`TryDrop` garde l'instance) ; l'anomalie vue par DrumBathHygiene venait des anciens habits laissés au sol.
