@@ -1,3 +1,4 @@
+@requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
 Feature: Eye colour and facial expression of a colonist (Nals Facial Animation)
 
