@@ -263,8 +263,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return site;
         }
 
-        [Given(Prefix + "I am at the sanctuary {string}", TimeoutSeconds = 60f)]
         [When(Prefix + "I frame the sanctuary {string}", TimeoutSeconds = 60f)]
+        public Task FrameSanctuary_Alt(PickleContext ctx, string place) => FrameSanctuary(ctx, place);
+        [Given(Prefix + "I am at the sanctuary {string}", TimeoutSeconds = 60f)]
         public async Task FrameSanctuary(PickleContext ctx, string place)
         {
             var site = FindSite(ctx, place);
@@ -338,8 +339,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         // Empties a named place of everything a mod could trip over: furniture, items, plants, filth, corpses. Walls, doors and
         // pawns stay. The save is not touched on disk, so a scenario that empties a place only changes its own run.
-        [Given(Prefix + "the sanctuary {string} is emptied")]
         [When(Prefix + "I empty the sanctuary {string}")]
+        public void EmptySanctuary_Alt(PickleContext ctx, string place) { EmptySanctuary(ctx, place); }
+        [Given(Prefix + "the sanctuary {string} is emptied")]
         public void EmptySanctuary(PickleContext ctx, string place)
         {
             var site = FindSite(ctx, place);
@@ -354,8 +356,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         // Bares the floor of a named place: every cell of the place gets the terrain of the ground just west of it, without paint, so a
         // laid floor, a carpet or a marking painted on the ground (the green podium square) shows the bare ground. Roofs and things stay.
-        [Given(Prefix + "the floor of the sanctuary {string} is bared")]
         [When(Prefix + "I bare the floor of the sanctuary {string}")]
+        public void BareFloor_Alt(PickleContext ctx, string place) { BareFloor(ctx, place); }
+        [Given(Prefix + "the floor of the sanctuary {string} is bared")]
         public void BareFloor(PickleContext ctx, string place)
         {
             var site = FindSite(ctx, place);
@@ -444,8 +447,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Sends every animal on the map away (despawned, not killed): for a frame wider than a place's own area, or a place the animals keep wandering back to.
-        [Given(Prefix + "all animals are removed")]
         [When(Prefix + "I remove all animals")]
+        public void RemoveAllAnimals_Alt(PickleContext ctx) { RemoveAllAnimals(ctx); }
+        [Given(Prefix + "all animals are removed")]
         public void RemoveAllAnimals(PickleContext ctx)
         {
             Map map = Find.CurrentMap;
@@ -455,8 +459,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         // Moves the player's colonists (Nelim) to a far corner of the map, for a frame that must hold only the set. They are not removed: they are
         // standing there when the scenario goes on. Pawns that cannot be placed stay where they are.
-        [Given(Prefix + "the colonists are sent to the map corner")]
         [When(Prefix + "I send the colonists to the map corner")]
+        public void SendColonistsAway_Alt(PickleContext ctx) { SendColonistsAway(ctx); }
+        [Given(Prefix + "the colonists are sent to the map corner")]
         public void SendColonistsAway(PickleContext ctx)
         {
             Map map = Find.CurrentMap;
@@ -632,8 +637,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Interface kept (a menu capture), but without the colonist bar at the top centre (it shows the colonist's name and portrait).
-        [Given(Prefix + "the colonist bar is hidden")]
         [When(Prefix + "I hide the colonist bar")]
+        public void HideColonistBar_Alt(PickleContext ctx) { HideColonistBar(ctx); }
+        [Given(Prefix + "the colonist bar is hidden")]
         public void HideColonistBar(PickleContext ctx)
         {
             if (!originalColonistBar.HasValue) originalColonistBar = Find.PlaySettings.showColonistBar;
@@ -652,8 +658,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Interface kept, but without the mouse-over tooltips (a hover left on the subject). Needs Harmony; without it the scenario goes on with a warning.
-        [Given(Prefix + "the tooltips are hidden")]
         [When(Prefix + "I hide the tooltips")]
+        public void HideTooltips_Alt(PickleContext ctx) { HideTooltips(ctx); }
+        [Given(Prefix + "the tooltips are hidden")]
         public void HideTooltips(PickleContext ctx)
         {
             try { OverlaySuppression.HideTooltips(); }
@@ -661,8 +668,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Interface kept (tabs, buttons), but without the resource list on the left.
-        [Given(Prefix + "the resource readout is hidden")]
         [When(Prefix + "I hide the resource readout")]
+        public void HideResourceReadout_Alt(PickleContext ctx) { HideResourceReadout(ctx); }
+        [Given(Prefix + "the resource readout is hidden")]
         public void HideResourceReadout(PickleContext ctx)
         {
             try { OverlaySuppression.HideReadout(); }
@@ -670,8 +678,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Interface kept (tabs, buttons), but without the alert boxes at the bottom right.
-        [Given(Prefix + "the alerts are hidden")]
         [When(Prefix + "I hide the alerts")]
+        public void HideAlerts_Alt(PickleContext ctx) { HideAlerts(ctx); }
+        [Given(Prefix + "the alerts are hidden")]
         public void HideAlerts(PickleContext ctx)
         {
             try { OverlaySuppression.HideAlerts(); }
@@ -679,8 +688,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // The white brackets the game draws around the selected thing. The selection stays (the inspect pane and its tab stay open).
-        [Given(Prefix + "the selection brackets are hidden")]
         [When(Prefix + "I hide the selection brackets")]
+        public void HideSelectionBrackets_Alt(PickleContext ctx) { HideSelectionBrackets(ctx); }
+        [Given(Prefix + "the selection brackets are hidden")]
         public void HideSelectionBrackets(PickleContext ctx)
         {
             try { OverlaySuppression.HideBrackets(); }
@@ -688,8 +698,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // The stack counts under items and the name labels under pawns, without the screenshot mode (so the interface stays).
-        [Given(Prefix + "the item and name labels are hidden")]
         [When(Prefix + "I hide the item and name labels")]
+        public void HideNameLabels_Alt(PickleContext ctx) { HideNameLabels(ctx); }
+        [Given(Prefix + "the item and name labels are hidden")]
         public void HideNameLabels(PickleContext ctx)
         {
             try { OverlaySuppression.Begin(); }
@@ -697,8 +708,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Interface kept, but without the learning helper's tip boxes (top right).
-        [Given(Prefix + "the learning helper is hidden")]
         [When(Prefix + "I hide the learning helper")]
+        public void HideLearningHelper_Alt(PickleContext ctx) { HideLearningHelper(ctx); }
+        [Given(Prefix + "the learning helper is hidden")]
         public void HideLearningHelper(PickleContext ctx)
         {
             if (!originalLearningHelper.HasValue) originalLearningHelper = Find.PlaySettings.showLearningHelper;

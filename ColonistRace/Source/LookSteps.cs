@@ -191,8 +191,9 @@ namespace Nelim.PickleTools.ColonistRace
         /// Takes every garment off a colonist (to the inventory, nothing destroyed), so the garments dressed afterwards are the only ones drawn, an
         /// outer cloak no longer covering a shirt. "gets back the clothes it had" puts them on again, and so does the end of the scenario.
         /// </summary>
-        [Given("Nelim's Pickle Tools: {string} is undressed")]
         [When("Nelim's Pickle Tools: I undress {string}")]
+        public void Undress_Alt(PickleContext ctx, string nickname) { Undress(ctx, nickname); }
+        [Given("Nelim's Pickle Tools: {string} is undressed")]
         public void Undress(PickleContext ctx, string nickname)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
