@@ -10,7 +10,7 @@ Feature: Sanctuary: window backdrops
     And I set the hour to 12
     And I set the weather to "Clear"
     And Nelim's Pickle Tools: all animals are removed
-    And Nelim's Pickle Tools: I am at the sanctuary "<place>"
+    And Nelim's Sanctuary: I am at the sanctuary "<place>"
     And I take a screenshot "<place>"
 
     Examples:

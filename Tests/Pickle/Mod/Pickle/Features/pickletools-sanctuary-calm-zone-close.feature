@@ -9,5 +9,5 @@ Feature: Sanctuary: calm-zone-close
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I set the hour to 12
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I am at the sanctuary "calm-zone-close"
+    And Nelim's Sanctuary: I am at the sanctuary "calm-zone-close"
     And I take a screenshot "sanctuary-calm-zone-close"

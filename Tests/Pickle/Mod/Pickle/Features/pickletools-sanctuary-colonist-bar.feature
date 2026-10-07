@@ -9,6 +9,6 @@ Feature: Sanctuary: colonist bar and learning helper hidden
     And game speed is paused
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
-    And Nelim's Pickle Tools: I am at the sanctuary "sleeping-nook"
+    And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
     And Nelim's Pickle Tools: the camera root size is set to 6
     And I take a screenshot "bar-and-helper-hidden"

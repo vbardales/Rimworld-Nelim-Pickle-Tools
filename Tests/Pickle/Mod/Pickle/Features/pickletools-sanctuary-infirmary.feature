@@ -10,11 +10,11 @@ Feature: Sanctuary: infirmary and pediatrics
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the tooltips are hidden
     And Nelim's Pickle Tools: the resource readout is hidden
-    And Nelim's Pickle Tools: I frame the sanctuary "infirmary"
+    And Nelim's Sanctuary: I frame the sanctuary "infirmary"
     And I take a screenshot "infirmary-all"
-    And Nelim's Pickle Tools: I frame the sanctuary "infirmary-pawns"
+    And Nelim's Sanctuary: I frame the sanctuary "infirmary-pawns"
     And I take a screenshot "infirmary-pawns"
-    And Nelim's Pickle Tools: I frame the sanctuary "infirmary-animals"
+    And Nelim's Sanctuary: I frame the sanctuary "infirmary-animals"
     And I take a screenshot "infirmary-animals"
-    And Nelim's Pickle Tools: I frame the sanctuary "pediatrics"
+    And Nelim's Sanctuary: I frame the sanctuary "pediatrics"
     And I take a screenshot "pediatrics"

@@ -9,7 +9,7 @@ Feature: Sanctuary: podium views
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I set the hour to 18
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I am at the sanctuary "emerald-clearing"
+    And Nelim's Sanctuary: I am at the sanctuary "emerald-clearing"
     And Nelim's Pickle Tools: the camera root size is set to 12
     And I take a screenshot "podium-zoom-12"
     And Nelim's Pickle Tools: the camera root size is set to 6

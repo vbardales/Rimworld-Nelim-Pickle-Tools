@@ -77,8 +77,8 @@ Posée par Virginie, **au-delà des cinq animaux permanents du cahier des charge
 
 ## Les cadres nommés
 
-Les mods n'écrivent pas de coordonnées. Ils nomment le lieu : `Given Nelim's Pickle Tools: I am at the sanctuary "<nom>"` (ou `When ... I frame the sanctuary "<nom>"`, même effet). Le nom règle la position (x, z) et le zoom ; la table ci-dessous donne les noms.
-Ancien libellé, toujours valable : `Nelim's Pickle Tools: I frame the sanctuary "<nom>"` (ScreenshotStudio, `-DepMap wsl-deps.sanctuary.map`) centre la caméra et règle le zoom. Un nom inconnu échoue en listant les noms valides.
+Les mods n'écrivent pas de coordonnées. Ils nomment le lieu : `Given Nelim's Sanctuary: I am at the sanctuary "<nom>"` (ou `When ... I frame the sanctuary "<nom>"`, même effet). Le nom règle la position (x, z) et le zoom ; la table ci-dessous donne les noms.
+Ancien libellé, toujours valable : `Nelim's Sanctuary: I frame the sanctuary "<nom>"` (ScreenshotStudio, `-DepMap wsl-deps.sanctuary.map`) centre la caméra et règle le zoom. Un nom inconnu échoue en listant les noms valides.
 
 | Nom | Centre | Zoom | Ce que c'est |
 |---|---|---|---|
@@ -115,7 +115,7 @@ Ancien libellé, toujours valable : `Nelim's Pickle Tools: I frame the sanctuary
 
 ## Vider un lieu
 
-Si un lieu est trop encombré pour un test, le scénario le vide : `Given Nelim's Pickle Tools: the sanctuary "<nom>" is emptied` (ou `When ... I empty the sanctuary "<nom>"`). Meubles, objets, plantes (arbres, bambous), clôtures, saleté et cadavres disparaissent (tout bâtiment qui n'est ni un mur ni une porte) ; murs, portes et personnages restent. Pour les quatre pièces (`hearth-hall`, `prestige-hall`, `ritual-hall`, `terrace`, `cloister`) la zone est la pièce ; pour les autres lieux, la zone est le carré de la photo. La sauvegarde sur disque n'est pas modifiée : seul le run en cours est vidé.
+Si un lieu est trop encombré pour un test, le scénario le vide : `Given Nelim's Sanctuary: the sanctuary "<nom>" is emptied` (ou `When ... I empty the sanctuary "<nom>"`). Meubles, objets, plantes (arbres, bambous), clôtures, saleté et cadavres disparaissent (tout bâtiment qui n'est ni un mur ni une porte) ; murs, portes et personnages restent. Pour les quatre pièces (`hearth-hall`, `prestige-hall`, `ritual-hall`, `terrace`, `cloister`) la zone est la pièce ; pour les autres lieux, la zone est le carré de la photo. La sauvegarde sur disque n'est pas modifiée : seul le run en cours est vidé.
 
 ## Captures à vide
 
@@ -131,7 +131,7 @@ Cette doc décrit ce qui existe aujourd'hui, pas ce qui est figé. Si un mod qui
 
 ## Électricité : pile vanométrique
 
-Une pile vanométrique (`VanometricPowerCell`, 1 x 2, 1000 W en continu, sans combustible, transmet le courant aux bâtiments contigus) est posée en permanence à côté du carré libre A, en `(205, 152-153)` : le bord est du carré A est la colonne x = 204. Un mod qui photographie un objet électrique le pose dans le carré, **contre la pile** (par exemple en `(204, 152)`), et il est alimenté sans conduit. Cadrage : `Given Nelim's Pickle Tools: I am at the sanctuary "power-cell"` (centre (204, 152), zoom 9). La pile éclaire un peu (rayon 3) : elle est visible sur la photographie à vide du lieu `clearing-a`. Il faut davantage de puissance : demandez.
+Une pile vanométrique (`VanometricPowerCell`, 1 x 2, 1000 W en continu, sans combustible, transmet le courant aux bâtiments contigus) est posée en permanence à côté du carré libre A, en `(205, 152-153)` : le bord est du carré A est la colonne x = 204. Un mod qui photographie un objet électrique le pose dans le carré, **contre la pile** (par exemple en `(204, 152)`), et il est alimenté sans conduit. Cadrage : `Given Nelim's Sanctuary: I am at the sanctuary "power-cell"` (centre (204, 152), zoom 9). La pile éclaire un peu (rayon 3) : elle est visible sur la photographie à vide du lieu `clearing-a`. Il faut davantage de puissance : demandez.
 
 ## Lieux nommés ajoutés (positions à confirmer sur les captures à vide)
 
@@ -149,9 +149,9 @@ Une pile vanométrique (`VanometricPowerCell`, 1 x 2, 1000 W en continu, sans co
 ## Nettoyer et dégager (étapes)
 
 - `Given Nelim's Pickle Tools: all filth is cleaned` : toute la saleté de la carte (sol sale, sang, cendre) disparaît. À appeler au début du scénario ; la fixture finale (`final2`) l'aura déjà fait.
-- `Given Nelim's Pickle Tools: the animals are removed from the sanctuary "<nom>"` : les animaux du lieu sont retirés (pas tués), les colons restent. Utile pour les deux thrumbos de la salle aux foyers, par exemple `"sleeping-nook"` ou `"hearth-hall"`.
-- `Given Nelim's Pickle Tools: the sanctuary "<nom>" is emptied` : meubles, objets, plantes, saleté.
-- `Given Nelim's Pickle Tools: the roof is removed from the sanctuary "<nom>"` : retire tous les toits du lieu (murs gardés). Exception pour les tests, pas pour une capture de galerie : le toit fait partie du bâtiment photographié et sa suppression crée des ombres. Pour un lieu sombre, voir « Éclairer un lieu sombre » dans docs/GALERIE.md.
+- `Given Nelim's Sanctuary: the animals are removed from the sanctuary "<nom>"` : les animaux du lieu sont retirés (pas tués), les colons restent. Utile pour les deux thrumbos de la salle aux foyers, par exemple `"sleeping-nook"` ou `"hearth-hall"`.
+- `Given Nelim's Sanctuary: the sanctuary "<nom>" is emptied` : meubles, objets, plantes, saleté.
+- `Given Nelim's Sanctuary: the roof is removed from the sanctuary "<nom>"` : retire tous les toits du lieu (murs gardés). Exception pour les tests, pas pour une capture de galerie : le toit fait partie du bâtiment photographié et sa suppression crée des ombres. Pour un lieu sombre, voir « Éclairer un lieu sombre » dans docs/GALERIE.md.
 - `Given Nelim's Pickle Tools: the power network is refreshed` : connecte les bâtiments alimentés qui n'ont encore aucun réseau (ceux qui en ont un ne sont pas touchés) et recalcule les réseaux. À appeler après avoir posé le bâtiment, avant la capture. Si l'icône « sans courant » reste, c'est un manque réel de puissance : une pile vanométrique fournit 1000 W ; si le bâtiment en demande davantage, poser une deuxième pile contre la première (`VanometricPowerCell` en (205, 154), par exemple).
 
 Cases libres et meubles par lieu (liste générée) : voir `docs/SANCTUAIRE-CASES.md`.

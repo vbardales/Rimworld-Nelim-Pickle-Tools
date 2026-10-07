@@ -7,6 +7,6 @@ Feature: Sanctuary: bare floor
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: the floor of the sanctuary "emerald-clearing" is bared
-    And Nelim's Pickle Tools: I am at the sanctuary "emerald-clearing"
+    And Nelim's Sanctuary: the floor of the sanctuary "emerald-clearing" is bared
+    And Nelim's Sanctuary: I am at the sanctuary "emerald-clearing"
     And I take a screenshot "bare-floor-emerald-clearing"

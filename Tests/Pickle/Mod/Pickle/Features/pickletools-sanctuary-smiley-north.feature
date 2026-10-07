@@ -9,7 +9,7 @@ Feature: Sanctuary: smiley-north views
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I set the hour to 18
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I am at the sanctuary "smiley-north"
+    And Nelim's Sanctuary: I am at the sanctuary "smiley-north"
     And Nelim's Pickle Tools: the camera root size is set to 12
     And I take a screenshot "smiley-north-zoom-12"
     And Nelim's Pickle Tools: the camera root size is set to 6

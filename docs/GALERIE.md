@@ -17,7 +17,7 @@ Mods tiers dans les scénarios de capture (Virginie, 2026-10-06) : tout mod qui 
 ## Steps
 
 - Charger: `Given the save "Nelims-tribe" is loaded`
-- Cadrer un lieu nommé: `Given Nelim's Pickle Tools: I am at the sanctuary "<lieu>"` (ou `When ... I frame the sanctuary "<lieu>"`)
+- Cadrer un lieu nommé: `Given Nelim's Sanctuary: I am at the sanctuary "<lieu>"` (ou `When ... I frame the sanctuary "<lieu>"`)
 - Nettoyer une zone: `... the sanctuary "<lieu>" is emptied`, `... the animals are removed from the sanctuary "<lieu>"`, `... the roof is removed from the sanctuary "<lieu>"`
 - Animaux mis en scène: `an animal of kind "X" named "Y" is spawned at (x, z) at life stage N`, `an adult animal of kind "X" named "Y" is spawned at (x, z)`, `I frame the animal "Y" at zoom N`
 - Mode présentation: `Nelim's Pickle Tools: studio presentation mode is enabled`
@@ -45,7 +45,7 @@ Fenêtre plein écran sur fond de bambous (Virginie, 2026-10-06) : PRIVILÉGIEZ 
 
 Conseil de Virginie (2026-10-06) : quand le sujet est une fenêtre de jeu PLEIN ÉCRAN (fiche d'info, dialogue qui recouvre la carte), choisissez `exhibition-zone` (alias `exhibition-area`, `grand-place`) : fond de moquette orange clair, un objet par case, plutôt qu'un intérieur à meubles. La grande fiche d'information (le bouton « i » : toutes les propriétés d'une espèce ou d'un objet) est un cas de fenêtre plein écran. Un onglet d'inspection (l'onglet Santé d'un pion, un panneau qui laisse voir la carte) n'est pas plein écran : il reste dans le lieu de l'histoire, à son heure.
 
-Sol peint ou posé (par exemple le carré vert vif d'`emerald-clearing`) : `Given Nelim's Pickle Tools: the floor of the sanctuary "<lieu>" is bared` (ou `When ... I bare the floor of the sanctuary "<lieu>"`) donne à chaque case du lieu le sol nu de la terre voisine, sans peinture ; murs, toits et objets restent. À jouer AVANT `I am at the sanctuary`. Ajouté le 2026-10-06, en cours de vérification.
+Sol peint ou posé (par exemple le carré vert vif d'`emerald-clearing`) : `Given Nelim's Sanctuary: the floor of the sanctuary "<lieu>" is bared` (ou `When ... I bare the floor of the sanctuary "<lieu>"`) donne à chaque case du lieu le sol nu de la terre voisine, sans peinture ; murs, toits et objets restent. À jouer AVANT `I am at the sanctuary`. Ajouté le 2026-10-06, en cours de vérification.
 
 Cases libres et meubles : `docs/SANCTUAIRE-CASES.md` donne, pour les lieux d'intérieur et de galerie courants (sofa-corner, sleeping-nook, dining-nook, fire-pit, terrace, emerald-clearing, cloister, hearth-hall, prestige-hall, ritual-hall, calm-zone), les cases libres où poser un sujet et les meubles et étagères avec leurs piles. Pour un autre lieu ou après un changement de fixture : le step `the sanctuary "<lieu>" is listed` n existe plus (le générateur est perdu) ; les cases d un lieu se lisent sur une photo à vide ou se demandent à NPT. Le mode présentation masque aussi les compteurs de piles et les noms de pawns (Harmony requis dans la map).
 
@@ -120,4 +120,4 @@ Mods de corps, dans cet ordre de chargement (modèle : `TailorMadeWaistlines/Tes
 
 Les textes flottants (« +80 », nombres de dégâts) restent dessinés en mode présentation et avec `the item and name labels are hidden` : seuls les compteurs de piles et les noms disparaissent (correctif du 2026-10-07 : avant, tout `ThingOverlays` était sauté, motes comprises ; non revu sur photo).
 
-Garder un lieu sans animaux pendant la prise : `Given Nelim's Pickle Tools: the animals are kept out of the sanctuary "<lieu>"`. `the animals are removed from the sanctuary` n'agit qu'une fois ; celui-ci retire à chaque image les animaux qui entrent dans la zone (portes comprises) jusqu'à la fin du scénario. Zone : celle de `is emptied` (une pièce nommée, sinon le carré de la taille de cadrage). Pas encore vu sur un run.
+Garder un lieu sans animaux pendant la prise : `Given Nelim's Sanctuary: the animals are kept out of the sanctuary "<lieu>"`. `the animals are removed from the sanctuary` n'agit qu'une fois ; celui-ci retire à chaque image les animaux qui entrent dans la zone (portes comprises) jusqu'à la fin du scénario. Zone : celle de `is emptied` (une pièce nommée, sinon le carré de la taille de cadrage). Pas encore vu sur un run.

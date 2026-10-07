@@ -13,9 +13,9 @@ Feature: Sanctuaire light: noon must be bright, and the framings must hold
     Then Nelim's Pickle Tools: the light of the map is logged
     And Nelim's Pickle Tools: the sun glow of the map is at least 0.8
     When Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I am at the sanctuary "overview-north"
+    And Nelim's Sanctuary: I am at the sanctuary "overview-north"
     And I take a screenshot "light-overview-north"
-    And Nelim's Pickle Tools: I am at the sanctuary "overview-south"
+    And Nelim's Sanctuary: I am at the sanctuary "overview-south"
     And I take a screenshot "light-overview-south"
-    And Nelim's Pickle Tools: I am at the sanctuary "grand-place"
+    And Nelim's Sanctuary: I am at the sanctuary "grand-place"
     And I take a screenshot "light-grand-place"

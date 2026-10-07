@@ -11,7 +11,7 @@ Feature: Sanctuary: dyed clothes dropped on the ground
     And Nelim's Pickle Tools: the tooltips are hidden
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
-    And Nelim's Pickle Tools: I am at the sanctuary "sleeping-nook"
+    And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (238, 224, 190)
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants" dyed rgb (30, 98, 104)
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South

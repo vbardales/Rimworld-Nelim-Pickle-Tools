@@ -10,7 +10,7 @@ Feature: Colonist carries an item
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And I set the hour to 12
     And I set the weather to "Clear"
-    And Nelim's Pickle Tools: I am at the sanctuary "sleeping-nook"
+    And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing West
     And Nelim's Pickle Tools: "Nelim" carries the item "WoodLog"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 5

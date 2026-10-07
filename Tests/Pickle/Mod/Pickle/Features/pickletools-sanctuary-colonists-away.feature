@@ -7,5 +7,5 @@ Feature: Sanctuary: colonists away
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the colonists are sent to the map corner
-    And Nelim's Pickle Tools: I am at the sanctuary "enclosure-south"
+    And Nelim's Sanctuary: I am at the sanctuary "enclosure-south"
     And I take a screenshot "colonists-away-enclosure-south"
