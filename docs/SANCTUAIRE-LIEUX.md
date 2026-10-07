@@ -216,3 +216,4 @@ La grange a été agrandie et les deux ateliers ont été éloignés pour qu'auc
 - **Atelier postindustriel** `postindustrial-workshop` : déplacé au sud, x 232-239, z 207-223 (intérieur x 233-238, z 208-222), cadre `(235, 215)` zoom 8. Seul dans le bambou.
 - **Vue d'ensemble** `workshops` : `(214, 226)` zoom 21.
 Photos lues : run 889e. Le sol entre la grange et l'atelier préindustriel est de la terre lichen (violet-brun) : à revoir.
+Mise à jour (run a7ca, photo lue) : l'extension est de la grange est meublée (12 couchages et 4 braseros en plus) et le vide entre la grange et l'atelier préindustriel est replanté de bambou (70 %).
