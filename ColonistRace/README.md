@@ -15,7 +15,7 @@ it found:
 | Step | What it asserts |
 | --- | --- |
 | `Nelim's Pickle Tools: {string} has gender {word}` | `male` or `female`, case insensitive |
-| `Nelim's Pickle Tools: {string} gender is {word}` | Given. `male` or `female`; the plain body and a head of the other gender follow. Call it BEFORE body type, hairstyle and head type. **Not played in a game yet** |
+| `Nelim's Pickle Tools: {string} gender is {word}` | Given. `male`, `female` or `neutral` (also `none`, `neutre`, `nonbinary`, `genderless` = the game's Gender.None, added 2026-10-08, not played: the body type is left as it is and a head reserved for one gender gets a gender-free head); the plain body and a head of the other gender follow. Call it BEFORE body type, hairstyle and head type. **Not played in a game yet** |
 | `Nelim's Pickle Tools: {string} has body type {word}` | the `BodyTypeDef` defName, case insensitive |
 | `Nelim's Pickle Tools: {string} has xenotype {string}` | the xenotype def; a custom xenotype reads as the def it was built from, and the failure names the custom one. Needs Biotech |
 | `Nelim's Pickle Tools: {string} is of race {string}` | the race def name: `Human`, or a race a mod adds |

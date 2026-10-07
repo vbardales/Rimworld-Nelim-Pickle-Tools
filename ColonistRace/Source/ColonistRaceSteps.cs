@@ -55,7 +55,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// the words for those, see SetJuvenileBodyType. Without Biotech there are no genes and the body type is set directly.
         /// </summary>
         /// <summary>
-        /// Sets a pawn's gender, <c>male</c> or <c>female</c>, then makes the look agree with it: a Male or Female plain body follows the new
+        /// Sets a pawn's gender, <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c>: the game's Gender.None; the body type is then left as it is and a head reserved for one gender is replaced by a gender-free head), then makes the look agree with it: a Male or Female plain body follows the new
         /// gender, and a head type reserved for the other gender is replaced by a head of the new gender. Call it BEFORE the body type, hairstyle
         /// and head type steps, which read the gender. Redraws the pawn and reads the gender back.
         /// </summary>
@@ -68,12 +68,13 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 case "male": wanted = Gender.Male; break;
                 case "female": wanted = Gender.Female; break;
-                default: wanted = Gender.None; ctx.Require(false, $"gender must be male or female, not '{gender}'"); break;
+                case "none": case "neutral": case "neutre": case "nonbinary": case "genderless": wanted = Gender.None; break;
+                default: wanted = Gender.None; ctx.Require(false, $"gender must be male, female or neutral (none), not '{gender}'"); break;
             }
 
             ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no gender to set");
             pawn.gender = wanted;
-            if (pawn.story.bodyType == BodyTypeDefOf.Male || pawn.story.bodyType == BodyTypeDefOf.Female)
+            if (wanted != Gender.None && (pawn.story.bodyType == BodyTypeDefOf.Male || pawn.story.bodyType == BodyTypeDefOf.Female))
             {
                 pawn.story.bodyType = wanted == Gender.Female ? BodyTypeDefOf.Female : BodyTypeDefOf.Male;
             }
