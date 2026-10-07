@@ -222,7 +222,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static readonly (string Name, int X, int Z, float Size)[] SanctuarySites =
         {
             ("overview-north", 125, 185, 60), ("overview-south", 125, 65, 60), ("house", 190, 115, 15), ("hearth-hall", 181, 115, 12), ("sleeping-nook", 177, 121, 6.5f), ("sofa-corner", 187, 123, 3.5f), ("dining-nook", 176, 108, 3.7f), ("fire-pit", 181, 115, 5f), ("cloister", 179, 130, 7f), ("statue-garden", 155, 97, 13), ("prestige-hall", 196, 111, 8.5f), ("ritual-hall", 206, 117, 8f), ("terrace", 197, 123, 9f), ("plant-garden", 190, 85, 11), ("hut", 141, 72, 9),
-            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 218, 237, 18), ("barn", 196, 237, 8.5f), ("preindustrial-workshop", 223, 237, 8.5f), ("postindustrial-workshop", 245, 237, 8f), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
+            ("river-bridge", 135, 126, 11), ("left-bank", 112, 111, 18.2f), ("right-bank", 144, 132, 11), ("fishing-zone", 114, 68, 12), ("water-garden", 167, 173, 14), ("gravel-yard", 170, 143, 11.2f), ("emerald-clearing", 197, 152, 9), ("enclosure", 158, 224, 22), ("workshops", 214, 226, 21), ("barn", 196, 237, 8.5f), ("preindustrial-workshop", 223, 237, 8.5f), ("postindustrial-workshop", 235, 215, 8f), ("enclosure-south", 149, 214, 12), ("enclosure-north", 166, 235, 13),
             ("rice-paddies", 229, 114, 20), ("cotton-field", 211, 114, 15), ("rice-paddy", 230, 122, 8), ("flower-garden", 154, 105, 5), ("exhibition-zone", 218, 166, 18), ("calm-zone", 200, 187, 11), ("calm-zone-close", 200, 185, 2.8f), ("bare-clearing", 195, 152, 5), ("dump", 49, 236, 20), ("smiley-southwest", 67, 177, 15), ("smiley-bottom-west", 139, 56, 15),
             ("smiley-bottom-centre", 185, 56, 15), ("smiley-bottom-east", 230, 56, 15), ("smiley-west", 93, 100, 15),
             ("smiley-river", 113, 160, 15), ("smiley-north", 176, 202, 15), ("window-backdrop-for-width", 162, 49, 18), ("window-backdrop-for-height", 90, 140, 47),
@@ -326,7 +326,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static readonly System.Collections.Generic.Dictionary<string, int[]> SanctuaryRooms = new System.Collections.Generic.Dictionary<string, int[]>
         {
             ["hearth-hall"] = new[] { 172, 190, 106, 124 }, ["prestige-hall"] = new[] { 193, 200, 106, 117 },
-            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 204, 230, 244 }, ["preindustrial-workshop"] = new[] { 218, 228, 230, 244 }, ["postindustrial-workshop"] = new[] { 242, 247, 230, 244 }, ["cloister"] = new[] { 167, 192, 126, 131 },
+            ["ritual-hall"] = new[] { 202, 209, 114, 123 }, ["terrace"] = new[] { 193, 200, 118, 124 }, ["barn"] = new[] { 188, 204, 230, 244 }, ["preindustrial-workshop"] = new[] { 218, 228, 230, 244 }, ["postindustrial-workshop"] = new[] { 233, 238, 208, 222 }, ["cloister"] = new[] { 167, 192, 126, 131 },
         };
 
         private static int[] SanctuaryArea((string Name, int X, int Z, float Size) site)

@@ -207,3 +207,12 @@ Le jeu borne la taille de la caméra à **11 minimum, 60 maximum** (`CameraMapCo
 Le nom d'un lieu est normalisé avant la recherche (accents retirés, minuscules, espaces, tirets bas et apostrophes remplacés par des tirets). Ces noms mènent aux lieux : `tea-room` à `hut` ; `statue-plaza` à `statue-garden` ; `hermit-hall` à `hearth-hall` ; `salle des rituels`, `salle de l'idéologie` à `ritual-hall` ; `véranda` à `terrace`.
 
 Regroupés le 2026-10-05 : `grand-place` est un alias d'`exhibition-zone` (le même grand smiley) ; `cream-clearing` est un alias de `calm-zone`.
+
+## Ateliers séparés (2026-10-07)
+
+La grange a été agrandie et les deux ateliers ont été éloignés pour qu'aucun cadre ne montre un voisin. Ancien groupe : x 187-218, z 229-245, trois bâtiments côte à côte.
+- **Grange** `barn` : x 187-205, intérieur 17 x 15 (x 188-204, z 230-244), cadre `(196, 237)` zoom 8,5. L'extension est (x 199-204) n'a pas encore de meubles.
+- **Atelier préindustriel** `preindustrial-workshop` : x 217-229 (intérieur x 218-228), cadre `(223, 237)` zoom 8,5. Vide de x 206 à 216 entre la grange et lui.
+- **Atelier postindustriel** `postindustrial-workshop` : déplacé au sud, x 232-239, z 207-223 (intérieur x 233-238, z 208-222), cadre `(235, 215)` zoom 8. Seul dans le bambou.
+- **Vue d'ensemble** `workshops` : `(214, 226)` zoom 21.
+Photos lues : run 889e. Le sol entre la grange et l'atelier préindustriel est de la terre lichen (violet-brun) : à revoir.
