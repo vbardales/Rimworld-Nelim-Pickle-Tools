@@ -120,6 +120,8 @@ it back, failing with what the game reports.
 | --- | --- |
 | `Nelim's Pickle Tools: {string} hairstyle is {string}` | A `HairDef` by name; the hair colour is left alone |
 | `Nelim's Pickle Tools: {string} hair colour is rgb \({int}, {int}, {int}\)` | Any hair colour; a colour forced by a gene is not undone and the failure says so |
+| `Nelim's Pickle Tools: {string} eye colour is rgb ({int}, {int}, {int})` | Eye colour in Nals Facial Animation's eyeball controller (both eyes), read back through the mod; a colour forced by an eye gene is not undone and the failure says so. Not played yet (2026-10-08) |
+| `Nelim's Pickle Tools: {string} facial expression is {string}` | Plays a Nals Facial Animation `FaceAnimationDef` by defName as a temporary animation; an unknown name lists the valid ones. Runs on ticks; whether it holds through a capture is not proven yet |
 | `Nelim's Pickle Tools: {string} face tattoo is {string}` / `... body tattoo is ...` | A `TattooDef` of that kind, or `none`. Needs Ideology; a tattoo of the other kind is refused |
 | `Nelim's Pickle Tools: the {string} worn by {string} is dyed rgb \({int}, {int}, {int}\)` | Dyes a worn garment by apparel def; fails if it is not worn or cannot take a colour |
 
