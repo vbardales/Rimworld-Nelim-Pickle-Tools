@@ -578,6 +578,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             if (!originalColonistBar.HasValue) originalColonistBar = Find.PlaySettings.showColonistBar;
             Find.PlaySettings.showColonistBar = false;
+            // The bar draws from a cached list that only rebuilds when it is marked dirty: the flag alone leaves it on screen.
+            Find.ColonistBar?.MarkColonistsDirty();
         }
 
         private static void ClearActiveConcepts()
@@ -623,6 +625,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             if (!originalLearningHelper.HasValue) originalLearningHelper = Find.PlaySettings.showLearningHelper;
             Find.PlaySettings.showLearningHelper = false;
+            // Without the patch a concept the game activates later (camera dolly, bills tab...) brings the box back: the readout shows itself while any concept is active.
+            try { OverlaySuppression.HideHelper(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[learning helper] new cards are not blocked: Harmony is not loaded"); }
             ClearActiveConcepts();
         }
 
@@ -647,7 +652,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Find.UIRoot.screenshotMode.Active = originalScreenshotMode.Value;
             originalScreenshotMode = null;
             OverlaySuppression.End();
-            if (originalColonistBar.HasValue && Find.PlaySettings != null) Find.PlaySettings.showColonistBar = originalColonistBar.Value;
+            if (originalColonistBar.HasValue && Find.PlaySettings != null) { Find.PlaySettings.showColonistBar = originalColonistBar.Value; Find.ColonistBar?.MarkColonistsDirty(); }
             if (originalLearningHelper.HasValue && Find.PlaySettings != null) Find.PlaySettings.showLearningHelper = originalLearningHelper.Value;
             originalColonistBar = null; originalLearningHelper = null;
             if (originalOverlays != null && Find.PlaySettings != null)
