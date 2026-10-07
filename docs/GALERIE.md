@@ -79,7 +79,7 @@ Retirez le décor (`the decor is removed`) après chaque prise. Si six torches n
 ## Où chercher un step avant d'en écrire un
 
 Quatre sources, dans cet ordre :
-1. L'inventaire de Pickle Tools : `docs/steps.md` (steps `Nelim's Pickle Tools:`).
+1. L'inventaire de Pickle Tools : `docs/steps.md` (steps `Nelim's Pickle Tools:`). Les steps des lieux du Sanctuaire : `docs/steps.md` du dépôt Nelim's Sanctuary Backlot (`SanctuaryBacklot/docs/steps.md`, steps `Nelim's Sanctuary:`).
 2. Les steps de Pickle lui-même : `Docs/steps.md` du dépôt RimWorks/Rimworld-Pickle (dont `I trigger debug action {string}`, pour les actions SANS cible).
 3. `Elsewhere/` : les steps restés dans le dépôt d'un mod en attendant une deuxième utilisation (`Elsewhere/README.md`).
 4. Les menus de debug du jeu (`[DebugAction]`) : une action qui demande un pion ou une case ne se lance pas par Pickle ; on copie son code dans un step.

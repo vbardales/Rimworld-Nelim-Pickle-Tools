@@ -144,7 +144,7 @@ $head = @"
 
 The Pickle steps this repository ships, one table per tool. **Pickle's own steps are in its catalogue:
 [Docs/steps.md](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md)** (defs, mods, fixtures, pawns,
-simulation, interface...); look there first, and here for what Pickle does not have. $prefixLine It is staged with one line
+simulation, interface...); look there first, and here for what Pickle does not have. The steps of the Sanctuary's named places (`Nelim's Sanctuary:`) are in the catalogue of [Nelim's Sanctuary Backlot](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot/blob/main/docs/steps.md). $prefixLine It is staged with one line
 of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the ``[Given]``, ``[When]`` and ``[Then]`` attributes of each tool's ``Source/`` and the first

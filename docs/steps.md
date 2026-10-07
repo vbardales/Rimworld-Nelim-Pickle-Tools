@@ -2,12 +2,12 @@
 
 The Pickle steps this repository ships, one table per tool. **Pickle's own steps are in its catalogue:
 [Docs/steps.md](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md)** (defs, mods, fixtures, pawns,
-simulation, interface...); look there first, and here for what Pickle does not have. Every step starts with `Nelim's Pickle Tools:`, which keeps it from being ambiguous with one of Pickle's, **except 17 of them: RimmsqolSteps (17)**. Those texts have no prefix, so nothing in the text protects them: each tool's `Check-Steps.ps1` matches every step line of every feature of the repository against Pickle's own vocabulary and the other tools', and fails on an ambiguity. It is staged with one line
+simulation, interface...); look there first, and here for what Pickle does not have. The steps of the Sanctuary's named places (Nelim's Sanctuary:) are in the catalogue of [Nelim's Sanctuary Backlot](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot/blob/main/docs/steps.md). Every step starts with `Nelim's Pickle Tools:`, which keeps it from being ambiguous with one of Pickle's, **except 17 of them: RimmsqolSteps (17)**. Those texts have no prefix, so nothing in the text protects them: each tool's `Check-Steps.ps1` matches every step line of every feature of the repository against Pickle's own vocabulary and the other tools', and fails on an ambiguity. It is staged with one line
 of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-164 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+221 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -74,7 +74,8 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | Step | Does |
 | --- | --- |
 | `Nelim's Pickle Tools: {string} xenotype is {string}` (Given) | Gives a pawn a Biotech xenotype and redraws it. The game removes the pawn's xenogenes and adds the xenotype's genes one by one, so a gene that carries a body type (Body_Thin, Body_Hulk...) sets the body type as it goes. The endogenes the pawn was born with are kept, so a pawn already carrying one of those keeps it alongside the new ones. |
-| `Nelim's Pickle Tools: {string} body type is {word}` (Given) | Gives a pawn a body type the game cannot draw at random: `Thin`, `Fat` or `Hulk`, or `Male` / `Female` (the plain body of that gender). The game keeps every body-type gene a pawn has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard and Body_Hulk) has no fixed body type. |
+| `Nelim's Pickle Tools: {string} gender is {word}` (Given) | Gives a pawn a body type the game cannot draw at random: `Thin`, `Fat` or `Hulk`, or `Male` / `Female` (the plain body of that gender). The game keeps every body-type gene a pawn has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard and Body_Hulk) has no fixed body type. |
+| `Nelim's Pickle Tools: {string} body type is {word}` (Given) | A body type that is certain: `Male`, `Female`, `Thin`, `Fat` or `Hulk`, case insensitive. |
 | `Nelim's Pickle Tools: a colonist {string} of kind {string} exists` (Given) | Generates a colonist from a humanlike PawnKindDef, the way "a colonist exists" does from the plain colonist kind, and does nothing if a colonist by that nickname already exists. The race is the kind's, so a kind from a race mod gives a pawn of that race, with that race's body types. |
 | `Nelim's Pickle Tools: I let the hairstyle of {string} show its own colours` (When) | Sets the colonist's hair colour to white and redraws the pawn, so its hairstyle is drawn in its own colours. The colour is the pawn's for the rest of the scenario (the scenario's pawn is not saved unless the scenario saves). |
 | `Nelim's Pickle Tools: the hairstyle of {string} is drawn in its own colours` (Then) | Asserts that the colonist's hair colour reads white, to 0.01; the failure prints the colour and the hairstyle. |
@@ -83,14 +84,19 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: {string} face tattoo is {string}` (Given) | Gives a colonist a face tattoo by `TattooDef` name, or `none` to remove it, and redraws it. Needs Ideology. The tattoo must belong to the face: the game's own face tattoos are the ones whose `tattooType` is Face. |
 | `Nelim's Pickle Tools: {string} body tattoo is {string}` (Given) | Gives a colonist a body tattoo by `TattooDef` name, or `none` to remove it, and redraws it. Needs Ideology. |
 | `Nelim's Pickle Tools: the {string} worn by {string} is dyed rgb \({int}, {int}, {int}\)` (Given) | Dyes a garment the colonist wears, by apparel def name, in an RGB colour 0 to 255, and redraws the pawn. Fails if the colonist does not wear it, or if the garment cannot be coloured (no colour comp, as for apparel drawn from its stuff alone). |
+| `Nelim's Pickle Tools: {string} drops its clothes` (Given) | Takes every garment off with the game's own drop (Pawn_ApparelTracker.TryDrop: the same Thing is placed on the ground, as the bath job does) and remembers them for the step that checks their colour. |
+| `Nelim's Pickle Tools: the {string} dropped by {string} is drawn in rgb \({int}, {int}, {int}\)` (Then) | Reads a garment dropped by the step above: its DrawColor must be the colour asked for. (Graphic.Color reads white even when the ground picture is dyed: run fd04 photo, so it is only logged.) |
 | `Nelim's Pickle Tools: {string} wears {string} dyed rgb \({int}, {int}, {int}\)` (Given) | Dresses a colonist in a garment of the def, dyed in an RGB colour 0 to 255: makes it of its default stuff, moves the garments that cannot be worn with it (same layer and body parts) to the inventory, wears it and dyes it, then reads the colour back. What the colonist wore is remembered once, for the step that gives it back. |
-| `Nelim's Pickle Tools: {string} is undressed` (Given) / `I undress {string}` (When) | Takes every garment off to the inventory. The first `wears` step of a scenario does this itself (2026-10-06, Virginie): the garments dressed afterwards are the only ones worn, the next `wears` steps add to them. Compiled; not played |
-| `Nelim's Pickle Tools: {string} gets back the clothes it had` (When) | Takes off what the dyed-clothes step made and puts back what the colonist wore before. Does nothing for a colonist that step never dressed. Also run after every scenario, so a failed one leaves the colonist as it found it. |
+| `Nelim's Pickle Tools: I undress {string}` (When) | Takes off what the dyed-clothes step made and puts back what the colonist wore before. Does nothing for a colonist that step never dressed. Also run after every scenario, so a failed one leaves the colonist as it found it. |
+| `Nelim's Pickle Tools: {string} is undressed` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: {string} gets back the clothes it had` (When) | Takes off what the step above made and puts the original clothes back. Also run after every scenario (`[AfterScenario]`), so a failed one leaves the colonist as it was found |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\)` (Given) | Puts a colonist on a cell of the current map, stops its job and its walking, and keeps it where it stands: the pawn stays put as long as the game is paused (Pickle's own `game speed is paused`) and as long as nothing gives it a job. Fails if the cell is off the map or not standable. |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\) facing {word}` (Given) | The same, and turns the colonist to face North, East, South or West (what the renderer draws it looking at). |
 | `Nelim's Pickle Tools: the animal {string} stands at \({int}, {int}\)` (Given) | Puts an ANIMAL (any spawned pawn that is not a free colonist, found by its short name, e.g. the `coat-N` names) on a standable cell, stops it and keeps it there while the game is paused. Same checks and read-back as the colonist step. |
 | `Nelim's Pickle Tools: the animal {string} stands at \({int}, {int}\) facing {word}` (Given) | The same, turned North, East, South or West. |
 | `Nelim's Pickle Tools: {string} faces {word}` (Given) | Turns a pawn (colonist or animal, found by its short name) where it stands, without moving it. |
+| `Nelim's Pickle Tools: {string} carries the item {string}` (Given) | Puts one item in the hands of a pawn (colonist or animal, found by its short name), as a hauler carries it: the thing is made from the def and held by the carry tracker, which draws it on the pawn. Holds while the game is paused and nothing gives the pawn a job; a pawn already carrying something drops it first. |
+| `Nelim's Pickle Tools: {string} carries {int} of the item {string}` (Given) | The same, with a stack of {int} items. |
 | `Nelim's Pickle Tools: the colonist {string} is removed from the map` (Given) | Takes a colonist off the map (despawns it) so it is not in the picture, e.g. the actors a studio fixture puts on the camera cell. The pawn is not destroyed; a reload brings the fixture back as it was. Fails if the colonist is not on a map. |
 | `Nelim's Pickle Tools: {string} wears {string}` (Given) | Dresses a colonist in a new garment of the apparel def, undyed, in the same way as the dyed step: the garments that cannot be worn with it go to the inventory, and the clothes it had come back with the step that gives them back. |
 | `Nelim's Pickle Tools: {string} head type is {string}` (Given) | Gives a colonist a head (a `HeadTypeDef` name, e.g. Male_AverageNormal) and redraws it. The def must suit the colonist's gender. |
@@ -270,11 +276,58 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: an animal of kind {string} named {string} is spawned at \({int}, {int}\) at life stage {int}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: an animal of kind {string} named {string} is spawned at \({int}, {int}\) at the life stage {string}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: an adult animal of kind {string} named {string} is spawned at \({int}, {int}\)` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I frame the animal {string} at zoom {int}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the flower meadow studio is prepared` (Given) | Builds the flower meadow studio on the current map: the terrain, the plants (bonsai among them), the dry garden and the props the presentation captures are taken in |
 | `Nelim's Pickle Tools: I frame the studio {string}` (When) | Points the camera at one named shot of the studio and sets its zoom |
+| `Nelim's Pickle Tools: I frame the sanctuary {string}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: I am at the sanctuary {string}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I let {int} ticks pass` (When) | (no description yet) |
+| `Nelim's Pickle Tools: I frame the rectangle from \({int}, {int}\) to \({int}, {int}\)` (When) | (no description yet) |
+| `Nelim's Pickle Tools: I empty the sanctuary {string}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the sanctuary {string} is emptied` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I bare the floor of the sanctuary {string}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the floor of the sanctuary {string} is bared` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: a flower border is planted around the square from \({int}, {int}\) to \({int}, {int}\)` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the animals are removed from the sanctuary {string}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the animals are kept out of the sanctuary {string}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I remove all animals` (When) | (no description yet) |
+| `Nelim's Pickle Tools: all animals are removed` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I send the colonists to the map corner` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the colonists are sent to the map corner` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the roof is removed from the sanctuary {string}` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the power network is refreshed` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: no window of the type {string} is open` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: the world component {string} holds at least {int} entries in its field {string}` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: all humans but {string} are removed` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: all loose items are put away` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the pawn {string} is fully fed` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: all filth is cleaned` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: all research is reset` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the flower meadow studio is intact` (Then) | Asserts the studio is still what it was built as: its plants and terrain are present |
+| `Nelim's Pickle Tools: I hide the colonist bar` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the colonist bar is hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the tooltips` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the tooltips are hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the resource readout` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the resource readout is hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the alerts` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the alerts are hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the selection brackets` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the selection brackets are hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the item and name labels` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the item and name labels are hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: I hide the learning helper` (When) | (no description yet) |
+| `Nelim's Pickle Tools: the learning helper is hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: studio presentation mode is enabled` (When) | Turns on the game's screenshot mode for a presentation capture, remembering its previous state to put it back |
 | `Nelim's Pickle Tools: I save the flower meadow studio` (When) | Saves the studio as the fixture `Nelim-Zen-Meadow-Studio` |
+| `Nelim's Pickle Tools: the translation report has no problem for the mod {string}` (Then) | (no description yet) |
+| `Nelim's Pickle Tools: the translation report has no problem for the mod {string}, apart from {string}` (Then) | (no description yet) |
 
 ## SoundCapture
 
@@ -303,10 +356,11 @@ Package `nelim.pickletools.stagedecor`. Not in the bundle: a companion staged by
 | Step | Does |
 | --- | --- |
 | `Nelim's Pickle Tools: I place the decor {string} at \({int}, {int}\)` (Given) | Places a thing of the def at a cell, made of its default stuff, and remembers it for removal. Fails naming the cell if it is off the map or already holds a pawn or a building (the game would otherwise wipe what stood there). |
+| `Nelim's Pickle Tools: I place the decor {string} at \({int}, {int}\) fully grown` (Given) | Places a thing like "I place the decor" and, when it is a plant, brings it to full growth in the same step, so a flower or a bush shows at its adult size without a second step. A thing that is not a plant is placed as it is. |
 | `Nelim's Pickle Tools: I lay the floor {string} from \({int}, {int}\) to \({int}, {int}\)` (Given) | Lays a floor (a TerrainDef: a carpet, a tile, soil) on every cell of the rectangle from the first corner to the second, and remembers what each cell held, so the removal step puts it back. Fails naming the first cell off the map or under a wall. |
+| `Nelim's Pickle Tools: I lay the floor {string} from \({int}, {int}\) to \({int}, {int}\) painted {string}` (Given) | Lays a floor like the plain step, then paints it with a colour def (Structure_Cream, Structure_OrangePastel, ...): a painted floor of the studio loses its paint when another floor is laid on it, and this brings it back. |
+| `Nelim's Pickle Tools: the plants from \({int}, {int}\) to \({int}, {int}\) are fully grown` (Given) | Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling. |
 | `Nelim's Pickle Tools: the decor {string} at \({int}, {int}\) is lit` (Given) | Makes a placed light-giving thing burn: fills its fuel when it is refuelable (a torch, a campfire) and switches it on when it has a switch, then waits up to 10 seconds for the game to say it glows. Fails if the thing at the cell has no light, or does not glow (a lamp that needs power on a network that gives none says so). |
-| `Nelim's Pickle Tools: the plants from ({int}, {int}) to ({int}, {int}) are fully grown` (Given) | Brings every plant on the rectangle to full growth, so a tree or a flower spawned by a step shows at its adult size. Compiled; not played in the game by Pickle Tools |
-| `Nelim's Pickle Tools: I place the decor {string} at ({int}, {int}) fully grown` (Given) | Places the decor like the plain step and, when it is a plant, sets it to full growth at once. Compiled; not played in the game by Pickle Tools |
 | `Nelim's Pickle Tools: the roof is removed from \({int}, {int}\) to \({int}, {int}\)` (Given) | Takes the roof off a rectangle of cells (a test colony under a mountain roof is dark in a capture) and remembers each roof, so the removal step puts it back. A cell with no roof is left alone. |
 | `Nelim's Pickle Tools: the area from \({int}, {int}\) to \({int}, {int}\) is cleared` (Given) | Takes every thing off a rectangle of cells (plants, filth, items, buildings, blueprints; not pawns, motes or projectiles) so the capture shows bare ground, and remembers each one: the removal step spawns the same instances back at their cell and rotation. Floors and roofs stay (use the floor and roof steps). |
 | `Nelim's Pickle Tools: the decor is removed` (When) | Removes every thing the place step made and puts back every floor the lay step replaced, in one step. |
@@ -345,6 +399,3 @@ Package `nelim.pickletools.veffactions`. In the bundle (`Mod/Pickle/Assemblies`)
 | `Nelim's Pickle Tools: the chosen faction is ignored in this save` (Then) | Asserts the chosen faction is on VEF's ignored list |
 | `Nelim's Pickle Tools: the chosen faction is not ignored` (Then) | Asserts the chosen faction is not on VEF's ignored list |
 | `Nelim's Pickle Tools: the game log says the chosen faction was ignored` (Then) | Asserts the log holds a Quiet New Factions line for the chosen faction |
-
-| `Nelim's Pickle Tools: {string} carries the item {string}` (Given) | Puts one item in the hands of a pawn (colonist or animal, by short name): makes the thing from its ThingDef and holds it with the carry tracker, which draws it on the pawn. Holds while the game is paused and nothing gives the pawn a job; drops what it carried first. Fails on an unknown def. Played: `carry-item` (Nelim, WoodLog). |
-| `Nelim's Pickle Tools: {string} carries {int} of the item {string}` (Given) | The same, with a stack (clamped to the def's stack limit). |
