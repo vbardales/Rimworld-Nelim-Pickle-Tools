@@ -6,7 +6,7 @@ Feature: Sanctuary Backlot steps beside the Pickle Tools steps
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the tooltips are hidden
-    And Nelim's Sanctuary Backlot: the animals are kept out of the sanctuary "barn"
-    And Nelim's Sanctuary Backlot: the sanctuary "barn" is emptied
-    When Nelim's Sanctuary Backlot: I frame the sanctuary "barn"
+    And Nelim's Sanctuary: the animals are kept out of the sanctuary "barn"
+    And Nelim's Sanctuary: the sanctuary "barn" is emptied
+    When Nelim's Sanctuary: I frame the sanctuary "barn"
     And I take a screenshot "backlot-barn-emptied"
