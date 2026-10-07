@@ -119,3 +119,5 @@ Mods de corps, dans cet ordre de chargement (modèle : `TailorMadeWaistlines/Tes
 `I wait N ticks` est un step de Pickle avec le délai par défaut de 5 s : en mode rapide (500 à 700 ticks par seconde sur WSL), 800 à 1000 ticks passent en 2 s, mais sur une machine chargée ils dépassent 5 s. Utilisez `When Nelim's Pickle Tools: I let N ticks pass` (même attente, délai de 240 s).
 
 Les textes flottants (« +80 », nombres de dégâts) restent dessinés en mode présentation et avec `the item and name labels are hidden` : seuls les compteurs de piles et les noms disparaissent (correctif du 2026-10-07 : avant, tout `ThingOverlays` était sauté, motes comprises ; non revu sur photo).
+
+Garder un lieu sans animaux pendant la prise : `Given Nelim's Pickle Tools: the animals are kept out of the sanctuary "<lieu>"`. `the animals are removed from the sanctuary` n'agit qu'une fois ; celui-ci retire à chaque image les animaux qui entrent dans la zone (portes comprises) jusqu'à la fin du scénario. Zone : celle de `is emptied` (une pièce nommée, sinon le carré de la taille de cadrage). Pas encore vu sur un run.

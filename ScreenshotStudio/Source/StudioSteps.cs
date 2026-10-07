@@ -415,6 +415,34 @@ namespace Nelim.PickleTools.ScreenshotStudio
             foreach (var a in animals) a.DeSpawn();
         }
 
+        // Unlike "the animals are removed", which acts once, this keeps a place free of animals until the scenario ends: every frame, an animal that
+        // has walked into the area is despawned (the animals of the Sanctuary come back through the doors). Same area as "is emptied". Several places can be kept.
+        private static readonly System.Collections.Generic.List<Action> KeepOutHooks = new System.Collections.Generic.List<Action>();
+
+        [Given(Prefix + "the animals are kept out of the sanctuary {string}")]
+        public void KeepAnimalsOut(PickleContext ctx, string place)
+        {
+            var site = FindSite(ctx, place);
+            ctx.Require(Find.CurrentMap != null && Find.CurrentMap.Size.x >= 250, "Load the save \"Nelims-tribe\" first");
+            int[] r = SanctuaryArea(site);
+            Action hook = () =>
+            {
+                Map map = Find.CurrentMap;
+                if (map == null) return;
+                foreach (var a in map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && p.Position.x >= r[0] && p.Position.x <= r[1] && p.Position.z >= r[2] && p.Position.z <= r[3]).ToList()) a.DeSpawn();
+            };
+            hook();
+            KeepOutHooks.Add(hook);
+            RimWorks.Pickle.Runtime.PickleDriver.Instance.AddFrameHook(hook);
+        }
+
+        [AfterScenario]
+        public void StopKeepingAnimalsOut()
+        {
+            foreach (var hook in KeepOutHooks) RimWorks.Pickle.Runtime.PickleDriver.Instance?.RemoveFrameHook(hook);
+            KeepOutHooks.Clear();
+        }
+
         // Sends every animal on the map away (despawned, not killed): for a frame wider than a place's own area, or a place the animals keep wandering back to.
         [Given(Prefix + "all animals are removed")]
         [When(Prefix + "I remove all animals")]
