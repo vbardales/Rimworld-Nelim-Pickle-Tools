@@ -113,3 +113,7 @@ Mods de corps, dans cet ordre de chargement (modèle : `TailorMadeWaistlines/Tes
 - **Pour charger le mod de coupe d'un autre dans une passe** : `TailorMadeWaistlines/docs/USING-WAISTLINES-IN-ANOTHER-MODS-GALLERY.md`.
 - **Cadrage serré d'un pion** : `I frame the sanctuary "<lieu>"` avec le zoom du lieu, ou `I frame the rectangle from (x1, z1) to (x2, z2)`; voir « Zoom : ce que vaut le nombre N ».
 - **Non éprouvés** : repaint et cache de rendu, cheveux, pose assise. Manques côté outils : pose assise et placement en cercle, step qui fixe tête et visage, seed AB auto-généré pour une passe étrangère. La teinte d'un vêtement lâché au sol est correcte (`TryDrop` garde l'instance) ; l'anomalie vue par DrumBathHygiene venait des anciens habits laissés au sol.
+
+## Attendre des ticks sans « timed out after 5s »
+
+`I wait N ticks` est un step de Pickle avec le délai par défaut de 5 s : en mode rapide (500 à 700 ticks par seconde sur WSL), 800 à 1000 ticks passent en 2 s, mais sur une machine chargée ils dépassent 5 s. Utilisez `When Nelim's Pickle Tools: I let N ticks pass` (même attente, délai de 240 s).

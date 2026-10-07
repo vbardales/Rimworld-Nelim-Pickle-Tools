@@ -288,6 +288,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Log.Message("[frame] " + place + ": asked (" + site.X + ", " + site.Z + ") zoom " + site.Size + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00"));
         }
 
+        // Pickle's own "I wait {int} ticks" keeps the default 5 s step deadline: on a loaded machine 800 to 1000 ticks overrun it (ACertainSeries gallery runs f885, bdf1). Same wait, long deadline.
+        [When(Prefix + "I let {int} ticks pass", TimeoutSeconds = 240f)]
+        public async Task LetTicksPass(PickleContext ctx, int ticks)
+        {
+            await ctx.WaitTicks(ticks);
+        }
+
         // Any map: centre the camera on the rectangle and take the smallest root size that holds it whole (1080p frame: 2N cells tall, about 3.56N wide), plus one cell of margin on each side.
         [When(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
         public async Task FrameRectangle(PickleContext ctx, int x1, int z1, int x2, int z2)
