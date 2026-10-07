@@ -21,7 +21,9 @@ if ($LASTEXITCODE -ne 0) { throw 'rg could not inventory the collection' }
 $suites = @{}
 foreach ($file in $files) {
     $relative = $file.Substring($root.Length + 1).Replace('\', '/')
-    if ($relative -notmatch '^(?<owner>.+)/tests/pickle/(?<part>Source/.+\.cs|Mod/Pickle/Features/.+\.feature)$') { continue }
+    # SanctuaryBacklot is a repository whose steps sit in its own Source/ (not under Tests/Pickle/Source).
+    $isOwnSource = $relative -match '^(?<owner>SanctuaryBacklot)/(?<part>Source/.+\.cs)$'
+    if (-not $isOwnSource -and $relative -notmatch '^(?<owner>.+)/tests/pickle/(?<part>Source/.+\.cs|Mod/Pickle/Features/.+\.feature)$') { continue }
     $owner = $Matches.owner
     $part = $Matches.part
     # The absolute-path rg scan can still return PickleTools files despite the glob exclusion.
