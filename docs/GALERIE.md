@@ -84,3 +84,12 @@ Quatre sources, dans cet ordre :
 3. `Elsewhere/` : les steps restés dans le dépôt d'un mod en attendant une deuxième utilisation (`Elsewhere/README.md`).
 4. Les menus de debug du jeu (`[DebugAction]`) : une action qui demande un pion ou une case ne se lance pas par Pickle ; on copie son code dans un step.
 Rien dans les quatre : écrivez-le dans votre suite, et signalez-le à Pickle Tools pour `Elsewhere/`.
+
+## Zoom : ce que vaut le nombre N
+
+`I frame the cell (x, z) at zoom N` et `the camera root size is set to N` règlent la **demi-hauteur** de la caméra (root size, N peut être décimal) : le cadre montre **2·N cellules en hauteur** et environ **3,56·N en largeur** (16:9), une cellule fait **540 / N pixels** sur un écran 1080p. Pour H cellules de haut : N = H / 2 ; pour W cellules de large : N = W / 3,56 ; pour un sujet de S cellules qui remplit une part f de la hauteur : N = S / (2·f). Dans le cadrage du Sanctuaire, N va de 2 à 130 ; hors de lui, le jeu borne le zoom. Un « 3 cellules de haut » demandé comme N = 3 donne donc 6 cellules (ACertainSeries, 2026-10-07).
+Décaler le sujet pour laisser un panneau à gauche (inspecteur d'environ 500 px) : cadrer la case décalée de N·0,46 cellules vers la gauche.
+
+## Interface gardée : repères et étiquettes
+
+`the selection brackets are hidden` (les repères blancs de la sélection ; la sélection et le panneau d'inspection restent), `the item and name labels are hidden` (compteurs de pile sous les objets, noms sous les pions, icônes d'état des bâtiments ; sans le mode capture, l'interface reste). Harmony requis ; restitués à la fin du scénario.

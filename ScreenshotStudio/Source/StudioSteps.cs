@@ -618,6 +618,24 @@ namespace Nelim.PickleTools.ScreenshotStudio
             catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[alerts] stay drawn: Harmony is not loaded"); }
         }
 
+        // The white brackets the game draws around the selected thing. The selection stays (the inspect pane and its tab stay open).
+        [Given(Prefix + "the selection brackets are hidden")]
+        [When(Prefix + "I hide the selection brackets")]
+        public void HideSelectionBrackets(PickleContext ctx)
+        {
+            try { OverlaySuppression.HideBrackets(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[brackets] stay drawn: Harmony is not loaded"); }
+        }
+
+        // The stack counts under items and the name labels under pawns, without the screenshot mode (so the interface stays).
+        [Given(Prefix + "the item and name labels are hidden")]
+        [When(Prefix + "I hide the item and name labels")]
+        public void HideNameLabels(PickleContext ctx)
+        {
+            try { OverlaySuppression.Begin(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[labels] stay drawn: Harmony is not loaded"); }
+        }
+
         // Interface kept, but without the learning helper's tip boxes (top right).
         [Given(Prefix + "the learning helper is hidden")]
         [When(Prefix + "I hide the learning helper")]

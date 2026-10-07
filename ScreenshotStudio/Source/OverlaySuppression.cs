@@ -16,13 +16,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched;
 
         public static bool Active { get; private set; }
         public static bool TooltipsHidden { get; private set; }
         public static bool HelperHidden { get; private set; }
         public static bool ReadoutHidden { get; private set; }
         public static bool AlertsHidden { get; private set; }
+        public static bool BracketsHidden { get; private set; }
 
         public static void Begin()
         {
@@ -105,7 +106,21 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
-        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; }
+        public static void HideBrackets()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!bracketsPatched)
+                {
+                    harmony.Patch(AccessTools.Method(typeof(SelectionDrawer), nameof(SelectionDrawer.DrawSelectionOverlays)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipBrackets)));
+                    bracketsPatched = true;
+                }
+                BracketsHidden = true;
+            }
+        }
+
+        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; }
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
 
@@ -114,5 +129,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static bool SkipConcepts() => !HelperHidden;
         private static bool SkipReadout() => !ReadoutHidden;
         private static bool SkipAlerts() => !AlertsHidden;
+        private static bool SkipBrackets() => !BracketsHidden;
     }
 }

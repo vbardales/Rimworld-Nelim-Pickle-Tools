@@ -78,6 +78,15 @@ Ce qu'il fait : quand un mod demande « X est-il chargé ? » et que X est absen
 8. Tests (`scripts/Tests/test-stage-pickle-wsl.sh`, bac à sable) : loadAfter simple ; loadBefore ; cycle de 3 mods ; id absent ; doublon de packageId ; incompatibleWith (échec / `incompat-`) ; tête fixe et queue ; déterminisme (deux runs identiques) ; cas TailorMade/FemaleBodyVariants.
 9. Phase 2 (optionnelle) : règles communautaires + base UTI, après avoir tranché les licences.
 
+## F. Décisions de la propriétaire (2026-10-07) et vérifications faites ensuite
+
+Décisions : (1) incompatibles : **échouer, sauf passes `incompat-*`** (simple avertissement) ; (2) périmètre de la première version : **About.xml + règles communautaires** (la base de remplacements d'RTI / Use This Instead reste pour plus tard) ; (3) les marqueurs manuels `first:` et `last:` seront retirés une fois le tri en place.
+
+Vérifié ensuite (API GitHub et téléchargement, 2026-10-07) :
+- `RimSort/Community-Rules-Database` : **aucune licence déclarée** (`license: null`), un seul fichier de données `communityRules.json` (395 Ko, dernier push 2026-09-13), 631 mods. Sans licence, on ne le copie pas dans nos dépôts : le script le **télécharge à l'exécution dans un cache local** (jamais commité, jamais redistribué) ; à signaler à la propriétaire, qui peut demander la licence au dépôt. Ce n'est pas un avis juridique.
+- Format : `{ "timestamp": …, "rules": { "<packageId>": { "loadAfter": {"<id>": {"name": […]}}, "loadBefore": {…}, "loadBottom": …, "loadTop": …, "incompatibleWith": {…} } } }`. Fréquences : `loadAfter` 481, `loadBefore` 220, `loadBottom` 12, `loadTop` 1, `incompatibleWith` 5. La clé « incompatible » existe donc (5 mods), et les champs de tête et de queue s'appellent `loadTop` / `loadBottom` (pas `loadFirst` / `loadLast` comme je l'avais lu).
+- Cas inclus dans la conception : un overlay peut remplacer le mod testé par une copie de même packageId activée à sa place dans la map (`stage-pickle-wsl.sh` ~l.416) ; le tri doit alors traiter cette copie comme « le mod testé » (en queue), pas à son rang de la map.
+
 ## Non vérifié
 
 - Le constructeur du graphe de RimSort (niveaux, champs About.xml lus, mods absents), faute d'accès à `metadata.py` ; les niveaux 0-3 ne sont pas confirmés.
@@ -85,5 +94,5 @@ Ce qu'il fait : quand un mod demande « X est-il chargé ? » et que X est absen
 - Différence exacte `loadAfter` / `forceLoadAfter` dans le jeu ; lecture des blocs `…ByVersion`.
 - Présence de node dans WSL (seul python3 confirmé) ; les 15 ids absents du Workshop.
 - Liste complète des mods avec loadAfter dans les maps : seules les ~70 premières lignes de sortie ont été lues ; l'impact exact par passe n'est pas calculé.
-- Existence d'une clé « incompatible » dans les règles communautaires.
+- (levé le 2026-10-07, voir §F : la clé `incompatibleWith` existe dans les règles communautaires.)
 - Existence réelle d'un mod « Require This Instead » (non trouvé).
