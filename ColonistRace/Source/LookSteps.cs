@@ -198,7 +198,7 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
             if (!OriginalClothes.ContainsKey(pawn)) OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
-            pawn.apparel.DropAllOrMoveAllToInventory(a => true);
+            StowApparel(pawn, a => true);
             pawn.Drawer.renderer.SetAllGraphicsDirty();
         }
 
