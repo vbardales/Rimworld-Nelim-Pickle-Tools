@@ -288,6 +288,23 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Log.Message("[frame] " + place + ": asked (" + site.X + ", " + site.Z + ") zoom " + site.Size + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00"));
         }
 
+        // Any map: centre the camera on the rectangle and take the smallest root size that holds it whole (1080p frame: 2N cells tall, about 3.56N wide), plus one cell of margin on each side.
+        [Given(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
+        [When(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
+        public async Task FrameRectangle(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            ctx.Require(Find.CurrentMap != null, "Load a map first");
+            int minX = Math.Min(x1, x2), maxX = Math.Max(x1, x2), minZ = Math.Min(z1, z2), maxZ = Math.Max(z1, z2);
+            float w = maxX - minX + 1 + 2, h = maxZ - minZ + 1 + 2;
+            float size = Math.Max(h / 2f, w / 3.56f);
+            LiftZoomLimit();
+            Find.Selector.ClearSelection();
+            Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3((minX + maxX) / 2, 0, (minZ + maxZ) / 2));
+            Find.CameraDriver.SetRootSize(size);
+            await ctx.WaitFrames(90);
+            Log.Message("[frame] rectangle (" + minX + ", " + minZ + ") to (" + maxX + ", " + maxZ + "): root size " + size.ToString("0.0") + ", camera at " + Find.CameraDriver.MapPosition);
+        }
+
         // The cells a named place covers, as (minX, maxX, minZ, maxZ). Rooms are listed because their walls and doors stay; every other
         // place is the square of its camera size around its centre.
         private static readonly System.Collections.Generic.Dictionary<string, int[]> SanctuaryRooms = new System.Collections.Generic.Dictionary<string, int[]>

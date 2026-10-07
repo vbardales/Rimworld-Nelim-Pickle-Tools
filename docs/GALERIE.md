@@ -93,3 +93,7 @@ Décaler le sujet pour laisser un panneau à gauche (inspecteur d'environ 500 px
 ## Interface gardée : repères et étiquettes
 
 `the selection brackets are hidden` (les repères blancs de la sélection ; la sélection et le panneau d'inspection restent), `the item and name labels are hidden` (compteurs de pile sous les objets, noms sous les pions, icônes d'état des bâtiments ; sans le mode capture, l'interface reste). Harmony requis ; restitués à la fin du scénario.
+
+## Cadrer un rectangle (sujet + animal)
+
+Step : `When Nelim's Pickle Tools: I frame the rectangle from (x1, z1) to (x2, z2)`. Centre la caméra sur le rectangle, prend N = max(hauteur/2, largeur/3,56), une cellule de marge de chaque côté. Compilé, pas encore vu sur une photo. Sans ce step : garder l'animal à moins de 0,8·N cellules du centre en hauteur (z) et 1,5·N en largeur (x), moins une cellule pour la taille du corps.
