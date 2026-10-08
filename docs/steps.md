@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-228 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+225 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -297,7 +297,6 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) |
-| `Nelim's Pickle Tools: the flower meadow studio is prepared` (Given) | Builds the flower meadow studio on the current map: the terrain, the plants (bonsai among them), the dry garden and the props the presentation captures are taken in |
 | `Nelim's Pickle Tools: I frame the studio {string}` (When) | Points the camera at one named shot of the studio and sets its zoom |
 | `Nelim's Pickle Tools: I let {int} ticks pass` (When) | (no description yet) |
 | `Nelim's Pickle Tools: I frame the rectangle from \({int}, {int}\) to \({int}, {int}\)` (When) | (no description yet) |
@@ -314,7 +313,6 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the pawn {string} is fully fed` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: all filth is cleaned` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: all research is reset` (Given) | (no description yet) |
-| `Nelim's Pickle Tools: the flower meadow studio is intact` (Then) | Asserts the studio is still what it was built as: its plants and terrain are present |
 | `Nelim's Pickle Tools: I hide the colonist bar` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the colonist bar is hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the tooltips` (When) | (no description yet) |
@@ -330,7 +328,6 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: I hide the learning helper` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the learning helper is hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: studio presentation mode is enabled` (When) | Turns on the game's screenshot mode for a presentation capture, remembering its previous state to put it back |
-| `Nelim's Pickle Tools: I save the flower meadow studio` (When) | Saves the studio as the fixture `Nelim-Zen-Meadow-Studio` |
 | `Nelim's Pickle Tools: the temperature of the map is {float} degrees` (Given) | Holds the temperature of the whole map (outdoors, every room, every pawn's ambient temperature) at this value in degrees Celsius until the scenario ends, then gives it back. Meant for captures: at 20 degrees a pawn does not sweat or blush. Place it before the pawns are framed. Needs Harmony. |
 | `Nelim's Pickle Tools: the temperature of the map reads {float} degrees` (Then) | Asserts the temperature of the map reads this value to half a degree, by the game's own reading of the outdoors. |
 | `Nelim's Pickle Tools: the translation report has no problem for the mod {string}` (Then) | (no description yet) |

@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- **Removed (2026-10-08, owner: delete the whole flower meadow studio)**: the studio generator and its steps (`the flower meadow studio is prepared`, `... is intact`, `I save the flower meadow studio`), `ZenGarden`, the fixture `nelim-flower-meadow-studio` and the two features that played them. **Kept until the mods have moved their galleries to the Sanctuary (SanctuaryBacklot)**: the fixture `nelim-zen-meadow-studio` and `I frame the studio`, which about twenty mods still load; they go the day those mods have migrated.- **Moved**: the steps of the named places of the Sanctuary leave Screenshot Studio for SanctuaryBacklot (`Nelim's Sanctuary: ...`); new steps in ColonistRace (genes, eye colour, facial expression, face parts and kits, gender neutral) and Screenshot Studio (temperature of the map); none of the new face or temperature steps was played when written (see their READMEs).
 Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1.1.0 is published from that commit, not from the head of `main`**):
 
 - ClickDiagnostics: a failed click also prints what Pickle's tag store held after the hover and before the click (commit `8f03eed`, made by another session). The payload DLL follows it. **Not played in game** at the time of this note.
