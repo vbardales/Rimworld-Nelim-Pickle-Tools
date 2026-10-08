@@ -27,7 +27,13 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 | Fight | `AttackMelee`, `AttackMelee2`, `AttackStatic`, `AttackStatic2` | Slanted brows, hard look; flat mouth (`...2`) or small open mouth. |
 | Work and movement, calm face | `blink`, `DoBill`, `DoBill2`, `eyeFlicker`, `eyeMoving`, `eyeMoving2`, `Goto`, `Haul`, `Haul2` | Calm face, small smile. The difference between them is the eyes and brows only, subtle: a still photo does not tell them apart well; they are made for the movement. |
 | Fear | `FleeAndCower` | Open mouth, shadow on the forehead. Reads as fear. |
-| Not seen yet | `HaulSub`, `HaulSub2`, `Lovin*`, `mood*`, `NLR-*`, `painHigh`, `Reading*`, `ReceivedAnAttack01`, `Thought_*`, `Wait*`, `Ingest`, `laydown*`, `Mine`, `Research*`, `SocialRelax`, `StandAndBeSociallyActive` | Gallery parts 2 to 4. |
+| Hauling, sub | ,  | Calm neutral face, flat mouth. |
+| Lovin | , ,  | Half-closed eyes and strong pink blush;  adds an open mouth. |
+| Mood: cheerful | ,  | Light smile ( a little wider). |
+| Mood: low | , ,  | Frown, sad eyes;  also shades the forehead. |
+| NLR blink, cold | ,  | Neutral face in a still photo (made for movement / cold effects not visible here). |
+| NLR blush, hot | ,  | Same look on the photo: red cheeks, no sweat. The redness left on a face after the sweat is gone is probably one of these. |
+| Not seen yet | , , , , , , , , , , , , , , ,  | Gallery parts 3 and 4. |
 
 ## Known traps
 
@@ -37,3 +43,5 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 - Eye colour by `eye colour is rgb (...)` changes what the controller stores but not what is drawn on Nelim: use the genes.
 
 ![Part 1](img/animations-part1.png)
+
+![Part 2](img/animations-part2.png)
