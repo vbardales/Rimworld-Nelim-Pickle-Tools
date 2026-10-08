@@ -65,6 +65,7 @@ Feature: Eye colour and facial expression of a colonist (Nals Facial Animation)
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
     And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 120 ticks pass
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "cool-default"
     When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Smile"
