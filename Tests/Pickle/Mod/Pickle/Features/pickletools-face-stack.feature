@@ -27,3 +27,9 @@ Feature: Stacked facial animations of Nals Facial Animation (the last one that d
     When Nelim's Pickle Tools: "Nelim" facial expression is "normal+NLR-Open"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "stack-open"
+
+  Scenario: face-list: every facial animation the loaded mods define, by mod
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    When Nelim's Pickle Tools: the facial animations are listed
+    Then Nelim's Pickle Tools: "Nelim" facial expression is "normal"

@@ -153,6 +153,16 @@ namespace Nelim.PickleTools.ColonistRace
         /// of the face the last one that defines it wins (read in the mod's code): <c>normal+NLR-Smile</c> is a neutral face with no heat sweat and the smile on top.
         /// A temporary animation ends when its frames have run out, which counts game ticks: it holds while the game is paused, not after a long wait.
         /// </summary>
+        [Given("Nelim's Pickle Tools: the facial animations are listed")]
+        public void ListAnimations(PickleContext ctx)
+        {
+            Type defType = FaType(ctx, "FacialAnimation.FaceAnimationDef");
+            var all = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(defType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
+            foreach (var group in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+                Log.Message("[face-animations] " + group.Key + " (" + group.Count() + "): " + string.Join(", ", group.Select(d => d.defName).OrderBy(n => n)));
+            Log.Message("[face-animations] total " + all.Count);
+        }
+
         [Given("Nelim's Pickle Tools: {string} facial expression is {string}")]
         public void SetExpression(PickleContext ctx, string nickname, string animationName)
         {
