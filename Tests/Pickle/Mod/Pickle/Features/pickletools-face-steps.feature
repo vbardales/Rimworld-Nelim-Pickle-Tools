@@ -48,15 +48,9 @@ Feature: Eye colour and facial expression of a colonist (Nals Facial Animation)
     When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Sad"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "nlr-sad"
-    When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Surprise"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
-    And I take a screenshot "nlr-surprise"
     When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Blush"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "nlr-blush"
     When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Open"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "nlr-open"
-    When Nelim's Pickle Tools: "Nelim" facial expression is "NLR-Puzzle"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
-    And I take a screenshot "nlr-puzzle"

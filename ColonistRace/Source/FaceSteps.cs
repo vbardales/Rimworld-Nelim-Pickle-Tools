@@ -70,6 +70,10 @@ namespace Nelim.PickleTools.ColonistRace
             var all = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(defType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
             ctx.Require(all.Any(d => d.defName == animationName),
                 "No facial animation \"" + animationName + "\"; valid: " + string.Join(", ", all.Select(d => d.defName).OrderBy(n => n)));
+            // The mod keeps a situation face (the heat sweat, priority 20000) above a low-priority animation: raise the asked one above every other, for this run.
+            Def asked = all.First(d => d.defName == animationName);
+            FieldInfo priority = defType.GetField("priority", Any);
+            if (priority != null && priority.FieldType == typeof(int)) priority.SetValue(asked, 1000000);
             ThingComp face = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
             ctx.Require(face != null, nickname + " has no facial animation controller");
             object ok = compType.GetMethod("PlayTemporaryAnimation", Any).Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, new[] { animationName } });
