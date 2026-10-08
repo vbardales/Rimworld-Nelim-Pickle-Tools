@@ -149,8 +149,9 @@ namespace Nelim.PickleTools.ColonistRace
         /// <summary>
         /// Plays a Nals Facial Animation expression on a colonist by <c>FaceAnimationDef</c> name (for example <c>normal</c>, <c>blink</c>,
         /// <c>laydown</c>, <c>SocialRelax</c>): the mod's own temporary animation, started now. The names are those of the mod's animation
-        /// defs; a name that does not exist fails with the list of valid ones. The animation runs on game ticks, so a scenario that holds the
-        /// game paused may need a few ticks before the capture.
+        /// defs; a name that does not exist fails with the list of valid ones. Several names joined by <c>+</c> are played together, in order, and for each part
+        /// of the face the last one that defines it wins (read in the mod's code): <c>normal+NLR-Smile</c> is a neutral face with no heat sweat and the smile on top.
+        /// A temporary animation ends when its frames have run out, which counts game ticks: it holds while the game is paused, not after a long wait.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} facial expression is {string}")]
         public void SetExpression(PickleContext ctx, string nickname, string animationName)
@@ -159,15 +160,15 @@ namespace Nelim.PickleTools.ColonistRace
             Type defType = FaType(ctx, "FacialAnimation.FaceAnimationDef");
             Type compType = FaType(ctx, "FacialAnimation.FacialAnimationControllerComp");
             var all = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(defType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
-            ctx.Require(all.Any(d => d.defName == animationName),
-                "No facial animation \"" + animationName + "\"; valid: " + string.Join(", ", all.Select(d => d.defName).OrderBy(n => n)));
-            // The mod keeps a situation face (the heat sweat, priority 20000) above a low-priority animation: raise the asked one above every other, for this run.
-            Def asked = all.First(d => d.defName == animationName);
-            FieldInfo priority = defType.GetField("priority", Any);
-            if (priority != null && priority.FieldType == typeof(int)) priority.SetValue(asked, 1000000);
+            // Several animations at once, separated by "+": the mod merges the frames of the temporary animations in the order given and, for each part of the face
+            // (head, brows, lids, mouth, emotion...), the LAST one that defines it wins. "normal+NLR-Smile" is a neutral face (no heat sweat) with the smile on top.
+            string[] names = animationName.Split(new[] { '+' }, StringSplitOptions.RemoveEmptyEntries).Select(n => n.Trim()).ToArray();
+            ctx.Require(names.Length > 0, "no animation name given");
+            foreach (string n in names)
+                ctx.Require(all.Any(d => d.defName == n), "No facial animation \"" + n + "\"; valid: " + string.Join(", ", all.Select(d => d.defName).OrderBy(x => x)));
             ThingComp face = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
             ctx.Require(face != null, nickname + " has no facial animation controller");
-            object ok = compType.GetMethod("PlayTemporaryAnimation", Any).Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, new[] { animationName } });
+            object ok = compType.GetMethod("PlayTemporaryAnimation", Any).Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, names });
             ctx.Assert(ok is bool b && b, "The mod refused to play \"" + animationName + "\" on " + nickname + " (not valid for this race or head?)");
         }
     }
