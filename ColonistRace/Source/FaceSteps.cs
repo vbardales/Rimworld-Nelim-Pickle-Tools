@@ -56,6 +56,58 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Gives a colonist a mouth by <c>MouthTypeDef</c> name (Nals Facial Animation, and the types of the mods that add some: Vanilla
+        /// Textures Expanded has MouthSmile, MouthLipsSmallSmile, MouthSad, MouthScowl...). This is the fixed shape of the face, not an
+        /// animation: it does not depend on the job, the mood or the heat. Reads the part back; a name that does not exist fails with the list.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} mouth is {string}")]
+        public void SetMouth(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Mouth", typeName);
+
+        /// <summary>Gives a colonist brows by <c>BrowTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} brows are {string}")]
+        public void SetBrows(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Brow", typeName);
+
+        /// <summary>Gives a colonist lids (the look of the eyes: cheerful, almond, squinting...) by <c>LidTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} lids are {string}")]
+        public void SetLids(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Lid", typeName);
+
+        /// <summary>Gives a colonist a skin detail (rosy cheeks, freckles, smile lines...) by <c>SkinTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} face skin is {string}")]
+        public void SetFaceSkin(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Skin", typeName);
+
+        private void SetPart(PickleContext ctx, string nickname, string part, string typeName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Type defType = FaType(ctx, "FacialAnimation." + part + "TypeDef");
+            Type compType = FaType(ctx, "FacialAnimation." + part + "ControllerComp");
+            var all = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(defType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
+            Def wanted = all.FirstOrDefault(d => d.defName == typeName);
+            ctx.Require(wanted != null, "No " + part.ToLowerInvariant() + " type \"" + typeName + "\"; valid: " + string.Join(", ", all.Select(d => d.defName).OrderBy(n => n)));
+            ThingComp comp = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
+            ctx.Require(comp != null, nickname + " has no " + part.ToLowerInvariant() + " controller (a pawn without the facial animation head)");
+            FieldInfo field = FieldUp(compType, "faceType");
+            ctx.Require(field != null, "the " + part.ToLowerInvariant() + " controller has no faceType field: Facial Animation changed, update this step");
+            field.SetValue(comp, wanted);
+            FieldUp(compType, "prevFaceType")?.SetValue(comp, wanted);
+            compType.GetMethod("SetDirty", Any)?.Invoke(comp, null);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            Def read = field.GetValue(comp) as Def;
+            ctx.Assert(read != null && read.defName == typeName, nickname + "'s " + part.ToLowerInvariant() + " should be " + typeName + "; it reads " + (read?.defName ?? "(none)"));
+        }
+
+        /// <summary>Asserts the mouth of a colonist is this <c>MouthTypeDef</c> (the failure prints the one it has).</summary>
+        [Then("Nelim's Pickle Tools: {string} mouth reads {string}")]
+        public void MouthReads(PickleContext ctx, string nickname, string typeName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Type compType = FaType(ctx, "FacialAnimation.MouthControllerComp");
+            ThingComp comp = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
+            ctx.Require(comp != null, nickname + " has no mouth controller");
+            Def read = FieldUp(compType, "faceType")?.GetValue(comp) as Def;
+            ctx.Assert(read != null && read.defName == typeName, nickname + "'s mouth should read " + typeName + "; it reads " + (read?.defName ?? "(none)"));
+        }
+
+        /// <summary>
         /// Plays a Nals Facial Animation expression on a colonist by <c>FaceAnimationDef</c> name (for example <c>normal</c>, <c>blink</c>,
         /// <c>laydown</c>, <c>SocialRelax</c>): the mod's own temporary animation, started now. The names are those of the mod's animation
         /// defs; a name that does not exist fails with the list of valid ones. The animation runs on game ticks, so a scenario that holds the
