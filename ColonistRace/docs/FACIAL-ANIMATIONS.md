@@ -33,7 +33,13 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 | Mood: low | `moodGloomy`, `moodHopeless3`, `moodHopeless` | Frown, sad eyes; `moodHopeless` also shades the forehead. |
 | NLR blink, cold | `NLR-Blink`, `NLR-Cold` | Neutral face in a still photo (made for movement; a cold effect is not visible here). |
 | NLR blush, hot | `NLR-Blush`, `NLR-Hot` | Same look on the photo: red cheeks, no sweat. The redness left on a face after the sweat is gone is probably one of these. |
-| Not seen yet | `NLR-Open`, `NLR-Sad`, `NLR-Smile`, `painHigh`, `Reading`, `Reading2`, `ReceivedAnAttack01`, `Thought_*`, `Wait*`, `Ingest`, `laydown*`, `Mine`, `Research*`, `SocialRelax`, `StandAndBeSociallyActive`, `Lovin3`, `MVE_UnconsciousDowned` | Gallery parts 3 and 4. |
+| NLR open, sad, smile | `NLR-Open`, `NLR-Sad`, `NLR-Smile` | `NLR-Open`: small open mouth. `NLR-Sad`: flat mouth, barely different from neutral. `NLR-Smile`: no visible change from neutral (confirmed twice). |
+| Pain, attack | `painHigh`, `ReceivedAnAttack01` | Pained look: slightly tense brows and eyes, flat mouth. Subtle. |
+| Reading | `Reading`, `Reading2` | Eyes cast down (`Reading`: reddish iris); a still photo shows little. |
+| Thought: blush | `Thought_Hot`, `Thought_Naked` | Red cheeks, no sweat: same look as `NLR-Blush`/`NLR-Hot`. These are the mood thoughts "too hot" and "naked". |
+| Thought: cold | `Thought_Cold` | Neutral face in a still photo. |
+| Waiting | `Wait_Combat_Rare`, `WaitCombat`, `Wait_Downed`, `Wait_Downed2` | Neutral, watchful face; the downed ones differ in the eyes only, subtle. |
+| Not seen yet | `Ingest`, `laydown`, `laydown2`, `laydown3`, `Mine`, `Research`, `Research2`, `SocialRelax`, `StandAndBeSociallyActive`, `Lovin3`, `MVE_UnconsciousDowned`, `Thought_Tired` | Gallery part 4 (`Thought_Tired` is not in the gallery). |
 
 ## Known traps
 
@@ -45,3 +51,5 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 ![Part 1](img/animations-part1.png)
 
 ![Part 2](img/animations-part2.png)
+
+![Part 3](img/animations-part3.png)
