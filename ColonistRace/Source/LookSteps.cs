@@ -417,7 +417,9 @@ namespace Nelim.PickleTools.ColonistRace
             if (facing.HasValue)
             {
                 pawn.Rotation = facing.Value;
+                HoldRotation(pawn, facing.Value);
             }
+            else HeldRotation.Remove(pawn);
 
             Subjects.Add(pawn);
             Redraw(pawn);
@@ -553,6 +555,31 @@ namespace Nelim.PickleTools.ColonistRace
 
             Moved.Clear();
             Subjects.Clear();
+            HeldRotation.Clear();
+        }
+
+        // A pawn given a facing keeps it: the game's rotation tracker turns a drafted or idle pawn back every tick (written 2026-10-08, not played).
+        private static readonly System.Collections.Generic.Dictionary<Pawn, Rot4> HeldRotation = new System.Collections.Generic.Dictionary<Pawn, Rot4>();
+        private static HarmonyLib.Harmony rotationHarmony;
+
+        private static void HoldRotation(Pawn pawn, Rot4 facing)
+        {
+            HeldRotation[pawn] = facing;
+            if (rotationHarmony != null) return;
+            rotationHarmony = new HarmonyLib.Harmony("nelim.pickletools.colonistrace.rotation");
+            foreach (string name in new[] { "UpdateRotation", "FaceCell", "Face", "FaceTarget" })
+            {
+                var method = HarmonyLib.AccessTools.Method(typeof(Pawn_RotationTracker), name);
+                if (method != null) rotationHarmony.Patch(method, prefix: new HarmonyLib.HarmonyMethod(typeof(LookSteps), nameof(SkipTurn)));
+            }
+        }
+
+        private static bool SkipTurn(Pawn_RotationTracker __instance)
+        {
+            Pawn pawn = (Pawn)typeof(Pawn_RotationTracker).GetField("pawn", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public).GetValue(__instance);
+            if (pawn == null || !HeldRotation.TryGetValue(pawn, out Rot4 held)) return true;
+            pawn.Rotation = held;
+            return false;
         }
 
         private static Pawn Styled(PickleContext ctx, string nickname)
