@@ -24,3 +24,7 @@ evidence/
 
 desktop.ini
 Art/.render/
+# Generated intermediates of the icon/preview render (scripts/Render-Preview.cjs, scripts/Make-PreviewBadge.ps1): regenerate, never commit.
+# The sources (ModIcon-source.png, Preview-source.png, Preview.config.json) and Mod/About/{ModIcon,Preview}.png stay tracked.
+Art/ModIcon-badge.png
+Art/Preview.png

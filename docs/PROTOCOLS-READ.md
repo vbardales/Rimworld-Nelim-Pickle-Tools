@@ -91,3 +91,31 @@ lists no body-type step, which agrees with `ColonistRace/` still supplying one. 
   test project targets net8.0 so that the default `dotnet test` runs it.
 - `Upstream/PENDING.md` and `README.md` had rows saying ColonistRace was never played and that the sound scenario had not
   run; both are updated.
+
+## Read again on 2026-10-08 (owner: "relis AUDIT.md et applique-le")
+
+Hashes are the first 12 characters of the SHA256 of the file as read; the protocols' history is in `../rimworld-protocols.git`, not in the monorepo.
+
+| Document | SHA256 (12) | Lines | Useful here? |
+|---|---|---|---|
+| `AGENTS.md` | 7a236f03ca15 | 21 | Yes: evidence rule, history trim, publishing by CI |
+| `AUDIT.md` | 4982872340e3 | 278 | Yes, the main source: stage chain, `workflow_stage`, session name `pickletools / <workflow_stage>` |
+| `MOD_SETTINGS.md` | 404916bc99a7 | 107 | Barely (`not_applicable`, unchanged since 2026-09-25) |
+| `TRANSLATIONS.md` | 491f88e5eb3b | 225 | Barely (`not_applicable`: no player-facing text); only the start was read line by line |
+| `PUBLISHING.md` | cffd8d0f5688 | 798 | Yes: gallery (scripted scenarios), Preview, CI, thanks |
+| `STYLE_RIMWORLD.md` | 0c551b87ac4d | 729 | Partly: ModIcon/Preview sections; the illustration prompt blocks are not used |
+| `WORKSHOP_COMMENTS.md` | 7575d4e2570a | 166 | Barely: one line concerns this mod (`not_applicable`) |
+| `scripts/SEARCHING.md` | cde797ddcdbc | 228 | **No**: searching the Workshop corpus |
+| `Rimworld-Release-Admin/docs/OPERATIONS.md` | d3ea56ae977b | 128 | Yes: dry-run, full 40-character SHA, the gallery never goes through CI |
+| `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` | a35fb8cfef5a | 159 | Yes: the queue rules |
+| `Rimworld-Ticket-Dispatcher/docs/SUBMIT.md` | a301c2fe7594 | 169 | Yes: options, `-EvidenceDir` (relative, starts with the mod folder), `-DepMap` |
+| `README.md` (this repository) | d1749f3baf4a | 91 | Yes |
+| `Headless/README.md` | 2310bb974f68 | 509 | Yes, partly out of date: it still shows direct `Run-PickleWsl.ps1` launches (the queue only now) and `-RunTimeoutMinutes` defaults |
+
+Findings applied the same day: `workflow_stage` added to `STATUS.md` (`stage` itself stays `preTest` although 1.1.0 is published: the owner decides, see `STATUS.md`);
+`*.dds` was already ignored, `Art/ModIcon-badge.png` and `Art/Preview.png` are now ignored (generated); `Tests/Pickle/Evidence/` (150 MB of Sanctuary runs from
+2026-10-04/05, no document pointed at them, the Sanctuary now lives in SanctuaryBacklot) was deleted; `PUBLICATION.md` line 170 had a literal `\n`
+in the publication command (fixed). Differences left between `PUBLICATION.md` and `PUBLISHING.md`: the description is still BBCode while PUBLISHING asks for one Markdown source
+(`--description-markdown`, `--about-from-description`); the committed workflow does not pass `--gallery-dir`; the sizes quoted for the Preview are stale after the regeneration.
+**Evidence to keep when testing**: the latest report per scenario for the current revision, `summary.json` and the one screenshot that proves a rendering;
+everything else (full Player.log, `report.html`, `messages.ndjson` of a superseded build) is deleted once a newer report replaces it.

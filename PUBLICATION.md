@@ -54,7 +54,7 @@ in-game mod-list icon and stays in the payload; it is not an extra Workshop scre
 
 | Use | File | Verified |
 |---|---|---|
-| Workshop preview | `Mod/About/Preview.png` | 896 x 504, 592,356 bytes (re-rendered on 2026-10-06 from `Art/Preview-source.png` by `scripts/Render-Preview.cjs`) |
+| Workshop preview | `Mod/About/Preview.png` | 896 x 504, 610,543 bytes (re-rendered on 2026-10-08 from `Art/Preview-source.png` by `scripts/Render-Preview.cjs`) |
 | In-game mod icon | `Mod/About/ModIcon.png` | 128 x 128, 23,948 bytes (re-rendered on 2026-10-06) |
 | Gallery position 0 | `Art/Gallery/0-preview.png` | Byte for byte the same file as `Mod/About/Preview.png` (checked with `cmp`, 2026-10-06), as `PUBLISHING.md` requires of every gallery |
 
@@ -167,7 +167,8 @@ bash Rimworld-Release-Admin/scripts/generate-publish-workflow.sh PickleTools \
   --require Pickle/Assemblies/Nelim.PickleTools.ResearchSteps.dll --require Pickle/Assemblies/Nelim.PickleTools.Rimmsqol.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.ScreenshotMode.dll --require Pickle/Assemblies/Nelim.PickleTools.TextureOwner.dll \
   --require Pickle/Assemblies/Nelim.PickleTools.VefFactions.dll --forbid Source --forbid .build \
-  --description-file PUBLICATION.md --description-heading '^## Steam description$' \n  --gallery-dir Art/Gallery
+  --description-file PUBLICATION.md --description-heading '^## Steam description$' \
+  --gallery-dir Art/Gallery
 ```
 
 `--gallery-dir Art/Gallery` is the command to run with the next `--replace`; the committed workflow in `.github/` was generated before it and does not declare the gallery yet (to regenerate by the rules of `Rimworld-Release-Admin/docs/OPERATIONS.md`, not by hand).
