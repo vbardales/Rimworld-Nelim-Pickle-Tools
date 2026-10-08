@@ -53,3 +53,22 @@ Feature: Stacked facial animations of Nals Facial Animation (the last one that d
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal+moodCheerful2"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And I take a screenshot "cheerful-clean"
+
+  Scenario: face-order: does the expression survive camera moves, frames and presentation mode?
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
+    And Nelim's Pickle Tools: I let 120 ticks pass
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    When Nelim's Pickle Tools: "Nelim" facial expression is "normal+moodCheerful2"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    And I take a screenshot "order-1-expression-then-frame"
+    And Nelim's Pickle Tools: the camera root size is set to 2.2
+    And I take a screenshot "order-2-after-camera-size"
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And I take a screenshot "order-3-after-presentation"
