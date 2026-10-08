@@ -1,4 +1,5 @@
 # The two shared fixtures: `test-colony` and `nelim-zen-meadow-studio`
+> **2026-10-08: the fixture `nelim-zen-meadow-studio` and the whole flower meadow / zen studio were deleted** (owner decision: galleries are shot at the Sanctuary, save `Nelims-tribe`, mod SanctuaryBacklot). The text below describes what existed and is kept as history; `I frame the studio` now fails with where to go.
 
 What a suite can assume about the maps it loads. **Read from the `.rws` files on 2026-09-29 by the Night Change
 session (a static read, never loaded in a game for this page)**, with one relayed observation marked as such.

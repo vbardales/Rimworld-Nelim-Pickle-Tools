@@ -297,7 +297,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) |
-| `Nelim's Pickle Tools: I frame the studio {string}` (When) | Points the camera at one named shot of the studio and sets its zoom |
+| `Nelim's Pickle Tools: I frame the studio {string}` (When) | REMOVED on 2026-10-08 (owner: the flower meadow / zen studio is deleted; galleries are shot at the Sanctuary). The step stays only to fail with where to go: `Nelim's Sanctuary: I am at the sanctuary "<place>"` with the save "Nelims-tribe" (SanctuaryBacklot). |
 | `Nelim's Pickle Tools: I let {int} ticks pass` (When) | (no description yet) |
 | `Nelim's Pickle Tools: I frame the rectangle from \({int}, {int}\) to \({int}, {int}\)` (When) | (no description yet) |
 | `Nelim's Pickle Tools: a flower border is planted around the square from \({int}, {int}\) to \({int}, {int}\)` (Given) | (no description yet) |

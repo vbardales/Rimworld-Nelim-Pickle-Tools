@@ -22,27 +22,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static T Def<T>(string name) where T : Def => DefDatabase<T>.GetNamed(name);
         private static IntVec3 Cell(int x, int z) => new IntVec3(CX + x, 0, CZ + z);
 
+        /// <summary>
+        /// REMOVED on 2026-10-08 (owner: the flower meadow / zen studio is deleted; galleries are shot at the Sanctuary). The step stays only to fail
+        /// with where to go: <c>Nelim's Sanctuary: I am at the sanctuary "&lt;place&gt;"</c> with the save "Nelims-tribe" (SanctuaryBacklot).
+        /// </summary>
         [When(Prefix + "I frame the studio {string}")]
-        public async Task Frame(PickleContext ctx, string shot)
+        public Task Frame(PickleContext ctx, string shot)
         {
-            int x = 0, z = 0; float size;
-            switch (shot)
-            {
-                case "overview": size = 45; break;
-                case "emblem": size = 20; break;
-                case "workshop": x = -29; size = 12; break;
-                case "kitchen": x = 29; size = 12; break;
-                case "home": z = 29; size = 12; break;
-                case "display": z = -29; size = 12; break;
-                case "flowers": x = 29; z = -27; size = 12; break;
-                case "pond": x = 28; z = 27; size = 16; break;
-                case "zen": x = -28; z = 27; size = 15; break;
-                default: throw new ArgumentException("Unknown studio shot: " + shot);
-            }
-            Find.Selector.ClearSelection();
-            Find.CameraDriver.JumpToCurrentMapLoc(Cell(x,z));
-            Find.CameraDriver.SetRootSize(size);
-            await ctx.WaitFrames(3);
+            ctx.Require(false, "The studio \"" + shot + "\" is gone: the flower meadow / zen studio was deleted on 2026-10-08 and galleries are shot at the Sanctuary. "
+                + "Load the save \"Nelims-tribe\" and use Nelim's Sanctuary: I am at the sanctuary \"<place>\" (places: SanctuaryBacklot/docs/SANCTUAIRE-LIEUX.md, steps: SanctuaryBacklot/docs/steps.md).");
+            return Task.CompletedTask;
         }
 
         // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange); SimpleCameraSetting and Camera+ widen it the same way. A tighter or wider frame needs the range widened first.
