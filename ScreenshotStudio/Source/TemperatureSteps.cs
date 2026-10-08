@@ -38,7 +38,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Post(AccessTools.PropertyGetter(typeof(MapTemperature), "OutdoorTemp"), nameof(PostFloat));
                 Post(AccessTools.PropertyGetter(typeof(Room), "Temperature"), nameof(PostFloat));
                 Post(AccessTools.PropertyGetter(typeof(Thing), "AmbientTemperature"), nameof(PostFloat));
-                Post(AccessTools.PropertyGetter(typeof(Pawn), "AmbientTemperature"), nameof(PostFloat));
                 Log.Message("[temperature] " + patched + " reads of the temperature are held at " + value + " degrees");
                 ctx.Require(patched > 0, "no temperature read could be patched: the game changed");
             }
