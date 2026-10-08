@@ -344,6 +344,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(2);
         }
 
+        /// <summary>Opt-in: presentation mode hides the status icons over buildings (no power, power off, broken down, out of fuel). This keeps them drawn while names, counts and overlays stay hidden. Works before or after presentation mode; cleared after the scenario.</summary>
+        [When(Prefix + "the building status icons are kept")]
+        public void KeepStatusIcons(PickleContext ctx) { OverlaySuppression.StatusIconsKept = true; }
+
         [AfterScenario]
         public void RestoreInterface()
         {

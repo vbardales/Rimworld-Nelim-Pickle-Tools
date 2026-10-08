@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-228 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+229 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -331,6 +331,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: I hide the learning helper` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the learning helper is hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: studio presentation mode is enabled` (When) | Turns on the game's screenshot mode for a presentation capture, remembering its previous state to put it back |
+| `Nelim's Pickle Tools: the building status icons are kept` (When) | Opt-in: presentation mode hides the status icons over buildings (no power, power off, broken down, out of fuel). This keeps them drawn while names, counts and overlays stay hidden. Works before or after presentation mode; cleared after the scenario. |
 | `Nelim's Pickle Tools: the temperature of the map is {float} degrees` (Given) | Holds the temperature of the whole map (outdoors, every room, every pawn's ambient temperature) at this value in degrees Celsius until the scenario ends, then gives it back. Meant for captures: at 20 degrees a pawn does not sweat or blush. Place it before the pawns are framed. Needs Harmony. |
 | `Nelim's Pickle Tools: the temperature of the map reads {float} degrees` (Then) | Asserts the temperature of the map reads this value to half a degree, by the game's own reading of the outdoors. |
 | `Nelim's Pickle Tools: the translation report has no problem for the mod {string}` (Then) | (no description yet) |

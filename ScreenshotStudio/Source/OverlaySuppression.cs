@@ -24,6 +24,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static bool ReadoutHidden { get; private set; }
         public static bool AlertsHidden { get; private set; }
         public static bool BracketsHidden { get; private set; }
+        public static bool StatusIconsKept { get; set; }
 
         public static void Begin()
         {
@@ -120,7 +121,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
-        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; }
+        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false; }
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
 
@@ -136,7 +137,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return false;
         }
         // The status icons (no power, broken down...) are drawn from the map update, not from OnGUI: no GUI call may be made there, so they are only skipped.
-        private static bool SkipStatusIcons() => !Active;
+        private static bool SkipStatusIcons() => !Active || StatusIconsKept;
         private static bool SkipTooltips() => !TooltipsHidden;
         private static bool SkipConcepts() => !HelperHidden;
         private static bool SkipReadout() => !ReadoutHidden;
