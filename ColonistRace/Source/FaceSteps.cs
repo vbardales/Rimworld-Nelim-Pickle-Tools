@@ -75,6 +75,45 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: {string} face skin is {string}")]
         public void SetFaceSkin(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Skin", typeName);
 
+        /// <summary>Gives a colonist eyeballs (the iris and white shape) by <c>EyeballTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} eyeballs are {string}")]
+        public void SetEyeballs(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Eyeball", typeName);
+
+        /// <summary>Gives a colonist an eyelid option (lashes and the like) by <c>LidOptionTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} lid option is {string}")]
+        public void SetLidOption(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "LidOption", typeName);
+
+        /// <summary>Gives a colonist an emotion mark (blush, sweat drops, anger marks) by <c>EmotionTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} emotion mark is {string}")]
+        public void SetEmotion(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Emotion", typeName);
+
+        /// <summary>Gives a colonist a face head shape by Facial Animation's own <c>HeadTypeDef</c> name (not the game's head type), as the mouth step does for the mouth.</summary>
+        [Given("Nelim's Pickle Tools: {string} face head shape is {string}")]
+        public void SetFaceHead(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Head", typeName);
+
+        // Kits: a whole face in one step, a name for a list of parts. A part whose def is missing (a mod not loaded) fails the step and says which.
+        private static readonly System.Collections.Generic.Dictionary<string, (string Part, string Def)[]> Kits = new System.Collections.Generic.Dictionary<string, (string, string)[]>(StringComparer.OrdinalIgnoreCase)
+        {
+            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowEven"), ("Skin", "SkinRosyCheeks") },
+            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowEven") },
+            ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised") },
+            ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle") },
+            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowEven") },
+            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowEven") },
+        };
+
+        /// <summary>
+        /// Gives a colonist a whole face by kit name: a list of face parts set together (mouth, lids, brows, skin). Kits: smile, calm, sad, angry,
+        /// smug, neutral. They use the part types of Vanilla Textures Expanded and Facial Animation; a part whose type does not exist (the mod is not
+        /// loaded) fails the step naming it. A part step run afterwards overrides one part of the kit.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} face kit is {string}")]
+        public void SetKit(PickleContext ctx, string nickname, string kit)
+        {
+            ctx.Require(Kits.TryGetValue(kit, out var parts), "No face kit \"" + kit + "\"; known: " + string.Join(", ", Kits.Keys));
+            foreach (var (part, def) in parts) SetPart(ctx, nickname, part, def);
+        }
+
         private void SetPart(PickleContext ctx, string nickname, string part, string typeName)
         {
             Pawn pawn = ColonistLookup.Require(nickname);

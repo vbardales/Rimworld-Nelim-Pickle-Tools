@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-223 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+228 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -82,6 +82,11 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: {string} brows are {string}` (Given) | Gives a colonist brows by `BrowTypeDef` name, as the mouth step does for the mouth. |
 | `Nelim's Pickle Tools: {string} lids are {string}` (Given) | Gives a colonist lids (the look of the eyes: cheerful, almond, squinting...) by `LidTypeDef` name, as the mouth step does for the mouth. |
 | `Nelim's Pickle Tools: {string} face skin is {string}` (Given) | Gives a colonist a skin detail (rosy cheeks, freckles, smile lines...) by `SkinTypeDef` name, as the mouth step does for the mouth. |
+| `Nelim's Pickle Tools: {string} eyeballs are {string}` (Given) | Gives a colonist eyeballs (the iris and white shape) by `EyeballTypeDef` name, as the mouth step does for the mouth. |
+| `Nelim's Pickle Tools: {string} lid option is {string}` (Given) | Gives a colonist an eyelid option (lashes and the like) by `LidOptionTypeDef` name, as the mouth step does for the mouth. |
+| `Nelim's Pickle Tools: {string} emotion mark is {string}` (Given) | Gives a colonist an emotion mark (blush, sweat drops, anger marks) by `EmotionTypeDef` name, as the mouth step does for the mouth. |
+| `Nelim's Pickle Tools: {string} face head shape is {string}` (Given) | Gives a colonist a face head shape by Facial Animation's own `HeadTypeDef` name (not the game's head type), as the mouth step does for the mouth. |
+| `Nelim's Pickle Tools: {string} face kit is {string}` (Given) | Gives a colonist a whole face by kit name: a list of face parts set together (mouth, lids, brows, skin). Kits: smile, calm, sad, angry, smug, neutral. They use the part types of Vanilla Textures Expanded and Facial Animation; a part whose type does not exist (the mod is not loaded) fails the step naming it. |
 | `Nelim's Pickle Tools: {string} mouth reads {string}` (Then) | Asserts the mouth of a colonist is this `MouthTypeDef` (the failure prints the one it has). |
 | `Nelim's Pickle Tools: {string} facial expression is {string}` (Given) | Plays a Nals Facial Animation expression on a colonist by `FaceAnimationDef` name (for example `normal`, `blink`, `laydown`, `SocialRelax`): the mod's own temporary animation, started now. The names are those of the mod's animation defs; a name that does not exist fails with the list of valid ones. |
 | `Nelim's Pickle Tools: {string} has the gene {string}` (Given) | Gives a colonist a gene by its def name and redraws it. Any gene of the pawn that shares an exclusion tag with the new one is removed first (an eye colour replaces the previous eye colour, which the game would otherwise refuse to combine), then the gene is added as an endogene. |
