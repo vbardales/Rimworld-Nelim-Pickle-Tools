@@ -161,6 +161,14 @@ namespace Nelim.PickleTools.ColonistRace
             foreach (var group in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
                 Log.Message("[face-animations] " + group.Key + " (" + group.Count() + "): " + string.Join(", ", group.Select(d => d.defName).OrderBy(n => n)));
             Log.Message("[face-animations] total " + all.Count);
+            // The part types a part step accepts, by mod: the dictionary of mouths, brows, lids, lid options, skins, eyeballs, emotion marks and head shapes.
+            foreach (string part in new[] { "Mouth", "Brow", "Lid", "LidOption", "Skin", "Eyeball", "Emotion", "Head" })
+            {
+                Type partType = FaType(ctx, "FacialAnimation." + part + "TypeDef");
+                var defs = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(partType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
+                foreach (var group in defs.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+                    Log.Message("[face-parts] " + part + " | " + group.Key + " (" + group.Count() + "): " + string.Join(", ", group.Select(d => d.defName).OrderBy(n => n)));
+            }
         }
 
         [Given("Nelim's Pickle Tools: {string} facial expression is {string}")]
