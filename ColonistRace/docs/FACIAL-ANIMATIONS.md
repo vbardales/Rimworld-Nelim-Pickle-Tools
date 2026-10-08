@@ -1,6 +1,6 @@
 # Facial animations on a colonist (Nals Facial Animation)
 
-Draft of 2026-10-08, filled as the gallery photos are read. Only groups seen on a photo are described as seen; the others say "not seen yet".
+Written 2026-10-08 from the gallery photos (all 55 animations seen, runs d9cc, 80e3, 8cfb, 988f). Every description is what a still photo shows; many animations are made for movement and look alike.
 Photos: Nelim of the save `Nelims-tribe`, temperature held at 20 degrees, every animation played as `normal+<name>` (a neutral face with the animation on top), zoom 4.
 
 ## How to play one
@@ -39,7 +39,10 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 | Thought: blush | `Thought_Hot`, `Thought_Naked` | Red cheeks, no sweat: same look as `NLR-Blush`/`NLR-Hot`. These are the mood thoughts "too hot" and "naked". |
 | Thought: cold | `Thought_Cold` | Neutral face in a still photo. |
 | Waiting | `Wait_Combat_Rare`, `WaitCombat`, `Wait_Downed`, `Wait_Downed2` | Neutral, watchful face; the downed ones differ in the eyes only, subtle. |
-| Not seen yet | `Ingest`, `laydown`, `laydown2`, `laydown3`, `Mine`, `Research`, `Research2`, `SocialRelax`, `StandAndBeSociallyActive`, `Lovin3`, `MVE_UnconsciousDowned`, `Thought_Tired` | Gallery part 4 (`Thought_Tired` is not in the gallery). |
+| Pout, working | `Ingest`, `Research`, `Research2`, `StandAndBeSociallyActive`, `Thought_Tired`, `laydown2`, `laydown3` | Small worried pout, slightly raised inner brows. All look alike on a still photo. |
+| Effort | `Mine` | Small open mouth. |
+| Eyes lowered, sleepy | `laydown`, `MVE_UnconsciousDowned`, `SocialRelax` | Half-closed lids; `SocialRelax` reads relaxed, the other two sleepy or out. `SocialRelax` is NOT a smile on the photo. |
+| Lovin, short | `Lovin3` | Blush and small mouth, eyes open. |
 
 ## Known traps
 
@@ -53,3 +56,5 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 ![Part 2](img/animations-part2.png)
 
 ![Part 3](img/animations-part3.png)
+
+![Part 4](img/animations-part4.png)
