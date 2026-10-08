@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-225 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+228 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -121,6 +121,9 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: {string} has xenotype {string}` (Then) | Asserts a pawn's xenotype by def name, case insensitive. A pawn with a custom xenotype reads as the def it was built from, and the failure names the custom one. |
 | `Nelim's Pickle Tools: {string} is of race {string}` (Then) | Asserts a pawn's race by def name, case insensitive: `Human`, or a race a mod adds. |
 | `Nelim's Pickle Tools: {string} is at the {word} stage of life` (Then) | Asserts a pawn's stage of life: `Baby`, `Newborn`, `Child` or `Adult`, case insensitive. Needs Biotech for the first three. |
+| `Nelim's Pickle Tools: the thermal state and thoughts of {string} are logged` (When) | Writes in the log, and fails with nothing, the ambient temperature of a colonist, its comfortable range and every mood thought it has now (situational ones included). To read in the report why a face shows sweat or a blush. |
+| `Nelim's Pickle Tools: {string} has the thought {string}` (Then) | Asserts a colonist has the mood thought `ThoughtDef` now (for example `EnvironmentHot`); the failure lists the thoughts it has. |
+| `Nelim's Pickle Tools: {string} has no thought {string}` (Then) | Asserts a colonist does NOT have the mood thought `ThoughtDef` now; the failure says it is there, with its mood offset. |
 
 ## DefFieldSteps
 
