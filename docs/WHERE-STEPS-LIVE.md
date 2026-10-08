@@ -8,7 +8,9 @@ Rule written 2026-10-08 (owner's agreement): a mod that adds gameplay delivers t
 | a third-party mod (Facial Animation, EyeGenes3, VFAE...) | a sub-mod of Nelim's Pickle Tools, with its own `About.xml` and `loadAfter` on the mod it drives (for example `ColonistRace` for the face) | `Nelim's Pickle Tools: ` |
 | several mods, or the game itself | Nelim's Pickle Tools, a generic sub-mod | `Nelim's Pickle Tools: ` |
 
-Why not in `Mod/`: it is what Steam sends to players. A steps DLL there adds weight, a dependency on Pickle and a risk of crash, for code only tests use, and it forces a Steam update each time a step changes.
+Exception, by nature: Nelim's Pickle Tools is itself a test mod. Its steps ARE its published content, so they live in its own `Mod/Pickle/Assemblies` (one DLL per sub-mod); its own features that test them are in `Tests/Pickle/Mod`. The rule above is for gameplay mods.
+
+Why not in `Mod/` (for a gameplay mod): it is what Steam sends to players. A steps DLL there adds weight, a dependency on Pickle and a risk of crash, for code only tests use, and it forces a Steam update each time a step changes.
 
 What every owner keeps:
 - **A prefix per owner**, so that two steps never share a text (two steps with the same text are "Ambiguous" and fail a healthy scenario).
