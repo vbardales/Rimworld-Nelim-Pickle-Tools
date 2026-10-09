@@ -4,7 +4,11 @@ Read on 2026-10-09 from run ff33 (`PickleTools/evidence/face-list3`, step `Nelim
 
 Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `brows are`, `lids are`, `face skin is`, `eyeballs are`, `lid option is`, `emotion mark is`, `face head shape is`, and the whole-face `"<pawn>" face kit is "<kit>"`.
 
+**Photographs (2026-10-09, runs 90ae, 58ce, 504a; Tests/Pickle/.../pickletools-face-parts-gallery.feature).** One photograph per value, in the order of the tables, on Nelim of the save Nelims-tribe at 20 degrees. Each scenario starts from the kit neutral and sets one part value after another, so a photograph also shows the parts set earlier in the same scenario (the cheek mark of a skin stays on the later eyeball photographs): read the changed part, not the whole face. Sheets: docs/Make-PartSheets.ps1.
+
 ## Mouths (`mouth is`)
+
+![Mouths: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-mouth.jpg)
 
 | Mod | Names |
 |---|---|
@@ -15,6 +19,8 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Brows (`brows are`)
 
+![Brows: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-brow.jpg)
+
 | Mod | Names |
 |---|---|
 | [NL] Facial Animation - Experimentals | BrowNormal |
@@ -22,6 +28,8 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 | Vanilla Textures Expanded - [NL] Facial Animation | BrowEven, BrowFurryMonobrow, BrowFuzzy, BrowNone, BrowRaised, BrowSquare, BrowStreamer, BrowThin, BrowTriangle, MonoBrow, MonoScarredBrows |
 
 ## Lids (`lids are`)
+
+![Lids: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-lid.jpg)
 
 | Mod | Names |
 |---|---|
@@ -32,9 +40,13 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Lid options (`lid option is`)
 
+![Lid options: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-lidoption.jpg)
+
 LidOptionNormal ([NL] Facial Animation - Experimentals).
 
 ## Skins (`face skin is`)
+
+![Skins: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-skin.jpg)
 
 | Mod | Names |
 |---|---|
@@ -46,6 +58,8 @@ LidOptionNormal ([NL] Facial Animation - Experimentals).
 
 ## Eyeballs (`eyeballs are`)
 
+![Eyeballs: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-eyeball.jpg)
+
 | Mod | Names |
 |---|---|
 | (none) | BIGEYE, EyeBig, EyeNone, EyeNormal, EyeSmall, EyeThin, EyeWide |
@@ -53,9 +67,13 @@ LidOptionNormal ([NL] Facial Animation - Experimentals).
 
 ## Emotion marks (`emotion mark is`)
 
+![Emotion marks: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-emotion.jpg)
+
 EmotionNormal ([NL] Facial Animation - Experimentals).
 
 ## Head shapes (`face head shape is`)
+
+![Head shapes: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-head.jpg)
 
 | Mod | Names |
 |---|---|
@@ -63,6 +81,8 @@ EmotionNormal ([NL] Facial Animation - Experimentals).
 | Visual beauty for Facial Animation | Beauty, Beauty2 |
 
 ## Kits (`face kit is`)
+
+![Kits: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-kit.jpg)
 
 Fixed list in the code (`ColonistRace/Source/FaceSteps.cs`). Each kit sets its parts together; a part step run afterwards overrides one part. A kit fails, naming the part, if a def is missing from the loaded mods.
 
