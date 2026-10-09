@@ -8,7 +8,6 @@ visibility_exception: "2026-09-21, owner decision in chat: public although the n
 visibility_verified_at: 2026-09-22
 visibility_evidence: "2026-09-22 audit: origin is https://github.com/vbardales/rimworld-nelim-pickle-tools.git; git ls-remote --heads origin main = a601aa92c2fca66b27c3df606e07a5459dcfb34d, equal to the audited local HEAD. The earlier f1dca8c value is historical."
 detached: yes, git repository of its own since 2026-09-21, pushed to GitHub the same day; still a folder of the monorepo checkout and excluded there locally
-stage: preTest
 workflow_stage: preTest
 stage_decision: "2026-10-08, owner in chat: the stage stays preTest although 1.1.0 is published by the CI; the audit does not go back, and the stage is not raised until the conditions of AUDIT.md are met"
 code_review_sha: 982efbe166305e445db16acdf004fff344c3f633  # 2026-10-08, low effort, limited to the face, gene and temperature steps written that day: ColonistRace/FaceSteps.cs, GeneSteps.cs, ScreenshotStudio/TemperatureSteps.cs; 4 findings reported, fixed 2026-10-09 (Temperature: Harmony kept and value held when no read could be patched, now unpatched and held only after success; GeneSteps and FaceSteps: null guards on reflected methods and the renderer; FaceSteps: the doc comment of the expression step sat on the listing step); the rest of v1.1.0..HEAD, 38 .cs files, is NOT reviewed
@@ -64,7 +63,7 @@ remaining:
   - "infrastructure blocked, 2026-09-23: four queued passes (French minimal, French Biotech-absent, French RIMMSQOL bridge, English RIMMSQOL settings cleanup) stopped during WSL staging with 'Read-only file system'. Each evidence directory contains no-report.txt, not a Pickle result. WSL's root overlay was confirmed mounted ro and a write probe failed; no game was launched for these passes. The lock and this task's tickets are clear. The owner requested no further Pickle ticket without explicit authorization, so automatic replay and heartbeat monitoring are paused."
   - "passed, 2026-09-23: the English minimal aggregate smoke on Pickle v4.9.1 (SHA256 equal to GitHub's digest, assembly 4.9.1.0), filter aggregate-minimal,aggregate-no-biotech,!aggregate-no-biotech: exitReason passed, 1/1, only the minimal scenario in the report, in evidence/aggregate/2026-09-23-v4.9.1-minimal-en-filter. It shows the new filter working (extension-less name, exclusion beating inclusion) and a startup on the new version. The baseline is now v4.9.1; every matrix pass recorded above on v4.8.4 has NOT been replayed on it."
   - "resolved, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The migrated optional companion replayed from PickleTools/QuietNewFactions with 5/5 scenarios passed; this does not certify the aggregate bundle."
-protocols_read_sha: 1b783b5de3092d3d09f23d2daceaa46108871de3
+protocols_read_sha: 83a2aadef0db6a0f1239dec6eb06f6b651d9e32f
 ---
 # Status
 
