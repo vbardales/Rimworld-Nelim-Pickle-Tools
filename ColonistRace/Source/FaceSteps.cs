@@ -305,5 +305,50 @@ namespace Nelim.PickleTools.ColonistRace
         {
             heldNeutral.Clear();
         }
+
+        /// <summary>
+        /// Writes to the game log (lines starting <c>[face-state]</c>) what draws the face of a colonist right now: the part type of every Facial
+        /// Animation controller (brow, lid, eyeball, mouth, skin, head, emotion...), the job the mod reads, the animations of that job and the
+        /// temporary ones still running, the comps of the pawn that belong to another mod and mention the face, and the genes that name a face,
+        /// eye or brow. For finding which mod draws a face a step cannot change. Written 2026-10-09 for SanctuaryBacklot (angry brows that no step removed).
+        /// Not played when written.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        [Given("Nelim's Pickle Tools: {string} face state is logged")]
+        public void LogFaceState(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            var lines = new System.Collections.Generic.List<string>();
+            foreach (ThingComp c in pawn.AllComps)
+            {
+                Type t = c.GetType();
+                string ns = t.Namespace ?? "";
+                bool fa = ns.StartsWith("FacialAnimation");
+                bool facey = t.Name.IndexOf("Face", StringComparison.OrdinalIgnoreCase) >= 0 || t.Name.IndexOf("Eye", StringComparison.OrdinalIgnoreCase) >= 0
+                    || t.Name.IndexOf("Brow", StringComparison.OrdinalIgnoreCase) >= 0 || t.Name.IndexOf("Lid", StringComparison.OrdinalIgnoreCase) >= 0;
+                if (!fa && !facey) continue;
+                var parts = new System.Collections.Generic.List<string>();
+                foreach (string f in new[] { "faceType", "prevFaceType", "currentJobName", "enable", "isEnabled" })
+                {
+                    FieldInfo fi = FieldUp(t, f);
+                    if (fi != null) parts.Add(f + "=" + (fi.GetValue(c) is Def d ? d.defName : fi.GetValue(c)?.ToString() ?? "null"));
+                }
+                FieldInfo jobs = FieldUp(t, "currentJobAnimationList");
+                if (jobs?.GetValue(c) is IEnumerable jl) parts.Add("jobAnimations=[" + string.Join(",", jl.Cast<object>().Select(a => (FieldUp(a.GetType(), "animationDef")?.GetValue(a) as Def)?.defName ?? a.ToString())) + "]");
+                FieldInfo forced = FieldUp(t, "forcedTemporaryAnimationList");
+                if (forced?.GetValue(c) is IEnumerable fl) parts.Add("temporary=[" + string.Join(",", fl.Cast<object>().Select(a => (FieldUp(a.GetType(), "animationDef")?.GetValue(a) as Def)?.defName ?? a.ToString())) + "]");
+                lines.Add((fa ? "FA " : "other ") + t.FullName + " (" + t.Assembly.GetName().Name + ") " + string.Join(" ", parts));
+            }
+            if (pawn.genes != null)
+                foreach (var g in pawn.genes.GenesListForReading)
+                {
+                    string n = g.def.defName + " " + g.def.label;
+                    if (n.IndexOf("face", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("eye", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("brow", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("lip", StringComparison.OrdinalIgnoreCase) >= 0)
+                        lines.Add("gene " + g.def.defName + " (" + (g.def.modContentPack?.Name ?? "core") + ")");
+                }
+            lines.Add("drafted=" + (pawn.Drafted ? "yes" : "no") + " job=" + (pawn.jobs?.curJob?.def.defName ?? "none") + " mood=" + (pawn.needs?.mood?.CurLevel.ToString("0.00") ?? "?"));
+            foreach (string l in lines) Log.Message("[face-state] " + nickname + ": " + l);
+            ctx.Require(lines.Count > 0, nickname + " has no comp that draws a face");
+        }
     }
 }
