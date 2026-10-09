@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-230 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+238 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -298,6 +298,14 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: an animal of kind {string} named {string} is spawned at \({int}, {int}\) at the life stage {string}` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: an adult animal of kind {string} named {string} is spawned at \({int}, {int}\)` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I frame the animal {string} at zoom {int}` (When) | (no description yet) |
+| `Nelim's Pickle Tools: I frame the area centred on \({int}, {int}\) at root size {float}` (When) | Centres the camera on a cell at a root size (smaller is closer, down to 2 and up to 130: the game's own limit is lifted) and waits until the sky glow holds still. Same as framing a rectangle, but the zoom is the one asked for. |
+| `Nelim's Pickle Tools: the area from \({int}, {int}\) to \({int}, {int}\) is emptied` (Given) | Destroys the furniture, items, plants, filth and corpses of the rectangle. Pawns, walls, doors and natural rock stay; terrain and roofs are untouched. |
+| `Nelim's Pickle Tools: the floor of the area from \({int}, {int}\) to \({int}, {int}\) is bared` (Given) | Gives the dry cells of the rectangle the terrain of the cell 3 cells west of it at mid height (Soil if that is water or rock), without paint. One sample for the whole rectangle: do not use it on an enclosure. |
+| `Nelim's Pickle Tools: the floor of the area from \({int}, {int}\) to \({int}, {int}\) is bared like the cell \({int}, {int}\)` (Given) | Gives the dry cells of the rectangle the terrain of a chosen cell, without paint (the sample cell for an enclosure or mixed ground). |
+| `Nelim's Pickle Tools: the animals are removed from the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Despawns the animals standing in the rectangle now, once. Colonists stay. Does not fail when there is none. |
+| `Nelim's Pickle Tools: the animals are kept out of the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Despawns the animals of the rectangle now and on every frame until the scenario ends. May be written for several rectangles. |
+| `Nelim's Pickle Tools: the roof is removed from the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Removes the roofs of the rectangle (thick roofs stay) so the sun lights it. |
+| `Nelim's Pickle Tools: the things {string} within {int} cells of \({int}, {int}\) are hidden` (Given) | Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there. |
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) |
