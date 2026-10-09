@@ -130,11 +130,11 @@ Hashes are the first 12 characters of the SHA256 of the file as read. Read whole
 | `AUDIT.md` | 621d50c614db | 212 | whole |
 | `PICKLE.md` | 4e30cb1ed24e | 113 | whole (new file: the run rules moved out of `AUDIT.md`) |
 | `PUBLISHING.md` | b8af9b7406b5 | 463 | whole, later the same day |
-| `MOD_SETTINGS.md` | 8a445d4bb7d3 | 109 | no |
-| `TRANSLATIONS.md` | db973554758b | 231 | no |
-| `Rimworld-Release-Admin/docs/OPERATIONS.md` | e51dfbe4ad1b | 130 | no |
-| `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` | 9e6f6f785c06 | 155 | no |
-| `Rimworld-Ticket-Dispatcher/docs/SUBMIT.md` | 3960330b6518 | 169 | no |
+| `MOD_SETTINGS.md` | 8a445d4bb7d3 | 109 | whole, later the same day |
+| `TRANSLATIONS.md` | db973554758b | 231 | whole, later the same day |
+| `Rimworld-Release-Admin/docs/OPERATIONS.md` | e51dfbe4ad1b | 130 | whole, later the same day |
+| `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` | 9e6f6f785c06 | 155 | whole, later the same day |
+| `Rimworld-Ticket-Dispatcher/docs/SUBMIT.md` | 3960330b6518 | 169 | whole, later the same day |
 
 What changed since 2026-10-08 and bites this repository:
 - **There is no monorepo any more** (2026-10-09): the rimworld root is the protocols repository and ignores mod folders. Run rules are in `PICKLE.md`, not `AUDIT.md`; the session title marker is in `AGENTS.md`.
@@ -146,3 +146,4 @@ What changed since 2026-10-08 and bites this repository:
 - **Run rules** (`PICKLE.md`): no session launches a game; a request is filed with `Submit-PickleRun.ps1` (a request carries no SHA: put it in `-Label`, keep the tree frozen until `RUN_DONE`); one pass = one request; first contact with TicketDispatcher is `REGISTER local_<id> <Mod>`; nobody creates a watcher, `Monitor` or cron for the queue; read `exitReason` before the figures; exit 7 = nothing played, 8 = Pickle's own code 2, 9 = infrastructure.
 - **Wrong in `Headless/README.md` still?** It was corrected on 2026-10-09 for `merge-reports.py` and the AUDIT reference only; the direct `Run-PickleWsl.ps1` examples were not re-checked against `PICKLE.md`.
 - **`PUBLISHING.md` (read later the same day)** now has annexes: `GALLERY.md`, `ANIMALS.md`, `PUBLISHING-CI.md`, `TOOLING-PITFALLS.md` (none read). Rules that bite us: description is written once as Markdown under `## Steam description` of `PUBLICATION.md` (ours is still BBCode, a known gap) and ends with `[Source code on GitHub](URL)`; description order IF I GO QUIET, AI-GENERATED, THANKS, ATTRIBUTION line, source link; gallery folder only numbered images `0-`.. with `0-` a byte copy of `Preview.png`, contiguous indexes; thanks must name Pickle and PickleTools where a pass stages them (PickleTools Workshop page is public per Steam, the protocol still says private); one Steam thanks comment per recipient page via `WORKSHOP_COMMENTS.md`; docs, commits and code comments in English; the three GitHub topics `rimworld`, `rimworld-mod`, `mod` and the social preview image for a public repository (checked for PickleTools: not done by me); release notes start with the version on line 1 (the CI refuses otherwise); `About/PublishedFileId.txt` committed at once.
+- **Others, read later the same day.** `MOD_SETTINGS.md`/`TRANSLATIONS.md`: gates for `settings_audit`, `localization`, `translation_*`; ours stay `not_applicable` (no Defs, no settings, no player-facing text) but TRANSLATIONS now also asks for `FRENCH_REVIEW.md` at the mod root even when no French ships (ours exists). `OPERATIONS.md`: dry-run of the exact SHA, `publish` with 40 characters, only Virginie approves `steam-production`, the CI makes the tag and release, gallery and visibility are manual. `WELCOME.md`/`SUBMIT.md`: priority is the Ticket Manager's, `-Tests <n>`, same-mod requests may share one launch (`-NoBatch` when a scenario leaves a lasting trace), `-EvidenceDir` is relative to the mod and never overwritten, run rules above; and `sort-load-order.py` puts a mod that must load after the tested mod behind it (2026-10-09).
