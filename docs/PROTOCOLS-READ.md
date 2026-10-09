@@ -119,3 +119,29 @@ in the publication command (fixed). Differences left between `PUBLICATION.md` an
 (`--description-markdown`, `--about-from-description`); the committed workflow does not pass `--gallery-dir`; the sizes quoted for the Preview are stale after the regeneration.
 **Evidence to keep when testing**: the latest report per scenario for the current revision, `summary.json` and the one screenshot that proves a rendering;
 everything else (full Player.log, `report.html`, `messages.ndjson` of a superseded build) is deleted once a newer report replaces it.
+
+## Read again on 2026-10-09 (owner: "relis la doc")
+
+Hashes are the first 12 characters of the SHA256 of the file as read. Read whole: `AGENTS.md`, `AUDIT.md`, `PICKLE.md`. NOT re-read: `PUBLISHING.md`, `MOD_SETTINGS.md`, `TRANSLATIONS.md`, `Rimworld-Release-Admin/docs/OPERATIONS.md`, `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` and `SUBMIT.md` (hashes below are their current ones, not a reading). `Mark-ProtocolsRead.ps1` was not run, so `STATUS.md` has no `protocols_read_sha` yet: it must be run once the protocols that matter are read.
+
+| Document | SHA256 (12) | Lines | Read |
+|---|---|---|---|
+| `AGENTS.md` | 75c64b0f19cc | 53 | whole |
+| `AUDIT.md` | 621d50c614db | 212 | whole |
+| `PICKLE.md` | 4e30cb1ed24e | 113 | whole (new file: the run rules moved out of `AUDIT.md`) |
+| `PUBLISHING.md` | b8af9b7406b5 | 463 | no |
+| `MOD_SETTINGS.md` | 8a445d4bb7d3 | 109 | no |
+| `TRANSLATIONS.md` | db973554758b | 231 | no |
+| `Rimworld-Release-Admin/docs/OPERATIONS.md` | e51dfbe4ad1b | 130 | no |
+| `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` | 9e6f6f785c06 | 155 | no |
+| `Rimworld-Ticket-Dispatcher/docs/SUBMIT.md` | 3960330b6518 | 169 | no |
+
+What changed since 2026-10-08 and bites this repository:
+- **There is no monorepo any more** (2026-10-09): the rimworld root is the protocols repository and ignores mod folders. Run rules are in `PICKLE.md`, not `AUDIT.md`; the session title marker is in `AGENTS.md`.
+- **Closing pass before each commit + push** (`AGENTS.md`, 10 steps, each result recorded in `STATUS.md`): Art/ clean, ModIcon/Preview chain, mod root clean, gallery refresh (candidates `<index>-candidate-<name>.png`, <2 MB each, <8 MB in all; UI captures on `window-backdrop-for-height`: crop the sides, keep 5 px each side), PUBLICATION.md against PUBLISHING.md, French, docs, code review, STATUS lint (`scripts/Check-Status.ps1 -Mod PickleTools`), commit + push. Protocol files never go into a mod repository.
+- **New STATUS fields**: `protocols_read_sha` (written by `scripts/Mark-ProtocolsRead.ps1 -Mod <Mod>`; needed before every change of `stage` or `workflow_stage`), `publication_changelog_review_sha` (full SHA, written only on the owner's confirmation in chat), `echo_review` (after the first gallery captures: keep|redo with the reason; PickleTools has no Preview echo decision recorded). `STATUS.md` keeps the current state only (lint: INFO over 20 KB, WARN over 40 KB, ERROR over 80 KB); ours is 32 KB.
+- **`stage` after `published`** carries the version: `published[1.0.1]`. `prepublished` needs the gallery ready, not only a green dry-run.
+- **Code review**: `code_review_sha..HEAD` is required before `tested -> prepublished`; a code commit after the SHA reopens it. Ours covers 3 files only (`982efbe`).
+- **Passes**: at least two (without / with the optional mods), named with `-DepMap` (`-pickle-set-name` writes the set name into `summary.md`); one more per declared incompatibility, asserting the symptom, never an expected red; non-regression passes all at the end, on the final revision. A scenario that only repeats a unit test is deleted. "We do not test the game": load order the game computes, language switch, dependency warnings are not tested; the mod answers for what it declares.
+- **Run rules** (`PICKLE.md`): no session launches a game; a request is filed with `Submit-PickleRun.ps1` (a request carries no SHA: put it in `-Label`, keep the tree frozen until `RUN_DONE`); one pass = one request; first contact with TicketDispatcher is `REGISTER local_<id> <Mod>`; nobody creates a watcher, `Monitor` or cron for the queue; read `exitReason` before the figures; exit 7 = nothing played, 8 = Pickle's own code 2, 9 = infrastructure.
+- **Wrong in `Headless/README.md` still?** It was corrected on 2026-10-09 for `merge-reports.py` and the AUDIT reference only; the direct `Run-PickleWsl.ps1` examples were not re-checked against `PICKLE.md`.
