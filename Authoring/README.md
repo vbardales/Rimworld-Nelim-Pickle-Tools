@@ -274,6 +274,13 @@ call the PowerShell script from PowerShell with an actual string array, for exam
 Do not assume `powershell.exe -File ... -Then read.feature,reset.feature` creates two launches: a single comma
 string is one Pickle filter and can select both features inside one process.
 
+**Adding a mod to a save, and removing it.** Adding a mod to a save that did not have it needs no test of its own: any
+baseline scenario already does it, since it loads the mod into a game that did not contain it. Only the **removal** (a save made
+with the mod, reloaded without it) needs a dedicated test, as a request
+`-Filter '::<save scenario>' -Then '<load scenario>' -ThenWithout <packageId>`. There is no `-ThenWith` option and none is to be
+created (rule given by the owner on 2026-10-09 for case M9 of AncientChineseBeastAndGeneExpandedRenew; the queue side is written in
+`Rimworld-Ticket-Dispatcher/docs/SUBMIT.md`, line `-ThenWithout`).
+
 Rebuild before launch: Pickle loads step DLLs when the game starts. Changing a DLL during a run does not change
 the code that run is testing. A patched Pickle needs the complete root `Pickle.slnx` build and its dependencies,
 staged with `-PickleSrc`; a step mentioned in an open PR is not automatically present in the Workshop build.
