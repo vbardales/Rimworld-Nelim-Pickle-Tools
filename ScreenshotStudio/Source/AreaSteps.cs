@@ -28,6 +28,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return new MapArea(x - hx, z - hz, x + hx, z + hz);
         }
 
+        /// <summary>The cells the camera shows right now (the game's own view rectangle, clipped to the map): what a capture taken now contains.</summary>
+        public static MapArea OfView()
+        {
+            CellRect r = Find.CameraDriver.CurrentViewRect.ClipInsideMap(Find.CurrentMap);
+            return new MapArea(r.minX, r.minZ, r.maxX, r.maxZ);
+        }
+
         public bool Contains(IntVec3 c) => c.x >= MinX && c.x <= MaxX && c.z >= MinZ && c.z <= MaxZ;
 
         public IEnumerable<IntVec3> Cells(Map map)
@@ -225,6 +232,34 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there.</summary>
         [Given(Prefix + "the things {string} within {int} cells of \\({int}, {int}\\) are hidden")]
         public void HideThings(PickleContext ctx, string defName, int radius, int x, int z) => AreaOps.HideThings(ctx, defName, x, z, radius);
+
+        // The same operations on what the camera shows now: frame first, then clean the frame. No coordinate, no place name.
+        // The view is read when the step runs; the zoom must have settled (the frame steps wait for it).
+        private static MapArea View(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "Load a map first");
+            return MapArea.OfView();
+        }
+
+        /// <summary>Destroys the furniture, items, plants, filth and corpses of every cell the camera shows now. Pawns, walls, doors and natural rock stay.</summary>
+        [Given(Prefix + "the frame is emptied")]
+        public void EmptyFrame(PickleContext ctx) => AreaOps.Empty(ctx, View(ctx));
+
+        /// <summary>Bares the floor of every cell the camera shows now, with the terrain of the cell 3 cells west of the view at mid height. One sample: not for an enclosure.</summary>
+        [Given(Prefix + "the floor of the frame is bared")]
+        public void BareFloorFrame(PickleContext ctx) => AreaOps.BareFloor(ctx, View(ctx));
+
+        /// <summary>Despawns the animals standing in the frame now, once.</summary>
+        [Given(Prefix + "the animals are removed from the frame")]
+        public void RemoveAnimalsFrame(PickleContext ctx) => AreaOps.RemoveAnimals(ctx, View(ctx));
+
+        /// <summary>Keeps animals out of the cells the camera shows now, every frame until the scenario ends (the area is fixed at the moment of the step).</summary>
+        [Given(Prefix + "the animals are kept out of the frame")]
+        public void KeepAnimalsOutFrame(PickleContext ctx) => AreaOps.KeepAnimalsOut(ctx, View(ctx));
+
+        /// <summary>Removes the roofs of the frame (thick roofs stay).</summary>
+        [Given(Prefix + "the roof is removed from the frame")]
+        public void RemoveRoofFrame(PickleContext ctx) => AreaOps.RemoveRoof(ctx, View(ctx));
 
         [AfterScenario]
         public void ReleaseAreaHooks() => AreaOps.StopKeepingAnimalsOut();

@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-238 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+243 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -306,6 +306,11 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the animals are kept out of the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Despawns the animals of the rectangle now and on every frame until the scenario ends. May be written for several rectangles. |
 | `Nelim's Pickle Tools: the roof is removed from the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Removes the roofs of the rectangle (thick roofs stay) so the sun lights it. |
 | `Nelim's Pickle Tools: the things {string} within {int} cells of \({int}, {int}\) are hidden` (Given) | Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there. |
+| `Nelim's Pickle Tools: the frame is emptied` (Given) | Destroys the furniture, items, plants, filth and corpses of every cell the camera shows now. Pawns, walls, doors and natural rock stay. |
+| `Nelim's Pickle Tools: the floor of the frame is bared` (Given) | Bares the floor of every cell the camera shows now, with the terrain of the cell 3 cells west of the view at mid height. One sample: not for an enclosure. |
+| `Nelim's Pickle Tools: the animals are removed from the frame` (Given) | Despawns the animals standing in the frame now, once. |
+| `Nelim's Pickle Tools: the animals are kept out of the frame` (Given) | Keeps animals out of the cells the camera shows now, every frame until the scenario ends (the area is fixed at the moment of the step). |
+| `Nelim's Pickle Tools: the roof is removed from the frame` (Given) | Removes the roofs of the frame (thick roofs stay). |
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) |
