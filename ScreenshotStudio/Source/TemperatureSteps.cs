@@ -23,24 +23,29 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         private static void Hold(PickleContext ctx, float value)
         {
-            held = value;
             if (harmony == null)
             {
-                harmony = new Harmony("nelim.pickletools.temperature");
+                Harmony h = new Harmony("nelim.pickletools.temperature");
                 int patched = 0;
                 void Post(MethodBase m, string name)
                 {
                     if (m == null) return;
-                    harmony.Patch(m, postfix: new HarmonyMethod(typeof(TemperatureSteps), name));
+                    h.Patch(m, postfix: new HarmonyMethod(typeof(TemperatureSteps), name));
                     patched++;
                 }
                 Post(AccessTools.Method(typeof(GenTemperature), "GetTemperatureForCell", new[] { typeof(IntVec3), typeof(Map) }), nameof(PostFloat));
                 Post(AccessTools.PropertyGetter(typeof(MapTemperature), "OutdoorTemp"), nameof(PostFloat));
                 Post(AccessTools.PropertyGetter(typeof(Room), "Temperature"), nameof(PostFloat));
                 Post(AccessTools.PropertyGetter(typeof(Thing), "AmbientTemperature"), nameof(PostFloat));
+                if (patched == 0)
+                {
+                    h.UnpatchAll(h.Id);
+                    ctx.Require(false, "no temperature read could be patched: the game changed");
+                }
+                harmony = h;
                 Log.Message("[temperature] " + patched + " reads of the temperature are held at " + value + " degrees");
-                ctx.Require(patched > 0, "no temperature read could be patched: the game changed");
             }
+            held = value;
             // The mood thoughts that depend on the temperature are cached and refreshed on ticks; the scene runs paused, so drop them now.
             foreach (Pawn p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {

@@ -49,7 +49,9 @@ namespace Nelim.PickleTools.ColonistRace
                 FieldUp(comp, field)?.SetValue(eyes, wanted);
             comp.GetMethod("SetDirty", Any)?.Invoke(eyes, null);
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
-            Color read = (Color)comp.GetMethod("GetCurrentColor", Any).Invoke(eyes, null);
+            MethodInfo getColor = comp.GetMethod("GetCurrentColor", Any);
+            ctx.Require(getColor != null, "the eyeball controller has no GetCurrentColor: Facial Animation changed, update this step");
+            Color read = (Color)getColor.Invoke(eyes, null);
             ctx.Assert(
                 Math.Abs(read.r - wanted.r) < 0.02f && Math.Abs(read.g - wanted.g) < 0.02f && Math.Abs(read.b - wanted.b) < 0.02f,
                 nickname + "'s eye colour should read " + wanted + "; the mod reports " + read + ". Something forces a colour on top of it (an eye gene?)");
@@ -146,13 +148,7 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(read != null && read.defName == typeName, nickname + "'s mouth should read " + typeName + "; it reads " + (read?.defName ?? "(none)"));
         }
 
-        /// <summary>
-        /// Plays a Nals Facial Animation expression on a colonist by <c>FaceAnimationDef</c> name (for example <c>normal</c>, <c>blink</c>,
-        /// <c>laydown</c>, <c>SocialRelax</c>): the mod's own temporary animation, started now. The names are those of the mod's animation
-        /// defs; a name that does not exist fails with the list of valid ones. Several names joined by <c>+</c> are played together, in order, and for each part
-        /// of the face the last one that defines it wins (read in the mod's code): <c>normal+NLR-Smile</c> is a neutral face with no heat sweat and the smile on top.
-        /// A temporary animation ends when its frames have run out, which counts game ticks: it holds while the game is paused, not after a long wait.
-        /// </summary>
+        /// <summary>Logs the facial animations by mod, then every face part type by mod: the dictionary the expression and part steps accept.</summary>
         [Given("Nelim's Pickle Tools: the facial animations are listed")]
         public void ListAnimations(PickleContext ctx)
         {
@@ -171,6 +167,13 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        /// <summary>
+        /// Plays a Nals Facial Animation expression on a colonist by <c>FaceAnimationDef</c> name (for example <c>normal</c>, <c>blink</c>,
+        /// <c>laydown</c>, <c>SocialRelax</c>): the mod's own temporary animation, started now. The names are those of the mod's animation
+        /// defs; a name that does not exist fails with the list of valid ones. Several names joined by <c>+</c> are played together, in order, and for each part
+        /// of the face the last one that defines it wins (read in the mod's code): <c>normal+NLR-Smile</c> is a neutral face with no heat sweat and the smile on top.
+        /// A temporary animation ends when its frames have run out, which counts game ticks: it holds while the game is paused, not after a long wait.
+        /// </summary>
         [Given("Nelim's Pickle Tools: {string} facial expression is {string}")]
         public void SetExpression(PickleContext ctx, string nickname, string animationName)
         {
@@ -186,7 +189,9 @@ namespace Nelim.PickleTools.ColonistRace
                 ctx.Require(all.Any(d => d.defName == n), "No facial animation \"" + n + "\"; valid: " + string.Join(", ", all.Select(d => d.defName).OrderBy(x => x)));
             ThingComp face = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
             ctx.Require(face != null, nickname + " has no facial animation controller");
-            object ok = compType.GetMethod("PlayTemporaryAnimation", Any).Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, names });
+            MethodInfo play = compType.GetMethod("PlayTemporaryAnimation", Any);
+            ctx.Require(play != null, "the controller has no PlayTemporaryAnimation: Facial Animation changed, update this step");
+            object ok = play.Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, names });
             ctx.Assert(ok is bool b && b, "The mod refused to play \"" + animationName + "\" on " + nickname + " (not valid for this race or head?)");
         }
     }

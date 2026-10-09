@@ -30,7 +30,7 @@ namespace Nelim.PickleTools.ColonistRace
                 foreach (Gene g in pawn.genes.GenesListForReading.Where(x => x.def != def && x.def.exclusionTags != null && x.def.exclusionTags.Any(def.exclusionTags.Contains)).ToList())
                     pawn.genes.RemoveGene(g);
             if (!pawn.genes.GenesListForReading.Any(x => x.def == def)) pawn.genes.AddGene(def, false);
-            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
             ctx.Assert(pawn.genes.GenesListForReading.Any(x => x.def == def),
                 "pawn '" + nickname + "' does not hold the gene '" + geneName + "'; it holds " + string.Join(", ", pawn.genes.GenesListForReading.Select(x => x.def.defName)));
         }
