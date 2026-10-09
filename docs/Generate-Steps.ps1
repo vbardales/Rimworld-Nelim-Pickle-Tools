@@ -63,6 +63,103 @@ function Shorten([string]$s) {
     return $cut.TrimEnd(',', ';', ':', ' ') + '...'
 }
 
+# The parameters of a step: the placeholders of the pattern in order, named after the C# parameters of the method that follows the
+# attribute (PickleContext excluded), with the <param name="x">...</param> text of the summary block when the author wrote one.
+# A closed list (a direction, a gender, a kit...) is documented there with ALL its valid values; the table prints every parameter.
+# What a parameter name means when the step does not say it itself with a <param> tag. Open lists: the values are the defs of the game as
+# loaded, so a wrong name fails with the list of the valid ones (a closed list is documented with its values in the step's own <param>).
+$genericParams = @{
+    nickname = "the colonist's nickname"
+    name = 'the short name of the pawn (colonist or animal) or of the thing'
+    defName = 'a def name of the loaded game (any case)'
+    thingDefName = 'a ThingDef name of the loaded game'
+    apparelDefName = 'an apparel ThingDef name of the loaded game'
+    terrainDefName = 'a TerrainDef name of the loaded game'
+    soundDefName = 'a SoundDef name of the loaded game'
+    kindDefName = 'a PawnKindDef name of the loaded game (any humanlike or animal kind)'
+    kindName = 'a PawnKindDef name of the loaded game'
+    raceDefName = 'a race ThingDef name of the loaded game'
+    xenotypeDefName = 'a XenotypeDef name of the loaded game (Biotech)'
+    geneName = 'a GeneDef name of the loaded game (Biotech)'
+    stageDefName = 'a LifeStageDef name of the loaded game'
+    thoughtName = 'a ThoughtDef name of the loaded game'
+    tattooName = 'a TattooDef name of the loaded game'
+    workTypeName = 'a WorkTypeDef name of the loaded game'
+    preceptName = 'a PreceptDef name of the loaded game (Ideology)'
+    preceptNames = 'PreceptDef names separated by commas (Ideology)'
+    memeNames = 'MemeDef names separated by commas (Ideology)'
+    key = 'a translation key (language independent), not the translated text'
+    packageId = 'the packageId of a mod, any case'
+    nameOrLabel = 'the def name or the label of the tab'
+    typeName = 'a def name of the type the step names; a wrong name fails with the list of valid ones'
+    x2 = 'second corner, x'; z2 = 'second corner, z'
+    ticksPerFrame = 'game ticks between two pictures of the film'
+    stageIndex = 'index of the life stage, from 0 (the first stage of the kind)'
+    spacing = 'cells between two spawned things'
+    size = 'a size, in cells (int) or in camera root size (float: smaller is closer)'
+    shot = 'the name of a studio shot (the studios are gone; the step fails and says where to go)'
+    part = 'a part of a tooltip text: a fragment that appears in it'
+    minimum = 'the smallest value accepted'
+    cost = 'the research cost of the project, as the game shows it'
+    colorDefName = 'a ColorDef name of the loaded game'
+    coat = 'the number of a coat variant, from 0'
+    chance = 'a probability between 0 and 1, as text'
+    beardName = 'a BeardDef name of the loaded game'
+    atLeast = 'the smallest count accepted'
+    apartFrom = 'a fragment of a message that is known and justified, not counted'
+    animalName = 'the short name of the animal'
+    headDefName = 'a HeadTypeDef name of the loaded game'
+    hairDefName = 'a HairDef name of the loaded game'
+    x = 'map cell, x (east); 0 at the west edge'
+    z = 'map cell, z (north); 0 at the south edge'
+    x0 = 'first corner, x'; z0 = 'first corner, z'; x1 = 'second corner, x'; z1 = 'second corner, z'
+    sx = 'sample cell, x'; sz = 'sample cell, z'
+    r = 'red, 0 to 255'; g = 'green, 0 to 255'; b = 'blue, 0 to 255'
+    count = 'a count, a whole number'
+    percent = 'a percentage, a whole number'
+    degrees = 'degrees Celsius'
+    radius = 'a distance in cells, a whole number'
+    rootSize = 'camera root size (smaller is closer); 2 to 130 once the zoom limit is lifted'
+    path = 'a texture path, as a mod ships it (no extension)'
+    label = 'the text as displayed'
+    expected = 'the expected text'
+    value = 'the value written, as text'
+    field = 'a field name on the type'
+    fieldPath = 'a field path, names joined by dots'
+    known = 'a fragment of the message that is known and justified'
+}
+
+function Get-ParamDocs([string]$text, [int]$index, [string]$pattern) {
+    $lines = $text.Substring(0, $index).Split("`n")
+    $doc = @()
+    for ($i = $lines.Count - 2; $i -ge 0; $i--) {
+        $l = $lines[$i].TrimEnd("`r")
+        if ($l -match '^\s*///') { $doc = @($l) + $doc; continue }
+        if ($l -match '^\s*\[' -or $l -match '^\s*//[^/]') { continue }
+        break
+    }
+    $body = ($doc | ForEach-Object { $_ -replace '^\s*///\s?', '' }) -join ' '
+    $docs = @{}
+    foreach ($pm in [regex]::Matches($body, '<param name="([^"]+)">(.*?)</param>')) {
+        $v = [regex]::Replace($pm.Groups[2].Value, '<c>(.*?)</c>', '`$1`')
+        $v = ($v -replace '<[^>]+>', '' -replace '\s+', ' ' -replace '&lt;', '<' -replace '&gt;', '>' -replace '&amp;', '&').Trim()
+        $docs[$pm.Groups[1].Value] = $v
+    }
+    $sigm = [regex]::Match($text.Substring($index), '^\[[^\]]*\]\s*(?:\[[^\]]*\]\s*)*public\s+[\w<>\.\[\]]+\s+\w+\s*\(([^)]*)\)')
+    if (-not $sigm.Success) { return '' }
+    $names = @($sigm.Groups[1].Value -split ',' | ForEach-Object { $_.Trim() } | Where-Object { $_ -and $_ -notmatch '^PickleContext ' } | ForEach-Object { ($_ -split '\s+')[-1] })
+    $types = @([regex]::Matches($pattern, '\{(string|int|float|word)\}') | ForEach-Object { $_.Groups[1].Value })
+    $out = @()
+    for ($k = 0; $k -lt [Math]::Min($names.Count, $types.Count); $k++) {
+        $entry = '`' + $names[$k] + '` (' + $types[$k] + ')'
+        if ($docs.ContainsKey($names[$k])) { $entry += ': ' + $docs[$names[$k]] }
+        elseif ($genericParams.ContainsKey($names[$k])) { $entry += ': ' + $genericParams[$names[$k]] }
+        $out += $entry
+    }
+    if (-not $out) { return '' }
+    return ' **Parameters:** ' + ($out -join '; ') + '.'
+}
+
 $readmeRows = @{}
 function Get-ReadmeRow([string]$toolDir, [string]$pattern) {
     if (-not $readmeRows.ContainsKey($toolDir)) {
@@ -105,6 +202,7 @@ foreach ($dir in Get-ChildItem $root -Directory | Sort-Object Name) {
             $desc = Get-Summary $text $m.Index
             if (-not $desc) { $desc = Get-ReadmeRow $dir.FullName $pattern }
             if (-not $desc) { $empty += "$($dir.Name): $pattern"; $desc = '(no description yet)' }
+            $desc = $desc + (Get-ParamDocs $text $m.Index $pattern)
             $steps += [pscustomobject]@{ Keyword = $m.Groups[1].Value; Pattern = $pattern; Desc = $desc }
         }
     }

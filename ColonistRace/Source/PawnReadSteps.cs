@@ -20,6 +20,8 @@ namespace Nelim.PickleTools.ColonistRace
         private const string None = "(none)";
 
         /// <summary>Asserts a pawn's gender, <c>male</c> or <c>female</c>, case insensitive.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="gender"><c>male</c> or <c>female</c>; any case; anything else fails</param>
         [Then("Nelim's Pickle Tools: {string} has gender {word}")]
         public void AssertGender(PickleContext ctx, string nickname, string gender)
         {
@@ -43,6 +45,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>Asserts a pawn's body type by def name, case insensitive.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="bodyTypeDefName">a BodyTypeDef name, any case: vanilla has <c>Male</c>, <c>Female</c>, <c>Thin</c>, <c>Fat</c>, <c>Hulk</c>, <c>Child</c>, <c>Baby</c>; a mod may add more</param>
         [Then("Nelim's Pickle Tools: {string} has body type {word}")]
         public void AssertBodyType(PickleContext ctx, string nickname, string bodyTypeDefName)
         {
@@ -89,6 +93,8 @@ namespace Nelim.PickleTools.ColonistRace
         /// Asserts a pawn's stage of life: <c>Baby</c>, <c>Newborn</c>, <c>Child</c> or <c>Adult</c>, case
         /// insensitive. Needs Biotech for the first three.
         /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="stage"><c>Baby</c>, <c>Newborn</c>, <c>Child</c> or <c>Adult</c>; any case; the first three need Biotech</param>
         [Then("Nelim's Pickle Tools: {string} is at the {word} stage of life")]
         public void AssertDevelopmentalStage(PickleContext ctx, string nickname, string stage)
         {

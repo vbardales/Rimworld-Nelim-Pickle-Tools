@@ -147,6 +147,8 @@ namespace Nelim.PickleTools.IdeologySteps
         /// Release, or a mode a mod adds) by PrisonerInteractionModeDef name, then reads it back. It sets the same field the
         /// prisoner tab sets, without the tab's warnings.
         /// </summary>
+        /// <param name="nickname">the nickname of a prisoner of the colony</param>
+        /// <param name="modeName">a PrisonerInteractionModeDef defName; a wrong name fails with the list of the defs of this game</param>
         [Given("Nelim's Pickle Tools: the prisoner {string} interaction mode is {string}")]
         public void SetInteractionMode(PickleContext ctx, string nickname, string modeName)
         {

@@ -62,34 +62,50 @@ namespace Nelim.PickleTools.ColonistRace
         /// Textures Expanded has MouthSmile, MouthLipsSmallSmile, MouthSad, MouthScowl...). This is the fixed shape of the face, not an
         /// animation: it does not depend on the job, the mood or the heat. Reads the part back; a name that does not exist fails with the list.
         /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/FACE-PARTS.md (Mouths), a wrong name fails with the list</param>
         [Given("Nelim's Pickle Tools: {string} mouth is {string}")]
         public void SetMouth(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Mouth", typeName);
 
         /// <summary>Gives a colonist brows by <c>BrowTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a BrowTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Brows)</param>
         [Given("Nelim's Pickle Tools: {string} brows are {string}")]
         public void SetBrows(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Brow", typeName);
 
         /// <summary>Gives a colonist lids (the look of the eyes: cheerful, almond, squinting...) by <c>LidTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a LidTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lids)</param>
         [Given("Nelim's Pickle Tools: {string} lids are {string}")]
         public void SetLids(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Lid", typeName);
 
         /// <summary>Gives a colonist a skin detail (rosy cheeks, freckles, smile lines...) by <c>SkinTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a SkinTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Skins)</param>
         [Given("Nelim's Pickle Tools: {string} face skin is {string}")]
         public void SetFaceSkin(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Skin", typeName);
 
         /// <summary>Gives a colonist eyeballs (the iris and white shape) by <c>EyeballTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">an EyeballTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Eyeballs)</param>
         [Given("Nelim's Pickle Tools: {string} eyeballs are {string}")]
         public void SetEyeballs(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Eyeball", typeName);
 
         /// <summary>Gives a colonist an eyelid option (lashes and the like) by <c>LidOptionTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a LidOptionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lid options)</param>
         [Given("Nelim's Pickle Tools: {string} lid option is {string}")]
         public void SetLidOption(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "LidOption", typeName);
 
         /// <summary>Gives a colonist an emotion mark (blush, sweat drops, anger marks) by <c>EmotionTypeDef</c> name, as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">an EmotionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Emotion marks)</param>
         [Given("Nelim's Pickle Tools: {string} emotion mark is {string}")]
         public void SetEmotion(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Emotion", typeName);
 
         /// <summary>Gives a colonist a face head shape by Facial Animation's own <c>HeadTypeDef</c> name (not the game's head type), as the mouth step does for the mouth.</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/FACE-PARTS.md (Head shapes)</param>
         [Given("Nelim's Pickle Tools: {string} face head shape is {string}")]
         public void SetFaceHead(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Head", typeName);
 
@@ -109,6 +125,8 @@ namespace Nelim.PickleTools.ColonistRace
         /// smug, neutral. They use the part types of Vanilla Textures Expanded and Facial Animation; a part whose type does not exist (the mod is not
         /// loaded) fails the step naming it. A part step run afterwards overrides one part of the kit.
         /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="kit"><c>smile</c> (MouthSmile, LidCheerful, BrowEven, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowEven), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowEven), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowEven); any case</param>
         [Given("Nelim's Pickle Tools: {string} face kit is {string}")]
         public void SetKit(PickleContext ctx, string nickname, string kit)
         {
@@ -137,6 +155,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>Asserts the mouth of a colonist is this <c>MouthTypeDef</c> (the failure prints the one it has).</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="typeName">a MouthTypeDef name, as the mouth step takes it</param>
         [Then("Nelim's Pickle Tools: {string} mouth reads {string}")]
         public void MouthReads(PickleContext ctx, string nickname, string typeName)
         {
@@ -174,6 +194,8 @@ namespace Nelim.PickleTools.ColonistRace
         /// of the face the last one that defines it wins (read in the mod's code): <c>normal+NLR-Smile</c> is a neutral face with no heat sweat and the smile on top.
         /// A temporary animation ends when its frames have run out, which counts game ticks: it holds while the game is paused, not after a long wait.
         /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="animationName">one FaceAnimationDef name, or several joined by <c>+</c> (the last one that defines a part of the face wins); the 55 names by mod are in ColonistRace/docs/FACIAL-ANIMATIONS.md, a wrong name fails with the list</param>
         [Given("Nelim's Pickle Tools: {string} facial expression is {string}")]
         public void SetExpression(PickleContext ctx, string nickname, string animationName)
         {

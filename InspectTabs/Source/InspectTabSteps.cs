@@ -27,6 +27,7 @@ namespace Nelim.PickleTools.InspectTabs
         // Named by type or label key, never by the translated label a player reads, so a scenario
         // written here still passes under a language mod. OpenTab switches the main tabs root to
         // Inspect on its own and toggles only a closed tab, so reopening an open tab is a no-op.
+        /// <param name="tabName">the type name of the tab (<c>ITab_Pawn_Gear</c>), its label key (<c>TabGear</c>), or the short form (<c>Gear</c>, <c>Bio</c>, <c>Health</c>, <c>Social</c>, <c>Needs</c>, <c>Log</c>); never the translated label; a name that matches no tab fails with the tabs of the selection</param>
         [When("Nelim's Pickle Tools: I open the {string} inspect tab")]
         public async Task OpenInspectTab(PickleContext ctx, string tabName)
         {

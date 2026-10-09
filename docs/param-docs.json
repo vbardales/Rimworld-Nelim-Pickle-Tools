@@ -1,0 +1,66 @@
+[
+  { "file": "ColonistRace/Source/PawnReadSteps.cs", "step": "{string} has gender {word}", "params": {
+    "nickname": "the colonist's nickname",
+    "gender": "<c>male</c> or <c>female</c>; any case; anything else fails" } },
+  { "file": "ColonistRace/Source/PawnReadSteps.cs", "step": "{string} has body type {word}", "params": {
+    "nickname": "the colonist's nickname",
+    "bodyTypeDefName": "a BodyTypeDef name, any case: vanilla has <c>Male</c>, <c>Female</c>, <c>Thin</c>, <c>Fat</c>, <c>Hulk</c>, <c>Child</c>, <c>Baby</c>; a mod may add more" } },
+  { "file": "ColonistRace/Source/PawnReadSteps.cs", "step": "is at the {word} stage of life", "params": {
+    "nickname": "the colonist's nickname",
+    "stage": "<c>Baby</c>, <c>Newborn</c>, <c>Child</c> or <c>Adult</c>; any case; the first three need Biotech" } },
+  { "file": "ColonistRace/Source/LookSteps.cs", "step": "{string} stands at \\\\({int}, {int}\\\\) facing {word}", "params": {
+    "nickname": "the colonist's nickname",
+    "direction": "<c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails" } },
+  { "file": "ColonistRace/Source/LookSteps.cs", "step": "the animal {string} stands at \\\\({int}, {int}\\\\) facing {word}", "params": {
+    "name": "the short name of the animal (for example a <c>coat-N</c> name)",
+    "direction": "<c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails" } },
+  { "file": "ColonistRace/Source/LookSteps.cs", "step": "{string} faces {word}", "params": {
+    "name": "the short name of a colonist or of an animal",
+    "direction": "<c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} face kit is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "kit": "<c>smile</c> (MouthSmile, LidCheerful, BrowEven, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowEven), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowEven), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowEven); any case" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} mouth is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/FACE-PARTS.md (Mouths), a wrong name fails with the list" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} brows are {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a BrowTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Brows)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} lids are {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a LidTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lids)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} face skin is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a SkinTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Skins)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} eyeballs are {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "an EyeballTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Eyeballs)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} lid option is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a LidOptionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lid options)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} emotion mark is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "an EmotionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Emotion marks)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} face head shape is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/FACE-PARTS.md (Head shapes)" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} mouth reads {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "typeName": "a MouthTypeDef name, as the mouth step takes it" } },
+  { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} facial expression is {string}", "params": {
+    "nickname": "the colonist's nickname",
+    "animationName": "one FaceAnimationDef name, or several joined by <c>+</c> (the last one that defines a part of the face wins); the 55 names by mod are in ColonistRace/docs/FACIAL-ANIMATIONS.md, a wrong name fails with the list" } },
+  { "file": "RimmsqolSteps/Source/RimmsqolShortcutSteps.cs", "step": "RIMMSQOL shows the main button {string} as {word}", "params": {
+    "defName": "the defName of a MainButtonDef",
+    "state": "<c>visible</c> or <c>hidden</c>, lower case; anything else fails" } },
+  { "file": "RimmsqolSteps/Source/RimmsqolShortcutSteps.cs", "step": "settings file records the main button {string} as {word}", "params": {
+    "defName": "the defName of a MainButtonDef",
+    "state": "<c>visible</c> or <c>hidden</c>, lower case; anything else fails" } },
+  { "file": "IdeologySteps/Source/PrisonSteps.cs", "step": "interaction mode is {string}", "params": {
+    "nickname": "the nickname of a prisoner of the colony",
+    "modeName": "a PrisonerInteractionModeDef defName; a wrong name fails with the list of the defs of this game" } },
+  { "file": "InspectTabs/Source/InspectTabSteps.cs", "step": "I open the {string} inspect tab", "params": {
+    "tabName": "the type name of the tab (<c>ITab_Pawn_Gear</c>), its label key (<c>TabGear</c>), or the short form (<c>Gear</c>, <c>Bio</c>, <c>Health</c>, <c>Social</c>, <c>Needs</c>, <c>Log</c>); never the translated label; a name that matches no tab fails with the tabs of the selection" } },
+  { "file": "ScreenshotStudio/Source/StudioSteps.cs", "step": "all humans but {string} are removed", "params": {
+    "keep": "the short name of the one human to keep; fails when no pawn has it" } }
+]

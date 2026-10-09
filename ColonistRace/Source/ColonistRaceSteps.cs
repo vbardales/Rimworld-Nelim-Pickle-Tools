@@ -43,22 +43,12 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// Gives a pawn a body type the game cannot draw at random: <c>Thin</c>, <c>Fat</c> or <c>Hulk</c>, or
-        /// <c>Male</c> / <c>Female</c> (the plain body of that gender). The game keeps every body-type gene a pawn
-        /// has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard
-        /// and Body_Hulk) has no fixed body type. This step removes ALL the pawn's body-type genes, xenogenes and
-        /// endogenes, adds the one gene of the type asked for (Body_Standard for Male and Female, whose body follows
-        /// the gender; leaving the pawn with no body-type gene is not certain either, the game then takes the body type
-        /// from the adulthood backstory or draws Thin one time in two), redraws the pawn and reads the body type back, failing with what it found if it is not the
-        /// one asked for. The gender is set beforehand: nothing here recomputes it. An adult word (Thin, Fat, Hulk, Male,
-        /// Female) refuses a child or a baby, whose body follows its age whatever its genes; <c>Child</c> and <c>Baby</c> are
-        /// the words for those, see SetJuvenileBodyType. Without Biotech there are no genes and the body type is set directly.
-        /// </summary>
-        /// <summary>
         /// Sets a pawn's gender, <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c>: the game's Gender.None; the body type is then left as it is and a head reserved for one gender is replaced by a gender-free head), then makes the look agree with it: a Male or Female plain body follows the new
         /// gender, and a head type reserved for the other gender is replaced by a head of the new gender. Call it BEFORE the body type, hairstyle
         /// and head type steps, which read the gender. Redraws the pawn and reads the gender back.
         /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="gender"><c>male</c>, <c>female</c>, <c>neutral</c>, <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c> (the last five are Gender.None); any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} gender is {word}")]
         public void SetGender(PickleContext ctx, string nickname, string gender)
         {
@@ -92,6 +82,20 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(pawn.gender == wanted, $"pawn '{nickname}' should be {wanted} after this step; it is {pawn.gender}");
         }
 
+        /// <summary>
+        /// Gives a pawn a body type the game cannot draw at random: <c>Thin</c>, <c>Fat</c> or <c>Hulk</c>, or
+        /// <c>Male</c> / <c>Female</c> (the plain body of that gender). The game keeps every body-type gene a pawn
+        /// has and picks one at random each time the genes change, so a pawn with two of them (Hussar: Body_Standard
+        /// and Body_Hulk) has no fixed body type. This step removes ALL the pawn's body-type genes, xenogenes and
+        /// endogenes, adds the one gene of the type asked for (Body_Standard for Male and Female, whose body follows
+        /// the gender; leaving the pawn with no body-type gene is not certain either, the game then takes the body type
+        /// from the adulthood backstory or draws Thin one time in two), redraws the pawn and reads the body type back, failing with what it found if it is not the
+        /// one asked for. The gender is set beforehand: nothing here recomputes it. An adult word (Thin, Fat, Hulk, Male,
+        /// Female) refuses a child or a baby, whose body follows its age whatever its genes; <c>Child</c> and <c>Baby</c> are
+        /// the words for those, see SetJuvenileBodyType. Without Biotech there are no genes and the body type is set directly.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="bodyType"><c>Thin</c>, <c>Fat</c>, <c>Hulk</c>, <c>Male</c>, <c>Female</c> (adults only), <c>Child</c>, <c>Baby</c> (juveniles only); any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} body type is {word}")]
         public void SetBodyType(PickleContext ctx, string nickname, string bodyType)
         {

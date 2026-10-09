@@ -282,6 +282,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>The same, and turns the colonist to face North, East, South or West (what the renderer draws it looking at).</summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} stands at \\({int}, {int}\\) facing {word}")]
         public void StandsAtFacing(PickleContext ctx, string nickname, int x, int z, string direction)
         {
@@ -318,6 +320,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>The same, turned North, East, South or West.</summary>
+        /// <param name="name">the short name of the animal (for example a <c>coat-N</c> name)</param>
+        /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: the animal {string} stands at \\({int}, {int}\\) facing {word}")]
         public void AnimalStandsAtFacing(PickleContext ctx, string name, int x, int z, string direction)
         {
@@ -325,6 +329,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>Turns a pawn (colonist or animal, found by its short name) where it stands, without moving it.</summary>
+        /// <param name="name">the short name of a colonist or of an animal</param>
+        /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} faces {word}")]
         public void Faces(PickleContext ctx, string name, string direction)
         {

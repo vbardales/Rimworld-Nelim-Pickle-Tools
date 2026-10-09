@@ -172,6 +172,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         // Makes the map a one-colonist map: every humanlike pawn but the named one, and every humanlike corpse, vanishes. Animals stay.
+        /// <param name="keep">the short name of the one human to keep; fails when no pawn has it</param>
         [Given(Prefix + "all humans but {string} are removed")]
         public void RemoveOtherHumans(PickleContext ctx, string keep)
         {

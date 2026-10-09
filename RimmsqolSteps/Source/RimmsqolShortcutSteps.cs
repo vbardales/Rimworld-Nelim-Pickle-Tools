@@ -38,6 +38,8 @@ namespace Nelim.PickleTools.Rimmsqol
         }
 
         /// <summary>What the Visible checkbox on the button's edit page reads, {word} being visible or hidden.</summary>
+        /// <param name="defName">the defName of a MainButtonDef</param>
+        /// <param name="state"><c>visible</c> or <c>hidden</c>, lower case; anything else fails</param>
         [Then("RIMMSQOL shows the main button {string} as {word}")]
         public void AssertShows(PickleContext ctx, string defName, string state)
         {
@@ -66,6 +68,8 @@ namespace Nelim.PickleTools.Rimmsqol
 
         // ---- what is on disk, what the next launch will read -----------------------------------
 
+        /// <param name="defName">the defName of a MainButtonDef</param>
+        /// <param name="state"><c>visible</c> or <c>hidden</c>, lower case; anything else fails</param>
         [Then("RIMMSQOL's settings file records the main button {string} as {word}")]
         public void AssertRecorded(PickleContext ctx, string defName, string state)
         {
