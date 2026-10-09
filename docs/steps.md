@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-244 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+245 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -312,6 +312,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the animals are removed from the frame` (Given) | Despawns the animals standing in the frame now, once. |
 | `Nelim's Pickle Tools: the animals are kept out of the frame` (Given) | Keeps animals out of the cells the camera shows now, every frame until the scenario ends (the area is fixed at the moment of the step). |
 | `Nelim's Pickle Tools: the roof is removed from the frame` (Given) | Removes the roofs of the frame (thick roofs stay). |
+| `Nelim's Pickle Tools: I let {int} frames pass` (When) | Waits this many rendered frames (the game keeps its pause): enough for a pawn just changed to be drawn again before a capture, at a fraction of the 90 frames a framing step waits. |
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) **Parameters:** `minimum` (float): the smallest value accepted. |

@@ -261,6 +261,15 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the roof is removed from the frame")]
         public void RemoveRoofFrame(PickleContext ctx) => AreaOps.RemoveRoof(ctx, View(ctx));
 
+        /// <summary>Waits this many rendered frames (the game keeps its pause): enough for a pawn just changed to be drawn again before a capture, at a fraction of the 90 frames a framing step waits.</summary>
+        /// <param name="frames">the number of frames, 1 to 600</param>
+        [When(Prefix + "I let {int} frames pass", TimeoutSeconds = 60f)]
+        public async Task LetFramesPass(PickleContext ctx, int frames)
+        {
+            ctx.Require(frames >= 1 && frames <= 600, "frames run from 1 to 600");
+            await ctx.WaitFrames(frames);
+        }
+
         [AfterScenario]
         public void ReleaseAreaHooks() => AreaOps.StopKeepingAnimalsOut();
     }
