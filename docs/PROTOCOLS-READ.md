@@ -122,14 +122,14 @@ everything else (full Player.log, `report.html`, `messages.ndjson` of a supersed
 
 ## Read again on 2026-10-09 (owner: "relis la doc")
 
-Hashes are the first 12 characters of the SHA256 of the file as read. Read whole: `AGENTS.md`, `AUDIT.md`, `PICKLE.md`. NOT re-read: `PUBLISHING.md`, `MOD_SETTINGS.md`, `TRANSLATIONS.md`, `Rimworld-Release-Admin/docs/OPERATIONS.md`, `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` and `SUBMIT.md` (hashes below are their current ones, not a reading). `Mark-ProtocolsRead.ps1` was not run, so `STATUS.md` has no `protocols_read_sha` yet: it must be run once the protocols that matter are read.
+Hashes are the first 12 characters of the SHA256 of the file as read. Read whole: `AGENTS.md`, `AUDIT.md`, `PICKLE.md`, `PUBLISHING.md`. NOT re-read: `MOD_SETTINGS.md`, `TRANSLATIONS.md`, `Rimworld-Release-Admin/docs/OPERATIONS.md`, `Rimworld-Ticket-Dispatcher/docs/WELCOME.md` and `SUBMIT.md` (hashes below are their current ones, not a reading). `Mark-ProtocolsRead.ps1` was not run, so `STATUS.md` has no `protocols_read_sha` yet: it must be run once the protocols that matter are read.
 
 | Document | SHA256 (12) | Lines | Read |
 |---|---|---|---|
 | `AGENTS.md` | 75c64b0f19cc | 53 | whole |
 | `AUDIT.md` | 621d50c614db | 212 | whole |
 | `PICKLE.md` | 4e30cb1ed24e | 113 | whole (new file: the run rules moved out of `AUDIT.md`) |
-| `PUBLISHING.md` | b8af9b7406b5 | 463 | no |
+| `PUBLISHING.md` | b8af9b7406b5 | 463 | whole, later the same day |
 | `MOD_SETTINGS.md` | 8a445d4bb7d3 | 109 | no |
 | `TRANSLATIONS.md` | db973554758b | 231 | no |
 | `Rimworld-Release-Admin/docs/OPERATIONS.md` | e51dfbe4ad1b | 130 | no |
@@ -145,3 +145,4 @@ What changed since 2026-10-08 and bites this repository:
 - **Passes**: at least two (without / with the optional mods), named with `-DepMap` (`-pickle-set-name` writes the set name into `summary.md`); one more per declared incompatibility, asserting the symptom, never an expected red; non-regression passes all at the end, on the final revision. A scenario that only repeats a unit test is deleted. "We do not test the game": load order the game computes, language switch, dependency warnings are not tested; the mod answers for what it declares.
 - **Run rules** (`PICKLE.md`): no session launches a game; a request is filed with `Submit-PickleRun.ps1` (a request carries no SHA: put it in `-Label`, keep the tree frozen until `RUN_DONE`); one pass = one request; first contact with TicketDispatcher is `REGISTER local_<id> <Mod>`; nobody creates a watcher, `Monitor` or cron for the queue; read `exitReason` before the figures; exit 7 = nothing played, 8 = Pickle's own code 2, 9 = infrastructure.
 - **Wrong in `Headless/README.md` still?** It was corrected on 2026-10-09 for `merge-reports.py` and the AUDIT reference only; the direct `Run-PickleWsl.ps1` examples were not re-checked against `PICKLE.md`.
+- **`PUBLISHING.md` (read later the same day)** now has annexes: `GALLERY.md`, `ANIMALS.md`, `PUBLISHING-CI.md`, `TOOLING-PITFALLS.md` (none read). Rules that bite us: description is written once as Markdown under `## Steam description` of `PUBLICATION.md` (ours is still BBCode, a known gap) and ends with `[Source code on GitHub](URL)`; description order IF I GO QUIET, AI-GENERATED, THANKS, ATTRIBUTION line, source link; gallery folder only numbered images `0-`.. with `0-` a byte copy of `Preview.png`, contiguous indexes; thanks must name Pickle and PickleTools where a pass stages them (PickleTools Workshop page is public per Steam, the protocol still says private); one Steam thanks comment per recipient page via `WORKSHOP_COMMENTS.md`; docs, commits and code comments in English; the three GitHub topics `rimworld`, `rimworld-mod`, `mod` and the social preview image for a public repository (checked for PickleTools: not done by me); release notes start with the version on line 1 (the CI refuses otherwise); `About/PublishedFileId.txt` committed at once.
