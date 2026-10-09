@@ -58,6 +58,31 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asserts the eye colour Nals Facial Animation draws for a colonist, read from the mod's own colour (<c>GetCurrentColor</c> of the eyeball
+        /// controller: what the Given step writes, and what a gene such as EyeGenes3's forces), each channel within 3 of 255. It reads the colour
+        /// the mod hands to the renderer, not the pixels of the capture. The failure prints the colour found.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="r">red, 0 to 255</param>
+        /// <param name="g">green, 0 to 255</param>
+        /// <param name="b">blue, 0 to 255</param>
+        [Then("Nelim's Pickle Tools: {string} eye colour reads rgb \\({int}, {int}, {int}\\)")]
+        public void EyeColourReads(PickleContext ctx, string nickname, int r, int g, int b)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255, "rgb values run from 0 to 255");
+            Type comp = FaType(ctx, "FacialAnimation.EyeballControllerComp");
+            ThingComp eyes = pawn.AllComps.FirstOrDefault(c => comp.IsInstanceOfType(c));
+            ctx.Require(eyes != null, nickname + " has no eyeball controller (a pawn without the facial animation head)");
+            MethodInfo getColor = comp.GetMethod("GetCurrentColor", Any);
+            ctx.Require(getColor != null, "the eyeball controller has no GetCurrentColor: Facial Animation changed, update this step");
+            Color read = (Color)getColor.Invoke(eyes, null);
+            int rr = Mathf.RoundToInt(read.r * 255f), rg = Mathf.RoundToInt(read.g * 255f), rb = Mathf.RoundToInt(read.b * 255f);
+            ctx.Assert(Math.Abs(rr - r) <= 3 && Math.Abs(rg - g) <= 3 && Math.Abs(rb - b) <= 3,
+                nickname + "'s eye colour should read rgb (" + r + ", " + g + ", " + b + ") within 3; the mod reports rgb (" + rr + ", " + rg + ", " + rb + ")");
+        }
+
+        /// <summary>
         /// Gives a colonist a mouth by <c>MouthTypeDef</c> name (Nals Facial Animation, and the types of the mods that add some: Vanilla
         /// Textures Expanded has MouthSmile, MouthLipsSmallSmile, MouthSad, MouthScowl...). This is the fixed shape of the face, not an
         /// animation: it does not depend on the job, the mood or the heat. Reads the part back; a name that does not exist fails with the list.
