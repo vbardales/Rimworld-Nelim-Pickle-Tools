@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using System.Reflection;
+using HarmonyLib;
 using RimWorks.Pickle;
 using UnityEngine;
 using Verse;
@@ -240,6 +241,69 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(play != null, "the controller has no PlayTemporaryAnimation: Facial Animation changed, update this step");
             object ok = play.Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, names });
             ctx.Assert(ok is bool b && b, "The mod refused to play \"" + animationName + "\" on " + nickname + " (not valid for this race or head?)");
+        }
+
+        private static Harmony neutralHarmony;
+        private static readonly System.Collections.Generic.HashSet<Pawn> heldNeutral = new System.Collections.Generic.HashSet<Pawn>();
+        private static FieldInfo compPawn, compJobList, compParam, paramNeedReset, paramNeedFilter;
+
+        /// <summary>
+        /// Keeps the face of a colonist free of the expression its job and state give it, until the scenario ends: Facial Animation picks the
+        /// animations of the pawn's job (a drafted pawn waiting in combat gets angry brows and dark red eyes), its mood and its pain again at every
+        /// update, so a face kit or a temporary animation does not last. The step makes the update of this pawn start from an empty list of job
+        /// animations, so no expression frame is accumulated and each part of the face takes its neutral shape. A temporary animation played
+        /// afterwards (the step <c>facial expression is</c>) and the fixed part types of a face kit still apply. Needs Harmony. NOT PLAYED when written
+        /// (2026-10-09, for SanctuaryBacklot, runs 1057 and ebd3, where a kit and a temporary animation did not remove the angry brows of a drafted pawn):
+        /// read the capture before relying on it.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        [Given("Nelim's Pickle Tools: {string} face is held neutral")]
+        public void HoldNeutral(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Type compType = FaType(ctx, "FacialAnimation.FacialAnimationControllerComp");
+            ThingComp face = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
+            ctx.Require(face != null, nickname + " has no facial animation controller");
+            compPawn = FieldUp(compType, "pawn");
+            compJobList = FieldUp(compType, "currentJobAnimationList");
+            compParam = FieldUp(compType, "animationParam");
+            ctx.Require(compPawn != null && compJobList != null && compParam != null, "the facial animation controller changed (pawn, currentJobAnimationList or animationParam is gone): update this step");
+            paramNeedReset = FieldUp(compParam.FieldType, "needUpdateJobWithReset");
+            paramNeedFilter = FieldUp(compParam.FieldType, "needUpdateFilterOnly");
+            ctx.Require(paramNeedReset != null && paramNeedFilter != null, "the facial animation parameters changed: update this step");
+            MethodInfo update = compType.GetMethod("UpdateAnimation", Any);
+            ctx.Require(update != null, "the controller has no UpdateAnimation: Facial Animation changed, update this step");
+            if (neutralHarmony == null)
+            {
+                Harmony h = new Harmony("nelim.pickletools.facenet");
+                h.Patch(update, prefix: new HarmonyMethod(typeof(FaceSteps), nameof(BeforeUpdateAnimation)));
+                neutralHarmony = h;
+            }
+            heldNeutral.Add(pawn);
+            BeforeUpdateAnimation(face);
+            update.Invoke(face, null);
+            compType.GetMethod("SetDirty", Any)?.Invoke(face, null);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            var list = compJobList.GetValue(face) as IEnumerable;
+            ctx.Assert(list != null && !list.Cast<object>().Any(), nickname + "'s job animation list should be empty; it still holds animations");
+        }
+
+        private static void BeforeUpdateAnimation(object __instance)
+        {
+            if (heldNeutral.Count == 0 || compPawn == null) return;
+            if (!(compPawn.GetValue(__instance) is Pawn pawn) || !heldNeutral.Contains(pawn)) return;
+            Type element = compJobList.FieldType.IsGenericType ? compJobList.FieldType.GetGenericArguments()[0] : typeof(object);
+            compJobList.SetValue(__instance, Array.CreateInstance(element, 0));
+            object param = compParam.GetValue(__instance);
+            if (param == null) return;
+            paramNeedReset.SetValue(param, false);
+            paramNeedFilter.SetValue(param, false);
+        }
+
+        [AfterScenario]
+        public void ReleaseNeutralFaces()
+        {
+            heldNeutral.Clear();
         }
     }
 }
