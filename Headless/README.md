@@ -24,7 +24,7 @@ powershell.exe -ExecutionPolicy Bypass -File scripts/Run-PickleWsl.ps1 -Mod Skil
 `Run-PickleWsl.ps1` is the only thing that starts the game. It takes the machine lock, archives the previous report, stages,
 launches under `xvfb-run`, and releases the lock in a `finally`.
 
-**Since 2026-09-24 a session does not call it: it files a request** (`AUDIT.md`, "Déposer un run au lieu de le lancer"):
+**Since 2026-09-24 a session does not call it: it files a request** (`PICKLE.md` of the protocols repository, "Déposer un run"):
 
 ```powershell
 powershell.exe -ExecutionPolicy Bypass -File Rimworld-Ticket-Dispatcher\scripts\Submit-PickleRun.ps1 -Mod <Mod> -Owner local_<session id> -Label '<what is tested>' [-Filter ...] [-Language ...] [-DepMap ...] [-Then ...] -EvidenceDir <folder relative to the root>
@@ -203,8 +203,8 @@ A mod is not validated by one run. The sets live in the mod's `Tests/Pickle/` as
 ... -File scripts/Run-PickleWsl.ps1 -Mod SkillIcons -DepMap wsl-deps.incompat-x.map
 ```
 
-The set name is engraved in the report by `-pickle-set-name`, so two passes can be compared with
-`merge-reports.py` instead of one replacing the meaning of the other. Without `-DepMap` the pass
+The set name is written into the report's `summary.md` by `-pickle-set-name`, so two passes are compared by their
+set name instead of one replacing the meaning of the other. Without `-DepMap` the pass
 is called `sans-facultatifs`.
 
 **A trap: the last line of a pass map needs its newline** (found by the Ebbbs Renew session on 2026-09-25, cause read in `scripts/stage-pickle-wsl.sh`). The staging reads the map
