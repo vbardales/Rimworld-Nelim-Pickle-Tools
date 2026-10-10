@@ -4,7 +4,7 @@ packageId: nelim.pickletools
 repo: rimworld-nelim-pickle-tools
 remote: https://github.com/vbardales/rimworld-nelim-pickle-tools.git
 visibility: public
-visibility_exception: "2026-09-21, owner decision in chat: public although the name is Nelim-prefixed, which defaults to private (user-stated convention). Same case as Nelim's Tech Level Fixes, where the user validated the same one-off exception on 2026-09-17. The decision is about visibility only: it does not create the repository, and pushing waits for the open points below."
+visibility_exception: "2026-09-21, owner decision in chat: public although the name is Nelim-prefixed, which defaults to private (user-stated convention). Same case as Nelim's Tech Level Fixes, where the user validated the same one-off exception on 2026-09-17. The decision is about visibility only: it does not create the repository, and pushing waits for the open points below. 2026-10-10, owner in chat: the display name Nelim's Pickle Tools is kept (audit 1.c, PUBLISHING.md Nommage); same exception, decided."
 visibility_verified_at: 2026-09-22
 visibility_evidence: "2026-09-22 audit: origin is https://github.com/vbardales/rimworld-nelim-pickle-tools.git; git ls-remote --heads origin main = a601aa92c2fca66b27c3df606e07a5459dcfb34d, equal to the audited local HEAD. The earlier f1dca8c value is historical."
 detached: yes, git repository of its own since 2026-09-21, pushed to GitHub the same day; still a folder of the monorepo checkout and excluded there locally
@@ -30,7 +30,6 @@ tested_on: "2026-09-21, in game, RimmsqolSteps only, pass avec-rimmsqol of Flavo
 updated: 2026-10-10
 remaining:
   - "unverified, 2026-10-10: upstream_mod_remotes lists Pickle only (Upstream/ patches against it); RIMMSQOL, Facial Animation, EyeGenes3 and VEF are read through their shipped assemblies or Workshop sources and no git repository of theirs was looked up"
-  - "defect, 2026-10-10 audit 1.c: display name `Nelim's Pickle Tools` while PUBLISHING.md Nommage gives an original creation a bare name; the item is published and public by exception: owner decision"
   - "defect, 2026-10-10 audit 2.e: Art/Preview-source.png mean value 0.280 (rule: 0.30 at least), one hue family; owner's source, not touched"
   - "unverified, 2026-10-10 audit 8: nothing since 2026-09-28 is played, no run on Pickle 5 or 6; offline against 6.6.3: 24 DLLs 0 missing members, 25 projects compile with Ref 6.6.3; code_review_sha stale"
   - "payload synced, 2026-10-09: Mod/Pickle/Assemblies holds the fixed DLLs of ClickDiagnostics, HoverSteps, ScreenshotMode, VefFactionSteps, FilmTicks (Pickle 5.0.0 ReleaseFrameBuffers fallback), SoundCapture and ColonistRace; Prepare-Release -Check passes, 14 DLLs identical; the Check-Steps of the touched tools pass; docs/steps.md regenerated. Compiled and checked offline only, none of it played; the next release has not been dry-run."
