@@ -117,6 +117,10 @@ foreach ($dir in $suiteDirs | Sort-Object -Unique) {
     $suites++
     foreach ($p in Read-Patterns $src ('suite:' + (Split-Path $dir -Leaf))) { $others += $p }
 }
+# SanctuaryBacklot (a sibling repository of the monorepo, not a tool folder of this one): its "Nelim's Sanctuary: ..." steps load with these
+# in the Sanctuary passes and share the namespace. Absent on a machine that does not have the repository: then there is nothing to compare.
+$sanctuarySrc = Join-Path (Split-Path (Split-Path $here -Parent) -Parent) 'SanctuaryBacklot\Source'
+if (Test-Path -LiteralPath $sanctuarySrc) { foreach ($p in Read-Patterns $sanctuarySrc 'tool:SanctuaryBacklot') { $others += $p } }
 $otherExprs = @()
 foreach ($o in $others) {
     try { $otherExprs += [pscustomobject]@{ Source = $o.Source; Pattern = $o.Pattern; Regex = (New-Expr $o.Pattern).Regex } } catch { }   # their own check reports those
