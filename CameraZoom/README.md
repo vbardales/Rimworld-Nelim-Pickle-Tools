@@ -11,9 +11,8 @@ Two steps for a capture that needs the camera closer than Pickle's own zoom step
 
 Pickle's `I zoom all the way in` is clamped to a root size of 12 (`CloseSize` in `CameraSteps.cs`, read from its source on
 2026-10-02), and `SetRootSize` called directly is not. AncientBuildingsRenew measured about 45 px per cell at 12 on a
-1080-pixel-high screen and wants about 6 (about 90 px). Whether the game itself bounds the size below 12 is **not
-established**: AnimalApparelCollarsAndKitRenew suspects a bound near 11 and will report what it reads. The read-back step is how
-a suite finds out.
+1080-pixel-high screen and wants about 6 (about 90 px). **The game itself bounds the size at 11** (measured 2026-10-10, ticket 9e60, Pickle 6.6.3: asked for 6, the camera read 11): no suite gets closer than 11, whatever the step asks.
+The read-back step is how a suite finds out.
 
 Ported on 2026-10-02 from AncientBuildingsRenew's provisional steps (`Tests/Pickle/Source/BuildingSteps.cs`), at Virginie's
 request, so the gallery suites share one copy. The consumer removes its local copy once these pass.
@@ -27,7 +26,7 @@ nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
 in a pass map of `Tests/Pickle/`. Not in the Workshop bundle: a companion staged by a pass map. Check the patterns with
 `powershell.exe -ExecutionPolicy Bypass -File PickleTools/CameraZoom/Check-Steps.ps1`. The probe scenario is
 `Tests/Pickle/Mod/Pickle/Features/pickletools-camerazoom.feature`, staged with `Tests/Pickle/wsl-deps.camerazoom.map`; it asks for
-root size 6 and fails saying what the camera read if the game stops it short, which is the answer, not a defect.
+root size 6 and asserts the game's own closest size, 11 (the answer the probe found on 2026-10-10).
 
 What a camera step does not do: frame a named pawn. `CoatSteps` frames `coat-N` animals only; a by-name step is wanted
 (see `Elsewhere/README.md`, the camera framing row).
