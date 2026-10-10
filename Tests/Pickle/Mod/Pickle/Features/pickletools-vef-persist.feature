@@ -12,6 +12,6 @@ Feature: VEF window: the ignore answer is written into the save
 
 
   Scenario: vef-persist: reopen the saved file
+    # 2026-10-10 (ticket 338e): the wait timed out after 5 s (a reloaded save does not tick); the state is read as loaded, no ticks needed.
     Given the save file "vef-persist-after" is loaded
-    When I wait 300 ticks
     Then Nelim's Pickle Tools: the world component "VEF.Factions.NewFactionSpawningState" holds at least 1 entries in its field "ignoredFactions"
