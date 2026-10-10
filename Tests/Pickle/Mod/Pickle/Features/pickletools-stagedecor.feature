@@ -3,22 +3,23 @@
 #
 #   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.stagedecor.map -Filter pickletools-stagedecor
 @requires:nelim.pickletools.stagedecor
+# 2026-10-10 (ticket 6bd5): the spots near (30, 30) hold natural rock (Slate) the save does not list; every coordinate moved by (+81, +158), around (113, 190), beside the colonists.
 Feature: PickleTools stage decor
 
   Background:
     Given the save "test-colony" is loaded
 
   Scenario: a thing and a floor are placed, then removed in one step
-    Given Nelim's Pickle Tools: I place the decor "Campfire" at (32, 32)
-    And Nelim's Pickle Tools: I lay the floor "WoodPlankFloor" from (34, 32) to (36, 34)
-    Then a "Campfire" is at (32, 32)
+    Given Nelim's Pickle Tools: I place the decor "Campfire" at (113, 190)
+    And Nelim's Pickle Tools: I lay the floor "WoodPlankFloor" from (115, 190) to (117, 192)
+    Then a "Campfire" is at (113, 190)
     When Nelim's Pickle Tools: the decor is removed
-    Then no "Campfire" is at (32, 32)
+    Then no "Campfire" is at (113, 190)
 
   Scenario: an area is cleared, then its things come back
-    Given I spawn a "Steel" at (31, 31)
-    When Nelim's Pickle Tools: the area from (30, 30) to (33, 33) is cleared
-    Then no "Steel" is at (31, 31)
+    Given I spawn a "Steel" at (112, 189)
+    When Nelim's Pickle Tools: the area from (111, 188) to (114, 191) is cleared
+    Then no "Steel" is at (112, 189)
     When Nelim's Pickle Tools: the decor is removed
-    Then a "Steel" is at (31, 31)
-    When I destroy the "Steel" at (31, 31)
+    Then a "Steel" is at (112, 189)
+    When I destroy the "Steel" at (112, 189)
