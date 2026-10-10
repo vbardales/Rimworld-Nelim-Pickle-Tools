@@ -7,6 +7,16 @@ Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1
 
 - ClickDiagnostics: a failed click also prints what Pickle's tag store held after the hover and before the click (commit `8f03eed`, made by another session). The payload DLL follows it. **Not played in game** at the time of this note.
 
+- 2026-10-09 and 2026-10-10, compiled and run offline, **not all played in game** (what ran is in `docs/runs/aggregate.md`):
+  - ColonistRace: `{string} face is held neutral` (empties Facial Animation's job animation list and clears its update flags) and `{string} face state is logged` (`[face-state]` lines).
+  - ScreenshotStudio: `the artificial buildings within {int} cells of (x, z) are hidden` (logs what it removes) and `the meditation focus of the thing at (x, z) is logged` (`[focus]` lines).
+  - ScreenshotMode: `the messages are cleared from the screen`.
+  - TradeSteps: `the trader offers {string}` (no stock fails with the prefix `[no-stock] `: Pickle 6.6.3 has no runtime skip), `the trader would buy {string}`, and orbital trader kinds (a trade ship instead of a caravan pawn).
+  - DefFieldSteps: a list or array field reads as its items joined by `, `; new steps `the biome {string} lists the wild animal {string}`, `the recipe {string} is offered for the race {string}`, `the surgery recipes of the race {string} match those of the race {string}`.
+  - `brrainz.harmony` is now declared (`modDependencies` and `loadAfter`) in the bundle and in the seven tools that use HarmonyLib.
+  - CameraZoom: the probe now asserts what it measured on Pickle 6.6.3, the game stops the zoom at root size 11.
+  - Test fixes, no payload change: the aggregate pass maps no longer overlay a retired `.build/aggregate-current`; features that used `Apparel_ShirtButton` (it is `Apparel_BasicShirt` in 1.6) and spots of `test-colony` that hold natural rock were corrected.
+
 ## [1.1.0] - 2026-09-25
 
 Changes since 1.0.0 (commit `2dc9845`). The payload DLLs that changed are ClickDiagnostics, ColonistRace, ScreenshotMode, VefFactions and Rimmsqol, and HoverSteps is added. The version number is proposed and awaits the owner's confirmation.

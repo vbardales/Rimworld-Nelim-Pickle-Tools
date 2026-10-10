@@ -8,6 +8,7 @@
 
 # Build intermediates and products, never distributed: every tool keeps them under its own .build/.
 .build/
+build/
 obj/
 bin/
 Source/obj/
