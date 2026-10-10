@@ -3,8 +3,7 @@
 This companion owns the runtime probes for the aggregate bundle and the individual utilities.
 Run it with `scripts/Run-PickleWsl.ps1 -Mod PickleTools` and select a `wsl-deps.*.map` file.
 
-The aggregate minimal probe overlays `PickleTools/.build/aggregate-current/Mod`; generate that payload with
-`Release/Prepare-Release.ps1` before running it. The other maps stage the named development companion.
+The aggregate minimal probe plays the bundle committed under `PickleTools/Mod` (the mod under test; keep it in step with `Release/Prepare-Release.ps1 -SyncMod`). The maps no longer overlay a generated payload (`.build/aggregate-current`, retired 2026-09-25). The other maps stage the named development companion.
 `wsl-deps.aggregate-no-biotech.map` stages the same payload with Biotech inactive; run
 `aggregate-no-biotech.feature` against it to check startup and step discovery without that DLC.
 `wsl-deps.aggregate-rimmsqol.map` adds optional RIMMSQOL to the aggregate payload; run

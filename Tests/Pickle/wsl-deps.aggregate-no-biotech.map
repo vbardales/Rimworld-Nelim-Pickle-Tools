@@ -1,3 +1,2 @@
 # Run the same generated aggregate without Biotech to check startup and step discovery.
 !ludeon.rimworld.biotech
-nelim.pickletools path:PickleTools/.build/aggregate-current/Mod
