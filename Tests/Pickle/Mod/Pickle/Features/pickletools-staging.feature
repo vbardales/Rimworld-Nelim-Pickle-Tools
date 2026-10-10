@@ -16,8 +16,8 @@ Feature: PickleTools staged capture
     Given a colonist "Mara" exists
     And "Mara" is 30 years old
     And Nelim's Pickle Tools: "Mara" stands at (32, 32) facing East
-    And Nelim's Pickle Tools: "Mara" wears "Apparel_ShirtButton" dyed rgb (30, 90, 160)
-    Then "Mara" is wearing "Apparel_ShirtButton"
+    And Nelim's Pickle Tools: "Mara" wears "Apparel_BasicShirt" dyed rgb (30, 90, 160)
+    Then "Mara" is wearing "Apparel_BasicShirt"
     When Nelim's Pickle Tools: "Mara" gets back the clothes it had
 
   Scenario: a rectangle is framed and the decor is removed

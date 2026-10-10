@@ -22,6 +22,6 @@ Feature: PickleTools hairstyle in its own colours
     And Nelim's Pickle Tools: "Ivy" hairstyle is "Shaved"
     And Nelim's Pickle Tools: "Ivy" hair colour is rgb (200, 40, 40)
     And Nelim's Pickle Tools: "Ivy" face tattoo is "none"
-    And I dress "Ivy" in "Apparel_ShirtButton"
-    When Nelim's Pickle Tools: the "Apparel_ShirtButton" worn by "Ivy" is dyed rgb (30, 90, 160)
-    Then "Ivy" is wearing "Apparel_ShirtButton"
+    And I dress "Ivy" in "Apparel_BasicShirt"
+    When Nelim's Pickle Tools: the "Apparel_BasicShirt" worn by "Ivy" is dyed rgb (30, 90, 160)
+    Then "Ivy" is wearing "Apparel_BasicShirt"
