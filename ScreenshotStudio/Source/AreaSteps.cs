@@ -188,6 +188,20 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return found.Count;
         }
 
+        /// <summary>
+        /// Despawns every artificial building (<c>ThingDef.IsBuildingArtificial</c>: not natural rock) within <paramref name="radius"/> cells (square) of the cell, for this run
+        /// only. What lowers the meditation focus of an anima tree or any focus object (the red lines drawn when it is selected) is the set of artificial buildings and some named
+        /// things within its radius. Does not fail when none is there. Returns how many were hidden.
+        /// </summary>
+        public static int HideArtificialBuildings(PickleContext ctx, int x, int z, int radius)
+        {
+            Map map = RequireMap(ctx);
+            var found = map.listerThings.AllThings.Where(t => t.Spawned && t.def.IsBuildingArtificial
+                && Math.Abs(t.Position.x - x) <= radius && Math.Abs(t.Position.z - z) <= radius).ToList();
+            foreach (var t in found) t.DeSpawn();
+            return found.Count;
+        }
+
         internal static void StopKeepingAnimalsOut()
         {
             foreach (var hook in KeepOutHooks) PickleDriver.Instance?.RemoveFrameHook(hook);
@@ -232,6 +246,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there.</summary>
         [Given(Prefix + "the things {string} within {int} cells of \\({int}, {int}\\) are hidden")]
         public void HideThings(PickleContext ctx, string defName, int radius, int x, int z) => AreaOps.HideThings(ctx, defName, x, z, radius);
+
+        /// <summary>Despawns every artificial building within N cells of a cell, for this run only (what draws red focus lines on a selected anima tree). Does not fail when none is there.</summary>
+        [Given(Prefix + "the artificial buildings within {int} cells of \\({int}, {int}\\) are hidden")]
+        public void HideArtificialBuildings(PickleContext ctx, int radius, int x, int z) => AreaOps.HideArtificialBuildings(ctx, x, z, radius);
 
         // The same operations on what the camera shows now: frame first, then clean the frame. No coordinate, no place name.
         // The view is read when the step runs; the zoom must have settled (the frame steps wait for it).

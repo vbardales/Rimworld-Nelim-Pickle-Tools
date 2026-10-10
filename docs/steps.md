@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-247 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+249 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -290,6 +290,7 @@ Package `nelim.pickletools.screenshotmode`. In the bundle (`Mod/Pickle/Assemblie
 | `Nelim's Pickle Tools: developer mode is turned off for the capture` (When) | Sets `Prefs.DevMode` to false and waits three frames. For a capture that must keep the full interface (a main tab and its tab bar), which screenshot mode would hide: the runner starts the game with developer mode on, and its toolbar would show. |
 | `Nelim's Pickle Tools: developer mode is restored` (When) | Puts developer mode back. Optional: the `AfterScenario` hook does it. |
 | `Nelim's Pickle Tools: the letters and the alerts are cleared from the screen` (When) | Clears the letter stack (public API: `LetterStack.RemoveLetter`) and the alerts readout's currently drawn list (private field, cleared by reflection: `AlertsReadout` has no public way to do this). |
+| `Nelim's Pickle Tools: the messages are cleared from the screen` (When) | Clears the messages drawn at the top left of the screen (`Messages.Clear()`: "The psychic soothe is ending."...). A message the game posts later still appears: play it right before the capture. Written 2026-10-10 for Anima Song. Not played when written. |
 
 ## ScreenshotStudio
 
@@ -309,6 +310,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the animals are kept out of the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Despawns the animals of the rectangle now and on every frame until the scenario ends. May be written for several rectangles. **Parameters:** `x0` (int): first corner, x; `z0` (int): first corner, z; `x1` (int): second corner, x; `z1` (int): second corner, z. |
 | `Nelim's Pickle Tools: the roof is removed from the area from \({int}, {int}\) to \({int}, {int}\)` (Given) | Removes the roofs of the rectangle (thick roofs stay) so the sun lights it. **Parameters:** `x0` (int): first corner, x; `z0` (int): first corner, z; `x1` (int): second corner, x; `z1` (int): second corner, z. |
 | `Nelim's Pickle Tools: the things {string} within {int} cells of \({int}, {int}\) are hidden` (Given) | Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there. **Parameters:** `defName` (string): a def name of the loaded game (any case); `radius` (int): a distance in cells, a whole number; `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
+| `Nelim's Pickle Tools: the artificial buildings within {int} cells of \({int}, {int}\) are hidden` (Given) | Despawns every artificial building within N cells of a cell, for this run only (what draws red focus lines on a selected anima tree). Does not fail when none is there. **Parameters:** `radius` (int): a distance in cells, a whole number; `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: the frame is emptied` (Given) | Destroys the furniture, items, plants, filth and corpses of every cell the camera shows now. Pawns, walls, doors and natural rock stay. |
 | `Nelim's Pickle Tools: the floor of the frame is bared` (Given) | Bares the floor of every cell the camera shows now, with the terrain of the cell 3 cells west of the view at mid height. One sample: not for an enclosure. |
 | `Nelim's Pickle Tools: the animals are removed from the frame` (Given) | Despawns the animals standing in the frame now, once. |

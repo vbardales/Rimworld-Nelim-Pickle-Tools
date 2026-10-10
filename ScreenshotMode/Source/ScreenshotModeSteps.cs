@@ -102,6 +102,16 @@ namespace Nelim.PickleTools.ScreenshotMode
             ((IList)ActiveAlertsField.GetValue(uiRoot.alerts)).Clear();
         }
 
+        /// <summary>
+        /// Clears the messages drawn at the top left of the screen (<c>Messages.Clear()</c>: "The psychic soothe is ending."...). A message the game posts later still appears: play it
+        /// right before the capture. Written 2026-10-10 for Anima Song. Not played when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the messages are cleared from the screen")]
+        public void ClearMessages(PickleContext ctx)
+        {
+            Messages.Clear();
+        }
+
         [AfterScenario]
         public void RestoreAfterScenario(PickleContext ctx)
         {
