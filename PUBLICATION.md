@@ -62,8 +62,11 @@ The gallery today is `Art/Gallery/0-preview.png` alone. Any further image goes i
 
 ## Dependencies and DLC
 
-- **One required Workshop item:** [Pickle](https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678),
-  packageId `rimworks.pickle`.
+- **Required Workshop items:** [Pickle](https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678),
+  packageId `rimworks.pickle`, and [Harmony](https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077),
+  packageId `brrainz.harmony`, declared since 2026-10-10 in the bundle and in the seven tools that call HarmonyLib
+  (ClickDiagnostics, ColonistRace, HoverSteps, IdeologySteps, ResearchSteps, ScreenshotStudio, VefFactionSteps; ClearScreen,
+  InterfaceScale and QuietNewFactions already did). Pickle itself needs Harmony or Concord.
 - RIMMSQOL and Vanilla Expanded Framework are optional integrations. Do not add them to Steam's required-items
   list. Scenarios that need them declare their own `@requires` tag.
 - No RimWorld DLC is a global requirement. Scenario-specific DLC requirements remain optional.

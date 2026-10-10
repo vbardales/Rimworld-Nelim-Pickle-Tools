@@ -17,12 +17,19 @@ MIT, Copyright (c) 2026 Nelim. See the included ATTRIBUTION.md for credits and p
 [url=https://github.com/vbardales/rimworld-nelim-pickle-tools]Source code on GitHub[/url]</description>
   <modDependencies>
     <li>
+      <packageId>brrainz.harmony</packageId>
+      <displayName>Harmony</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/2009463077</steamWorkshopUrl>
+      <downloadUrl>https://github.com/pardeike/HarmonyRimWorld/releases/latest</downloadUrl>
+    </li>
+    <li>
       <packageId>rimworks.pickle</packageId>
       <displayName>Pickle</displayName>
       <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
     </li>
   </modDependencies>
   <loadAfter>
+    <li>brrainz.harmony</li>
     <li>rimworks.pickle</li>
   </loadAfter>
   <url>https://github.com/vbardales/rimworld-nelim-pickle-tools</url>
