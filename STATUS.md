@@ -32,7 +32,6 @@ remaining:
   - "defect, 2026-10-10 audit 1.i: main is 9 commits ahead of origin/main, to push"
   - "defect, 2026-10-10 audit 2.e: Art/Preview-source.png mean value 0.280 (rule: 0.30 at least), one hue family; owner's source, not touched"
   - "unverified, 2026-10-10 audit 2.c: legibility of the ModIcon at 32 px not re-recorded"
-  - "defect, 2026-10-10 audit 7.a: functional scenarios are in TESTING.md, the protocol names TEST_SCENARIOS.md"
   - "unverified, 2026-10-10 audit 8: nothing since 2026-09-28 is played, no run on Pickle 5 or 6; offline against 6.6.3: 24 DLLs 0 missing members, 25 projects compile with Ref 6.6.3; code_review_sha stale"
   - "defect, 2026-10-10 em dash rule (AGENTS): README.md 1, PUBLICATION.md 2, STATUS.md 3, Headless/README.md 7"
   - "payload synced, 2026-10-09: Mod/Pickle/Assemblies holds the fixed DLLs of ClickDiagnostics, HoverSteps, ScreenshotMode, VefFactionSteps, FilmTicks (Pickle 5.0.0 ReleaseFrameBuffers fallback), SoundCapture and ColonistRace; Prepare-Release -Check passes, 14 DLLs identical; the Check-Steps of the touched tools pass; docs/steps.md regenerated. Compiled and checked offline only, none of it played; the next release has not been dry-run."
