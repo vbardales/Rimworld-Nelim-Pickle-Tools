@@ -198,6 +198,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Map map = RequireMap(ctx);
             var found = map.listerThings.AllThings.Where(t => t.Spawned && t.def.IsBuildingArtificial
                 && Math.Abs(t.Position.x - x) <= radius && Math.Abs(t.Position.z - z) <= radius).ToList();
+            Log.Message("[hide-buildings] " + found.Count + " artificial building(s) within " + radius + " cells of (" + x + ", " + z + "): " + string.Join(", ", found.Select(t => t.def.defName + "@" + t.Position.x + "," + t.Position.z + " (" + t.GetType().Name + ")")));
             foreach (var t in found) t.DeSpawn();
             return found.Count;
         }

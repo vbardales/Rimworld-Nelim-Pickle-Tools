@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-249 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+250 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -320,6 +320,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) **Parameters:** `minimum` (float): the smallest value accepted. |
+| `Nelim's Pickle Tools: the meditation focus of the thing at \({int}, {int}\) is logged` (Given) | Logs (lines starting `[focus]`) how the thing at the cell gets its meditation focus: each offset of its focus component with its type, radius and the buildings the game counts for it (read from the same proximity lister the red lines and the inspector use), with each building's def, cell and whether it is spawned. **Parameters:** `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: I frame the studio {string}` (When) | REMOVED on 2026-10-08 (owner: the flower meadow / zen studio is deleted; galleries are shot at the Sanctuary). The step stays only to fail with where to go: `Nelim's Sanctuary: I am at the sanctuary "<place>"` with the save "Nelims-tribe" (SanctuaryBacklot). **Parameters:** `shot` (string): the name of a studio shot (the studios are gone; the step fails and says where to go). |
 | `Nelim's Pickle Tools: I let {int} ticks pass` (When) | (no description yet) |
 | `Nelim's Pickle Tools: I frame the rectangle from \({int}, {int}\) to \({int}, {int}\)` (When) | (no description yet) |

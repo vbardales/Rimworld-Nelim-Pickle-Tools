@@ -28,3 +28,6 @@ Art/.render/
 # The sources (ModIcon-source.png, Preview-source.png, Preview.config.json) and Mod/About/{ModIcon,Preview}.png stay tracked.
 Art/ModIcon-badge.png
 Art/Preview.png
+
+# Showcase prompt, deleted once the illustration exists (STYLE_RIMWORLD.md)
+PROMPT_*.md
