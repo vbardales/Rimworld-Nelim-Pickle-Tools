@@ -1,4 +1,4 @@
-# ScreenshotStudio status — 2026-09-22
+# ScreenshotStudio status: 2026-09-22
 
 Scope: optional screenshot scenery companion in PickleTools. Release packaging supports an explicit
 `-IncludeScreenshotStudio` switch and separate archive; the Workshop aggregate remains unchanged.

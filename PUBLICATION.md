@@ -88,7 +88,7 @@ The global `WORKSHOP_COMMENTS.md` register controls duplicates.
 
 Sarg Bjornson replied on the VEF Workshop page on 2026-09-22: “Not much of an enthusiast of anything touched by the vile offspring, sorry”. The target of “the vile offspring” is unclear from this exchange. Do not infer a specific accusation or endorsement, and do not post a follow-up without a clear reason. The optional VEF integration and its attribution remain factual.
 
-### Vanilla Expanded Framework — posted
+### Vanilla Expanded Framework: posted
 
 ```text
 [b]Thank you, Vanilla Expanded Framework![/b] 🥒✨
@@ -126,7 +126,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. T
 ### 1.0.0
 
 ```text
-[h3]1.0.0 — first release[/h3]
+[h3]1.0.0: first release[/h3]
 
 [b]Added[/b]
 [list]

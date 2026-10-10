@@ -90,15 +90,15 @@ searched for a screenshot of the whole studio to check against and found none)**
 centre `(125, 125)`:
 
 - **Indoor (the four pavilions, cutaway roofs, no roof over any of them):** workshop around **(96, 125)**
-  (`I frame the studio "workshop"`, zoom 12) — tailoring bench, stonecutter, sculpting table, two stools, a
-  shelf; kitchen around **(154, 125)** — stove, butcher table, a 2x2 table, two dining chairs, a shelf; home
-  around **(125, 154)** — three beds, three end tables, a 2x2 table, two dining chairs; **display** around
-  **(125, 96)** — furniture on the edges only, its own centre cell **(125, 96)** kept clear on purpose ("a large
+  (`I frame the studio "workshop"`, zoom 12): tailoring bench, stonecutter, sculpting table, two stools, a
+  shelf; kitchen around **(154, 125)**: stove, butcher table, a 2x2 table, two dining chairs, a shelf; home
+  around **(125, 154)**: three beds, three end tables, a 2x2 table, two dining chairs; **display** around
+  **(125, 96)**: furniture on the edges only, its own centre cell **(125, 96)** kept clear on purpose ("a large
   empty centre for mod demonstrations", the source's own words) and asserted standable by `the flower meadow
   studio is intact`.
 - **The central mosaic ("the smiley"):** a **33 x 33** tile block, roughly **x 109-141, z 109-141**, painted
   cell by cell from `IconMosaic.Rows` (an ASCII bitmap in source): a black (`K`) outline, one yellow (`Y`) patch
-  near the top, one single white (`W`) pixel, the rest orange (`O`) — over 300 painted tiles, **most of them
+  near the top, one single white (`W`) pixel, the rest orange (`O`): over 300 painted tiles, **most of them
   orange**, with **solid orange blocks several cells wide and tall inside the shape** (not one single named
   3x3 zone, several). Framed by `I frame the studio "emblem"` (zoom 20) or `"overview"` (zoom 45, the whole
   studio). Checked cell by cell by `the flower meadow studio is intact`, so this shape is asserted on every

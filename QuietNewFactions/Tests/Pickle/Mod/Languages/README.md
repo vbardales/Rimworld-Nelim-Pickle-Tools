@@ -10,7 +10,7 @@ at every start.
 `LoadedModManager.LoadModContent` (1.6) logs that error for any active mod whose
 `ModContentPack.AnyContentLoaded()` returns false. That method is satisfied by exactly one of:
 a loaded texture, audio clip, `Strings/` entry, assembly, asset bundle, a `Patches/` operation,
-a Def — or, through `AnyTranslationsLoaded()`, *any file at all* under a `Languages/` folder:
+a Def: or, through `AnyTranslationsLoaded()`, *any file at all* under a `Languages/` folder:
 
 ```csharp
 public bool AnyTranslationsLoaded()
@@ -26,7 +26,7 @@ public bool AnyTranslationsLoaded()
 ```
 
 This companion mod ships only `About/`, feature files and a steps assembly under `Pickle/`.
-RimWorld loads none of those itself — Pickle does — so none of them count, hence the error.
+RimWorld loads none of those itself (Pickle does) so none of them count, hence the error.
 
 Every other way to satisfy the check puts something into a running game: a Def, a patch
 operation, a texture, an assembly loaded a second time by vanilla on top of the one Pickle

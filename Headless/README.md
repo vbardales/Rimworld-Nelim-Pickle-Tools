@@ -6,8 +6,8 @@
 > monorepo's `scripts/`. Every `scripts/...` path below is relative to the monorepo root, `Documents\rimworld`.
 
 A second RimWorld lives in WSL2, at `~/rimworld`: the Linux depot, downloaded with steamcmd, with
-Core and the five DLC. A suite runs there under Xvfb — real rendering, real clicks, real
-screenshots — while she keeps using the machine. The Windows install is hers and no session ever
+Core and the five DLC. A suite runs there under Xvfb (real rendering, real clicks, real
+screenshots) while she keeps using the machine. The Windows install is hers and no session ever
 launches it, `Tests/Pickle/Run-Pickle.ps1 -Launch` included, which refuses.
 
 ## Running one
@@ -39,7 +39,7 @@ owner at `START`, `END` and `RUN_DONE`; a session arms no watcher of its own.
 |---|---|
 | `-Mod` | The mod whose `Tests/Pickle/` suite runs. `--list` on the staging script names them |
 | `-Filter` | A Pickle filter. Default: the companion mod's display name, read from its About.xml |
-| `-Language` | A prefix — `English`, `French`, `German`. Resolved against the install, see below |
+| `-Language` | A prefix: `English`, `French`, `German`. Resolved against the install, see below |
 | `-DepMap` | A pass map such as `wsl-deps.avec-oracle.map`; omitted means no optional map, including no automatic `wsl-deps.map` |
 | `-Then` | More filters, played after `-Filter`: one game launch each, under one hold of the lock. A restart test is `-Filter write.feature -Then read.feature` |
 | `-ThenWithout` | packageIds taken out of the mod list before every launch after the first of a `-Then` sequence: a launch that loads a saved game without the mod that saved it. See below |
@@ -449,8 +449,8 @@ not copied: a suite must not depend on them, and their absence is what makes a s
 One process runs one mod set, so staging is destructive by design, and the lock covers it as much
 as the launch: it refuses without `--lock-held` when the lock is taken.
 
-A suite that needs to assert against mods the mod does not depend on — a mod whose whole job is
-patching others declares no dependency on its targets — names them in
+A suite that needs to assert against mods the mod does not depend on (a mod whose whole job is
+patching others declares no dependency on its targets) names them in
 `<Mod>/Tests/Pickle/wsl-deps.<name>.map`, one `packageId workshopId` per line, and selects it with
 `-DepMap wsl-deps.<name>.map`. Those mods are staged and activated. Without `-DepMap`, the launcher
 sets `PICKLE_DEPMAP=none`, so even an existing `wsl-deps.map` is ignored. The staging script's legacy
@@ -467,8 +467,8 @@ ahead of Harmony; this does not authorize staging Prepatcher, which AUDIT.md exc
 - **A language must never degrade in silence.** `French (Français)` crossing PowerShell, WSLENV
   and bash arrived mangled, RimWorld fell back to English without a word, and a run reported a
   green French pass whose screenshots were English. Name a language by its ASCII prefix; the
-  staging resolves the real folder, tarballs included — the game reads a `.tar` without extracting
-  it — and stops if it cannot.
+  staging resolves the real folder, tarballs included (the game reads a `.tar` without extracting
+  it) and stops if it cannot.
 - **Never switch language inside a scenario.** `LanguageDatabase.SelectLanguage` does not finish
   inside the call, and every frame until it does has no active language at all. Run twice with
   `-Language` instead.

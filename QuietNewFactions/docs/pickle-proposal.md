@@ -9,7 +9,7 @@ The run behind its results is in [../Tests/RESULTS.md](../Tests/RESULTS.md).
 
 ---
 
-**Title:** VEF's "new faction" window comes back on every fixture load — suppression drops it, but never answers it
+**Title:** VEF's "new faction" window comes back on every fixture load: suppression drops it, but never answers it
 
 ---
 
@@ -39,7 +39,7 @@ Two gaps remain for this particular window:
 2. **It is bounded to autorun loading a fixture** (`IsAutorunning && SuppressingFixtureLoad`).
    A run driven from a live game gets the window on the stack. VEF also opens it from a
    `LongEventHandler.ExecuteWhenFinished` callback queued after the load, so I am not sure it is
-   still inside that window even under autorun — you would know better than I do.
+   still inside that window even under autorun: you would know better than I do.
 
 Separately, #21 suppresses foreign windows for the length of a scenario, rather than only while
 autorun loads a fixture. It has the same blind spot: it keeps the screen clear without ever
@@ -65,7 +65,7 @@ One log line per ignored faction makes a run report explain itself.
 I wrote this as a standalone mod before realising it belongs on this side of the line:
 [Rimworld-Nelim-Quiet-New-Factions](https://github.com/vbardales/Rimworld-Nelim-Quiet-New-Factions)
 (`nelim.quietnewfactions`, 1.6). One Harmony patch on the VEF check, plus the required-faction
-exception above. Take the code, the approach, or neither — I'm happy to open a PR putting it
+exception above. Take the code, the approach, or neither: I'm happy to open a PR putting it
 behind the run state, in whatever shape suits you.
 
 It carries five Pickle scenarios of its own (`Tests/Pickle/` in that repo), including
@@ -76,5 +76,5 @@ All five pass on 1.6 against VEF, run headless with Pickle on a minimal mod list
 (Harmony, RimLogging, Pickle, VEF, the mod and its test companion): no failures, no skips.
 The log shows the factions actually ignored, one line each.
 
-If you'd rather Pickle stayed out of other mods' decisions, that's fair — in that case a line in
+If you'd rather Pickle stayed out of other mods' decisions, that's fair: in that case a line in
 the docs for people running suites with VEF would still save them the hunt.

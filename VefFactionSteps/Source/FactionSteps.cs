@@ -12,7 +12,7 @@ namespace Nelim.PickleTools.VefFactions
     /// <summary>
     /// Steps around Vanilla Expanded Framework's new faction window. The scenarios do not rely on a
     /// fixture that happens to lack a faction: they pick one the loaded world lacks, take it off
-    /// VEF's ignored list, and run VEF's own load check again — the method its
+    /// VEF's ignored list, and run VEF's own load check again: the method its
     /// GameComponentUtility.LoadedGame postfix queues after every load.
     /// </summary>
     [PickleSteps]

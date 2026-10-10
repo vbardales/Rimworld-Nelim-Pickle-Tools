@@ -26,7 +26,7 @@ public sealed class QuietNewFactionsMod : Mod
 // shows the next one: prefixing it walks the whole list, one faction per call.
 // A faction the mod that defines it marks as required
 // (forcePlayerToAddFactionIfMissing) is left to the real dialog, which refuses
-// both skip and ignore for it — ignoring it here would break that mod's intent.
+// both skip and ignore for it: ignoring it here would break that mod's intent.
 [HarmonyPatch(typeof(Dialog_NewFactionSpawning), nameof(Dialog_NewFactionSpawning.OpenDialog))]
 public static class Dialog_NewFactionSpawning_OpenDialog
 {

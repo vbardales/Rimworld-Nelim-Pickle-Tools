@@ -27,7 +27,7 @@ remaining:
 updated:      2026-09-22, PickleTools absorption replay
 ---
 
-# Nelim's Quiet New Factions — status
+# Nelim's Quiet New Factions: status
 
 Kept beside PickleTools' aggregate `Mod/`, never inside it. The migrated companion and the shared
 `VefFactionSteps` replacement were replayed in the WSL copy of the game on 2026-09-22: five scenarios

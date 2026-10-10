@@ -8,8 +8,8 @@ faction the save lacks; "skip" records nothing, only "ignore" is remembered. Thi
 
 One Harmony prefix on `VEF.Factions.Dialog_NewFactionSpawning.OpenDialog`. VEF calls it for the
 first faction after a load, and the dialog's `PostClose` calls it again for each next one. The
-prefix records the faction in `NewFactionSpawningState` — VEF's own world component, saved with
-the game — and moves to the next, so no window opens. A faction whose
+prefix records the faction in `NewFactionSpawningState` (VEF's own world component, saved with
+the game) and moves to the next, so no window opens. A faction whose
 `FactionDefExtension.forcedFactionData.forcePlayerToAddFactionIfMissing` is set goes through to
 the real dialog.
 

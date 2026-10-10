@@ -33,7 +33,6 @@ remaining:
   - "defect, 2026-10-10 audit 2.e: Art/Preview-source.png mean value 0.280 (rule: 0.30 at least), one hue family; owner's source, not touched"
   - "unverified, 2026-10-10 audit 2.c: legibility of the ModIcon at 32 px not re-recorded"
   - "unverified, 2026-10-10 audit 8: nothing since 2026-09-28 is played, no run on Pickle 5 or 6; offline against 6.6.3: 24 DLLs 0 missing members, 25 projects compile with Ref 6.6.3; code_review_sha stale"
-  - "defect, 2026-10-10 em dash rule (AGENTS): README.md 1, PUBLICATION.md 2, STATUS.md 3, Headless/README.md 7"
   - "payload synced, 2026-10-09: Mod/Pickle/Assemblies holds the fixed DLLs of ClickDiagnostics, HoverSteps, ScreenshotMode, VefFactionSteps, FilmTicks (Pickle 5.0.0 ReleaseFrameBuffers fallback), SoundCapture and ColonistRace; Prepare-Release -Check passes, 14 DLLs identical; the Check-Steps of the touched tools pass; docs/steps.md regenerated. Compiled and checked offline only, none of it played; the next release has not been dry-run."
   - "pending, 2026-09-28: Pickle v5.0.0 (breaking: 'ship for 1.5 and 1.6 from one build', assemblies move to 1.5/ and 1.6/ under loadFolders.xml) came out the same day as 1.1.0. Read from the release zip (decompiled, compared with the installed 4.x, nothing played): the ONLY public member PickleTools calls that is gone is PickleDriver.ReleaseFrameBuffers(); FilmTicks and SoundCapture called it, so on 5.0.0 every film would have thrown MissingMethodException at its end. Fixed in source (FilmTicks, SoundCapture: ask for whichever of PickleDriver.ReleaseFrameBuffers or the internal FrameCapture.Release exists), DLLs rebuilt. NOT in the published 1.1.0 payload: its FilmTicks DLL still calls the removed method, so FilmTicks films fail on Pickle 5.0.0 until the next release syncs the payload (Prepare-Release -SyncMod). PickleContext, XdoInput, FilmEncoder, CaptureFrameDetached, AddFrameHook, RemoveFrameHook and the step parameter registry are unchanged. All 17 Check-Steps.ps1 now read Pickle from 1.6/Assemblies when it exists, else Assemblies. The 20 .csproj still reference RimWorks.Pickle.Ref 4.*: not bumped, not compiled against 5.0.0. Nothing of this was run in a game on Pickle 5.0.0; the installed Workshop copy is still 4.x."
   - "published, 2026-09-28 (owner: A, 'lance', then she approved steam-production): version 1.1.0 was uploaded by the CI from SHA f236105ec36798e80dd6bfa77e79e918a776cf7d, the SHA of the green dry-run 36175171078, with the description (`--description`). Publish run https://github.com/vbardales/Rimworld-Nelim-Pickle-Tools/actions/runs/36412883125: jobs publish and tag-and-release both success; log line 'uploaded to Workshop item 3806142401'; the tag v1.1.0 points at f236105 and the GitHub release 'Nelim's Pickle Tools 1.1.0' (not draft, not prerelease) was created by the CI. Public page read afterwards (not only the log): the new description is live and the change log lists 1.1.0, updated 2026-09-28 13:02 local, above 1.0.0. The payload is that of f236105: 14 DLLs, WITHOUT the fixes made since in ClickDiagnostics (mouse move step), HoverSteps (tip getter guard), ScreenshotMode (letters and alerts step) and VefFactions (late-bound Windows, null guard); they are for the next release, whose rollback target is now 1.1.0 by CI. Not done for this release, by the owner's choice: the @review captures in English and French, the real click on RIMMSQOL's checkbox, the gallery. The stage field above is not changed by this note: whether it reads published is the owner's call."
@@ -120,7 +119,7 @@ FilmTicks unit tests passed 7/7. TESTING.md now defines the pending aggregate mi
 passes. The bundle uses packageId nelim.pickletools, with thirteen DLLs and no hard dependency on optional
 test targets. Startup without RIMMSQOL remains explicitly unverified. No publication has occurred.
 
-## Audit — 2026-09-22
+## Audit: 2026-09-22
 
 Audited revision `a601aa92c2fca66b27c3df606e07a5459dcfb34d` on `main`, with a dirty working tree.
 The standalone repository, configured GitHub remote and pushed audited HEAD are established. This earlier
@@ -145,7 +144,7 @@ The superseding local `0.1.0-rc.1` candidate generated after this migration cont
 dependency is `rimworks.pickle`. The Workshop and GitHub archive SHA256 entries were recalculated and
 verified. This confirms archive structure only, not aggregate runtime behavior.
 
-## QuietNewFactions absorption — 2026-09-22
+## QuietNewFactions absorption: 2026-09-22
 
 The nine VEF faction workflow steps were moved from QuietNewFactions into `VefFactionSteps`, renamed with
 the `Nelim's Pickle Tools:` prefix, built with 0 warnings and 0 errors, and checked against Pickle and the
@@ -155,7 +154,7 @@ payload because VEF is a load-time dependency. Its rebuilt DLL passes the six of
 a 2026-09-22 WSL headless replay from the new location passed all five scenarios. The former repository is
 redundant once this migration is pushed.
 
-## Final publication audit and 1.0.0 offline candidate — 2026-09-22
+## Final publication audit and 1.0.0 offline candidate: 2026-09-22
 
 The publication-facing identity, English documentation, MIT copies, distributed attribution, source link,
 Steam links, AI credits, adoption clause and upstream-removal notice were reviewed against `PUBLISHING.md`.
