@@ -18,7 +18,10 @@ namespace Nelim.PickleTools.TradeSteps
     [PickleSteps]
     public class TradeSteps
     {
-        private static Pawn trader;
+        /// <summary>Prefix of the failure message of a step that found no stock: greppable, and what a flaky-stock tag filters on.</summary>
+        public const string NoStockPrefix = "[no-stock] ";
+
+        private static ITrader trader;
 
         /// <summary>
         /// Fires the trader-caravan incident with a forced trader kind (a TraderKindDef name such as Caravan_Outlander_BulkGoods) and waits
@@ -30,6 +33,20 @@ namespace Nelim.PickleTools.TradeSteps
             Map map = CurrentMap(ctx);
             TraderKindDef kind = DefDatabase<TraderKindDef>.GetNamedSilentFail(kindName);
             ctx.Require(kind != null, $"no trader kind '{kindName}' in this game");
+
+            if (kind.orbital)
+            {
+                // An orbital trader is a TradeShip in the passing-ship manager, not a pawn on the map.
+                IncidentDef orbital = IncidentDefOf.OrbitalTraderArrival;
+                IncidentParms oparms = StorytellerUtility.DefaultParmsNow(orbital.category, map);
+                oparms.forced = true;
+                oparms.traderKind = kind;
+                ctx.Require(orbital.Worker.TryExecute(oparms), $"the orbital trader incident did not fire for '{kindName}'");
+                await ctx.WaitUntil(() => FindShip(map, kind) != null, 10f);
+                trader = FindShip(map, kind);
+                ctx.Assert(trader != null, $"no orbital trader ship of kind '{kindName}' is in range after the incident");
+                return;
+            }
 
             IncidentDef incident = IncidentDefOf.TraderCaravanArrival;
             IncidentParms parms = StorytellerUtility.DefaultParmsNow(incident.category, map);
@@ -55,7 +72,7 @@ namespace Nelim.PickleTools.TradeSteps
         public async Task OpenWindow(PickleContext ctx)
         {
             Map map = CurrentMap(ctx);
-            ctx.Require(trader != null && trader.Spawned, "no trader is on the map: use 'a trader of kind ... has arrived' first");
+            ctx.Require(IsHere(trader), "no trader is on the map: use 'a trader of kind ... has arrived' first");
             Pawn negotiator = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => !p.Downed && !p.Dead);
             ctx.Require(negotiator != null, "no free colonist is on the map to negotiate");
 
@@ -102,6 +119,50 @@ namespace Nelim.PickleTools.TradeSteps
             }
 
             trader = null;
+        }
+
+        /// <summary>
+        /// Asserts the open trade window lists a tradeable of the named ThingDef held by the TRADER (its stock). When there is none the step
+        /// fails with a message that starts with <c>[no-stock] </c>: Pickle 6.6.3 has no runtime skip (its Skipped outcome comes from tags such as
+        /// @wip and unmet @requires, decided before a scenario starts), so the closest is a distinct greppable prefix. Tag such a scenario
+        /// @flaky-stock and read its failures by that prefix.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the trader offers {string}")]
+        public void TraderOffers(PickleContext ctx, string defName)
+        {
+            ctx.Require(TradeSession.Active, "no trade window is open: use 'the trade window is open' first");
+            Tradeable item = TradeSession.deal.AllTradeables.FirstOrDefault(t => t.HasAnyThing && t.ThingDef != null && t.ThingDef.defName == defName);
+            int stock = item == null ? 0 : item.CountHeldBy(Transactor.Trader);
+            ctx.Assert(stock > 0, NoStockPrefix + $"the trader holds no '{defName}' in this deal (its stock is random, and a kind that trades the tag may still have none)");
+        }
+
+        /// <summary>
+        /// Asserts the trade window lists a tradeable of the named ThingDef held by the COLONY and that the trader would take it. A buy-side
+        /// tag is not random: with an animal of that def in the colony this fails for a real reason (the trader's kind does not buy the tag).
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the trader would buy {string}")]
+        public void TraderWouldBuy(PickleContext ctx, string defName)
+        {
+            ctx.Require(TradeSession.Active, "no trade window is open: use 'the trade window is open' first");
+            var mine = TradeSession.deal.AllTradeables.Where(t => t.ThingDef != null && t.ThingDef.defName == defName && t.CountHeldBy(Transactor.Colony) > 0).ToList();
+            ctx.Assert(mine.Count > 0, $"no '{defName}' held by the colony is listed in the deal (spawn a tamed one first; the trader's kind may not buy that tag)");
+            ctx.Assert(mine.Any(t => t.TraderWillTrade), $"the colony's '{defName}' is listed, but the trader will not trade it");
+        }
+
+        private static bool IsHere(ITrader t)
+        {
+            var pawn = t as Pawn;
+            if (pawn != null)
+            {
+                return pawn.Spawned;
+            }
+
+            return t != null;
+        }
+
+        private static ITrader FindShip(Map map, TraderKindDef kind)
+        {
+            return map.passingShipManager.passingShips.OfType<TradeShip>().FirstOrDefault(sh => sh.def == kind);
         }
 
         private static Pawn FindTrader(Map map, TraderKindDef kind)

@@ -34,6 +34,56 @@ namespace Nelim.PickleTools.DefFields
                 $"{def.GetType().Name} '{defName}' field '{fieldPath}' should be '{expected}'; actual '{actual}'");
         }
 
+        /// <summary>Asserts a biome lists a pawn kind among its wild animals (BiomeDef.wildAnimals, which a patch fills; the commonality is not read).</summary>
+        [Then("Nelim's Pickle Tools: the biome {string} lists the wild animal {string}")]
+        public void BiomeListsAnimal(PickleContext ctx, string biomeName, string kindName)
+        {
+            var biome = DefDatabase<RimWorld.BiomeDef>.GetNamedSilentFail(biomeName);
+            ctx.Require(biome != null, $"no BiomeDef named '{biomeName}'");
+            var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindName);
+            ctx.Require(kind != null, $"no PawnKindDef named '{kindName}'");
+            ctx.Assert(biome.AllWildAnimals.Contains(kind), $"biome '{biomeName}' does not list '{kindName}'; its wild animals: " + string.Join(", ", biome.AllWildAnimals.Select(k => k.defName).Take(30)));
+        }
+
+        /// <summary>
+        /// Asserts a recipe is offered to a race: the race's recipe list (ThingDef.AllRecipes, which holds the race's own recipes and every
+        /// recipe whose recipeUsers names it, built after all patches and after a mod such as A Dog Said... Animal Prosthetics 2 copied its lists)
+        /// contains it and its research prerequisites are met (AvailableNow). A def-level read: it does not look at a pawn's body parts.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the recipe {string} is offered for the race {string}")]
+        public void RecipeOffered(PickleContext ctx, string recipeName, string raceName)
+        {
+            var recipe = DefDatabase<RecipeDef>.GetNamedSilentFail(recipeName);
+            ctx.Require(recipe != null, $"no RecipeDef named '{recipeName}' (an abstract def is not a def: read a concrete recipe)");
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null, $"no ThingDef named '{raceName}'");
+            ctx.Assert(race.AllRecipes.Contains(recipe), $"'{recipeName}' is not in the recipes of '{raceName}'");
+            ctx.Assert(recipe.AvailableNow, $"'{recipeName}' is listed for '{raceName}' but its research prerequisites are not met");
+        }
+
+        /// <summary>
+        /// Compares the SURGERY recipes of two races by defName (RecipeDef.IsSurgery in ThingDef.AllRecipes): the same set, or a failure that
+        /// names the recipes only one of them has. No recipe defName is hardcoded, so it follows a mod that adds its own.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the surgery recipes of the race {string} match those of the race {string}")]
+        public void SurgeriesMatch(PickleContext ctx, string raceName, string otherName)
+        {
+            var a = Surgeries(ctx, raceName);
+            var b = Surgeries(ctx, otherName);
+            ctx.Require(b.Count > 0, $"'{otherName}' has no surgery recipe: nothing to compare against");
+            var onlyA = a.Except(b).ToList();
+            var onlyB = b.Except(a).ToList();
+            ctx.Assert(onlyA.Count == 0 && onlyB.Count == 0,
+                $"surgery recipes differ: only for '{raceName}' [{string.Join(", ", onlyA)}]; only for '{otherName}' [{string.Join(", ", onlyB)}]");
+        }
+
+        private static List<string> Surgeries(PickleContext ctx, string raceName)
+        {
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null, $"no ThingDef named '{raceName}'");
+            return race.AllRecipes.Where(r => r.IsSurgery).Select(r => r.defName).OrderBy(n => n, StringComparer.Ordinal).ToList();
+        }
+
         private static Def Find(PickleContext ctx, string defName, string typeName)
         {
             Type type = GenTypes.GetTypeInAnyAssembly(typeName);
@@ -91,6 +141,13 @@ namespace Nelim.PickleTools.DefFields
             if (value == null)
             {
                 return "(null)";
+            }
+
+            var list = value as System.Collections.IEnumerable;
+            if (list != null && !(value is string))
+            {
+                // A list or array reads as its items joined by ", " (a def by its defName), in order: List.ToString() would print only the type.
+                return string.Join(", ", list.Cast<object>().Select(o => o is Def d ? d.defName : Text(o)));
             }
 
             var formattable = value as IFormattable;
