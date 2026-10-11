@@ -14,7 +14,7 @@ All texts start with `Drum Bath Hygiene: `, left out of the table below.
 ## Small and generic, candidates to move if a second mod wants them
 
 State is per step: *played* names a real run, *not yet played* says the step compiled and resolved and nothing more.
-Updated 2026-09-23 after a code review of the suite; the steps below are those in `DrumBathHygieneSteps.cs` at that date.
+Updated 2026-09-23 after a code review of the suite; the table below is that date's. The 9 steps added since are in "Declared 2026-10-11" after it: 32 declarations in all (`INVENTORY.md`).
 
 | Step | What it does | State | Why it stays | Move it when |
 |---|---|---|---|---|
@@ -40,6 +40,19 @@ own `I take the trait {string} from {string}`, which does nothing if the pawn la
 | `{string} is bathing in the drum at x={int} z={int}` | Waits up to 90 s for the bath job to be running, the hediff on the pawn, and **the drum among the things on the pawn's cell** (the mod's own hot-or-cold question). Polls once per frame against a deadline. **On timeout it reports a job trace**: every change of job with position and hediff, the driver, whether the drum is reachable, the pawn's state | played in run 5, **then changed twice** (it demanded `CurJob.targetA.Thing == drum`, which the driver rewrites; then a 2.5-cell radius, which accepts a pawn beside the drum); the current one is **not yet played** |
 | `{string} has climbed out of the drum` | Waits up to 120 s until the pawn has neither the bath job nor the bathing hediff, so that a second bath can be ordered and the component can be shown to start afresh | **not yet played** |
 | `the bathing hediff of {string} carries the component` | Asserts the loaded `Hed_BathingAtDrumBathPassive` is a `HediffWithComps` carrying this mod's comp | played, run 5 |
+
+### Declared 2026-10-11: steps added since the table above (all in `DrumBathHygieneSteps.cs`)
+
+| Step | What it does | State | Why it stays | Move it when |
+|---|---|---|---|---|
+| `{string} is given the bathing hediff, then loses the hygiene need` | The hediff and the missing need in ONE step, in that order: the game hands a pawn its needs back whenever a hediff changes, so removing the need first proved nothing about the branch for a pawn without it | played, French pass 2026-09-23 | the hediff is this mod's | never: specific to the drum mod |
+| `the bathing hediff of {string} bound no clean action` | Reads the component's two private fields (`cleanBound`, `clean`) by reflection and says whether the no-need branch was really taken | played | reads this mod's own fields | never |
+| `the letters and the alerts are cleared from the screen` | Empties the letter stack and every `List<Alert>` of the alerts readout (by reflection), so a shot that keeps the Needs tab is not cluttered | played, 2026-10 gallery runs | PickleTools' screenshot mode hides the tab with the clutter | **now a candidate**: any mod that captures an interface tab needs it; belongs in ScreenshotMode |
+| `the drum's light is switched off at x={int} z={int}` | Deregisters the drum's `CompGlower` so the game's light square is not drawn behind the drum | played | one building | never |
+| `the drum's motes are cleared at x={int} z={int}` | Destroys `Mote_Bombardment` within 4 cells of a cell: the drum mod's own motes draw a square like a light | played | one mote def | never |
+| `the camera looks at the drum at x={int} z={int}, shifted {int} cells west, at zoom {int}` and `the camera's zoom limits are restored` | Centres the camera west of a cell, lowers the game's closest zoom (root size 11) for the shot, reads the root size back and fails with the number if it stopped short; the second step puts the limit back | played | the shot is specific | **candidate** with PickleTools' studio presets, which set the same root size |
+| `the game is saved as {string}` and `the saved game {string} is handed to the mod {string}` | Saves the running game and copies the `.rws` into `Pickle/Fixtures` of a companion mod that does not depend on this one, for a second launch without this mod (`-ThenWithout`) | played, run 28cc, 2026-10-08 | none | **already a second consumer**: AnimalApparelCollarsAndKitRenew uses the same mechanism. Promote to PickleTools (AGENTS.md, "Local scripts": a second use means one shared step, both callers migrated, the duplicate deleted) |
+| `I list what is around the drum at x={int} z={int}` | **Temporary diagnostic** (2026-09-26): logs what shines or floats near the drum with a `[DBH-DIAG]` prefix | played once | nothing reads it any more | **remove**: `99-diagnostic.feature` is already gone, the step is orphaned (the cause it found is handled by the motes step) |
 
 Only the last is specific to this mod; the others are specific to the drum mod and would serve any mod that patches
 its bath.
