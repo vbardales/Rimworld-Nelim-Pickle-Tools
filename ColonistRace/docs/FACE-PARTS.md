@@ -84,16 +84,16 @@ Fixed list in the code (`ColonistRace/Source/FaceSteps.cs`). Each kit sets its p
 
 | Kit | Mouth | Lids | Brows | Skin | Look on the photo (run 47e8) |
 |---|---|---|---|---|---|
-| `smile` | MouthSmile | LidCheerful | BrowEven | SkinRosyCheeks | Slight smile, flirty lids. |
-| `calm` | MouthLipsTinySmile | LidSimple | BrowEven | SkinNormal | Small red lips, round eyes. |
+| `smile` | MouthSmile | LidCheerful | BrowNormal | SkinRosyCheeks | Slight smile, flirty lids. |
+| `calm` | MouthLipsTinySmile | LidSimple | BrowNormal | SkinNormal | Small red lips, round eyes. |
 | `sad` | MouthSad | LidUnimpressed | BrowRaised | SkinNormal | Half lids, flat mouth. |
 | `angry` | MouthScowl | LidHardened | BrowTriangle | SkinNormal | Frown, angled brows. |
-| `smug` | MouthSmug | LidFlirty | BrowEven | SkinNormal | A cat mouth. |
-| `neutral` | MouthSimpleMouth | LidSimple | BrowEven | SkinNormal | A flat line. |
+| `smug` | MouthSmug | LidFlirty | BrowNormal | SkinNormal | A cat mouth. |
+| `neutral` | MouthSimpleMouth | LidSimple | BrowNormal | SkinNormal | A flat line. |
 
 Every kit also resets the rest of the face to its neutral value (LidOptionNormal, EmotionNormal, EyeNormal, HeadNormal), so no part of a previous kit stays on the pawn.
 
-The kits use names of `Vanilla Textures Expanded - [NL] Facial Animation` (mouths, brows, skin) and of the core (lids). On a mod list without that mod, they fail.
+The kits use names of `Vanilla Textures Expanded - [NL] Facial Animation` (mouths, skin), of `[NL] Facial Animation - Experimentals` (brows, lid option, emotion mark, head shape) and of the core (lids, eyeballs). On a mod list without that mod, they fail.
 
 ## Heat
 

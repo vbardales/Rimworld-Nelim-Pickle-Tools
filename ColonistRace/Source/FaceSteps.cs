@@ -138,12 +138,12 @@ namespace Nelim.PickleTools.ColonistRace
         // Kits: a whole face in one step, a name for a list of parts. A part whose def is missing (a mod not loaded) fails the step and says which.
         private static readonly System.Collections.Generic.Dictionary<string, (string Part, string Def)[]> Kits = new System.Collections.Generic.Dictionary<string, (string, string)[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowEven"), ("Skin", "SkinRosyCheeks"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowNormal"), ("Skin", "SkinRosyCheeks"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
             ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
             ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
         };
 
         /// <summary>
@@ -152,7 +152,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// loaded) fails the step naming it. Every kit also sets LidOptionNormal, EmotionNormal, EyeNormal and HeadNormal, so nothing of an earlier face stays. A part step run afterwards overrides one part of the kit.
         /// </summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="kit"><c>smile</c> (MouthSmile, LidCheerful, BrowEven, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowEven), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowEven), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowEven); any case</param>
+        /// <param name="kit"><c>smile</c> (MouthSmile, LidCheerful, BrowNormal, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowNormal), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowNormal), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowNormal); any case</param>
         [Given("Nelim's Pickle Tools: {string} face kit is {string}")]
         public void SetKit(PickleContext ctx, string nickname, string kit)
         {
