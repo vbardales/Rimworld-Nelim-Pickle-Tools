@@ -408,12 +408,6 @@ Feature: Every face part and kit on Nelim, one photograph per value (gallery of 
     When Nelim's Pickle Tools: "Nelim" face head shape is "Beauty2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Beauty2"
-    When Nelim's Pickle Tools: "Nelim" lid option is "LidOptionNormal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "lidoption-LidOptionNormal"
-    When Nelim's Pickle Tools: "Nelim" emotion mark is "EmotionNormal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "emotion-EmotionNormal"
     When Nelim's Pickle Tools: "Nelim" face kit is "smile"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "kit-smile"

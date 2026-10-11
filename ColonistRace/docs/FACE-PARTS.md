@@ -2,7 +2,7 @@
 
 Read on 2026-10-09 from run ff33 (`PickleTools/evidence/face-list3`, step `Nelim's Pickle Tools: the facial animations are listed`), with the standard mod list of the Sanctuary map (`wsl-deps.sanctuary.map`). A mod list that lacks a mod lacks its names: the step fails and prints the valid ones. Photos of each value: not taken yet (planned, one contact sheet per part).
 
-Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `brows are`, `lids are`, `face skin is`, `eyeballs are`, `lid option is`, `emotion mark is`, `face head shape is`, and the whole-face `"<pawn>" face kit is "<kit>"`.
+Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `brows are`, `lids are`, `face skin is`, `eyeballs are`, `face head shape is`, and the whole-face `"<pawn>" face kit is "<kit>"`.
 
 **Photographs (2026-10-09, runs 90ae, 58ce, 504a; Tests/Pickle/.../pickletools-face-parts-gallery.feature).** One photograph per value, in the order of the tables, on Nelim of the save Nelims-tribe at 20 degrees. Each scenario starts from the kit neutral and sets one part value after another, so a photograph also shows the parts set earlier in the same scenario (the cheek mark of a skin stays on the later eyeball photographs): read the changed part, not the whole face. Sheets: docs/Make-PartSheets.ps1.
 
@@ -38,10 +38,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 | Vanilla Textures Expanded - [NL] Facial Animation | BionicBoth, BionicLeft, BionicRight |
 | Visual beauty for Facial Animation | Biotech_Eyes_Beauty, Biotech_Eyes_Beauty2 |
 
-## Lid options (`lid option is`)
-
-LidOptionNormal ([NL] Facial Animation - Experimentals).
-
 ## Skins (`face skin is`)
 
 ![Skins: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-skin.jpg)
@@ -62,10 +58,6 @@ LidOptionNormal ([NL] Facial Animation - Experimentals).
 |---|---|
 | (none) | BIGEYE, EyeBig, EyeNone, EyeNormal, EyeSmall, EyeThin, EyeWide |
 | EyeGenes3 | Courageous, Empathetic, Swift |
-
-## Emotion marks (`emotion mark is`)
-
-EmotionNormal ([NL] Facial Animation - Experimentals).
 
 ## Head shapes (`face head shape is`)
 
@@ -91,9 +83,9 @@ Fixed list in the code (`ColonistRace/Source/FaceSteps.cs`). Each kit sets its p
 | `smug` | MouthSmug | LidFlirty | BrowNormal | SkinNormal | A cat mouth. |
 | `neutral` | MouthSimpleMouth | LidSimple | BrowNormal | SkinNormal | A flat line. |
 
-Every kit also resets the rest of the face to its neutral value (LidOptionNormal, EmotionNormal, EyeNormal, HeadNormal), so no part of a previous kit stays on the pawn.
+Every kit also resets the rest of the face to its neutral value (EyeNormal, HeadNormal), so no part of a previous kit stays on the pawn.
 
-The kits use names of `Vanilla Textures Expanded - [NL] Facial Animation` (mouths, skin), of `[NL] Facial Animation - Experimentals` (brows, lid option, emotion mark, head shape) and of the core (lids, eyeballs). On a mod list without that mod, they fail.
+The kits use names of `Vanilla Textures Expanded - [NL] Facial Animation` (mouths, skin), of `[NL] Facial Animation - Experimentals` (brows, head shape) and of the core (lids, eyeballs). On a mod list without that mod, they fail.
 
 ## Heat
 

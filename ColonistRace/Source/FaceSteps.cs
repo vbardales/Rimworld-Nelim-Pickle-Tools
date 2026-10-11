@@ -117,17 +117,6 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: {string} eyeballs are {string}")]
         public void SetEyeballs(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Eyeball", typeName);
 
-        /// <summary>Gives a colonist an eyelid option (lashes and the like) by <c>LidOptionTypeDef</c> name, as the mouth step does for the mouth.</summary>
-        /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a LidOptionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lid options)</param>
-        [Given("Nelim's Pickle Tools: {string} lid option is {string}")]
-        public void SetLidOption(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "LidOption", typeName);
-
-        /// <summary>Gives a colonist an emotion mark (blush, sweat drops, anger marks) by <c>EmotionTypeDef</c> name, as the mouth step does for the mouth.</summary>
-        /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">an EmotionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Emotion marks)</param>
-        [Given("Nelim's Pickle Tools: {string} emotion mark is {string}")]
-        public void SetEmotion(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Emotion", typeName);
 
         /// <summary>Gives a colonist a face head shape by Facial Animation's own <c>HeadTypeDef</c> name (not the game's head type), as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
@@ -138,18 +127,18 @@ namespace Nelim.PickleTools.ColonistRace
         // Kits: a whole face in one step, a name for a list of parts. A part whose def is missing (a mod not loaded) fails the step and says which.
         private static readonly System.Collections.Generic.Dictionary<string, (string Part, string Def)[]> Kits = new System.Collections.Generic.Dictionary<string, (string, string)[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowNormal"), ("Skin", "SkinRosyCheeks"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
-            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowNormal"), ("Skin", "SkinRosyCheeks"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised"), ("Skin", "SkinNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle"), ("Skin", "SkinNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowNormal"), ("Skin", "SkinNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
         };
 
         /// <summary>
         /// Gives a colonist a whole face by kit name: a list of face parts set together (mouth, lids, brows, skin). Kits: smile, calm, sad, angry,
         /// smug, neutral. They use the part types of Vanilla Textures Expanded and Facial Animation; a part whose type does not exist (the mod is not
-        /// loaded) fails the step naming it. Every kit also sets LidOptionNormal, EmotionNormal, EyeNormal and HeadNormal, so nothing of an earlier face stays. A part step run afterwards overrides one part of the kit.
+        /// loaded) fails the step naming it. Every kit also sets EyeNormal and HeadNormal, so nothing of an earlier face stays. A part step run afterwards overrides one part of the kit.
         /// </summary>
         /// <param name="nickname">the colonist's nickname</param>
         /// <param name="kit"><c>smile</c> (MouthSmile, LidCheerful, BrowNormal, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowNormal), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowNormal), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowNormal); any case</param>
@@ -203,8 +192,8 @@ namespace Nelim.PickleTools.ColonistRace
             foreach (var group in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
                 Log.Message("[face-animations] " + group.Key + " (" + group.Count() + "): " + string.Join(", ", group.Select(d => d.defName).OrderBy(n => n)));
             Log.Message("[face-animations] total " + all.Count);
-            // The part types a part step accepts, by mod: the dictionary of mouths, brows, lids, lid options, skins, eyeballs, emotion marks and head shapes.
-            foreach (string part in new[] { "Mouth", "Brow", "Lid", "LidOption", "Skin", "Eyeball", "Emotion", "Head" })
+            // The part types a part step accepts, by mod: the dictionary of mouths, brows, lids, skins, eyeballs and head shapes.
+            foreach (string part in new[] { "Mouth", "Brow", "Lid", "Skin", "Eyeball", "Head" })
             {
                 Type partType = FaType(ctx, "FacialAnimation." + part + "TypeDef");
                 var defs = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(partType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().ToList();
