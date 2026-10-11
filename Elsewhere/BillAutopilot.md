@@ -1,9 +1,10 @@
 # Bill Autopilot
 
 Repository `BillAutopilot`, folder `Tests/Pickle/Source/`. State reported by its session on 2026-10-11: 107 step attributes over 15 files, 26 features, 82 scenarios, none `@wip`. Image 3 of its gallery passed (run be07); two tickets were queued for the rest. Earlier note (2026-09-21): 87 steps over eight files, no verdict, best run `watchdog-timeout` at 26 scenarios of 65. New since then: `GallerySteps.cs`, `BwmDetailSteps.cs`, `RemovalSteps.cs`, `ShortcutSteps.cs`, `IntegrationSteps.cs`. Generic candidate: the lit-percent assertion (taken when a second mod needs it).
+
 Every phrase carries `Bill Autopilot` somewhere, or the name of the neighbour it drives (`Better Workbench
 Management …`, `Nice Bill Tab's row cache …`, `a Dubs Mint Menus bench template …`). Checked, not assumed: the
-suite's `Check-Steps.ps1` matches all 87 against 568 other expressions (205 read out of Pickle's assemblies, 363
+suite's `Check-Steps.ps1` matched all 87 (at 2026-09-21) against 568 other expressions (205 read out of Pickle's assemblies, 363
 from 20 step sources in the collection) and reports none ambiguous.
 
 ## Small and generic, candidates to move if a second mod wants them
