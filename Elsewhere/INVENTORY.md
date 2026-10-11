@@ -13,7 +13,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `AlphaMythologyRenew` | 6 | 82 | 19 | none |
 | `AncientBuildingsRenew` | 2 | 29 | 15 | none |
 | `AncientChineseBeastAndGeneExpandedRenew` | 18 | 118 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
-| `AncientSalvage` | 5 | 21 | 10 | none |
+| `AncientSalvage` | 6 | 25 | 10 | none |
 | `AnimalApparelCollarsAndKitRenew` | 1 | 29 | 15 | none |
 | `AnimalArk` | 1 | 21 | 11 | none |
 | `AnimalsNaturally` | 0 | 0 | 7 | none |
@@ -87,7 +87,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `SanctuaryBacklot` | 5 | 17 | 30 | [SanctuaryBacklot.md](SanctuaryBacklot.md) |
 | `SkillIcons` | 7 | 29 | 17 | [SkillIcons.md](SkillIcons.md) |
 | `TechLevelFixes` | 0 | 0 | 2 | [TechLevelFixes.md](TechLevelFixes.md) |
-| `VenusTouchWaistlines` | 0 | 0 | 17 | none |
+| `VenusTouchWaistlines` | 0 | 0 | 18 | none |
 | `WorkStudio` | 9 | 102 | 25 | [WorkStudio.md](WorkStudio.md) |
 
 ## Source files
@@ -143,6 +143,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 - `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/ColonistSteps.cs`: 2 step declarations.
 - `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/DamageSteps.cs`: 4 step declarations.
 - `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/JoySteps.cs`: 1 step declarations.
+- `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/PlacementSteps.cs`: 4 step declarations.
 - `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/PowerSteps.cs`: 5 step declarations.
 - `AncientSalvage/Tests/Pickle/Source/AncientSalvage.PickleSteps/RecipeSteps.cs`: 9 step declarations.
 

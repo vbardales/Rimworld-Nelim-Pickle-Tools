@@ -12,7 +12,8 @@ Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1
   - ScreenshotStudio: `the artificial buildings within {int} cells of (x, z) are hidden` (logs what it removes) and `the meditation focus of the thing at (x, z) is logged` (`[focus]` lines).
   - ScreenshotMode: `the messages are cleared from the screen`.
 - ScreenshotMode: `time is paused for the capture`, `the map is shown alone for a capture`, `the interface is shown again` (moved from Ancient Chinese Beast; not played).
-  - LoadAudit: `the active language recorded no load error` (from Animal Ark; not played).
+  - LoadAudit: `the active language recorded no load error` (from Animal Ark; reads the active language only; not played), `the game has finished starting` (Chinese Animals, Ebbbs, Moa), `the game log holds the text {string}` (Funny Creatures, Megabees; not played).
+  - Review fixes (2026-10-11): `a trader sells the pawn` skips colonists and puts the pawn back on failure; face kits set the human skin, eye and head only on a `Human` pawn; the SaveSteps hand-over reports an unwritable folder.
 - SaveSteps (new optional companion, `nelim.pickletools.savesteps`): `the game is saved as {string}`, `the saved game {string} is handed to the mod {string}` (the pair that Animal Apparel Collars, Drum Bath Hygiene and Anima Song had written alike; not played).
 - TradeSteps: `a trader sells the pawn {string}`, `I buy the pawn named {string} from the trader` (from Contented Livestock; not played).
   - TradeSteps: `the trader offers {string}` (no stock fails with the prefix `[no-stock] `: Pickle 6.6.3 has no runtime skip), `the trader would buy {string}`, and orbital trader kinds (a trade ship instead of a caravan pawn).
