@@ -45,7 +45,7 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 
 The optional [ScreenshotStudio](ScreenshotStudio/README.md) supplies the default saved fixture for Pickle
 presentation and screenshot scenarios: `nelim-zen-meadow-studio`. Stage it explicitly with ClearScreen through
-`wsl-deps.studio.map`; it is packaged separately with `Release/Prepare-Release.ps1 -IncludeScreenshotStudio`.
+`wsl-deps.studio.map`; it has no separate archive.
 Functional scenarios retain an explicitly chosen fixture when their preconditions require one.
 
 [Quiet New Factions](QuietNewFactions/README.md) is a second optional companion: it suppresses VEF's repeated

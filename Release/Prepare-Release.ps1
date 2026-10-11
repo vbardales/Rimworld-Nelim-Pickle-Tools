@@ -14,7 +14,7 @@ Creates local candidate archives; never tags, uploads or publishes.
               C:\Users\nelim\.dotnet10\dotnet.exe).
 #>
 [CmdletBinding()]
-param([string]$Version = '0.1.0-rc.1', [switch]$IncludeScreenshotStudio, [switch]$IncludeQuietNewFactions,
+param([string]$Version = '0.1.0-rc.1', [switch]$IncludeQuietNewFactions,
       [switch]$SyncMod, [switch]$Check, [switch]$Rebuild, [string]$DotNet = 'dotnet')
 $ErrorActionPreference = 'Stop'
 if ($Version -notmatch '^\d+\.\d+\.\d+(-[A-Za-z0-9.]+)?$') { throw 'Invalid version' }
@@ -111,10 +111,6 @@ Copy-Item "$root/Upstream/README.md","$root/Upstream/PENDING.md","$root/Upstream
 Copy-Item "$PSScriptRoot/README.md" "$tree/RELEASE.md"
 $revision = (& git -C $root rev-parse HEAD).Trim()
 [pscustomobject]@{ version=$Version; candidate=$true; sourceRevision=$revision; workingTreeDirty=[bool](& git -C $root status --porcelain); runtimeValidated=$false; tools=$manifest } | ConvertTo-Json -Depth 6 | Set-Content "$tree/manifest.json" -Encoding UTF8
-if ($IncludeScreenshotStudio) {
-    & "$PSScriptRoot/Package-ScreenshotStudio.ps1" -Destination "$tree/ScreenshotStudio"
-    Compress-Archive -Path "$tree/ScreenshotStudio" -DestinationPath "$out/PickleTools-$Version-screenshot-studio.zip"
-}
 if ($IncludeQuietNewFactions) {
     & "$PSScriptRoot/Package-QuietNewFactions.ps1" -Destination "$tree/QuietNewFactions"
     Compress-Archive -Path "$tree/QuietNewFactions" -DestinationPath "$out/PickleTools-$Version-quiet-new-factions.zip"

@@ -1,8 +1,7 @@
 # ScreenshotStudio status: 2026-09-22
 
-Scope: optional screenshot scenery companion in PickleTools. Release packaging supports an explicit
-`-IncludeScreenshotStudio` switch and separate archive; the Workshop aggregate remains unchanged.
-The optional archive is blocked until the zen save and matching export evidence are present.
+Scope: optional screenshot scenery companion in PickleTools. It has no separate archive since 2026-10-11 (the packaging
+script `Release/Package-ScreenshotStudio.ps1` was removed with the flower meadow studio fixture); the Workshop aggregate remains unchanged.
 
 - Compiles in Release against RimWorld 1.6.4871 and Pickle 4.8.3: zero warnings, zero errors.
 - The first meadow version passed construction, save/reload, mosaic checks and direct fixture loading

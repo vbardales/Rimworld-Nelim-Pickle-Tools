@@ -18,8 +18,6 @@ counts and the scenario names without the folder.
 - **Say what was not shown.** A summary that lists only what passed misleads; each file ends with its limits.
 - **Screenshots stay on disk, minified.** Kept captures are JPEG at full size (about 90 % less than PNG); a screenshot folder is never copied whole from `pickle-reports/screenshots`, which holds other runs. Where one matters, describe it in a sentence here. Do not commit the image.
 - **Exceptions still tracked although `evidence/` is ignored** (a tracked file stays tracked):
-  `ScreenshotStudio/evidence/2026-09-22-zen/verification.json` and `fixture-load-summary.json`, which
-  `Release/Package-ScreenshotStudio.ps1` reads to refuse a fixture that does not match its export; and
   `TextureOwner/evidence/suite/`, which is the source of a throwaway test suite that README describes,
   not evidence (a rename would be the honest fix, and was not done here).
 - **Earlier commits still hold what was tracked before.** Untracking does not rewrite history.
