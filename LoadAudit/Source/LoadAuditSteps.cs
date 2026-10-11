@@ -73,6 +73,32 @@ namespace Nelim.PickleTools.LoadAudit
             ctx.Assert(report.Count == 0, $"active language {active.folderName}; " + string.Join("\n", report));
         }
 
+        /// <summary>
+        /// Waits (up to 120 s) until the game has no long event running or waiting (<c>LongEventHandler.AnyEventNowOrWaiting</c> is false), so
+        /// that the load is over before the log is read. Written 2026-10-11 from the same step in three mods (Chinese Animals, Ebbbs Renew,
+        /// Moa Renew). Not played here.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the game has finished starting", TimeoutSeconds = 125f)]
+        public async System.Threading.Tasks.Task GameHasFinishedStarting(PickleContext ctx)
+        {
+            await ctx.WaitUntil(() => !LongEventHandler.AnyEventNowOrWaiting, 120f);
+        }
+
+        /// <summary>
+        /// Asserts the game log, read from its start to now, holds this text. For a message the mod is expected to log (a positive check),
+        /// as opposed to <c>the load of the mod ... is clean</c>, which fails on messages that should not be there. Written 2026-10-11 from
+        /// the same step in two mods (Funny Creatures Renew, Megabees Renew). Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the game log holds the text {string}")]
+        public void LogHoldsText(PickleContext ctx, string fragment)
+        {
+            string path = Application.consoleLogPath;
+            ctx.Require(!string.IsNullOrEmpty(path) && File.Exists(path), "the game log is not readable at '" + path + "'");
+            string text = string.Join("\n", ReadLines(path));
+            ctx.Assert(text.Contains(fragment),
+                $"the game log ({text.Length} characters, read from the start) does not contain '{fragment}'");
+        }
+
         private static void Check(PickleContext ctx, string packageId, string apartFrom)
         {
             ModContentPack pack = LoadedModManager.RunningMods.FirstOrDefault(
