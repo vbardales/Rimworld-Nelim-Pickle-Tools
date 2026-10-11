@@ -12,9 +12,9 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `AdaptiveStorageNeolithicRenew` | 3 | 22 | 11 | [AdaptiveStorageNeolithicRenew.md](AdaptiveStorageNeolithicRenew.md) |
 | `AlphaMythologyRenew` | 6 | 82 | 19 | none |
 | `AncientBuildingsRenew` | 2 | 29 | 15 | none |
-| `AncientChineseBeastAndGeneExpandedRenew` | 18 | 122 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
+| `AncientChineseBeastAndGeneExpandedRenew` | 18 | 118 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
 | `AncientSalvage` | 5 | 21 | 10 | none |
-| `AnimalApparelCollarsAndKitRenew` | 1 | 26 | 14 | none |
+| `AnimalApparelCollarsAndKitRenew` | 1 | 29 | 15 | none |
 | `AnimalArk` | 1 | 24 | 11 | none |
 | `AnimalsNaturally` | 0 | 0 | 7 | none |
 | `AnimaSong` | 3 | 50 | 7 | [AnimaSong.md](AnimaSong.md) |
@@ -125,7 +125,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/BenchSteps.cs`: 6 step declarations.
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/CombatSteps.cs`: 10 step declarations.
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/CriticalHookSteps.cs`: 19 step declarations.
-- `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/GallerySteps.cs`: 9 step declarations.
+- `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/GallerySteps.cs`: 5 step declarations.
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/GeneEffectSteps.cs`: 3 step declarations.
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/IncompatibilitySteps.cs`: 2 step declarations.
 - `AncientChineseBeastAndGeneExpandedRenew/Tests/Pickle/Source/LetterSteps.cs`: 2 step declarations.
@@ -148,7 +148,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 ### AnimalApparelCollarsAndKitRenew
 
-- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 26 step declarations.
+- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 29 step declarations.
 
 ### AnimalArk
 
