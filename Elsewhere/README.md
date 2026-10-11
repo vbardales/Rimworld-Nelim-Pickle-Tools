@@ -6,10 +6,13 @@ Before writing a step, look there and here. These notes are not stageable packag
 
 ## Coverage
 
-The [local inventory](INVENTORY.md) lists every suite found by the scanner, its source files, declaration
+The [local inventory](INVENTORY.md) (generated, 2026-10-11: 81 suites, 21 with a note below) lists every suite found by the scanner, its source files, declaration
 count and feature count. The 2026-09-22 review included Git-ignored standalone repositories and nested
 FlavorText repositories; directory-link aliases were not counted twice. It is a local checkout inventory,
 not a claim about every repository on GitHub or every deleted step in history.
+
+A suite gets a note below only when its own session has steps worth reusing or avoiding; the others appear in the
+inventory as `none`. The table below lists the suites that have a note.
 
 | Suite | What to look for |
 |---|---|
