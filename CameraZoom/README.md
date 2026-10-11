@@ -24,7 +24,7 @@ nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
 ```
 
 in a pass map of `Tests/Pickle/`. Not in the Workshop bundle: a companion staged by a pass map. Check the patterns with
-`powershell.exe -ExecutionPolicy Bypass -File PickleTools/CameraZoom/Check-Steps.ps1`. The probe scenario is
+`powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/CameraZoom -Tool`. The probe scenario is
 `Tests/Pickle/Mod/Pickle/Features/pickletools-camerazoom.feature`, staged with `Tests/Pickle/wsl-deps.camerazoom.map`; it asks for
 root size 6 and asserts the game's own closest size, 11 (the answer the probe found on 2026-10-10).
 

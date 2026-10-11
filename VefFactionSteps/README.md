@@ -37,7 +37,7 @@ All phrases begin with `Nelim's Pickle Tools:`. See `QuietNewFactions/Tests/Pick
 
 ```powershell
 dotnet build PickleTools/VefFactionSteps/Source/Nelim.PickleTools.VefFactions.csproj -c Release
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/VefFactionSteps/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/VefFactionSteps -Tool
 ```
 
 The check compiles the Cucumber expressions, scans for duplicate/ambiguous patterns and resolves current

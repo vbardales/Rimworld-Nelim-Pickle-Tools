@@ -42,7 +42,7 @@ before anything else it says is worth reading. The first pass that used them, Fl
 ## Checking it
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/ExpansionSteps/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/ExpansionSteps -Tool
 ```
 
 Compiles the two patterns with Pickle's own expression engine and checks that neither is ambiguous against any

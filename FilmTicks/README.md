@@ -83,7 +83,7 @@ reachable. A machine that renders at 60 frames a second would give one per tick;
 ## Checks
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/FilmTicks/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/FilmTicks -Tool
 ```
 
 Offline, a few seconds, no game: both patterns compile with Pickle's own expression engine, none is declared

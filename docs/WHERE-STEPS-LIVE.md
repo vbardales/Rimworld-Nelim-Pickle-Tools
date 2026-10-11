@@ -15,5 +15,5 @@ Why not in `Mod/` (for a gameplay mod): it is what Steam sends to players. A ste
 What every owner keeps:
 - **A prefix per owner**, so that two steps never share a text (two steps with the same text are "Ambiguous" and fail a healthy scenario).
 - **A generated catalogue** (`docs/steps.md`, from the attributes and the summary above them; `Generate-Steps.ps1`, `-Check`).
-- **The static check**: each repository's `Check-Steps.ps1` compares its steps with Pickle's and the other owners'. Where a repository holds steps, its check must read the others (see `SanctuaryBacklot/Check-Steps.ps1`).
+- **The static check**: the shared `scripts/Check-Steps.ps1` of the protocols repository compares its steps with Pickle's and the other owners'. Where a repository holds steps, the check reads the others (it does by itself).
 - **A step is marked "not played"** in its README until a run was read; green is not proof of the rendering.

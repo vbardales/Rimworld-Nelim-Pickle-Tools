@@ -101,7 +101,7 @@ Then delete `Tests/Pickle/Source/TextureOwnerSteps.cs` and rebuild the suite's a
 ## Checking it
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/TextureOwner/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/TextureOwner -Tool
 powershell.exe -ExecutionPolicy Bypass -File PickleTools/TextureOwner/Check-Ownership.ps1
 ```
 

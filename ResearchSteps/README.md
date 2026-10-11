@@ -75,7 +75,7 @@ Offline, 2026-09-21:
 | Check | Command | Result |
 | --- | --- | --- |
 | Builds against the game's and Pickle's reference assemblies | `dotnet build Source/ResearchSteps.csproj -c Release` | 0 warnings, 0 errors |
-| The six patterns compile with Pickle's own engine, none declared twice, none ambiguous against 611 others (Pickle, 12 suites), every line of the `pickletools-research` features resolves | `powershell.exe -ExecutionPolicy Bypass -File PickleTools/ResearchSteps/Check-Steps.ps1` | pass |
+| The six patterns compile with Pickle's own engine, none declared twice, none ambiguous against 611 others (Pickle, 12 suites), every line of the `pickletools-research` features resolves | `powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/ResearchSteps -Tool` | pass |
 
 ### In the game: played once, 2026-09-21
 

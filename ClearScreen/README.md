@@ -92,7 +92,7 @@ apart and a window dropped twice is dropped once, but it is dead weight.
 ## Checking it
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/ClearScreen/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/ClearScreen -Tool
 ```
 
 Compiles the patterns with Pickle's own expression engine and checks that neither is ambiguous against any other

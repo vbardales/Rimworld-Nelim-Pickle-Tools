@@ -59,6 +59,6 @@ nelim.pickletools.ideologysteps   path:PickleTools/IdeologySteps/Mod
 in a pass map of `Tests/Pickle/`, after Ideology. The tool is **not in the Workshop bundle** (`Mod/Pickle/Assemblies`): it is a companion
 staged by a pass map, like `QuietNewFactions`.
 
-Check the patterns offline: `powershell.exe -ExecutionPolicy Bypass -File PickleTools/IdeologySteps/Check-Steps.ps1`.
+Check the patterns offline: `powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/IdeologySteps -Tool`.
 The scenario that exercises them is `Tests/Pickle/Mod/Pickle/Features/pickletools-ideologysteps.feature`, staged with
 `Tests/Pickle/wsl-deps.ideologysteps.map`.

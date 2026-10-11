@@ -55,7 +55,7 @@ and change the one prefix in the scenarios that used it.
 ## Checking it
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/KeyedClick/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/KeyedClick -Tool
 ```
 
 Compiles the pattern with Pickle's own expression engine and checks that it is not ambiguous against any other

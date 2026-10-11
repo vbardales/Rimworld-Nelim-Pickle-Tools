@@ -187,9 +187,8 @@ Inspect the relevant shared tool and suite notes first. A new class uses `[Pickl
 `PickleContext` first and a `[Given]`, `[When]` or `[Then]` Cucumber expression. Prefix every local phrase with
 the mod's name. C# namespaces and Gherkin keywords do not separate the global step vocabulary.
 
-Compile expressions with Pickle's expression engine before a run. Parentheses mean optional text and `/`
-means alternatives; do not paste regex syntax into a Cucumber expression. Reuse the approach of
-`PickleTools/ResearchSteps/Check-Steps.ps1`, adapting its tool-specific source paths and vocabulary filters.
+means alternatives; do not paste regex syntax into a Cucumber expression. Use the shared `scripts/Check-Steps.ps1`
+of the protocols repository (`-ModRoot <mod>`, or `-ModRoot PickleTools/<Tool> -Tool` for a tool).
 Such checks cover the expressions and feature lines they scan, not every possible collision or runtime branch.
 
 Build against the version actually staged. Existing companions use net48 reference packages with

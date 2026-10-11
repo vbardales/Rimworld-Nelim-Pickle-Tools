@@ -74,7 +74,7 @@ translates fails with a message that names the key and the active language.
 ## Checking it
 
 ```
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/ClickDiagnostics/Check-Steps.ps1
+powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/ClickDiagnostics -Tool
 ```
 
 Compiles the patterns with Pickle's own expression engine and checks that none is ambiguous against any other suite
