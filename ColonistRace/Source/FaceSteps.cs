@@ -138,18 +138,18 @@ namespace Nelim.PickleTools.ColonistRace
         // Kits: a whole face in one step, a name for a list of parts. A part whose def is missing (a mod not loaded) fails the step and says which.
         private static readonly System.Collections.Generic.Dictionary<string, (string Part, string Def)[]> Kits = new System.Collections.Generic.Dictionary<string, (string, string)[]>(StringComparer.OrdinalIgnoreCase)
         {
-            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowEven"), ("Skin", "SkinRosyCheeks") },
-            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowEven") },
-            ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised") },
-            ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle") },
-            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowEven") },
-            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowEven") },
+            ["smile"] = new[] { ("Mouth", "MouthSmile"), ("Lid", "LidCheerful"), ("Brow", "BrowEven"), ("Skin", "SkinRosyCheeks"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["calm"] = new[] { ("Mouth", "MouthLipsTinySmile"), ("Lid", "LidSimple"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["sad"] = new[] { ("Mouth", "MouthSad"), ("Lid", "LidUnimpressed"), ("Brow", "BrowRaised"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["angry"] = new[] { ("Mouth", "MouthScowl"), ("Lid", "LidHardened"), ("Brow", "BrowTriangle"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["smug"] = new[] { ("Mouth", "MouthSmug"), ("Lid", "LidFlirty"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
+            ["neutral"] = new[] { ("Mouth", "MouthSimpleMouth"), ("Lid", "LidSimple"), ("Brow", "BrowEven"), ("Skin", "SkinNormal"), ("LidOption", "LidOptionNormal"), ("Emotion", "EmotionNormal"), ("Eyeball", "EyeNormal"), ("Head", "HeadNormal") },
         };
 
         /// <summary>
         /// Gives a colonist a whole face by kit name: a list of face parts set together (mouth, lids, brows, skin). Kits: smile, calm, sad, angry,
         /// smug, neutral. They use the part types of Vanilla Textures Expanded and Facial Animation; a part whose type does not exist (the mod is not
-        /// loaded) fails the step naming it. A part step run afterwards overrides one part of the kit.
+        /// loaded) fails the step naming it. Every kit also sets LidOptionNormal, EmotionNormal, EyeNormal and HeadNormal, so nothing of an earlier face stays. A part step run afterwards overrides one part of the kit.
         /// </summary>
         /// <param name="nickname">the colonist's nickname</param>
         /// <param name="kit"><c>smile</c> (MouthSmile, LidCheerful, BrowEven, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowEven), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowEven), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowEven); any case</param>
