@@ -39,6 +39,7 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`VefFactionSteps/`](VefFactionSteps/README.md) | Exercise Vanilla Expanded Framework's missing-faction offer, dialog and ignored-state workflow | `nelim.pickletools.veffactions` |
 | [`IdeologySteps/`](IdeologySteps/README.md) | **Optional, not played yet.** Build an ideoligion from chosen memes and precepts, give a colonist another one, build a prison cell with a restrained prisoner, set and read prisoner interaction modes, a message and the job in progress | `nelim.pickletools.ideologysteps` |
 | [`TradeSteps/`](TradeSteps/README.md) | **Optional, not played yet.** A trader arrives, the trade window opens, a purchase | `nelim.pickletools.tradesteps` |
+| [`SaveSteps/`](SaveSteps/README.md) | **Optional, not played yet.** The game is saved under a name, the saved game is handed to a mod as a fixture | `nelim.pickletools.savesteps` |
 | [`Headless/`](Headless/README.md) | Not a tool: the guide to testing a mod in the headless WSL install without taking the screen (the launcher, the queue and lock, staging, passes, reports). The scripts it describes live in the monorepo's `scripts/` | none |
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 | [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history: what each reads, and where to find it before writing it a second time | none |

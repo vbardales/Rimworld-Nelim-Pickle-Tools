@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-259 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+261 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -280,6 +280,15 @@ Package `nelim.pickletools.rimmsqol`. In the bundle (`Mod/Pickle/Assemblies`). [
 | `RIMMSQOL's own window is opened on its list of main buttons` (When) | Waits for its own frames, as every step that opens a Dialog_ModSettings must: the dialog force-pauses the game, so a tick wait in the scenario can never be satisfied. RIMMSQOL builds its whole menu on the first frame, which can take seconds, hence the timeout. |
 | `RIMMSQOL's own window is opened on the main button {string}` (When) | the real dialog on that button's edit page |
 | `RIMMSQOL's own window is open` (Then) | a `Dialog_ModSettings` built for the `QOLMod` instance is on the stack |
+
+## SaveSteps
+
+Package `nelim.pickletools.savesteps`. Not in the bundle: a companion staged by a pass map. [README](../SaveSteps/README.md).  
+
+| Step | Does |
+| --- | --- |
+| `Nelim's Pickle Tools: the game is saved as {string}` (When) | Saves the game with the game's own saver (`GameDataSaveLoader.SaveGame`) under the given name and fails when the file is not written. The file is in the game's saves folder; hand it to a mod with the next step to load it in a later launch. **Parameters:** `name` (string): the short name of the pawn (colonist or animal) or of the thing. |
+| `Nelim's Pickle Tools: the saved game {string} is handed to the mod {string}` (When) | Copies the saved game of that name into `Pickle/Fixtures` of an active mod (found by packageId, any case), as `<name>.rws`, so that Pickle lists it as a fixture the next time that mod is loaded. Fails when no active mod has the packageId or the game was not saved under that name first. **Parameters:** `name` (string): the short name of the pawn (colonist or animal) or of the thing; `packageId` (string): the packageId of a mod, any case. |
 
 ## ScreenshotMode
 
