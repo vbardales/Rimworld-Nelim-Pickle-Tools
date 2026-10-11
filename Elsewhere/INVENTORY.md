@@ -15,7 +15,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `AncientChineseBeastAndGeneExpandedRenew` | 18 | 118 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
 | `AncientSalvage` | 5 | 21 | 10 | none |
 | `AnimalApparelCollarsAndKitRenew` | 1 | 29 | 15 | none |
-| `AnimalArk` | 1 | 24 | 11 | none |
+| `AnimalArk` | 1 | 21 | 11 | none |
 | `AnimalsNaturally` | 0 | 0 | 7 | none |
 | `AnimaSong` | 3 | 50 | 7 | [AnimaSong.md](AnimaSong.md) |
 | `APerfectMindInAPerfectBody` | 6 | 37 | 10 | none |
@@ -152,7 +152,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 ### AnimalArk
 
-- `AnimalArk/Tests/Pickle/Source/AnimalArkSteps.cs`: 24 step declarations.
+- `AnimalArk/Tests/Pickle/Source/AnimalArkSteps.cs`: 21 step declarations.
 
 ### AnimalsNaturally
 

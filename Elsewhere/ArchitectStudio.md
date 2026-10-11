@@ -1,9 +1,9 @@
 # Architect Studio
 
 Repository `ArchitectStudio` (`nelim.architectstudio`), suite under `Tests/Pickle/`: the steps are
-`Tests/Pickle/Source/` (`ModSteps.cs`, `GroupSteps.cs`, `CategorySteps.cs`, `SettingsSandbox.cs`), built by
+`Tests/Pickle/Source/` (`ModSteps.cs`, `GroupSteps.cs`, `CategorySteps.cs`, `RestartSteps.cs`, `SettingsSandbox.cs`, `Driver.cs`), built by
 `ArchitectStudio.PickleSteps.csproj` into `Tests/Pickle/Mod/Pickle/Assemblies/` and staged by the companion mod
-`ArchitectStudioPickleTests`. **Live**, played on 2026-09-21: 43 scenarios of 18 features, twice (11 mods, then 16).
+`ArchitectStudioPickleTests`. **Live**, last full pass 2026-10-09 on 1.0.7: 69 scenarios of 22 features, in English and French, over five staged mod lists (minimal, optionals, reviews, RIMMSQOL, restart).
 
 Two things hold for every text below. The mod-specific ones start with `Architect Studio`, or name its groups and
 categories, so none can clash with another suite. **A few are not prefixed** and are marked: two suites declaring
@@ -13,9 +13,10 @@ the same text make every scenario that uses it ambiguous, and Pickle refuses to 
 
 | Family | Where | What it does |
 | --- | --- | --- |
-| Groups (23 steps) | `GroupSteps.cs` | Create, fill, order, force a category on, delete and restore a *dropdown group* in the mod's editor, and read back what the Architect menu draws for it |
-| Categories (16 steps) | `CategorySteps.cs` | Create, move, relabel, colour and delete an Architect category, and read the tab, its key binding category and the siblings' order |
-| The mod's own wiring | `ModSteps.cs` | The access-check waiver and its startup probe, the mod's Architect button, its settings shortcut and reset, the height of the Architect window |
+| Groups (33 steps) | `GroupSteps.cs` | Create, fill, order, force a category on, delete and restore a *dropdown group* in the mod's editor, and read back what the Architect menu draws for it |
+| Categories (30 steps, parent row included: create or move a category under a parent, read the parent back) | `CategorySteps.cs` | Create, move, relabel, colour and delete an Architect category, and read the tab, its key binding category and the siblings' order |
+| The mod's own wiring (25 steps) | `ModSteps.cs` | The access-check waiver and its startup probe, the mod's Architect button, its settings shortcut and reset, the height of the Architect window |
+| A real restart (4 steps) | `RestartSteps.cs` | Two game launches under one lock hold (`-Then`): the first configures the mod and keeps the result on disk with a marker, the second is a new process that checks the whole Architect menu against it. Played only where the empty switch mod `nelim.architectstudio.restartpass` is staged (`@requires`). If the chain is cut, the next run puts the player's file back from the backup |
 
 ## Small, and worth a second look if another suite needs the same thing
 
