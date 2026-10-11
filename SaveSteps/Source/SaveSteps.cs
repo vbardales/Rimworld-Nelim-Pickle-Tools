@@ -44,9 +44,18 @@ namespace Nelim.PickleTools.SaveSteps
                 .FirstOrDefault(m => m.PackageIdPlayerFacing.ToLowerInvariant() == packageId.ToLowerInvariant());
             ctx.Require(target != null, $"no active mod has the packageId '{packageId}'");
             string folder = Path.Combine(target.RootDir, "Pickle", "Fixtures");
-            Directory.CreateDirectory(folder);
             string destination = Path.Combine(folder, name + ".rws");
-            File.Copy(path, destination, true);
+            try
+            {
+                Directory.CreateDirectory(folder);
+                if (File.Exists(destination)) File.SetAttributes(destination, FileAttributes.Normal);
+                File.Copy(path, destination, true);
+            }
+            catch (System.Exception e) when (e is IOException || e is System.UnauthorizedAccessException)
+            {
+                ctx.Require(false, $"cannot write {destination} (a read-only mod folder, such as a Workshop one?): {e.Message}");
+            }
+
             ctx.Assert(File.Exists(destination), $"the saved game was not copied to {destination}");
         }
     }

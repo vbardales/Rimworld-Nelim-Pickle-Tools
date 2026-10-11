@@ -121,8 +121,8 @@ namespace Nelim.PickleTools.TradeSteps
         public void TraderSellsPawn(PickleContext ctx, string pawnName)
         {
             Map map = CurrentMap(ctx);
-            Pawn animal = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == pawnName);
-            ctx.Require(animal != null, $"no spawned pawn named '{pawnName}' stands on the map");
+            Pawn animal = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => !p.IsColonist && p.Name != null && p.Name.ToStringShort == pawnName);
+            ctx.Require(animal != null, $"no spawned pawn named '{pawnName}' (other than a colonist) stands on the map");
             Faction faction = Find.FactionManager.AllFactionsListForReading
                 .FirstOrDefault(f => !f.IsPlayer && !f.def.hidden && f.def.humanlikeFaction && !f.HostileTo(Faction.OfPlayer));
             ctx.Require(faction != null, "no neutral visible humanlike faction is available to own the trader");
@@ -137,12 +137,19 @@ namespace Nelim.PickleTools.TradeSteps
             GenSpawn.Spawn(seller, cell, map);
             seller.mindState.wantsToTradeWithColony = true;
             seller.trader.traderKind = traderKind;
+            IntVec3 origin = animal.Position;
             if (animal.Spawned)
             {
                 animal.DeSpawn();
             }
 
-            ctx.Require(seller.inventory.innerContainer.TryAdd(animal), $"'{pawnName}' could not be put in the trader's inventory");
+            if (!seller.inventory.innerContainer.TryAdd(animal))
+            {
+                GenSpawn.Spawn(animal, origin, map);
+                seller.Destroy();
+                ctx.Require(false, $"'{pawnName}' could not be put in the trader's inventory (put back on the map)");
+            }
+
             Thing silver = ThingMaker.MakeThing(ThingDefOf.Silver);
             silver.stackCount = 20000;
             GenPlace.TryPlaceThing(silver, map.Center, map, ThingPlaceMode.Near);

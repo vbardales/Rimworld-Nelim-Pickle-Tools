@@ -41,9 +41,8 @@ namespace Nelim.PickleTools.LoadAudit
         }
 
         /// <summary>
-        /// Asserts that the active language recorded no load error: for every loaded language, <c>LanguageDatabase</c>'s
-        /// <c>loadErrors</c> and the <c>loadErrors</c> of each of its DefInjected packages are empty. The failure message lists every
-        /// error, by language and package. Written 2026-10-11 from Animal Ark's own step (its <c>NoLanguageLoadError</c>), for the
+        /// Asserts that the active language recorded no load error: the active language's <c>loadErrors</c> and the <c>loadErrors</c> of each of its DefInjected packages are empty
+        /// (the English fallback is not read). The failure message lists every error, by package. Written 2026-10-11 from Animal Ark's own step (its <c>NoLanguageLoadError</c>), for the
         /// French load errors the game reports on vanilla defs (Biotech, Odyssey, Vacstone, Mechanoid) that a pass without the tested mod
         /// has to be compared with. It does not say which mod an error comes from. Main menu, no save needed. Not played here.
         /// </summary>
@@ -53,7 +52,7 @@ namespace Nelim.PickleTools.LoadAudit
             LoadedLanguage active = LanguageDatabase.activeLanguage;
             ctx.Assert(active != null, "no active language");
             var report = new List<string>();
-            foreach (LoadedLanguage language in LanguageDatabase.AllLoadedLanguages)
+            foreach (LoadedLanguage language in new[] { active })
             {
                 if (language.loadErrors != null && language.loadErrors.Count > 0)
                 {

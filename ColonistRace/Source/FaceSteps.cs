@@ -146,7 +146,13 @@ namespace Nelim.PickleTools.ColonistRace
         public void SetKit(PickleContext ctx, string nickname, string kit)
         {
             ctx.Require(Kits.TryGetValue(kit, out var parts), "No face kit \"" + kit + "\"; known: " + string.Join(", ", Kits.Keys));
-            foreach (var (part, def) in parts) SetPart(ctx, nickname, part, def);
+            bool human = ColonistLookup.Require(nickname).def.defName == "Human";
+            foreach (var (part, def) in parts)
+            {
+                // The neutral skin, eyes and head are the human ones: another race keeps the head it has.
+                if (!human && (def == "SkinNormal" || def == "EyeNormal" || def == "HeadNormal")) continue;
+                SetPart(ctx, nickname, part, def);
+            }
         }
 
         private void SetPart(PickleContext ctx, string nickname, string part, string typeName)
