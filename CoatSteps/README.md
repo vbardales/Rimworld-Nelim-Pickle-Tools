@@ -19,6 +19,7 @@ family). No mod, def or number is written in a step: the kind's defName and ever
 | `Nelim's Pickle Tools: each animal of kind {string} that carries an extra coat is drawn with that coat's own texture` | Deterministic, not chance: for every animal with a coat, compares the path of the graphic the renderer built (`PawnRenderer.BodyGraphic`, after initialising the render tree) with the `texPath` of the alternate graphic its index names. Fails if none of the animals carries a coat, so it cannot pass on an empty comparison |
 
 An `[AfterScenario]` destroys the `coat-N` animals still spawned on the current map.
+**Not in CoatSteps:** the step `the animal {string} stands at ({int}, {int}) facing {word}` (placing an animal) lives in the ColonistRace tool (companion `nelim.pickletools.colonistrace`, section ColonistRace of [`docs/steps.md`](../docs/steps.md)). A pass map that stages only CoatSteps gives `Undefined step` for it (seen by Colorful Coats VAE, run 8ebe): stage ColonistRace too.
 
 ## Choosing N and K
 
