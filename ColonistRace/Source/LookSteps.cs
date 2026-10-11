@@ -439,7 +439,7 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// Takes a colonist off the map (despawns it) so it is not in the picture, e.g. the actors a studio fixture puts on the camera cell.
+        /// Takes a colonist off the map (despawns it) so it is not in the picture, e.g. the other colonists a fixture puts on the camera cell.
         /// The pawn is not destroyed; a reload brings the fixture back as it was. Fails if the colonist is not on a map.
         /// </summary>
         [Given("Nelim's Pickle Tools: the colonist {string} is removed from the map")]
@@ -519,7 +519,7 @@ namespace Nelim.PickleTools.ColonistRace
 
         /// <summary>
         /// Moves every colonist that no "stands at" step has placed in this scenario to a standable cell far from the camera (the corner
-        /// of the map farthest from the first subject, or the map's far corner when there is none), so the studio's actors are out of the
+        /// of the map farthest from the first subject, or the map's far corner when there is none), so the fixture's other colonists are out of the
         /// picture. Each is put back where it stood after the scenario. Fails if a colonist finds no cell.
         /// </summary>
         [Given("Nelim's Pickle Tools: the other colonists are out of frame")]

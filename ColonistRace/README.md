@@ -149,7 +149,7 @@ For staged gallery captures (rule of the day). **Not played.** The pawn stays wh
 | --- | --- |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\)` | Stops the colonist's job and walking and puts it on a standable cell |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\) facing {word}` | The same, turned North, East, South or West |
-| `Nelim's Pickle Tools: the colonist {string} is removed from the map` | Despawns the colonist (not destroyed; a reload brings the fixture back), for the studio actors standing on the camera cell |
+| `Nelim's Pickle Tools: the colonist {string} is removed from the map` | Despawns the colonist (not destroyed; a reload brings the fixture back), for the fixture colonists standing on the camera cell |
 | `Nelim's Pickle Tools: {string} wears {string}` | Dresses the colonist in a new undyed garment of that apparel def, moving what clashes to the inventory; `gets back the clothes it had` undoes it |
 
 Not here: a head type or face shape, and a neutral pose.
