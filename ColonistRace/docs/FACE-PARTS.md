@@ -40,8 +40,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Lid options (`lid option is`)
 
-![Lid options: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-lidoption.jpg)
-
 LidOptionNormal ([NL] Facial Animation - Experimentals).
 
 ## Skins (`face skin is`)
@@ -66,8 +64,6 @@ LidOptionNormal ([NL] Facial Animation - Experimentals).
 | EyeGenes3 | Courageous, Empathetic, Swift |
 
 ## Emotion marks (`emotion mark is`)
-
-![Emotion marks: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](img/parts-emotion.jpg)
 
 EmotionNormal ([NL] Facial Animation - Experimentals).
 
