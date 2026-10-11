@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-258 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+259 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -227,6 +227,7 @@ Package `nelim.pickletools.loadaudit`. Not in the bundle: a companion staged by 
 | --- | --- |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean` (Then) | `{string}` is the mod's packageId. Reads the game log **from the start of the game to now** and fails, listing the lines, when it holds what the four checks below find; also compares the mod's keyed translations with the active language. Attaches `load-audit`, a line saying what was read **Parameters:** `packageId` (string): the packageId of a mod, any case. |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean, apart from {string}` (Then) | The same, leaving out every message whose text or stack contains the second text (ignoring case): a known message the owner justifies. Say why in the feature, next to the step **Parameters:** `packageId` (string): the packageId of a mod, any case; `known` (string): a fragment of the message that is known and justified. |
+| `Nelim's Pickle Tools: the active language recorded no load error` (Then) | Asserts that the active language recorded no load error: for every loaded language, `LanguageDatabase`'s `loadErrors` and the `loadErrors` of each of its DefInjected packages are empty. The failure message lists every error, by language and package. |
 
 ## NewColony
 

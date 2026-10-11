@@ -9,6 +9,7 @@ it, nothing in Pickle changes, and it is **not part of the aggregate bundle**.
 | --- | --- |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean` | `{string}` is the mod's packageId. Reads the game log **from the start of the game to now** and fails, listing the lines, when it holds what the four checks below find; also compares the mod's keyed translations with the active language. Attaches `load-audit`, a line saying what was read |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean, apart from {string}` | The same, leaving out every message whose text or stack contains the second text (ignoring case): a known message the owner justifies. Say why in the feature, next to the step |
+| `Nelim's Pickle Tools: the active language recorded no load error` | Asserts that every loaded language, and each of its DefInjected packages, holds no load error (`loadErrors` empty). The failure lists every error by language and package. It does not say which mod an error comes from: for a pass with a tested mod against a pass without it. Main menu, no save needed; run with `-Language`. From Animal Ark, 2026-10-11. Not played. |
 
 ## What it checks
 

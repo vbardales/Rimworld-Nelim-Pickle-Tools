@@ -40,6 +40,40 @@ namespace Nelim.PickleTools.LoadAudit
             Check(ctx, packageId, known);
         }
 
+        /// <summary>
+        /// Asserts that the active language recorded no load error: for every loaded language, <c>LanguageDatabase</c>'s
+        /// <c>loadErrors</c> and the <c>loadErrors</c> of each of its DefInjected packages are empty. The failure message lists every
+        /// error, by language and package. Written 2026-10-11 from Animal Ark's own step (its <c>NoLanguageLoadError</c>), for the
+        /// French load errors the game reports on vanilla defs (Biotech, Odyssey, Vacstone, Mechanoid) that a pass without the tested mod
+        /// has to be compared with. It does not say which mod an error comes from. Main menu, no save needed. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the active language recorded no load error")]
+        public void ActiveLanguageHasNoLoadError(PickleContext ctx)
+        {
+            LoadedLanguage active = LanguageDatabase.activeLanguage;
+            ctx.Assert(active != null, "no active language");
+            var report = new List<string>();
+            foreach (LoadedLanguage language in LanguageDatabase.AllLoadedLanguages)
+            {
+                if (language.loadErrors != null && language.loadErrors.Count > 0)
+                {
+                    report.Add($"{language.folderName} ({language.loadErrors.Count} load errors):\n" +
+                               string.Join("\n", language.loadErrors.Select((e, i) => $"{i + 1}. {e}")));
+                }
+
+                foreach (DefInjectionPackage package in language.defInjections)
+                {
+                    if (package.loadErrors != null && package.loadErrors.Count > 0)
+                    {
+                        report.Add($"{language.folderName} DefInjected {package.defType?.Name} ({package.loadErrors.Count} errors):\n" +
+                                   string.Join("\n", package.loadErrors.Select((e, i) => $"{i + 1}. {e}")));
+                    }
+                }
+            }
+
+            ctx.Assert(report.Count == 0, $"active language {active.folderName}; " + string.Join("\n", report));
+        }
+
         private static void Check(PickleContext ctx, string packageId, string apartFrom)
         {
             ModContentPack pack = LoadedModManager.RunningMods.FirstOrDefault(
