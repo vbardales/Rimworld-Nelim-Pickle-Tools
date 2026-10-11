@@ -112,10 +112,63 @@ namespace Nelim.PickleTools.ScreenshotMode
             Messages.Clear();
         }
 
+        /// <summary>
+        /// Pauses the game and remembers the speed it had, so the beasts (or animals, or pawns) stay where they were put until the capture. The
+        /// speed comes back with <c>the interface is shown again</c> or after the scenario. From Ancient Chinese Beast, 2026-10-11 (its
+        /// <c>time is paused</c>), moved here because a second mod (Animal Ark) uses the same helper.
+        /// </summary>
+        [When("Nelim's Pickle Tools: time is paused for the capture", TimeoutSeconds = 30f)]
+        public async Task TimePaused(PickleContext ctx)
+        {
+            if (!paused) { savedSpeed = Find.TickManager.CurTimeSpeed; paused = true; }
+            Find.TickManager.CurTimeSpeed = TimeSpeed.Paused;
+            await ctx.WaitFrames(3);
+        }
+
+        /// <summary>
+        /// A capture of the map and nothing else: the game's own screenshot mode, with EVERY open window (the Pickle launcher panel and the
+        /// log viewer included) told not to draw in it. Unlike <c>screenshot mode is enabled around the open windows</c>, which keeps the
+        /// windows that are not Pickle's. Undone by <c>the interface is shown again</c> or after the scenario. From Ancient Chinese Beast, 2026-10-11.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the map is shown alone for a capture", TimeoutSeconds = 30f)]
+        public async Task MapAlone(PickleContext ctx)
+        {
+            Restore();
+            var root = Find.UIRoot;
+            ctx.Require(root?.screenshotMode != null, "no UIRoot screenshot mode is available");
+            foreach (var window in Find.WindowStack.Windows.ToList())
+            {
+                previous[window] = window.drawInScreenshotMode;
+                window.drawInScreenshotMode = false;
+            }
+
+            wasActive = root.screenshotMode.Active;
+            root.screenshotMode.Active = true;
+            enabled = true;
+            await ctx.WaitFrames(3);
+        }
+
+        /// <summary>Puts the windows, the screenshot mode and the game speed back (what <c>the map is shown alone for a capture</c> and <c>time is paused for the capture</c> changed).</summary>
+        [When("Nelim's Pickle Tools: the interface is shown again")]
+        public void InterfaceBack(PickleContext ctx)
+        {
+            Restore();
+            RestorePause();
+        }
+
+        private bool paused;
+        private TimeSpeed savedSpeed = TimeSpeed.Normal;
+
+        private void RestorePause()
+        {
+            if (paused && Find.TickManager != null) Find.TickManager.CurTimeSpeed = savedSpeed;
+            paused = false;
+        }
         [AfterScenario]
         public void RestoreAfterScenario(PickleContext ctx)
         {
             Restore();
+            RestorePause();
             RestoreDeveloperMode();
         }
 

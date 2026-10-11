@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-253 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+256 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -292,6 +292,9 @@ Package `nelim.pickletools.screenshotmode`. In the bundle (`Mod/Pickle/Assemblie
 | `Nelim's Pickle Tools: developer mode is restored` (When) | Puts developer mode back. Optional: the `AfterScenario` hook does it. |
 | `Nelim's Pickle Tools: the letters and the alerts are cleared from the screen` (When) | Clears the letter stack (public API: `LetterStack.RemoveLetter`) and the alerts readout's currently drawn list (private field, cleared by reflection: `AlertsReadout` has no public way to do this). |
 | `Nelim's Pickle Tools: the messages are cleared from the screen` (When) | Clears the messages drawn at the top left of the screen (`Messages.Clear()`: "The psychic soothe is ending."...). A message the game posts later still appears: play it right before the capture. Written 2026-10-10 for Anima Song. Not played when written. |
+| `Nelim's Pickle Tools: time is paused for the capture` (When) | Pauses the game and remembers the speed it had, so the beasts (or animals, or pawns) stay where they were put until the capture. The speed comes back with `the interface is shown again` or after the scenario. From Ancient Chinese Beast, 2026-10-11 (its `time is paused`), moved here because a second mod (Animal Ark) uses the same helper. |
+| `Nelim's Pickle Tools: the map is shown alone for a capture` (When) | A capture of the map and nothing else: the game's own screenshot mode, with EVERY open window (the Pickle launcher panel and the log viewer included) told not to draw in it. Unlike `screenshot mode is enabled around the open windows`, which keeps the windows that are not Pickle's. |
+| `Nelim's Pickle Tools: the interface is shown again` (When) | Puts the windows, the screenshot mode and the game speed back (what `the map is shown alone for a capture` and `time is paused for the capture` changed). |
 
 ## ScreenshotStudio
 
