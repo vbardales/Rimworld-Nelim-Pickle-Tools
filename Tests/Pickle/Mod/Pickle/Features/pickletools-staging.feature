@@ -34,5 +34,5 @@ Feature: PickleTools staged capture
     And a colonist "Ned" exists
     And Nelim's Pickle Tools: "Ned" stands at (146, 154)
     When Nelim's Pickle Tools: the other colonists are out of frame
-    And Nelim's Pickle Tools: the camera is centered on "Ned" at root size 8
+    And Nelim's Pickle Tools: the camera is centered on "Ned" at root size 11
     Then Nelim's Pickle Tools: the decor is removed
