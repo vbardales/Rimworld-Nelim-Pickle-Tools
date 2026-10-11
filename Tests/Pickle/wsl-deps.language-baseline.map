@@ -1,0 +1,9 @@
+# Baseline of the load errors of the active language: the base game and its DLC, with no mod under test, only the optional LoadAudit tool.
+# Compare with a pass of a mod (the same language, the same DLC state): an error that is in both is not the mod's.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.language-baseline.map -Filter pickletools-language-baseline -Language French
+#
+# `path:` names a folder of this repository (relative to its root); the folder's own About.xml packageId must match.
+nelim.pickletools.loadaudit   path:PickleTools/LoadAudit/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

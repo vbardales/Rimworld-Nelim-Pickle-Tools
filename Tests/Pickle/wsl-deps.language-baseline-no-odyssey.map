@@ -1,0 +1,6 @@
+# Same baseline as wsl-deps.language-baseline.map, with the Odyssey DLC left out (`!<packageId>` removes a DLC from the pass).
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.language-baseline-no-odyssey.map -Filter pickletools-language-baseline -Language French
+nelim.pickletools.loadaudit   path:PickleTools/LoadAudit/Mod
+!ludeon.rimworld.odyssey
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
