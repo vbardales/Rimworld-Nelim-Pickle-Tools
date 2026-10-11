@@ -109,6 +109,66 @@ namespace Nelim.PickleTools.TradeSteps
             ctx.Assert(executed && traded, $"the deal for {count} '{defName}' was not executed (the colony may lack silver)");
         }
 
+        /// <summary>
+        /// Makes a trader who sells a pawn that is already on the map (an animal, for example) and puts the trader on the map: a hand-made
+        /// humanlike trader of a neutral faction, with the named pawn in its inventory, silver placed on the map for the buyer, and
+        /// <c>wantsToTradeWithColony</c> set. Written 2026-10-11 from Contented Livestock's own steps. Not played here. Two things the game
+        /// does not say: a generated trader pawn has no TraderKindDef, so <c>Pawn_TraderTracker.CanTradeNow</c> is false and
+        /// <c>Dialog_Trade</c> throws (the step sets a silver kind that <c>WillTrade</c>s the pawn's def), and a pawn carried in an
+        /// inventory is not in <c>mapPawns.AllPawnsSpawned</c> (the buy step reads the trade deal, not the map).
+        /// </summary>
+        [Given("Nelim's Pickle Tools: a trader sells the pawn {string}", TimeoutSeconds = 30f)]
+        public void TraderSellsPawn(PickleContext ctx, string pawnName)
+        {
+            Map map = CurrentMap(ctx);
+            Pawn animal = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == pawnName);
+            ctx.Require(animal != null, $"no spawned pawn named '{pawnName}' stands on the map");
+            Faction faction = Find.FactionManager.AllFactionsListForReading
+                .FirstOrDefault(f => !f.IsPlayer && !f.def.hidden && f.def.humanlikeFaction && !f.HostileTo(Faction.OfPlayer));
+            ctx.Require(faction != null, "no neutral visible humanlike faction is available to own the trader");
+            PawnKindDef kind = DefDatabase<PawnKindDef>.AllDefs.FirstOrDefault(k => k.trader && k.RaceProps.Humanlike);
+            ctx.Require(kind != null, "no humanlike PawnKindDef is a trader");
+            TraderKindDef traderKind = DefDatabase<TraderKindDef>.AllDefs
+                .FirstOrDefault(t => t.tradeCurrency == TradeCurrency.Silver && t.WillTrade(animal.def));
+            ctx.Require(traderKind != null, $"no silver TraderKindDef trades a '{animal.def.defName}'");
+
+            Pawn seller = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, faction, forceGenerateNewPawn: true));
+            IntVec3 cell = CellFinder.RandomClosewalkCellNear(map.Center, map, 12);
+            GenSpawn.Spawn(seller, cell, map);
+            seller.mindState.wantsToTradeWithColony = true;
+            seller.trader.traderKind = traderKind;
+            if (animal.Spawned)
+            {
+                animal.DeSpawn();
+            }
+
+            ctx.Require(seller.inventory.innerContainer.TryAdd(animal), $"'{pawnName}' could not be put in the trader's inventory");
+            Thing silver = ThingMaker.MakeThing(ThingDefOf.Silver);
+            silver.stackCount = 20000;
+            GenPlace.TryPlaceThing(silver, map.Center, map, ThingPlaceMode.Near);
+            trader = seller;
+        }
+
+        /// <summary>
+        /// Buys the pawn of that name from the open trade window (a line of the deal whose pawn has this short name) through the game's own
+        /// <c>TradeDeal.TryExecute</c>, then asserts the pawn belongs to the player. Written 2026-10-11 from Contented Livestock's own steps. Not played here.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I buy the pawn named {string} from the trader", TimeoutSeconds = 20f)]
+        public void BuyPawn(PickleContext ctx, string pawnName)
+        {
+            ctx.Require(TradeSession.Active, "no trade window is open: use 'the trade window is open' first");
+            Tradeable line = TradeSession.deal.AllTradeables
+                .FirstOrDefault(t => t.AnyThing is Pawn p && p.Name != null && p.Name.ToStringShort == pawnName);
+            ctx.Require(line != null, $"the trade deal has no line for a pawn named '{pawnName}'");
+            line.ForceToDestination(1);
+            TradeSession.deal.UpdateCurrencyCount();
+            bool traded;
+            bool executed = TradeSession.deal.TryExecute(out traded);
+            ctx.Assert(executed && traded, $"the deal for '{pawnName}' was not executed (executed={executed}, traded={traded})");
+            Pawn bought = line.AnyThing as Pawn;
+            ctx.Assert(bought != null && bought.Faction == Faction.OfPlayer, $"'{pawnName}' belongs to {bought?.Faction?.Name ?? "nobody"} after the deal, not to the player");
+        }
+
         /// <summary>Closes the trade window and forgets the trader, after every scenario.</summary>
         [AfterScenario]
         public void CleanUp(PickleContext ctx)

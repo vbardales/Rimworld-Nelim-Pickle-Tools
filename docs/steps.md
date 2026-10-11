@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-256 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+258 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -416,6 +416,8 @@ Package `nelim.pickletools.tradesteps`. Not in the bundle: a companion staged by
 | `Nelim's Pickle Tools: a trader of kind {string} has arrived` (Given) | Fires the trader-caravan incident with a forced trader kind (a TraderKindDef name such as Caravan_Outlander_BulkGoods) and waits up to 30 seconds for a pawn of that kind to stand on the map. Fails if the incident declines or nobody of that kind arrives. |
 | `Nelim's Pickle Tools: the trade window is open` (When) | Opens the game's trade window between the first free colonist and the trader that arrived, and waits for the session to be active. |
 | `Nelim's Pickle Tools: I buy {int} of {string} from the trader` (When) | Buys a number of a thing from the trader: finds the tradeable whose def is the named ThingDef (an animal's def is its race, for example Muffalo), sets the count so the game reads it as a purchase, and executes the deal. Fails naming what is wrong: no such tradeable, not enough in stock, too little silver, or the game refused the deal. **Parameters:** `count` (int): a count, a whole number; `defName` (string): a def name of the loaded game (any case). |
+| `Nelim's Pickle Tools: a trader sells the pawn {string}` (Given) | Makes a trader who sells a pawn that is already on the map (an animal, for example) and puts the trader on the map: a hand-made humanlike trader of a neutral faction, with the named pawn in its inventory, silver placed on the map for the buyer, and `wantsToTradeWithColony` set. Written 2026-10-11 from Contented Livestock's own steps. **Parameters:** `pawnName` (string). |
+| `Nelim's Pickle Tools: I buy the pawn named {string} from the trader` (When) | Buys the pawn of that name from the open trade window (a line of the deal whose pawn has this short name) through the game's own `TradeDeal.TryExecute`, then asserts the pawn belongs to the player. Written 2026-10-11 from Contented Livestock's own steps. Not played here. **Parameters:** `pawnName` (string). |
 | `Nelim's Pickle Tools: the trader offers {string}` (Then) | Asserts the open trade window lists a tradeable of the named ThingDef held by the TRADER (its stock). **Parameters:** `defName` (string): a def name of the loaded game (any case). |
 | `Nelim's Pickle Tools: the trader would buy {string}` (Then) | Asserts the trade window lists a tradeable of the named ThingDef held by the COLONY and that the trader would take it. A buy-side tag is not random: with an animal of that def in the colony this fails for a real reason (the trader's kind does not buy the tag). **Parameters:** `defName` (string): a def name of the loaded game (any case). |
 

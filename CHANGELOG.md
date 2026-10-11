@@ -12,6 +12,7 @@ Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1
   - ScreenshotStudio: `the artificial buildings within {int} cells of (x, z) are hidden` (logs what it removes) and `the meditation focus of the thing at (x, z) is logged` (`[focus]` lines).
   - ScreenshotMode: `the messages are cleared from the screen`.
 - ScreenshotMode: `time is paused for the capture`, `the map is shown alone for a capture`, `the interface is shown again` (moved from Ancient Chinese Beast; not played).
+- TradeSteps: `a trader sells the pawn {string}`, `I buy the pawn named {string} from the trader` (from Contented Livestock; not played).
   - TradeSteps: `the trader offers {string}` (no stock fails with the prefix `[no-stock] `: Pickle 6.6.3 has no runtime skip), `the trader would buy {string}`, and orbital trader kinds (a trade ship instead of a caravan pawn).
   - DefFieldSteps: a list or array field reads as its items joined by `, `; new steps `the biome {string} lists the wild animal {string}`, `the recipe {string} is offered for the race {string}`, `the surgery recipes of the race {string} match those of the race {string}`.
   - `brrainz.harmony` is now declared (`modDependencies` and `loadAfter`) in the bundle and in the seven tools that use HarmonyLib.
