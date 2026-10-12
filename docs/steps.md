@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-267 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+271 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -229,6 +229,10 @@ Package `nelim.pickletools.loadaudit`. Not in the bundle: a companion staged by 
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: the {word} {word} of the stage {int} of {string} shown to {string} reads {string}` (Then) | The `label` or `description` of a stage of a `HediffDef` or a `ThoughtDef`, formatted with the colonist as `PAWN`, contains the expected text. The first word is `hediff` or `thought`, the second `label` or `description` (a hediff stage has a label only). **Parameters:** `kind` (word); `field` (word): a field name on the type; `stage` (int); `defName` (string): a def name of the loaded game (any case); `nickname` (string): the colonist's nickname; `expected` (string): the expected text. |
+| `Nelim's Pickle Tools: the {word} {word} of {string} shown to {string} reads {string}` (Then) | The same for the text of the def itself (a hediff's or a thought's own description or label). **Parameters:** `kind` (word); `field` (word): a field name on the type; `defName` (string): a def name of the loaded game (any case); `nickname` (string): the colonist's nickname; `expected` (string): the expected text. |
+| `Nelim's Pickle Tools: the message of the key {string} for {string} as {word} reads {string}` (Then) | A keyed translation, translated with the colonist as the named symbol (`PAWN`, `MACHINE`...), contains the expected text. **Parameters:** `key` (string): a translation key (language independent), not the translated text; `nickname` (string): the colonist's nickname; `symbol` (word); `expected` (string): the expected text. |
+| `Nelim's Pickle Tools: no text of the mod {string} keeps a gender switch` (Then) | No text of the mod (labels and descriptions of its defs, of the stages of its hediffs and thoughts, and its keyed translations in the active language) still holds a gender switch. For the presentations that remove them (Inclusive, MiddleDot, Masculine): the mod's own step sets the mode first. **Parameters:** `packageId` (string): the packageId of a mod, any case. |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean` (Then) | `{string}` is the mod's packageId. Reads the game log **from the start of the game to now** and fails, listing the lines, when it holds what the four checks below find; also compares the mod's keyed translations with the active language. Attaches `load-audit`, a line saying what was read **Parameters:** `packageId` (string): the packageId of a mod, any case. |
 | `Nelim's Pickle Tools: the load of the mod {string} is clean, apart from {string}` (Then) | The same, leaving out every message whose text or stack contains the second text (ignoring case): a known message the owner justifies. Say why in the feature, next to the step **Parameters:** `packageId` (string): the packageId of a mod, any case; `known` (string): a fragment of the message that is known and justified. |
 | `Nelim's Pickle Tools: the active language recorded no load error` (Then) | Asserts that the active language recorded no load error: the active language's `loadErrors` and the `loadErrors` of each of its DefInjected packages are empty (the English fallback is not read). The failure message lists every error, by package. |
