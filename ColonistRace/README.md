@@ -161,3 +161,6 @@ Not here: a head type or face shape, and a neutral pose.
 
 | `Nelim's Pickle Tools: {string} beard is {string}` | A `BeardDef` by name, or `none`; the failure lists the valid beards |
 | `Nelim's Pickle Tools: the schedule of {string} is joy all day` | All 24 hours of the colonist's schedule set to joy, every work type disabled, the job in progress ended, so only a recreation giver can be picked. From Anima Song, for Fullzoon Cookies. Not played |
+| `Nelim's Pickle Tools: the colonist {string} carries {int} {string}` | Puts N things of a def in the colonist's inventory (several stacks past the stack limit). A joy giver that looks in the inventory first finds them. From Fullzoon Cookies. Not played |
+| `Nelim's Pickle Tools: the thing {string} at ({int}, {int}) is forbidden` / `is not forbidden` | Forbids or allows the first thing of the def on the cell (needs a forbiddable component) |
+| `Nelim's Pickle Tools: the reasons why {string} cannot take {string} at ({int}, {int}) for joy are logged` | Logs, test by test (`[joy]` line): ingestible, joy value and kind, forbidden, will eat, can reserve, can reach, tolerance. Never fails |
