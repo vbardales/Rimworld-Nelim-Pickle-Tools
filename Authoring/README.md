@@ -122,11 +122,10 @@ Feature: Example Mod research interface
     When I take a screenshot "example-research"
     Then no errors were logged
 ```
-
 `test-colony` is supplied by the installed Pickle used by existing suites; verify the fixture exists in the
-build being staged. For presentation or screenshot scenarios, PickleTools' default is instead the packaged
-`nelim-zen-meadow-studio`: stage ScreenshotStudio and ClearScreen through `wsl-deps.studio.map` and load it
-explicitly. What each fixture actually holds (colonists, hostile insects, free areas by coordinate) is in
+build being staged. For presentation or screenshot scenarios, the default is the Sanctuary save `Nelims-tribe`, carried by the mod
+SanctuaryBacklot (the fixture `nelim-zen-meadow-studio` was deleted on 2026-10-08): stage it through a pass map like
+`SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map` and load it explicitly. What each fixture actually holds (colonists, hostile insects, free areas by coordinate) is in
 [docs/FIXTURES.md](../docs/FIXTURES.md); pick a build origin from there instead of guessing. A functional
 scenario keeps `test-colony` or another custom fixture when it needs specific preconditions. A custom fixture
 belongs in the test companion and needs documented DLC/mod requirements.
