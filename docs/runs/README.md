@@ -10,6 +10,7 @@ counts and the scenario names without the folder.
 | [`aggregate.md`](aggregate.md) | Every pass of the aggregate bundle kept in `evidence/aggregate/`, one row each. **Generated**: run [`Summarize-Aggregate.ps1`](Summarize-Aggregate.ps1) after a run |
 | [`2026-09-21-rimmsqol.md`](2026-09-21-rimmsqol.md) | The RIMMSQOL steps in game, twice: first identifiers, then the renamed build |
 | [`2026-09-22-screenshotstudio.md`](2026-09-22-screenshotstudio.md) | ScreenshotStudio: the zen fixture, its reload and its presentation captures |
+| [`2026-10-12-pickle-1-7.md`](2026-10-12-pickle-1-7.md) | The 1.7 pass, prerequisite 2: four tickets (aggregate-minimal, keyedclick, inspect-tabs, researchsteps) on RimWorld 1.7.4976 |
 
 ## Rules
 
