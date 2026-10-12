@@ -209,15 +209,19 @@ namespace Nelim.PickleTools.CoatSteps
             return taken.All(t => (t - cell).LengthHorizontalSquared > 4);
         }
 
-        private static List<Pawn> Animals(PickleContext ctx, string kindDefName)
+        private static List<Pawn> Animals(PickleContext ctx, string kindDefName, bool existing = false)
         {
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "no current map");
             var animals = map.mapPawns.AllPawnsSpawned
-                .Where(p => p.kindDef != null && p.kindDef.defName == kindDefName && p.Name != null && p.LabelShort.StartsWith(Prefix))
+                .Where(p => p.kindDef != null && p.kindDef.defName == kindDefName && (existing || (p.Name != null && p.LabelShort.StartsWith(Prefix))))
                 .OrderBy(p => p.LabelShort)
                 .ToList();
-            ctx.Require(animals.Count > 0, "no animal of kind " + kindDefName + " named " + Prefix + "N is on the map: spawn some first");
+            ctx.Require(
+                animals.Count > 0,
+                existing
+                    ? "no animal of kind " + kindDefName + " is on the map"
+                    : "no animal of kind " + kindDefName + " named " + Prefix + "N is on the map: spawn some first");
             return animals;
         }
 
@@ -267,6 +271,21 @@ namespace Nelim.PickleTools.CoatSteps
         public async Task AtLeastExtra(PickleContext ctx, string kindDefName, int wanted)
         {
             List<Pawn> animals = await Settled(ctx, kindDefName);
+            List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
+            string problem = CoatVerdicts.AtLeastCarrying(kindDefName, coats, wanted);
+            ctx.Assert(problem == null, problem);
+        }
+
+        /// <summary>
+        /// The same count over EVERY animal of the kind on the map, whatever its name: for animals that were already there (a saved game
+        /// made without the mod, loaded with it), which the spawn steps never named <c>coat-N</c>. A save holding other animals of that
+        /// kind counts them too. Not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: among the existing animals of kind {string}, at least {int} carry an extra coat")]
+        public async Task AtLeastExtraExisting(PickleContext ctx, string kindDefName, int wanted)
+        {
+            await ctx.WaitFrames(1);
+            List<Pawn> animals = Animals(ctx, kindDefName, true);
             List<int?> coats = animals.Select(p => Coat(ctx, p)).ToList();
             string problem = CoatVerdicts.AtLeastCarrying(kindDefName, coats, wanted);
             ctx.Assert(problem == null, problem);

@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-263 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+264 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -62,6 +62,7 @@ Package `nelim.pickletools.coatsteps`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: the pawn kind {string} keeps {int} alternate graphics at a chance of {string}` (Then) | Asserts the kind's number of `alternateGraphics` and its `alternateGraphicChance` (a number with a dot, `0.8`). Names the def type, for a defName shared by a ThingDef and a PawnKindDef, which Pickle's own field step refuses as ambiguous **Parameters:** `kindDefName` (string): a PawnKindDef name of the loaded game (any humanlike or animal kind); `count` (int): a count, a whole number; `chance` (string): a probability between 0 and 1, as text. |
 | `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} different extra coats were drawn` (Then) | Counts the distinct coat indices of `0` or more among the `coat-N` animals of that kind. On failure prints N, K and the coats seen, so bad luck reads differently from a patch that did not apply |
 | `Nelim's Pickle Tools: among the animals of kind {string}, at least {int} carry an extra coat` (Then) | Counts animals whose coat index is `0` or more, not different coats: for rare coats (5 percent) where distinct coats would be luck. Prints N, K and the coats seen |
+| `Nelim's Pickle Tools: among the existing animals of kind {string}, at least {int} carry an extra coat` (Then) | The same count over EVERY animal of the kind on the map, whatever its name: for animals that were already there (a saved game made without the mod, loaded with it), which the spawn steps never named `coat-N`. A save holding other animals of that kind counts them too. Not played. |
 | `Nelim's Pickle Tools: no animal of kind {string} carries an extra coat` (Then) | For a pass where a patch must not apply |
 | `Nelim's Pickle Tools: each animal of kind {string} that carries an extra coat is drawn with that coat's own texture` (Then) | Deterministic, not chance: for every animal with a coat, compares the path of the graphic the renderer built (`PawnRenderer.BodyGraphic`, after initialising the render tree) with the `texPath` of the alternate graphic its index names. Fails if none of the animals carries a coat, so it cannot pass on an empty comparison |
 | `Nelim's Pickle Tools: I note the coats of the animals of kind {string}` (When) | Remembers each animal's coat by name |
