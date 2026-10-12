@@ -1,0 +1,15 @@
+# Plays aggregate-minimal.feature on 1.7: the generic tools of the bundle, without Rimmsqol (no 1.7 build), ColonistRace and VefFactions (they need third-party mods). Run: -DepMap wsl-deps.aggregate-minimal-17.map -Filter aggregate-minimal
+# RimWorld 1.7 pass (AUDIT.md "Passe 1.7", prerequisite 2). The tool folders are the net10.0 builds of the 1.7 session, outside this repository (WSL ~/pt17/mods), read with a path relative to the rimworld repository root (6 levels up reach /). The committed net48 DLLs are not touched.
+nelim.pickletools.expansions       path:../../../../../../home/nelim/pt17/mods/ExpansionSteps
+nelim.pickletools.keyedclick       path:../../../../../../home/nelim/pt17/mods/KeyedClick
+nelim.pickletools.interfacescale   path:../../../../../../home/nelim/pt17/mods/InterfaceScale
+nelim.pickletools.inspecttabs      path:../../../../../../home/nelim/pt17/mods/InspectTabs
+nelim.pickletools.clearscreen      path:../../../../../../home/nelim/pt17/mods/ClearScreen
+nelim.pickletools.hoversteps       path:../../../../../../home/nelim/pt17/mods/HoverSteps
+nelim.pickletools.clickdiagnostics path:../../../../../../home/nelim/pt17/mods/ClickDiagnostics
+nelim.pickletools.filmticks        path:../../../../../../home/nelim/pt17/mods/FilmTicks
+nelim.pickletools.screenshotmode   path:../../../../../../home/nelim/pt17/mods/ScreenshotMode
+nelim.pickletools.textureowner     path:../../../../../../home/nelim/pt17/mods/TextureOwner
+nelim.pickletools.research         path:../../../../../../home/nelim/pt17/mods/ResearchSteps
+# The bundle is committed under PickleTools/Mod: this shell replaces it (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

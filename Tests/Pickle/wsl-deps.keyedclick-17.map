@@ -1,0 +1,5 @@
+# Plays pickletools-keyedclick.feature on 1.7. Run: -DepMap wsl-deps.keyedclick-17.map -Filter pickletools-keyedclick
+# RimWorld 1.7 pass (AUDIT.md "Passe 1.7", prerequisite 2). The tool folders are the net10.0 builds of the 1.7 session, outside this repository (WSL ~/pt17/mods), read with a path relative to the rimworld repository root (6 levels up reach /). The committed net48 DLLs are not touched.
+nelim.pickletools.keyedclick       path:../../../../../../home/nelim/pt17/mods/KeyedClick
+# The bundle is committed under PickleTools/Mod: this shell replaces it (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
