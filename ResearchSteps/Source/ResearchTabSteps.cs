@@ -30,7 +30,7 @@ namespace Nelim.PickleTools.Research
         // ---------------------------------------------------------------- opening a tab
 
         /// <summary>By def name first, then by the label the tab is drawn with, in the language the game runs in.</summary>
-        [When("Nelim's Pickle Tools: I open the research tab {string}")]
+        [When("Nelim's Pickle Tools: I open the research tab {string}", TimeoutSeconds = 30f)]
         public Task OpenTab(PickleContext ctx, string nameOrLabel)
         {
             return Open(ctx, ResolveTab(ctx, nameOrLabel));
@@ -41,7 +41,7 @@ namespace Nelim.PickleTools.Research
         /// scenario naming the key runs in any language. It only reaches a tab whose label comes from a Keyed
         /// string; a def's label injected by DefInjected has no key that <c>.Translate()</c> resolves.
         /// </summary>
-        [When("Nelim's Pickle Tools: I open the research tab keyed {string}")]
+        [When("Nelim's Pickle Tools: I open the research tab keyed {string}", TimeoutSeconds = 30f)]
         public Task OpenTabKeyed(PickleContext ctx, string key)
         {
             var label = TranslateKey(ctx, key);
