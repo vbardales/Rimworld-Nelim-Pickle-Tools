@@ -5,6 +5,7 @@
 # the key and the literal label give the same text and prove nothing, so the French run is the one that counts.
 #
 # No save is loaded. The main menu is where the buttons are, and it is reached without a colony.
+@requires:nelim.pickletools.keyedclick
 Feature: PickleTools keyed click step
 
   Scenario: a button is clicked by the key its label comes from
