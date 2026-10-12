@@ -160,3 +160,4 @@ Not here: a head type or face shape, and a neutral pose.
 | `Nelim's Pickle Tools: the other colonists are out of frame` | Sends every colonist that no `stands at` step placed in this scenario to a standable cell near the far corner of the map, and puts each back after the scenario (for a studio's actors) |
 
 | `Nelim's Pickle Tools: {string} beard is {string}` | A `BeardDef` by name, or `none`; the failure lists the valid beards |
+| `Nelim's Pickle Tools: the schedule of {string} is joy all day` | All 24 hours of the colonist's schedule set to joy, every work type disabled, the job in progress ended, so only a recreation giver can be picked. From Anima Song, for Fullzoon Cookies. Not played |

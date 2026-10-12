@@ -6,6 +6,8 @@ Two Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Nee
 | --- | --- |
 | `Nelim's Pickle Tools: I open the {string} inspect tab` | Opens an inspect tab on the selected thing through `InspectPaneUtility.OpenTab`, which switches the main tabs root to Inspect on its own and toggles only a closed tab. Refuses a tab the selection carries but hides. |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` | Waits for the named tab to be the one the pane has open, then asserts it. |
+| `Nelim's Pickle Tools: I open the info card of the selected thing on the {string} tab` | Opens the info card (the "i" button) of the single selected thing on a tab named by enum (`Stats`, `Character`, `Health`, `Records`). Not in the Pickle pull request. Written 2026-10-12 for AnimalsNaturally; not played |
+| `Nelim's Pickle Tools: I close the info card` | Closes the info card if one is open, nothing otherwise |
 | `Nelim's Pickle Tools: I select the thing of def {string} at ({int}, {int})` | Selects the one thing of that def on that cell, language independent (Pickle's `I select {string}` takes a label, which is text). Clears the selection first. No thing, or two of that def, on the cell is refused, and the message lists what the cell holds. **Written 2026-09-28 for Mechanoid Factory; not played** |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its

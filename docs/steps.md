@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-264 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+267 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -124,6 +124,7 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: {string} has xenotype {string}` (Then) | Asserts a pawn's xenotype by def name, case insensitive. A pawn with a custom xenotype reads as the def it was built from, and the failure names the custom one. **Parameters:** `nickname` (string): the colonist's nickname; `xenotypeDefName` (string): a XenotypeDef name of the loaded game (Biotech). |
 | `Nelim's Pickle Tools: {string} is of race {string}` (Then) | Asserts a pawn's race by def name, case insensitive: `Human`, or a race a mod adds. **Parameters:** `nickname` (string): the colonist's nickname; `raceDefName` (string): a race ThingDef name of the loaded game. |
 | `Nelim's Pickle Tools: {string} is at the {word} stage of life` (Then) | Asserts a pawn's stage of life: `Baby`, `Newborn`, `Child` or `Adult`, case insensitive. Needs Biotech for the first three. **Parameters:** `nickname` (string): the colonist's nickname; `stage` (word): `Baby`, `Newborn`, `Child` or `Adult`; any case; the first three need Biotech. |
+| `Nelim's Pickle Tools: the schedule of {string} is joy all day` (Given) | Sets all 24 hours of the colonist's schedule to joy, disables every work type, and ends the job in progress, so that work does not come before a recreation giver (a bored colonist went milking, 63 cells away, in an Anima Song run). The change is to the colonist's schedule and work settings, kept in a save made after it. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the thermal state and thoughts of {string} are logged` (When) | Writes in the log, and fails with nothing, the ambient temperature of a colonist, its comfortable range and every mood thought it has now (situational ones included). To read in the report why a face shows sweat or a blush. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: {string} has the thought {string}` (Then) | Asserts a colonist has the mood thought `ThoughtDef` now (for example `EnvironmentHot`); the failure lists the thoughts it has. **Parameters:** `nickname` (string): the colonist's nickname; `thoughtName` (string): a ThoughtDef name of the loaded game. |
 | `Nelim's Pickle Tools: {string} has no thought {string}` (Then) | Asserts a colonist does NOT have the mood thought `ThoughtDef` now; the failure says it is there, with its mood offset. **Parameters:** `nickname` (string): the colonist's nickname; `thoughtName` (string): a ThoughtDef name of the loaded game. |
@@ -199,6 +200,8 @@ Package `nelim.pickletools.inspecttabs`. In the bundle (`Mod/Pickle/Assemblies`)
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: I open the info card of the selected thing on the {string} tab` (When) | Opens the info card of the single selected thing on a tab, as the "i" button does. The tab is named by its enum name (`Stats`, `Character`, `Health`, `Records`), never by the translated label. Fails when nothing or several things are selected, or when the name is not a tab of this game version (the message lists them). |
+| `Nelim's Pickle Tools: I close the info card` (When) | Closes the info card if one is open; nothing otherwise, so it can end every scenario that opened one. |
 | `Nelim's Pickle Tools: I open the {string} inspect tab` (When) | Opens an inspect tab on the selected thing, naming it by type or label key. |
 | `Nelim's Pickle Tools: I select the thing of def {string} at \({int}, {int}\)` (When) | Selects the one thing of a def on a cell, language independent: Pickle's own `I select {string}` takes a label, which is text in the language of the run. Clears the selection first. A cell with none, or with two of that def, is refused, and the message lists what the cell holds, so the scenario never selects "one of them" by luck. **Parameters:** `defName` (string): a def name of the loaded game (any case); `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` (Then) | Asserts the named inspect tab is the one currently open. |
