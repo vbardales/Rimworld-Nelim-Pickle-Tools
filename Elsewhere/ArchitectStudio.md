@@ -17,7 +17,7 @@ the same text make every scenario that uses it ambiguous, and Pickle refuses to 
 | Categories (30 steps, parent row included: create or move a category under a parent, read the parent back) | `CategorySteps.cs` | Create, move, relabel, colour and delete an Architect category, and read the tab, its key binding category and the siblings' order |
 | The mod's own wiring (25 steps) | `ModSteps.cs` | The access-check waiver and its startup probe, the mod's Architect button, its settings shortcut and reset, the height of the Architect window |
 | A real restart (4 steps) | `RestartSteps.cs` | Two game launches under one lock hold (`-Then`): the first configures the mod and keeps the result on disk with a marker, the second is a new process that checks the whole Architect menu against it. Played only where the empty switch mod `nelim.architectstudio.restartpass` is staged (`@requires`). If the chain is cut, the next run puts the player's file back from the backup |
-| The Unsorted tab (7 steps, 1.1.0) | `UnsortedSteps.cs` | Switch a vanilla building's default designator off for one scenario, turn the opt-in tab on or off, and read what the tab offers, what no other tab offers and the count the category editor shows. All texts name the Unsorted tab or the Architect designator, none is generic |
+| The Unsorted tab (8 steps, 1.1.0) | `UnsortedSteps.cs` | Switch a vanilla building's default designator off for one scenario, turn the opt-in tab on or off, and read what the tab offers, what no other tab offers and the count the category editor shows. All texts name the Unsorted tab or the Architect designator, none is generic |
 
 ## Small, and worth a second look if another suite needs the same thing
 
