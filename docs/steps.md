@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-275 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+277 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -142,6 +142,8 @@ Package `nelim.pickletools.deffields`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: def {string} of type {string} field {string} is {string}` (Then) | Finds the def of that type and name (`ThingDef`, `PawnKindDef`, any def type the game knows), walks the dotted path over its public fields and properties, and compares the value's text with the expected text, ignoring case **Parameters:** `defName` (string): a def name of the loaded game (any case); `typeName` (string): a def name of the type the step names; a wrong name fails with the list of valid ones; `fieldPath` (string): a field path, names joined by dots; `expected` (string): the expected text. |
 | `Nelim's Pickle Tools: the biome {string} lists the wild animal {string}` (Then) | Asserts a biome lists a pawn kind among its wild animals (BiomeDef.wildAnimals, which a patch fills; the commonality is not read). **Parameters:** `biomeName` (string); `kindName` (string): a PawnKindDef name of the loaded game. |
 | `Nelim's Pickle Tools: the recipe {string} is offered for the race {string}` (Then) | Asserts a recipe is offered to a race: the race's recipe list (ThingDef.AllRecipes, which holds the race's own recipes and every recipe whose recipeUsers names it, built after all patches and after a mod such as A Dog Said... Animal Prosthetics 2 copied its lists) contains it and its research prerequisites are met (AvailableNow). **Parameters:** `recipeName` (string); `raceName` (string). |
+| `Nelim's Pickle Tools: the race {string} is not offered the recipe {string}` (Then) | The negative twin of `the recipe ... is offered for the race`: the race's recipe list (`ThingDef.AllRecipes`) does not contain the recipe. It does not look at research. Written 2026-10-12 from A Certain Series' own step. Not played here. **Parameters:** `raceName` (string); `recipeName` (string). |
+| `Nelim's Pickle Tools: the recipe {string} can be applied on a {string} of a {string}` (Then) | The recipe is offered to the pawn kind AND the game finds a part of that def on a real pawn of the kind: being listed is not being usable. Generates a pawn of the kind (`PawnGenerator`) and destroys it at once. Written 2026-10-12 from A Certain Series' own step. Not played here. **Parameters:** `recipeName` (string); `partName` (string); `kindName` (string): a PawnKindDef name of the loaded game. |
 | `Nelim's Pickle Tools: the surgery recipes of the race {string} match those of the race {string}` (Then) | Compares the SURGERY recipes of two races by defName (RecipeDef.IsSurgery in ThingDef.AllRecipes): the same set, or a failure that names the recipes only one of them has. No recipe defName is hardcoded, so it follows a mod that adds its own. **Parameters:** `raceName` (string); `otherName` (string). |
 
 ## ExpansionSteps

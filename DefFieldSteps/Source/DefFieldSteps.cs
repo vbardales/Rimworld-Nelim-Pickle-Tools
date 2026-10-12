@@ -62,6 +62,50 @@ namespace Nelim.PickleTools.DefFields
         }
 
         /// <summary>
+        /// The negative twin of <c>the recipe ... is offered for the race</c>: the race's recipe list (<c>ThingDef.AllRecipes</c>) does not
+        /// contain the recipe. It does not look at research. Written 2026-10-12 from A Certain Series' own step. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the race {string} is not offered the recipe {string}")]
+        public void RaceNotOfferedRecipe(PickleContext ctx, string raceName, string recipeName)
+        {
+            var recipe = DefDatabase<RecipeDef>.GetNamedSilentFail(recipeName);
+            ctx.Require(recipe != null, $"no RecipeDef named '{recipeName}'");
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null, $"no ThingDef named '{raceName}'");
+            ctx.Assert(!race.AllRecipes.Contains(recipe), $"'{raceName}' is offered '{recipeName}'");
+        }
+
+        /// <summary>
+        /// The recipe is offered to the pawn kind AND the game finds a part of that def on a real pawn of the kind: being listed is not
+        /// being usable. Generates a pawn of the kind (<c>PawnGenerator</c>) and destroys it at once. Written 2026-10-12 from A Certain
+        /// Series' own step. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the recipe {string} can be applied on a {string} of a {string}")]
+        public void RecipeAppliesOnPart(PickleContext ctx, string recipeName, string partName, string kindName)
+        {
+            var recipe = DefDatabase<RecipeDef>.GetNamedSilentFail(recipeName);
+            ctx.Require(recipe != null, $"no RecipeDef named '{recipeName}'");
+            var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindName);
+            ctx.Require(kind != null, $"no PawnKindDef named '{kindName}'");
+            Pawn pawn = PawnGenerator.GeneratePawn(kind);
+            try
+            {
+                ctx.Assert(pawn.def.AllRecipes.Contains(recipe), $"'{kindName}' is not offered '{recipeName}'");
+                var parts = recipe.Worker.GetPartsToApplyOn(pawn, recipe).ToList();
+                ctx.Assert(
+                    parts.Any(p => p.def.defName == partName),
+                    $"'{recipeName}' finds no '{partName}' on a '{kindName}': parts found are [{string.Join(", ", parts.Select(p => p.def.defName))}]");
+            }
+            finally
+            {
+                if (!pawn.Destroyed)
+                {
+                    pawn.Destroy();
+                }
+            }
+        }
+
+        /// <summary>
         /// Compares the SURGERY recipes of two races by defName (RecipeDef.IsSurgery in ThingDef.AllRecipes): the same set, or a failure that
         /// names the recipes only one of them has. No recipe defName is hardcoded, so it follows a mod that adds its own.
         /// </summary>
