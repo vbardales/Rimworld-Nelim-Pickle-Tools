@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-284 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+285 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -251,6 +251,7 @@ Package `nelim.pickletools.loadaudit`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: the active language recorded no load error` (Then) | Asserts that the active language recorded no load error: the active language's `loadErrors` and the `loadErrors` of each of its DefInjected packages are empty (the English fallback is not read). The failure message lists every error, by package. |
 | `Nelim's Pickle Tools: the game has finished starting` (Given) | Waits (up to 120 s) until the game has no long event running or waiting (`LongEventHandler.AnyEventNowOrWaiting` is false), so that the load is over before the log is read. Written 2026-10-11 from the same step in three mods (Chinese Animals, Ebbbs Renew, Moa Renew). Not played here. |
 | `Nelim's Pickle Tools: the game log holds the text {string}` (Then) | Asserts the game log, read from its start to now, holds this text. For a message the mod is expected to log (a positive check), as opposed to `the load of the mod ... is clean`, which fails on messages that should not be there. Written 2026-10-11 from the same step in two mods (Funny Creatures Renew, Megabees Renew). Not played here. **Parameters:** `fragment` (string). |
+| `Nelim's Pickle Tools: the mod {string} declares itself incompatible with {string}` (Then) | Asserts the About.xml of the first mod (by packageId, installed, active or not) declares the second in `incompatibleWith` (the plain list and the block of the running game version), read through `ModMetaData`. For a pass that stages both on purpose, where the game only warns and loads both. **Parameters:** `packageId` (string): the packageId of a mod, any case; `otherPackageId` (string). |
 
 ## NewColony
 

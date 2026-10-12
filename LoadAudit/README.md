@@ -16,6 +16,7 @@ it, nothing in Pickle changes, and it is **not part of the aggregate bundle**.
 | `Nelim's Pickle Tools: the {word} {word} of {string} shown to {string} reads {string}` | The same for the text of the def itself |
 | `Nelim's Pickle Tools: the message of the key {string} for {string} as {word} reads {string}` | A keyed translation, with the colonist as the named symbol (`PAWN`, `MACHINE`...) |
 | `Nelim's Pickle Tools: no text of the mod {string} keeps a gender switch` | No label or description of the mod's defs and stages, nor keyed translation, still holds a `{NAME_gender` switch. Set the mode first with the mod's own step |
+| `Nelim's Pickle Tools: the mod {string} declares itself incompatible with {string}` | The first mod's About.xml (installed, active or not, read through `ModMetaData`) lists the second in `incompatibleWith`. For a pass that stages both on purpose: the game only warns and loads both. From A Perfect Mind. Not played |
 
 ## What it checks
 

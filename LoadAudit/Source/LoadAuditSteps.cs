@@ -99,6 +99,28 @@ namespace Nelim.PickleTools.LoadAudit
                 $"the game log ({text.Length} characters, read from the start) does not contain '{fragment}'");
         }
 
+        /// <summary>
+        /// Asserts the About.xml of the first mod (by packageId, installed, active or not) declares the second in <c>incompatibleWith</c>
+        /// (the plain list and the block of the running game version), read through <c>ModMetaData</c>. For a pass that stages both on
+        /// purpose, where the game only warns and loads both. Written 2026-10-12 for A Perfect Mind in a Perfect Body. Not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the mod {string} declares itself incompatible with {string}")]
+        public void DeclaresIncompatible(PickleContext ctx, string packageId, string otherPackageId)
+        {
+            ModMetaData meta = ModLister.AllInstalledMods.FirstOrDefault(
+                m => string.Equals(m.PackageId, packageId, StringComparison.OrdinalIgnoreCase) ||
+                     string.Equals(m.PackageIdPlayerFacing, packageId, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(meta != null, $"no installed mod has the packageId \"{packageId}\"");
+            List<string> declared = meta.IncompatibleWith.ToList();
+            bool found = declared.Any(
+                id => string.Equals(id, otherPackageId, StringComparison.OrdinalIgnoreCase) ||
+                      string.Equals(id.Replace("_steam", string.Empty).Replace("_copy", string.Empty), otherPackageId, StringComparison.OrdinalIgnoreCase));
+            ctx.Assert(
+                found,
+                $"the mod {meta.PackageId} does not declare itself incompatible with \"{otherPackageId}\"; its incompatibleWith is: " +
+                (declared.Count == 0 ? "(empty)" : string.Join(", ", declared)));
+        }
+
         private static void Check(PickleContext ctx, string packageId, string apartFrom)
         {
             ModContentPack pack = LoadedModManager.RunningMods.FirstOrDefault(
