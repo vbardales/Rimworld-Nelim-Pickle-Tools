@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-289 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+295 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -154,6 +154,12 @@ Package `nelim.pickletools.deffields`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: the race {string} is not offered the recipe {string}` (Then) | The negative twin of `the recipe ... is offered for the race`: the race's recipe list (`ThingDef.AllRecipes`) does not contain the recipe. It does not look at research. Written 2026-10-12 from A Certain Series' own step. Not played here. **Parameters:** `raceName` (string); `recipeName` (string). |
 | `Nelim's Pickle Tools: the recipe {string} can be applied on a {string} of a {string}` (Then) | The recipe is offered to the pawn kind AND the game finds a part of that def on a real pawn of the kind: being listed is not being usable. Generates a pawn of the kind (`PawnGenerator`) and destroys it at once. Written 2026-10-12 from A Certain Series' own step. Not played here. **Parameters:** `recipeName` (string); `partName` (string); `kindName` (string): a PawnKindDef name of the loaded game. |
 | `Nelim's Pickle Tools: the surgery recipes of the race {string} match those of the race {string}` (Then) | Compares the SURGERY recipes of two races by defName (RecipeDef.IsSurgery in ThingDef.AllRecipes): the same set, or a failure that names the recipes only one of them has. No recipe defName is hardcoded, so it follows a mod that adds its own. **Parameters:** `raceName` (string); `otherName` (string). |
+| `Nelim's Pickle Tools: the pawn kind {string} is in the mating group {string}` (Then) | Dogs Mate keeps its mating groups as defs of the type `Revolus.DogsMate.AnimalGroupDef`, whose public list `pawnKinds` names the kinds (the resolved list is the property `FoundPawnKinds`, read when the field is empty). Read by reflection, so this tool does not reference the mod. Written 2026-10-13 for Mengwu Expanded Animals Renew. **Parameters:** `kindName` (string): a PawnKindDef name of the loaded game; `groupName` (string). |
+| `Nelim's Pickle Tools: the race {string} lists {string} as a crossbreeding partner` (Then) | Asserts the race (ThingDef) lists another race among `race.canCrossBreedWith`, which a patch fills. Written 2026-10-13 from Funny Creatures Renew's own step. Not played here. **Parameters:** `raceName` (string); `partnerName` (string). |
+| `Nelim's Pickle Tools: the race {string} does not list {string} as a crossbreeding partner` (Then) | The negative twin of `the race ... lists ... as a crossbreeding partner`. Not played here. **Parameters:** `raceName` (string); `partnerName` (string). |
+| `Nelim's Pickle Tools: a {string} mother answers a {string} father with {word}` (Then) | What Better Crossbreeding (DZY.CrossBreeding) will answer for a birth: the extension on the MOTHER's PawnKindDef holds outcomes keyed by the FATHER's kind, each with a behavior (`Maternal`, `Random`, ...). Read by reflection on the type's full name, so this tool does not reference the mod. Fails with the outcomes it found. **Parameters:** `motherKind` (string); `fatherKind` (string); `behavior` (word). |
+| `Nelim's Pickle Tools: the race {string} has the body clock {word}` (Then) | Nocturnal Animals keeps an animal's body clock in a public field `bodyClock` of the extension `NocturnalAnimals.ExtendedRaceProperties` on the race. Read by reflection. Written 2026-10-13 from Funny Creatures Renew's own step. Not played here. **Parameters:** `raceName` (string); `expected` (word): the expected text. |
+| `Nelim's Pickle Tools: the race {string} has no body clock` (Then) | The race carries no Nocturnal Animals extension (an animal without it is diurnal). Not played here. **Parameters:** `raceName` (string). |
 
 ## ExpansionSteps
 

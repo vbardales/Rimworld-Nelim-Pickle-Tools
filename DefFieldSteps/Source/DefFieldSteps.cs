@@ -121,6 +121,120 @@ namespace Nelim.PickleTools.DefFields
                 $"surgery recipes differ: only for '{raceName}' [{string.Join(", ", onlyA)}]; only for '{otherName}' [{string.Join(", ", onlyB)}]");
         }
 
+        private const string MatingGroupType = "Revolus.DogsMate.AnimalGroupDef";
+
+        /// <summary>
+        /// Dogs Mate keeps its mating groups as defs of the type <c>Revolus.DogsMate.AnimalGroupDef</c>, whose public list <c>pawnKinds</c> names the
+        /// kinds (the resolved list is the property <c>FoundPawnKinds</c>, read when the field is empty). Read by reflection, so this tool does not
+        /// reference the mod. Written 2026-10-13 for Mengwu Expanded Animals Renew. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the pawn kind {string} is in the mating group {string}")]
+        public void KindInMatingGroup(PickleContext ctx, string kindName, string groupName)
+        {
+            Type type = GenTypes.GetTypeInAnyAssembly(MatingGroupType);
+            ctx.Require(type != null, $"no type {MatingGroupType}: is Dogs Mate loaded?");
+            Def group = GenDefDatabase.GetDefSilentFail(type, groupName, false);
+            ctx.Require(group != null, $"no {MatingGroupType} named '{groupName}'");
+            var names = new List<string>();
+            foreach (string member in new[] { "pawnKinds", "FoundPawnKinds" })
+            {
+                object value = type.GetField(member)?.GetValue(group) ?? type.GetProperty(member)?.GetValue(group);
+                if (value is System.Collections.IEnumerable list)
+                {
+                    names.AddRange(list.OfType<Def>().Select(d => d.defName));
+                }
+            }
+
+            ctx.Assert(names.Contains(kindName), $"mating group '{groupName}' holds [{string.Join(", ", names.Distinct())}], not '{kindName}'");
+        }
+
+        private const string CrossbreedingExtension = "DZY.CrossBreeding.Extension";
+        private const string NocturnalExtension = "NocturnalAnimals.ExtendedRaceProperties";
+
+        /// <summary>
+        /// Asserts the race (ThingDef) lists another race among <c>race.canCrossBreedWith</c>, which a patch fills.
+        /// Written 2026-10-13 from Funny Creatures Renew's own step. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the race {string} lists {string} as a crossbreeding partner")]
+        public void RaceListsPartner(PickleContext ctx, string raceName, string partnerName)
+        {
+            List<string> partners = Partners(ctx, raceName);
+            ctx.Assert(partners.Contains(partnerName), $"'{raceName}' lists [{string.Join(", ", partners)}] as crossbreeding partners, not '{partnerName}'");
+        }
+
+        /// <summary>The negative twin of <c>the race ... lists ... as a crossbreeding partner</c>. Not played here.</summary>
+        [Then("Nelim's Pickle Tools: the race {string} does not list {string} as a crossbreeding partner")]
+        public void RaceDoesNotListPartner(PickleContext ctx, string raceName, string partnerName)
+        {
+            List<string> partners = Partners(ctx, raceName);
+            ctx.Assert(!partners.Contains(partnerName), $"'{raceName}' lists [{string.Join(", ", partners)}] as crossbreeding partners, including '{partnerName}'");
+        }
+
+        private static List<string> Partners(PickleContext ctx, string raceName)
+        {
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null && race.race != null, $"no race ThingDef named '{raceName}'");
+            return race.race.canCrossBreedWith?.Select(d => d.defName).ToList() ?? new List<string>();
+        }
+
+        /// <summary>
+        /// What Better Crossbreeding (DZY.CrossBreeding) will answer for a birth: the extension on the MOTHER's PawnKindDef holds outcomes keyed
+        /// by the FATHER's kind, each with a behavior (<c>Maternal</c>, <c>Random</c>, ...). Read by reflection on the type's full name, so this
+        /// tool does not reference the mod. Fails with the outcomes it found. Written 2026-10-13 from Funny Creatures Renew's own step. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: a {string} mother answers a {string} father with {word}")]
+        public void MotherAnswers(PickleContext ctx, string motherKind, string fatherKind, string behavior)
+        {
+            var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(motherKind);
+            ctx.Require(kind != null, $"no PawnKindDef named '{motherKind}'");
+            DefModExtension extension = kind.modExtensions?.FirstOrDefault(e => e.GetType().FullName == CrossbreedingExtension);
+            ctx.Require(extension != null, $"'{motherKind}' carries no {CrossbreedingExtension}; its extensions: "
+                + string.Join(", ", (kind.modExtensions ?? new List<DefModExtension>()).Select(e => e.GetType().FullName)));
+            var outcomes = extension.GetType().GetField("outcomes")?.GetValue(extension) as System.Collections.IEnumerable;
+            ctx.Require(outcomes != null, $"{CrossbreedingExtension} has no readable 'outcomes' list: has the mod changed?");
+            var seen = new List<string>();
+            foreach (object outcome in outcomes)
+            {
+                Type type = outcome.GetType();
+                var father = type.GetField("kindDef")?.GetValue(outcome) as PawnKindDef;
+                string actual = type.GetField("behavior")?.GetValue(outcome)?.ToString();
+                seen.Add($"{father?.defName}={actual}");
+                if (father?.defName == fatherKind)
+                {
+                    ctx.Assert(actual == behavior, $"a '{motherKind}' mother with a '{fatherKind}' father answers {actual}, expected {behavior}");
+                    return;
+                }
+            }
+
+            ctx.Assert(false, $"a '{motherKind}' mother has no outcome for a '{fatherKind}' father; outcomes: [{string.Join(", ", seen)}]");
+        }
+
+        /// <summary>
+        /// Nocturnal Animals keeps an animal's body clock in a public field <c>bodyClock</c> of the extension <c>NocturnalAnimals.ExtendedRaceProperties</c>
+        /// on the race. Read by reflection. Written 2026-10-13 from Funny Creatures Renew's own step. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the race {string} has the body clock {word}")]
+        public void RaceHasBodyClock(PickleContext ctx, string raceName, string expected)
+        {
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null, $"no ThingDef named '{raceName}'");
+            DefModExtension extension = race.modExtensions?.FirstOrDefault(e => e.GetType().FullName == NocturnalExtension);
+            ctx.Require(extension != null, $"'{raceName}' carries no {NocturnalExtension}; its extensions: "
+                + string.Join(", ", (race.modExtensions ?? new List<DefModExtension>()).Select(e => e.GetType().FullName)));
+            object clock = extension.GetType().GetField("bodyClock")?.GetValue(extension);
+            ctx.Require(clock != null, $"{NocturnalExtension} has no readable 'bodyClock' field: has the mod changed?");
+            ctx.Assert(clock.ToString() == expected, $"'{raceName}' has the body clock {clock}, expected {expected}");
+        }
+
+        /// <summary>The race carries no Nocturnal Animals extension (an animal without it is diurnal). Not played here.</summary>
+        [Then("Nelim's Pickle Tools: the race {string} has no body clock")]
+        public void RaceHasNoBodyClock(PickleContext ctx, string raceName)
+        {
+            var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
+            ctx.Require(race != null, $"no ThingDef named '{raceName}'");
+            ctx.Assert(!(race.modExtensions?.Any(e => e.GetType().FullName == NocturnalExtension) ?? false), $"'{raceName}' carries {NocturnalExtension}, expected none");
+        }
+
         private static List<string> Surgeries(PickleContext ctx, string raceName)
         {
             var race = DefDatabase<ThingDef>.GetNamedSilentFail(raceName);
