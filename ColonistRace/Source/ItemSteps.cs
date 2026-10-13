@@ -74,6 +74,10 @@ namespace Nelim.PickleTools.ColonistRace
                 $"{nickname} can reserve it: {pawn.CanReserve(thing)}",
                 $"{nickname} can reach it: {pawn.CanReach(thing, PathEndMode.OnCell, Danger.None)}",
             };
+            FoodPolicy policy = pawn.foodRestriction?.CurrentFoodPolicy;
+            lines.Add(policy == null
+                ? $"{nickname} follows no food policy"
+                : $"{nickname}'s food policy: '{policy.label}' (id {policy.id}), allows {thing.def.defName}: {policy.filter.Allows(thing.def)}");
             JoyKindDef kind = thing.def.ingestible?.joyKind;
             if (kind != null && pawn.needs?.joy != null)
             {
@@ -81,6 +85,47 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             Log.Message("[joy] " + string.Join("; ", lines));
+        }
+
+        /// <summary>
+        /// Gives the colonist a new food policy of their own that allows every food and drink, so a food the colonist's saved policy
+        /// refuses (a policy saved before a mod added its foods does not list them) is eaten. The policy is named "Pickle: everything"
+        /// and is made for this call; the colonist's earlier policy is left as it was. Fails when the colonist follows no food policy tracker.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} follows a food policy that allows everything")]
+        public void FollowsEverythingPolicy(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.foodRestriction != null, $"{nickname} has no food restriction tracker");
+            FoodPolicy policy = Current.Game.foodRestrictionDatabase.MakeNewFoodRestriction();
+            policy.label = "Pickle: everything";
+            policy.filter.SetAllowAll(null);
+            pawn.foodRestriction.CurrentFoodPolicy = policy;
+            ctx.Assert(pawn.foodRestriction.CurrentFoodPolicy == policy, $"{nickname} still follows '{pawn.foodRestriction.CurrentFoodPolicy?.label}' after the step");
+        }
+
+        /// <summary>
+        /// Gives the colonist a new food policy of their own: a copy of the one they follow now, with one more def allowed (by defName). Everything
+        /// else stays as the earlier policy had it. The earlier policy is left as it was. Fails when the def is unknown or is not a thing a policy can hold.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} follows a food policy that also allows {string}")]
+        public void FollowsPolicyAlsoAllowing(PickleContext ctx, string nickname, string defName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.foodRestriction != null, $"{nickname} has no food restriction tracker");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            FoodPolicy before = pawn.foodRestriction.CurrentFoodPolicy;
+            FoodPolicy policy = Current.Game.foodRestrictionDatabase.MakeNewFoodRestriction();
+            policy.label = "Pickle: " + (before == null ? "default" : before.label) + " + " + defName;
+            if (before != null)
+            {
+                policy.filter.CopyAllowancesFrom(before.filter);
+            }
+
+            policy.filter.SetAllow(def, true);
+            pawn.foodRestriction.CurrentFoodPolicy = policy;
+            ctx.Assert(policy.filter.Allows(def), $"the new food policy still refuses {defName}: the def is not one a food policy can hold");
         }
 
         private static Thing ThingAt(PickleContext ctx, string defName, int x, int z)
