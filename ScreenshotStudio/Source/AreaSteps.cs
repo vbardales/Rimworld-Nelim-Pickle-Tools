@@ -101,10 +101,17 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// Destroys every thing in the area: furniture, items, plants, filth, corpses. Pawns, walls, doors, natural rock, ethereal things and
         /// projectiles stay. Terrain and roofs are untouched. Returns how many things were destroyed.
         /// </summary>
-        public static int Empty(PickleContext ctx, MapArea area)
+        public static int Empty(PickleContext ctx, MapArea area) => Empty(ctx, area, false);
+
+        /// <summary>
+        /// The same, and with <paramref name="keepRoofHolders"/> the things that hold a roof up (columns, pillars: ThingDef.holdsRoof) stay too, because the
+        /// game collapses an unsupported roof the moment its holder is despawned (a "Roof collapse" letter, dust and unroofed cells in the shot) and putting
+        /// the holder back afterwards does not undo it.
+        /// </summary>
+        public static int Empty(PickleContext ctx, MapArea area, bool keepRoofHolders)
         {
             Map map = RequireMap(ctx);
-            var doomed = map.listerThings.AllThings.Where(t => area.Contains(t.Position)
+            var doomed = map.listerThings.AllThings.Where(t => area.Contains(t.Position) && !(keepRoofHolders && t.def.holdsRoof)
                 && !(t is Pawn) && t.def.category != ThingCategory.Ethereal && t.def.category != ThingCategory.Projectile
                 && !(t.def.building != null && (t.def.IsDoor || t.def.defName.EndsWith("Wall") || t.def.building.isNaturalRock))).ToList();
             foreach (var t in doomed) if (!t.Destroyed) t.Destroy();
@@ -224,6 +231,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied")]
         public void Empty(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1));
 
+        /// <summary>The same as emptying the rectangle, but the things that hold a roof up (columns, pillars) stay, so the roof does not collapse.</summary>
+        [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied, the roof holders kept")]
+        public void EmptyKeepingRoofHolders(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1), true);
+
         /// <summary>Gives the dry cells of the rectangle the terrain of the cell 3 cells west of it at mid height (Soil if that is water or rock), without paint. One sample for the whole rectangle: do not use it on an enclosure.</summary>
         [Given(Prefix + "the floor of the area from \\({int}, {int}\\) to \\({int}, {int}\\) is bared")]
         public void BareFloor(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.BareFloor(ctx, new MapArea(x0, z0, x1, z1));
@@ -263,6 +274,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Destroys the furniture, items, plants, filth and corpses of every cell the camera shows now. Pawns, walls, doors and natural rock stay.</summary>
         [Given(Prefix + "the frame is emptied")]
         public void EmptyFrame(PickleContext ctx) => AreaOps.Empty(ctx, View(ctx));
+
+        /// <summary>The same as emptying the frame, but the things that hold a roof up (columns, pillars) stay, so the roof does not collapse.</summary>
+        [Given(Prefix + "the frame is emptied, the roof holders kept")]
+        public void EmptyFrameKeepingRoofHolders(PickleContext ctx) => AreaOps.Empty(ctx, View(ctx), true);
 
         /// <summary>Bares the floor of every cell the camera shows now, with the terrain of the cell 3 cells west of the view at mid height. One sample: not for an enclosure.</summary>
         [Given(Prefix + "the floor of the frame is bared")]
