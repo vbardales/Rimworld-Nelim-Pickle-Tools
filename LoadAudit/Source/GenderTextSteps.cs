@@ -68,6 +68,23 @@ namespace Nelim.PickleTools.LoadAudit
         }
 
         /// <summary>
+        /// The <c>deathMessage</c> of a <c>DamageDef</c>, formatted for the colonist the way the game does when a pawn dies of that damage
+        /// (<c>Pawn_HealthTracker.NotifyPlayerOfKilled</c>: <c>deathMessage.Formatted(pawn.LabelShortCap, pawn.Named("PAWN"))</c>, so both
+        /// <c>{0}</c> and <c>{PAWN_gender ...}</c> resolve), contains the expected text. Set the colonist's gender first. No death happens.
+        /// Written 2026-10-14 for ParaBellum. The call is the one remembered from the game's own method, not decompiled in this session. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the death message of the damage def {string} for {string} reads {string}")]
+        public void DeathMessageReads(PickleContext ctx, string damageDefName, string nickname, string expected)
+        {
+            Pawn pawn = Colonist(ctx, nickname);
+            DamageDef def = DefDatabase<DamageDef>.GetNamedSilentFail(damageDefName);
+            ctx.Require(def != null, $"no damage def named '{damageDefName}' is loaded in this pass");
+            ctx.Require(!string.IsNullOrEmpty(def.deathMessage), $"{damageDefName} has no deathMessage");
+            string shown = def.deathMessage.Formatted(pawn.LabelShortCap, pawn.Named("PAWN")).Resolve();
+            ctx.Assert(shown.Contains(expected), $"death message of {damageDefName} for {nickname} ({pawn.gender}): [{shown}] does not contain [{expected}]");
+        }
+
+        /// <summary>
         /// No text of the mod (labels and descriptions of its defs, of the stages of its hediffs and thoughts, and its keyed translations
         /// in the active language) still holds a gender switch. For the presentations that remove them (Inclusive, MiddleDot,
         /// Masculine): the mod's own step sets the mode first.
