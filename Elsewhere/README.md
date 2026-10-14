@@ -22,6 +22,7 @@ inventory as `none`. The table below lists the suites that have a note.
 | [Architect Studio](ArchitectStudio.md) | Categories/groups, Harmony ownership, settings sandbox, key-binding UI |
 | [Bill Autopilot](BillAutopilot.md) | Bills, stock, profiles, letters and integration assertions |
 | [Creatures of Ki Renew](CreaturesOfKiRenew.md) | Frozen poses: two animals mate (heart fleck), an animal carries an item |
+| [Nelim's Eden Garden](EdenGarden.md) | Open-field fixture, timetable to Work, sowing diagnostic, waits on a bill leaving the table, recipe ingredients read from the loaded def |
 | [Drum Bath Hygiene](DrumBathHygiene.md) | Needs, carried filth, bathing jobs and diagnostic waits |
 | [Fieldwork Companions](FieldworkCompanions.md) | Animal training/master, harvest gestures, yields, settings and translation checks |
 | [Firework Stand](FireworkStand.md) | Fuel, glow, effects, joy jobs and time-sensitive captures |
