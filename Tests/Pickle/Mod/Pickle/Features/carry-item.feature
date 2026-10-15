@@ -1,6 +1,7 @@
 # On request of Work Studio: a colonist (Nelim) visibly hauling a log, in a sanctuary place.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Colonist carries an item
 
   Scenario: carry-item: Nelim hauls a log

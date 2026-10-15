@@ -1,5 +1,6 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Eye colour and facial expression of a colonist (Nals Facial Animation)
 
   Scenario: face-steps: Nelim with violet eyes, then a played expression

@@ -2,6 +2,7 @@
 # picture shows what lands beside her. The step also checks DrawColor and the ground graphic colour (run b1a6: DrawColor right, graphic white).
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Sanctuary: dyed clothes dropped on the ground
 
   Scenario: dropped-clothes: dyed garments beside the pawn who dropped them

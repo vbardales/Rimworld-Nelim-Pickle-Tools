@@ -1,5 +1,6 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Every face part and kit on Nelim, one photograph per value (gallery of the step parameters)
 
   Scenario: face-parts-gallery-1: mouth-MouthEdnaLipsMale to mouth-MouthLipsSmallSmile (part 1 of 5)

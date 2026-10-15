@@ -1,5 +1,6 @@
 # On request of CreaturesOfKi: control view of smiley-north (centre (176, 202)) at 18 h, clear weather, zoom 12 and zoom 6, nothing set.
 @requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.camerazoom
 Feature: Sanctuary: smiley-north views
 
   Scenario: smiley-north-views: zoom 12 and zoom 6 at 18 h

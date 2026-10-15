@@ -2,6 +2,7 @@
 # even after the camera moves (it activates concepts such as "Camera dolly"). The bar redraws from a cache that has to be marked dirty;
 # the helper shows itself while any concept is active, so new ones must be blocked.
 @requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.camerazoom
 Feature: Sanctuary: colonist bar and learning helper hidden
 
   Scenario: bar-and-helper-hidden: neither is drawn

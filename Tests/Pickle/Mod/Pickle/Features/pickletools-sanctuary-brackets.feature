@@ -2,6 +2,7 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.inspecttabs
+@requires:nelim.pickletools.camerazoom
 Feature: Sanctuary: selection brackets and labels hidden
 
   Scenario: brackets-hidden: selected pawn without brackets or name

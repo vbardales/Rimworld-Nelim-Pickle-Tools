@@ -1,5 +1,6 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Every facial animation of the loaded mods on Nelim (gallery)
 
   Scenario: face-gallery-1: facial animations, part 1 of 4

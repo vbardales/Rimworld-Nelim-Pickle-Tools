@@ -1,5 +1,6 @@
 # On request of CreaturesOfKi: the podium (emerald-clearing, centre (197, 152)) at the default zoom and at zoom 6, at 18 h, clear weather.
 @requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.camerazoom
 Feature: Sanctuary: podium views
 
   Scenario: podium-views: default zoom and zoom 6 at 18 h

@@ -1,5 +1,6 @@
 # Checks the presentation mode hides stack counts and name labels: terrace (logs top-left) with the colonist standing in frame.
 @requires:nelim.pickletools.screenshotstudio
+@requires:nelim.pickletools.colonistrace
 Feature: Sanctuary: overlays hidden
 
   Scenario: overlays-hidden: terrace without stack counts or names

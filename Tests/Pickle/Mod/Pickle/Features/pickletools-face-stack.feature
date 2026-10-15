@@ -1,5 +1,6 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Stacked facial animations of Nals Facial Animation (the last one that defines a part wins)
 
   Scenario: face-stack: neutral base, then smile, sad, blush and open on top, in the heat of the room

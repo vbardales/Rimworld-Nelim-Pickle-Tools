@@ -1,5 +1,6 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.camerazoom
 Feature: Fixed face parts of a colonist (mouth, brows, lids, skin) from Facial Animation and Vanilla Textures Expanded
 
   Scenario: face-parts: a smiling face, then a sad one, at 20 degrees
