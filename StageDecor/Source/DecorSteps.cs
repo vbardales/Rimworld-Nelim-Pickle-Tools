@@ -290,6 +290,26 @@ namespace Nelim.PickleTools.StageDecor
             Floors.Clear();
         }
 
+        /// <summary>
+        /// Switches on the power trader of the first building of a def (by defName) on a cell of the current map, with no power net: a bench,
+        /// a lamp or a machine that works only when powered then works. Fails when no such building is on the cell or it has no
+        /// <c>CompPowerTrader</c>. Not a grid: nothing is connected. Promoted 2026-10-15 from the copies of A Certain Series, Joy Preservation
+        /// and Ancient Salvage, asked by Mintchoco Confectionery. Not played here.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is powered")]
+        public void BuildingPowered(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"cell ({x}, {z}) is outside the map");
+            Thing building = cell.GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} at ({x}, {z})");
+            CompPowerTrader power = building.TryGetComp<CompPowerTrader>();
+            ctx.Require(power != null, $"{defName} at ({x}, {z}) has no power trader component");
+            power.PowerOn = true;
+            ctx.Assert(power.PowerOn, $"{defName} at ({x}, {z}) is still off after the step");
+        }
+
         private static Map CurrentMap(PickleContext ctx)
         {
             Map map = Find.CurrentMap;

@@ -1,0 +1,7 @@
+# The pass that lists the look options (feature pickletools-look-catalogue). Stage here, as the owner decides, every mod whose hairstyles,
+# garments, tattoos or face parts the sessions may choose (the fixture's own list, plus Facial Animation). NOT PLAYED.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue.map -Filter pickletools-look-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

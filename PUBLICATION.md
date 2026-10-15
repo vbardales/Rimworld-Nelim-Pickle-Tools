@@ -10,7 +10,7 @@ the following text into the Steam page by hand. It is the BBCode source mirrored
 
 ```text
 [h1]Shared utilities for Pickle test suites[/h1]
-Developer tools for writing and running RimWorld 1.6 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url] scenarios.
+Developer tools for writing and running [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url] scenarios for the latest RimWorld version.
 
 [list]
 [*]Open and inspect research and pawn tabs.
@@ -102,7 +102,7 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=3806142401
 
 ## Steam change notes
 
-The publish workflow reads the fenced block under the heading `### <version>`. The version number 1.1.0 is proposed (a new step suggests a minor version) and awaits the owner's confirmation.
+The publish workflow reads the fenced block under the heading `### <version>`. 1.1.0 is published (tag `v1.1.0`, from the commit `f236105`); its block below is kept as the record. The next version is not decided: the owner confirms its number before its block is written.
 
 ### 1.1.0
 
