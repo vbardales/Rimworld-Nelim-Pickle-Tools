@@ -18,6 +18,7 @@ inventory as `none`. The table below lists the suites that have a note.
 |---|---|
 | [A Certain Series - Creatures and Hair Renew](ACertainSeriesCreaturesAndHairRenew.md) | Body-part labels, innate shots counted per tick, trader stocks, egg incubation, butchering; source only, never run |
 | [Adaptive Storage Neolithic Renew](AdaptiveStorageNeolithicRenew.md) | Research tabs, project overlap, publication screenshot mode |
+| [Nelim's Ancient Salvage](AncientSalvage.md) | Building placed with a rotation, door held open on a paused game, walled and roofed rectangle for a sealed room |
 | [Anima Song](AnimaSong.md) | Float-menu actions, toggle gizmos, hearing, maintained motes sampled by ticks |
 | [Architect Studio](ArchitectStudio.md) | Categories/groups, Harmony ownership, settings sandbox, key-binding UI |
 | [Bill Autopilot](BillAutopilot.md) | Bills, stock, profiles, letters and integration assertions |
