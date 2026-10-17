@@ -103,6 +103,27 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message("[look-craft] total " + recipes);
         }
 
+        /// <summary>
+        /// Logs the buildings the player can build from an Architect tab (<c>[look-building]</c>): one line per mod and per Architect tab, each building as
+        /// defName[width x height, N when it needs no research, R when it needs one], so a session can stage a scene from buildings that exist, and place them
+        /// through StageDecor. Only defs the player can build and that have a designation category. Never fails.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building options are listed")]
+        public void ListBuildings(PickleContext ctx)
+        {
+            List<ThingDef> buildings = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.BuildableByPlayer && d.designationCategory != null && d.category == ThingCategory.Building).ToList();
+            foreach (var mod in buildings.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                foreach (var tab in mod.GroupBy(d => d.designationCategory.defName).OrderBy(g => g.Key))
+                {
+                    string items = string.Join(", ", tab.Select(d => d.defName + "[" + d.size.x + "x" + d.size.z + "," + (d.researchPrerequisites == null || d.researchPrerequisites.Count == 0 ? "N" : "R") + "]").OrderBy(n => n));
+                    Log.Message("[look-building] " + mod.Key + " | " + tab.Key + " (" + tab.Count() + "): " + items);
+                }
+            }
+
+            Log.Message("[look-building] total " + buildings.Count);
+        }
+
         private static string Tag(string value, string none)
         {
             return value == none ? string.Empty : " (" + value + ")";

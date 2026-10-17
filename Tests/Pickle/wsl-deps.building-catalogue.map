@@ -1,0 +1,31 @@
+# The pass that lists the buildings of the Architect menu (feature pickletools-building-catalogue): the look-catalogue map plus the buildings of Nelim's mods and the architect menu mods.
+# Stage here every mod whose buildings a session may place. NOT PLAYED.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.building-catalogue.map -Filter pickletools-building-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# The mods of the Sanctuary pass (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map), added 2026-10-18 at the request of NSB (owner's choice: vanilla, Ideology and these mods). Same order: bodies and trousers before WDI, then Facial Animation and its add-ons.
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+vk.addeyes.EX 3694711465
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+RaccoonCuddler.ShowHair 3255379190
+# Buildings of Nelim's mods and the architect menu mods, added 2026-10-18 for ArchitectStudio's gallery (its request, through the Ticket Manager).
+nelim.imperialfurnishings path:ImperialFurnishings/Mod
+nelim.ancientbuildings path:AncientBuildingsRenew/Mod
+nelim.fireworkstand path:FireworkStand/Mod
+nelim.foxlamprenew path:FoxLampRenew/Mod
+nelim.adaptivestorageneolithic path:AdaptiveStorageNeolithicRenew/Mod
+nelim.foodcourt path:FoodCourt/Mod
+ferny.betterarchitect 3563882422
+com.bymarcin.architecticons 1195427067
