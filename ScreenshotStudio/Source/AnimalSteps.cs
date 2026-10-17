@@ -41,6 +41,64 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(3);
         }
 
+        // A cell a pawn can be photographed on: standable, no building, plant, tree, fence or other pawn, and not enclosed by a wall-like edifice.
+        private static bool FreeCell(Map map, IntVec3 c) =>
+            c.InBounds(map) && c.Standable(map) && c.GetEdifice(map) == null && c.GetPlant(map) == null
+            && !c.GetThingList(map).Any(t => t is Pawn || t.def.passability != Traversability.Standable && t.def.category != ThingCategory.Item && t.def.category != ThingCategory.Filth && t.def.category != ThingCategory.Mote);
+
+        // The nearest free cell around (x, z), nearest first by true distance, up to 15 cells away.
+        private static void StandOnNearestFree(PickleContext ctx, Pawn pawn, string who, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            ctx.Require(pawn != null && pawn.Spawned, "No spawned " + who);
+            var centre = new IntVec3(x, 0, z);
+            ctx.Require(centre.InBounds(map), "Cell (" + x + ", " + z + ") is outside the map");
+            IntVec3 best = IntVec3.Invalid; float bestDist = float.MaxValue;
+            for (int dx = -15; dx <= 15; dx++)
+                for (int dz = -15; dz <= 15; dz++)
+                {
+                    var c = new IntVec3(x + dx, 0, z + dz);
+                    float d = dx * dx + dz * dz;
+                    if (d < bestDist && (c == pawn.Position || FreeCell(map, c)) && !map.mapPawns.AllPawnsSpawned.Any(p => p != pawn && p.Position == c)) { best = c; bestDist = d; }
+                }
+            ctx.Require(best.IsValid, "No free cell within 15 cells of (" + x + ", " + z + ") for " + who);
+            pawn.Position = best;
+            pawn.Notify_Teleported(true, true);
+            ctx.Assert(pawn.Position == best, who + " is at " + pawn.Position + " instead of " + best);
+        }
+
+        /// <summary>Moves a spawned animal (by nickname) to the free cell nearest (x, z): standable, with no building, plant, tree, fence or pawn. Fails when none is within 15 cells.</summary>
+        [Given(Prefix + "the animal {string} stands on the nearest free cell around \\({int}, {int}\\)")]
+        public void AnimalOnNearestFree(PickleContext ctx, string nickname, int x, int z)
+        {
+            var pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            StandOnNearestFree(ctx, pawn, "animal " + nickname, x, z);
+        }
+
+        /// <summary>The same for a colonist found by nickname.</summary>
+        [Given(Prefix + "the colonist {string} stands on the nearest free cell around \\({int}, {int}\\)")]
+        public void ColonistOnNearestFree(PickleContext ctx, string nickname, int x, int z)
+        {
+            var pawn = Find.CurrentMap?.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == nickname);
+            StandOnNearestFree(ctx, pawn, "colonist " + nickname, x, z);
+        }
+
+        /// <summary>Puts N things of a def (by defName) in the inventory of a spawned animal found by nickname (pawn.inventory, not the transport tracker), so a pack animal draws its pack. Fails when the animal or def is unknown or the stack does not fit.</summary>
+        [Given(Prefix + "the animal {string} carries {int} {string} in its pack")]
+        public void AnimalCarriesInPack(PickleContext ctx, string nickname, int count, string defName)
+        {
+            var pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            ctx.Require(pawn != null, "No spawned animal named " + nickname);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, "No thing def named " + defName);
+            ctx.Require(count >= 1 && count <= def.stackLimit, "count runs from 1 to the stack limit " + def.stackLimit + " of " + defName);
+            Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            thing.stackCount = count;
+            ctx.Require(pawn.inventory.innerContainer.TryAdd(thing, count) == count, nickname + "'s inventory did not take " + count + " " + defName);
+            ctx.Assert(pawn.inventory.innerContainer.TotalStackCountOfDef(def) >= count, nickname + " does not carry " + count + " " + defName + " after the step");
+        }
+
         private static void Spawn(PickleContext ctx, string kindName, string nickname, int x, int z, int stageIndex, string stageDefName)
         {
             Map map = Find.CurrentMap;

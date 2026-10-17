@@ -304,7 +304,22 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(frames);
         }
 
+        private static readonly List<Zone> HiddenZones = new List<Zone>();
+
+        /// <summary>Hides every painted zone of the map (growing zones, stockpiles) from the capture, as the game's own "hide" toggle of a zone does; put back after the scenario. The zones keep working.</summary>
+        [Given(Prefix + "the painted zones are hidden")]
+        public void HideZones(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "Load a map first");
+            foreach (Zone z in Find.CurrentMap.zoneManager.AllZones) if (!z.Hidden) { z.Hidden = true; HiddenZones.Add(z); }
+        }
+
         [AfterScenario]
-        public void ReleaseAreaHooks() => AreaOps.StopKeepingAnimalsOut();
+        public void ReleaseAreaHooks()
+        {
+            AreaOps.StopKeepingAnimalsOut();
+            foreach (Zone z in HiddenZones) z.Hidden = false;
+            HiddenZones.Clear();
+        }
     }
 }
