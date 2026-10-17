@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-306 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+307 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -130,6 +130,7 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: {string} head type is {string}` (Given) | Gives a colonist a head (a `HeadTypeDef` name, e.g. Male_AverageNormal) and redraws it. The def must suit the colonist's gender. **Parameters:** `nickname` (string): the colonist's nickname; `headDefName` (string): a HeadTypeDef name of the loaded game. |
 | `Nelim's Pickle Tools: {string} beard is {string}` (Given) | Gives a colonist a beard (a `BeardDef` name) or `none`, and redraws it. Refuses a beard for a pawn that has no style tracker. The failure lists the valid beard defs. **Parameters:** `nickname` (string): the colonist's nickname; `beardName` (string): a BeardDef name of the loaded game. |
 | `Nelim's Pickle Tools: the other colonists are out of frame` (Given) | Moves every colonist that no "stands at" step has placed in this scenario to a standable cell far from the camera (the corner of the map farthest from the first subject, or the map's far corner when there is none), so the fixture's other colonists are out of the picture. Each is put back where it stood after the scenario. |
+| `Nelim's Pickle Tools: the movement of the colonist {string} is logged for {int} seconds` (Given) | Logs the colonist every 5 real seconds for the given number of seconds, the first line at once (lines starting `[walk]`): wall seconds since the step began, game tick and ticks gained since the step began, game speed, cell, job def and its target, pather moving, next cell, nodes left in the path, distance to the pather's destination. |
 | `Nelim's Pickle Tools: {string} has gender {word}` (Then) | Asserts a pawn's gender, `male` or `female`, case insensitive. **Parameters:** `nickname` (string): the colonist's nickname; `gender` (word): `male` or `female`; any case; anything else fails. |
 | `Nelim's Pickle Tools: {string} has body type {word}` (Then) | Asserts a pawn's body type by def name, case insensitive. **Parameters:** `nickname` (string): the colonist's nickname; `bodyTypeDefName` (word): a BodyTypeDef name, any case: vanilla has `Male`, `Female`, `Thin`, `Fat`, `Hulk`, `Child`, `Baby`; a mod may add more. |
 | `Nelim's Pickle Tools: {string} has xenotype {string}` (Then) | Asserts a pawn's xenotype by def name, case insensitive. A pawn with a custom xenotype reads as the def it was built from, and the failure names the custom one. **Parameters:** `nickname` (string): the colonist's nickname; `xenotypeDefName` (string): a XenotypeDef name of the loaded game (Biotech). |
