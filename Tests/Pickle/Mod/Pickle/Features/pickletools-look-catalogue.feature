@@ -12,4 +12,5 @@ Feature: PickleTools look catalogue
     And Nelim's Pickle Tools: the hair, beard, head, tattoo and body options are listed
     And Nelim's Pickle Tools: the garment options are listed
     And Nelim's Pickle Tools: the colour options are listed
+    And Nelim's Pickle Tools: the weapon and craftable options are listed
     And Nelim's Pickle Tools: the facial animations are listed

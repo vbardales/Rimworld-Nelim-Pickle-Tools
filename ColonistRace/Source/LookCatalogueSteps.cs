@@ -71,6 +71,38 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message("[look-colour] total " + all.Count);
         }
 
+        /// <summary>
+        /// Logs the weapons (<c>[look-weapon]</c>: one line per mod and per kind, Melee or Ranged, each defName) and what the game can craft (<c>[look-craft]</c>:
+        /// one line per mod and per work table, each defName of the products of the recipes it offers, with the recipe count), so a session can pick a weapon
+        /// or a craftable item by name. Never fails.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the weapon and craftable options are listed")]
+        public void ListWeaponsAndCrafts(PickleContext ctx)
+        {
+            List<ThingDef> weapons = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d.IsWeapon).ToList();
+            foreach (var mod in weapons.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                foreach (var kind in mod.GroupBy(d => d.IsRangedWeapon ? "Ranged" : "Melee").OrderBy(g => g.Key))
+                {
+                    Log.Message("[look-weapon] " + mod.Key + " | " + kind.Key + " (" + kind.Count() + "): " + string.Join(", ", kind.Select(d => d.defName).OrderBy(n => n)));
+                }
+            }
+
+            Log.Message("[look-weapon] total " + weapons.Count);
+            int recipes = 0;
+            foreach (var mod in DefDatabase<RecipeDef>.AllDefsListForReading.Where(r => r.products != null && r.products.Count > 0 && r.recipeUsers != null && r.recipeUsers.Count > 0).GroupBy(r => r.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                var benches = mod.SelectMany(r => r.recipeUsers.Select(u => new { Bench = u.defName, Recipe = r })).GroupBy(x => x.Bench).OrderBy(g => g.Key);
+                foreach (var bench in benches)
+                {
+                    recipes += bench.Count();
+                    Log.Message("[look-craft] " + mod.Key + " | " + bench.Key + " (" + bench.Count() + "): " + string.Join(", ", bench.SelectMany(x => x.Recipe.products.Select(p => p.thingDef.defName)).Distinct().OrderBy(n => n)));
+                }
+            }
+
+            Log.Message("[look-craft] total " + recipes);
+        }
+
         private static string Tag(string value, string none)
         {
             return value == none ? string.Empty : " (" + value + ")";
