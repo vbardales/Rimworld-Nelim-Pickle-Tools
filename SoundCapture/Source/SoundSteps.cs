@@ -126,6 +126,14 @@ namespace Nelim.PickleTools.SoundCapture
                 RedirectStandardError = true,
             };
 
+            // The game's own environment may reach ffmpeg without PULSE_SERVER (or with an empty one: "No such process"); WSLg's socket is at a fixed place.
+            // Only an unset or empty value is filled in: a deliberate one (the muted 1.7 runs set an unreachable server) is left alone.
+            const string WslgPulseSocket = "/mnt/wslg/PulseServer";
+            if (string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PULSE_SERVER")) && System.IO.File.Exists(WslgPulseSocket))
+            {
+                start.EnvironmentVariables["PULSE_SERVER"] = "unix:" + WslgPulseSocket;
+            }
+
             try
             {
                 recording.Process = Process.Start(start);
@@ -164,7 +172,9 @@ namespace Nelim.PickleTools.SoundCapture
                 EndFilm(recording);
                 ctx.Assert(false,
                     $"ffmpeg stopped at once (exit {recording.Process.ExitCode}) while recording '{source}': {ErrorsOf(recording)}" +
-                    "Is there an audio server (PULSE_SERVER) and does the source exist? `ffmpeg -sources pulse` lists them.");
+                    "Is there an audio server (PULSE_SERVER) and does the source exist? `ffmpeg -sources pulse` lists them. " +
+                    $"ffmpeg ran with PULSE_SERVER='{start.EnvironmentVariables["PULSE_SERVER"] ?? "(unset)"}', XDG_RUNTIME_DIR='{Environment.GetEnvironmentVariable("XDG_RUNTIME_DIR") ?? "(unset)"}', " +
+                    $"the WSLg socket {(System.IO.File.Exists(WslgPulseSocket) ? "exists" : "is missing")} for the game.");
             }
         }
 
