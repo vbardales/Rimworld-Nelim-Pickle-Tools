@@ -99,6 +99,106 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(pawn.inventory.innerContainer.TotalStackCountOfDef(def) >= count, nickname + " does not carry " + count + " " + defName + " after the step");
         }
 
+        private static Pawn AnimalNamed(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            ctx.Require(pawn != null, "No spawned animal named " + nickname);
+            return pawn;
+        }
+
+        // An animal has no apparel tracker until the Animal Apparel Framework (Ingendum) creates it; asked by name, so that no reference to that mod is needed.
+        private static void EnsureApparelTracker(PickleContext ctx, Pawn pawn, string nickname)
+        {
+            if (pawn.apparel == null)
+            {
+                Type helper = GenTypes.AllTypes.FirstOrDefault(t => t.Name == "AnimalGearHelper");
+                helper?.GetMethod("EnsureInitApparelTrackers", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static)?.Invoke(null, new object[] { pawn });
+            }
+
+            ctx.Require(pawn.apparel != null, nickname + " has no apparel tracker, even after the framework's EnsureInitApparelTrackers (is a mod that lets animals wear apparel loaded?)");
+        }
+
+        /// <summary>Puts a new apparel (by defName, made of its default stuff, undyed) on a spawned animal found by nickname, adult or young. Fails when the animal, the def or the apparel tracker is missing, or the game refuses the garment for that body.</summary>
+        [Given(Prefix + "the animal {string} is dressed in {string}")]
+        public void AnimalDressed(PickleContext ctx, string nickname, string apparelDefName) => Dress(ctx, nickname, apparelDefName, null);
+
+        /// <summary>The same, dyed an HTML colour (#rrggbb): the colour of a collar for a capture.</summary>
+        [Given(Prefix + "the animal {string} is dressed in {string} dyed {string}")]
+        public void AnimalDressedDyed(PickleContext ctx, string nickname, string apparelDefName, string html) => Dress(ctx, nickname, apparelDefName, html);
+
+        private static void Dress(PickleContext ctx, string nickname, string apparelDefName, string html)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            EnsureApparelTracker(ctx, pawn, nickname);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(apparelDefName);
+            ctx.Require(def != null && def.IsApparel, "No apparel def named " + apparelDefName);
+            Color color = default;
+            ctx.Require(html == null || ColorUtility.TryParseHtmlString(html, out color), "'" + html + "' is not an HTML colour");
+            var apparel = (Apparel)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            if (html != null)
+            {
+                apparel.SetColor(color, false);
+            }
+
+            pawn.apparel.Wear(apparel, true, false);
+            ctx.Assert(pawn.apparel.WornApparel.Contains(apparel), nickname + " should wear '" + apparelDefName + "'; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
+        }
+
+        /// <summary>Asserts the animal wears the apparel (by defName); the failure lists what it wears.</summary>
+        [Then(Prefix + "the animal {string} is wearing {string}")]
+        public void AnimalIsWearing(PickleContext ctx, string nickname, string apparelDefName)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            ctx.Require(pawn.apparel != null, nickname + " has no apparel tracker");
+            ctx.Assert(pawn.apparel.WornApparel.Any(a => a.def.defName == apparelDefName), nickname + " is not wearing '" + apparelDefName + "'; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
+        }
+
+        /// <summary>
+        /// Asks the game whether the animal's render tree holds a node for the apparel and whether that node resolves a real graphic (not null, not
+        /// BadGraphic): the proof that a garment is DRAWN, not only worn. Pieces the game hides on animals have no node by design and fail here.
+        /// Promoted 2026-10-18 from Animal Apparel Collars' own step, for Dalmatians Renew's red collar. Not played here.
+        /// </summary>
+        [Then(Prefix + "the render tree of the animal {string} draws {string}", TimeoutSeconds = 20f)]
+        public async Task AnimalRenderTreeDraws(PickleContext ctx, string nickname, string apparelDefName)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            await ctx.WaitFrames(5);
+            PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
+            tree.EnsureInitialized(PawnRenderFlags.None);
+            ctx.Require(tree.rootNode != null, nickname + " has no render tree root");
+            var found = new System.Collections.Generic.List<PawnRenderNode>();
+            var seen = new System.Collections.Generic.List<string>();
+            var todo = new System.Collections.Generic.Stack<PawnRenderNode>();
+            todo.Push(tree.rootNode);
+            while (todo.Count > 0)
+            {
+                PawnRenderNode node = todo.Pop();
+                if (node.apparel != null)
+                {
+                    seen.Add(node.apparel.def.defName);
+                    if (node.apparel.def.defName == apparelDefName)
+                    {
+                        found.Add(node);
+                    }
+                }
+
+                if (node.children != null)
+                {
+                    foreach (PawnRenderNode child in node.children)
+                    {
+                        todo.Push(child);
+                    }
+                }
+            }
+
+            ctx.Require(found.Count > 0, nickname + " has no render node for '" + apparelDefName + "'; apparel nodes present: " + string.Join(", ", seen));
+            foreach (PawnRenderNode node in found)
+            {
+                Graphic graphic = node.PrimaryGraphic;
+                ctx.Require(graphic != null && graphic != BaseContent.BadGraphic, "the render node of '" + apparelDefName + "' on " + nickname + " resolves no graphic (" + (graphic == null ? "null" : "BadGraphic") + ")");
+            }
+        }
+
         private static void Spawn(PickleContext ctx, string kindName, string nickname, int x, int z, int stageIndex, string stageDefName)
         {
             Map map = Find.CurrentMap;
