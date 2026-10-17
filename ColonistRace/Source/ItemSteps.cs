@@ -88,6 +88,47 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asks a joy giver (a JoyGiverDef, by defName) directly what it would do for a colonist, and logs it (lines starting <c>[joy-giver]</c>), without
+        /// starting the job: the def is loaded, its worker can be given to the colonist (required capacities, outdoors, the joy kind), the colonist's
+        /// tolerance for the kind and whether bored of it, the joy level, and the job the worker returns (the job def, or none). Never fails on a
+        /// verdict, only when the colonist is unknown; for a scenario that is red because a colonist never takes the joy job.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the joy giver {string} is asked what it would give {string}")]
+        public void JoyGiverAsked(PickleContext ctx, string giverDefName, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            JoyGiverDef giver = DefDatabase<JoyGiverDef>.GetNamedSilentFail(giverDefName);
+            Log.Message($"[joy-giver] {giverDefName} loaded: {giver != null}");
+            if (giver == null)
+            {
+                return;
+            }
+
+            JoyKindDef kind = giver.joyKind;
+            Log.Message($"[joy-giver] worker {giver.Worker?.GetType().Name ?? "none"}; joy kind {kind?.defName ?? "none"}");
+            Log.Message($"[joy-giver] CanBeGivenTo {nickname}: {Try(() => giver.Worker.CanBeGivenTo(pawn))}");
+            if (kind != null && pawn.needs?.joy != null)
+            {
+                Log.Message($"[joy-giver] tolerance for {kind.defName}: {pawn.needs.joy.tolerances[kind]}; bored of it: {pawn.needs.joy.tolerances.BoredOf(kind)}");
+            }
+
+            Log.Message($"[joy-giver] joy level of {nickname}: {pawn.needs?.joy?.CurLevel.ToString("0.000") ?? "no joy need"}");
+            Log.Message($"[joy-giver] TryGiveJob for {nickname}: {Try(() => giver.Worker.TryGiveJob(pawn)?.def.defName ?? "null")}");
+        }
+
+        private static string Try<T>(System.Func<T> read)
+        {
+            try
+            {
+                return read()?.ToString();
+            }
+            catch (System.Exception e)
+            {
+                return "threw " + e.GetType().Name + ": " + e.Message;
+            }
+        }
+
+        /// <summary>
         /// Gives the colonist a new food policy of their own that allows every food and drink, so a food the colonist's saved policy
         /// refuses (a policy saved before a mod added its foods does not list them) is eaten. The policy is named "Pickle: everything"
         /// and is made for this call; the colonist's earlier policy is left as it was. Fails when the colonist follows no food policy tracker.
