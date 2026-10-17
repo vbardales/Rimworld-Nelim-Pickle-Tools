@@ -2,20 +2,20 @@
 
 ## Steps that live in a suite, and could be taken from there
 
-Not tools yet: these are steps written for one suite that read as general, kept where they are until a second mod needs them.
-Copy or promote them from there; a promoted step takes the `Nelim's Pickle Tools:` prefix.
+Not tools yet: steps written for one suite, read as general, kept where they are until second mod needs them.
+Copy or promote from there; promoted step takes `Nelim's Pickle Tools:` prefix.
 
 | Where | What it gives a scenario |
 | --- | --- |
-| `FlavorText/FlavorTextExtended/Tests/Pickle/Source/FlavorTextExtendedSteps.cs` | **Cook a meal without simulating the walk**: `a colonist cooks {recipe} at the {station} from {ingredients}, {n} times` calls `GenRecipe.MakeRecipeProducts` on a colonist and a work table of the loaded save, so every postfix on the recipe (Flavor Text's meal naming, a mod that changes what a meal carries) runs for real, and records each product's label. Assertions on the names drawn, a step that puts the products on the map and one that checks they kept their names across `I save and reload`. As written it keeps only the products that carry Flavor Text's `CompFlavor` and asserts on its dish defNames, so promoting it means recording every product's label and moving those assertions out. |
-| the same file | **Where a ThingDef is filed in a category tree**: `{def} is filed under {category}` and its negation, read from Flavor Text's `FlavorCategoryDef.DescendantThingDefs`. Specific to Flavor Text's categories, but the shape (assert membership of a def in a derived category tree, with the list of categories it IS under on failure) fits any mod that builds one. |
+| `FlavorText/FlavorTextExtended/Tests/Pickle/Source/FlavorTextExtendedSteps.cs` | **Cook meal without simulating walk**: `a colonist cooks {recipe} at the {station} from {ingredients}, {n} times` calls `GenRecipe.MakeRecipeProducts` on colonist and work table of loaded save, so every postfix on recipe (Flavor Text meal naming, mod changing what meal carries) runs for real, records each product label. Assertions on names drawn, step putting products on map, step checking they kept names across `I save and reload`. As written keeps only products carrying Flavor Text `CompFlavor`, asserts on its dish defNames, so promoting means recording every product label and moving those assertions out. |
+| the same file | **Where ThingDef filed in category tree**: `{def} is filed under {category}` and negation, read from Flavor Text `FlavorCategoryDef.DescendantThingDefs`. Specific to Flavor Text categories, but shape (assert def membership in derived category tree, list categories it IS under on failure) fits any mod building one. |
 
-Their step texts start with `Flavor Text Extended:`.
+Step texts start with `Flavor Text Extended:`.
 
-Source review, 2026-09-22: the file has 12 step declarations. In addition to category membership and cooking,
-it asserts dish names and dish counts, opens meal info cards, places generated meals on the map, and compares
-their labels and dishes by saved thing ID after a reload. The info-card steps are also useful for review
-captures. The assertions remain coupled to Flavor Text's `CompFlavor` and dish definitions.
+Source review, 2026-09-22: file has 12 step declarations. Besides category membership and cooking,
+asserts dish names and counts, opens meal info cards, places generated meals on map, compares
+labels and dishes by saved thing ID after reload. Info-card steps also useful for review
+captures. Assertions stay coupled to Flavor Text `CompFlavor` and dish definitions.
 
-This catalogue review did not compile or execute the suite. Consult that repository's `Tests/Pickle/`
-and `STATUS.md` for dated run evidence; none is inferred from the presence of these methods.
+Catalogue review did not compile or execute suite. See that repository `Tests/Pickle/`
+and `STATUS.md` for dated run evidence; none inferred from presence of these methods.

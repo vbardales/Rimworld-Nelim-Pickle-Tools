@@ -1,7 +1,6 @@
 # Catalogue moved
 
-The maintained catalogue is [Elsewhere/README.md](Elsewhere/README.md).
+Maintained catalogue: [Elsewhere/README.md](Elsewhere/README.md).
 
-The former entries are now [SkillIcons](Elsewhere/SkillIcons.md) and
-[Fieldwork Companions](Elsewhere/FieldworkCompanions.md), with their dated evidence and caveats preserved.
-Add or update suite notes there, not in this redirect.
+Former entries now [SkillIcons](Elsewhere/SkillIcons.md) and [Fieldwork Companions](Elsewhere/FieldworkCompanions.md). Dated evidence, caveats kept.
+Add/update suite notes there, not in redirect.

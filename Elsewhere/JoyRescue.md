@@ -1,7 +1,7 @@
 # Joy Rescue
 
-Local inventory, 2026-09-22: `JoyRescue/Tests/Pickle/Source/SettingsSteps.cs` contains steps for its settings dialog, values, persistence and hidden MainButton. Two feature files cover native options and the shortcut.
+Local inventory, 2026-09-22: `JoyRescue/Tests/Pickle/Source/SettingsSteps.cs` has steps for settings dialog, values, persistence, hidden MainButton. Two feature files cover native options and shortcut.
 
-The setting keys and `JoyRescue_Settings` def are local. The dialog and settings persistence mechanics overlap with Housebroken and several other suites, so extract the generic part into PickleTools when those consumers migrate; keep Joy Rescue's assertions about its own settings and shortcut local.
+Setting keys and `JoyRescue_Settings` def local. Dialog and settings persistence mechanics overlap with Housebroken and several other suites. Extract generic part into PickleTools when those consumers migrate; keep Joy Rescue's assertions about own settings and shortcut local.
 
-This inventory has not replayed the scenarios or validated the settings in game.
+Inventory has not replayed scenarios or validated settings in game.

@@ -1,94 +1,83 @@
 # Drum Bath Hygiene
 
-Live: every step below is in the repository named, in the file named, and was played in a run (or says it was not).
-Nothing here is staged from PickleTools with a `path:` line: the assembly references the mod under test, so a suite
-that wants a step **copies the method** and gives it its own prefix.
+Live: every step below in named repo, named file, played in run (or says not).
+Nothing here staged from PickleTools with `path:` line: assembly references mod under test, so suite wanting a step **copies method**, gives own prefix.
 
-Repository: `vbardales/Rimworld-Drum-Bath-Hygiene` (in the monorepo, `DrumBathHygiene/`).
-Steps: `Tests/Pickle/Source/DrumBathHygieneSteps.cs`, one class, no dependency on Dubs Bad Hygiene (the hygiene need is
-found by its defName and read through vanilla `Need.CurLevel`). The suite's own notes, run by run, are in
-`Tests/Pickle/README.md`; the passes it needs are in `TESTING.md`.
+Repository: `vbardales/Rimworld-Drum-Bath-Hygiene` (in monorepo, `DrumBathHygiene/`).
+Steps: `Tests/Pickle/Source/DrumBathHygieneSteps.cs`, one class, no dependency on Dubs Bad Hygiene (hygiene need found by defName, read through vanilla `Need.CurLevel`). Suite's own notes, run by run, in `Tests/Pickle/README.md`; passes needed in `TESTING.md`.
 
-All texts start with `Drum Bath Hygiene: `, left out of the table below.
+All texts start with `Drum Bath Hygiene: `, left out of table below.
 
 ## Small and generic, candidates to move if a second mod wants them
 
-State is per step: *played* names a real run, *not yet played* says the step compiled and resolved and nothing more.
-Updated 2026-09-23 after a code review of the suite; the table below is that date's. The 9 steps added since are in "Declared 2026-10-11" after it: 32 declarations in all (`INVENTORY.md`).
+State per step: *played* names real run, *not yet played* = step compiled and resolved, nothing more.
+Updated 2026-09-23 after code review of suite; table below is that date's. The 9 steps added since are in "Declared 2026-10-11" after it: 32 declarations total (`INVENTORY.md`).
 
 | Step | What it does | State | Why it stays | Move it when |
 |---|---|---|---|---|
-| `{string} is chilled to severity {float}` | Adds **Hypothermia** at a chosen severity | played, run 5 | one hediff | a second mod needs a hediff at a severity. Generalise it to `{string} is given hediff {string} at severity {float}`: Pickle's `is given hediff` gives the def's starting severity, which a bath or a fire can remove before the first tick |
-| `{string} hygiene rose`, `did not rise`, `is above {float}`, and `I remember {string} hygiene` | Read the **Hygiene** need level (0 to 1) and compare it with a remembered one. `rose` needs a margin of 0.02, because Dubs Bad Hygiene moves the need by itself. The remembered readings are cleared before every scenario by a `[BeforeScenario]` hook: a static in the step assembly outlives Pickle's reload of the save | played, run 5 (the reset is not yet played) | hard-coded to the `Hygiene` need def | any other need. **Pickle ships `needs {string} is below {int} percent` and no `is above`**, and no rise/remember for needs: this is a gap of Pickle's, so it is a candidate for `Upstream/PENDING.md` rather than for a tool. (`is below` was removed: the built-in does it) |
-| `{string} has no hygiene need`, `{string} loses the hygiene need` | Assert the need is absent; the second removes it from the pawn's need list, to reach the branch of a mod that has to cope with a pawn lacking it. The scenario asserts the absence again after the bath, in case the game gave the need back | `has no …` played, run 5; `loses …` **not yet played** | need def hard-coded | any other need def |
-| `{string} is carrying filth`, `carries filth`, `carries no filth` | Give a pawn `Filth_Dirt` through its filth tracker, and read `Pawn_FilthTracker.CarriedFilthListForReading` | played, run 5 | three small steps | a second mod touches carried filth |
-| `{string} has at least {int} memories of {string}`, `{string} forgets {string}` | Count the stacks of a memory (`NumMemoriesOfDef`) and remove every memory of a def. The first is how to assert that a memory **stacked**; the second is how to prove a second occurrence re-grants it, instead of passing on what the first left behind | **not yet played** | two short steps | a second mod asserts a stacking memory |
-| `{string} stands {int} cells east of the drum at x=.. z=..`, `no one but {string} stands within 6 cells of the drum at x=.. z=..` | Teleport a pawn to a cell some distance from a thing and check it lands inside a radius; and a **loud precondition** that no other humanlike pawn is within it. Drafting a pawn does not move it, so a baseline of "nobody is watching" is only true if this says so | **not yet played** | written around the drum's cell, though the idea is general | a second mod has an effect that depends on who is nearby |
+| `{string} is chilled to severity {float}` | Adds **Hypothermia** at chosen severity | played, run 5 | one hediff | second mod needs hediff at severity. Generalise to `{string} is given hediff {string} at severity {float}`: Pickle's `is given hediff` gives def's starting severity, which bath or fire can remove before first tick |
+| `{string} hygiene rose`, `did not rise`, `is above {float}`, and `I remember {string} hygiene` | Read **Hygiene** need level (0 to 1), compare with remembered one. `rose` needs margin 0.02, because Dubs Bad Hygiene moves need by itself. Remembered readings cleared before every scenario by `[BeforeScenario]` hook: static in step assembly outlives Pickle's reload of save | played, run 5 (reset not yet played) | hard-coded to `Hygiene` need def | any other need. **Pickle ships `needs {string} is below {int} percent`, no `is above`**, no rise/remember for needs: gap of Pickle's, so candidate for `Upstream/PENDING.md`, not for tool. (`is below` removed: built-in does it) |
+| `{string} has no hygiene need`, `{string} loses the hygiene need` | Assert need absent; second removes it from pawn's need list, to reach branch of mod that must cope with pawn lacking it. Scenario asserts absence again after bath, in case game gave need back | `has no …` played, run 5; `loses …` **not yet played** | need def hard-coded | any other need def |
+| `{string} is carrying filth`, `carries filth`, `carries no filth` | Give pawn `Filth_Dirt` through filth tracker, read `Pawn_FilthTracker.CarriedFilthListForReading` | played, run 5 | three small steps | second mod touches carried filth |
+| `{string} has at least {int} memories of {string}`, `{string} forgets {string}` | Count stacks of memory (`NumMemoriesOfDef`), remove every memory of def. First asserts memory **stacked**; second proves second occurrence re-grants it, instead of passing on what first left behind | **not yet played** | two short steps | second mod asserts stacking memory |
+| `{string} stands {int} cells east of the drum at x=.. z=..`, `no one but {string} stands within 6 cells of the drum at x=.. z=..` | Teleport pawn to cell some distance from thing, check it lands inside radius; and **loud precondition** that no other humanlike pawn within it. Drafting pawn does not move it, so baseline "nobody watching" only true if this says so | **not yet played** | written around drum's cell, idea general | second mod has effect depending on who is nearby |
 
-Removed on 2026-09-23, and worth knowing before writing them again: `is bored` (unused: Pickle's `{string} needs {string} is
-set to {int} percent` sets Joy on a colonist), `has a hygiene need` (unused), and `is easily embarrassed` (replaced by Pickle's
-own `I take the trait {string} from {string}`, which does nothing if the pawn lacks the trait).
+Removed 2026-09-23, worth knowing before writing again: `is bored` (unused: Pickle's `{string} needs {string} is
+set to {int} percent` sets Joy on colonist), `has a hygiene need` (unused), `is easily embarrassed` (replaced by Pickle's
+own `I take the trait {string} from {string}`, does nothing if pawn lacks trait).
 
 ## Dedicated to the drum mod, no reuse expected outside it
 
 | Step | What it does | State |
 |---|---|---|
-| `a drum bath stands at x={int} z={int}` | Spawns the `DrumBath` building made of Steel. It arrives lit, as a built one does | played, run 5 |
-| `the drum at x={int} z={int} is burning` / `has burnt out` | Fills or drains its `CompRefuelable`, the thing the drum mod's own fuel reading looks at | played, run 5 |
-| `{string} climbs into the drum at x={int} z={int}` | **Teleports** a pawn onto the drum's cell. For scenarios that give the hediff by hand and want the component isolated from pathing | played, run 5 |
-| `{string} is ordered to bathe in the drum at x={int} z={int}` | Orders the drum mod's **real job**, `Job_BathingAtDrumBath`, so its driver walks the pawn over, places them and applies the hediff | played, run 5 |
-| `{string} is bathing in the drum at x={int} z={int}` | Waits up to 90 s for the bath job to be running, the hediff on the pawn, and **the drum among the things on the pawn's cell** (the mod's own hot-or-cold question). Polls once per frame against a deadline. **On timeout it reports a job trace**: every change of job with position and hediff, the driver, whether the drum is reachable, the pawn's state | played in run 5, **then changed twice** (it demanded `CurJob.targetA.Thing == drum`, which the driver rewrites; then a 2.5-cell radius, which accepts a pawn beside the drum); the current one is **not yet played** |
-| `{string} has climbed out of the drum` | Waits up to 120 s until the pawn has neither the bath job nor the bathing hediff, so that a second bath can be ordered and the component can be shown to start afresh | **not yet played** |
-| `the bathing hediff of {string} carries the component` | Asserts the loaded `Hed_BathingAtDrumBathPassive` is a `HediffWithComps` carrying this mod's comp | played, run 5 |
+| `a drum bath stands at x={int} z={int}` | Spawns `DrumBath` building made of Steel. Arrives lit, as built one does | played, run 5 |
+| `the drum at x={int} z={int} is burning` / `has burnt out` | Fills or drains its `CompRefuelable`, what drum mod's own fuel reading looks at | played, run 5 |
+| `{string} climbs into the drum at x={int} z={int}` | **Teleports** pawn onto drum's cell. For scenarios giving hediff by hand, wanting component isolated from pathing | played, run 5 |
+| `{string} is ordered to bathe in the drum at x={int} z={int}` | Orders drum mod's **real job**, `Job_BathingAtDrumBath`, so its driver walks pawn over, places them, applies hediff | played, run 5 |
+| `{string} is bathing in the drum at x={int} z={int}` | Waits up to 90 s for bath job running, hediff on pawn, and **drum among things on pawn's cell** (mod's own hot-or-cold question). Polls once per frame against deadline. **On timeout reports job trace**: every job change with position and hediff, driver, whether drum reachable, pawn's state | played in run 5, **then changed twice** (demanded `CurJob.targetA.Thing == drum`, which driver rewrites; then 2.5-cell radius, which accepts pawn beside drum); current one **not yet played** |
+| `{string} has climbed out of the drum` | Waits up to 120 s until pawn has neither bath job nor bathing hediff, so second bath can be ordered, component shown to start afresh | **not yet played** |
+| `the bathing hediff of {string} carries the component` | Asserts loaded `Hed_BathingAtDrumBathPassive` is `HediffWithComps` carrying this mod's comp | played, run 5 |
 
 ### Declared 2026-10-11: steps added since the table above (all in `DrumBathHygieneSteps.cs`)
 
 | Step | What it does | State | Why it stays | Move it when |
 |---|---|---|---|---|
-| `{string} is given the bathing hediff, then loses the hygiene need` | The hediff and the missing need in ONE step, in that order: the game hands a pawn its needs back whenever a hediff changes, so removing the need first proved nothing about the branch for a pawn without it | played, French pass 2026-09-23 | the hediff is this mod's | never: specific to the drum mod |
-| `the bathing hediff of {string} bound no clean action` | Reads the component's two private fields (`cleanBound`, `clean`) by reflection and says whether the no-need branch was really taken | played | reads this mod's own fields | never |
-| `the letters and the alerts are cleared from the screen` | Empties the letter stack and every `List<Alert>` of the alerts readout (by reflection), so a shot that keeps the Needs tab is not cluttered | played, 2026-10 gallery runs | PickleTools' screenshot mode hides the tab with the clutter | **now a candidate**: any mod that captures an interface tab needs it; belongs in ScreenshotMode |
-| `the drum's light is switched off at x={int} z={int}` | Deregisters the drum's `CompGlower` so the game's light square is not drawn behind the drum | played | one building | never |
-| `the drum's motes are cleared at x={int} z={int}` | Destroys `Mote_Bombardment` within 4 cells of a cell: the drum mod's own motes draw a square like a light | played | one mote def | never |
-| `the camera looks at the drum at x={int} z={int}, shifted {int} cells west, at zoom {int}` and `the camera's zoom limits are restored` | Centres the camera west of a cell, lowers the game's closest zoom (root size 11) for the shot, reads the root size back and fails with the number if it stopped short; the second step puts the limit back | played | the shot is specific | **candidate** with PickleTools' studio presets, which set the same root size |
-| `the game is saved as {string}` and `the saved game {string} is handed to the mod {string}` | Saves the running game and copies the `.rws` into `Pickle/Fixtures` of a companion mod that does not depend on this one, for a second launch without this mod (`-ThenWithout`) | played, run 28cc, 2026-10-08 | none | **already a second consumer**: AnimalApparelCollarsAndKitRenew uses the same mechanism. Promote to PickleTools (AGENTS.md, "Local scripts": a second use means one shared step, both callers migrated, the duplicate deleted) |
-| `I list what is around the drum at x={int} z={int}` | **Temporary diagnostic** (2026-09-26): logs what shines or floats near the drum with a `[DBH-DIAG]` prefix | played once | nothing reads it any more | **remove**: `99-diagnostic.feature` is already gone, the step is orphaned (the cause it found is handled by the motes step) |
+| `{string} is given the bathing hediff, then loses the hygiene need` | Hediff and missing need in ONE step, in that order: game hands pawn needs back whenever hediff changes, so removing need first proved nothing about branch for pawn without it | played, French pass 2026-09-23 | hediff is this mod's | never: specific to drum mod |
+| `the bathing hediff of {string} bound no clean action` | Reads component's two private fields (`cleanBound`, `clean`) by reflection, says whether no-need branch really taken | played | reads this mod's own fields | never |
+| `the letters and the alerts are cleared from the screen` | Empties letter stack and every `List<Alert>` of alerts readout (by reflection), so shot keeping Needs tab not cluttered | played, 2026-10 gallery runs | PickleTools' screenshot mode hides tab with the clutter | **now a candidate**: any mod capturing interface tab needs it; belongs in ScreenshotMode |
+| `the drum's light is switched off at x={int} z={int}` | Deregisters drum's `CompGlower` so game's light square not drawn behind drum | played | one building | never |
+| `the drum's motes are cleared at x={int} z={int}` | Destroys `Mote_Bombardment` within 4 cells of cell: drum mod's own motes draw square like light | played | one mote def | never |
+| `the camera looks at the drum at x={int} z={int}, shifted {int} cells west, at zoom {int}` and `the camera's zoom limits are restored` | Centres camera west of cell, lowers game's closest zoom (root size 11) for shot, reads root size back, fails with number if stopped short; second step puts limit back | played | shot specific | **candidate** with PickleTools' studio presets, which set same root size |
+| `the game is saved as {string}` and `the saved game {string} is handed to the mod {string}` | Saves running game, copies `.rws` into `Pickle/Fixtures` of companion mod not depending on this one, for second launch without this mod (`-ThenWithout`) | played, run 28cc, 2026-10-08 | none | **already a second consumer**: AnimalApparelCollarsAndKitRenew uses same mechanism. Promote to PickleTools (AGENTS.md, "Local scripts": second use = one shared step, both callers migrated, duplicate deleted) |
+| `I list what is around the drum at x={int} z={int}` | **Temporary diagnostic** (2026-09-26): logs what shines or floats near drum with `[DBH-DIAG]` prefix | played once | nothing reads it now | **remove**: `99-diagnostic.feature` already gone, step orphaned (cause it found handled by motes step) |
 
-Only the last is specific to this mod; the others are specific to the drum mod and would serve any mod that patches
-its bath.
+Only last specific to this mod; others specific to drum mod, would serve any mod patching its bath.
 
 ## Traps met while writing them
 
-These cost runs, and none of them is specific to a drum:
+These cost runs, none specific to drum:
 
-1. **`ctx.AssertEventually(...)` returns a `Task`.** A `void` step that calls it and drops the result never waits and
-   can never fail. Three runs went green over it. A step that waits is `async Task` with `await ctx.WaitUntil(...)`,
-   then `ctx.Assert(...)`, as AnimaSong's are.
-2. **`WaitUntil` throws `System.TimeoutException` on timeout, before your message can run.** A bare timeout says nothing, and a run
-   costs a ticket in the queue, so a step wants a trace in its failure. Do not `catch (Exception)` around it to build one:
-   that also swallows a `NullReferenceException` in your own condition and a scenario abort. Poll instead, with
-   `await ctx.WaitFrames(1)` against your own deadline, so that a timeout is an ordinary `false` and anything thrown is real.
-   The trace in `is bathing` is the pattern.
-3. **A test colonist arrives with joy full.** A real joy job ends at once through `JoyUtility.JoyTickCheckEnd`
-   and removes what it added. Set Joy low before ordering one. (AnimaSong met the same.)
-4. **A colonist left free at low hygiene is given a job of its own** by Dubs Bad Hygiene one tick later. A pawn
-   teleported into place has to be drafted, or every reading depends on something else.
-5. **Pickle's own pawn steps find colonists by nickname only.** `is given hediff` on an animal fails with "no pawn
-   nicknamed …". Resolve the name yourself, as `PawnNamed` does.
-6. **A `@review` scenario that is green has shown nothing.** Assert the state right before the shot, and film it if a
-   still cannot say why it looks wrong.
-7. **`Log.WarningOnce` prints once per key for the whole game session, and one Pickle run is one session.** A mod that reports
-   failures that way is only visible to the FIRST scenario that triggers one. `no warnings from mod {string}` therefore has
-   to end every scenario that exercises the code, not a few of them, and `no errors were logged` cannot see a warning at all.
-8. **An absence is only a test if something proves the code ran.** `has no thought X` is as true when the component never
-   started as when it worked. Put a positive marker that only a running component can produce in the same scenario.
-9. **`TryTakeOrderedJob` returns true for a job that ends inside `StartJob`.** Build an ordered job the way the mod
-   under test builds its own (which target index holds the thing, which the cell; read its job giver), not the
-   way `MakeJob(def, thing)` suggests: a driver whose first toil fails on a null target or a refused reservation
-   ends the job at once, the order step passes, and the colonist still ends up doing the thing when the mod's joy giver
-   or work giver sends them on its own schedule. It looks like a slow success, and passes or fails scenario by scenario
-   from one run to the next. A step that orders a job should also note, at that instant, what the pawn's current job
-   and the target's reservations are, so the wait that fails ninety seconds later can say why.
-10. **The game gives a pawn its needs back when its hediffs change** (`Pawn_NeedsTracker.AddOrRemoveNeedsAsAppropriate`).
+1. **`ctx.AssertEventually(...)` returns `Task`.** `void` step calling it and dropping result never waits, never fails. Three runs went green over it. Waiting step is `async Task` with `await ctx.WaitUntil(...)`, then `ctx.Assert(...)`, as AnimaSong's are.
+2. **`WaitUntil` throws `System.TimeoutException` on timeout, before your message can run.** Bare timeout says nothing, run costs ticket in queue, so step wants trace in failure. Do not `catch (Exception)` around it to build one: also swallows `NullReferenceException` in own condition and scenario abort. Poll instead, with
+   `await ctx.WaitFrames(1)` against own deadline, so timeout is ordinary `false`, anything thrown is real.
+   Trace in `is bathing` is the pattern.
+3. **Test colonist arrives with joy full.** Real joy job ends at once through `JoyUtility.JoyTickCheckEnd`, removes what it added. Set Joy low before ordering one. (AnimaSong met same.)
+4. **Colonist left free at low hygiene gets own job** from Dubs Bad Hygiene one tick later. Pawn teleported into place must be drafted, or every reading depends on something else.
+5. **Pickle's own pawn steps find colonists by nickname only.** `is given hediff` on animal fails with "no pawn
+   nicknamed …". Resolve name yourself, as `PawnNamed` does.
+6. **Green `@review` scenario has shown nothing.** Assert state right before shot, film it if still cannot say why it looks wrong.
+7. **`Log.WarningOnce` prints once per key for whole game session, one Pickle run = one session.** Mod reporting
+   failures that way only visible to FIRST scenario triggering one. `no warnings from mod {string}` therefore must
+   end every scenario exercising the code, not a few, and `no errors were logged` cannot see warning at all.
+8. **Absence only a test if something proves code ran.** `has no thought X` as true when component never
+   started as when it worked. Put positive marker only running component can produce in same scenario.
+9. **`TryTakeOrderedJob` returns true for job ending inside `StartJob`.** Build ordered job the way mod
+   under test builds its own (which target index holds thing, which cell; read its job giver), not
+   way `MakeJob(def, thing)` suggests: driver whose first toil fails on null target or refused reservation
+   ends job at once, order step passes, colonist still ends up doing the thing when mod's joy giver
+   or work giver sends them on own schedule. Looks like slow success, passes or fails scenario by scenario
+   from one run to next. Step ordering a job should also note, at that instant, pawn's current job
+   and target's reservations, so wait failing ninety seconds later can say why.
+10. **Game gives pawn needs back when hediffs change** (`Pawn_NeedsTracker.AddOrRemoveNeedsAsAppropriate`).
     A need taken off a pawn by hand before an action that adds a hediff is back afterwards. Add the hediff first and
     take the need off second, in the same step, or assert the precondition again after the action.
