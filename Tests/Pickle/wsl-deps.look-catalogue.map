@@ -5,3 +5,18 @@
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# The mods of the Sanctuary pass (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map), added 2026-10-18 at the request of NSB (owner's choice: vanilla, Ideology and these mods). Same order: bodies and trousers before WDI, then Facial Animation and its add-ons.
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+vk.addeyes.EX 3694711465
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+RaccoonCuddler.ShowHair 3255379190
