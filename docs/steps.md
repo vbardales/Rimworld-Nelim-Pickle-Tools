@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-308 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+310 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -148,6 +148,8 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: the thermal state and thoughts of {string} are logged` (When) | Writes in the log, and fails with nothing, the ambient temperature of a colonist, its comfortable range and every mood thought it has now (situational ones included). To read in the report why a face shows sweat or a blush. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: {string} has the thought {string}` (Then) | Asserts a colonist has the mood thought `ThoughtDef` now (for example `EnvironmentHot`); the failure lists the thoughts it has. **Parameters:** `nickname` (string): the colonist's nickname; `thoughtName` (string): a ThoughtDef name of the loaded game. |
 | `Nelim's Pickle Tools: {string} has no thought {string}` (Then) | Asserts a colonist does NOT have the mood thought `ThoughtDef` now; the failure says it is there, with its mood offset. **Parameters:** `nickname` (string): the colonist's nickname; `thoughtName` (string): a ThoughtDef name of the loaded game. |
+| `Nelim's Pickle Tools: {string} wields {string}` (Given) | Gives the colonist a new weapon of the def (by defName, made of its default stuff) and drafts the colonist so the game draws it. The weapon the colonist held goes to the inventory. Fails when the def is unknown or not a weapon, or the colonist cannot wield it (a violence-incapable pawn). **Parameters:** `nickname` (string): the colonist's nickname; `weaponDefName` (string). |
+| `Nelim's Pickle Tools: {string} puts its weapon away` (When) | Takes the weapons these steps gave away from the colonist and puts the draft state back as it was before the first one. **Parameters:** `nickname` (string): the colonist's nickname. |
 
 ## DefFieldSteps
 
