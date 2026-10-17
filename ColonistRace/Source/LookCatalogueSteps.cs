@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using RimWorks.Pickle;
 using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Nelim.PickleTools.ColonistRace
@@ -49,6 +50,25 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             Log.Message("[look-apparel] total " + apparel.Count);
+        }
+
+        /// <summary>
+        /// Logs every colour def of the game (<c>[look-colour]</c>): one line per mod and per colour type (Hair, Ideology, Structure, Misc), each defName
+        /// followed by its colour as hex, so a session can choose a hair dye, an ideology garment colour or a floor paint by name. Never fails.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colour options are listed")]
+        public void ListColours(PickleContext ctx)
+        {
+            List<ColorDef> all = DefDatabase<ColorDef>.AllDefsListForReading.ToList();
+            foreach (var mod in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                foreach (var type in mod.GroupBy(d => d.colorType.ToString()).OrderBy(g => g.Key))
+                {
+                    Log.Message("[look-colour] " + mod.Key + " | " + type.Key + " (" + type.Count() + "): " + string.Join(", ", type.Select(d => d.defName + "#" + ColorUtility.ToHtmlStringRGB(d.color)).OrderBy(n => n)));
+                }
+            }
+
+            Log.Message("[look-colour] total " + all.Count);
         }
 
         private static string Tag(string value, string none)
