@@ -59,6 +59,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly List<Action> KeepOutHooks = new List<Action>();
 
+        // Not map.mapPawns: its accessors throw "Accessing map pawns off main thread" when a step runs off the main thread (EntityGazing gallery-8, 2026-10-15).
+        internal static IEnumerable<Pawn> SpawnedPawns(Map map) => map == null ? Enumerable.Empty<Pawn>() : map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).OfType<Pawn>().Where(p => p.Spawned).ToList();
+
         private static Map RequireMap(PickleContext ctx)
         {
             ctx.Require(Find.CurrentMap != null, "Load a map first");
@@ -143,7 +146,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static int RemoveAnimals(PickleContext ctx, MapArea area)
         {
             Map map = RequireMap(ctx);
-            var animals = map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && area.Contains(p.Position)).ToList();
+            var animals = AreaOps.SpawnedPawns(map).Where(p => p.RaceProps.Animal && area.Contains(p.Position)).ToList();
             foreach (var a in animals) a.DeSpawn();
             return animals.Count;
         }
@@ -159,7 +162,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             {
                 Map map = Find.CurrentMap;
                 if (map == null) return;
-                foreach (var a in map.mapPawns.AllPawnsSpawned.Where(p => p.RaceProps.Animal && area.Contains(p.Position)).ToList()) a.DeSpawn();
+                foreach (var a in AreaOps.SpawnedPawns(map).Where(p => p.RaceProps.Animal && area.Contains(p.Position)).ToList()) a.DeSpawn();
             };
             hook();
             KeepOutHooks.Add(hook);

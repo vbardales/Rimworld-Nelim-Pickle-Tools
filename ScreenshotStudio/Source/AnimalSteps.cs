@@ -33,7 +33,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [When(Prefix + "I frame the animal {string} at zoom {int}")]
         public async Task FrameAnimal(PickleContext ctx, string nickname, int size)
         {
-            var pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
             ctx.Require(pawn != null, "No spawned animal named " + nickname);
             Find.Selector.ClearSelection();
             Find.CameraDriver.JumpToCurrentMapLoc(pawn.Position);
@@ -60,7 +60,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 {
                     var c = new IntVec3(x + dx, 0, z + dz);
                     float d = dx * dx + dz * dz;
-                    if (d < bestDist && (c == pawn.Position || FreeCell(map, c)) && !map.mapPawns.AllPawnsSpawned.Any(p => p != pawn && p.Position == c)) { best = c; bestDist = d; }
+                    if (d < bestDist && (c == pawn.Position || FreeCell(map, c)) && !AreaOps.SpawnedPawns(map).Any(p => p != pawn && p.Position == c)) { best = c; bestDist = d; }
                 }
             ctx.Require(best.IsValid, "No free cell within 15 cells of (" + x + ", " + z + ") for " + who);
             pawn.Position = best;
@@ -72,7 +72,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the animal {string} stands on the nearest free cell around \\({int}, {int}\\)")]
         public void AnimalOnNearestFree(PickleContext ctx, string nickname, int x, int z)
         {
-            var pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
             StandOnNearestFree(ctx, pawn, "animal " + nickname, x, z);
         }
 
@@ -80,7 +80,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the colonist {string} stands on the nearest free cell around \\({int}, {int}\\)")]
         public void ColonistOnNearestFree(PickleContext ctx, string nickname, int x, int z)
         {
-            var pawn = Find.CurrentMap?.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).Where(p => p.IsColonist && p.Faction == Faction.OfPlayer).FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == nickname);
             StandOnNearestFree(ctx, pawn, "colonist " + nickname, x, z);
         }
 
@@ -88,7 +88,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the animal {string} carries {int} {string} in its pack")]
         public void AnimalCarriesInPack(PickleContext ctx, string nickname, int count, string defName)
         {
-            var pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
             ctx.Require(pawn != null, "No spawned animal named " + nickname);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
             ctx.Require(def != null, "No thing def named " + defName);
