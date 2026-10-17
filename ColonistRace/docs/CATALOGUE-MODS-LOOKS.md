@@ -49,7 +49,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | PalRim | 3770344985 | Elvlin.PalRim | 2 |
 | Sardaukar Equipment | 3074704625 | lynxpaws.sardaukar | 2 |
 | Simple Texture Tweaks | 3245917504 | buyue.SimpleTextureTweaks | 2 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 2 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 2 |
 | The Locked Tomb | 2711971347 | oracle.thelockedtomb | 2 |
 | Touhou Fashion: TH20-21 | 3742193573 | xerohexa.TouhouFashionTH2021 | 2 |
 | 边缘仙路-镇邪诛鬼 RimImmortal-Exorcism[1.6] | 3663824172 | RI.RimImmortal.Exorcism | 2 |
@@ -83,7 +83,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Morphs Assorted: Hairs | 2718021679 | MorphsAssorted.Hairs | 88 |
 | RimPonk | 2587727618 | SovietRabotyaga.RimPonkOld | 87 |
 | 中华老先人：Mingshu Faction | 3012932396 | WeiShanMaoWei.gudairen | 87 |
-| Ratkin Xenotype Forked | 3509837826 | Ludeon.RimWorld.Biotech | 86 |
+| Ratkin Xenotype Forked | 3509837826 | S7.RatkinXenotype | 86 |
 | Guardian Armory | 3810803937 | EquivalentExchange.GuardianArmory | 82 |
 | RIMFRIENDS | 2306237765 | siromikosan.RIMFRIENDS.Hair | 81 |
 | [Cosplay apparel]Genshin impact | 2569969607 | mlmlmlm.cosplayapparelgenshinimpact | 78 |
@@ -98,7 +98,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Roo's HD Glasses Hairstyles | 2869561673 | Rooboid.GlasseshairHD | 51 |
 | Bleach Mod | 3635653759 | RS.BleachMod | 48 |
 | Girls' frontline Apparel Pack （汉化整合版）少女前线人物服装与发型模组 | 1822923761 | TenMoe.GFCL | 45 |
-| Vanilla Hair Expanded - Beards | 2187520791 | VanillaExpanded.VHE | 45 |
+| Vanilla Hair Expanded - Beards | 2187520791 | VanillaExpanded.VHE.Beards | 45 |
 | Sunny's Dr Stone Hairstyles Plus | 2897247898 | sd.drstone.hairs | 44 |
 | [MC]Mingcao Styles - 鸣潮造型包 | 3381363332 | Kuro.WutheringWaves.CharacterStyles | 43 |
 | Roo's Accessory Hairstyles | 1991452568 | Rooboid.Accessoryhair | 42 |
@@ -129,8 +129,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Facial Stuff 1.1 | 818322128 | killface.facialstuff | 33 |
 | Gloomy Hair mk2 FORKED | 2895002564 | KLR.GloomyHairMk2FORKED | 33 |
 | Pumpkin Hairstyles | 3783859385 | Pumpkin.PumpkinHairs2 | 33 |
-| Vanilla Races Expanded - Highmate | 2995385834 | brrainz.harmony | 33 |
-| Vanilla Races Expanded - Saurid | 2880990495 | brrainz.harmony | 33 |
+| Vanilla Races Expanded - Highmate | 2995385834 | vanillaracesexpanded.highmate | 33 |
+| Vanilla Races Expanded - Saurid | 2880990495 | vanillaracesexpanded.saurid | 33 |
 | [Uru] Touhou Hair | 1583672717 | Uru.Touhou.Hair | 32 |
 | Rusty's Foliage Hair | 3646973576 | Rustys.Foliage.Hairs | 32 |
 | Tree People (Continued) | 2568676212 | Mlie.TreePeople | 32 |
@@ -144,7 +144,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [GOV]Nikke Character Styles - 妮姬造型包 | 3080701284 | RicoFox233.GOV.NikkePack | 25 |
 | Pawnbold Continued | 3524646728 | radbutte.pawnbold | 24 |
 | Roo's Minotaur Xenotype Expanded | 3550835154 | tug.Minotaur.Expanded | 24 |
-| Vanilla Races Expanded - Sanguophage | 2963116383 | brrainz.harmony | 24 |
+| Vanilla Races Expanded - Sanguophage | 2963116383 | vanillaracesexpanded.sanguophage | 24 |
 | [Cosplay apparel]Counter side | 2647968329 | mlmlmlm.cosplayapparelcounterside | 22 |
 | [ZZ]Girls' Frontline Series Styles - 少前角色定制包 | 3461124128 | RicoFox233.PTWZZ.GFPack | 22 |
 | Nice Short Female Hairs | 3316363751 | Andromeda.NiceHairs | 22 |
@@ -170,11 +170,11 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RimPonkUniquePawns | 2672250809 | SovietRabotyaga.RimPonkUniquePawns | 18 |
 | Rock People | 2162223835 | FilthyPeasant.Races.RockPeople | 18 |
 | Touhou Fashion: TH14-15 | 3682955372 | xerohexa.TouhouFashionTH1415 | 18 |
-| Vanilla Races Expanded - Phytokin | 2927323805 | brrainz.harmony | 18 |
+| Vanilla Races Expanded - Phytokin | 2927323805 | vanillaracesexpanded.phytokin | 18 |
 | Zoroark - Xenotype | 3047455758 | twc.zoroark | 18 |
 | Elden Rim: Hairstyles | 3714309190 | Sharpie.EldenRim.Hairstyles | 17 |
 | Medieval Kingdoms: The Later Tang 中世纪：旧唐 | 3667762283 | wobuniub.jiutang | 17 |
-| Naki Gene (BioTech) | 2935084152 | OskarPotocki.VanillaFactionsExpanded.Core | 17 |
+| Naki Gene (BioTech) | 2935084152 | her.NakiGene | 17 |
 | Rim Lane - Shipgirl | 2738014283 | WYH.RL.Shipgirl | 17 |
 | [Cosplay apparel] Wuthering waves | 3361639670 | mlmlmlm.cosplayapparelwutheringwaves | 16 |
 | [Cosplay apparel]Princess Connect! Re:dive | 2767009576 | mlmlmlm.cosplayapparelprincessconnect | 16 |
@@ -195,7 +195,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Characters - EndField | 3703638731 | LotusLand.SA.EndField | 14 |
 | Touhou Fashion: TH18-19 | 3740379050 | xerohexa.TouhouFashionTH1819 | 14 |
 | D12 Dungeon and Night Hairs HD | 3620959277 | D12caEdro.DyNHairsHD | 13 |
-| Limbus Company边狱巴士罪人模组 | 3521005776 | MIS.Framework | 13 |
+| Limbus Company边狱巴士罪人模组 | 3521005776 | ppsh41.limbuscompany | 13 |
 | [Cosplay apparel]Eternal return | 2886843259 | mlmlmlm.cosplayappareleternalreturn | 12 |
 | [Nijigasaki High School Idol Club]虹咲学院学院偶像同好会造型包 | 2963100129 | QAQyes.mod.Nijigasaki.Apparel | 12 |
 | BlueArchive - Cosplay - Tinimar | 3581654508 | mlmlmlm.MataB.BACOS | 12 |
@@ -253,7 +253,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [SY] made in abyyss - 来自深渊角色包 | 3421682475 | Jupiter.madeinabyss | 6 |
 | BusterZlista's Hairstyle Pack | 2566644544 | busterzlista.hairstyle | 6 |
 | Just About: Lions And Tigers (Continued) | 3320873214 | JA.LionsandTigers | 6 |
-| Kijin Race 3.0 | 2884551646 | Ludeon.RimWorld.Biotech | 6 |
+| Kijin Race 3.0 | 2884551646 | ssulunge.KijinRace3 | 6 |
 | Lord of the Rims - Hobbits (Continued) | 3548253473 | zal.lotrhobbits | 6 |
 | Meteorifics Cosmetic Gene Pack | 2903706128 | meteorific.cosmeticgene | 6 |
 | Monks and Fighters -  a Rimworld of Magic factions expansion | 2080823338 | QraTz.AROMExpansionMelees | 6 |
@@ -272,7 +272,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Hair Modding Plus - Hair Samples | 2324262910 | Butterfish.Hair.Demo | 5 |
 | Lord of the Rims - Dwarves (Continued) | 3548257505 | zal.lotrdwarves | 5 |
 | Lord of the Rims - Elves (Continued) | 3548255064 | zal.lotrelves | 5 |
-| Spite the Sky: Fer'Liebor Xenotype | 3646000311 | Ludeon.RimWorld.Biotech | 5 |
+| Spite the Sky: Fer'Liebor Xenotype | 3646000311 | sinner.xenotype.bun | 5 |
 | VA-11 Hall-A Hair Pack | 3534483447 | Fly.Vallhalla.Hairs | 5 |
 | [SZ]Dearly Stars Style Hairs Expanded 偶像大师发型扩展 | 3050504185 | SZ.DealyStars.HairExpanded | 4 |
 | [YUZU]LimeLight Lemonade Jam - 角色造型包 | 3729535751 | RicoFox233.yuzu.LLLJCharacterStyles | 4 |
@@ -300,7 +300,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Roxborn | 3048382292 | annoprofi.roxborn | 3 |
 | Spirits - Elysian Xenotype | 3355915685 | redaquasurfer.spiritselysian | 3 |
 | SpyFamily Cosplay- Tinimar | 3575638712 | MitaP.TinimarSpaFamCos | 3 |
-| Umamusume: Rim Derby | 3552197538 | brrainz.harmony | 3 |
+| Umamusume: Rim Derby | 3552197538 | JTC.Honseseggs | 3 |
 | [1.5]RimArchive(修复版) | 3487033168 | Ayanami.Weaponpack.BlueArchive.NHUX | 2 |
 | [MF]Chitose &amp; Sayo Apparel | 3444654212 | MF.ChitoseSayo | 2 |
 | [RF]ATELIER SOPHIE styles - 苏菲炼金工房造型包 | 3670402400 | RF.ATELIERSOPHIE.CharacterStyles | 2 |
@@ -354,7 +354,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Lantern Hunters | 2866414675 | kdm.lanternhunters | 62 |
 | Hair Extensions | 2295386535 | neronix17.hairstyles | 42 |
 | Outland - Genetics | 2910172297 | Neronix17.Outland.Genetics | 38 |
-| Vanilla Races Expanded - Lycanthrope | 3114453100 | brrainz.harmony | 33 |
+| Vanilla Races Expanded - Lycanthrope | 3114453100 | vanillaracesexpanded.lycanthrope | 33 |
 | [1.7]边缘仙路-雾鬓风鬟 RimImmortal-Hairstyle | 3265157569 | RI.RimImmortals.Hairstyle | 20 |
 | Stubbly Facial Hair | 2768240773 | mosi.StubblyFacialHair | 18 |
 | Mighty Manly Mustache and Big Dwarven Beards | 3289257087 | Ace.MMMaBDB.test | 16 |
@@ -379,28 +379,28 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Nearly Human | 2658925101 | Orpheusly.NearlyHuman | 1 |
 | Pumpkinlass: Veils and Scarves | 3791107642 | Pumpkinlass.VeilsNScarves | 1 |
 | Simple Texture Tweaks | 3245917504 | buyue.SimpleTextureTweaks | 1 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 1 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 1 |
 
 ## Head types (203 mods, 2866 hits)
 
 | Mod | Workshop id | packageId | Hits |
 |---|---|---|---|
 | 中华老先人：Mingshu Faction | 3012932396 | WeiShanMaoWei.gudairen | 228 |
-| Alpha Genes | 2891845502 | brrainz.harmony | 166 |
+| Alpha Genes | 2891845502 | sarg.alphagenes | 166 |
 | Fungi lite | 2129406860 | Druid.Fungilite | 108 |
 | Outland - Genetics | 2910172297 | Neronix17.Outland.Genetics | 100 |
 | Rim-Robots_ | 2743171832 | VexedTrees980.RimRobots | 96 |
 | Star Wars Xenotypes | 2915192253 | guy762.StarWarsXenotypes | 96 |
 | Doctor Mcninja Mod | 3511408960 | Dakturis.Mcninja | 76 |
 | Anthrosonae | 2902258418 | ATK.Anthrosonae | 74 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 72 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 72 |
 | Mincho, The Mint Choco Slime ~ HAR ver. | 2477501851 | SutSutMan.MinchoTheMintChocoSlimeHARver | 62 |
 | Biotech Monke Xenotype (Continued) | 3797310379 | DanZinagri.BiotechMonkeContinued | 50 |
 | Big and Small - Genes &amp; More | 2920751126 | RedMattis.BigSmall.Core | 48 |
 | Cane Aternitigno, The war dogs of battlefield Xenotypes and Faction | 3165847953 | Resurrectionem.CaneBellum | 42 |
 | Ferian Race - Biotech | 2887426937 | Bichang.FerianRace.Biotech | 40 |
 | Tribal Fungi Biome | 2182438464 | Druid.FungiBiome | 38 |
-| Kijin Race 3.0 | 2884551646 | Ludeon.RimWorld.Biotech | 36 |
+| Kijin Race 3.0 | 2884551646 | ssulunge.KijinRace3 | 36 |
 | Mona The Moon Bear (1.6 fork) | 3248186952 | kku.MonaTMB | 36 |
 | The Profaned | 3202008037 | BotchJob.Profaned | 36 |
 | Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions | 2974761367 | Resurrectionem.Ama | 33 |
@@ -408,12 +408,12 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Lapelli Race - Biotech | 2892301088 | Bichang.LapelliRace.Biotech | 32 |
 | Rim-Hivers! | 2506643795 | VexedTrees980.RimUHiversI | 32 |
 | Carnarodian, the two Mustelids Xenotypes and Factions | 3104049393 | Resurrectionem.LyunicaandSobolelyud | 30 |
-| Vanilla Races Expanded - Phytokin | 2927323805 | brrainz.harmony | 30 |
+| Vanilla Races Expanded - Phytokin | 2927323805 | vanillaracesexpanded.phytokin | 30 |
 | Gokusotsu the Hell Guard | 2892925626 | muri.gokusotsu | 26 |
 | Zeta Reticulans [Player/Hostile Factions] | 2241841840 | GarbageDayIsHereToStay.ZetaReticulans | 25 |
 | Madness Pawns | 2996910118 | SamBucher.MadnessPawns2 | 24 |
 | Paws Of Interest [ Xenotype Mod ] | 3764120996 | Nialation.PawsOfInterest | 24 |
-| Rimsec Security (Continued) | 3520375010 | brrainz.harmony | 24 |
+| Rimsec Security (Continued) | 3520375010 | zal.rimsecsecurity | 24 |
 | WVC - Xenotypes and Genes | 2886992038 | wvc.sergkart.races.biotech | 22 |
 | Biotech Expansion - Mammalia | 2878084431 | biotexpans.mammalia | 21 |
 | Even_more_anime_style_female_faces | 3221641174 | Akke.femaleanimefaces | 21 |
@@ -441,21 +441,21 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | fantasy-races-alpha-genes | (local) fantasy-races-alpha-genes |  | 12 |
 | Forgotten Realms - Loxo (Continued) | 3147105686 | zal.loxo | 12 |
 | Heyra the Horned (Revived) | 3679943662 | Foxed.HeyraTheHorned | 12 |
-| Imphilee Xeno | 2990674516 | brrainz.harmony | 12 |
+| Imphilee Xeno | 2990674516 | Tjet.LD.ImphileeXeno | 12 |
 | Inanis - Grimalkin | 3211588221 | spottea.InanisGrimalkin | 12 |
-| MH: Android Tiers | 2974546748 | brrainz.harmony | 12 |
+| MH: Android Tiers | 2974546748 | Killathon.MechHumanlikes.AndroidTiers | 12 |
 | MoeLotl: Rigor Mortis | 3454053400 | fxz.moelotlzombie.update | 12 |
 | Oca's Anthrosonae | 3720732132 | ocarina.anthrosonae | 12 |
-| Ratkin Xenotype Forked | 3509837826 | Ludeon.RimWorld.Biotech | 12 |
+| Ratkin Xenotype Forked | 3509837826 | S7.RatkinXenotype | 12 |
 | Rim's Destiny: Exo | 3771229424 | Froggysnack.RimsDestiny.Exo | 12 |
-| Rimframe: Vatgrown Hate | 3431220821 | brrainz.harmony | 12 |
+| Rimframe: Vatgrown Hate | 3431220821 | JTC.Grineer | 12 |
 | Roo's Minotaur Xenotype | 3548423129 | tug.Minotaur | 12 |
-| Spite the Sky: Fer'Liebor Xenotype | 3646000311 | Ludeon.RimWorld.Biotech | 12 |
+| Spite the Sky: Fer'Liebor Xenotype | 3646000311 | sinner.xenotype.bun | 12 |
 | SSM.Aggr | 3523237955 | SSM.Aggr | 12 |
 | The Borg Collective | 3704848468 | TheBorg.Collective.Main | 12 |
-| The Eastern Dragons (Continued) | 2672488311 | erdelf.HumanoidAlienRaces | 12 |
+| The Eastern Dragons (Continued) | 2672488311 | zal.easterndragons | 12 |
 | Totzi Xenotype Race | 3409222988 | Sanoo6.TotziXenotypeMod | 12 |
-| Vanilla Races Expanded - Saurid | 2880990495 | brrainz.harmony | 12 |
+| Vanilla Races Expanded - Saurid | 2880990495 | vanillaracesexpanded.saurid | 12 |
 | Zoroark - Xenotype | 3047455758 | twc.zoroark | 12 |
 | Sahari, The Natives Of Desert | 3531751946 | Sahari.Minjunbulsang | 11 |
 | [LFS] Genes Expanded - Heads | 3549061328 | LazyFridayStudio.GenesExpandedHeads | 10 |
@@ -467,10 +467,10 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Cain's Gene Pack | 3819866589 | Cain.GenePack | 8 |
 | Crystalloid | 1571323744 | atomicravioli.Crystalloid | 8 |
 | Frost and Fire (Continued) | 3243969146 | zal.frostandfire | 8 |
-| Grimdark Recycling2 | 3363054797 | OskarPotocki.VanillaFactionsExpanded.Core | 8 |
+| Grimdark Recycling2 | 3363054797 | CJTLW.HereTech | 8 |
 | Just About: Lions And Tigers (Continued) | 3320873214 | JA.LionsandTigers | 8 |
 | Mauray | 3663680564 | Hazimier.Mauray | 8 |
-| Obsidia Expansion - Tailborne Xenotype | 3511930980 | ludeon.rimworld.biotech | 8 |
+| Obsidia Expansion - Tailborne Xenotype | 3511930980 | ObsidiaExpansion.Xenos.Tailborne | 8 |
 | Palim - P.S. Series | 3797374488 | Valensia.Palim | 8 |
 | Rim-Hivers! - Biotech | 3378615596 | VexedTrees980.RimHiversBiotech | 8 |
 | Roo's Faun Xenotype | 3547220635 | V.Rooboid.Faun | 8 |
@@ -478,7 +478,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Anthros for Everyone | 3694051923 | keno.anthrosforeveryone | 7 |
 | FIP - WestTek | 3592202407 | FIP.WestTek | 7 |
 | Male MoeLotl | 3810232718 | yuxiu.malemoeLotl | 7 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 7 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 7 |
 | Avian Xenotype - Eagle | 3808135566 | Drifter.AvianEagle | 6 |
 | Awakened Apes | 3646217940 | OnlyMonkey.AwakenedApes | 6 |
 | Cyanobot's Genes | 2889844371 | cyanobot.CyanobotsGenes | 6 |
@@ -518,8 +518,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Rim Expedition 33 | 3534663071 | warult.expedition33mod | 4 |
 | RIMWAAAGH — Orks of RimWorld [1.6] — WIP | 3577775737 | why.orcs | 4 |
 | Covenant Of Hir (Continued) | 3646443012 | Zaltys.CovenantofHirUpdated | 3 |
-| Det's Xenotypes - Stoneborn | 2888722722 | brrainz.harmony | 3 |
-| Dr. Arch13's ArchoWonderium - DigiFox (tm) | 2900653856 | prkr.genetools | 3 |
+| Det's Xenotypes - Stoneborn | 2888722722 | det.stoneborn | 3 |
+| Dr. Arch13's ArchoWonderium - DigiFox (tm) | 2900653856 | DrAW.DigiFox | 3 |
 | Forgotten Realms - Kuo-Toa (Continued) | 3147199530 | zal.kuotoa | 3 |
 | Forgotten Realms - Minotaur (Continued) | 3146996208 | zal.minotaur | 3 |
 | Lamias, Sirens, Snakemen, and other Serpents-like beings | 2908225858 | RedMattis.LamiasAndOtherSnakes | 3 |
@@ -528,7 +528,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Rim-Fogmen Continued! (1.6) (Biotech) | 3324678049 | HHmayon.RimHivers.Fogmen | 3 |
 | Spooky Scary Skeletons (Continued) | 2989256051 | Mlie.SpookyScarySkeletons | 3 |
 | TouhouRimworld.test | 3789231443 | yesterdayx2.touhourimworld.test | 3 |
-| UFO: Alien Invasion | 3618511799 | erdelf.HumanoidAlienRaces | 3 |
+| UFO: Alien Invasion | 3618511799 | Dariagan.UFOAI | 3 |
 | 圣蜣螂种族 | 3740297753 | super.scarabpeople | 3 |
 | [1.5]RimArchive(修复版) | 3487033168 | Ayanami.Weaponpack.BlueArchive.NHUX | 2 |
 | Anthrosonae Mongoose | 3802945828 | LythC.AnthrosonaeMongoose | 2 |
@@ -553,19 +553,19 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Mimic Slime - Deliria | 3636189401 | lf.mod.MimicSlime | 2 |
 | Moth's Project Moon Things | 3384372059 | MothGaming.ProjectMoonStuff | 2 |
 | MSS Tweaks and Fun | 3379574408 | MSS.FlavourPack | 2 |
-| Naki Gene (BioTech) | 2935084152 | OskarPotocki.VanillaFactionsExpanded.Core | 2 |
+| Naki Gene (BioTech) | 2935084152 | her.NakiGene | 2 |
 | Oni Xenotype | 3311134271 | Eclair155.OniXeno | 2 |
 | RimKimetsu - Demon Slayer Rimworld Mod | 3641720143 | WILL.DemonSlayerRimworldMod | 2 |
 | SakuraSaintess SuccubusLove | 3811101824 | pumpkin.mengximagic | 2 |
 | Seraphim Xenotype Reborn | 3773065414 | Sovereign.SeraphimReborn | 2 |
 | Sergal Genes | 3639784628 | Drifter.SergalGenes | 2 |
 | Skeletal Efflorescence | 3685431818 | Eo3.SkeletalEfflorescence | 2 |
-| Sphere of Hearts | 3636337493 | Ludeon.RimWorld.Anomaly | 2 |
+| Sphere of Hearts | 3636337493 | Astra.SphereOfHearts | 2 |
 | Star Wars KotOR Resources and Materials | 3254370945 | guy762.MM.KotORCore | 2 |
 | TurtleShroom Productions Proudly Presents: Call of Cthulhu Factions (Continued) | 3780067307 | rimofmadness.callofcthulhu.factions | 2 |
 | Very scuffed 1.5 Sergals | 3469468302 | biotech.sergalcivvie.scuffed | 2 |
 | Vulpes - Xenotype | 2958764343 | Shurik1236.VulpesXenos | 2 |
-| [AV] Kosmian Xenotype | 3774474578 | Ludeon.RimWorld.Biotech | 1 |
+| [AV] Kosmian Xenotype | 3774474578 | Veltaris.Kosmian | 1 |
 | Cybermen | 3418128007 | darthdakka.cybermen | 1 |
 | Draconis Koelime | 3586338158 | Draconis.Koelime | 1 |
 | Geist Xenotype | 3564732214 | Sov.Tenmo | 1 |
@@ -574,10 +574,10 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Hololive My Oshi | 3293862630 | Hanley.HololiveMyOshi | 1 |
 | Konpaku Youmu/魂魄妖梦 | 3763960520 | Chi.KonpakuYoumu | 1 |
 | MF Vanilla | 3725961309 | oracle.mfvanilla | 1 |
-| MH: Utility Drones | 3088039375 | brrainz.harmony | 1 |
+| MH: Utility Drones | 3088039375 | Killathon.MechHumanlikes.UtilityDrones | 1 |
 | MUGB Goblin | 3768425355 | mustard1557.mugb.goblin | 1 |
 | Nephilim Xenotype Reborn | 3542508261 | Sov.Nephilim | 1 |
-| No Longer Human-Warhives Faction Pack | 3462391280 | Ludeon.RimWorld.Biotech | 1 |
+| No Longer Human-Warhives Faction Pack | 3462391280 | nlh.warhives | 1 |
 | Novabeast xenotype | 3532520652 | uzarkus.xenotype.novabeast | 1 |
 | One with Death | 3448902635 | 6224Y.OneWithDeath | 1 |
 | Playable Flood | 3769250791 | rdash99.PlayableFlood | 1 |

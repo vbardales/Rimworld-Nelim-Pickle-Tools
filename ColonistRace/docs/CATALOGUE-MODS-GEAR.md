@@ -77,7 +77,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | akt-lewd-clothes | (local) akt-lewd-clothes |  | 92 |
 | Nanotrasen's Armory (Continued) | 2171553025 | Mlie.NanotrasenArmory | 91 |
 | [RF]RicoFox ACG Styles - 动漫角色造型包 | 3148162289 | RicoFox233.anime.HAPack | 90 |
-| No Longer Human-Consortium Faction Pack | 3777379164 | Ludeon.RimWorld.Biotech | 90 |
+| No Longer Human-Consortium Faction Pack | 3777379164 | nlh.consortium | 90 |
 | Rubber Mask Mod | 2906389007 | meteorific.rubbermask | 90 |
 | [RH2] Faction: Task Force 141 | 2694371667 | RH2.Faction.Task.Force.141 | 88 |
 | [V1]Tempta Formation | 1544986569 | CamoAdventure.TemptaFormation | 88 |
@@ -89,7 +89,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [TW][SZ]（非正式版本）戢斨国魂——传统派系和文化扩展 Chinese culture and faction and equipment expansion | 2330850570 | TangW.SZ.GuoHun | 86 |
 | [JDS] The Forge - NCR Armory (continued) | 3369009454 | JangoDsoul.TheForge.NCRArmory | 85 |
 | Rimsenal Faction Pack - Feral | 736207111 | rimsenal.feral | 85 |
-| Vanilla Armour Expanded | 1814988282 | brrainz.harmony | 84 |
+| Vanilla Armour Expanded | 1814988282 | VanillaExpanded.VARME | 84 |
 | DuelMonsterRimWorld | 3050289249 | DuelMonster.RimWorld | 82 |
 | URMC | 3373838883 | pphhyy.URMC | 81 |
 | RimDead Redemption (Continued) | 3544724978 | zal.rdr | 80 |
@@ -98,18 +98,18 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | carniculus | (local) carniculus |  | 77 |
 | T's Samurai Faction | 2559958496 | Trickity.Samurai.Faction | 77 |
 | Medieval Tailor Continued | 3512201406 | Tinda.Medieval.Tailor.Continued | 76 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 75 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 75 |
 | Vanilla Apparel Expanded | 1814987817 | VanillaExpanded.VAPPE | 74 |
 | Gone with the Rimwave (Continued) | 2262471299 | Mlie.GonewiththeRimwave | 72 |
 | Rim-Effect: Core | 2479560240 | RimEffect.Core | 72 |
-| Glitter Tech | 2558099206 | brrainz.harmony | 70 |
+| Glitter Tech | 2558099206 | Xavior.GlitterTech | 70 |
 | Lisa's Work Apparel | 3709891968 | Hysteria82.MousekinWorkApparel | 70 |
 | Napoleonic Age (Continued) | 2052310880 | Mlie.NapoleonicAge | 70 |
 | Kraltech Industries | 3250496402 | BlackMarket420.KraltechIndustries | 69 |
 | Mona The Moon Bear (1.6 fork) | 3248186952 | kku.MonaTMB | 69 |
 | Star Wars KotOR Gadgets and Equipment | 3014964158 | guy762.KotORGadgets | 69 |
 | [Syulipia]OrientalDragonMOD (Continued) | 3564312643 | ProjectSyulipia.OrientalDragonMOD.continued | 68 |
-| Rimframe: Vatgrown Hate | 3431220821 | brrainz.harmony | 68 |
+| Rimframe: Vatgrown Hate | 3431220821 | JTC.Grineer | 68 |
 | Eccentric Tech - Angel Apparel | 2585928816 | Aelanna.EccentricTech.AngelApparel | 66 |
 | Lisa's Military Apparel | 3803631499 | Hysteria82.MousekinMilitaryApparel | 65 |
 | World of Naruto | 3025338958 | LifeisGame.WorldOfNaruto | 65 |
@@ -130,7 +130,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [RH2] Faction: Gruppa Krovi | 3221155630 | RH2.Faction.Gruppa.Krovi | 60 |
 | Pirates! Gold | 2599107582 | zal.piratesgold | 60 |
 | Rimhammer - The End Times - Magic | 2020384442 | SickBoyWi.TheEndTimes.Magic | 60 |
-| RimVali: Far From Avalon | 2936412543 | brrainz.harmony | 60 |
+| RimVali: Far From Avalon | 2936412543 | Nesi.RimValiFFARW | 60 |
 | [1.7]边缘仙路-俗世仙工 RimImmortal-Living | 3326145525 | RI.RimImmortal.Living | 58 |
 | Ludus — Gladiateurs | 3813622260 | boogiesman.ludus.gladiateurs | 58 |
 | Touhou Fashion: TH06-07 | 3603861801 | xerohexa.TouhouFashionTH0607 | 58 |
@@ -168,7 +168,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | GhillieModPack (Continued) | 2862485631 | zal.GMP | 48 |
 | Heruan, Keepers of Memories | 2810613161 | Aelanna.Heruan | 48 |
 | Rim-Effect Renegade: Core | 3473370247 | RimEffectRenegade.Core | 48 |
-| Rimzone: Sons and Daughters of Helghan | 3492260324 | brrainz.harmony | 48 |
+| Rimzone: Sons and Daughters of Helghan | 3492260324 | JTC.Helghast | 48 |
 | Syndicate Classic (Continued) | 2157955138 | Mlie.SyndicateClassic | 48 |
 | The Profaned | 3202008037 | BotchJob.Profaned | 48 |
 | Ponpeco Accessories | 3298397484 | ponpeco.PonpecoAccessories | 47 |
@@ -184,7 +184,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Enigmatic Relics - 神秘遗物 | 3815923593 | wht.EnigmaticRelics | 44 |
 | Hololive My Oshi | 3293862630 | Hanley.HololiveMyOshi | 44 |
 | Imperial Attires | 3465257079 | CAT.Imperial.Attires | 44 |
-| Naki Gene (BioTech) | 2935084152 | OskarPotocki.VanillaFactionsExpanded.Core | 44 |
+| Naki Gene (BioTech) | 2935084152 | her.NakiGene | 44 |
 | Rimworld: Medieval Edition | 754010247 | Bonehead14.MedievalEdition | 44 |
 | TurtleShroom Productions Proudly Presents: Call of Cthulhu Factions (Continued) | 3780067307 | rimofmadness.callofcthulhu.factions | 44 |
 | UnderWhere | 1870010563 | Malistaticy.UnderWhere | 44 |
@@ -192,7 +192,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [LF] Rimteska! | 2854536595 | LeFaux.Rimteska | 43 |
 | Characters - EndField | 3703638731 | LotusLand.SA.EndField | 43 |
 | Heyra the Horned (Revived) | 3679943662 | Foxed.HeyraTheHorned | 43 |
-| TiberiumRim | 1346865620 | brrainz.harmony | 43 |
+| TiberiumRim | 1346865620 | telefonmast.tiberiumrim | 43 |
 | Touhou Fashion: TH14-15 | 3682955372 | xerohexa.TouhouFashionTH1415 | 43 |
 | [JDS] The Forge - Barrows Brothers | 2031857632 | JangoDsoul.TheForge.BB | 42 |
 | Infinity Rim: Ariadna (Continued) | 2141841837 | Mlie.InfinityRimAriadna | 42 |
@@ -263,7 +263,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Kerberos : Protect Gears and Firearms | 3297044885 | BlackMarket420.Kerberos | 32 |
 | MECP - Dunedain Armory | 2704651665 | Rick.FotRDunedainArmory | 32 |
 | MoeLotl: Rigor Mortis | 3454053400 | fxz.moelotlzombie.update | 32 |
-| No Longer Human-Warhives Faction Pack | 3462391280 | Ludeon.RimWorld.Biotech | 32 |
+| No Longer Human-Warhives Faction Pack | 3462391280 | nlh.warhives | 32 |
 | RimKimetsu - Demon Slayer Rimworld Mod | 3641720143 | WILL.DemonSlayerRimworldMod | 32 |
 | Touhou Fashion: TH18-19 | 3740379050 | xerohexa.TouhouFashionTH1819 | 32 |
 | [DA] Polish Faction for RimWorld War 2 | 3749337450 | DA.POLRWW2 | 31 |
@@ -293,7 +293,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Ultratech Shades (Continued) | 2937778775 | Mlie.UltratechShades | 28 |
 | Vanilla Factions Expanded - Classical | 2787850474 | OskarPotocki.VFE.Classical | 28 |
 | Vaults of Vagar | 2942025506 | alexprotopopov.VaultsofVagar | 28 |
-| Weirdcaskets | 2768223143 | OskarPotocki.VFE.Pirates | 28 |
+| Weirdcaskets | 2768223143 | Pentirin.Weirdcaskets | 28 |
 | [Cosplay apparel]Princess Connect! Re:dive | 2767009576 | mlmlmlm.cosplayapparelprincessconnect | 27 |
 | [RH2] Faction: Bounty Hunters | 2889605556 | RH2.Faction.Bounty.Hunters | 27 |
 | [RH2] Faction: Utilitarian | 2942350062 | RH2.Faction.Utilitarian | 27 |
@@ -313,7 +313,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Flower Crowns | 2008908722 | MengDe.FlowerCrowns | 25 |
 | Helmet Hoarder Great War | 3463579724 | NiHo2906.Helmets | 25 |
 | Hunterphage Xenotype (Continued) | 3542200033 | Mlie.HunterphageXenotype | 25 |
-| More Utility Packs (Continued) | 3249560356 | OskarPotocki.VanillaFactionsExpanded.Core | 25 |
+| More Utility Packs (Continued) | 3249560356 | zal.moreutilitypacks | 25 |
 | Rimbrellas! | 2079784964 | battlemage64.Rimbrellas | 25 |
 | The Cosmic Odyssey - Core | 2630699097 | Akarthus.TheCosmicOdyssey.Core | 25 |
 | [TY]天鹰核心 Aquila Core | 3249108695 | Spread.TY.Core | 24 |
@@ -331,7 +331,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Riot Control Outfit(continued) | 2131561794 | RiotGear.velcroboy333 | 24 |
 | Simple Slavery Collars | 2557274194 | TRIBeagle.simpleslaverycollars | 24 |
 | SomeMoelotlApparel | 3587013952 | sinol.axolotlapparel | 24 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 24 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 24 |
 | Vanilla Factions Expanded - Empire | 2938820380 | OskarPotocki.VFE.Empire | 24 |
 | Xeva Body Pants | 3503852086 | Xeva.XevaBodyPants.11 | 24 |
 | [Cosplay apparel]Apex legends | 2541445224 | mlmlmlm.cosplayapparelapexlegends | 23 |
@@ -351,7 +351,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | The Heaven Forged Celestial | 3122537632 | Create.AncientCelestial | 22 |
 | UNAGI Battle Coat | 3301577366 | UNAGI.Battle.coat | 22 |
 | UNAGI Japanese Assortment 鰻の和風箱 | 3297676809 | UNAGI.Wahuu.hako | 22 |
-| VAE Handwear and Footwear Addon | 3283886697 | brrainz.harmony | 22 |
+| VAE Handwear and Footwear Addon | 3283886697 | VanillaExpanded.GABA | 22 |
 | WA v1.0 | 1548358607 |  | 22 |
 | 边缘仙路-四象之争 RimImmortals-SeasonsOfRule | 3308877707 | RI.RimImmortals.SeasonsOfRule | 22 |
 | [Cosplay apparel] Wuthering waves | 3361639670 | mlmlmlm.cosplayapparelwutheringwaves | 21 |
@@ -362,7 +362,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Dune (Continued) | 2154017463 | Mlie.Dune | 21 |
 | Hazbin Hotel Outfits | 3181885161 | Shenix.HazbinHotel | 21 |
 | Hoplite Equipment (Continued) | 2961582841 | zal.hopliteequipment | 21 |
-| Kijin Race 3.0 | 2884551646 | Ludeon.RimWorld.Biotech | 21 |
+| Kijin Race 3.0 | 2884551646 | ssulunge.KijinRace3 | 21 |
 | Sardaukar Equipment | 3074704625 | lynxpaws.sardaukar | 21 |
 | The Wild Fields - apparel and weapons | 2941661586 | Serek.TheWildFields | 21 |
 | VGP Garden Dyes | 2007062688 | dismarzero.VGP.VGPGardenDyes | 21 |
@@ -398,7 +398,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Bunny Armour From Hooman Cute | 3371718920 | LanYv.BunnyArmourFromHoomanCute | 18 |
 | Glowstone 2 | 3775171637 | Murph.Glowstone2 | 18 |
 | GM's Winter Hats [1.x] | 1722708174 | Arcangel.WinterHats | 18 |
-| Grimdark Recycling2 | 3363054797 | OskarPotocki.VanillaFactionsExpanded.Core | 18 |
+| Grimdark Recycling2 | 3363054797 | CJTLW.HereTech | 18 |
 | Jewelry | 3203280763 | kikohi.jewelry | 18 |
 | Korean Armory Ⅱ - Clothing: Full Dress Uniform | 3029691625 | gimnyeong.koreanarmory2clothingfdu | 18 |
 | Malfunction (Continued) | 2970476077 | zal.malfunction | 18 |
@@ -406,7 +406,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Rim of Madness - Bones | 1180573408 | sihv.rombones | 18 |
 | Transcendent Mechanoid（超凡机械体） | 3543445173 | Matthew.mei.Transcendent.Mechanitors | 18 |
 | Tribal Essentials Reborn | 2597790751 | zal.tribalessentials | 18 |
-| V-Mods Clothes | 3792082284 | brrainz.harmony | 18 |
+| V-Mods Clothes | 3792082284 | vmods.clothes | 18 |
 | valentines-day-apparel | (local) valentines-day-apparel |  | 18 |
 | VenusTouchWaistlines | (local) VenusTouchWaistlines |  | 18 |
 | Westerado | 1389086625 |  | 18 |
@@ -420,7 +420,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [L] House Maid Nukos 1.7 | 3327359869 | HouseMaidNukos1.5bysaltbabe | 16 |
 | [RH2] Helldivers: Super Firearms | 3466214246 | RH2.Helldivers.Super.Firearms | 16 |
 | [SimplySublime] - ABS Polymer (Continued) | 2296579110 | Mlie.SimplySublimeABSPolymer | 16 |
-| Alpha Genes | 2891845502 | brrainz.harmony | 16 |
+| Alpha Genes | 2891845502 | sarg.alphagenes | 16 |
 | Cat's Boots and Gloves | 3552813398 | CatLover366.BootsAndGloves | 16 |
 | Dragons Descent | 2026992161 | onyxae.dragonsdescent | 16 |
 | Marilyn the Mincho Worshipper Witch ~ HAR ver. | 2604973449 | SutSutMan.MarilyntheMinchoWorshipperWitchHARver | 16 |
@@ -495,7 +495,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Foxian League | 3639227864 | foxian.league.raider | 12 |
 | Halloween Monster Mash Renew (unofficial) | 3806767867 | nelim.halloweenmonstermashrenew | 12 |
 | HalloweenMonsterMashRenew | (local) HalloweenMonsterMashRenew |  | 12 |
-| Handy Lantern | 2808047855 | brrainz.harmony | 12 |
+| Handy Lantern | 2808047855 | seekiworksmod.no5 | 12 |
 | HE-Fire Service Clothes | 3345793365 | HE.FSC | 12 |
 | Infusion 2 - Continued | 3536247747 | sk.infusion | 12 |
 | Lava's Spooky Halloween Extravaganza (1.6) | 3785375776 | Lava.MO.SpookyHalloweenExtravaganza | 12 |
@@ -503,7 +503,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Medieval Coastal Outfits | 3483685923 | Gerrymon.MCO | 12 |
 | Miho Medieval Costume Expansion美狐中世纪拓展 | 3775449350 | Gcoya.MihoMedievalCostume | 12 |
 | More Nal Clothes | 3198510534 | youzi.myseccondmodtest | 12 |
-| Principality of New Antioch: Rimworld | 3560555539 | brrainz.harmony | 12 |
+| Principality of New Antioch: Rimworld | 3560555539 | JTC.NATC | 12 |
 | Puella Magi Madoka Magica | 3590911242 | mongrong.puellamagimadokamagica | 12 |
 | Pumpkinlass: Veils and Scarves | 3791107642 | Pumpkinlass.VeilsNScarves | 12 |
 | RimPlas (Continued) | 2194993727 | Mlie.RimPlas | 12 |
@@ -555,7 +555,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Hawaiian Shirts (Continued) | 3716853927 | zal.hawaiianshirts | 10 |
 | Helluva Rimworld -- Circus | 3529258920 | Ragtatter.HelluvaRim.Circus | 10 |
 | Kimchianz Xenotype (Beta) | 3752498193 | Kimchibok.KimchianzBeta | 10 |
-| Limbus Company边狱巴士罪人模组 | 3521005776 | MIS.Framework | 10 |
+| Limbus Company边狱巴士罪人模组 | 3521005776 | ppsh41.limbuscompany | 10 |
 | Lord of the Rims - Dwarves (Continued) | 3548257505 | zal.lotrdwarves | 10 |
 | Medieval Overhaul: House Ignivar | 3712538846 | BigT.HouseIgnivar | 10 |
 | More Scarves | 3258634969 | sumika.MoreScarves | 10 |
@@ -598,7 +598,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | The Dead Man's Switch - Power Armor Expanded | 3654511371 | ZIRI.DeadManSwitch.PowerArmorExpanded | 9 |
 | TMC Equipment - Combat Assist Goggles - Remastered | 3038452997 | 840.TMC.AAM | 9 |
 | TouhouRimworld.test | 3789231443 | yesterdayx2.touhourimworld.test | 9 |
-| VAE Handwear and Footwear Addon Updooted | 3530016977 | brrainz.harmony | 9 |
+| VAE Handwear and Footwear Addon Updooted | 3530016977 | VanillaExpanded.VARME.ReUpdooted | 9 |
 | Vanilla Factions Expanded - Deserters | 3025493377 | OskarPotocki.VFE.Deserters | 9 |
 | Vanilla Factions Expanded - Tribals | 3079786283 | OskarPotocki.VFE.Tribals | 9 |
 | Viltrumites in Rimworld | 3708277667 | fedecrakeado.viltrumitesinrimworld | 9 |
@@ -613,7 +613,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Daughters: The Othercide Faction | 3276396630 | Bahamut.Daughters | 8 |
 | Dog Collars | 2644644983 | Shenanigans.DogCollars | 8 |
 | Dr. Arch13's ArchoWonderium - The Xen Empire | 3407013231 | DrAW.XenEmpire | 8 |
-| Ecotech | 3740443679 | OskarPotocki.VanillaFactionsExpanded.Core | 8 |
+| Ecotech | 3740443679 | RA.Ecotech | 8 |
 | Explosive Vests | 3695427147 | WaterStylus331.explosivevest | 8 |
 | FCP - The Wasteland Compendium (Continued) | 2886511401 | zal.WastelandCompendium | 8 |
 | FCP - The Wasteland Compendium Retexture !!!  | 3702242543 | Whyamihere.TheWastelandCompendiumRetexture | 8 |
@@ -751,16 +751,16 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Simple Vest | 2976276163 | ILuvSilicon.SimpleVest | 6 |
 | Simply Equipment for Anomaly | 3346239260 | 283.SimplyEquipment | 6 |
 | sized-apparel-alien-textures | (local) sized-apparel-alien-textures |  | 6 |
-| Space Knights - Armor Expansion for VFE Medieval 2 | 3540876712 | brrainz.harmony | 6 |
+| Space Knights - Armor Expansion for VFE Medieval 2 | 3540876712 | Stokes.SpaceKnightsArmorExpansionForVFEM2 | 6 |
 | Split Cultist Masks | 3300494815 | dabasteios.SplitCultMasks | 6 |
 | Split Cultist Masks | 3598310025 | sneaks.SplitCultMasks | 6 |
 | SSM.Aggr | 3523237955 | SSM.Aggr | 6 |
 | Survivalist's Additions (Continued) | 3052462368 | Mlie.SurvivalistsAdditions | 6 |
 | T's Monster Hunter Armor | 2637257441 | Trickity.MonsterHunter.Armor | 6 |
 | tentacle-love | (local) tentacle-love |  | 6 |
-| UFO: Alien Invasion | 3618511799 | erdelf.HumanoidAlienRaces | 6 |
+| UFO: Alien Invasion | 3618511799 | Dariagan.UFOAI | 6 |
 | Ultima Forge of Virtue | 2558536632 | Bowen.Ultima.Forge | 6 |
-| Umamusume: Rim Derby | 3552197538 | brrainz.harmony | 6 |
+| Umamusume: Rim Derby | 3552197538 | JTC.Honseseggs | 6 |
 | Utility Supplements (Continued) | 2195065488 | Mlie.UtilitySupplements | 6 |
 | Vanilla Factions Expanded - Mechanoids | 2329011599 | OskarPotocki.VFE.Mechanoid | 6 |
 | ZeroTech-Shield | 2208724306 | LingLuo.ZeroTechShield | 6 |
@@ -864,7 +864,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | School Defense | 2918984180 | 3HSTltd.school.defense | 4 |
 | Simple Glasses | 3295952230 | Sai.SimpleGlasses | 4 |
 | Simply Expansive - Socks | 3734812760 | joshjosh100.SimplyExpansive.Socks | 4 |
-| Slavery Utilities | 2559195643 | Exploriters.ExploriteCore | 4 |
+| Slavery Utilities | 2559195643 | Aoba.SlaveryUtilities | 4 |
 | Speed Skins | 3219649315 | Tziirh.SpeedSkins | 4 |
 | Steppe Themed Expansion | 3462200231 | Heis.SteppeThemedExpansion | 4 |
 | Stone Age v2019.01 | 1710940628 |  | 4 |
@@ -926,7 +926,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | MofuMofu MahatibeSun | 3421585501 | MofuMofuMahatibe.mod | 3 |
 | More Birds - Shorebirds | 3763588872 | 11Bullets.Shorebirds | 3 |
 | MorrowRim | 2443089362 | SirMashedPotato.MorrowRim | 3 |
-| New Anomaly Threats | 3274840013 | Ludeon.RimWorld.Anomaly | 3 |
+| New Anomaly Threats | 3274840013 | GoGaTio.NewAnomalyThreats | 3 |
 | Pekora's RPG | 3387978036 | DarthStarsky.pekocarrot | 3 |
 | Plague Doctor Set | 2589180232 | Rass.PlagueDoctor | 3 |
 | Plague Doctor's Outfit | 3795739637 | Kilo.PlagueDoc | 3 |
@@ -957,7 +957,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Tusken Gear Mod (Continued) | 2293185932 | Mlie.TuskenGearMod | 3 |
 | Undergarment | 1551737794 |  | 3 |
 | UnderWhereAddon v2 | 2879594171 | Daemon976.UnderWhereV2 | 3 |
-| Utility Columns | 2013476665 | brrainz.harmony | 3 |
+| Utility Columns | 2013476665 | nephlite.orbitaltradecolumn | 3 |
 | VacSlipsuit | 3536829054 | Kilo.VacSlipsuit | 3 |
 | VPE Leak | 3104425474 | Slug.VPELeak1 | 3 |
 | W Corp Equipment | 3710713557 | Kilo.LCA.Wcorp | 3 |
@@ -1007,7 +1007,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions | 2974761367 | Resurrectionem.Ama | 191 |
 | Cane Aternitigno, The war dogs of battlefield Xenotypes and Faction | 3165847953 | Resurrectionem.CaneBellum | 190 |
 | GhillieModPack (Continued) | 2862485631 | zal.GMP | 184 |
-| Glitter Tech | 2558099206 | brrainz.harmony | 182 |
+| Glitter Tech | 2558099206 | Xavior.GlitterTech | 182 |
 | Pirates! Gold | 2599107582 | zal.piratesgold | 177 |
 | Urbworld Weaponry: Caseless | 2867328985 | Bx395.UrbworldWeaponryCaseless | 177 |
 | 边缘仙路-四象之争 RimImmortals-SeasonsOfRule | 3308877707 | RI.RimImmortals.SeasonsOfRule | 164 |
@@ -1034,33 +1034,33 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Xenohumans - Gen-spliced Xenos on the Rim | 1647782348 | Albion.Xenohumans | 126 |
 | Vanilla Factions Expanded - Mechanoids | 2329011599 | OskarPotocki.VFE.Mechanoid | 125 |
 | Napoleonic Rim | 2781625689 | george.NapoleonicRim | 124 |
-| Caravan Adventures | 2558957509 | brrainz.harmony | 123 |
+| Caravan Adventures | 2558957509 | iforgotmysocks.CaravanAdventures | 123 |
 | Kraltech Industries | 3250496402 | BlackMarket420.KraltechIndustries | 121 |
 | Early Times (Continued) | 3289912856 | zal.earlytimes | 120 |
 | Ursine of the Rim (Continued) | 2973781601 | zal.ursine | 120 |
 | ↁ Elves (Continued) | 3272603920 | DevDesigner.Elves.Continued | 117 |
 | Medieval Overhaul: Royalty | 2646321064 | Accurex.MedievalEmpireOverhaul | 114 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 113 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 113 |
 | Warhammer-ish:Dryad (Continued++) | 3563451515 | Mortimer.WarhammerishDryad | 111 |
 | TurtleShroom Productions Proudly Presents: Call of Cthulhu Factions (Continued) | 3780067307 | rimofmadness.callofcthulhu.factions | 110 |
 | ESCP - Khajiit | 3252149446 | Theo.ESCP.Khajiit | 108 |
 | Rim-Robots_ | 2743171832 | VexedTrees980.RimRobots | 108 |
 | Sparkling Worlds - Full Mod | 1123043922 | Albion.SparklingWorlds.Full | 107 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 107 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 107 |
 | Forgotten Realms - Gates | 2807777868 | salmontoastie.Gates | 105 |
 | Steamworld Defenses | 3033669826 | Koni.Misc.SteamworldDefenses | 105 |
 | Yinglets! | 2203632931 | Chrysopoeia.Yinglets | 105 |
 | Censored Armory | 2356277786 | ALIEN.CensoredArmory | 104 |
 | Outland - Eastborn Empire | 2755502128 | Neronix17.Outland.EastbornEmpire | 104 |
 | URMC | 3373838883 | pphhyy.URMC | 104 |
-| Vanilla Weapons Expanded | 1814383360 | brrainz.harmony | 104 |
+| Vanilla Weapons Expanded | 1814383360 | VanillaExpanded.VWE | 104 |
 | MUGB Goblin | 3768425355 | mustard1557.mugb.goblin | 103 |
 | Glitter Tech Classic | 725576127 | GT.Sam.GlitterTech | 102 |
 | Rimworld: Medieval Edition | 754010247 | Bonehead14.MedievalEdition | 101 |
-| TiberiumRim | 1346865620 | brrainz.harmony | 101 |
+| TiberiumRim | 1346865620 | telefonmast.tiberiumrim | 101 |
 | [Mech]Pavia-RogueServitor/帕维亚-失控机仆 | 3009608965 | RogueServitor.Mechanoids | 100 |
 | Faction: Blackwave | 3511005689 | rep.factions.blackwave | 100 |
-| RimVali: Far From Avalon | 2936412543 | brrainz.harmony | 100 |
+| RimVali: Far From Avalon | 2936412543 | Nesi.RimValiFFARW | 100 |
 | SCP | 2207934307 | ods.SCP.mod | 99 |
 | Infinity Rim: Ariadna (Continued) | 2141841837 | Mlie.InfinityRimAriadna | 98 |
 | [Abandoned] ZeroTech-Faction (Continued) | 2609651459 | Mlie.ZeroTechFaction | 96 |
@@ -1099,7 +1099,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Outland - Redburn Pact | 2839780900 | Neronix17.Outland.RedburnPact | 72 |
 | Heruan, Keepers of Memories | 2810613161 | Aelanna.Heruan | 70 |
 | USCM - Colonial Marines Corps Faction | 759866027 | Hiztaar.Optionnal.USCMFCM | 70 |
-| [Curvaceous Mechanoid]The Teddy bear [1.5] | 3463695410 | brrainz.harmony | 69 |
+| [Curvaceous Mechanoid]The Teddy bear [1.5] | 3463695410 | Fluff.FCMBear | 69 |
 | 出于沙漠之花 | 3494511060 | Owen.FlowerFromTheDesert | 69 |
 | [1.6]淬炼国魂——传统派系和文化扩展 [continued] Chinese culture and faction and equipment expansion [continued] | 3472595911 | SZ.TW.XXK.GuoHun | 68 |
 | Transcendent Mechanoid（超凡机械体） | 3543445173 | Matthew.mei.Transcendent.Mechanitors | 68 |
@@ -1113,14 +1113,14 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Industrial Warfare 1.4 | 2889935126 | Fox.IndustrialWarfare | 64 |
 | The Dead Man's Switch - Shroud Zone Special Force | 3656498257 | Berserk.DeadManSwitch.ExperimentalWeapons | 64 |
 | Gods of Elona | 1505332648 | karukus.GodsofElona | 63 |
-| New Anomaly Threats | 3274840013 | Ludeon.RimWorld.Anomaly | 63 |
+| New Anomaly Threats | 3274840013 | GoGaTio.NewAnomalyThreats | 63 |
 | Evelyn's Corporate additions! Weapons, Tools, and more! [In Development] | 2831690534 | Evelyn.EveCoMod | 62 |
 | Rim-Hivers! - Biotech | 3378615596 | VexedTrees980.RimHiversBiotech | 62 |
-| Rimframe: Vatgrown Hate | 3431220821 | brrainz.harmony | 62 |
+| Rimframe: Vatgrown Hate | 3431220821 | JTC.Grineer | 62 |
 | FIP - RobCo | 3563825876 | FIP.RobCo | 61 |
 | The Heaven Forged Celestial | 3122537632 | Create.AncientCelestial | 61 |
 | Fortifications - Industrial | 2561619583 | Aoba.Fortress.Industrial | 60 |
-| Kijin Race 3.0 | 2884551646 | Ludeon.RimWorld.Biotech | 60 |
+| Kijin Race 3.0 | 2884551646 | ssulunge.KijinRace3 | 60 |
 | Paramount Combat Armaments | 3220205937 | Samael.PCA | 60 |
 | Rim Lane | 3681117139 | WYH.RL.RimLaneAll | 60 |
 | Zardoz Armory | 2694590486 | ZardozActual.ZardozArmory | 60 |
@@ -1152,21 +1152,21 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Eeveelutions - Sylveon Module [1.6] | 2800815182 | yanzihko.ESYLVM | 48 |
 | Possessed Weapons | 2982391372 | BotchJob.PossessedWeapons | 48 |
 | [CP] Military Furniture | 2019227986 | CP.Military.Furniture | 47 |
-| No Longer Human-Consortium Faction Pack | 3777379164 | Ludeon.RimWorld.Biotech | 47 |
+| No Longer Human-Consortium Faction Pack | 3777379164 | nlh.consortium | 47 |
 | The Dead Man's Switch - AssemblyMaster | 3611546460 | Maple.DeadManSwitch.SuperAssemblyMaster | 47 |
 | Crowju Race | 3406168267 | 3HSTltd.Factions.Crows | 46 |
 | qwert's qool qweapons | 3792686572 | qwertaii.qoolguns | 46 |
 | Tasty Armory - Fire and Steel | 3469863838 | al9000.fireandsteel | 46 |
 | Thrumboian Race | 3257981328 | Parvoid.ThrumboianRace | 46 |
 | [1.7]边缘仙路-百家争鸣 RimImmortal-Faction | 3414794353 | RI.RimImmortal.Faction | 45 |
-| Grimdark Recycling2 | 3363054797 | OskarPotocki.VanillaFactionsExpanded.Core | 45 |
+| Grimdark Recycling2 | 3363054797 | CJTLW.HereTech | 45 |
 | Heyra the Horned (Revived) | 3679943662 | Foxed.HeyraTheHorned | 45 |
 | Neo Samurai | 3127234420 | Gunmar.NeoSamurai | 45 |
 | [RH2] Faction: Gruppa Krovi | 3221155630 | RH2.Faction.Gruppa.Krovi | 44 |
 | [RH2] Faction: Task Force 141 | 2694371667 | RH2.Faction.Task.Force.141 | 44 |
 | CE Black Powder revolvers | 2860954237 | CE.AuggieBlackPowderGuns | 44 |
 | Ninja Package (Continued) | 2775696120 | zal.NinjaPackage | 44 |
-| Rimzone: Sons and Daughters of Helghan | 3492260324 | brrainz.harmony | 44 |
+| Rimzone: Sons and Daughters of Helghan | 3492260324 | JTC.Helghast | 44 |
 | [KV] Animal Costumes | 1180720179 | animalcostumes.kv.rw | 43 |
 | Milkwater's Warframe Mod: The Sequel | 3431282756 | Milkwater.WarframeModSequel | 43 |
 | Forgotten Realms - Lizardfolk (Continued) | 3146993377 | zal.lizardfolk | 42 |
@@ -1182,7 +1182,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [JDS] The Forge - NCR Armory (continued) | 3369009454 | JangoDsoul.TheForge.NCRArmory | 40 |
 | Geks Weapon Pack | 3456902252 | Geks.WeaponsPublic | 40 |
 | Gerzee Expansion | 2446834016 | Brightsideguy.GerzeeExpansion | 40 |
-| No Longer Human-Warhives Faction Pack | 3462391280 | Ludeon.RimWorld.Biotech | 40 |
+| No Longer Human-Warhives Faction Pack | 3462391280 | nlh.warhives | 40 |
 | Polarisbloc - Security Force tmp port | 3225387996 | Vanya.Polarisbloc.SecurityForce.tmp | 40 |
 | [RH2] Faction: Bounty Hunters | 2889605556 | RH2.Faction.Bounty.Hunters | 39 |
 | Exotic's Fine Weaponry | 1370245387 | EB.FineWeaponry | 39 |
@@ -1225,7 +1225,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Bamp Xenotype | 3297545550 | Bamp.Gorani | 32 |
 | BoneReapers ReMarrowed | 3516603515 | JTCsBonereapers.FormerlyPPHHYY | 32 |
 | Forsakens (Continued) | 3263003456 | zal.forsakens | 32 |
-| Los Carteles del Borde | 2195696516 | brrainz.harmony | 32 |
+| Los Carteles del Borde | 2195696516 | RimCartels.velcroboy333 | 32 |
 | More Human Variety | 2465250636 | Verrigan.MoreHuman | 32 |
 | RangeMaster Combat Care Package Pistols | 3289439842 | Keaton.RangeMasterPistol | 32 |
 | Zoo-国家-罪恶帝国（Country-Evil Empire） | 783946712 |  | 32 |
@@ -1241,7 +1241,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Helldivers 2 Super Earth Factions | 3679633636 | Froggysnack.seaf.faction | 29 |
 | Jianghu | 3634610241 | antediluvian.kungfuworld | 29 |
 | [1.7]边缘仙路-俗世仙工 RimImmortal-Living | 3326145525 | RI.RimImmortal.Living | 28 |
-| [MVM]More Vanilla Mechanoids - Director Edition | 3667631861 | Ludeon.RimWorld.Biotech | 28 |
+| [MVM]More Vanilla Mechanoids - Director Edition | 3667631861 | Teiwaz.MVMDE | 28 |
 | 【testing】More equipments 更多武备库 | 3414629392 | cys.moreequipments | 28 |
 | Big and Small - Muriden | 3597814862 | DanZinagri.Muriden | 28 |
 | EM Insects And Plants (Continued) | 2025643074 | Mlie.EMInsectsAndPlants | 28 |
@@ -1263,7 +1263,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | PsiTech | 2078892294 | K.PsiTech | 27 |
 | Rock People | 2162223835 | FilthyPeasant.Races.RockPeople | 27 |
 | TurtleShroom Productions Proudly Presents: Pan-Halloweenie Integration Mod II | 3593434506 | TSP.Halloweenie.IntegrationMore | 27 |
-| UFO: Alien Invasion | 3618511799 | erdelf.HumanoidAlienRaces | 27 |
+| UFO: Alien Invasion | 3618511799 | Dariagan.UFOAI | 27 |
 | Weapon Enhancement Pack 1.1 | 1602211450 | Armifer18.WeaponEnhancementPack | 27 |
 | Dammerung Association Renewed | 3307455722 | Twilight.Renewed.1 | 26 |
 | GC虚空台/虚空造物 | 3580038288 | gc.XKT | 26 |
@@ -1273,7 +1273,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [1.1] MegaCorp | 2017276648 | Crustypeanut.MegaCorp | 25 |
 | Ancient Armory | 3819786019 | skgrendel.ancientarmory | 25 |
 | Bill Doors' Frostnova Expanded Unofficial by Haqimi | 3656575228 | 3HSTltd.WhiteBunny.Unofficial | 25 |
-| Ecotech | 3740443679 | OskarPotocki.VanillaFactionsExpanded.Core | 25 |
+| Ecotech | 3740443679 | RA.Ecotech | 25 |
 | More Armory! Midworld Arms Pack | 3245820222 | wekk.mamap | 25 |
 | Oni of the Rim More Weapons (Continued) | 2572896497 | Mlie.OniOfTheRimMoreWeapons | 25 |
 | Rim Lane - Siren | 2736453965 | WYH.RL.Siren | 25 |
@@ -1302,13 +1302,13 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Forgotten Realms - Kuo-Toa (Continued) | 3147199530 | zal.kuotoa | 21 |
 | Forgotten Realms - Loxo (Continued) | 3147105686 | zal.loxo | 21 |
 | Forgotten Realms - Minotaur (Continued) | 3146996208 | zal.minotaur | 21 |
-| Jeff &amp; Peter's Logistical Improvements | 2886415863 | CETeam.CombatExtended | 21 |
+| Jeff &amp; Peter's Logistical Improvements | 2886415863 | ProjectRimTv.JeffNPeterRedux | 21 |
 | Lamias, Sirens, Snakemen, and other Serpents-like beings | 2908225858 | RedMattis.LamiasAndOtherSnakes | 21 |
 | OCanonnsMod | 2585577254 | OCM.Cannons | 21 |
 | RadWorld | 2474160202 | Declinedkilr.RadWorld_copy | 21 |
 | Roo's Satyr and Faun Xenotypes Expanded | 3548973881 | tug.SatyrFaun.Expanded | 21 |
 | [kik]Adjustmentformyself | 3503877930 | Miran.Adjustmentformyself | 20 |
-| Alpha Genes | 2891845502 | brrainz.harmony | 20 |
+| Alpha Genes | 2891845502 | sarg.alphagenes | 20 |
 | Clockwork And Steam (Continued) | 3316197028 | zal.clockworkandsteam | 20 |
 | Eternal Science | 3537565209 | LostS1ght.EternalScience.250601 | 20 |
 | FRBE Addon - Sionnari | 3243761451 | Sabrael.FRBESionari | 20 |
@@ -1327,7 +1327,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Resident Rim | 3732795691 | ProstoMax.ResidentRim | 19 |
 | RimImmortal-Cultist Apparels and Weapons | 3559975439 | ri.rimimmortal.crimsonserpentcult | 19 |
 | SIC FaizGear mod | 2934659351 | siromikosan.Faiz.GEAR | 19 |
-| The Eastern Dragons (Continued) | 2672488311 | erdelf.HumanoidAlienRaces | 19 |
+| The Eastern Dragons (Continued) | 2672488311 | zal.easterndragons | 19 |
 | 边缘仙路-镇邪诛鬼 RimImmortal-Exorcism[1.6] | 3663824172 | RI.RimImmortal.Exorcism | 19 |
 | [TW1.6]中式武器包 Chinese Weapon Pack | 3420195156 | TW.CWP.ChineseWeaponPack | 18 |
 | [WYD] Primitive Firearms | 3017912593 | Wyr3d.PrimitiveFirearms | 18 |
@@ -1363,7 +1363,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Erin's Sephyr | 2853356739 | Erin.Sephyr | 16 |
 | Flintlocks Extended | 2984576168 | CETeam.CombatExtendedFlintlocks | 16 |
 | Helluva Rimworld | 3259187548 | Ragtatter.HelluvaRim.Core | 16 |
-| Kwiver | 2120889697 | erdelf.HumanoidAlienRaces | 16 |
+| Kwiver | 2120889697 | GarbageDayIsHereToStay.Kwiver.GDIHTSKWVR | 16 |
 | Palim - P.S. Series | 3797374488 | Valensia.Palim | 16 |
 | PWG Perfectly Generic Weapons | 2178203481 | PWG.GenericWeapons | 16 |
 | Rim Expedition 33 | 3534663071 | warult.expedition33mod | 16 |
@@ -1383,7 +1383,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | CaS - Automatons (Continued) | 3142773500 | zal.casautomatons | 15 |
 | Kai's Vending Machine | 3161655279 | kai.vendingmachine | 15 |
 | Medieval Overhaul: House Van Illa | 3327601396 | Addie.HouseVanIlla | 15 |
-| More than Ashes V2 | 2846247713 | OskarPotocki.VanillaFactionsExpanded.Core | 15 |
+| More than Ashes V2 | 2846247713 | Layken.morethanashesV2 | 15 |
 | MorrowRim - Telvanni Technology | 2443090232 | SirMashedPotato.MorrowRim.TelvanniTechnology | 15 |
 | Power Tools | 2440250887 | Simmin.PowerTools | 15 |
 | Ratchurch 鼠教会 | 3810840418 | ratchurch.ratkin.church | 15 |
@@ -1402,18 +1402,18 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Mimic Slime - Deliria | 3636189401 | lf.mod.MimicSlime | 14 |
 | Neolithic Mechanoids | 3623696590 | Uga.BoogaMechs | 14 |
 | No Water, No Life (Continued) | 2387857358 | Mlie.NoWaterNoLife | 14 |
-| Ratkin Xenotype Forked | 3509837826 | Ludeon.RimWorld.Biotech | 14 |
+| Ratkin Xenotype Forked | 3509837826 | S7.RatkinXenotype | 14 |
 | Rim-Skeletons (Continued) | 3674548651 | zal.rimskeletons | 14 |
 | Roman Equipment | 3288111995 | WonYoungjun.RomanEquipment | 14 |
 | The Witcher Trials (Continued) | 2007359174 | Mlie.TheWitcherTrials | 14 |
 | Viking Brand Whale Blubber (Continued) | 2210268220 | Mlie.VikingBrandWhaleBlubber | 14 |
-| Wastergeddon | 3791768325 | Ludeon.RimWorld.biotech | 14 |
+| Wastergeddon | 3791768325 | RoundHead.Wastergeddon | 14 |
 | ZGW's Armory | 3662984160 | ZhangGongWen.ZhangGongwensArmory | 14 |
 | [JDS] The Forge - Caesar Legion Armory (continued) | 3369009218 | JangoDsoul.TheForge.CaesarLegionArmory | 13 |
 | Big and Small - Framework | 2925432336 | RedMattis.BetterPrerequisites | 13 |
 | Corruption: Psykers | 2547886449 | CptOhu.CorruptionPsyker | 13 |
 | Geopolitical Rimworld : Anarchy | 2602467564 | Qux.factionsanarchistes | 13 |
-| Limbus Company边狱巴士罪人模组 | 3521005776 | MIS.Framework | 13 |
+| Limbus Company边狱巴士罪人模组 | 3521005776 | ppsh41.limbuscompany | 13 |
 | Lord of the Rims - Elves (Continued) | 3548255064 | zal.lotrelves | 13 |
 | Momu | 1929605886 | Rekasa.Momu | 13 |
 | Nelim's Rabbie Gear | 3811382082 | nelim.rabbiegear | 13 |
@@ -1443,7 +1443,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Corruption: Worship | 2555397551 | CptVHOhu970.CorruptionWorship | 12 |
 | Daughters: The Othercide Faction | 3276396630 | Bahamut.Daughters | 12 |
 | DisplayStand | 2024956515 | Spencer.DisplayStand | 12 |
-| Dr. Arch13's ArchoWonderium - DigiFox (tm) | 2900653856 | prkr.genetools | 12 |
+| Dr. Arch13's ArchoWonderium - DigiFox (tm) | 2900653856 | DrAW.DigiFox | 12 |
 | Faction : Mafia | 2580425008 | Qux.factionmafia | 12 |
 | HOWL Staffs - Magical Conversion Staff Patch | 3741441278 | sarelth.howlmagicalconversionstaffpatch | 12 |
 | Inanis - Grimalkin | 3211588221 | spottea.InanisGrimalkin | 12 |
@@ -1457,11 +1457,11 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Prostheses+ (Faction Addon) | 2226643321 | DimonSever000.ProsthesesPlusAddon.Specific | 12 |
 | RangeMaster Combat Care Package LMG | 3289441180 | Keaton.RangeMasterLMG | 12 |
 | rimholstaur | (local) rimholstaur |  | 12 |
-| Rimsec Security (Continued) | 3520375010 | brrainz.harmony | 12 |
+| Rimsec Security (Continued) | 3520375010 | zal.rimsecsecurity | 12 |
 | Sengoku Faction | 3737367585 | bean.faction.samurai | 12 |
 | SK Fallout: Chinese Remnant (Reupload) | 2112029938 | SK.Remnant.Fallout | 12 |
 | The Wild Fields - apparel and weapons | 2941661586 | Serek.TheWildFields | 12 |
-| Vanilla Races Expanded - Saurid | 2880990495 | brrainz.harmony | 12 |
+| Vanilla Races Expanded - Saurid | 2880990495 | vanillaracesexpanded.saurid | 12 |
 | 占星师 Astrologer | 3574358036 | LOF.Astrologer | 12 |
 | [JACKLE] Scrap Gladiators Weapons | 3357483519 | jackledead.weapons.ScrapGladsWeps | 11 |
 | [K4G] Empires of Old - The Rising Sun | 2950693480 | K4G.Dynasty | 11 |
@@ -1471,13 +1471,13 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Gloria A Las Plagas | 3708476081 | CCDevelopment.GloriaLasPlagas.0003 | 11 |
 | Hunting Weapons of Notable Size | 2777485781 | alopex.hwons | 11 |
 | It's the ultimate Diamond+ | 877482162 |  | 11 |
-| MH: Android Tiers | 2974546748 | brrainz.harmony | 11 |
+| MH: Android Tiers | 2974546748 | Killathon.MechHumanlikes.AndroidTiers | 11 |
 | Murim Cultivation | 3820282209 | baka.MurimCultivation | 11 |
 | Pesky's Bulwark Xenotype | 3521016438 | pesky.bulwark | 11 |
 | Rust Tools and Weapons (Continued) | 2841117790 | zal.rust | 11 |
 | The Marked Men | 3739467787 | Dapennes.themarkedmen | 11 |
 | Throwable food | 2000098114 | TheVillageGuy.ThrowableFood.1 | 11 |
-| TurtleShroom Productions Proudly Presents: Van Hellsing Expansion | 2872129323 | OskarPotocki.VanillaFactionsExpanded.Core | 11 |
+| TurtleShroom Productions Proudly Presents: Van Hellsing Expansion | 2872129323 | TSP.Baskerville.HellsingExpansion | 11 |
 | WA-KarakuriDolls | 1325150476 |  | 11 |
 | Worksites Expanded | 3687071198 | godsfathermixtape.worksitesexpanded | 11 |
 | [1.0] Plasteel Great Bow | 1697918425 |  | 10 |
@@ -1535,7 +1535,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Grenade Variety for Combat Extended | 2809971989 | Keshash.GrenadeVariety | 8 |
 | Grey Aliens | 1909057950 | Qinetix.GreyAliens | 8 |
 | Inanis - Springhares | 3209428416 | spottea.InanisSpringhares | 8 |
-| Jungle Jake's Explosive Pack | 2891884239 | CETeam.CombatExtended | 8 |
+| Jungle Jake's Explosive Pack | 2891884239 | ProjectRimTv.JungleJakeExplosive | 8 |
 | Kit's Gunpowder Weapons (Continued) | 3413714419 | zal.kitgunpowder | 8 |
 | Lateralus Awakening | 3809428372 | zackcubby.lateralusawakening | 8 |
 | Mercenaries For Me (Continued) | 3590126230 | Mlie.MercenariesForMe | 8 |
@@ -1545,7 +1545,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RangeMaster Combat Care Package Explosives and Specialties | 3289440336 | Keaton.RangeMasterMisc | 8 |
 | Rim-Fogmen Continued! (1.6) (Biotech) | 3324678049 | HHmayon.RimHivers.Fogmen | 8 |
 | Roo's Satyr Xenotype | 3548322381 | tug.Satyr | 8 |
-| Some Medieval Ranged Weapons | 3249227799 | carnysenpai.enableoversizedweapons | 8 |
+| Some Medieval Ranged Weapons | 3249227799 | Souperzombie.SomeMedievalRangedWeapons | 8 |
 | Staffs Plus | 3768060767 | cashew.elderstaff | 8 |
 | Striders -  a Rimworld of Magic factions expansion | 2095290990 | QraTz.AROMExpansionStriders | 8 |
 | Tactical Charge Weapons | 3547573485 | Xale86.TacticalChargeWeapons | 8 |
@@ -1575,7 +1575,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Instruments for Extinction | 3789316911 | ATMnou.exomech | 7 |
 | K.L.K - Styles Apparel Pack | 1802091225 | RicoFox233.KLKApparel | 7 |
 | Machete Madness | 3444754992 | QCVT.MacheteMadness | 7 |
-| Naki Gene (BioTech) | 2935084152 | OskarPotocki.VanillaFactionsExpanded.Core | 7 |
+| Naki Gene (BioTech) | 2935084152 | her.NakiGene | 7 |
 | Oni of the Rim: Expanded Armoury | 2598309077 | morishep.tarojun.onioftherimarmoury | 7 |
 | Quasimorph - Church Of Revelation armoury | 3240298665 | SGG1.QCORA | 7 |
 | Rimhammer - The End Times - Magic | 2020384442 | SickBoyWi.TheEndTimes.Magic | 7 |
@@ -1610,7 +1610,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Hauntings and Ghosts | 3350002888 | thathitmann.hauntingsAndGhosts | 6 |
 | Helluva Rimworld -- Weapons and Apparel | 3529257221 | Ragtatter.HelluvaRim.Weaponry | 6 |
 | Hunting Rifle + Sports Shotgun Series Pack (Unofficial Patch) | 2360132781 | swedishmask.SportsShotgunSeriesPack | 6 |
-| Kaseys Tools | 3613062452 | brrainz.harmony | 6 |
+| Kaseys Tools | 3613062452 | Darkqueen.kc.KaseysTools | 6 |
 | Legend of Mortal × RimWorld | 3810009289 | Sora.LegendOfMortalRimWorld | 6 |
 | Lord of the Rims - Hobbits (Continued) | 3548253473 | zal.lotrhobbits | 6 |
 | LWOP Package | 2012717312 | LWOP.Package | 6 |
@@ -1640,7 +1640,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | The Soldier's Kit [RF2] | 1914232566 |  | 6 |
 | Toxicity Evolved | 3262128970 | basilthebatlord.toxicityevolved | 6 |
 | Trader ships | 2046222331 | automatic.traderships | 6 |
-| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | syrchalis.processor.framework | 6 |
+| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | TSP.zal.patchhoney2 | 6 |
 | Unholy Intervention Weapons | 3648984414 | DombieTheZombie.Weapons.UIG | 6 |
 | Vanilla Factions Expanded - Deserters | 3025493377 | OskarPotocki.VFE.Deserters | 6 |
 | Weapon Allery Cooking [1.3] | 3017971802 | M57.D2 | 6 |
@@ -1664,7 +1664,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Kit's Roman Weapons (Continued) | 2973778986 | zal.romanweapons | 5 |
 | One with Death | 3448902635 | 6224Y.OneWithDeath | 5 |
 | Playable Flood | 3769250791 | rdash99.PlayableFlood | 5 |
-| Principality of New Antioch: Rimworld | 3560555539 | brrainz.harmony | 5 |
+| Principality of New Antioch: Rimworld | 3560555539 | JTC.NATC | 5 |
 | Reese's Scavenger Factions | 3425232066 | StockSounds.Factions.Scavenger | 5 |
 | Reinforced Mechs 2 Unjank | 3407968834 | NotA.BigFanOf.RM2Bloat | 5 |
 | Ultima Factions: Buccaneer's Den | 2593016980 | Bowen.Ultima.BuccsDen | 5 |
@@ -1683,7 +1683,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | 【白色惊惧】White frightened | 3703614804 | 3HSTltd.Weapons.Placeholder8 | 4 |
 | AuroranKingslayer's RimWorld of the Dragon | 2954791310 | aurorankingslayer.asoiafdd | 4 |
 | Awakened Apes | 3646217940 | OnlyMonkey.AwakenedApes | 4 |
-| Big and Small - Medieval Factions | 2919667438 | Ludeon.RimWorld.Biotech | 4 |
+| Big and Small - Medieval Factions | 2919667438 | RedMattis.BigSmall.MedievalFactions | 4 |
 | Bizarre Bloodlines | 3719429625 | stardustus.bizarrebloodlines | 4 |
 | Construction Expanded | 2794480005 | CS.CE | 4 |
 | Crackhead King Trader | 3242666599 | Fufulog.CrackheadKingTrader | 4 |
@@ -1748,7 +1748,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Dune Equipment | 2109288274 | BetweenTheBorders.DuneEquipment | 3 |
 | FIP - Big MT | 3760676309 | FIP.Sunset | 3 |
 | Gardevoirs evolution | 3668080626 | ShunTheWitch.gardevoirevolution | 3 |
-| Genetic Rim | 1113137502 | brrainz.harmony | 3 |
+| Genetic Rim | 1113137502 | sarg.geneticrim | 3 |
 | Golf Clubs and Putting Hole | 2096474770 | geodesicdragon.golfclub | 3 |
 | Higgs Monaghan Armor Set | 2356045716 | JangoDsoul.HiggsA.DS | 3 |
 | Joe's Tweaks | 3458506170 | Joe.MO.Tweaks | 3 |
@@ -1769,7 +1769,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | SheathYourSword 1.6(fork) | 3648216556 | Solaris.SYS.fork | 3 |
 | Shuttlecraft | 1189302747 |  | 3 |
 | South African Armoury III | 3415211355 | timesnewroman.southafricanarmoury | 3 |
-| Sphere of Hearts | 3636337493 | Ludeon.RimWorld.Anomaly | 3 |
+| Sphere of Hearts | 3636337493 | Astra.SphereOfHearts | 3 |
 | Stellaris DEMO | 3769459524 | Feng.StellarisDEMO | 3 |
 | Terminator Mother Boss | 3476113919 | MrHydralisk.TermiMotherBoss | 3 |
 | The Luckymoon Archite tech | 3742734590 | canamanyak.LuckymoonArchite | 3 |
@@ -1777,7 +1777,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Thrumbo Horn Weapons (Continued) | 2937755006 | zal.ThrumboHornWeapons | 3 |
 | Vanilla Factions Expanded - Insectoids 2 | 3309003431 | OskarPotocki.VFE.Insectoid2 | 3 |
 | Vanilla Flavour Launchers | 3179840861 | NA.Launchers | 3 |
-| Vanilla Races Expanded - Lycanthrope | 3114453100 | brrainz.harmony | 3 |
+| Vanilla Races Expanded - Lycanthrope | 3114453100 | vanillaracesexpanded.lycanthrope | 3 |
 | Wild Factions - Damar | 2889581499 | TechnoFox.WildFactions | 3 |
 | Wild Factions - UXC | 2889924604 | TechnoFox.WildFactions.UXC | 3 |
 | Witch's Factor Spreading - Manosaba Expansion | 3651142974 | uranv.manosaba | 3 |

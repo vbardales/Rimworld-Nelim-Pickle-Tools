@@ -34,7 +34,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RimLife Expansion Furniture | 2309537905 | daylight.RimLifeExFurMod | 158 | Furniture 98, Temperature 24, Joy 18, Misc 12 |
 | Yuran Shrine Japanese Architecture | 3671664434 | Caoyuanfei.YuranShrineJapaneseArchitecture | 149 | Yuranbuilding 89, Production 24, Misc 6, Security 5 |
 | TurtleShroom Productions Proudly Presents: Ancient Rim (Continued) | 3507862392 | Mlie.AncientRimCore | 141 | Jerry 81, Temperature 20, Hygiene 13, Security 9 |
-| Glitter Tech | 2558099206 | brrainz.harmony | 134 | Security 45, Production 30, Power 28, Furniture 19 |
+| Glitter Tech | 2558099206 | Xavior.GlitterTech | 134 | Security 45, Production 30, Power 28, Furniture 19 |
 | Decor into Props | 3771248988 | ferny.decorintoprops | 132 | Misc 128, Ferny_Lighting 3, Joy 1 |
 | GloomyFurniture | 1558635181 | Solaris.FurnitureBase | 132 | OldStyleFurniture 112, OldStyleDeco 20 |
 | [RH2] Uncle Boris' - Used Furniture | 2563508405 | CP.Uncle.Boris.Used.Furniture | 131 | Structure 36, Misc 24, Joy 24, Furniture 23 |
@@ -45,7 +45,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Glitter Tech (No Surgery) | 2559817428 | Xavior.GliterTech.NS | 119 | Security 41, Production 24, Power 24, Furniture 18 |
 | UN-Furniture (Continued) | 2019774854 | Mlie.UNFurniture | 119 | SadjuukUN-Furniture 119 |
 | DisplayStand | 2024956515 | Spencer.DisplayStand | 117 | Misc 102, Furniture 14, Power 1 |
-| Erin's Decorations | 2463358089 | brrainz.harmony | 116 | Furniture 80, PropsandDecor 36 |
+| Erin's Decorations | 2463358089 | erin.decorations | 116 | Furniture 80, PropsandDecor 36 |
 | Rimsenal - Security Pack | 736139206 | rimsenal.security | 111 | Security 105, Power 6 |
 | Rimstro | 1714572710 | Lat.Rimstro | 111 | RS_Category 107, Floors 4 |
 | VGP Garden Tools | 2007063961 | dismarzero.VGP.VGPGardenTools | 111 | GardenTools 111 |
@@ -94,10 +94,10 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Paintable Gloomy Furniture | 2881715849 | Paintable.Gloomy.Furniture | 68 | OldStyleFurniture 58, OldStyleDeco 10 |
 | RimTycoon - Hospital | 3817712487 | nela.rimtycoon.hospital | 68 | RT_Tycoon 68 |
 | 雅居·四象 / Elegant Interiors · Four Realms | 3809685888 | baolei.elegantinteriors2 | 68 | EI2_FourRealms 68 |
-| Genetic Rim | 1113137502 | brrainz.harmony | 67 | GR_GeneticsTab 61, Security 3, Power 3 |
+| Genetic Rim | 1113137502 | sarg.geneticrim | 67 | GR_GeneticsTab 61, Security 3, Power 3 |
 | Glass+Lights | 826153738 | NanoCE.GlassLights | 67 | Furniture 26, Production 18, Structure 12, Joy 6 |
 | Pawnmorpher | 1786466855 | tachyonite.pawnmorpherpublic | 67 | GR_GeneticsTab 56, Security 6, Production 5 |
-| Soil Growverhaul | 2836539042 | UdderlyEvelyn.SoilRelocation | 66 | Floors 62, Production 3, Power 1 |
+| Soil Growverhaul | 2836539042 | Joeyjoejoeshabidoo.Growverhaul | 66 | Floors 62, Production 3, Power 1 |
 | Vanilla Furniture Expanded - Architect | 2608762624 | VanillaExpanded.VFEArchitect | 66 | Structure 50, Floors 16 |
 | [RWY]Dragon's Descent: Void Dwellers | 3349058179 | ravvy.DD.Void.Addon | 65 | DD_Void_Dragon_Stuff 65 |
 | Carpets++ 1.6 | 2487332833 | Daniledman.Carpets | 65 | FurnitureCarpetsPP 65 |
@@ -113,7 +113,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Fortification Industrial - Citadel | 2887532326 | Aoba.Fortress.Industrial.Citadel | 57 | Security 19, Misc 16, FTC_PermanentStructure 6, Power 4 |
 | Oni of the Rim | 2891432261 | tarojun.morishep.onioftherim | 57 | Production 19, Security 16, Misc 12, Furniture 4 |
 | Vanilla Helixien Gas Expanded | 2877699803 | VanillaExpanded.HelixienGas | 57 | VCHE_PipeNetworks 43, Production 5, Furniture 4, Temperature 2 |
-| Hospitals Extended | 2121326566 | brrainz.harmony | 56 | HE_Hospital 54, Structure 2 |
+| Hospitals Extended | 2121326566 | zymex.HospitalsExtended | 56 | HE_Hospital 54, Structure 2 |
 | Sparkling Worlds - Full Mod | 1123043922 | Albion.SparklingWorlds.Full | 56 | Misc 28, Production 14, Power 7, Furniture 7 |
 | Warhammer-ish:Dryad (Continued++) | 3563451515 | Mortimer.WarhammerishDryad | 56 | Production 28, Security 14, Furniture 14 |
 | Clutter Furniture | 2056740389 | neronix17.clutterfurniture | 55 | Production 25, Furniture 20, Temperature 5, Misc 5 |
@@ -124,7 +124,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Gloomy Deco | 1865654125 | Dalrae.GloomyDeco | 54 | OldStyleDeco 54 |
 | Sunset Technology 3 | 3601719516 | SunsetModerTeam.SunsetTechnology3 | 54 | Buildings_cy 54 |
 | GC虚空台/虚空造物 | 3580038288 | gc.XKT | 53 | GC_XKT_DesignationCategoryDef 53 |
-| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | syrchalis.processor.framework | 53 | TSP_DoctorBees_Buildings 53 |
+| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | TSP.zal.patchhoney2 | 53 | TSP_DoctorBees_Buildings 53 |
 | Gas Traps And Shells | 2012627964 | com.distman.gastrap | 52 | Security 52 |
 | Ludus — Gladiateurs | 3813622260 | boogiesman.ludus.gladiateurs | 52 | Ludus 52 |
 | Sunset Weapon Technology 2 | 2890976130 | SunsetModerTeam.SunsetWeaponTechnology2 | 52 | Buildings_cy 52 |
@@ -135,17 +135,17 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | <![CDATA[Advanced Bridges & Corners]]> | 3006527110 | kongkim.AdvancedBridges | 50 | KKBridges 48, Joy 2 |
 | Ceramics (Continued) | 3537698767 | zal.ceramics | 50 | Production 47, Misc 3 |
 | Hakuro Xenohuman | 2911715839 | Hakuro.Xenohuman.septentrionrace | 50 | Production 14, Misc 13, Security 9, Biotech 9 |
-| RimVali: Far From Avalon | 2936412543 | brrainz.harmony | 50 | RVFFA_Furniture 33, RVFFA_Security 12, RVFFA_Production 5 |
+| RimVali: Far From Avalon | 2936412543 | Nesi.RimValiFFARW | 50 | RVFFA_Furniture 33, RVFFA_Security 12, RVFFA_Production 5 |
 | Chemistry Tech (Continued) | 2373492195 | Mlie.ChemistryTech | 49 | Furniture 28, Production 14, Power 7 |
-| Power++ | 1771402217 | brrainz.harmony | 49 | Power 49 |
-| Utility Columns | 2013476665 | brrainz.harmony | 49 | Security 21, Furniture 11, Misc 8, Temperature 7 |
+| Power++ | 1771402217 | aRandomKiwi.PowerPP | 49 | Power 49 |
+| Utility Columns | 2013476665 | nephlite.orbitaltradecolumn | 49 | Security 21, Furniture 11, Misc 8, Temperature 7 |
 | [Syulipia]OrientalDragonMOD (Continued) | 3564312643 | ProjectSyulipia.OrientalDragonMOD.continued | 48 | Syulipia_Tools 48 |
 | 【1.6】Hello, Lansy Forked | 3180951208 | mg.ferianstory.lansy.fork | 48 | AF_CITE 33, AF_Thankyou 12, Security 3 |
 | Rimefeller | 1321849735 | Dubwise.Rimefeller | 48 | Rimefeller 40, ? 8 |
 | Small Furniture | 3696700829 | Xercaine.Furniture.Small | 48 | Production 41, VF_Vehicles 3, Misc 2, Ideology 2 |
 | Vanilla Factions Expanded - Classical | 2787850474 | OskarPotocki.VFE.Classical | 48 | Production 20, Temperature 8, Misc 8, Joy 8 |
 | Hellsing ARMS Ultimate | 2834801420 | Baskerville.HellsingARMSUltimate | 47 | Production 24, Misc 15, Security 4, ? 4 |
-| Alpha Biomes | 1841354677 | brrainz.harmony | 46 | Furniture 20, AB_AlphaBiomesBuildings 15, Production 4, Structure 3 |
+| Alpha Biomes | 1841354677 | sarg.alphabiomes | 46 | Furniture 20, AB_AlphaBiomesBuildings 15, Production 4, Structure 3 |
 | Decorative Terrain Elevation  | 3338573086 | quality.decorativeterrain | 46 | Floors 46 |
 | Gravship Conquest- RimSkyBlockDLC | 3702563414 | YeXiaoYang978.RimSkyBlockHUHOdysseyDLC | 45 | Odyssey 40, Power 5 |
 | Big and Small Furniture | 3024478368 | RedMattis.BSFurniture | 44 | BS_Furniture 44 |
@@ -171,7 +171,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Vanilla Factions Expanded - Medieval 2 | 3444347874 | OskarPotocki.VFE.Medieval2 | 42 | Structure 12, Production 10, Misc 6, Temperature 4 |
 | Vanilla-like wheat (Continued) | 2717707382 | Mlie.VanillalikeWheat | 42 | Production 42 |
 | [sd] Bridges (Continued) | 2036488024 | Mlie.SDBridges | 41 | sd_bridges_category_terraform 21, Structure 20 |
-| Alpha Memes | 2661356814 | brrainz.harmony | 41 | Misc 27, Security 6, Furniture 4, Ideology 2 |
+| Alpha Memes | 2661356814 | Sarg.AlphaMemes | 41 | Misc 27, Security 6, Furniture 4, Ideology 2 |
 | Ancient_Structures(continued) | 2177808043 | AncientStructures.Velcroboy333 | 41 | Structure 11, Floors 10, Security 10, Temperature 6 |
 | Cake! Furniture-蛋糕家具 | 3629632481 | elsa.CakeFurniture.FDF | 41 | FDF_CakeFurniture 41 |
 | Eccentric Tech - Spacer Furniture | 3118185542 | Aelanna.EccentricTech.Furniture | 41 | Eccentric_Tech 41 |
@@ -183,7 +183,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RimLife Expansion Structure | 2305035365 | daylight.RimLifeExSRCMod | 40 | Structure 40 |
 | Malay Themed Expansion | 2884249920 | NSTR.Malay.Themed.Expansion | 39 | NSTRMalayBuildingsTab 39 |
 | RIMkea (Continued) | 3324786856 | zal.rimkea | 39 | RIMkea 39 |
-| Alpha Props - Parks and Gardens | 3146268928 | brrainz.harmony | 38 | Furniture 20, Structure 14, Floors 4 |
+| Alpha Props - Parks and Gardens | 3146268928 | sarg.alphapropsparks | 38 | Furniture 20, Structure 14, Floors 4 |
 | Dark Ages : Crypts and Tombs | 2963826335 | Van.DACrypts | 38 | Furniture 16, Misc 14, Ideology 5, Structure 3 |
 | WA v1.0 | 1548358607 |  | 38 | WA_Builder 34, WA_FutonCategory 3, ? 1 |
 | 雅居 · Elegant Interiors | 3802178852 | baolei.elegantinteriors | 38 | EI_ElegantInteriors 38 |
@@ -213,7 +213,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Weird Defences | 1753026389 | Luke.WeirdDefences | 34 | Security 34 |
 | [VSER] Industry | 2997037628 | VSER.Industry | 33 | Power 12, Production 9, Misc 8, Temperature 4 |
 | ActiveResponseTraining (Continued) | 2570370139 | Mlie.ActiveResponseTraining | 32 | Security 32 |
-| Alpha Bees | 1558161673 | brrainz.harmony | 32 | RB_Bees 32 |
+| Alpha Bees | 1558161673 | sarg.rimbees | 32 | RB_Bees 32 |
 | Mechanoid Factory 1.6 (prohibited) | 3806762382 | nelim.mechanoidfactory | 32 | VFE_Factory 29, Misc 2, Security 1 |
 | MechanoidFactory | (local) MechanoidFactory |  | 32 | VFE_Factory 29, Misc 2, Security 1 |
 | Organic Based Industry | 3749691458 | hoffy57.OrganicBasedIndustry | 32 | hoffy57_OBI 23, Power 4, Production 3, Misc 1 |
@@ -239,13 +239,13 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Eternal Science | 3537565209 | LostS1ght.EternalScience.250601 | 28 | EternalScience_LostS1ght 28 |
 | Expanded Brickwork | 3587748570 | qq.expanded.brickwork | 28 | Production 28 |
 | Honey Unification for BIOMES! BEES | 3746323752 | lucius.beeuni | 28 | Production 12, Ferny_Farming 8, Misc 4, Ferny_Kitchen 4 |
-| Medieval Overhaul: Immersive Storage Patch | 3580586626 | DankPyon.Medieval.Overhaul | 28 | DankPyon_RusticDecoration 26, ASFstorage 2 |
+| Medieval Overhaul: Immersive Storage Patch | 3580586626 | Fodo.MedievalOverhaulImmersiveStorage | 28 | DankPyon_RusticDecoration 26, ASFstorage 2 |
 | OuterrealmTech 超维科技 | 3712146789 | Jeremie.Fully.Automatic.OmniCrafter | 28 | OmniCrafter_Category 28 |
 | RazzleDazzle! (Continued) | 2024612321 | Mlie.RazzleDazzle | 28 | Joy 28 |
 | RimCuisine 2 Meals and Munchies Expansion (Continued) | 2069589941 | Mlie.RC2.MaME | 28 | RC2_RimCuisine 21, Production 7 |
 | The Poop Mod | 1728184416 | WindowsXP.ThePoopMod | 28 | Temperature 9, Furniture 6, Power 5, Production 5 |
 | Vanilla Chemfuel Expanded | 2792917473 | VanillaExpanded.VChemfuelE | 28 | VCHE_PipeNetworks 28 |
-| Vanilla Furniture Expanded - Power | 2062943477 | brrainz.harmony | 28 | Power 28 |
+| Vanilla Furniture Expanded - Power | 2062943477 | VanillaExpanded.VFEPower | 28 | Power 28 |
 | Vanilla Furniture Expanded - Spacer Module | 2028381079 | VanillaExpanded.VFESpacer | 28 | Furniture 16, Joy 8, Misc 4 |
 | Popstar Mod  | 3550566071 | Axotl.PopstarMod | 27 | VF_Vehicles 25, Security 1, Power 1 |
 | RimOverhaul | 1760022158 | FunkyShit.RimOverhaul.Main | 27 | GasProduction 11, Power 7, Production 6, Misc 1 |
@@ -253,8 +253,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [Syulipia]SlimeMOD | 1651394964 | ProjectSyulipia.SlimeMOD | 26 | Syulipia_Tools 26 |
 | Bleach Mod | 3635653759 | RS.BleachMod | 26 | Floors 12, Misc 11, Structure 2, Production 1 |
 | Crystal Tech 透晶科技 | 3735005608 | Maiya.CrystalTech | 26 | Structure 17, Furniture 6, Floors 1, Security 1 |
-| Get Rimped - Gym Equipment - Pumped Up | 3534002285 | Haplo.Miscellaneous.Training | 26 | Joy 26 |
-| Gloomy Vanilla Overhaul | 1883678698 | Solaris.FurnitureBase | 26 | Furniture 14, OldStyleDeco 4, Structure 2, Temperature 2 |
+| Get Rimped - Gym Equipment - Pumped Up | 3534002285 | kones.getrimped | 26 | Joy 26 |
+| Gloomy Vanilla Overhaul | 1883678698 | zymex.GloomyVanillaOverhaul | 26 | Furniture 14, OldStyleDeco 4, Structure 2, Temperature 2 |
 | GloomyFurniture Darklight Expanded | 2972239868 | GFDE.DarklightExpanded | 26 | OldStyleFurniture 26 |
 | Potato Overlord's Alcohol Expansion Mod | 1372954702 |  | 26 | Production 26 |
 | Vanilla Factions Expanded - Vikings | 2231295285 | OskarPotocki.VFE.Vikings | 26 | Misc 11, Joy 6, Temperature 3, Structure 3 |
@@ -271,8 +271,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [RF] Concrete (Continued) | 2012397587 | Mlie.Concrete | 24 | Structure 10, Production 7, Security 7 |
 | [RF] Fishing-ReWork (Continued) | 2920098766 | Mlie.RFFishingReWork | 24 | Production 24 |
 | [TW1.6]烧烤之星2.0 Barbecue~Star2.0 | 3226645152 | TW.BBQS.Barbecue.Star | 24 | Misc 14, Production 10 |
-| Alpha Animals | 1541721856 | brrainz.harmony | 24 | VFEI2_Insectoids 18, Power 6 |
-| Alpha Vehicles - Neolithic | 3028675048 | brrainz.harmony | 24 | VF_Vehicles 24 |
+| Alpha Animals | 1541721856 | sarg.alphaanimals | 24 | VFEI2_Insectoids 18, Power 6 |
+| Alpha Vehicles - Neolithic | 3028675048 | sarg.alphavehiclesneolithic | 24 | VF_Vehicles 24 |
 | Construction Expanded | 2794480005 | CS.CE | 24 | Production 7, Temperature 6, Structure 3, Furniture 3 |
 | Dragon's Torch | 3544458513 | tc3wikieditor.compat.DragonsTorch | 24 | Furniture 24 |
 | Mona The Moon Bear (1.6 fork) | 3248186952 | kku.MonaTMB | 24 | Production 24 |
@@ -287,9 +287,9 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Expanded Prosthetics and Organ Engineering - Forked | 1949064302 | vat.epoeforked | 22 | Production 22 |
 | I Am Hungry(continued) | 2094216512 | IAmHungry.velcroboy333 | 22 | Production 14, Temperature 7, OldStyleFurniture 1 |
 | Malfunction (Continued) | 2970476077 | zal.malfunction | 22 | Power 12, Security 6, Production 4 |
-| Rimbody | 3354086860 | brrainz.harmony | 22 | Joy 18, Furniture 2, ASFstorage 2 |
+| Rimbody | 3354086860 | Maux36.Rimbody | 22 | Joy 18, Furniture 2, ASFstorage 2 |
 | Transcendent Mechanoid（超凡机械体） | 3543445173 | Matthew.mei.Transcendent.Mechanitors | 22 | Security 8, Biotech 6, Misc 4, Power 4 |
-| Vanilla Genetics Expanded | 2801160906 | brrainz.harmony | 22 | GR_GeneticsTab 22 |
+| Vanilla Genetics Expanded | 2801160906 | VanillaExpanded.VGeneticsE | 22 | GR_GeneticsTab 22 |
 | A Monkey Expansion (Continued) | 3166737970 | zal.monketime | 21 | Power 15, Security 6 |
 | EM Insects And Plants (Continued) | 2025643074 | Mlie.EMInsectsAndPlants | 21 | Production 21 |
 | Imperial Functionality | 3112706932 | YabbyShabby.ImperialFunctionality | 21 | IF_ImperialTech 21 |
@@ -301,7 +301,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Roots of Rimworld | 2977818583 | GHOST.RootsofRimworld | 21 | Furniture 21 |
 | Temperature Gauge (Continued) | 2017464494 | Mlie.TemperatureGauge | 21 | Temperature 14, Power 7 |
 | Ultima: Artisan's Guild | 2615809268 | Bowen.Ultima.Artisans | 21 | Furniture 15, Production 6 |
-| Vanilla Races Expanded - Sanguophage | 2963116383 | brrainz.harmony | 21 | Biotech 21 |
+| Vanilla Races Expanded - Sanguophage | 2963116383 | vanillaracesexpanded.sanguophage | 21 | Biotech 21 |
 | Vanilla Recycling Expanded | 3155781848 | VanillaExpanded.Recycling | 21 | Biotech 21 |
 | (NWN) Real Fog of War (Continued) | 3391128917 | Mlie.NWNRealFogOfWar | 20 | Security 20 |
 | Doors Expanded | 3532342422 | jecrell.doorsexpanded | 20 | Structure 20 |
@@ -316,7 +316,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | World Expanded - EasternLamps (Continued) | 3468431559 | jsin0.Worldexpanded.eastern.lights | 20 | Lamps 18, Furniture 2 |
 | AncientSalvage | (local) AncientSalvage |  | 19 | Misc 10, Production 4, Temperature 2, Structure 2 |
 | Dropdown Production Buildings | 3223442477 | kongkim.DropdownProductionBuildings | 19 | Production 7, Power 6, Furniture 3, Temperature 3 |
-| Grimdark Recycling2 | 3363054797 | OskarPotocki.VanillaFactionsExpanded.Core | 19 | Misc 10, Production 3, Temperature 3, Security 3 |
+| Grimdark Recycling2 | 3363054797 | CJTLW.HereTech | 19 | Misc 10, Production 3, Temperature 3, Security 3 |
 | Kraltech Industries | 3250496402 | BlackMarket420.KraltechIndustries | 19 | Security 9, Biotech 5, Structure 3, Production 1 |
 | More Fix For Game | 3634969773 | makkei.mffg | 19 | Misc 5, Power 4, Odyssey 3, Security 3 |
 | Musical Instruments (Continued) | 2274558815 | Mlie.MusicalInstruments | 19 | Misc 7, Joy 7, Production 5 |
@@ -359,7 +359,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Dark Ages : Medieval Tools | 3028566550 | Van.DATools | 17 | Misc 17 |
 | Eccentric Tech - Fusion Power | 2742125879 | Aelanna.EccentricTech.FusionPower | 17 | Power 16, Odyssey 1 |
 | Gloomy Deco - Reupload | 3811339191 | zzz.dalrae.gloomydeco | 17 | OldStyleDeco 17 |
-| Kijin Race 3.0 | 2884551646 | Ludeon.RimWorld.Biotech | 17 | Production 9, Misc 5, Joy 3 |
+| Kijin Race 3.0 | 2884551646 | ssulunge.KijinRace3 | 17 | Production 9, Misc 5, Joy 3 |
 | Nelim's Rabbie Gear | 3811382082 | nelim.rabbiegear | 17 | Enterprise_architecture 12, Lunararchitecture 5 |
 | RabbieGearRenew | (local) RabbieGearRenew |  | 17 | Enterprise_architecture 12, Lunararchitecture 5 |
 | Smokeleaf Industry (Continued) | 3795903934 | zal.smokeleafindustry | 17 | MSI 14, Furniture 2, Floors 1 |
@@ -395,7 +395,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | El's Rebel Alliance | 2780886227 | ellit.Rebels | 15 | Furniture 9, Joy 6 |
 | Erin's Auraeyl | 3653150966 | Erin.Auraeyl | 15 | ERN_CozyFurniture 15 |
 | Fortifications - Neolithic | 2385960678 | Aoba.Fortress.Neolithic | 15 | Security 10, Structure 5 |
-| Gerrymon's Hotspring Expanded | 3717051546 | Ludeon.RimWorld.Odyssey | 15 | Ferny_GMHotSpring 6, Misc 3, Structure 2, Joy 2 |
+| Gerrymon's Hotspring Expanded | 3717051546 | GM.Hotspring | 15 | Ferny_GMHotSpring 6, Misc 3, Structure 2, Joy 2 |
 | Gloomy Deco [temp] | 2881455044 | Dalrae.GloomyDecoTemp | 15 | OldStyleDeco 15 |
 | Glowstone | 1545160307 | Mantrasong.Glowstone.1 | 15 | GLO_Glowstone 12, Furniture 3 |
 | LK Resources Mod | 3531934234 | LeutianKane.Resources | 15 | Power 8, Temperature 3, Odyssey 3, Production 1 |
@@ -412,7 +412,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Bamp Xenotype | 3297545550 | Bamp.Gorani | 14 | Anomaly 6, Production 4, Power 2, Security 2 |
 | Expanded Woodworking 2 | 3576156542 | qq.expanded.woodwork | 14 | Production 13, Structure 1 |
 | ExtraSecurity (Continued) | 2590690665 | Mlie.ExtraSecurity | 14 | Security 14 |
-| Guards For Me | 1855885448 | brrainz.harmony | 14 | Security 14 |
+| Guards For Me | 1855885448 | aRandomKiwi.GuardsForMe | 14 | Security 14 |
 | Instruments for Extinction | 3789316911 | ATMnou.exomech | 14 | Misc 4, Production 4, Security 2, Temperature 1 |
 | LWOP Package | 2012717312 | LWOP.Package | 14 | Security 3, Power 3, Misc 2, Biotech 2 |
 | Mashed's Ashlands | 3109835541 | SirMashedPotato.Ashlands | 14 | Misc 3, Furniture 3, Production 3, Floors 3 |
@@ -422,7 +422,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | PLA Steel Torrent | 2743947189 | IssacZhuang.PLA.Vehicle | 14 | PLA_DesignationCategory_Vehicle 14 |
 | Polyamory Beds (Vanilla Edition) | 3276496684 | Meltup.PolyamoryBeds.Vanilla | 14 | Furniture 9, Ogre_NanoRepairTech_DesignationCategory 5 |
 | Potions (Continued) | 2595809112 | Mlie.Potions | 14 | Production 14 |
-| Quarry | 2007576583 | brrainz.harmony | 14 | Production 7, Misc 7 |
+| Quarry | 2007576583 | Ogliss.TheWhiteCrayon.Quarry | 14 | Production 7, Misc 7 |
 | Questionable Ethics Enhanced (Continued) | 2850854272 | Mlie.QuestionableEthicsEnhanced | 14 | Production 14 |
 | Real Fog of War (Continued) | 2559045153 | Mlie.YYRealFogofWar | 14 | Security 14 |
 | RepossessedFurniture | (local) RepossessedFurniture |  | 14 | Nelim_Repossessed 14 |
@@ -437,26 +437,26 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | VGP Garden Canning | 2007062033 | dismarzero.VGP.VGPGardenCanning | 14 | Production 14 |
 | VGP Garden Fabrics | 2007062162 | dismarzero.VGP.VGPGardenFabrics | 14 | Production 14 |
 | VGP Garden Fabrics Simplified | 2007062335 | dismarzero.VGP.VGPGardenFabricsSimplified | 14 | Production 14 |
-| What the Hack?! (Continued) | 3372841828 | brrainz.harmony | 14 | WTH_Hacking 14 |
+| What the Hack?! (Continued) | 3372841828 | zal.whatthehack | 14 | WTH_Hacking 14 |
 | [ATW] House Decor | 3535047810 | mgatwood.housedecor | 13 | Decor 10, Joy 2, Furniture 1 |
-| Alpha Crafts | 3382446150 | brrainz.harmony | 13 | Production 13 |
+| Alpha Crafts | 3382446150 | sarg.alphacrafts | 13 | Production 13 |
 | Ceramics Crafting | 2689231029 | n7huntsman.ceramics.craft | 13 | Production 7, Insulation_Desig 4, Structure 2 |
 | DeCore 1.6 | 951016023 | Daniledman.DeCore | 13 | Production 7, Power 6 |
-| Gerrymon's Hotspring Expanded XML Only | 3765052370 | Ludeon.RimWorld.Odyssey | 13 | Ferny_GMHotSpring 5, Misc 3, Structure 2, Joy 2 |
+| Gerrymon's Hotspring Expanded XML Only | 3765052370 | brucethemoose.Hotspring | 13 | Ferny_GMHotSpring 5, Misc 3, Structure 2, Joy 2 |
 | Industrial Age - Objects and Furniture (Continued) | 3539738188 | Mlie.CallofCthulhuIndustrialAge | 13 | Furniture 6, Joy 3, Temperature 2, Structure 1 |
 | Lacer Race | 3807780767 | Cavetiger.PureLacerRace | 13 | Production 4, Power 4, Security 3, Misc 1 |
 | Project RimFactory - Materials | 3581627851 | PRF.Materials | 13 | Furniture 11, Structure 1, Production 1 |
 | ReBuild: Doors and Corners | 3262718980 | ReBuild.COTR.DoorsAndCorners | 13 | Structure 4, Odyssey 3, Temperature 2, Floors 2 |
-| Rimframe: Vatgrown Hate | 3431220821 | brrainz.harmony | 13 | Production 6, Power 4, Biotech 2, Odyssey 1 |
+| Rimframe: Vatgrown Hate | 3431220821 | JTC.Grineer | 13 | Production 6, Power 4, Biotech 2, Odyssey 1 |
 | Storage Solutions | 895944018 | cucumpear.storage | 13 | CCP_StorageSolutions 13 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 13 | Production 11, Structure 1, Power 1 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 13 | Production 11, Structure 1, Power 1 |
 | The Borg Collective | 3704848468 | TheBorg.Collective.Main | 13 | Borg 13 |
 | Training Rack - Continued | 2545876810 | Lemonaise.TrainingRackContinued | 13 | Training_Racks 12, Production 1 |
 | Vanilla Factions Expanded - Medieval | 2023513450 | OskarPotocki.VanillaFactionsExpanded.MedievalModule | 13 | Production 5, Structure 3, Joy 2, Furniture 2 |
 | [D] Thermodynamics - Hot Meals (Continued) | 2909103255 | Mlie.DThermodynamicsHotMeals | 12 | Temperature 12 |
 | [V1]Tempta Formation | 1544986569 | CamoAdventure.TemptaFormation | 12 | Security 12 |
 | [旋风绘卷]Andery-Tech | 2085370932 | andery233xj.mod.AnderyTech | 12 | Security 6, Production 4, Furniture 2 |
-| Advanced Cultivation - Continued | 3623069749 | brrainz.harmony | 12 | Production 6, Floors 6 |
+| Advanced Cultivation - Continued | 3623069749 | Memegoddess.AdvancedCultivation | 12 | Production 6, Floors 6 |
 | Architect Expanded - Fences (Continued) | 2576081324 | Mlie.ArchitectExpandedFences | 12 | Structure 12 |
 | Cargo Holds | 3536708812 | jdgg.adaptive.cargoholds | 12 | cargoholds 12 |
 | CaveBiome (Continued) | 2259124387 | Mlie.CaveBiome | 12 | Security 6, Furniture 6 |
@@ -492,7 +492,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Supply Box | 3595129621 | trigger.supplybox | 12 | Odyssey 8, Misc 4 |
 | TIMG - Production Completion | 3794925875 | timg.productioncompletion | 12 | Odyssey 6, Power 2, Production 2, Misc 2 |
 | Vanilla Christmas Expanded | 3380695249 | VE.VanillaChristmasExpanded | 12 | Security 4, Ideology 2, Floors 2, Misc 2 |
-| Vanilla Cooking Expanded | 2134308519 | brrainz.harmony | 12 | Production 12 |
+| Vanilla Cooking Expanded | 2134308519 | VanillaExpanded.VCookE | 12 | Production 12 |
 | Vanilla Factions Expanded - Deserters | 3025493377 | OskarPotocki.VFE.Deserters | 12 | Security 9, Misc 3 |
 | Vanilla Furniture Expanded - Medical Module | 1718191613 | VanillaExpanded.VFEMedical | 12 | Misc 10, Structure 2 |
 | Vertibird Transport Add-On | 1876532724 | KurtusMob.Vertibird | 12 | Misc 6, Furniture 6 |
@@ -501,10 +501,10 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | 装饰挂画-Decorative painting | 3587440566 | KindSeal.DecorativePainting | 12 | Furniture 12 |
 | 边缘仙路-镇邪诛鬼 RimImmortal-Exorcism[1.6] | 3663824172 | RI.RimImmortal.Exorcism | 12 | Biotech 7, Production 3, Furniture 1, Misc 1 |
 | [CP] Rimmu-Nation - Security | 2011774401 | CP.RimmuNation.Security | 11 | Security 11 |
-| [DHM]Simple Pipe Mod | 3434589821 | brrainz.harmony | 11 | PipeSystem_Designation 11 |
+| [DHM]Simple Pipe Mod | 3434589821 | drilledhead.simplepipe | 11 | PipeSystem_Designation 11 |
 | [GMT] Mausoleums, Tombs and Graves (Continued) | 3792508376 | zal.mausoleum | 11 | Mourning 11 |
 | Dimensions RePocketed | 3554632020 | KB.PocketDimension | 11 | Misc 11 |
-| Ecotech | 3740443679 | OskarPotocki.VanillaFactionsExpanded.Core | 11 | EcotechDesignation 8, Furniture 2, Production 1 |
+| Ecotech | 3740443679 | RA.Ecotech | 11 | EcotechDesignation 8, Furniture 2, Production 1 |
 | Fantastic Decor (continued) | 2504655776 | RedrusFijorn.VBY333.FantasticDecor | 11 | FantasticDecor 11 |
 | Glowstone 2 | 3775171637 | Murph.Glowstone2 | 11 | GS2_Glowstone 6, Glowstone 5 |
 | Hallowen Monster Mash | 2257175849 | KD.HalloweenMonsterMash | 11 | Misc 11 |
@@ -534,7 +534,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Expanded Materials - Masonry | 3662913084 | Argon.ExpandedMaterials.Masonry | 10 | Production 7, Structure 3 |
 | Expanded Materials Add-On - Minimalist Production | 2564410016 | Argon.VMEuMP | 10 | Production 10 |
 | Fortifications - Medieval | 2501486827 | Aoba.Fortress.Medieval | 10 | Security 7, Structure 3 |
-| Kwiver | 2120889697 | erdelf.HumanoidAlienRaces | 10 | KWVR_DESIGNATION_DEF 10 |
+| Kwiver | 2120889697 | GarbageDayIsHereToStay.Kwiver.GDIHTSKWVR | 10 | KWVR_DESIGNATION_DEF 10 |
 | Large Animal Beds | 1111387020 | cucumpear.animalbeds | 10 | CCP_PetBeds 10 |
 | Life Lessons | 2920678419 | GhostData.lifelessons | 10 | Production 8, Misc 2 |
 | Misc. Incidents | 719702781 | Haplo.Miscellaneous.Incidents | 10 | Misc 10 |
@@ -551,7 +551,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | The Wonderland of Mr Cringe | 2781994359 | aratocat.Wonderland | 10 | Cringe 10 |
 | Underground Vault | 3021706489 | MrHydralisk.UndergroundVault | 10 | Misc 9, LWM_DS_Storage 1 |
 | Vanilla Books Expanded | 2193152410 | VanillaExpanded.VBooksE | 10 | Misc 6, Production 4 |
-| Vanilla Ideology Expanded - Memes and Structures | 2636329500 | brrainz.harmony | 10 | Production 6, Misc 4 |
+| Vanilla Ideology Expanded - Memes and Structures | 2636329500 | VanillaExpanded.VMemesE | 10 | Production 6, Misc 4 |
 | VGP Garden Dyes | 2007062688 | dismarzero.VGP.VGPGardenDyes | 10 | Production 7, Floors 3 |
 | Wall-Mounted Function Furniture | 3807382130 | WallMounted.FunctionFurniture | 10 | Furniture 3, Misc 3, Ideology 2, Joy 1 |
 | Westerado | 1389086625 |  | 10 | Furniture 4, Joy 2, Temperature 1, Structure 1 |
@@ -576,7 +576,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | hydroponic fruit tree's for veggie garden | 855650291 |  | 9 | GardenTools 9 |
 | LWM DS for Gloomy Furniture and Deco | 2037264293 | AhnDemi.LWMDSforGFD | 9 | LWM_DS_Storage 9 |
 | Magical Decor Compilation | 3726648335 | Seti.Random.Decor | 9 | DankPyon_RusticDecoration 7, DankPyon_Candle 2 |
-| Medieval Extras (Continued) | 3582426486 | DankPyon.Medieval.Overhaul | 9 | Structure 9 |
+| Medieval Extras (Continued) | 3582426486 | Satpyn.MedievalExtras | 9 | Structure 9 |
 | One with Death | 3448902635 | 6224Y.OneWithDeath | 9 | OWD_Necromancy 8, Misc 1 |
 | Primitive Workbenches (Continued) | 3751287735 | zal.primitiveproduction | 9 | Production 3, Misc 2, Structure 2, Joy 1 |
 | Reinforced Mechanoid 2 (Continued) | 3541404610 | Mlie.ReinforcedMechanoid2 | 9 | Security 4, VFE_Factory 2, Temperature 1, Power 1 |
@@ -629,7 +629,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Garden Box (Continued) | 2777123045 | zal.gardenbox | 8 | Furniture 8 |
 | Geothermal Coolers | 2554535077 | neronix17.geothermalcooler | 8 | Temperature 8 |
 | Geyser Cooker (Continued) | 2586473053 | Mlie.GeyserCooker | 8 | Production 8 |
-| Geyser Cooking Revived (Continued) | 2803663308 | brrainz.harmony | 8 | Production 8 |
+| Geyser Cooking Revived (Continued) | 2803663308 | zal.geysercookingrevived | 8 | Production 8 |
 | GhillieModPack (Continued) | 2862485631 | zal.GMP | 8 | Production 8 |
 | GrillTech (Continued) | 2775594290 | zal.GrillTech | 8 | Production 8 |
 | HRG164hjo's PGI Overpower | 3720439672 | HRG164hjo.PerfectlyGenericItem.Overpower | 8 | PGI_MainCategory 8 |
@@ -651,7 +651,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Resource Generator | 2747511650 | Mlie.ResourceGenerator | 8 | Production 8 |
 | RimLife Expansion Trading items | 2951594887 | daylight.RimLifeExTRGMod | 8 | Production 8 |
 | RimMagic (1.0-1.7) -- now with Ascendant Vampires, Resurrection and Healing! | 775650249 | magicalliopleurodon.rimmagic | 8 | Production 8 |
-| Rimsec Security (Continued) | 3520375010 | brrainz.harmony | 8 | RSSRSBuildings 8 |
+| Rimsec Security (Continued) | 3520375010 | zal.rimsecsecurity | 8 | RSSRSBuildings 8 |
 | Rimsenal Faction Pack - Feral | 736207111 | rimsenal.feral | 8 | Production 8 |
 | RimSide Recycling | 1825360426 | pgamesfood.RimSideRecycling | 8 | Power 4, Floors 4 |
 | RimWest | 3453765588 | ymaxeuss.rimwest | 8 | Production 4, Temperature 2, Furniture 2 |
@@ -720,7 +720,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RimJoust | 3743710674 | forti.rimjoust | 7 | Misc 6, Ferny_Jousting 1 |
 | Rimspite Gitz: Loonclans | 3735204214 | JTC.AOSgitz | 7 | Production 7 |
 | Rimstro Farming Expansion | 3580027782 | Roo.rfe | 7 | RS_Category 7 |
-| Rimzone: Sons and Daughters of Helghan | 3492260324 | brrainz.harmony | 7 | Security 5, Odyssey 1, Production 1 |
+| Rimzone: Sons and Daughters of Helghan | 3492260324 | JTC.Helghast | 7 | Security 5, Odyssey 1, Production 1 |
 | rjw-whorebeds | (local) rjw-whorebeds |  | 7 | Furniture 7 |
 | Signs and Memorials (Continued) | 2071681396 | Mlie.SignsAndMemorials | 7 | Misc 7 |
 | SS Lightning Rod (Continued) | 2358261479 | Mlie.SSLightningRod | 7 | Misc 7 |
@@ -756,7 +756,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Crimson - Greenbud | 3457763586 | CC.Drug.Dealer | 6 | Production 6 |
 | CrystalBall (Continued) | 2483367722 | Mlie.CrystalBall | 6 | Production 6 |
 | Cutting out Head (1.6) | 3700765558 | ab.beheading | 6 | Misc 5, Security 1 |
-| Dark Ages : Beasts and Monsters | 3472275628 | OskarPotocki.VanillaFactionsExpanded.Core | 6 | Floors 6 |
+| Dark Ages : Beasts and Monsters | 3472275628 | Van.Beasts | 6 | Floors 6 |
 | Dragon's Ores Utilities | 3553761214 | dragonking.dragonsoresutilities | 6 | Temperature 2, Misc 2, Power 1, Furniture 1 |
 | Early Vehicle Parts | 3022062151 | CaptainTesss.EVP | 6 | Early_Early_Vehicles 6 |
 | ED-Laser-Drill | 722086956 | Jaxxa.EnhancedDevelopment.LaserDrill | 6 | Power 6 |
@@ -789,7 +789,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Lost Joy Objects - Arcades | 1506336556 | dracoix.ljo.arcades | 6 | Joy 6 |
 | Marro | 2057712425 | zot.marro | 6 | Structure 2, Furniture 2, Production 2 |
 | Mechanoid Master Blaster (Continued) | 3503503505 | Mlie.MechanoidMasterBlaster | 6 | Security 6 |
-| Medieval Gene Assembler | 3171518917 | Ludeon.RimWorld.Biotech | 6 | Biotech 6 |
+| Medieval Gene Assembler | 3171518917 | DDJY.MedievalGeneAssembler | 6 | Biotech 6 |
 | Medieval Overhaul Misc. Patches | 2775878596 | Jsin.MedievalOverhaulMisc | 6 | Production 6 |
 | Medieval Overhaul: Air Vehicles | 3302419308 | GAYUKI.MedievalOverhaulAirVehicles | 6 | VF_Vehicles 6 |
 | Medieval Transport Airships | 3695137672 | joeownage.transport.airships | 6 | Odyssey 6 |
@@ -815,7 +815,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Simple Soil V3(continued) | 2187570377 | SimpleSoil.velcroboy333 | 6 | SimpleSoilV3 6 |
 | Slippers ＆ Mats | 2871977123 | RMC.SlippersMats | 6 | Furniture 6 |
 | Small Graves and Sarcophaguses | 2845934077 | Wanzi.SmallGraves | 6 | Misc 6 |
-| Standalone Hot Spring | 2205980094 | brrainz.harmony | 6 | Joy 6 |
+| Standalone Hot Spring | 2205980094 | balistafreak.StandaloneHotSpring | 6 | Joy 6 |
 | Steam Light | 2372416175 | TheGoofyOne.SteamLight | 6 | Furniture 6 |
 | Stoneborn - Cuisine | 3725224779 | det.sbcuisine | 6 | Production 6 |
 | Swarmpocalypse | 3447056193 | Luosheng.Swarmpocalypse | 6 | Production 3, Misc 2, Biotech 1 |
@@ -826,7 +826,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Toxlamps | 3166048152 | Koni.Misc.Toxlamps | 6 | Furniture 4, Floors 2 |
 | TurtleShroom Productions Proudly Presents: Mongolian Factions (Continued) | 3812891039 | SZ.MengGu.Expanded | 6 | DaJian_Ui_Menu 6 |
 | Useful Parasites | 3175473107 | Romyashi.UsefulParasites | 6 | Production 6 |
-| Vanilla Cooking Expanded - Sushi | 2158539170 | VanillaExpanded.VCookE | 6 | Production 6 |
+| Vanilla Cooking Expanded - Sushi | 2158539170 | VanillaExpanded.VCookESushi | 6 | Production 6 |
 | Vanillafied Vivi | 3739051552 | kahirDragoon.vanillafiedVivi | 6 | Furniture 1, Misc 1, Production 1, Security 1 |
 | VCE - Electric/Chemfuel Stew Pot | 3436690949 | JXW.VCEElectricStewPot | 6 | Production 6 |
 | Villages:Homes | 2941977041 | Ottersholdhands.VillagesHomes | 6 | Structure 6 |
@@ -865,7 +865,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Medieval Festival | 2042616573 | MedievalFestival.velcroboy333 | 5 | Joy 3, Furniture 1, Temperature 1 |
 | Medieval Overhaul: House Van Illa | 3327601396 | Addie.HouseVanIlla | 5 | Misc 3, Furniture 2 |
 | Miniature Props and Decor | 3579351912 | Leo.PropsDecor | 5 | Ferny_Decorations 2, Floors 1, MiniatureProps_Decoration 1, Misc 1 |
-| More than Ashes V2 | 2846247713 | OskarPotocki.VanillaFactionsExpanded.Core | 5 | Production 5 |
+| More than Ashes V2 | 2846247713 | Layken.morethanashesV2 | 5 | Production 5 |
 | MorrowRim | 2443089362 | SirMashedPotato.MorrowRim | 5 | Furniture 5 |
 | MorrowRim - Alcohol | 2091165362 | SirMashedPotato.MorrowRim.Alcohol | 5 | Production 5 |
 | Movable Hitech Research | 2547321761 | grampybones.movableresearch | 5 | Production 5 |
@@ -926,7 +926,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Daily furniture Fix 塔林家具补丁 | 3431681279 | JXW.DailyfurnitureFix | 4 | ADH_Fix_Category_Structure 3, ADH_Fix_Category_Decoration 1 |
 | Dispensary Mod | 3045681495 | firestarme.dispensarymod | 4 | Misc 2, Structure 2 |
 | Door Mat | 1505423207 | dracoix.doormat.r12a | 4 | Misc 4 |
-| DucKs Things | 3225105695 | ludeon.rimworld.anomaly | 4 | Power 4 |
+| DucKs Things | 3225105695 | theduck.ducksthings | 4 | Power 4 |
 | Enter Here | 2824117092 | Mlie.EnterHere | 4 | Misc 4 |
 | Entomophagy | 2996527741 | HIGGS.Cozarkian.Entomophagy | 4 | Production 4 |
 | Epochs - Tallow | 3502180016 | det.epochstallow | 4 | Furniture 4 |
@@ -949,7 +949,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Hospital | 2992224079 | Adamas.Hospital | 4 | Misc 4 |
 | Hospitality: Casino | 2939292644 | Adamas.HospitalityCasino | 4 | Joy 4 |
 | Immersive Chefs | 3782589902 | fumblesneeze.immersivechefs | 4 | Production 4 |
-| Immortals | 1984905966 | brrainz.harmony | 4 | Production 4 |
+| Immortals | 1984905966 | fridgeBaron.Immortals | 4 | Production 4 |
 | InwallShelf (Continued) | 2603986959 | Mlie.InwallShelf | 4 | Furniture 4 |
 | It's the ultimate Diamond+ | 877482162 |  | 4 | Security 4 |
 | Kemetic Decorations | 2836144432 | Sovereign.Kemet | 4 | Misc 3, Structure 1 |
@@ -973,7 +973,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Mimic Slime - Deliria | 3636189401 | lf.mod.MimicSlime | 4 | Production 2, Misc 2 |
 | Modern Bed | 2430249387 | SC.modernbed | 4 | Furniture 4 |
 | Modern Bed (1.4+) | 2888914698 | Hol.modernbed | 4 | Furniture 4 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 4 | Production 4 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 4 | Production 4 |
 | More Batteries | 747397788 | Stolij.MoreBatteries | 4 | Power 4 |
 | More Bee Candles | 3434323830 | lumiona.MoreBeeCandles | 4 | RB_Bees 4 |
 | More Guerrilla Tactics Traps | 3538725785 | MPCatcher.TrapsExpanded | 4 | Security 4 |
@@ -1015,14 +1015,14 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | SloppyMods Mending Solutions | 3808805962 | sloppymod.dynamicmending | 4 | Production 4 |
 | Small Stoves | 3371558245 | Xercaine.SmallStoves | 4 | Production 4 |
 | Smaller Geothermal Generator (更小的地熱發電機) | 3456671049 | emoryoakley.buildings.smallergeothermalgenerator | 4 | Power 4 |
-| Stoneborn - Delights | 3106413957 | brrainz.harmony | 4 | Production 4 |
+| Stoneborn - Delights | 3106413957 | det.sbdelights | 4 | Production 4 |
 | Stony campfire | 1367897185 | goudaquiche.stonycampfire | 4 | Temperature 3, Production 1 |
 | Subnautica Machines | 3671343337 | Xeneo.SubnauticaMachines | 4 | Production 2, Misc 1, Power 1 |
 | Survival Expanded - Desert Dreams | 3191123007 | desertdreams.survivalexpanded.dracoix | 4 | Survival 4 |
 | The Dead Man's Switch - Shroud Zone Special Force | 3656498257 | Berserk.DeadManSwitch.ExperimentalWeapons | 4 | DMS_Category 4 |
 | The Jukebox | 2775601991 | zal.jukebox | 4 | Joy 4 |
 | Thin Walls | 3808584418 | Xercaine.ThinWalls | 4 | Temperature 2, Structure 1, Odyssey 1 |
-| TiberiumRim | 1346865620 | brrainz.harmony | 4 | Floors 2, Misc 2 |
+| TiberiumRim | 1346865620 | telefonmast.tiberiumrim | 4 | Floors 2, Misc 2 |
 | Tiny Table ReUpload | 3186290184 | Proxyer.TinyTableReUpload | 4 | Furniture 4 |
 | Trains of the Rim | 3530446424 | princeofpluto.vehicles.trains | 4 | RailroadCategory 4 |
 | Transport Shuttle Standalone (Continued) | 3640979439 | zal.transportshuttlestandalone | 4 | Transport 3, Ship 1 |
@@ -1042,7 +1042,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [1.5]肥鸟工艺-核心 FatPenguinCraft-Core | 3266169490 | TW.FPC.FatPenguinCraft.Core | 3 | Production 3 |
 | [AP] All Tomorrows | 2834031303 | AP.alltomorrows | 3 | Production 3 |
 | [COG] Corvus Production Logistics | 3715921140 | PlatoArete.corvusproductionlogistics | 3 | Corvus_Logistics 3 |
-| [Curvaceous Mechanoid]The Teddy bear [1.5] | 3463695410 | brrainz.harmony | 3 | Biotech 3 |
+| [Curvaceous Mechanoid]The Teddy bear [1.5] | 3463695410 | Fluff.FCMBear | 3 | Biotech 3 |
 | [FSF] Carpets of the Rainbow | 893156099 | FrozenSnowFox.CarpetsoftheRainbow | 3 | Floors 3 |
 | [FSF] Meditation Freedom (No Backstory Change) | 2578656876 | FrozenSnowFox.MeditationFreedomNoStory | 3 | Misc 3 |
 | [HMC]Wall Furniture Odyssey | 3530419984 | HMC.Wall.Furniture.Odyssey | 3 | Odyssey 2, Misc 1 |
@@ -1062,14 +1062,14 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Ancient Junk Loot | 3023180229 | Romyashi.AncientJunkLoot | 3 | Power 3 |
 | Angled Hull Expansion | 3542377046 | NuanKi.AngledHullExpansion | 3 | VGE_Platform 1, Floors 1, Odyssey 1 |
 | Apparello 2 | 728381322 | Shinzy.Apparello | 3 | Production 3 |
-| BallGames | 2845856763 | brrainz.harmony | 3 | Joy 3 |
+| BallGames | 2845856763 | kaitorisenkou.BallGames | 3 | Joy 3 |
 | Batteries Expanded | 3033920368 | mopolita.bame.batteriesexpanded | 3 | Power 3 |
 | Big and Small - Genes &amp; More | 2920751126 | RedMattis.BigSmall.Core | 3 | Security 3 |
 | BK's Nutrient Bars! | 2884508615 | BK.NutrientBars | 3 | VCHE_PipeNetworks 3 |
 | Bon's Gynoids | 3562923697 | BonSombrero.Gynoids | 3 | Biotech 3 |
 | Canuck Bucks | 3629741980 | Cinchknight.CanuckBucks | 3 | Production 3 |
-| Cargo Containers Expanded | 3714050938 | brrainz.harmony | 3 | Misc 3 |
-| Cargo waste container | 2888532939 | Ludeon.RimWorld.Biotech | 3 | Misc 3 |
+| Cargo Containers Expanded | 3714050938 | KyleMHB.CargoContainerExpanded | 3 | Misc 3 |
+| Cargo waste container | 2888532939 | Aoba.CargoContainer.Waste | 3 | Misc 3 |
 | Cash Register (Continued) | 3509487668 | Orion.CashRegister | 3 | Production 3 |
 | Char's Fences - 1.0.4 | 742084241 |  | 3 | ItchyFences 3 |
 | Chemfuel Is Life | 3725620520 | lilycdev.chemfuelislife | 3 | Production 2, Structure 1 |
@@ -1106,9 +1106,9 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Frankenstein's Menagerie | 3060165030 | GarryFlowers.Frankenstein | 3 | Production 3 |
 | Functional Vanilla Expanded Props (Continued) | 2574097280 | Mlie.FunctionalVanillaExpandedProps | 3 | LWM_DS_Storage 3 |
 | Gene Fabrication | 3352773112 | AmCh.Eragon.HCGeneFabrication | 3 | Biotech 3 |
-| Gerrymon's Misc Props: Dungeon | 3772571876 | VanillaExpanded.VFEPropsandDecor | 3 | Furniture 3 |
+| Gerrymon's Misc Props: Dungeon | 3772571876 | GMMP.Dungeon | 3 | Furniture 3 |
 | Gerrymon's Misc Props: Fences | 3797400517 | GMMP.Fences | 3 | Structure 3 |
-| Gerrymon's Misc Props: Graveyard | 3780458386 | VanillaExpanded.VFEPropsandDecor | 3 | Misc 2, Ferny_Memorial 1 |
+| Gerrymon's Misc Props: Graveyard | 3780458386 | GMMP.Graveyard | 3 | Misc 2, Ferny_Memorial 1 |
 | Gloomy Vanilla Overhaul Fixes | 2953321248 | Gorlath.GloomyVanillaOverhaulPatch | 3 | Joy 1, Production 1, Temperature 1 |
 | GloomyFurniture Drag Fix | 3743400206 | FIX.Solaris.FurnitureBase | 3 | OldStyleDeco 2, OldStyleFurniture 1 |
 | Gulden Biome (Continued) | 3607066070 | pphhyy.GuldenNew | 3 | Production 3 |
@@ -1162,11 +1162,11 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Rim of Madness - Vampires (Continued) | 3599360002 | zal.romvampires | 3 | Misc 3 |
 | Rim-Gnoblins | 3018569666 | VexedTrees980.RimGnoblinsBiotech | 3 | Production 3 |
 | Rimazon | 3523821501 | pc1001.PunkyRoo.Rimazon | 3 | Production 3 |
-| Rimframe: Vatgrown Home! | 3490855953 | brrainz.harmony | 3 | Structure 2, Misc 1 |
+| Rimframe: Vatgrown Home! | 3490855953 | JTC.Grineerfurniture | 3 | Structure 2, Misc 1 |
 | RimFridge: Now with Shelves! | 2898411376 | rimfridge.kv.rw | 3 | Temperature 3 |
 | RimGamble | 3547255934 | Takumunt.RimGamble | 3 | Joy 2, Misc 1 |
 | RimThunder - Flying Chariot | 3163422402 | RimThunderTeams.RimThunder.FlyingChariot | 3 | VF_Vehicles 3 |
-| RimWorld - Witcher Monster Hunt | 2008529522 | brrainz.harmony | 3 | Production 3 |
+| RimWorld - Witcher Monster Hunt | 2008529522 | sargoskar.witcherhunt | 3 | Production 3 |
 | RimWorld Survival Frontier | 3548195656 | lele.rimworldsurvivalfrontier | 3 | Production 2, Misc 1 |
 | RimWorld Together | 3005289691 | nova.rimworldtogether | 3 | Misc 3 |
 | RimZon: World Marketplace | 3817183111 | SlomannayaPsihika.WorldMarketplace | 3 | Misc 3 |
@@ -1202,7 +1202,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Transport Shuttle 1.4 and 1.5 | 2879336912 | Azazellz.TransportShuttle14 | 3 | SRTS_Expanded 3 |
 | TribalInstruments (Royalty) | 2596778006 | zal.tribalinstruments | 3 | Joy 3 |
 | Ultra Moisture Pump | 1529498499 | ChrisBradel.UltraMoisturePump | 3 | Misc 3 |
-| Vanilla Cooking Expanded - Stews | 2134312965 | VanillaExpanded.VCookE | 3 | Production 3 |
+| Vanilla Cooking Expanded - Stews | 2134312965 | VanillaExpanded.VCookEStews | 3 | Production 3 |
 | Vehicle Framework | 3014915404 | SmashPhil.VehicleFramework | 3 | VF_Vehicles 3 |
 | VOICEROIDグッズMOD | 909316877 |  | 3 | Production 2, Misc 1 |
 | Vomit Rain | 3797683474 | kingmoo92.VomitRain | 3 | Ideology 1, Production 1, Floors 1 |
@@ -1221,19 +1221,19 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 
 | Mod | Workshop id | packageId | Hits |
 |---|---|---|---|
-| Genetic Rim | 1113137502 | brrainz.harmony | 270 |
+| Genetic Rim | 1113137502 | sarg.geneticrim | 270 |
 | Legacy Ark (Continued) | 2070686241 | Mlie.LegacyArk | 243 |
 | Megafauna | 1055485938 | Spino.Megafauna | 228 |
 | Animal Collab Project Vanilla-Style | 2208467668 | ACPteam.ACPVanillaStyle | 216 |
 | Dinosauria | 1136958577 | spincrus.dinosauria | 192 |
 | Biomes! Islands | 2038001322 | BiomesTeam.BiomesIslands | 175 |
 | Biomes! Caverns | 2969748433 | BiomesTeam.BiomesCaverns | 172 |
-| Vanilla Genetics Expanded | 2801160906 | brrainz.harmony | 167 |
+| Vanilla Genetics Expanded | 2801160906 | VanillaExpanded.VGeneticsE | 167 |
 | Lantern Hunters | 2866414675 | kdm.lanternhunters | 133 |
-| Vanilla Animals Expanded | 2871933948 | brrainz.harmony | 122 |
+| Vanilla Animals Expanded | 2871933948 | VanillaExpanded.VanillaAnimalsExpanded | 122 |
 | MorrowRim | 2443089362 | SirMashedPotato.MorrowRim | 119 |
 | Beasts of the Rim (Continued) | 2194018641 | Mlie.BeastsoftheRim | 114 |
-| RimWorld - Witcher Monster Hunt | 2008529522 | brrainz.harmony | 101 |
+| RimWorld - Witcher Monster Hunt | 2008529522 | sargoskar.witcherhunt | 101 |
 | Vanilla Animals Expanded — Cats and Dogs | 1823540489 | VanillaExpanded.VAECD | 84 |
 | Steves Animals | 2479431577 | Scurvyez.Bastyon | 80 |
 | Zoo-动物（Animal） | 783946617 |  | 70 |
@@ -1247,7 +1247,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | DuelMonsterRimWorld | 3050289249 | DuelMonster.RimWorld | 48 |
 | Mashed's Ashlands | 3109835541 | SirMashedPotato.Ashlands | 48 |
 | Milkable Vanilla Animals (Mammals) | 2573060595 | Milkable.Mammals | 46 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 46 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 46 |
 | Synthetic Animals (Continued) | 3171141566 | zal.syntheticanimals | 44 |
 | Monstrous Compendium (Continued) | 2381100965 | Mlie.MonstrousCompendium | 40 |
 | Medieval Overhaul | 3219596926 | DankPyon.Medieval.Overhaul | 38 |
@@ -1272,20 +1272,20 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | pphhyy's Demigryphs Continued | 3540496928 | pphhyy.DemigryphsMod | 27 |
 | Scaled World | 2799361186 | Scaled.World | 27 |
 | Slimes | 2639634490 | zylle.Slimes | 27 |
-| Vanilla Animals Expanded — Royal Animals | 2858079457 | brrainz.harmony | 27 |
+| Vanilla Animals Expanded — Royal Animals | 2858079457 | VanillaExpanded.VAERoy | 27 |
 | FishIndustry (Continued) | 3456386887 | Mlie.FishIndustry | 25 |
 | Let's Have a Cat! Continued | 3682940618 | akairo.LetsHaveaCat | 24 |
 | Meme-Superpack | 2957903828 | MrSamuelStreamer.MemeSuperpack | 24 |
-| TiberiumRim | 1346865620 | brrainz.harmony | 24 |
-| Vanilla Animals Expanded — Arid Shrubland | 1836900626 | brrainz.harmony | 24 |
+| TiberiumRim | 1346865620 | telefonmast.tiberiumrim | 24 |
+| Vanilla Animals Expanded — Arid Shrubland | 1836900626 | VanillaExpanded.VAEAS | 24 |
 | Vanilla Factions Expanded - Insectoids 2 | 3309003431 | OskarPotocki.VFE.Insectoid2 | 24 |
 | CIWS_Animal (Continued) | 2610389492 | Mlie.CIWSAnimal | 23 |
 | Panjandrum | 1946414842 | tikubonn.panjangdrum | 23 |
 | HC Animal Continued | 3238206164 | HC.Animal.continued | 22 |
-| Vanilla Animals Expanded — Waste Animals | 2962126499 | brrainz.harmony | 22 |
+| Vanilla Animals Expanded — Waste Animals | 2962126499 | VanillaExpanded.VAEWaste | 22 |
 | MorrowRim - Ashlands Swamp | 2230936898 | SirMashedPotato.MorrowRim.AshSwamp | 20 |
 | Parrots | 2537399407 | zylle.Parrots | 20 |
-| Vanilla Animals Expanded — Tropical Rainforest | 1907283872 | brrainz.harmony | 20 |
+| Vanilla Animals Expanded — Tropical Rainforest | 1907283872 | VanillaExpanded.VAETR | 20 |
 | Fungi lite | 2129406860 | Druid.Fungilite | 19 |
 | World of Naruto | 3025338958 | LifeisGame.WorldOfNaruto | 19 |
 | Ducks | 2377069366 | zylle.Ducks | 18 |
@@ -1293,16 +1293,16 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [Syulipia]OrientalDragonMOD (Continued) | 3564312643 | ProjectSyulipia.OrientalDragonMOD.continued | 17 |
 | Dragon Mod | 1163162658 |  | 17 |
 | 华夏扩展 Chinese Comprehensive Expansion | 3221850511 | ninedaylongbow.ChineseComprehensiveExpansion | 17 |
-| Vanilla Animals Expanded — Australia | 1963681588 | brrainz.harmony | 16 |
-| Vanilla Animals Expanded — Tundra | 1895364585 | brrainz.harmony | 16 |
+| Vanilla Animals Expanded — Australia | 1963681588 | VanillaExpanded.VAEAU | 16 |
+| Vanilla Animals Expanded — Tundra | 1895364585 | VanillaExpanded.VAET | 16 |
 | Elephants | 2389095025 | zylle.Elephants | 15 |
 | FCP - The Wasteland Compendium (Continued) | 2886511401 | zal.WastelandCompendium | 15 |
 | FCP - The Wasteland Compendium Retexture !!!  | 3702242543 | Whyamihere.TheWastelandCompendiumRetexture | 15 |
 | PWG Grim Magic | 2138862354 | PWG.GrimMagic | 15 |
 | Vanilla Factions Expanded - Vikings | 2231295285 | OskarPotocki.VFE.Vikings | 15 |
-| Alpha Biomes | 1841354677 | brrainz.harmony | 14 |
+| Alpha Biomes | 1841354677 | sarg.alphabiomes | 14 |
 | Floran Root | 2967105902 | TitaniusRex.FloranRoot | 14 |
-| Dark Ages : Beasts and Monsters | 3472275628 | OskarPotocki.VanillaFactionsExpanded.Core | 13 |
+| Dark Ages : Beasts and Monsters | 3472275628 | Van.Beasts | 13 |
 | Kenshi Fauna | 3535797656 | EL.KenshiFauna | 13 |
 | Mojave Wasteland Creatures | 2449930064 | Arisher.MWC | 13 |
 | Oni of the Rim | 2891432261 | tarojun.morishep.onioftherim | 13 |
@@ -1310,14 +1310,14 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Japanese Dogs | 2192937058 | Poetik.JapaneseDogs | 12 |
 | Mincho, The Mint Choco Slime ~ HAR ver. | 2477501851 | SutSutMan.MinchoTheMintChocoSlimeHARver | 12 |
 | Monster Mash (Continued) | 3175345611 | zal.monstermash | 12 |
-| Vanilla Animals Expanded — Boreal Forest | 1895364938 | brrainz.harmony | 12 |
-| Vanilla Animals Expanded — Extreme Desert | 1849184079 | brrainz.harmony | 12 |
-| Vanilla Animals Expanded — Ice Sheet | 1895364782 | brrainz.harmony | 12 |
+| Vanilla Animals Expanded — Boreal Forest | 1895364938 | VanillaExpanded.VAEBF | 12 |
+| Vanilla Animals Expanded — Extreme Desert | 1849184079 | VanillaExpanded.VAEED | 12 |
+| Vanilla Animals Expanded — Ice Sheet | 1895364782 | VanillaExpanded.VAEIS | 12 |
 | Witching Hour (Continued) | 2596779692 | zal.WitchingHour | 12 |
 | Bite 'Em Where It Hurts! | 1109523024 |  | 11 |
 | Frost and Fire (Continued) | 3243969146 | zal.frostandfire | 11 |
 | Miho, the celestial fox | 2816826107 | miho.fortifiedoutremer | 11 |
-| Vanilla Animals Expanded — Endangered | 2366589898 | brrainz.harmony | 11 |
+| Vanilla Animals Expanded — Endangered | 2366589898 | VanillaExpanded.VAEEndAndExt | 11 |
 | Erin's Valheim Creatures | 2914177066 | Erin.Valheim.Creatures | 10 |
 | Recon And Discovery (Continued) | 2035131107 | Mlie.ReconAndDiscovery | 10 |
 | The Profaned | 3202008037 | BotchJob.Profaned | 10 |
@@ -1333,7 +1333,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [WYD] Mamuffalo Reworked | 3209607611 | Wyr3d.MamuffaloReworked | 8 |
 | CIWSpk Animal | 2414365715 | UNKNOWN.CIWS.Animal | 8 |
 | Helpful Pals | 3451569996 | hamtastic.palworld | 8 |
-| More than Ashes V2 | 2846247713 | OskarPotocki.VanillaFactionsExpanded.Core | 8 |
+| More than Ashes V2 | 2846247713 | Layken.morethanashesV2 | 8 |
 | MorrowRim - Bloodmoon | 2243604074 | SirMashedPotato.MorrowRim.Bloodmoon | 8 |
 | Outland - Toxic Forest | 2985460903 | Neronix17.Outland.ToxicForest | 8 |
 | RadWorld | 2644582906 | Declinedkilr.RadWorld | 8 |
@@ -1407,7 +1407,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Fabled Cervidae | 3400548142 | Scurvyez.FabledCervidae | 4 |
 | Locust Swarms and Cicada Songs | 1999857175 | velcroboy333.LocustSwarmsAndCicadaSongs | 4 |
 | Mashed's Scampuss | 2522749096 | SirMashedPotato.Scampuss | 4 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 4 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 4 |
 | Primordial Geysers | 2896731795 | IronScruff.PrimordialGeysers | 4 |
 | RadWorld | 2474160202 | Declinedkilr.RadWorld_copy | 4 |
 | Rocky | 3362035760 | ShepirotGamer.Rocky | 4 |
@@ -1415,7 +1415,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Sunset Weapon Technology 2 | 2890976130 | SunsetModerTeam.SunsetWeaponTechnology2 | 4 |
 | Tribble Trouble | 2400590961 | zylle.TribbleTrouble | 4 |
 | "Chocolate" BunBuns | 1123020884 | cucumpear.chocbunbuns | 3 |
-| [1.3] SmurfeRim Ver4.0  | 912714690 | walkingproblem.aaf | 3 |
+| [1.3] SmurfeRim Ver4.0  | 912714690 | walkingproblem.smurf | 3 |
 | [KCB] RimStory | 3473850830 | KCB.RimStory | 3 |
 | [SZ]分居异爨——杂项内容和黑科技 Chinese Traditional Cultural Things Expanded Other Styles Pack | 2477792890 | ChiTeaditional.ExtraPack | 3 |
 | [TY]派系扩展·光辉 Faction Glory | 2735917151 | Spread.TY.Glory | 3 |
@@ -1450,8 +1450,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | The Bat | 2657884546 | zal.bat | 3 |
 | The Black Cat | 2657884748 | zal.cat | 3 |
 | Tribbles! (Continued) | 2672501251 | zal.Tribbles | 3 |
-| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | syrchalis.processor.framework | 3 |
-| TurtleShroom Productions Proudly Presents: Van Hellsing Expansion | 2872129323 | OskarPotocki.VanillaFactionsExpanded.Core | 3 |
+| TurtleShroom Productions Proudly Presents: Make Honey EVEN MORE Compatible | 2959585309 | TSP.zal.patchhoney2 | 3 |
+| TurtleShroom Productions Proudly Presents: Van Hellsing Expansion | 2872129323 | TSP.Baskerville.HellsingExpansion | 3 |
 | UwU | 2781397266 | PunkyRoo.UwU | 3 |
 | Westerado | 1389086625 |  | 3 |
 | Xen's Big Animals | 848123718 |  | 3 |
@@ -1469,7 +1469,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Mashed's Ashlands | 3109835541 | SirMashedPotato.Ashlands | 312 |
 | Fantastic Flora(continued) | 2504647479 | Velcroboy333.FantasticFloraCont | 271 |
 | TurtleShroom Productions Proudly Presents: CKAPP Tropical Rainforest Mod (Continued) | 3544154279 | Mlie.TropickappRainforestMod | 258 |
-| Alpha Biomes | 1841354677 | brrainz.harmony | 206 |
+| Alpha Biomes | 1841354677 | sarg.alphabiomes | 206 |
 | MorrowRim | 2443089362 | SirMashedPotato.MorrowRim | 179 |
 | VGP Three Sisters Plants | 2007063848 | dismarzero.VGP.VGPThreeSistersPlants | 138 |
 | VGP Xtra Trees and Flowers | 2007064094 | dismarzero.VGP.XtraTreesandFlowers | 132 |
@@ -1479,7 +1479,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Witch's Garden (Continued) | 2644141682 | zal.witchsgarden | 112 |
 | Witch's Garden (With Healroot) | 2835149383 | zal.witchsgardenhealroot | 112 |
 | Wild Cultivation - Continued | 2587733212 | jelly.WildCultivation | 105 |
-| Vanilla Plants Expanded - More Plants | 2748889667 | brrainz.harmony | 102 |
+| Vanilla Plants Expanded - More Plants | 2748889667 | VanillaExpanded.VPlantsEMore | 102 |
 | VV - New Harvest | 3448458106 | VVenchov.VVNewHarvest | 102 |
 | Spidercamp's Decorative Plants (Continued) | 2453107898 | Mlie.SpidercampsDecorativePlants | 96 |
 | CaveworldFlora (Continued) | 2259058735 | Mlie.CaveworldFlora | 91 |
@@ -1493,7 +1493,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Christmas Stuff - Advent calendar (Continued) | 2441048499 | Mlie.ChristmasStuffAdventCalendar | 77 |
 | MorrowRim - Telvanni Technology | 2443090232 | SirMashedPotato.MorrowRim.TelvanniTechnology | 74 |
 | RimFortress: Dwarven Plants | 2042926702 | dismarzero.VGP.RimFortressDwarvenPlants | 73 |
-| Ecotech | 3740443679 | OskarPotocki.VanillaFactionsExpanded.Core | 67 |
+| Ecotech | 3740443679 | RA.Ecotech | 67 |
 | ReGrowth 2 | 2260097569 | ReGrowth.BOTR.Core | 65 |
 | RimCuisine 2: Smokes and Shrooms Expansion (Continued) | 2069579592 | Mlie.RC2.SaSE | 63 |
 | Pawnmorpher | 1786466855 | tachyonite.pawnmorpherpublic | 58 |
@@ -1516,8 +1516,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Tobe's Realistic Farming [TRF] | 1136426568 |  | 41 |
 | Metaflora | 2782577156 | SA.Metaflora | 40 |
 | The Poop Mod | 1728184416 | WindowsXP.ThePoopMod | 40 |
-| Vanilla Plants Expanded | 2134308522 | brrainz.harmony | 40 |
-| Vanilla Plants Expanded - Mushrooms | 3006389281 | brrainz.harmony | 39 |
+| Vanilla Plants Expanded | 2134308522 | VanillaExpanded.VPlantsE | 40 |
+| Vanilla Plants Expanded - Mushrooms | 3006389281 | VanillaExpanded.VPlantsEMushrooms | 39 |
 | VGP Garden Gourmet | 2007062982 | dismarzero.VGP.VGPGardenGourmet | 38 |
 | [1.7]边缘仙路-俗世仙工 RimImmortal-Living | 3326145525 | RI.RimImmortal.Living | 37 |
 | Westerado Wilderness | 1389096461 |  | 37 |
@@ -1535,20 +1535,20 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Futuristic Plants | 1826002391 | battlemage64.FuturisticPlants | 30 |
 | MorrowRim - Ashlands Swamp | 2230936898 | SirMashedPotato.MorrowRim.AshSwamp | 30 |
 | Social Supplements (Continued) | 2195052690 | Mlie.SocialSupplements | 30 |
-| Vanilla Plants Expanded - Succulents | 2198652536 | brrainz.harmony | 30 |
+| Vanilla Plants Expanded - Succulents | 2198652536 | VanillaExpanded.VPlantsESucculents | 30 |
 | 华夏扩展 Chinese Comprehensive Expansion | 3221850511 | ninedaylongbow.ChineseComprehensiveExpansion | 30 |
 | A RimWorld of Magic | 1201382956 | Torann.ARimworldOfMagic | 28 |
 | CuproPanda's Drinks | 1543172057 | dismarzero.VGP.CuproPandasDrinks | 28 |
 | Glowmoss | 2441383010 | DarkSunStudio.Glowmoss | 28 |
 | ReGrowth: Boiling | 2981924439 | ReGrowth.BOTR.BoilingForest | 28 |
-| Vanilla Plants Expanded - Flowers | 3748351639 | brrainz.harmony | 28 |
+| Vanilla Plants Expanded - Flowers | 3748351639 | VanillaExpanded.VPEFlowers | 28 |
 | [1.7]边缘仙路-羽化登仙 RimImmortal-Core | 3296476341 | RI.RimImmortal.Core | 27 |
 | Kit's Brazilian Crops (Continued) | 2886512401 | zal.braziliancrops | 27 |
 | Nature's Pretty Sweet (Continued) | 3542949511 | Mlie.NaturesPrettySweet | 27 |
 | Oni of the Rim | 2891432261 | tarojun.morishep.onioftherim | 27 |
 | Superhero Genes - Base | 2980061828 | SuperheroGenesBase.Mod | 27 |
 | [1.7]边缘仙路-炊耕百味 RimImmortal-Farmcraft | 3655458570 | RI.RimImmortal.Farmcraft | 26 |
-| Alpha Bees | 1558161673 | brrainz.harmony | 26 |
+| Alpha Bees | 1558161673 | sarg.rimbees | 26 |
 | Edo Themed Expansion | 2878807817 | Heis.Edo.Themed.Expansion | 26 |
 | ReGrowth 2: Aspen | 2545774148 | ReGrowth.BOTR.AspenForest | 26 |
 | Undergrounders: Complete | 2817357535 | BattIeBear.Undergrounders.Complete | 25 |
@@ -1559,8 +1559,8 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Sunset Technology 3 | 3601719516 | SunsetModerTeam.SunsetTechnology3 | 22 |
 | Decorative trees (Continued) | 2670019924 | Mlie.DecorativeTrees | 21 |
 | GroThing | 2976584286 | DanDMan.GroThingThings | 21 |
-| RimVali: Far From Avalon | 2936412543 | brrainz.harmony | 21 |
-| Storytime Official Mod | 2411541093 | brrainz.harmony | 21 |
+| RimVali: Far From Avalon | 2936412543 | Nesi.RimValiFFARW | 21 |
+| Storytime Official Mod | 2411541093 | Jonah.Storytime | 21 |
 | [1.7]边缘仙路-山海灵域 RimImmortal-Biome | 3624919432 | RI.RimImmortal.Biome | 20 |
 | Biomes! Bunnies | 2874907777 | BiomesTeam.Bunnies | 20 |
 | Erin's Japanese Furniture | 2354938860 | Erin.JapaneseFurniture | 20 |
@@ -1573,13 +1573,13 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Medical Supplements (Continued) | 2195037369 | Mlie.MedicalSupplements | 18 |
 | VGP Garden Fabrics | 2007062162 | dismarzero.VGP.VGPGardenFabrics | 17 |
 | VGP Garden Fabrics Simplified | 2007062335 | dismarzero.VGP.VGPGardenFabricsSimplified | 17 |
-| Alpha Animals | 1541721856 | brrainz.harmony | 16 |
+| Alpha Animals | 1541721856 | sarg.alphaanimals | 16 |
 | Farmable Resources | 3253893274 | konstantynopolitaneczka.FarmableResources | 16 |
 | Hybrid Forest | 3772744848 | Protok.PW.HybridForest | 16 |
 | RadWorld | 2644582906 | Declinedkilr.RadWorld | 16 |
 | RPG Adventure Flavour Pack | 2916348220 | MrSamuelStreamer.RPGAdventureFlavour | 16 |
 | RPG Adventure Flavour Pack - Fork | 3342554570 | Joe.RPGAdventureFlavour.Fork | 16 |
-| TiberiumRim | 1346865620 | brrainz.harmony | 16 |
+| TiberiumRim | 1346865620 | telefonmast.tiberiumrim | 16 |
 | Tribal Fungi Biome | 2182438464 | Druid.FungiBiome | 16 |
 | Winter Taiga Biome 2 | 3666855302 | reel.wintertaigabiome2 | 16 |
 | Flowers (Continued) | 2025555200 | Mlie.Flowers | 15 |
@@ -1602,7 +1602,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Erin's Cottage Collection | 2977561141 | Erin.CottageCollection | 12 |
 | Forsakens (Continued) | 3263003456 | zal.forsakens | 12 |
 | Houseplants | 2188000240 | elkyelky.Houseplants | 12 |
-| Los Carteles del Borde | 2195696516 | brrainz.harmony | 12 |
+| Los Carteles del Borde | 2195696516 | RimCartels.velcroboy333 | 12 |
 | More Vanilla Biomes | 1931453053 | zylle.MoreVanillaBiomes | 12 |
 | Rimcense: Neolithic Soothe | 2532255863 | Incense.velcroboy333 | 12 |
 | RimLife Expansion Trading items | 2951594887 | daylight.RimLifeExTRGMod | 12 |
@@ -1640,7 +1640,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Malay Themed Expansion | 2884249920 | NSTR.Malay.Themed.Expansion | 9 |
 | Mona The Moon Bear (1.6 fork) | 3248186952 | kku.MonaTMB | 9 |
 | OverflowingFlowers | 3005103112 | sumika.OverflowingFlowers | 9 |
-| [KB] Aquacrops in Hydroponics - Vanilla Plants Expanded More Plants | 3503325204 | VanillaExpanded.VPlantsEMore | 8 |
+| [KB] Aquacrops in Hydroponics - Vanilla Plants Expanded More Plants | 3503325204 | KB.Aquacrops.In.Hydroponics | 8 |
 | Avali Farmables Continued | 3523156287 | Avali.farmables.continued | 8 |
 | Dragons Descent | 2026992161 | onyxae.dragonsdescent | 8 |
 | Grains and Brewing (1.4+) | 2897396824 | tidal.grainsandbrewing | 8 |
@@ -1684,7 +1684,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | [VSER] Industry | 2997037628 | VSER.Industry | 6 |
 | 【1.6】Hello, Lansy Forked | 3180951208 | mg.ferianstory.lansy.fork | 6 |
 | A Monkey Expansion (Continued) | 3166737970 | zal.monketime | 6 |
-| Alpha Genes | 2891845502 | brrainz.harmony | 6 |
+| Alpha Genes | 2891845502 | sarg.alphagenes | 6 |
 | Call of Cthulhu - Cults (Continued) | 3588548484 | zal.cocc | 6 |
 | Carnarodian, the two Mustelids Xenotypes and Factions | 3104049393 | Resurrectionem.LyunicaandSobolelyud | 6 |
 | End times: Renn Organisms | 2811289481 | DanielRenner.RennOrganisms | 6 |
@@ -1703,11 +1703,11 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | RimSeasoning | 2212032458 | tikubonn.RimSeasoning | 6 |
 | Rimspite Gitz: Loonclans | 3735204214 | JTC.AOSgitz | 6 |
 | rjw | (local) rjw |  | 6 |
-| Stoneborn - Delights | 3106413957 | brrainz.harmony | 6 |
+| Stoneborn - Delights | 3106413957 | det.sbdelights | 6 |
 | TurdleShroom Produmptions Poodly Presents: Fecal Matter Production | 3274707367 | TSP.BathroomHumor | 6 |
 | Vanilla Brewing Expanded | 2186560858 | VanillaExpanded.VBrewE | 6 |
-| Vanilla Cooking Expanded | 2134308519 | brrainz.harmony | 6 |
-| Vanilla Cooking Expanded - Sushi | 2158539170 | VanillaExpanded.VCookE | 6 |
+| Vanilla Cooking Expanded | 2134308519 | VanillaExpanded.VCookE | 6 |
+| Vanilla Cooking Expanded - Sushi | 2158539170 | VanillaExpanded.VCookESushi | 6 |
 | WA v1.0 | 1548358607 |  | 6 |
 | [HAS] Pestilence &amp; Physic | 3772650173 | BiscuitMiner.HAS.PestilencePhysic | 5 |
 | A Regular Ol' Plumbus | 2210738958 | Xercaine.Plumbus | 5 |
@@ -1749,7 +1749,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Frost and Fire (Continued) | 3243969146 | zal.frostandfire | 4 |
 | GhillieModPack (Continued) | 2862485631 | zal.GMP | 4 |
 | GlowRose | 2917180827 | denerose.GlowRose | 4 |
-| Kwiver | 2120889697 | erdelf.HumanoidAlienRaces | 4 |
+| Kwiver | 2120889697 | GarbageDayIsHereToStay.Kwiver.GDIHTSKWVR | 4 |
 | LunaRose：BonBunny | 3657986169 | rw.LunaRose.Bonbunny | 4 |
 | Mashed's Spiribirds | 2839002794 | SirMashedPotato.Spiribirds | 4 |
 | Medieval Medicines Medieval Overhaul Edition | 2883228057 | JoeDaly.MedMeds.MO | 4 |
@@ -1793,7 +1793,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Halloween Harvest | 3811893311 | tbmodding.halloweenharvest | 3 |
 | Humanoid Dryad(Continued) | 3729421840 | moyuguguji.humanoiddryad | 3 |
 | Hyperweave Plantation (Continued) | 3592666774 | zal.hyperweaveplantation | 3 |
-| Justiciars of the Dark God | 3618401037 | brrainz.harmony | 3 |
+| Justiciars of the Dark God | 3618401037 | Killathon.ArtificialBeings.JusticiarsOfTheDarkGod | 3 |
 | Jute VPE More Plants fabric | 3536389544 | Distraction.JuteFabric | 3 |
 | Kenshi Cuisine | 2600344770 | Super.Kenshicuisine | 3 |
 | Lord of the Rims - Elves (Continued) | 3548255064 | zal.lotrelves | 3 |
@@ -1801,7 +1801,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | Mashed's Lynians | 2871704782 | SirMashedPotato.Lynians | 3 |
 | Mealroot | 3205633494 | TheLoneCyberman.Mealroot | 3 |
 | Meme-Superpack | 2957903828 | MrSamuelStreamer.MemeSuperpack | 3 |
-| Moonjelly Xenotype | 3030254580 | brrainz.harmony | 3 |
+| Moonjelly Xenotype | 3030254580 | SG.moonjelly | 3 |
 | MorrowRim - Bloodmoon | 2243604074 | SirMashedPotato.MorrowRim.Bloodmoon | 3 |
 | Nuke's Drug Cocktails | 853758537 |  | 3 |
 | Oats! | 1803357494 | ChrisBradel.Oats | 3 |
@@ -1823,7 +1823,7 @@ Read on 2026-10-18 with `scripts/Search-Workshop.sh` (default mode, ripgrep, `-i
 | TP Sea Plants | 3643012859 | TP.SeaPlants | 3 |
 | Tusks and Claws - A Crashlands Inspired Mod | 2367686220 | ClossomMistake.Blegh | 3 |
 | Vanilla Factions Expanded - Insectoids 2 | 3309003431 | OskarPotocki.VFE.Insectoid2 | 3 |
-| Vanilla Races Expanded - Phytokin | 2927323805 | brrainz.harmony | 3 |
+| Vanilla Races Expanded - Phytokin | 2927323805 | vanillaracesexpanded.phytokin | 3 |
 | Wands and Spells (Continued) | 2694379637 | zal.wandsandspells | 3 |
 | Westerado Provisions | 1389094379 |  | 3 |
 
