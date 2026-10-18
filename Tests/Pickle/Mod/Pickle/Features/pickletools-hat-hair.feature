@@ -28,15 +28,20 @@ Feature: Hair under a hat on Nelim (choice of the hat-hair mod, GALERIE.md hat r
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-CowboyHat"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tuque"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Tuque"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Flophat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Flophat"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetRecon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-ArmorHelmetRecon"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Victoria"

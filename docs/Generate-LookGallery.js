@@ -21,7 +21,7 @@ const hair = values('look-hair', plain), beard = values('look-beard', plain), he
 const tattooAll = values('look-tattoo', raw => ({ name: plain(raw), type: (raw.match(/\((Face|Body)\)$/) || [])[1] || 'Face' }));
 const faceTattoo = tattooAll.filter(t => t.type === 'Face').map(t => t.name), bodyTattoo = tattooAll.filter(t => t.type === 'Body').map(t => t.name);
 const apparelRaw = values('look-apparel', raw => raw);
-const isHat = r => /\[(?:UpperHead|FullHead)[\]\/]/.test(r);
+const isHat = r => /\[(?:UpperHead|FullHead|Mouth|Eyes)[\]\/]/.test(r);
 const clean = r => r.replace(/\[.*\]$/, '');
 const hats = apparelRaw.filter(isHat).map(clean), apparel = apparelRaw.filter(r => !isHat(r)).map(clean);
 const hex = raw => { const m = raw.match(/^(.*)#([0-9A-Fa-f]{6})$/); return m ? { name: m[1], rgb: [0, 2, 4].map(i => parseInt(m[2].substr(i, 2), 16)) } : null; };
@@ -37,7 +37,7 @@ const PRE = [
 ];
 const CHUNK = 20; let n = 0; let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n'
   + 'Feature: Every look value on Nelim, one photograph per value (gallery of the look catalogues)\n\n';
-function scenarios(kind, items, framing, setup, step, shot, after) {
+function scenarios(kind, items, framing, setup, step, shot, after, finish) {
   for (let i = 0; i < items.length; i += CHUNK) {
     const part = items.slice(i, i + CHUNK); n++;
     out += `  Scenario: look-gallery-${n}: ${kind} ${i + 1} to ${i + part.length} of ${items.length}\n`;
@@ -45,6 +45,7 @@ function scenarios(kind, items, framing, setup, step, shot, after) {
     for (const l of setup) out += `    And ${l}\n`;
     out += `    And ${P}I frame the cell ${framing}\n`;
     for (const it of part) { out += `    When ${step(it)}\n    And ${P}I let 5 frames pass\n    And I take a screenshot "${kind}-${shot(it)}"\n` + (after ? `    And ${after(it)}\n` : ''); }
+    if (finish) out += `    And ${finish}\n`;
     out += '\n';
   }
 }
@@ -56,7 +57,7 @@ scenarios('head', head, FACE, [], h => `${P}"Nelim" head type is "${h}"`, h => h
 scenarios('facetattoo', faceTattoo, FACE, [], t => `${P}"Nelim" face tattoo is "${t}"`, t => t);
 scenarios('bodytattoo', bodyTattoo, BODY, [`${P}"Nelim" is undressed`], t => `${P}"Nelim" body tattoo is "${t}"`, t => t);
 scenarios('garment', apparel, BODY, [], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had`);
-scenarios('hat', hats, FACE, [`${P}"Nelim" hairstyle is "Long"`], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had`);
+scenarios('hat', hats, FACE, [`${P}"Nelim" hairstyle is "Long"`], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had\n    And ${P}"Nelim" hairstyle is "Long"`, `${P}"Nelim" hairstyle is "Victoria"`);
 scenarios('ideocolour', ideoColours, BODY, [], c => `${P}"Nelim" wears "Apparel_BasicShirt" dyed rgb (${c.rgb.join(', ')})`, c => c.name, () => `${P}I undress "Nelim"`);
 fs.writeFileSync(path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature'), out);
 console.log(`${n} scenarios: hair ${hair.length}, haircolour ${hairColours.length}, beard ${beard.length}, head ${head.length}, facetattoo ${faceTattoo.length}, bodytattoo ${bodyTattoo.length}, garment ${apparel.length}, ideocolour ${ideoColours.length}`);

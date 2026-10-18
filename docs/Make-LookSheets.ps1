@@ -107,7 +107,7 @@ $tat = Read-Section $looks '^## Tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
 $app = Read-Section 'CATALOGUE-APPAREL.md' '^## Garments'
-$isHat = { $_.slot -match '^(UpperHead|FullHead)(/|$)' }
+$isHat = { $_.slot -match '^(UpperHead|FullHead|Mouth|Eyes)(/|$)' }
 Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $false $false
 Run-Job 'hat' 'hat' @($app | Where-Object { & $isHat }) $face $false $false
 
