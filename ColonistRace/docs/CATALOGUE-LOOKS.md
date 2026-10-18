@@ -6,6 +6,8 @@ Read on 2026-10-18 from run `20261018-003441-640-4813` (feature `pickletools-loo
 
 Step texts: `"<pawn>" hairstyle is "<defName>"`
 
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`hair-anomaly-1`](img/looks/hair-anomaly-1.jpg), [`hair-core-1`](img/looks/hair-core-1.jpg), [`hair-core-2`](img/looks/hair-core-2.jpg), [`hair-roo-s-hd-hairstyles-1`](img/looks/hair-roo-s-hd-hairstyles-1.jpg), [`hair-roo-s-hd-hairstyles-2`](img/looks/hair-roo-s-hd-hairstyles-2.jpg), [`hair-roo-s-hd-hairstyles-3`](img/looks/hair-roo-s-hd-hairstyles-3.jpg), [`hair-roo-s-hd-hairstyles-4`](img/looks/hair-roo-s-hd-hairstyles-4.jpg), [`hair-roo-s-hd-hairstyles-5`](img/looks/hair-roo-s-hd-hairstyles-5.jpg), [`hair-roo-s-hd-hairstyles-6`](img/looks/hair-roo-s-hd-hairstyles-6.jpg), [`hair-roo-s-hd-hairstyles-7`](img/looks/hair-roo-s-hd-hairstyles-7.jpg), [`hair-roo-s-hd-hairstyles-8`](img/looks/hair-roo-s-hd-hairstyles-8.jpg), [`hair-roo-s-hd-hairstyles-9`](img/looks/hair-roo-s-hd-hairstyles-9.jpg), [`hair-royalty-1`](img/looks/hair-royalty-1.jpg), [`hair-vanilla-hair-expanded-1`](img/looks/hair-vanilla-hair-expanded-1.jpg), [`hair-vanilla-hair-expanded-2`](img/looks/hair-vanilla-hair-expanded-2.jpg), [`hair-vanilla-hair-expanded-3`](img/looks/hair-vanilla-hair-expanded-3.jpg), [`hair-vanilla-hair-expanded-4`](img/looks/hair-vanilla-hair-expanded-4.jpg)
+
 | Mod | Names |
 |---|---|
 | Anomaly | (18) DoubleTuft, Ghoul_Furious, Ghoul_Hungry, Ghoul_Ravenous, Ghoul_Twisted, Ghoul_Vengeful, Ghoul_Warped, Ghoul_Wicked, LargeTuft, LongMess, LongOily, Parted, PatchyShave, RoughShave, ShavedMohawk, ShortCut, SideCut, SideSpikes |
@@ -18,6 +20,8 @@ Step texts: `"<pawn>" hairstyle is "<defName>"`
 
 Step texts: `"<pawn>" beard is "<defName>"`
 
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`beard-biotech-1`](img/looks/beard-biotech-1.jpg), [`beard-core-1`](img/looks/beard-core-1.jpg), [`beard-core-2`](img/looks/beard-core-2.jpg)
+
 | Mod | Names |
 |---|---|
 | Biotech | (10) BeardFurskinKnots, BeardFurskinMegabraid, BeardFurskinMonkey, BeardFurskinMoustache, BeardFurskinScruffy, BeardFurskinSenile, BeardFurskinSideChops, BeardFurskinSideTufts, BeardFurskinStrongChops, FurskinCurlyMoustache |
@@ -26,6 +30,8 @@ Step texts: `"<pawn>" beard is "<defName>"`
 ## Head types (37)
 
 Step texts: `"<pawn>" head type is "<defName>"`
+
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`head-anomaly-1`](img/looks/head-anomaly-1.jpg), [`head-biotech-1`](img/looks/head-biotech-1.jpg), [`head-core-1`](img/looks/head-core-1.jpg)
 
 | Mod | Names |
 |---|---|
@@ -36,6 +42,8 @@ Step texts: `"<pawn>" head type is "<defName>"`
 ## Tattoos (113)
 
 Step texts: `"<pawn>" face tattoo is "<defName>"` and `"<pawn>" body tattoo is "<defName>"` (the Face or Body type is shown in brackets)
+
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`bodytattoo-core-1`](img/looks/bodytattoo-core-1.jpg), [`bodytattoo-ideology-1`](img/looks/bodytattoo-ideology-1.jpg), [`bodytattoo-tattoos-expanded-1`](img/looks/bodytattoo-tattoos-expanded-1.jpg), [`bodytattoo-tattoos-expanded-2`](img/looks/bodytattoo-tattoos-expanded-2.jpg), [`bodytattoo-tribal-tattoos-1`](img/looks/bodytattoo-tribal-tattoos-1.jpg), [`facetattoo-core-1`](img/looks/facetattoo-core-1.jpg), [`facetattoo-ideology-1`](img/looks/facetattoo-ideology-1.jpg), [`facetattoo-tattoos-expanded-1`](img/looks/facetattoo-tattoos-expanded-1.jpg), [`facetattoo-tribal-tattoos-1`](img/looks/facetattoo-tribal-tattoos-1.jpg)
 
 | Mod | Names |
 |---|---|
