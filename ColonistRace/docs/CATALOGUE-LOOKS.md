@@ -4,9 +4,9 @@ Read on 2026-10-18 from run `20261018-003441-640-4813` (feature `pickletools-loo
 
 ## Hairstyles (447)
 
+
 Step texts: `"<pawn>" hairstyle is "<defName>"`
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`hair-anomaly-1`](img/looks/hair-anomaly-1.jpg), [`hair-core-1`](img/looks/hair-core-1.jpg), [`hair-core-2`](img/looks/hair-core-2.jpg), [`hair-roo-s-hd-hairstyles-1`](img/looks/hair-roo-s-hd-hairstyles-1.jpg), [`hair-roo-s-hd-hairstyles-2`](img/looks/hair-roo-s-hd-hairstyles-2.jpg), [`hair-roo-s-hd-hairstyles-3`](img/looks/hair-roo-s-hd-hairstyles-3.jpg), [`hair-roo-s-hd-hairstyles-4`](img/looks/hair-roo-s-hd-hairstyles-4.jpg), [`hair-roo-s-hd-hairstyles-5`](img/looks/hair-roo-s-hd-hairstyles-5.jpg), [`hair-roo-s-hd-hairstyles-6`](img/looks/hair-roo-s-hd-hairstyles-6.jpg), [`hair-roo-s-hd-hairstyles-7`](img/looks/hair-roo-s-hd-hairstyles-7.jpg), [`hair-roo-s-hd-hairstyles-8`](img/looks/hair-roo-s-hd-hairstyles-8.jpg), [`hair-roo-s-hd-hairstyles-9`](img/looks/hair-roo-s-hd-hairstyles-9.jpg), [`hair-royalty-1`](img/looks/hair-royalty-1.jpg), [`hair-vanilla-hair-expanded-1`](img/looks/hair-vanilla-hair-expanded-1.jpg), [`hair-vanilla-hair-expanded-2`](img/looks/hair-vanilla-hair-expanded-2.jpg), [`hair-vanilla-hair-expanded-3`](img/looks/hair-vanilla-hair-expanded-3.jpg), [`hair-vanilla-hair-expanded-4`](img/looks/hair-vanilla-hair-expanded-4.jpg)
 
 | Mod | Names |
 |---|---|
@@ -18,9 +18,9 @@ Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` wh
 
 ## Beards (41)
 
+
 Step texts: `"<pawn>" beard is "<defName>"`
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`beard-biotech-1`](img/looks/beard-biotech-1.jpg), [`beard-core-1`](img/looks/beard-core-1.jpg), [`beard-core-2`](img/looks/beard-core-2.jpg)
 
 | Mod | Names |
 |---|---|
@@ -29,9 +29,9 @@ Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` wh
 
 ## Head types (37)
 
+
 Step texts: `"<pawn>" head type is "<defName>"`
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`head-anomaly-1`](img/looks/head-anomaly-1.jpg), [`head-biotech-1`](img/looks/head-biotech-1.jpg), [`head-core-1`](img/looks/head-core-1.jpg)
 
 | Mod | Names |
 |---|---|
@@ -41,9 +41,9 @@ Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` wh
 
 ## Tattoos (113)
 
+
 Step texts: `"<pawn>" face tattoo is "<defName>"` and `"<pawn>" body tattoo is "<defName>"` (the Face or Body type is shown in brackets)
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`bodytattoo-core-1`](img/looks/bodytattoo-core-1.jpg), [`bodytattoo-ideology-1`](img/looks/bodytattoo-ideology-1.jpg), [`bodytattoo-tattoos-expanded-1`](img/looks/bodytattoo-tattoos-expanded-1.jpg), [`bodytattoo-tattoos-expanded-2`](img/looks/bodytattoo-tattoos-expanded-2.jpg), [`bodytattoo-tribal-tattoos-1`](img/looks/bodytattoo-tribal-tattoos-1.jpg), [`facetattoo-core-1`](img/looks/facetattoo-core-1.jpg), [`facetattoo-ideology-1`](img/looks/facetattoo-ideology-1.jpg), [`facetattoo-tattoos-expanded-1`](img/looks/facetattoo-tattoos-expanded-1.jpg), [`facetattoo-tribal-tattoos-1`](img/looks/facetattoo-tribal-tattoos-1.jpg)
 
 | Mod | Names |
 |---|---|
@@ -53,6 +53,8 @@ Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` wh
 | Tribal Tattoos | (39) STribalTat_Body_Anima (Body), STribalTat_Body_BlackClaw (Body), STribalTat_Body_BlueClaw (Body), STribalTat_Body_RedClaw (Body), STribalTat_Body_SacredAir (Body), STribalTat_Body_SacredFire (Body), STribalTat_Body_SacredGrass (Body), STribalTat_Body_SacredWater (Body), STribalTat_Body_Smoke (Body), STribalTat_Body_Spiral (Body), STribalTat_Body_Stripes (Body), STribalTat_Body_SunsBlessing (Body), STribalTat_Body_Vines (Body), STribalTat_Body_WhiteClaw (Body), STribalTat_Face_Anima (Face), STribalTat_Face_Bisect (Face), STribalTat_Face_BlackFangs (Face), STribalTat_Face_BlueFangs (Face), STribalTat_Face_BrowDots (Face), STribalTat_Face_CheekDots (Face), STribalTat_Face_CheekStripes (Face), STribalTat_Face_MiddleDotsBlack (Face), STribalTat_Face_MiddleDotsBlue (Face), STribalTat_Face_MiddleDotsRed (Face), STribalTat_Face_MiddleDotsWhite (Face), STribalTat_Face_NoseStripeBlack (Face), STribalTat_Face_NoseStripeBlue (Face), STribalTat_Face_NoseStripePurple (Face), STribalTat_Face_NoseStripeRed (Face), STribalTat_Face_NoseStripeWhite (Face), STribalTat_Face_RedFangs (Face), STribalTat_Face_SacredAir (Face), STribalTat_Face_SacredFire (Face), STribalTat_Face_SacredGrass (Face), STribalTat_Face_SacredWater (Face), STribalTat_Face_SunCrown (Face), STribalTat_Face_SunrisePlains (Face), STribalTat_Face_SunsetPlains (Face), STribalTat_Face_WhiteFangs (Face) |
 
 ## Body types (7)
+
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`body-all-1`](img/looks/body-all-1.jpg)
 
 Step texts: none yet in the look steps (the values are listed for the sessions that choose a body)
 

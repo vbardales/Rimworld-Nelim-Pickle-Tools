@@ -4,6 +4,8 @@ Read on 2026-10-18 from run `20261018-003441-640-4813` (feature `pickletools-loo
 
 ## Garments (112)
 
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`garment-anomaly-1`](img/looks/garment-anomaly-1.jpg), [`garment-biotech-1`](img/looks/garment-biotech-1.jpg), [`garment-core-1`](img/looks/garment-core-1.jpg), [`garment-core-2`](img/looks/garment-core-2.jpg), [`garment-ideology-1`](img/looks/garment-ideology-1.jpg), [`garment-odyssey-1`](img/looks/garment-odyssey-1.jpg), [`garment-royalty-1`](img/looks/garment-royalty-1.jpg)
+
 Step text: `I dress "<pawn>" in "<defName>"` (Pickle) and the dyed-garment step of ColonistRace.
 
 | Mod | Layer | Names |

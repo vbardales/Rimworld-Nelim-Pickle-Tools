@@ -1,15 +1,17 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the look catalogues (hairstyles, beards, head types, face and body tattoos) into
-  ColonistRace/docs/img/looks/<kind>-<mod>-<page>.jpg, in the order of the tables of ColonistRace/docs/CATALOGUE-LOOKS.md.
-  A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the
-  script once the photographs exist and the tile fills.
-  Photographs: every Tests/Pickle/Evidence/look-gallery*/screenshots/manual--<kind>-<name>--step0.png (newest wins).
-  Kinds and the name prefix of the capture: hair -> hair-, beard -> beard-, head -> head-, face tattoo -> facetattoo-, body tattoo -> bodytattoo-.
+  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<kind>-<mod>-<page>.jpg, in the order of the
+  tables of ColonistRace/docs/CATALOGUE-*.md: hairstyles, beards, head types, face and body tattoos, garments, hair and ideology colours,
+  the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
+  A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
+  once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
+  Photographs: every Tests/Pickle/Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
+  Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img/looks'
+$docs = Join-Path $root 'ColonistRace/docs'
 New-Item -ItemType Directory -Force $out | Out-Null
 
 $files = @{}
@@ -18,20 +20,24 @@ Get-ChildItem (Join-Path $root 'Tests/Pickle/Evidence') -Directory -Filter 'look
     if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
 }
 
-# Parse the catalogue: section title -> list of @{ mod; name; type }
-$md = Get-Content (Join-Path $root 'ColonistRace/docs/CATALOGUE-LOOKS.md') -Encoding UTF8
-$sections = @{}; $cur = $null
-foreach ($line in $md) {
-    if ($line -match '^## (Hairstyles|Beards|Head types|Tattoos)') { $cur = $Matches[1]; $sections[$cur] = @(); continue }
-    if ($line -match '^## ') { $cur = $null; continue }
-    if ($cur -and $line -match '^\| (.+?) \| \(\d+\) (.+) \|$') {
-        $mod = $Matches[1]; $raw = $Matches[2] -split ', '
-        foreach ($r in $raw) {
+# Items of one section of a catalogue: @{ mod; group; name; type; hex }
+function Read-Section($file, $titleRegex) {
+    $items = @(); $in = $false
+    foreach ($line in (Get-Content (Join-Path $docs $file) -Encoding UTF8)) {
+        if ($line -match '^## ') { $in = $line -match $titleRegex; continue }
+        if (-not $in -or $line -notmatch '^\| ' -or $line -match '^\| (Mod|---)') { continue }
+        $cells = @($line.Trim().Trim('|').Split('|') | ForEach-Object { $_.Trim() })
+        if ($cells.Count -lt 2) { continue }
+        $names = ($cells[-1] -replace '^\(\d+\) ', '') -split ', '
+        $group = if ($cells.Count -gt 2) { $cells[1] -replace ' \(\d+\)$', '' } else { '' }
+        foreach ($r in $names) {
             $type = ''; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
-            $name = ($r -replace ' \([A-Za-z]+\)$', '').Trim()
-            $sections[$cur] += [pscustomobject]@{ mod = $mod; name = $name; type = $type }
+            $hex = ''; if ($r -match '#([0-9A-Fa-f]{6})$') { $hex = $Matches[1]; $r = $r -replace '#[0-9A-Fa-f]{6}$', '' }
+            $name = ($r -replace ' \([A-Za-z]+\)$', '' -replace '\[.*\]$', '').Trim()
+            $items += [pscustomobject]@{ mod = ($cells[0] -replace ' \(continued\)$', ''); group = $group; name = $name; type = $type; hex = $hex }
         }
     }
+    return $items
 }
 
 $cols = 6; $tile = 200; $label = 20; $perPage = 30
@@ -43,45 +49,76 @@ $enc = [System.Drawing.Imaging.ImageCodecInfo]::GetImageEncoders() | Where-Objec
 $p = New-Object System.Drawing.Imaging.EncoderParameters 1
 $p.Param[0] = New-Object System.Drawing.Imaging.EncoderParameter ([System.Drawing.Imaging.Encoder]::Quality), 80L
 
-$jobs = @(
-    @{ kind = 'hair'; prefix = 'hair'; section = 'Hairstyles'; type = ''; crop = $face },
-    @{ kind = 'beard'; prefix = 'beard'; section = 'Beards'; type = ''; crop = $face },
-    @{ kind = 'head'; prefix = 'head'; section = 'Head types'; type = ''; crop = $face },
-    @{ kind = 'facetattoo'; prefix = 'facetattoo'; section = 'Tattoos'; type = 'Face'; crop = $face },
-    @{ kind = 'bodytattoo'; prefix = 'bodytattoo'; section = 'Tattoos'; type = 'Body'; crop = $body }
-)
-foreach ($j in $jobs) {
-    $items = @($sections[$j.section] | Where-Object { $j.type -eq '' -or $_.type -eq $j.type })
-    foreach ($modGroup in ($items | Group-Object mod)) {
-        $slug = ($modGroup.Name -replace '[^A-Za-z0-9]+', '-').Trim('-').ToLower()
-        $list = @($modGroup.Group)
-        $pages = [Math]::Ceiling($list.Count / $perPage)
-        for ($pg = 0; $pg -lt $pages; $pg++) {
-            $part = @($list | Select-Object -Skip ($pg * $perPage) -First $perPage)
-            $rows = [Math]::Ceiling($part.Count / $cols)
-            $bmp = New-Object System.Drawing.Bitmap ($cols * $tile), ($rows * ($tile + $label))
-            $g = [System.Drawing.Graphics]::FromImage($bmp)
-            $g.Clear([System.Drawing.Color]::White)
-            $have = 0
-            for ($i = 0; $i -lt $part.Count; $i++) {
-                $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
-                $key = "$($j.prefix)-$($part[$i].name)"
-                $r = New-Object System.Drawing.Rectangle $x, $y, $tile, $tile
-                if ($files.ContainsKey($key)) {
-                    $img = [System.Drawing.Image]::FromFile($files[$key])
-                    $g.DrawImage($img, $r, $j.crop, [System.Drawing.GraphicsUnit]::Pixel); $img.Dispose(); $have++
-                    $txt = $part[$i].name
-                } else {
-                    $g.FillRectangle($hatch, $r)
-                    $g.DrawRectangle([System.Drawing.Pens]::LightGray, $x, $y, $tile - 1, $tile - 1)
-                    $txt = $part[$i].name + ' (not photographed)'
-                }
-                $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))
+# $items: @{ key; name; hex } per tile. $swatchOnly: flat colour tiles, nothing to photograph.
+function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
+    $slug = ($modName -replace '[^A-Za-z0-9]+', '-').Trim('-').ToLower()
+    $pages = [Math]::Ceiling($items.Count / $perPage)
+    for ($pg = 0; $pg -lt $pages; $pg++) {
+        $part = @($items | Select-Object -Skip ($pg * $perPage) -First $perPage)
+        $rows = [Math]::Ceiling($part.Count / $cols)
+        $bmp = New-Object System.Drawing.Bitmap ($cols * $tile), ($rows * ($tile + $label))
+        $g = [System.Drawing.Graphics]::FromImage($bmp)
+        $g.Clear([System.Drawing.Color]::White)
+        $have = 0
+        for ($i = 0; $i -lt $part.Count; $i++) {
+            $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
+            $r = New-Object System.Drawing.Rectangle $x, $y, $tile, $tile
+            $txt = $part[$i].name
+            if ($swatchOnly) {
+                $c = [System.Drawing.ColorTranslator]::FromHtml('#' + $part[$i].hex)
+                $br = New-Object System.Drawing.SolidBrush $c; $g.FillRectangle($br, $r); $br.Dispose(); $have++
+                $txt += ' #' + $part[$i].hex
+            } elseif ($files.ContainsKey($part[$i].key)) {
+                $img = [System.Drawing.Image]::FromFile($files[$part[$i].key])
+                $g.DrawImage($img, $r, $crop, [System.Drawing.GraphicsUnit]::Pixel); $img.Dispose(); $have++
+            } else {
+                $g.FillRectangle($hatch, $r)
+                $g.DrawRectangle([System.Drawing.Pens]::LightGray, $x, $y, $tile - 1, $tile - 1)
+                $txt += ' (not photographed)'
             }
-            $g.Dispose()
-            $path = Join-Path $out ("{0}-{1}-{2}.jpg" -f $j.kind, $slug, ($pg + 1))
-            $bmp.Save($path, $enc, $p); $bmp.Dispose()
-            Write-Output ("{0}: {1} of {2} photographed -> {3}" -f ("$($j.kind) $($modGroup.Name) p$($pg + 1)"), $have, $part.Count, $path)
+            if ($part[$i].hex -and -not $swatchOnly) {
+                $c = [System.Drawing.ColorTranslator]::FromHtml('#' + $part[$i].hex)
+                $br = New-Object System.Drawing.SolidBrush $c; $g.FillRectangle($br, $x + $tile - 40, $y + $tile - 40, 40, 40); $br.Dispose()
+                $txt += ' #' + $part[$i].hex
+            }
+            $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))
         }
+        $g.Dispose()
+        $path = Join-Path $out ("{0}-{1}-{2}.jpg" -f $kind, $slug, ($pg + 1))
+        $bmp.Save($path, $enc, $p); $bmp.Dispose()
+        Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }
 }
+function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
+    $keyOf = { if ($byGroup) { "$($_.mod) $($_.group)" } else { $_.mod } }
+    foreach ($grp in ($items | Group-Object -Property $keyOf)) {
+        $tiles = @($grp.Group | ForEach-Object { [pscustomobject]@{ key = "$prefix-$($_.name)"; name = $_.name; hex = $_.hex } })
+        Build-Sheets $kind $grp.Name $tiles $crop $swatchOnly
+    }
+}
+
+$looks = 'CATALOGUE-LOOKS.md'
+Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
+Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
+Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
+$tat = Read-Section $looks '^## Tattoos'
+Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
+Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
+Run-Job 'garment' 'garment' (Read-Section 'CATALOGUE-APPAREL.md' '^## Garments') $body $false $false
+
+$col = Read-Section 'CATALOGUE-COLOURS.md' '^## Colours'
+Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $face $false $false
+Run-Job 'ideocolour' 'ideocolour' @($col | Where-Object { $_.group -eq 'Ideo' }) $body $false $false
+$flat = @($col | Where-Object { $_.group -in 'Misc', 'Planning', 'Structure', 'Weapon' })
+Run-Job 'colour' 'colour' $flat $body $true $true
+
+# Body types: Fat, Hulk, Thin differ by sex with Female Body Variants, so one tile per sex for them.
+$bt = Read-Section $looks '^## Body types'
+$tiles = @()
+foreach ($b in $bt) {
+    if ($b.name -in 'Fat', 'Hulk', 'Thin') { foreach ($sx in 'female', 'male') { $tiles += [pscustomobject]@{ key = "body-$($b.name)-$sx"; name = "$($b.name) ($sx)"; hex = '' } } }
+    else { $tiles += [pscustomobject]@{ key = "body-$($b.name)"; name = $b.name; hex = '' } }
+}
+Build-Sheets 'body' 'all' $tiles $body $false
+
+Run-Job 'weapon' 'weapon' (Read-Section 'CATALOGUE-WEAPONS-CRAFTS.md' '^## Weapons') $body $false $true
