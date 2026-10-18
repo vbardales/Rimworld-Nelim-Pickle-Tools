@@ -14,12 +14,12 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `AncientBuildingsRenew` | 2 | 29 | 15 | none |
 | `AncientChineseBeastAndGeneExpandedRenew` | 18 | 118 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
 | `AncientSalvage` | 9 | 48 | 19 | [AncientSalvage.md](AncientSalvage.md) |
-| `AnimalApparelCollarsAndKitRenew` | 1 | 30 | 16 | none |
+| `AnimalApparelCollarsAndKitRenew` | 1 | 32 | 16 | none |
 | `AnimalArk` | 1 | 21 | 12 | none |
 | `AnimalsNaturally` | 0 | 0 | 7 | none |
-| `AnimaSong` | 3 | 50 | 7 | [AnimaSong.md](AnimaSong.md) |
+| `AnimaSong` | 3 | 50 | 8 | [AnimaSong.md](AnimaSong.md) |
 | `APerfectMindInAPerfectBody` | 6 | 31 | 12 | none |
-| `ArchitectStudio` | 8 | 108 | 25 | [ArchitectStudio.md](ArchitectStudio.md) |
+| `ArchitectStudio` | 8 | 109 | 26 | [ArchitectStudio.md](ArchitectStudio.md) |
 | `ASlothModRenew` | 0 | 0 | 9 | none |
 | `BeefEatersRenew` | 2 | 11 | 14 | none |
 | `BillAutopilot` | 13 | 107 | 26 | [BillAutopilot.md](BillAutopilot.md) |
@@ -29,9 +29,9 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `ColorfulCoatsMegafaunaRenew` | 0 | 0 | 12 | none |
 | `ColorfulCoatsVAERenew` | 0 | 0 | 10 | none |
 | `ContentedLivestock` | 10 | 106 | 27 | [ContentedLivestock.md](ContentedLivestock.md) |
-| `CreaturesOfKiRenew` | 1 | 37 | 12 | [CreaturesOfKiRenew.md](CreaturesOfKiRenew.md) |
+| `CreaturesOfKiRenew` | 1 | 37 | 13 | [CreaturesOfKiRenew.md](CreaturesOfKiRenew.md) |
 | `CrystalBall` | 1 | 26 | 7 | none |
-| `DalmatiansRenew` | 5 | 55 | 10 | none |
+| `DalmatiansRenew` | 5 | 55 | 11 | none |
 | `DrumBathHygiene` | 1 | 31 | 8 | [DrumBathHygiene.md](DrumBathHygiene.md) |
 | `DustBunniesRenew` | 1 | 15 | 13 | none |
 | `EbbbsRenew` | 1 | 26 | 11 | none |
@@ -39,7 +39,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `EntityGazing` | 5 | 39 | 14 | none |
 | `EponaInstrumentsRenew` | 1 | 9 | 10 | [EponaInstrumentsRenew.md](EponaInstrumentsRenew.md) |
 | `ExtinguishRefuelablesCompatibilityPatchRenew` | 1 | 10 | 10 | none |
-| `FieldworkCompanions` | 10 | 76 | 25 | [FieldworkCompanions.md](FieldworkCompanions.md) |
+| `FieldworkCompanions` | 10 | 76 | 27 | [FieldworkCompanions.md](FieldworkCompanions.md) |
 | `FireworkStand` | 1 | 29 | 14 | [FireworkStand.md](FireworkStand.md) |
 | `FlavorText/FlavorTextExtended` | 1 | 20 | 9 | [FlavorTextExtended.md](FlavorTextExtended.md) |
 | `FlavorText/FlavorTextExtendedFR` | 10 | 41 | 24 | [FlavorTextExtendedFR.md](FlavorTextExtendedFR.md) |
@@ -47,7 +47,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `FoodCourt` | 6 | 43 | 16 | none |
 | `ForTheOccasion` | 5 | 64 | 15 | none |
 | `FoxLampRenew` | 1 | 19 | 9 | none |
-| `FrenchGrammarRenew` | 4 | 20 | 8 | none |
+| `FrenchGrammarRenew` | 4 | 21 | 9 | none |
 | `FullzoonCookiesRenew` | 0 | 0 | 15 | none |
 | `FunnyCreaturesRenew` | 2 | 40 | 17 | none |
 | `GeniusesCraftFastRenew` | 0 | 0 | 7 | none |
@@ -153,7 +153,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 ### AnimalApparelCollarsAndKitRenew
 
-- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 30 step declarations.
+- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 32 step declarations.
 
 ### AnimalArk
 
@@ -180,7 +180,7 @@ No local C# source found in this suite. See its note for shared tools or histori
 
 ### ArchitectStudio
 
-- `ArchitectStudio/Tests/Pickle/Source/CategorySteps.cs`: 30 step declarations.
+- `ArchitectStudio/Tests/Pickle/Source/CategorySteps.cs`: 31 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/GroupSteps.cs`: 33 step declarations.
 - `ArchitectStudio/Tests/Pickle/Source/HideTabSteps.cs`: 7 step declarations.
@@ -359,7 +359,7 @@ No local C# source found in this suite. See its note for shared tools or histori
 
 - `FrenchGrammarRenew/Tests/Pickle/Source/Driver.cs`: 0 step declarations.
 - `FrenchGrammarRenew/Tests/Pickle/Source/GrammarSteps.cs`: 6 step declarations.
-- `FrenchGrammarRenew/Tests/Pickle/Source/SentenceSteps.cs`: 4 step declarations.
+- `FrenchGrammarRenew/Tests/Pickle/Source/SentenceSteps.cs`: 5 step declarations.
 - `FrenchGrammarRenew/Tests/Pickle/Source/SettingsSteps.cs`: 10 step declarations.
 
 ### FullzoonCookiesRenew
