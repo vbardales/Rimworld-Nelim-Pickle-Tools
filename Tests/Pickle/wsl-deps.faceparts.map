@@ -12,10 +12,10 @@ nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 tiagocc0.FemaleBodyVariants 3798082132
 tiagocc0.FemaleApparelVariants 3799726535
-wdi.realistic.bodies 3527486510
-# UnderWhere (briefs and bra for the full-body captures), after WDI (it declares no loadAfter on it), then its Og patches (NSB, 2026-10-18; 1.7 not checked).
+# UnderWhere BEFORE WDI (2026-10-18, VTW maps wsl-deps.app-wdi-underwear.map and vanilla-combinations.map): WDI re-skins UnderWhere's Textures/UWUnderwear paths, and the later mod wins. NSB had said after WDI; VTW and the texture rule disagree with it, not tested yet. Og.UnderWherePatches (loadAfter UnderWhere) untested anywhere, 1.7 not checked.
 Malistaticy.UnderWhere 1870010563
 Og.UnderWherePatches 3354891128
+wdi.realistic.bodies 3527486510
 ab.vplrf 2986402536
 nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
 Nals.FacialAnimation 1635901197
