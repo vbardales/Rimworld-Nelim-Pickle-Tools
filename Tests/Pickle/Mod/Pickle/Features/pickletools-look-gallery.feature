@@ -2448,6 +2448,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BiomutationLance"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2542,6 +2543,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechCommander"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2636,6 +2638,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmor"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2730,6 +2733,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakJacket"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2824,6 +2828,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitChildren"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2918,6 +2923,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineHelmetPrestige"
     And Nelim's Pickle Tools: I let 5 frames pass

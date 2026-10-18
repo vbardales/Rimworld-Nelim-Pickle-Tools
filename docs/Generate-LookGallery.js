@@ -52,7 +52,7 @@ scenarios('beard', beard, FACE, [], b => `${P}"Nelim" beard is "${b}"`, b => b);
 scenarios('head', head, FACE, [], h => `${P}"Nelim" head type is "${h}"`, h => h);
 scenarios('facetattoo', faceTattoo, FACE, [], t => `${P}"Nelim" face tattoo is "${t}"`, t => t);
 scenarios('bodytattoo', bodyTattoo, BODY, [`${P}"Nelim" is undressed`], t => `${P}"Nelim" body tattoo is "${t}"`, t => t);
-scenarios('garment', apparel, BODY, [], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had`);
+scenarios('garment', apparel, BODY, [`${P}"Nelim" hairstyle is "Long"`], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had`);
 scenarios('ideocolour', ideoColours, BODY, [], c => `${P}"Nelim" wears "Apparel_BasicShirt" dyed rgb (${c.rgb.join(', ')})`, c => c.name, () => `${P}I undress "Nelim"`);
 fs.writeFileSync(path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature'), out);
 console.log(`${n} scenarios: hair ${hair.length}, haircolour ${hairColours.length}, beard ${beard.length}, head ${head.length}, facetattoo ${faceTattoo.length}, bodytattoo ${bodyTattoo.length}, garment ${apparel.length}, ideocolour ${ideoColours.length}`);
