@@ -124,6 +124,29 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message("[look-building] total " + buildings.Count);
         }
 
+        /// <summary>
+        /// Logs the utility items of the game (<c>[look-item]</c>): the items that are neither weapons nor apparel and whose first job is not to hurt or
+        /// kill (medicine, components, tools, packs, drugs, cloth, art, bionics, and so on), one line per mod and per item category, each defName, so a
+        /// session can place or carry one by name (the carry steps and StageDecor take a defName). Corpses, filth, motes, chunks are left
+        /// out. Never fails.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the utility item options are listed")]
+        public void ListUtilityItems(PickleContext ctx)
+        {
+            List<ThingDef> items = DefDatabase<ThingDef>.AllDefsListForReading
+                .Where(d => d.category == ThingCategory.Item && !d.IsWeapon && !d.IsApparel && !d.IsCorpse && !d.destroyOnDrop && !d.defName.StartsWith("Chunk"))
+                .ToList();
+            foreach (var mod in items.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                foreach (var cat in mod.GroupBy(d => d.thingCategories != null && d.thingCategories.Count > 0 ? d.thingCategories[0].defName : "Uncategorised").OrderBy(g => g.Key))
+                {
+                    Log.Message("[look-item] " + mod.Key + " | " + cat.Key + " (" + cat.Count() + "): " + string.Join(", ", cat.Select(d => d.defName).OrderBy(n => n)));
+                }
+            }
+
+            Log.Message("[look-item] total " + items.Count);
+        }
+
         private static string Tag(string value, string none)
         {
             return value == none ? string.Empty : " (" + value + ")";
