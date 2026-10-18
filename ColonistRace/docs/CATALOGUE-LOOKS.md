@@ -48,6 +48,8 @@ Step texts: `"<pawn>" face tattoo is "<defName>"` and `"<pawn>" body tattoo is "
 
 Step texts: none yet in the look steps (the values are listed for the sessions that choose a body)
 
+Female Body Variants (3798082132, `tiagocc0.FemaleBodyVariants`, in the map): it ships no def, only a DLL and textures (read from its files 2026-10-18, not seen in game), so it adds no name to the table. Read as a runtime swap, it makes Fat, Hulk and Thin look different on a male and a female pawn: photograph each of these three on both sexes (Nelim for the female, a second colonist of a male kind for the male, `a colonist "<name>" of kind "<kind>" exists`), plus Male and Female once each and Baby and Child. About 12 photographs. Add the mod to the map of any body photograph pass.
+
 | Mod | Names |
 |---|---|
 | Biotech | (2) Baby, Child |
