@@ -32,3 +32,7 @@ Art/Preview.png
 
 # Showcase prompt, deleted once the illustration exists (STYLE_RIMWORLD.md)
 PROMPT_*.md
+
+Tests/Pickle/Evidence/
+Tests/Pickle/Inbox/
+Tests/Pickle/Parked/
