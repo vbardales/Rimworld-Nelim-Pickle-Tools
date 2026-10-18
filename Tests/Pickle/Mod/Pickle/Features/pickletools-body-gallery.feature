@@ -14,11 +14,13 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" gender is female
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body type is Female
@@ -42,6 +44,7 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And a colonist "Nelio" exists
     And "Nelio" is 30 years old
@@ -49,6 +52,7 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: "Nelio" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelio" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelio" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelio" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelio" body type is Male
@@ -72,6 +76,7 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And a colonist "Nelio" exists
     And "Nelio" is 8 years old
@@ -79,6 +84,7 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: "Nelio" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelio" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelio" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelio" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelio" body type is Child

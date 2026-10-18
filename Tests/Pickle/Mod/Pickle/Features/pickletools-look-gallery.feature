@@ -11,9 +11,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "DoubleTuft"
@@ -85,9 +87,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Bob"
@@ -159,9 +163,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Locks"
@@ -233,9 +239,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "ShaveTopBraid"
@@ -307,9 +315,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EarringL"
@@ -381,9 +391,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Hijab"
@@ -455,9 +467,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Fairy"
@@ -529,9 +543,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Sweptbackdreads"
@@ -603,9 +619,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesshavedmale"
@@ -677,9 +695,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassessupdo"
@@ -751,9 +771,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Block"
@@ -825,9 +847,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Mariya"
@@ -899,9 +923,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Spike"
@@ -973,9 +999,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_AlmonerHD"
@@ -1047,9 +1075,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ElvenHD"
@@ -1121,9 +1151,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_NeatmaleHD"
@@ -1195,9 +1227,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_WavymaleHD"
@@ -1269,9 +1303,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Bereaved"
@@ -1343,9 +1379,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dutch"
@@ -1417,9 +1455,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Harald"
@@ -1491,9 +1531,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Monk"
@@ -1565,9 +1607,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Senator"
@@ -1639,9 +1683,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Unkept"
@@ -1674,9 +1720,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Afro"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
@@ -1713,9 +1761,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinKnots"
@@ -1787,9 +1837,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" beard is "Fork"
@@ -1861,9 +1913,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" beard is "Wizard"
@@ -1878,9 +1932,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" head type is "CultEscapee"
@@ -1952,9 +2008,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow3"
@@ -2017,9 +2075,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" face tattoo is "NoTattoo_Face"
@@ -2091,9 +2151,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_CheekDots"
@@ -2165,9 +2227,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
@@ -2240,9 +2304,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
@@ -2315,9 +2381,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
@@ -2390,9 +2458,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
@@ -2444,9 +2514,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BiomutationLance"
@@ -2538,9 +2610,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicInsanityLance"
@@ -2632,9 +2706,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Jacket"
@@ -2726,9 +2802,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineGrenadier"
@@ -2768,9 +2846,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
@@ -2863,9 +2943,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
@@ -2958,9 +3040,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
@@ -2993,9 +3077,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (51, 51, 51)
@@ -3087,9 +3173,11 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 199, 115)

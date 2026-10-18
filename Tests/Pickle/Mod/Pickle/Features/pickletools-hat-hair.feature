@@ -14,9 +14,11 @@ Feature: Hair under a hat on Nelim (choice of the hat-hair mod, GALERIE.md hat r
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
