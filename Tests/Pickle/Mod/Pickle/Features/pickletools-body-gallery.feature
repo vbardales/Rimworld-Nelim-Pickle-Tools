@@ -89,7 +89,6 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
     And Nelim's Pickle Tools: "Soren" facial expression is "normal"
     And Nelim's Pickle Tools: "Soren" face is held neutral
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Boxers"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body type is Child
     And Nelim's Pickle Tools: I let 5 frames pass

@@ -2985,101 +2985,141 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CeremonialCultistMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_CeremonialCultistMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CultistMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_CultistMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_AirwireHeadset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_AirwireHeadset"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechCommander"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetMechCommander"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechlordHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetMechlordHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArrayHeadset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArrayHeadset"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_GasMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_GasMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_IntegratorHeadset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_IntegratorHeadset"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_KidHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_AdvancedHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_AdvancedHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetRecon"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetRecon"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BowlerHat"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_BowlerHat"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ClothMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ClothMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CowboyHat"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_CowboyHat"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatHood"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_HatHood"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmorHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_PowerArmorHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicFoilHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_PsychicFoilHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_SimpleHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_SimpleHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_TribalHeaddress"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_TribalHeaddress"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tuque"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Tuque"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
@@ -3103,101 +3143,141 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_WarMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarVeil"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_WarVeil"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Blindfold"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Blindfold"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_AuthorityCap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_AuthorityCap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Broadwrap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Broadwrap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Flophat"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Flophat"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Headwrap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Headwrap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Shadecone"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Shadecone"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Slicecap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Slicecap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tailcap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Tailcap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_TortureCrown"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_TortureCrown"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_VisageMask"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_VisageMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Burka"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Burka"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_VacsuitHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphract"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetCataphract"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphractPrestige"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetCataphractPrestige"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetReconPrestige"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorHelmetReconPrestige"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineHelmetPrestige"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_ArmorMarineHelmetPrestige"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Beret"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Beret"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Coronet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Coronet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
@@ -3221,36 +3301,50 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Crown"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Crown"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CrownStellic"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_CrownStellic"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_EltexSkullcap"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_EltexSkullcap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Gunlink"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_Gunlink"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatLadies"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_HatLadies"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatTop"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_HatTop"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusHelmet"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hat-Apparel_PsyfocusHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
