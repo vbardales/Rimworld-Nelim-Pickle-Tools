@@ -2436,7 +2436,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_WhiteClaw"
 
-  Scenario: look-gallery-36: garment 1 to 20 of 112
+  Scenario: look-gallery-36: garment 1 to 20 of 67
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -2448,7 +2448,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BiomutationLance"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2473,14 +2472,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ShardPsychicShockLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShardPsychicShockLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CeremonialCultistMask"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_CeremonialCultistMask"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CultistMask"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_CultistMask"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_LabCoat"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2526,49 +2517,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidTribal"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AirwireHeadset"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_AirwireHeadset"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-
-  Scenario: look-gallery-37: garment 21 to 40 of 112
-    Given the save "Nelims-tribe" is loaded
-    And game speed is paused
-    And Nelim's Pickle Tools: the item and name labels are hidden
-    And Nelim's Pickle Tools: the tooltips are hidden
-    And Nelim's Pickle Tools: the colonist bar is hidden
-    And Nelim's Pickle Tools: the learning helper is hidden
-    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
-    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
-    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechCommander"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetMechCommander"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechlordHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetMechlordHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArrayHeadset"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArrayHeadset"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_GasMask"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_GasMask"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_IntegratorHeadset"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_IntegratorHeadset"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Bandolier"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Bandolier"
@@ -2581,6 +2529,20 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_FirefoampopPack"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+
+  Scenario: look-gallery-37: garment 21 to 40 of 67
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicInsanityLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsychicInsanityLance"
@@ -2625,21 +2587,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PlateArmor"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-
-  Scenario: look-gallery-38: garment 41 to 60 of 112
-    Given the save "Nelims-tribe" is loaded
-    And game speed is paused
-    And Nelim's Pickle Tools: the item and name labels are hidden
-    And Nelim's Pickle Tools: the tooltips are hidden
-    And Nelim's Pickle Tools: the colonist bar is hidden
-    And Nelim's Pickle Tools: the learning helper is hidden
-    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
-    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
-    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PowerArmor"
@@ -2660,57 +2607,9 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_TribalA"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AdvancedHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_AdvancedHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetRecon"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetRecon"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BowlerHat"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_BowlerHat"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ClothMask"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ClothMask"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CowboyHat"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_CowboyHat"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatHood"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_HatHood"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmorHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_PowerArmorHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicFoilHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_PsychicFoilHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_SimpleHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_SimpleHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_TribalHeaddress"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_TribalHeaddress"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tuque"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Tuque"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarMask"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_WarMask"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarVeil"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_WarVeil"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Cape"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2720,8 +2619,12 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Duster"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakJacket"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "garment-Apparel_FlakJacket"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
-  Scenario: look-gallery-39: garment 61 to 80 of 112
+  Scenario: look-gallery-38: garment 41 to 60 of 67
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -2733,12 +2636,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakJacket"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_FlakJacket"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Jacket"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Jacket"
@@ -2755,53 +2653,13 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Blindfold"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AuthorityCap"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_AuthorityCap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Broadwrap"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Broadwrap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Collar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Collar"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Flophat"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Flophat"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Headwrap"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Headwrap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Shadecone"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Shadecone"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Slicecap"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Slicecap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tailcap"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Tailcap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_TortureCrown"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_TortureCrown"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VisageMask"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_VisageMask"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_BodyStrap"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_BodyStrap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Burka"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Burka"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CerebrexNode"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2815,28 +2673,9 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Vacsuit"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-
-  Scenario: look-gallery-40: garment 81 to 100 of 112
-    Given the save "Nelims-tribe" is loaded
-    And game speed is paused
-    And Nelim's Pickle Tools: the item and name labels are hidden
-    And Nelim's Pickle Tools: the tooltips are hidden
-    And Nelim's Pickle Tools: the colonist bar is hidden
-    And Nelim's Pickle Tools: the learning helper is hidden
-    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
-    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
-    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitChildren"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_VacsuitChildren"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitHelmet"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_VacsuitHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBroadshield"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2878,6 +2717,20 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorLocust"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+
+  Scenario: look-gallery-39: garment 61 to 67 of 67
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineGrenadier"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorMarineGrenadier"
@@ -2898,20 +2751,16 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShirtRuffle"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphract"
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusRobe"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetCataphract"
+    And I take a screenshot "garment-Apparel_PsyfocusRobe"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphractPrestige"
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_RobeRoyal"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetCataphractPrestige"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetReconPrestige"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorHelmetReconPrestige"
+    And I take a screenshot "garment-Apparel_RobeRoyal"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
-  Scenario: look-gallery-41: garment 101 to 112 of 112
+  Scenario: look-gallery-40: hat 1 to 20 of 45
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -2924,57 +2773,219 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
-    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CeremonialCultistMask"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_CeremonialCultistMask"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CultistMask"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_CultistMask"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AirwireHeadset"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_AirwireHeadset"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechCommander"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetMechCommander"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetMechlordHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetMechlordHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArrayHeadset"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArrayHeadset"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_GasMask"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_GasMask"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_IntegratorHeadset"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_IntegratorHeadset"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_KidHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AdvancedHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_AdvancedHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetRecon"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetRecon"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BowlerHat"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_BowlerHat"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CowboyHat"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_CowboyHat"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatHood"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_HatHood"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmorHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_PowerArmorHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicFoilHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_PsychicFoilHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_SimpleHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_SimpleHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_TribalHeaddress"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_TribalHeaddress"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tuque"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Tuque"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarMask"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_WarMask"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+
+  Scenario: look-gallery-41: hat 21 to 40 of 45
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_WarVeil"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_WarVeil"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_AuthorityCap"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_AuthorityCap"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Broadwrap"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Broadwrap"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Flophat"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Flophat"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Headwrap"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Headwrap"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Shadecone"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Shadecone"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Slicecap"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Slicecap"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Tailcap"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Tailcap"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_TortureCrown"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_TortureCrown"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VisageMask"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_VisageMask"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Burka"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_Burka"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitHelmet"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_VacsuitHelmet"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphract"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetCataphract"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetCataphractPrestige"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetCataphractPrestige"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorHelmetReconPrestige"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "hat-Apparel_ArmorHelmetReconPrestige"
+    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineHelmetPrestige"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_ArmorMarineHelmetPrestige"
+    And I take a screenshot "hat-Apparel_ArmorMarineHelmetPrestige"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Beret"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Beret"
+    And I take a screenshot "hat-Apparel_Beret"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Coronet"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Coronet"
+    And I take a screenshot "hat-Apparel_Coronet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Crown"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Crown"
+    And I take a screenshot "hat-Apparel_Crown"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_CrownStellic"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_CrownStellic"
+    And I take a screenshot "hat-Apparel_CrownStellic"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
+
+  Scenario: look-gallery-42: hat 41 to 45 of 45
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_EltexSkullcap"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_EltexSkullcap"
+    And I take a screenshot "hat-Apparel_EltexSkullcap"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_Gunlink"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_Gunlink"
+    And I take a screenshot "hat-Apparel_Gunlink"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatLadies"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_HatLadies"
+    And I take a screenshot "hat-Apparel_HatLadies"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_HatTop"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_HatTop"
+    And I take a screenshot "hat-Apparel_HatTop"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusHelmet"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_PsyfocusHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusRobe"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_PsyfocusRobe"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_RobeRoyal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_RobeRoyal"
+    And I take a screenshot "hat-Apparel_PsyfocusHelmet"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
-  Scenario: look-gallery-42: ideocolour 1 to 20 of 34
+  Scenario: look-gallery-43: ideocolour 1 to 20 of 34
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -3068,7 +3079,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And I take a screenshot "ideocolour-LightOlive"
     And Nelim's Pickle Tools: I undress "Nelim"
 
-  Scenario: look-gallery-43: ideocolour 21 to 34 of 34
+  Scenario: look-gallery-44: ideocolour 21 to 34 of 34
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden

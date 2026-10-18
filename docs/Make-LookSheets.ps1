@@ -33,8 +33,9 @@ function Read-Section($file, $titleRegex) {
         foreach ($r in $names) {
             $type = ''; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
             $hex = ''; if ($r -match '#([0-9A-Fa-f]{6})$') { $hex = $Matches[1]; $r = $r -replace '#[0-9A-Fa-f]{6}$', '' }
+            $slot = ''; if ($r -match '\[(.*)\]$') { $slot = $Matches[1] }
             $name = ($r -replace ' \([A-Za-z]+\)$', '' -replace '\[.*\]$', '').Trim()
-            $items += [pscustomobject]@{ mod = ($cells[0] -replace ' \(continued\)$', ''); group = $group; name = $name; type = $type; hex = $hex }
+            $items += [pscustomobject]@{ mod = ($cells[0] -replace ' \(continued\)$', ''); group = $group; name = $name; type = $type; hex = $hex; slot = $slot }
         }
     }
     return $items
@@ -105,7 +106,10 @@ Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
-Run-Job 'garment' 'garment' (Read-Section 'CATALOGUE-APPAREL.md' '^## Garments') $body $false $false
+$app = Read-Section 'CATALOGUE-APPAREL.md' '^## Garments'
+$isHat = { $_.slot -match '^(UpperHead|FullHead)(/|$)' }
+Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $false $false
+Run-Job 'hat' 'hat' @($app | Where-Object { & $isHat }) $face $false $false
 
 $col = Read-Section 'CATALOGUE-COLOURS.md' '^## Colours'
 Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $face $false $false
