@@ -40,7 +40,7 @@ function Read-Section($file, $titleRegex) {
     return $items
 }
 
-$cols = 6; $tile = 200; $label = 20; $perPage = 30
+$cols = 6; $tile = 200; $label = 32; $perPage = 30
 $face = New-Object System.Drawing.Rectangle 810, 190, 300, 300
 $body = New-Object System.Drawing.Rectangle 760, 320, 400, 400
 $font = New-Object System.Drawing.Font 'Segoe UI', 8
@@ -81,7 +81,8 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
                 $br = New-Object System.Drawing.SolidBrush $c; $g.FillRectangle($br, $x + $tile - 40, $y + $tile - 40, 40, 40); $br.Dispose()
                 $txt += ' #' + $part[$i].hex
             }
-            $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))
+            $box = New-Object System.Drawing.RectangleF ([float]($x + 2)), ([float]($y + $tile + 2)), ([float]($tile - 4)), ([float]($label - 2))
+            $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, $box)
         }
         $g.Dispose()
         $path = Join-Path $out ("{0}-{1}-{2}.jpg" -f $kind, $slug, ($pg + 1))
