@@ -2234,6 +2234,8 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "NoTattoo_Body"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2311,6 +2313,8 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Butterfly"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2388,6 +2392,8 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_lucifer"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2465,6 +2471,8 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_BlackClaw"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -2521,86 +2529,126 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BiomutationLance"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BiomutationLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_BiomutationLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_DeadlifePack"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_DeadlifePack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_DeadlifePack"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_DisruptorFlarePack"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_DisruptorFlarePack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_DisruptorFlarePack"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackTurret"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackTurret"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackTurret"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ShardPsychicInsanityLance"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ShardPsychicInsanityLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShardPsychicInsanityLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ShardPsychicShockLance"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ShardPsychicShockLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShardPsychicShockLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_LabCoat"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_LabCoat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_LabCoat"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBandwidth"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBandwidth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackBandwidth"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackControl"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackControl"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackControl"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackTox"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackTox"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackTox"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_HeavyShield"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_HeavyShield"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_HeavyShield"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Sash"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Sash"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Sash"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_MechlordSuit"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_MechlordSuit"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_MechlordSuit"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidPants"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidPants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidPants"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidRomper"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidRomper"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidRomper"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidShirt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidShirt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidTribal"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidTribal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidTribal"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Bandolier"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Bandolier"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Bandolier"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidParka"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidParka"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidParka"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FirefoampopPack"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_FirefoampopPack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_FirefoampopPack"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
   Scenario: look-gallery-37: garment 21 to 40 of 65
     Given the save "Nelims-tribe" is loaded
@@ -2617,86 +2665,126 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicInsanityLance"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicInsanityLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsychicInsanityLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicShockLance"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsychicShockLance"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsychicShockLance"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ShieldBelt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ShieldBelt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShieldBelt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_SmokepopBelt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_SmokepopBelt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_SmokepopBelt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterBombardment"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterBombardment"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-OrbitalTargeterBombardment"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterPowerBeam"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterPowerBeam"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-OrbitalTargeterPowerBeam"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "TornadoGenerator"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "TornadoGenerator"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-TornadoGenerator"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakVest"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakVest"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_FlakVest"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakPants"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakPants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_FlakPants"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorRecon"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorRecon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorRecon"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PlateArmor"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PlateArmor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PlateArmor"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmor"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PowerArmor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PowerArmor"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_BasicShirt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CollarShirt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_CollarShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_CollarShirt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Pants"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_TribalA"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_TribalA"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_TribalA"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Cape"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Cape"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Cape"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Duster"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Duster"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Duster"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakJacket"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_FlakJacket"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_FlakJacket"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Jacket"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Jacket"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Jacket"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
   Scenario: look-gallery-38: garment 41 to 60 of 65
     Given the save "Nelims-tribe" is loaded
@@ -2713,86 +2801,126 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Parka"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Parka"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Parka"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Robe"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Robe"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Robe"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Collar"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Collar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Collar"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BodyStrap"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BodyStrap"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_BodyStrap"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_CerebrexNode"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_CerebrexNode"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_CerebrexNode"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackHunter"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackHunter"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackHunter"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Vacsuit"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Vacsuit"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Vacsuit"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitChildren"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitChildren"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_VacsuitChildren"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBroadshield"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBroadshield"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackBroadshield"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PackJump"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackJump"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackJump"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterMechCluster"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "OrbitalTargeterMechCluster"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-OrbitalTargeterMechCluster"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Corset"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusVest"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusVest"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsyfocusVest"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_VestRoyal"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_VestRoyal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_VestRoyal"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphract"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphract"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorCataphract"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphractPhoenix"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphractPhoenix"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorCataphractPhoenix"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphractPrestige"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorCataphractPrestige"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorCataphractPrestige"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorLocust"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorLocust"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorLocust"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineGrenadier"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarineGrenadier"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorMarineGrenadier"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarinePrestige"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorMarinePrestige"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorMarinePrestige"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
   Scenario: look-gallery-39: garment 61 to 65 of 65
     Given the save "Nelims-tribe" is loaded
@@ -2809,26 +2937,36 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorReconPrestige"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ArmorReconPrestige"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ArmorReconPrestige"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusShirt"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsyfocusShirt"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_ShirtRuffle"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_ShirtRuffle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_ShirtRuffle"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusRobe"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusRobe"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsyfocusRobe"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_RobeRoyal"
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_RobeRoyal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_RobeRoyal"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
 
   Scenario: look-gallery-40: hat 1 to 20 of 47
     Given the save "Nelims-tribe" is loaded
@@ -3134,86 +3272,126 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (51, 51, 51)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (51, 51, 51)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Black"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 191, 191)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 191, 191)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Blue"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 148, 148)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 148, 148)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkBlue"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (83, 148, 67)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (83, 148, 67)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkGreen"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (128, 128, 128)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (128, 128, 128)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkGrey"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (83, 67, 148)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (83, 67, 148)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkMauve"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (132, 148, 67)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (132, 148, 67)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkOlive"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 115, 67)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 115, 67)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkOrange"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 67, 115)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 67, 115)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkPink"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (132, 67, 148)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (132, 67, 148)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkPurple"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 67, 67)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (148, 67, 67)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkRed"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 99, 148)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 99, 148)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkSapphire"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 148, 99)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (67, 148, 99)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-DarkTeal"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (107, 191, 86)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (107, 191, 86)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Green"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (192, 192, 192)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (192, 192, 192)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Grey"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 255, 255)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 255, 255)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightBlue"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (143, 255, 115)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (143, 255, 115)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightGreen"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (245, 245, 245)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (245, 245, 245)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightGrey"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (143, 115, 255)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (143, 115, 255)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightMauve"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (227, 255, 115)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (227, 255, 115)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightOlive"
-    And Nelim's Pickle Tools: I undress "Nelim"
 
   Scenario: look-gallery-44: ideocolour 21 to 34 of 34
     Given the save "Nelims-tribe" is loaded
@@ -3230,60 +3408,88 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 199, 115)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 199, 115)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightOrange"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 115, 199)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 115, 199)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightPink"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (227, 115, 255)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (227, 115, 255)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightPurple"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 115, 115)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (255, 115, 115)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightRed"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 171, 255)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 171, 255)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightSapphire"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 255, 171)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (115, 255, 171)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-LightTeal"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (107, 86, 191)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (107, 86, 191)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Mauve"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (170, 191, 86)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (170, 191, 86)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Olive"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 149, 86)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 149, 86)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Orange"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 86, 149)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 86, 149)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Pink"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (170, 86, 191)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (170, 86, 191)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Purple"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 86, 86)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (191, 86, 86)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Red"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 128, 191)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 128, 191)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Sapphire"
-    And Nelim's Pickle Tools: I undress "Nelim"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 191, 128)
+    When Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "Nelim" wears "Apparel_BasicShirt" dyed rgb (86, 191, 128)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "ideocolour-Teal"
-    And Nelim's Pickle Tools: I undress "Nelim"
 

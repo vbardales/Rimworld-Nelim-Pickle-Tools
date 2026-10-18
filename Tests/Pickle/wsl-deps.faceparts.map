@@ -13,6 +13,9 @@ nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 tiagocc0.FemaleBodyVariants 3798082132
 tiagocc0.FemaleApparelVariants 3799726535
 wdi.realistic.bodies 3527486510
+# UnderWhere (briefs and bra for the full-body captures), after WDI (it declares no loadAfter on it), then its Og patches (NSB, 2026-10-18; 1.7 not checked).
+Malistaticy.UnderWhere 1870010563
+Og.UnderWherePatches 3354891128
 ab.vplrf 2986402536
 nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
 Nals.FacialAnimation 1635901197
