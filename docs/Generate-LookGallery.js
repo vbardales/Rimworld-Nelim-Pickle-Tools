@@ -30,18 +30,18 @@ const PRE = [
   'Given the save "Nelims-tribe" is loaded', 'And game speed is paused',
   `And ${P}the item and name labels are hidden`, `And ${P}the tooltips are hidden`, `And ${P}the colonist bar is hidden`, `And ${P}the learning helper is hidden`,
   `And ${P}the temperature of the map is 20 degrees`, `And ${P}I frame the area centred on (177, 121) at root size 6.5`,
-  `And ${P}"Nelim" stands at (176, 120) facing South`, `And ${P}"Nelim" face kit is "neutral"`,
+  `And ${P}"Nelim" stands at (176, 120) facing South`, `And ${P}"Nelim" face kit is "neutral"`, `And ${P}"Nelim" face is held neutral`,
 ];
 const CHUNK = 20; let n = 0; let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n'
   + 'Feature: Every look value on Nelim, one photograph per value (gallery of the look catalogues)\n\n';
-function scenarios(kind, items, framing, setup, step, shot) {
+function scenarios(kind, items, framing, setup, step, shot, after) {
   for (let i = 0; i < items.length; i += CHUNK) {
     const part = items.slice(i, i + CHUNK); n++;
     out += `  Scenario: look-gallery-${n}: ${kind} ${i + 1} to ${i + part.length} of ${items.length}\n`;
     for (const l of PRE) out += `    ${l}\n`;
     for (const l of setup) out += `    And ${l}\n`;
     out += `    And ${P}I frame the cell ${framing}\n`;
-    for (const it of part) { out += `    When ${step(it)}\n    And ${P}I let 5 frames pass\n    And I take a screenshot "${kind}-${shot(it)}"\n`; }
+    for (const it of part) { out += `    When ${step(it)}\n    And ${P}I let 5 frames pass\n    And I take a screenshot "${kind}-${shot(it)}"\n` + (after ? `    And ${after(it)}\n` : ''); }
     out += '\n';
   }
 }
@@ -52,7 +52,7 @@ scenarios('beard', beard, FACE, [], b => `${P}"Nelim" beard is "${b}"`, b => b);
 scenarios('head', head, FACE, [], h => `${P}"Nelim" head type is "${h}"`, h => h);
 scenarios('facetattoo', faceTattoo, FACE, [], t => `${P}"Nelim" face tattoo is "${t}"`, t => t);
 scenarios('bodytattoo', bodyTattoo, BODY, [`${P}"Nelim" is undressed`], t => `${P}"Nelim" body tattoo is "${t}"`, t => t);
-scenarios('garment', apparel, BODY, [`${P}"Nelim" is undressed`], a => `${P}"Nelim" wears "${a}"`, a => a);
-scenarios('ideocolour', ideoColours, BODY, [`${P}"Nelim" is undressed`], c => `${P}"Nelim" wears "Apparel_BasicShirt" dyed rgb (${c.rgb.join(', ')})`, c => c.name);
+scenarios('garment', apparel, BODY, [], a => `${P}"Nelim" wears "${a}"`, a => a, () => `${P}"Nelim" gets back the clothes it had`);
+scenarios('ideocolour', ideoColours, BODY, [], c => `${P}"Nelim" wears "Apparel_BasicShirt" dyed rgb (${c.rgb.join(', ')})`, c => c.name, () => `${P}I undress "Nelim"`);
 fs.writeFileSync(path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature'), out);
 console.log(`${n} scenarios: hair ${hair.length}, haircolour ${hairColours.length}, beard ${beard.length}, head ${head.length}, facetattoo ${faceTattoo.length}, bodytattoo ${bodyTattoo.length}, garment ${apparel.length}, ideocolour ${ideoColours.length}`);
