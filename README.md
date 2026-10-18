@@ -44,7 +44,8 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 | [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history: what each reads, and where to find it before writing it a second time | none |
 
-The default fixture for Pickle presentation and screenshot scenarios is Pickle's own `test-colony`. The optional
+The default fixture for functional scenarios is Pickle's own `test-colony`; for gallery captures it is `Nelims-tribe`, shipped by
+[Nelim's Sanctuary Backlot](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot). The optional
 [ScreenshotStudio](ScreenshotStudio/README.md) holds the steps that dress a map as a studio; it ships no saved fixture.
 Functional scenarios retain an explicitly chosen fixture when their preconditions require one.
 
