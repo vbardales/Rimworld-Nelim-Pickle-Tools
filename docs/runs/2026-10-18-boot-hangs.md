@@ -1,0 +1,8 @@
+# Runs of 2026-10-18 that ended without a report (read by NPT from the stalled archives, then the archives deleted)
+
+One line per run. Pickle 6.7.2.0, RimWorld 1.6.4871, WSL. The three archives were `pickle-reports-archive/stalled-PickleTools-1018-0149`, `-0526`, `-0628`.
+
+- 01:49, look-gallery lot with scenarios 1 to 4: scenarios 1 to 3 played (hair 1 to 60 photographed); the watchdog tripped after 300 s in scenario 4 (`hair 61 to 80`), last step `Given the save "Nelims-tribe" is loaded`. The save load itself took more than 300 s on the fourth scenario of one game session: the game slows down scenario after scenario, so a lot is 2 or 3 scenarios, not 20.
+- 05:26, look-gallery lot with garments: `watchdog forcing exit, code 2` inside `RunScenario`; the garments 41 to 80 were photographed before it. Frame timeout 40 s at `I frame the cell (176, 120) at zoom 2` and save load 175 s in the following scenarios (ticket 7c71, g5: scenarios 17 and 18 timed out).
+- 06:28, building catalogue (ticket b8dd, map wsl-deps.building-catalogue.map): the game never reached RimWorld's own log (no `[INFO]` line, no Pickle line, 1146 `Custom/Cutout_BadTexture ... _MaskTex` Unity warnings, ends on `Unloading 836 unused Assets`): a boot hang, not a scenario failure. Same exit=3 as FoodCourt 7ac9 and dd90, FieldworkCompanions 7f90 and SanctuaryBacklot 327c; TM killed an orphan launcher (pid 31946) and an orphan game (pid 33189) that evening, which may be the cause (two games on port 27750). Not proven.
+- 05:36, lots g1 to g4, g6 and building catalogue: `no-report.txt` only, no Player.log kept (the launcher keeps it only when asked: TM plans to copy it into the evidence folder).
