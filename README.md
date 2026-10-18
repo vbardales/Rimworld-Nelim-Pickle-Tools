@@ -4,7 +4,7 @@
 **Looking for a step? [docs/steps.md](docs/steps.md) lists every step of this repository, generated from the sources; Pickle's own steps are in [its catalogue](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md). Sanctuary place steps (`Nelim's Sanctuary:`): [Nelim's Sanctuary Backlot catalogue](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot/blob/main/docs/steps.md).**
 **Writing a new suite? Start with the [authoring guide](Authoring/README.md)** for layout, pass maps,
 dependency tags, step design, restart tests and evidence requirements.
-**Loading `test-colony` or `nelim-zen-meadow-studio`? [docs/FIXTURES.md](docs/FIXTURES.md)** lists what each holds:
+**Loading `test-colony`? [docs/FIXTURES.md](docs/FIXTURES.md)** lists what it holds:
 colonists, hostile things, free build areas, coordinates.
 
 Shared tooling for testing RimWorld mods with [Pickle](https://github.com/RimWorks/Rimworld-Pickle), the
@@ -44,9 +44,8 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
 | [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history: what each reads, and where to find it before writing it a second time | none |
 
-The optional [ScreenshotStudio](ScreenshotStudio/README.md) supplies the default saved fixture for Pickle
-presentation and screenshot scenarios: `nelim-zen-meadow-studio`. Stage it explicitly with ClearScreen through
-`wsl-deps.studio.map`; it has no separate archive.
+The default fixture for Pickle presentation and screenshot scenarios is Pickle's own `test-colony`. The optional
+[ScreenshotStudio](ScreenshotStudio/README.md) holds the steps that dress a map as a studio; it ships no saved fixture.
 Functional scenarios retain an explicitly chosen fixture when their preconditions require one.
 
 [Quiet New Factions](QuietNewFactions/README.md) is a second optional companion: it suppresses VEF's repeated

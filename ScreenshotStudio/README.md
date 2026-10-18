@@ -15,12 +15,14 @@ Add this line to that suite's explicit pass map (UTF-8, LF line endings):
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 ```
 
-For Pickle presentation and screenshot scenarios, load the supplied default fixture:
+The default fixture for Pickle presentation and screenshot scenarios is Pickle's own `test-colony`. The saved
+`nelim-zen-meadow-studio` is no longer shipped: build the studio on the loaded map with the steps below, then frame it:
 
 ```gherkin
-Given the save "nelim-zen-meadow-studio" is loaded
+Given the save "test-colony" is loaded
 And game speed is paused
-When Nelim's Pickle Tools: I frame the studio "flowers"
+When Nelim's Pickle Tools: the flower meadow studio is prepared
+And Nelim's Pickle Tools: I frame the studio "flowers"
 And I take a screenshot "my-mod-in-the-meadow"
 ```
 
@@ -69,9 +71,8 @@ checks all mosaic colors and garden features again, writes `Nelim-Zen-Meadow-Stu
 and captures one overview with the interface. `load-flower-meadow-studio.feature` then verifies the exported fixture
 in a new game process without rebuilding it and takes the nine presentation views without the interface. This keeps
 the reusable screenshots tied to the saved fixture that downstream suites actually load.
-`nelim-zen-meadow-studio` is the default fixture for presentation and screenshot scenarios. The initial
-non-zen `nelim-flower-meadow-studio` remains only as a historical alternative; current integrity assertions
-target the zen version.
+The saved fixtures `nelim-zen-meadow-studio` and `nelim-flower-meadow-studio` are no longer shipped; Pickle's
+`test-colony` is the default fixture. The paragraph above describes how the zen save was built and checked.
 Use `Use-Wsl.ps1` under the same queue/lock for any WSL copy or other preparation work.
 Never launch the Windows game, bypass the launcher, or create/release the owner's reservation.
 
