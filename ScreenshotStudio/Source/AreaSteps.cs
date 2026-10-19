@@ -88,16 +88,20 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Find.Selector.ClearSelection();
             Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z));
             Find.CameraDriver.SetRootSize(rootSize);
+            var clock = System.Diagnostics.Stopwatch.StartNew();
             await ctx.WaitFrames(90);
+            long zoomMs = clock.ElapsedMilliseconds;
             float last = -1f; int still = 0;
-            for (int i = 0; i < 600 && still < 20; i++)
+            // The light wait stops after 15 s of wall clock too: at a few frames a second 600 frames outlast the 60 s a frame step is given
+            // (VenusTouchWaistlines tickets 4b8e, 73de, 2026-10-19: "timed out after 60s").
+            for (int i = 0; i < 600 && still < 20 && clock.ElapsedMilliseconds - zoomMs < 15000; i++)
             {
                 float glow = Find.CurrentMap.skyManager.CurSkyGlow;
                 still = Math.Abs(glow - last) < 0.0005f ? still + 1 : 0;
                 last = glow;
                 await ctx.WaitFrames(1);
             }
-            Log.Message("[frame] asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00"));
+            Log.Message("[frame] asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00") + "; zoom wait " + zoomMs + " ms, total " + clock.ElapsedMilliseconds + " ms");
         }
 
         /// <summary>
