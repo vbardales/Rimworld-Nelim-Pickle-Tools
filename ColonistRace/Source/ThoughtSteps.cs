@@ -44,6 +44,35 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(all.Any(t => t.def.defName == thoughtName), nickname + " should have the thought " + thoughtName + "; it has " + string.Join(", ", all.Select(t => t.def.defName)));
         }
 
+        // The sum of the mood offsets of every thought of that def (a thought that stacks, such as a meal eaten several times, is several thoughts).
+        private static float MoodOffsetOf(Pawn pawn, string thoughtName, out int count)
+        {
+            var found = Thoughts(pawn).Where(t => t.def.defName == thoughtName).ToList();
+            count = found.Count;
+            return found.Sum(t => t.MoodOffset());
+        }
+
+        /// <summary>
+        /// Asserts the mood offset of a colonist's thought (the sum of every thought of that ThoughtDef, so stacked ones count) is below a number.
+        /// A colonist without the thought has an offset of 0. The failure gives the offset and how many thoughts of the def there are.
+        /// </summary>
+        [Then("{string} thought {string} mood offset is below {float}")]
+        public void MoodOffsetBelow(PickleContext ctx, string nickname, string thoughtName, float limit)
+        {
+            float offset = MoodOffsetOf(ColonistLookup.Require(nickname), thoughtName, out int count);
+            Log.Message($"[thoughts] {nickname} {thoughtName}: mood offset {offset:0.##} from {count} thought(s)");
+            ctx.Assert(offset < limit, $"{nickname}'s thought {thoughtName} should have a mood offset below {limit}; it is {offset:0.##} from {count} thought(s)");
+        }
+
+        /// <summary>Asserts the mood offset of a colonist's thought (summed over every thought of that ThoughtDef) is above a number; 0 when the colonist has none.</summary>
+        [Then("{string} thought {string} mood offset is above {float}")]
+        public void MoodOffsetAbove(PickleContext ctx, string nickname, string thoughtName, float limit)
+        {
+            float offset = MoodOffsetOf(ColonistLookup.Require(nickname), thoughtName, out int count);
+            Log.Message($"[thoughts] {nickname} {thoughtName}: mood offset {offset:0.##} from {count} thought(s)");
+            ctx.Assert(offset > limit, $"{nickname}'s thought {thoughtName} should have a mood offset above {limit}; it is {offset:0.##} from {count} thought(s)");
+        }
+
         /// <summary>Asserts a colonist does NOT have the mood thought <c>ThoughtDef</c> now; the failure says it is there, with its mood offset.</summary>
         [Then("Nelim's Pickle Tools: {string} has no thought {string}")]
         public void HasNoThought(PickleContext ctx, string nickname, string thoughtName)
