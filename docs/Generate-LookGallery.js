@@ -17,7 +17,7 @@ function values(tag, pick) {
   return out;
 }
 const plain = raw => raw.replace(/ \([A-Za-z]+\)$/, '').replace(/\[.*\]$/, '');
-const hair = values('look-hair', plain), beard = values('look-beard', plain), head = values('look-head', plain);
+const hair = values('look-hair', plain), beard = values('look-beard', plain), head = values('look-head', raw => / \(Male\)$/.test(raw) ? null : plain(raw)); // a (Male) head is refused on Nelim ("is for Male; Nelim is Female"): those wait for Soren
 const tattooAll = values('look-tattoo', raw => ({ name: plain(raw), type: (raw.match(/\((Face|Body)\)$/) || [])[1] || 'Face' }));
 const faceTattoo = tattooAll.filter(t => t.type === 'Face').map(t => t.name), bodyTattoo = tattooAll.filter(t => t.type === 'Body').map(t => t.name);
 const apparelRaw = values('look-apparel', raw => raw);

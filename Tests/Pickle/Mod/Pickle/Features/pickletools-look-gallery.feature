@@ -1924,7 +1924,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Wizard"
 
-  Scenario: look-gallery-28: head 1 to 20 of 37
+  Scenario: look-gallery-28: head 1 to 20 of 28
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -1945,9 +1945,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" head type is "DarkScholar_Female"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-DarkScholar_Female"
-    When Nelim's Pickle Tools: "Nelim" head type is "DarkScholar_Male"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-DarkScholar_Male"
     When Nelim's Pickle Tools: "Nelim" head type is "Ghoul_Heavy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Ghoul_Heavy"
@@ -1963,9 +1960,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" head type is "Leathery_Female"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Leathery_Female"
-    When Nelim's Pickle Tools: "Nelim" head type is "Leathery_Male"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Leathery_Male"
     When Nelim's Pickle Tools: "Nelim" head type is "TimelessOne"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-TimelessOne"
@@ -1999,8 +1993,14 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Narrow2"
+    When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow3"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "head-Furskin_Narrow3"
+    When Nelim's Pickle Tools: "Nelim" head type is "Gaunt"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "head-Gaunt"
 
-  Scenario: look-gallery-29: head 21 to 37 of 37
+  Scenario: look-gallery-29: head 21 to 28 of 28
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -2015,15 +2015,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
-    When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow3"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Furskin_Narrow3"
-    When Nelim's Pickle Tools: "Nelim" head type is "Gaunt"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Gaunt"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_HeavyJawNormal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_HeavyJawNormal"
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AverageNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AverageNormal"
@@ -2042,24 +2033,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" head type is "Female_NarrowWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_NarrowWide"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_AverageNormal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_AverageNormal"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_AveragePointy"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_AveragePointy"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_AverageWide"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_AverageWide"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_NarrowNormal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_NarrowNormal"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_NarrowPointy"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_NarrowPointy"
-    When Nelim's Pickle Tools: "Nelim" head type is "Male_NarrowWide"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Male_NarrowWide"
     When Nelim's Pickle Tools: "Nelim" head type is "Skull"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Skull"
