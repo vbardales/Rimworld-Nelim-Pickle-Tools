@@ -1,0 +1,149 @@
+using System;
+using System.Linq;
+using System.Reflection;
+using RimWorld;
+using RimWorks.Pickle;
+using UnityEngine;
+using Verse;
+using Verse.AI;
+
+namespace Nelim.PickleTools.ColonistRace
+{
+    /// <summary>
+    /// Steps that stage a colonist for a gallery picture of a mod's furniture: a skin colour, playing a musical instrument, sitting on a chair,
+    /// and a read of the role of the room at a cell. Written 2026-10-20 for ImperialFurnishings' gallery plan. NOT PLAYED when written.
+    /// </summary>
+    [PickleSteps]
+    public class StagingSteps
+    {
+        /// <summary>
+        /// Gives a colonist a skin colour of their own (the skin colour override of the story, the one a gene or the melanin gives way to), by red,
+        /// green and blue out of 255, and redraws the pawn. Fails when the colonist has no story.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} skin colour is rgb \\({int}, {int}, {int}\\)")]
+        public void SetSkinColour(PickleContext ctx, string nickname, int r, int g, int b)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, $"{nickname} has no story");
+            ctx.Require(r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255, "red, green and blue run from 0 to 255");
+            pawn.story.skinColorOverride = new Color(r / 255f, g / 255f, b / 255f);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            Color read = pawn.story.SkinColor;
+            ctx.Assert(Mathf.Abs(Mathf.RoundToInt(read.r * 255f) - r) <= 3 && Mathf.Abs(Mathf.RoundToInt(read.g * 255f) - g) <= 3 && Mathf.Abs(Mathf.RoundToInt(read.b * 255f) - b) <= 3,
+                $"{nickname}'s skin colour reads {Mathf.RoundToInt(read.r * 255f)}, {Mathf.RoundToInt(read.g * 255f)}, {Mathf.RoundToInt(read.b * 255f)} after the step, not {r}, {g}, {b}");
+        }
+
+        /// <summary>
+        /// Puts a colonist on the interaction cell of the first building of a def (an instrument: harp, piano, organ), turned towards it, and starts the
+        /// job Play_MusicalInstrument on it by force. The job is held as the current job; the playing pose is drawn only while the game ticks, so with the
+        /// game paused the capture shows the colonist at the instrument. Fails when the colonist is unknown, no such building stands on the current map, its
+        /// interaction cell is not standable, or the job does not become the current job.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} plays the instrument {string}")]
+        public void PlaysInstrument(PickleContext ctx, string nickname, string defName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            Building building = map.listerThings.ThingsOfDef(def).OfType<Building>().FirstOrDefault();
+            ctx.Require(building != null, $"no {defName} stands on the current map");
+            JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail("Play_MusicalInstrument");
+            ctx.Require(jobDef != null, "no JobDef Play_MusicalInstrument (Royalty is not active)");
+            IntVec3 cell = building.InteractionCell;
+            ctx.Require(cell.IsValid && cell.InBounds(map) && cell.Standable(map), $"the interaction cell {cell} of {defName} at {building.Position} is not standable");
+
+            PlaceAt(pawn, map, cell, null);
+            pawn.Rotation = Rot4.FromAngleFlat((building.DrawPos - cell.ToVector3Shifted()).AngleFlat());
+            Job job = JobMaker.MakeJob(jobDef, building);
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            Log.Message($"[stage] {nickname} plays {defName} at {building.Position} from {cell}, facing {pawn.Rotation}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not Play_MusicalInstrument (the job did not start: reserved or unreachable)");
+        }
+
+        /// <summary>
+        /// Puts a colonist on the cell of a building of a def (a chair, a stool) and turns them the way the building faces, as a seated guest. Stops the
+        /// colonist's jobs. The seated posture is the game's own and is drawn only when the colonist has a job that sits; here the colonist is placed on
+        /// the seat, in the seat's direction. Fails when the colonist is unknown or no building of that def stands on that cell.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} sits on the building {string} at \\({int}, {int}\\)")]
+        public void SitsOn(PickleContext ctx, string nickname, string defName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Building seat = cell.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == defName);
+            ctx.Require(seat != null, $"no {defName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            PlaceAt(pawn, map, cell, seat.Rotation);
+            Log.Message($"[stage] {nickname} on {defName} at ({x}, {z}), facing {pawn.Rotation}");
+            ctx.Assert(pawn.Position == cell, $"{nickname} should be at ({x}, {z}); it is at {pawn.Position}");
+        }
+
+        /// <summary>
+        /// Asserts the role of the room that holds a cell (RoomRoleDef by defName). The room's stats and role are recomputed first. The failure prints the
+        /// role read and the score of every role for that room. Fails when the cell has no room (open air, a wall).
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the room at \\({int}, {int}\\) has the role {string}")]
+        public void RoomHasRole(PickleContext ctx, int x, int z, string roleName)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Room room = cell.GetRoom(map);
+            ctx.Require(room != null, $"no room holds ({x}, {z})");
+            MethodInfo dirty = typeof(Room).GetMethod("Notify_RoomShapeChanged", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+            try
+            {
+                dirty?.Invoke(room, null);
+            }
+            catch (Exception e)
+            {
+                Log.Warning("[room] could not mark the room dirty: " + e.GetType().Name);
+            }
+
+            RoomRoleDef role = room.Role;
+            string scores = string.Join(", ", DefDatabase<RoomRoleDef>.AllDefsListForReading
+                .Select(r => r.defName + " " + SafeScore(r, room)).OrderBy(s => s));
+            Log.Message($"[room] ({x}, {z}): role {role?.defName ?? "none"}, {room.CellCount} cells; scores: {scores}");
+            ctx.Assert(role != null && role.defName == roleName, $"the room at ({x}, {z}) has the role {role?.defName ?? "none"}, not {roleName}; scores: {scores}");
+        }
+
+        private static string SafeScore(RoomRoleDef role, Room room)
+        {
+            try
+            {
+                return role.Worker.GetScore(room).ToString("0.##");
+            }
+            catch (Exception e)
+            {
+                return "threw " + e.GetType().Name;
+            }
+        }
+
+        private static void PlaceAt(Pawn pawn, Map map, IntVec3 cell, Rot4? facing)
+        {
+            if (pawn.Spawned)
+            {
+                pawn.jobs?.StopAll();
+                pawn.pather?.StopDead();
+                pawn.Position = cell;
+                pawn.Notify_Teleported(true, true);
+            }
+            else
+            {
+                GenSpawn.Spawn(pawn, cell, map);
+            }
+
+            if (facing.HasValue)
+            {
+                pawn.Rotation = facing.Value;
+            }
+
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+        }
+    }
+}
