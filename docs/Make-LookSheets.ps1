@@ -5,7 +5,8 @@
   the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
   A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
   once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
-  Photographs: every Tests/Pickle/Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
+  Photographs: every Tests/Pickle/Inbox and Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
+  Each tile is also cut to ColonistRace/docs/img/looks/tiles/ (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
   Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
@@ -13,6 +14,8 @@ $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img/looks'
 $docs = Join-Path $root 'ColonistRace/docs'
 New-Item -ItemType Directory -Force $out | Out-Null
+$tileDir = Join-Path $out 'tiles'
+New-Item -ItemType Directory -Force $tileDir | Out-Null
 
 $files = @{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
@@ -74,6 +77,13 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
             } elseif ($files.ContainsKey($part[$i].key)) {
                 $img = [System.Drawing.Image]::FromFile($files[$part[$i].key])
                 $g.DrawImage($img, $r, $crop, [System.Drawing.GraphicsUnit]::Pixel); $img.Dispose(); $have++
+                # Tile cache: the run folders are pruned (Prune-Evidence keeps a few JPEG only), so each tile is kept here once cut.
+                $tb = New-Object System.Drawing.Bitmap $tile, $tile
+                $tg = [System.Drawing.Graphics]::FromImage($tb); $tg.DrawImage($bmp, (New-Object System.Drawing.Rectangle 0, 0, $tile, $tile), $r, [System.Drawing.GraphicsUnit]::Pixel); $tg.Dispose()
+                $tb.Save((Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg')), $enc, $p); $tb.Dispose()
+            } elseif (Test-Path (Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg'))) {
+                $img = [System.Drawing.Image]::FromFile((Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg')))
+                $g.DrawImage($img, $r); $img.Dispose(); $have++
             } else {
                 $g.FillRectangle($hatch, $r)
                 $g.DrawRectangle([System.Drawing.Pens]::LightGray, $x, $y, $tile - 1, $tile - 1)
