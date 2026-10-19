@@ -116,6 +116,25 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message($"[joy-giver] TryGiveJob for {nickname}: {Try(() => giver.Worker.TryGiveJob(pawn)?.def.defName ?? "null")}");
         }
 
+        /// <summary>
+        /// Takes the job a joy giver (a JoyGiverDef, by defName) returns for a colonist and starts it on them by force (StartJob, interrupt
+        /// forced, so it replaces what they do), and logs the job taken (lines starting <c>[joy-giver]</c>). Fixes the giver's job, for a scenario
+        /// that must not depend on the game's random pick between joy givers. Fails when the def is unknown, the colonist has no job tracker, or
+        /// the giver returns no job.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the joy giver {string} job is forced on {string}")]
+        public void JoyGiverJobForced(PickleContext ctx, string giverDefName, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            JoyGiverDef giver = DefDatabase<JoyGiverDef>.GetNamedSilentFail(giverDefName);
+            ctx.Require(giver != null, $"no joy giver '{giverDefName}'");
+            ctx.Require(pawn.jobs != null, $"{nickname} has no job tracker");
+            Job job = giver.Worker.TryGiveJob(pawn);
+            ctx.Require(job != null, $"joy giver {giverDefName} gives no job to {nickname}");
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            Log.Message($"[joy-giver] forced {job.def.defName} on {nickname} from {giverDefName}; current job now {pawn.CurJob?.def.defName ?? "none"}");
+        }
+
         private static string Try<T>(System.Func<T> read)
         {
             try
