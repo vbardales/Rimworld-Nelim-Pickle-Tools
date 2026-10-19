@@ -121,6 +121,55 @@ namespace Nelim.PickleTools.LoadAudit
                 (declared.Count == 0 ? "(empty)" : string.Join(", ", declared)));
         }
 
+        /// <summary>
+        /// Asserts the entry the Mods list would show for the mod (by packageId, installed, active or not), read through <c>ModMetaData</c>:
+        /// (1) the name equals the expected text, (2) the description is not empty, (3) the preview image is non-null and is a real texture
+        /// (not the game's placeholder), (4) the game recorded no formatting error in the About.xml (packageId, version). Every failed check is listed with the value read. This is the data the
+        /// list draws, not the UI: it does not open the Mods page. Written 2026-10-19 for Colorful Coats VAE Renew (a mod with no assembly).
+        /// Not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the mod list entry of the mod {string} has the name {string}, a description and a preview image that loaded")]
+        public void ModListEntryIsComplete(PickleContext ctx, string packageId, string expectedName)
+        {
+            ModMetaData meta = ModLister.AllInstalledMods.FirstOrDefault(
+                m => string.Equals(m.PackageId, packageId, StringComparison.OrdinalIgnoreCase) ||
+                     string.Equals(m.PackageIdPlayerFacing, packageId, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(meta != null, $"no installed mod has the packageId \"{packageId}\"");
+
+            var failed = new List<string>();
+            if (meta.Name != expectedName)
+            {
+                failed.Add($"(1) name: read \"{meta.Name}\", expected \"{expectedName}\"");
+            }
+
+            if (string.IsNullOrWhiteSpace(meta.Description))
+            {
+                failed.Add($"(2) description: read {(meta.Description == null ? "null" : "\"" + meta.Description + "\"")}");
+            }
+
+            Texture2D preview = meta.PreviewImage;
+            if (preview == null)
+            {
+                failed.Add($"(3) preview image: read null (expected file {Path.Combine(meta.RootDir.FullName, "About/Preview.png")})");
+            }
+            else if (preview == BaseContent.BadTex)
+            {
+                failed.Add($"(3) preview image: read the game's placeholder texture {preview.name} {preview.width}x{preview.height}");
+            }
+
+            if (meta.HadIncorrectlyFormattedPackageId || meta.HadIncorrectlyFormattedVersionInMetadata)
+            {
+                failed.Add($"(4) About.xml: HadIncorrectlyFormattedPackageId {meta.HadIncorrectlyFormattedPackageId}, " +
+                           $"HadIncorrectlyFormattedVersionInMetadata {meta.HadIncorrectlyFormattedVersionInMetadata} (root {meta.RootDir.FullName})");
+            }
+
+            ctx.Attach(
+                "mod-list-entry",
+                $"mod {meta.PackageId}: name \"{meta.Name}\", description {(meta.Description ?? string.Empty).Length} characters, " +
+                $"preview {(preview == null ? "null" : preview.width + "x" + preview.height)}");
+            ctx.Assert(failed.Count == 0, $"the mod list entry of {meta.PackageId} is incomplete: " + string.Join("; ", failed));
+        }
+
         private static void Check(PickleContext ctx, string packageId, string apartFrom)
         {
             ModContentPack pack = LoadedModManager.RunningMods.FirstOrDefault(
