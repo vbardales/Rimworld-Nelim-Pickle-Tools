@@ -188,6 +188,47 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(policy.filter.Allows(def), $"the new food policy still refuses {defName}: the def is not one a food policy can hold");
         }
 
+        /// <summary>
+        /// Gives the colonist a new apparel policy of their own that allows every garment, so a garment the colonist's saved policy refuses
+        /// (a policy saved before a mod added its garments does not list them, so the colonist drops them) is kept. The policy is named
+        /// "Pickle: everything" and is made for this call; the colonist's earlier policy is left as it was. Fails when the colonist has no outfit tracker.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} follows an apparel policy that allows everything")]
+        public void FollowsEverythingApparelPolicy(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.outfits != null, $"{nickname} has no outfit tracker");
+            ApparelPolicy policy = Current.Game.outfitDatabase.MakeNewOutfit();
+            policy.label = "Pickle: everything";
+            policy.filter.SetAllowAll(null);
+            pawn.outfits.CurrentApparelPolicy = policy;
+            ctx.Assert(pawn.outfits.CurrentApparelPolicy == policy, $"{nickname} still follows '{pawn.outfits.CurrentApparelPolicy?.label}' after the step");
+        }
+
+        /// <summary>
+        /// Gives the colonist a new apparel policy of their own: a copy of the one they follow now, with one more def allowed (by defName). Everything
+        /// else stays as the earlier policy had it. The earlier policy is left as it was. Fails when the def is unknown or is not a garment a policy can hold.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} follows an apparel policy that also allows {string}")]
+        public void FollowsApparelPolicyAlsoAllowing(PickleContext ctx, string nickname, string defName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.outfits != null, $"{nickname} has no outfit tracker");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ApparelPolicy before = pawn.outfits.CurrentApparelPolicy;
+            ApparelPolicy policy = Current.Game.outfitDatabase.MakeNewOutfit();
+            policy.label = "Pickle: " + (before == null ? "default" : before.label) + " + " + defName;
+            if (before != null)
+            {
+                policy.filter.CopyAllowancesFrom(before.filter);
+            }
+
+            policy.filter.SetAllow(def, true);
+            pawn.outfits.CurrentApparelPolicy = policy;
+            ctx.Assert(policy.filter.Allows(def), $"the new apparel policy still refuses {defName}: the def is not one an apparel policy can hold");
+        }
+
         private static Thing ThingAt(PickleContext ctx, string defName, int x, int z)
         {
             Map map = Find.CurrentMap;
