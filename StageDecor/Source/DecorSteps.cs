@@ -60,6 +60,27 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Places a pot (a building, by defName) at a cell and a plant (by defName) in it, fully grown, in one step: the pot first, then the plant on
+        /// the same cell, which the game lets stand there. Both are remembered for "the decor is removed". Fails when the cell holds a pawn or a
+        /// building already, when the second def is not a plant, or when the pot or the plant is gone from the map after the step.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} holding {string} fully grown at \\({int}, {int}\\)")]
+        public void PlaceDecorHolding(PickleContext ctx, string potDefName, string plantDefName, int x, int z)
+        {
+            ThingDef plantDef = DefDatabase<ThingDef>.GetNamedSilentFail(plantDefName);
+            ctx.Require(plantDef != null && plantDef.plant != null, $"'{plantDefName}' is not a plant def in this game");
+            PlaceDecor(ctx, potDefName, x, z);
+            Thing pot = Placed.Last();
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            var plant = (Plant)ThingMaker.MakeThing(plantDef);
+            plant.Growth = 1f;
+            Placed.Add(GenSpawn.Spawn(plant, cell, map, WipeMode.Vanish));
+            ctx.Assert(pot.Spawned, $"the {potDefName} at ({x}, {z}) is gone after the {plantDefName} was placed in it: the game wipes the pot, a pot with a plant on it is not possible here");
+            ctx.Assert(plant.Spawned, $"the {plantDefName} at ({x}, {z}) is not on the map after the step");
+        }
+
+        /// <summary>
         /// Lays a floor (a TerrainDef: a carpet, a tile, soil) on every cell of the rectangle from the first corner to the second, and
         /// remembers what each cell held, so the removal step puts it back. Fails naming the first cell off the map or under a wall.
         /// </summary>
