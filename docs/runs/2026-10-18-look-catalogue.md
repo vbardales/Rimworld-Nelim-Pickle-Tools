@@ -9,3 +9,4 @@
 - Tickets 2026-10-20 (look-gallery lots 24, 28, 30, 32, 33): all passed (24 haircolour 1 to 8; 28 head 1 to 20; 30 facetattoo 1 to 20; 32 bodytattoo 1 to 20; 33 bodytattoo 21 to 40, 162 s). Runs 28-29 and 30-31 ended in-progress with one scenario: lots 29 and 31 did not run, to refile alone. Tiles cut, sheets regenerated, run folders deleted.
 - Ticket d489 (2026-10-20): look-gallery-22 (hair 421 to 440) passed 1/1, 103 s; tiles cut, sheets regenerated, run folder deleted. Lot 23 filed next.
 - Ticket 7300 (2026-10-20): look-gallery-23 (hair 441 to 447) passed 1/1, 72 s; all 447 hairstyles now photographed (sheet hair-vanilla-hair-expanded-4: 24 of 24). Run folder deleted. Lot 29 filed next, then 31.
+- Ticket 3e26 (2026-10-21): look-gallery-29 (head 21 to 28) passed 1/1; tiles cut, sheets regenerated, run folder deleted. Lot 31 filed next.
