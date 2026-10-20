@@ -58,6 +58,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     public static class AreaOps
     {
         private static readonly List<Action> KeepOutHooks = new List<Action>();
+        private static Map lastFramedMap;
 
         // Not map.mapPawns: its accessors throw "Accessing map pawns off main thread" when a step runs off the main thread (EntityGazing gallery-8, 2026-10-15).
         internal static IEnumerable<Pawn> SpawnedPawns(Map map) => map == null ? Enumerable.Empty<Pawn>() : map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).OfType<Pawn>().Where(p => p.Spawned).ToList();
@@ -85,6 +86,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             RequireMap(ctx);
             LiftZoomLimit();
+            // Asked again for the place it already shows (a scenario that frames the same place before every shot): nothing to wait for. Each wait is
+            // 90 frames, 33 s on a machine short of memory (VenusTouchWaistlines 405b, 2026-10-20: nine waits of that kind outlast the 300 s of a scenario).
+            if (Find.CameraDriver.MapPosition == new IntVec3(x, 0, z) && Mathf.Abs(Find.CameraDriver.RootSize - rootSize) < 0.05f && lastFramedMap == Find.CurrentMap)
+            {
+                Find.Selector.ClearSelection();
+                await ctx.WaitFrames(1);
+                Log.Message("[frame] already at (" + x + ", " + z + ") root size " + rootSize + ": no wait");
+                return;
+            }
+
             Find.Selector.ClearSelection();
             Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z));
             Find.CameraDriver.SetRootSize(rootSize);
@@ -102,6 +113,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 await ctx.WaitFrames(1);
             }
             Log.Message("[frame] asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00") + "; zoom wait " + zoomMs + " ms, total " + clock.ElapsedMilliseconds + " ms");
+            lastFramedMap = Find.CurrentMap;
         }
 
         /// <summary>
