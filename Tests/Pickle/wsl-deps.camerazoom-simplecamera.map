@@ -1,0 +1,8 @@
+# The camera zoom probe with SimpleCameraSetting (ray1203, workshop 3232415388, tags 1.7 1.6 1.5) added: does it lift the game's closest root size of 11 with its default settings?
+# Played by pickletools-camerazoom-simplecamera.feature. Asked 2026-10-21 by Virginie.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.camerazoom-simplecamera.map -Filter 'pickletools-camerazoom-simplecamera'
+nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+ray1203.SimpleCameraSetting 3232415388
