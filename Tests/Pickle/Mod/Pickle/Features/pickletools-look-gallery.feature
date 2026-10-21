@@ -2583,39 +2583,9 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidPants"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidPants"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidRomper"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidRomper"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidShirt"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidShirt"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidTribal"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidTribal"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_Bandolier"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_Bandolier"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_KidParka"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_KidParka"
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
@@ -3013,12 +2983,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And I take a screenshot "hat-Apparel_IntegratorHeadset"
     And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
-    When Nelim's Pickle Tools: "Nelim" wears "Apparel_KidHelmet"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "hat-Apparel_KidHelmet"
-    And Nelim's Pickle Tools: "Nelim" gets back the clothes it had
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     When Nelim's Pickle Tools: "Nelim" wears "Apparel_AdvancedHelmet"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_Corset"
