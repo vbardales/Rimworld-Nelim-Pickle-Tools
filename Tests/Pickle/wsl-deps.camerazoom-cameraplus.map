@@ -1,0 +1,8 @@
+# The camera zoom probe with Camera+ (Brrainz, workshop 867467808, 1.6 package id brrainz.cameraplus) added: does a camera mod lift the game's closest root size of 11?
+# Played by pickletools-camerazoom-cameraplus.feature. Asked 2026-10-21 by Virginie.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.camerazoom-cameraplus.map -Filter 'pickletools-camerazoom-cameraplus'
+nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tool above is the only copy of its steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+brrainz.cameraplus 867467808
