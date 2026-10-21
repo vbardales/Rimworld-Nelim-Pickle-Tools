@@ -23,3 +23,11 @@ Feature: PickleTools stage decor
     When Nelim's Pickle Tools: the decor is removed
     Then a "Steel" is at (145, 154)
     When I destroy the "Steel" at (145, 154)
+
+  Scenario: a pot holding a fully grown plant stays whole, then is removed
+    Given Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (148, 153)
+    Then a "PlantPot" is at (148, 153)
+    And a "Plant_Daylily" is at (148, 153)
+    When Nelim's Pickle Tools: the decor is removed
+    Then no "PlantPot" is at (148, 153)
+    And no "Plant_Daylily" is at (148, 153)
