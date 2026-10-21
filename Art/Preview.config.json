@@ -22,18 +22,11 @@
   "panelAnchor": "bottom-left",
   "echo": {
     "file": "echo-concept.png",
-    "color": "var(--accent)",
-    "panelTop": 36,
-    "panelWidth": 32
+    "color": "var(--accent)"
   },
   "iconBadge": {
     "file": "ModIcon-source.png",
-    "corner": "bottom-right",
-    "radius": 48,
-    "veil": "radial",
-    "veilSize": 250,
-    "veilLeft": -45,
-    "veilBottom": -45
+    "corner": "bottom-right"
   },
   "palette": {
     "veil": "#233140",
