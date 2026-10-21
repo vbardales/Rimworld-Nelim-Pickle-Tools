@@ -2789,12 +2789,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_VacsuitChildren"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-Apparel_VacsuitChildren"
-    When Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_PackBroadshield"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PackBroadshield"
