@@ -6,6 +6,7 @@ Two steps for a capture that needs the camera closer than Pickle's own zoom step
 | --- | --- |
 | `Nelim's Pickle Tools: the camera root size is set to {float}` | Calls `CameraDriver.SetRootSize` directly (smaller is closer) and waits 90 frames, since the game smooths the zoom. Does not check the size reached. |
 | `Nelim's Pickle Tools: the camera root size is {float}` | Asserts the root size reads that value to 0.05; the failure prints the value read, which says whether the game bounds the zoom or the zoom had not finished. |
+| `Nelim's Pickle Tools: the camera orthographic size is {float}` | Asserts the size the camera really draws (`Find.Camera.orthographicSize`, half the screen height in cells), to 0.05; the failure prints the value read. Added 2026-10-22: a camera mod can leave the root size alone and change what is drawn. |
 
 ## Why it exists
 
@@ -16,6 +17,10 @@ The read-back step is how a suite finds out.
 
 Ported on 2026-10-02 from AncientBuildingsRenew's provisional steps (`Tests/Pickle/Source/BuildingSteps.cs`), at Virginie's
 request, so the gallery suites share one copy. The consumer removes its local copy once these pass.
+
+## With a camera mod (2026-10-22)
+
+Camera+ (Brrainz, 867467808; ticket 996e, Camera+ 2026-08-28 on the 1.6 game) does NOT lift the game's bound of 11 on the root size: asked for 6, the root size still reads 11. It keeps the root size in the game's own range (11 to 60) and maps it onto another orthographic size (`Tools.LerpRootSize`, source pardeike/CameraPlus `Source/Tools.cs` and `Settings.cs`): at root size 11 its default zoom range draws an orthographic size of 2, where the game alone draws 11. So the root size is not the zoom once a camera mod is in the list: read the orthographic size (the step above), and the `I frame ... at zoom` and cell-filling steps, which compute from the root size, no longer give the same picture. Probe: `pickletools-camerazoom-cameraplus.feature` with `wsl-deps.camerazoom-cameraplus.map`; SimpleCameraSetting (3232415388) has the same probe, `pickletools-camerazoom-simplecamera.feature`.
 
 ## Using it from a suite
 

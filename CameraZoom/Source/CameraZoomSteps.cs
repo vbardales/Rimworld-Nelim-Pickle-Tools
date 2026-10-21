@@ -137,5 +137,20 @@ namespace Nelim.PickleTools.CameraZoom
                 Math.Abs(read - size) < Tolerance,
                 $"the camera root size reads {read}, not {size}: the game bounds the zoom there, or the zoom had not finished");
         }
+
+        /// <summary>
+        /// Asserts the size the camera really draws, its orthographic size (the visual zoom: half the height of the screen in cells). A camera mod such as
+        /// Camera+ keeps the root size inside the game's own range and maps it onto another orthographic size, so the root size alone does not say how close
+        /// the picture is. The failure prints the value read.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the camera orthographic size is {float}")]
+        public void OrthographicSizeIs(PickleContext ctx, float size)
+        {
+            ctx.Require(Find.Camera != null, "no camera is loaded: load a map first");
+            float read = Find.Camera.orthographicSize;
+            ctx.Assert(
+                Math.Abs(read - size) < Tolerance,
+                $"the camera orthographic size reads {read}, not {size}: no camera mod maps the root size onto it, or the zoom had not finished");
+        }
     }
 }
