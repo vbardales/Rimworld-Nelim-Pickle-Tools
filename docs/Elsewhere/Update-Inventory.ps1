@@ -7,7 +7,7 @@
   Counts source attribute declarations, not resolved Cucumber expressions or runtime coverage.
 #>
 param(
-    [string]$CollectionRoot = (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent),
+    [string]$CollectionRoot = (Split-Path (Split-Path (Split-Path $PSScriptRoot -Parent) -Parent) -Parent),
     [switch]$Check
 )
 $ErrorActionPreference = 'Stop'

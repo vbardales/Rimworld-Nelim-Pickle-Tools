@@ -85,13 +85,13 @@ research/inspect tabs, pawn readback, texture ownership and expansion guards. In
 regressions: InterfaceScale installs a run-wide hook. Inspect required captures in both languages.
 Never enable bundle and standalone companions together. Preserve existing settings during test cleanup.
 
-Launch only through Run-PickleWsl.ps1 when the audit workflow permits it; see [Authoring](Authoring/README.md)
+Launch only through Run-PickleWsl.ps1 when the audit workflow permits it; see [Authoring](docs/AUTHORING.md)
 and [Headless](Headless/README.md). No Windows game launch. Without RIMMSQOL, startup/reflection/JIT is a
 required explicit check: source guards alone do not prove it.
 
 ## Functional scenarios and their scope
 
-They are in [`TEST_SCENARIOS.md`](TEST_SCENARIOS.md) since 2026-10-10.
+They are in [`docs/TEST_SCENARIOS.md`](docs/TEST_SCENARIOS.md) since 2026-10-10.
 
 ## Evidence and acceptance
 

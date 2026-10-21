@@ -106,7 +106,7 @@ suppression is off, because "is closed" also holds when nothing ever tried to op
 ## What has and has not been played
 
 This closes non-Pickle windows, including the settings window a suite may want to test. It is not
-screenshot mode, which hides the HUD. See the [authoring guide](../Authoring/README.md).
+screenshot mode, which hides the HUD. See the [authoring guide](../docs/AUTHORING.md).
 
 **Nothing of this copy has been played yet.** It compiles with 0 warnings and 0 errors, the two patterns pass
 `Check-Steps.ps1`, and the probe's step lines all resolve.

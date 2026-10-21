@@ -14,7 +14,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `AncientBuildingsRenew` | 2 | 29 | 15 | none |
 | `AncientChineseBeastAndGeneExpandedRenew` | 18 | 118 | 24 | [AncientChineseBeastAndGeneExpandedRenew.md](AncientChineseBeastAndGeneExpandedRenew.md) |
 | `AncientSalvage` | 9 | 48 | 19 | [AncientSalvage.md](AncientSalvage.md) |
-| `AnimalApparelCollarsAndKitRenew` | 1 | 32 | 16 | none |
+| `AnimalApparelCollarsAndKitRenew` | 1 | 33 | 16 | none |
 | `AnimalArk` | 1 | 21 | 12 | none |
 | `AnimalsNaturally` | 0 | 0 | 7 | none |
 | `AnimaSong` | 3 | 50 | 8 | [AnimaSong.md](AnimaSong.md) |
@@ -24,7 +24,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `BeefEatersRenew` | 2 | 11 | 14 | none |
 | `BillAutopilot` | 13 | 107 | 26 | [BillAutopilot.md](BillAutopilot.md) |
 | `BurnBarrel` | 1 | 27 | 11 | none |
-| `ColorfulCoatsCatsAndDogsRenew` | 2 | 24 | 10 | none |
+| `ColorfulCoatsCatsAndDogsRenew` | 2 | 24 | 11 | none |
 | `ColorfulCoatsDodosRenew` | 0 | 0 | 9 | none |
 | `ColorfulCoatsMegafaunaRenew` | 0 | 0 | 12 | none |
 | `ColorfulCoatsVAERenew` | 0 | 0 | 10 | none |
@@ -44,7 +44,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `FlavorText/FlavorTextExtended` | 1 | 20 | 9 | [FlavorTextExtended.md](FlavorTextExtended.md) |
 | `FlavorText/FlavorTextExtendedFR` | 10 | 41 | 24 | [FlavorTextExtendedFR.md](FlavorTextExtendedFR.md) |
 | `FoldingSkateboardRenew` | 1 | 27 | 8 | none |
-| `FoodCourt` | 6 | 43 | 16 | none |
+| `FoodCourt` | 6 | 43 | 14 | none |
 | `ForTheOccasion` | 5 | 64 | 15 | none |
 | `FoxLampRenew` | 1 | 19 | 9 | none |
 | `FrenchGrammarRenew` | 4 | 21 | 9 | none |
@@ -85,7 +85,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 | `RimScentExtendedFarmyardExpansion` | 0 | 0 | 3 | none |
 | `RimScentExtendedIncensePlusExpansion` | 0 | 0 | 1 | none |
 | `RimScentExtendedPerfumePlusExpansion` | 1 | 1 | 3 | none |
-| `SanctuaryBacklot` | 4 | 16 | 30 | [SanctuaryBacklot.md](SanctuaryBacklot.md) |
+| `SanctuaryBacklot` | 4 | 16 | 31 | [SanctuaryBacklot.md](SanctuaryBacklot.md) |
 | `SkillIcons` | 7 | 29 | 17 | [SkillIcons.md](SkillIcons.md) |
 | `TechLevelFixes` | 0 | 0 | 2 | [TechLevelFixes.md](TechLevelFixes.md) |
 | `VenusTouchWaistlines` | 0 | 0 | 22 | none |
@@ -100,9 +100,9 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 ### AdaptiveStorageNeolithicRenew
 
-- `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/PublicationSteps.cs`: 2 step declarations.
-- `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/ResearchTabSteps.cs`: 6 step declarations.
-- `AdaptiveStorageNeolithicRenew/tests/Pickle/Source/StuffSteps.cs`: 14 step declarations.
+- `AdaptiveStorageNeolithicRenew/Tests/Pickle/Source/PublicationSteps.cs`: 2 step declarations.
+- `AdaptiveStorageNeolithicRenew/Tests/Pickle/Source/ResearchTabSteps.cs`: 6 step declarations.
+- `AdaptiveStorageNeolithicRenew/Tests/Pickle/Source/StuffSteps.cs`: 14 step declarations.
 
 ### AlphaMythologyRenew
 
@@ -153,7 +153,7 @@ Declarations are line-leading Given/When/Then/Step attributes counted from sourc
 
 ### AnimalApparelCollarsAndKitRenew
 
-- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 32 step declarations.
+- `AnimalApparelCollarsAndKitRenew/Tests/Pickle/Source/AnimalSteps.cs`: 33 step declarations.
 
 ### AnimalArk
 

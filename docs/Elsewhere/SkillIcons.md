@@ -33,5 +33,5 @@ launch with `Run-PickleWsl.ps1 -Language French` and assert against language pas
 ### Shared version exists; local copy remains
 
 Source inventory, 2026-09-22: `SkillIcons/Tests/Pickle/Source/TextureOwnerSteps.cs` still exist.
-Shared version is [TextureOwner](../TextureOwner/README.md), whose adoption instructions describe
+Shared version is [TextureOwner](../../TextureOwner/README.md), whose adoption instructions describe
 phrase and pass-map changes. Do not report suite migration complete merely because shared DLL exist.

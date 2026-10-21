@@ -2,7 +2,7 @@
 
 **Staging a gallery capture? [docs/STAGING.md](docs/STAGING.md)** says which step does what.
 **Looking for a step? [docs/steps.md](docs/steps.md) lists every step of this repository, generated from the sources; Pickle's own steps are in [its catalogue](https://github.com/RimWorks/Rimworld-Pickle/blob/main/Docs/steps.md). Sanctuary place steps (`Nelim's Sanctuary:`): [Nelim's Sanctuary Backlot catalogue](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot/blob/main/docs/steps.md).**
-**Writing a new suite? Start with the [authoring guide](Authoring/README.md)** for layout, pass maps,
+**Writing a new suite? Start with the [authoring guide](docs/AUTHORING.md)** for layout, pass maps,
 dependency tags, step design, restart tests and evidence requirements.
 **Loading `test-colony`? [docs/FIXTURES.md](docs/FIXTURES.md)** lists what it holds:
 colonists, hostile things, free build areas, coordinates.
@@ -42,7 +42,7 @@ See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offli
 | [`SaveSteps/`](SaveSteps/README.md) | **Optional, not played yet.** The game is saved under a name, the saved game is handed to a mod as a fixture | `nelim.pickletools.savesteps` |
 | [`Headless/`](Headless/README.md) | Not a tool: the guide to testing a mod in the headless WSL install without taking the screen (the launcher, the queue and lock, staging, passes, reports). The scripts it describes live in the monorepo's `scripts/` | none |
 | [`Upstream/`](Upstream/README.md) | Not a tool: the ledger of the changes to Pickle itself that wait for a merge, and the patches that carry them | none |
-| [`Elsewhere/`](Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history: what each reads, and where to find it before writing it a second time | none |
+| [`docs/Elsewhere/`](docs/Elsewhere/README.md) | Not a tool: the ledger of steps that live in one mod's own repository, or only in its history: what each reads, and where to find it before writing it a second time | none |
 
 The default fixture for functional scenarios is Pickle's own `test-colony`; for gallery captures it is `Nelims-tribe`, shipped by
 [Nelim's Sanctuary Backlot](https://github.com/vbardales/Rimworld-Nelim-Sanctuary-Backlot). The optional
@@ -55,7 +55,7 @@ VEF is a load-time dependency; its suite stages it explicitly with `PickleTools/
 
 ## Steps still owned by a suite
 
-See [Elsewhere/](Elsewhere/README.md) for the single catalogue, one note per suite, historical code,
+See [docs/Elsewhere/](docs/Elsewhere/README.md) for the single catalogue, one note per suite, historical code,
 and the reproducible local inventory. Consult it before copying or promoting a step.
 
 ## Using a tool from a suite

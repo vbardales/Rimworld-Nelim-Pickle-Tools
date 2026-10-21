@@ -1,7 +1,7 @@
 # Adaptive Storage Neolithic Renew
 
 **Adaptive Storage Neolithic Renew** (`AdaptiveStorageNeolithicRenew/tests/Pickle/Source/ResearchTabSteps.cs`, built by `Build.ps1` beside it into
-`tests/Pickle/Mod/Pickle/Assemblies/`, C# 5 with the .NET Framework `csc`). Five steps on research window, texts name mod. Four superseded by [`ResearchSteps/`](../ResearchSteps/README.md), same job, also choose by label or key; played in that suite 2026-09-21,
+`tests/Pickle/Mod/Pickle/Assemblies/`, C# 5 with the .NET Framework `csc`). Five steps on research window, texts name mod. Four superseded by [`ResearchSteps/`](../../ResearchSteps/README.md), same job, also choose by label or key; played in that suite 2026-09-21,
 English 7 of 7, French 9 of 11 (2 skipped).
 
 | Where | What it gives a scenario |

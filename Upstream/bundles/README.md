@@ -43,7 +43,7 @@ features green.
 ## What they cannot prove
 
 Check report freshness, `exitReason`, expected scenario counts and captures using the
-[authoring guide](../../Authoring/README.md). A matching command line alone is not a complete-run verdict.
+[authoring guide](../../docs/AUTHORING.md). A matching command line alone is not a complete-run verdict.
 
 - **That the bundle was the Pickle the game loaded.** The launcher's `override:` line is the only trace and its
   own output truncates it. The real proof is a scenario that can only pass on the patched Pickle, which is what

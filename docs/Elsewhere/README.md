@@ -1,7 +1,7 @@
 # Steps owned by other suites
 
 Single catalogue for Pickle steps kept in mod's own repository, and for known historical
-steps removed from suite. Companion tools listed in [main README](../README.md).
+steps removed from suite. Companion tools listed in [main README](../../README.md).
 Before writing step, look there and here. Notes not stageable packages.
 
 ## Coverage
@@ -73,8 +73,8 @@ Extraction candidates, not completed migrations. No step DLL, feature or pass ma
 From collection root:
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/Elsewhere/Update-Inventory.ps1
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/Elsewhere/Update-Inventory.ps1 -Check
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/docs/Elsewhere/Update-Inventory.ps1
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/docs/Elsewhere/Update-Inventory.ps1 -Check
 ```
 
 First writes INVENTORY.md after checking every discovered suite has note. Second read-only
@@ -82,5 +82,5 @@ and rejects stale snapshot or missing note. Uses rg, includes ignored repositori
 links, counts source declarations rather than resolving expressions. Not runtime or ambiguity test.
 When new suite appears, add its note, inspect its code, regenerate. See script for precise scope.
 
-Former [ELSEWHERE.md](../ELSEWHERE.md) and [InSuites/](../InSuites/README.md) remain as redirects so old links
+Former [ELSEWHERE.md](../ELSEWHERE.md) and [InSuites/](../../InSuites/README.md) remain as redirects so old links
 still lead here; do not add entries to them.

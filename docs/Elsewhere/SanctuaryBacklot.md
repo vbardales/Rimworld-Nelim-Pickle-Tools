@@ -2,7 +2,7 @@
 
 Repository `SanctuaryBacklot` (`vbardales/Rimworld-Nelim-Sanctuary-Backlot`, private), folder `Source/` (own step assembly, `Mod/Pickle/Assemblies/Nelim.SanctuaryBacklot.dll`),
 9 steps in one file, prefix `Nelim's Sanctuary: `. Catalogue generated from sources, lives in repository:
-[`SanctuaryBacklot/docs/steps.md`](../../SanctuaryBacklot/docs/steps.md) (`docs/Generate-Steps.ps1`, `-Check` verifies it). Own `Check-Steps.ps1` matches every pattern
+[`SanctuaryBacklot/docs/steps.md`](../../../SanctuaryBacklot/docs/steps.md) (`docs/Generate-Steps.ps1`, `-Check` verifies it). Own `Check-Steps.ps1` matches every pattern
 against Pickle vocabulary and other suites', reports none ambiguous (2026-10-08, first of those checks to read repository other than `PickleTools/<tool>/Source`).
 Features: 19, in `Tests/Pickle/Mod/Pickle/Features/`, moved here from PickleTools 2026-10-07; run with `-Mod SanctuaryBacklot` and pass map that stages PickleTools' tools by `path:PickleTools/...`.
 

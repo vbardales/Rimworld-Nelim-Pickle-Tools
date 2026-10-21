@@ -44,7 +44,7 @@ these steps.
    `-DepMap wsl-deps.avec-pickletools.map -Filter <feature>`. `@pickletools` is only a filter label;
    `@wip` requires `-IncludeWip` and is not a dependency check.
 3. Write features with the vocabulary below. `Check-Steps.ps1` checks the patterns and feature lines it scans;
-   see the [authoring guide](../Authoring/README.md) for its limits and the full suite workflow.
+   see the [authoring guide](../docs/AUTHORING.md) for its limits and the full suite workflow.
 
 ### Vocabulary
 

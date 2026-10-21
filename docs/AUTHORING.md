@@ -2,7 +2,7 @@
 
 This is the entry point for suite authors in this collection. The collection's `AUDIT.md` defines the
 workflow gates; [Headless](../Headless/README.md) defines how runs are launched. The [tool catalogue](../README.md)
-and [suite catalogue](../Elsewhere/README.md) say which steps already exist. Read those before writing C#.
+and [suite catalogue](Elsewhere/README.md) say which steps already exist. Read those before writing C#.
 
 Reviewed against the local launcher, staging script, companion sources and local Pickle source on 2026-09-22.
 This is a documentation/source review, not a run of the examples or a claim about the latest upstream release.
@@ -52,7 +52,7 @@ Keep the companion and PickleTools out of the Workshop payload.
 
 Use the actual capitalization shown by the filesystem, especially on Linux. The shared staging script expects
 `Tests/Pickle` and `Mod/About/About.xml`; its `--list` only enumerates top-level suites and is not a complete
-inventory of nested repositories. The [local inventory](../Elsewhere/INVENTORY.md) includes those.
+inventory of nested repositories. The [local inventory](Elsewhere/INVENTORY.md) includes those.
 
 In this checkout, `FlavorText/FlavorTextExtended` and `FlavorText/FlavorTextExtendedFR` are the real Git
 roots. The same names at collection level are Windows junctions, not duplicate mods. Record canonical paths
@@ -324,5 +324,5 @@ whole `screenshots/` folder; one line per run in `docs/runs/`) is in
 
 Record cleanup and residual state. Update STATUS.md with validated, defective, unverified or justified
 not-applicable findings, without promoting an earlier blocked gate on the strength of a later isolated check.
-Add new local steps to [Elsewhere](../Elsewhere/README.md) and regenerate its inventory. A contribution to Pickle
+Add new local steps to [Elsewhere](Elsewhere/README.md) and regenerate its inventory. A contribution to Pickle
 goes in [Upstream/PENDING.md](../Upstream/PENDING.md); public issues/PRs/comments require the owner's approval.

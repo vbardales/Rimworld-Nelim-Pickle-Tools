@@ -76,4 +76,4 @@ Kept so a "no" is not a "never". "Lead" is a reading of the game API on 2026-10-
 CrystalBall, AncientBuildingsRenew, AncientChineseBeastAndGeneExpandedRenew, AnimalsNaturally, ColorfulCoatsMegafaunaRenew,
 DrumBathHygiene, ACertainSeriesCreaturesAndHairRenew, ASlothModRenew, FieldworkCompanions, ContentedLivestock, ColorfulCoatsDodos,
 ColorfulCoatsVAERenew, ExtinguishRefuelablesCompatibilityPatch, EponaInstrumentsRenew, CreaturesOfKi. The recurring needs are recorded
-in `Elsewhere/README.md` (known overlap table).
+in `docs/Elsewhere/README.md` (known overlap table).

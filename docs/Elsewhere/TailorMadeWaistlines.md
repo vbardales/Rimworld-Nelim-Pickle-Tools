@@ -27,7 +27,7 @@ Recorded anyway, because deletion did not remove the questions: what running gam
 
 ## Screenshot mode: historical code, not replaced by ClearScreen
 
-`I hide the interface around the windows on screen` / `I bring the interface back` turned on game's screenshot mode and cleared `drawInScreenshotMode` on Pickle's own runner windows, restoring from `[AfterScenario]` too. [`ClearScreen/`](../ClearScreen/README.md) closes non-Pickle windows; does not hide HUD while keeping window being photographed. For live version of this screenshot technique, inspect Work Studio's `ModSteps.cs` or Adaptive Storage Neolithic Renew's `PublicationSteps.cs`.
+`I hide the interface around the windows on screen` / `I bring the interface back` turned on game's screenshot mode and cleared `drawInScreenshotMode` on Pickle's own runner windows, restoring from `[AfterScenario]` too. [`ClearScreen/`](../../ClearScreen/README.md) closes non-Pickle windows; does not hide HUD while keeping window being photographed. For live version of this screenshot technique, inspect Work Studio's `ModSteps.cs` or Adaptive Storage Neolithic Renew's `PublicationSteps.cs`.
 
 ## Also worth knowing from this suite, without being steps
 

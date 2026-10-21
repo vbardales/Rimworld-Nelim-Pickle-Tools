@@ -49,7 +49,7 @@ is public.
    Select it with `-DepMap <the map>`. The folder's own `About.xml` packageId must match the one written.
 2. Tag scenarios `@requires:nelim.pickletools.filmticks` so a pass without the tool skips them.
    Use `@wip` only for unfinished scenarios and opt in with `-IncludeWip`; a narrow `-Filter` is useful
-   during development but the launcher does not require one. See the [authoring guide](../Authoring/README.md).
+   during development but the launcher does not require one. See the [authoring guide](../docs/AUTHORING.md).
 3. Write the scenario, with the filmed stretch between the two steps:
 
    ```gherkin

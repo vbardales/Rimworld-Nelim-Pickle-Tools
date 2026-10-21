@@ -97,7 +97,7 @@ A restart is two processes. The demonstration is a chain of three launches under
 stages once and keeps the profile). From PowerShell, pass a real array:
 `& ./scripts/Run-PickleWsl.ps1 -Mod <mod> -DepMap wsl-deps.avec-rimmsqol.map -Filter <writer> -Then @('<reader>', '<last>')`.
 With `powershell.exe -File`, a comma string can instead become one filter in one process; see the
-[authoring guide](../Authoring/README.md).
+[authoring guide](../docs/AUTHORING.md).
 
 1. reveal, then **keep**: `RIMMSQOL's choices are kept for the next launch` is the **last** step, so a scenario
    that fails before it leaves nothing;

@@ -29,7 +29,7 @@ in a pass map of `Tests/Pickle/`. Not in the Workshop bundle: a companion staged
 root size 6 and asserts the game's own closest size, 11 (the answer the probe found on 2026-10-10).
 
 What a camera step does not do: frame a named pawn. `CoatSteps` frames `coat-N` animals only; a by-name step is wanted
-(see `Elsewhere/README.md`, the camera framing row).
+(see `docs/Elsewhere/README.md`, the camera framing row).
 
 ## Framing a subject (2026-10-02)
 
