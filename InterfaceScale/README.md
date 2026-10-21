@@ -70,7 +70,7 @@ suite in the repository or against Pickle's vocabulary. No game, a few seconds.
 
 The build is `Source/`, net48, against `Krafs.Rimworld.Ref`, `Lib.Harmony` and `RimWorks.Pickle.Ref`; the DLL is
 committed in `Mod/Pickle/Assemblies/`, as for the other tools. The bundle copy under `PickleTools/Mod/Pickle/Assemblies/`
-is refreshed by `Release/Prepare-Release.ps1 -SyncMod`.
+is refreshed by `Release/Sync-Payload.ps1 -SyncMod`.
 
 ## What has and has not been played
 

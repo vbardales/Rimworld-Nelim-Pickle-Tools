@@ -14,7 +14,7 @@ of its pass map, plus what we carry for Pickle itself.
 
 **Developer tooling. GitHub and Workshop release preparation is documented in [Release](Release/README.md).**
 The source `Mod/` is the Workshop payload as committed: metadata, artwork and the fourteen step DLLs (`Pickle/Assemblies`),
-copied from each tool by `Release/Prepare-Release.ps1 -SyncMod` and checked by `-Check`; the publish workflow uploads it as it is, under one
+copied from each tool by `Release/Sync-Payload.ps1 -SyncMod` and checked by `-Check`; the publish workflow uploads it as it is, under one
 Workshop identity. Pickle is required; mods targeted by optional integration tests remain optional.
 See [TESTING.md](TESTING.md) for the bundle's validation plan and recorded offline results.
 
@@ -76,7 +76,7 @@ declares is unique across Pickle and the suites; each tool's README says how tha
 
 ```
 PickleTools/
-  Mod/            the Workshop payload as committed: metadata, artwork, the fourteen step DLLs (Prepare-Release.ps1 -SyncMod)
+  Mod/            the Workshop payload as committed: metadata, artwork, the fourteen step DLLs (Sync-Payload.ps1 -SyncMod)
   Art/            the sources of the icon and the preview, and the page that engraves the preview
   <Tool>/         one folder per tool
     Mod/          what the staging copies: About/About.xml, Pickle/Assemblies/*.dll, LICENSE

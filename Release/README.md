@@ -1,4 +1,4 @@
-# Release preparation for 1.0.0
+# Release
 
 ## Notice required in GitHub release notes and the Workshop description
 
@@ -16,16 +16,15 @@ one in another mod). So `Mod/Pickle/Assemblies` holds the fourteen tool DLLs, ea
 tool's `Mod/Pickle/Assemblies` (the one the tests played):
 
 ```powershell
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Prepare-Release.ps1 -SyncMod   # copy them, and ATTRIBUTION.md, into Mod/
-powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Prepare-Release.ps1 -Check     # before every release: exit 1 on any difference
-```n
-`-Check -Rebuild` also rebuilds each tool and lists (NOTE, never a failure) those that are not byte-identical: the package references float, so
-they all were on 2026-09-25 and a rebuild is not the gate. Rebuilding a tool means committing its new DLL in the tool's folder first,
-then `-SyncMod`. Keep `Source/`, `.build/` and any evidence out of `Mod/`.
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Sync-Payload.ps1 -SyncMod   # copy them, and ATTRIBUTION.md, into Mod/
+powershell.exe -ExecutionPolicy Bypass -File PickleTools/Release/Sync-Payload.ps1 -Check     # before every release: exit 1 on any difference
+```
+
+`-Check` also runs `docs/Generate-Steps.ps1 -Check` (the step catalogue must be current). The local build check is `scripts/Build-Mod.ps1` of the protocols, one tool at a time (`-Mod PickleTools -Project <Tool>/Source/<X>.csproj`): the package references float, so a rebuild is not byte-identical to the tracked DLL and is never the gate; the gate is the hash comparison of `-Check`. Rebuilding a tool means committing its new DLL in the tool's folder first, then `-SyncMod`. Keep `Source/`, `.build/` and any evidence out of `Mod/`.
 
 ## Distribution
 
-One GitHub release and **one Steam Workshop item**; local preparation only, not published.
+One GitHub release and **one Steam Workshop item**.
 The bundle is `nelim.pickletools`, with fourteen modules in `Pickle/Assemblies`. Pickle is its only direct
 hard dependency. RIMMSQOL and other targets of particular tests stay optional, including in Steam's
 required-items list. RIMMSQOL scenarios require `@requires:MalteSchulze.RIMMSqol`; VEF faction scenarios
@@ -35,34 +34,16 @@ Pickle scans the root Pickle directory directly, not conditional RimWorld load f
 bridge has presence guards, including teardown; startup/reflection/JIT without RIMMSQOL still requires
 the minimal runtime pass in [TESTING.md](../TESTING.md). Do not claim conditional DLL loading.
 
-The GitHub archive supplies the aggregate `Mod` plus separate `<Tool>/Mod` development companions.
+The repository holds the aggregate `Mod` plus separate `<Tool>/Mod` development companions.
 Never activate the aggregate and individual companions together: they duplicate the same steps.
-For the bundle, use `nelim.pickletools path:PickleTools/Mod` after extracting the archive and change
+For the bundle, use `nelim.pickletools path:PickleTools/Mod` after cloning the repository and change
 feature requirements to `@requires:nelim.pickletools`, plus the actual optional target requirements.
 Standalone packageIds are not aliases supplied by the bundle. Migrate tags and maps together.
 
-In source checkouts, the root Mod holds metadata; the generated aggregate is under `.build/releases`.
-Point a local bundle test map at that generated Mod directory. Existing per-tool source paths remain valid.
-Quiet New Factions is an optional companion, excluded from the Workshop aggregate and default archives. Use
-`-IncludeQuietNewFactions` to add its separate GitHub archive (`Release/Package-QuietNewFactions.ps1`, called by
-`Prepare-Release.ps1`). It requires VEF and Harmony, so it must never be merged into the aggregate payload. See its status
-for validation limits. ScreenshotStudio has no separate archive.
+Quiet New Factions is an optional companion, outside the Workshop aggregate (it requires VEF and Harmony, so it is never merged into the payload). ScreenshotStudio has no separate archive.
 
-## Prepare
+## Publication
 
-Build/check using TESTING.md, then from the collection root:
+The CI/CD owns everything after the payload: the checks of `.github/publish.config.json` (`requirePaths`, `forbidPaths`, Preview, description), the change note, the tag, the GitHub release and the Steam upload (`Rimworld-Release-Admin/docs/OPERATIONS.md`, `PUBLISHING-CI.md`). Nothing is packaged locally.
 
-```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File PickleTools/Release/Prepare-Release.ps1 -Version 1.0.0
-```
-
-Each invocation produces a fresh `.build/releases/<version>-<timestamp>` containing one Workshop zip,
-one GitHub zip, SHA256SUMS and a manifest with DLL hashes, source revision and dirty-tree flag.
-The script packages current DLLs; it does not rebuild or certify them. Extract the Workshop zip into
-one upload directory with About directly underneath. Earlier per-tool archives are superseded.
-
-Before publication: complete the ordered PUBLISHING.md audit, review presentation and run the aggregate
-minimal/integration probes. Commit the
-final source, rebuild/check and regenerate before tagging. Publish one Workshop item, record its real id,
-and attach the regenerated assets to the verified GitHub tag. The private Workshop item is `3806142401`;
-`About/PublishedFileId.txt` must remain in every upload so an update cannot create a duplicate item.
+Before publication: complete the ordered PUBLISHING.md audit, review presentation, run the aggregate minimal/integration probes and `Sync-Payload.ps1 -Check`. The Workshop item is `3806142401`; `About/PublishedFileId.txt` stays in `Mod/` so an update cannot create a duplicate item.
