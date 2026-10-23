@@ -25,7 +25,7 @@ behaviour checks, all listed under `automated_tests` in `STATUS.md`).
 
 | Manual check | Disposition | Reason |
 |---|---|---|
-| Real click on RIMMSQOL's own checkbox | **open, automatable** | a scenario can click it with the KeyedClick step in the restart chain (`aggregate-rimmsqol-restart-1-reveal`); not written, no ticket |
+| Real click on RIMMSQOL's own checkbox | not applicable | tests RIMMSQOL, not PickleTools (owner, 2026-10-23); the steps call what the checkbox calls, the restart chain plays that |
 | Text of ClickDiagnostics failure report | not applicable | probe windows leave Pickle no tag to click, so the symptom cannot be asserted; probe stays in `Upstream/tests/lost-click-probe.feature`, outside the suite |
 | SoundCapture by ear | not applicable to the bundle | optional companion outside the Workshop payload; level measured by ticket 0ce6, listening is hers via `SoundCapture/Run-Windows.ps1` |
 | Tooltip texts of other suites (HoverSteps) | read in `@review` captures | image reading already proven by a scenario, not a manual test |
