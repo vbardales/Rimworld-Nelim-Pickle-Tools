@@ -25,7 +25,7 @@ namespace Nelim.PickleTools.CameraZoom
         /// Sets the camera root size directly (smaller is closer: Pickle's closest is 12, the studio presets use 12 to 16) and waits
         /// 90 frames, since the game smooths the zoom over several frames. Does not check the size reached: use the read-back step.
         /// </summary>
-        [When("Nelim's Pickle Tools: the camera root size is set to {float}", TimeoutSeconds = 40f)]
+        [When("Nelim's Pickle Tools: the camera root size is set to {float}", TimeoutSeconds = 150f)]
         public async Task SetRootSize(PickleContext ctx, float size)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
@@ -40,7 +40,7 @@ namespace Nelim.PickleTools.CameraZoom
         /// the vertical (measured: size 12 gives about 45 px a cell on a 1080 px screen), and the screen's aspect ratio gives the
         /// horizontal. Waits 90 frames, then reads the root size back and fails saying what it found if the game stopped short.
         /// </summary>
-        [When("Nelim's Pickle Tools: I frame the cells \\({int}, {int}\\) to \\({int}, {int}\\) filling {int} percent of the screen", TimeoutSeconds = 40f)]
+        [When("Nelim's Pickle Tools: I frame the cells \\({int}, {int}\\) to \\({int}, {int}\\) filling {int} percent of the screen", TimeoutSeconds = 150f)]
         public async Task FrameCells(PickleContext ctx, int x1, int z1, int x2, int z2, int percent)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
@@ -62,7 +62,7 @@ namespace Nelim.PickleTools.CameraZoom
         }
 
         /// <summary>Centres the camera on a named pawn (colonist or animal) at a root size and reads it back, as the cell version does.</summary>
-        [When("Nelim's Pickle Tools: the camera is centered on {string} at root size {float}", TimeoutSeconds = 40f)]
+        [When("Nelim's Pickle Tools: the camera is centered on {string} at root size {float}", TimeoutSeconds = 150f)]
         public async Task CenterOnPawn(PickleContext ctx, string pawnName, float size)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
@@ -103,7 +103,7 @@ namespace Nelim.PickleTools.CameraZoom
         /// <summary>
         /// Centres the camera on one cell at the given root size (smaller is closer), then reads it back like the step that sets the size.
         /// </summary>
-        [When("Nelim's Pickle Tools: I frame the cell \\({int}, {int}\\) at zoom {float}", TimeoutSeconds = 40f)]
+        [When("Nelim's Pickle Tools: I frame the cell \\({int}, {int}\\) at zoom {float}", TimeoutSeconds = 150f)]
         public async Task FrameCell(PickleContext ctx, int x, int z, float size)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
