@@ -89,7 +89,7 @@ remaining:
   - "infrastructure blocked, 2026-09-23: four queued passes (French minimal, French Biotech-absent, French RIMMSQOL bridge, English RIMMSQOL settings cleanup) stopped during WSL staging with 'Read-only file system'. Each evidence directory contains no-report.txt, not a Pickle result. WSL's root overlay was confirmed mounted ro and a write probe failed; no game was launched for these passes. The lock and this task's tickets are clear. The owner requested no further Pickle ticket without explicit authorization, so automatic replay and heartbeat monitoring are paused."
   - "passed, 2026-09-23: the English minimal aggregate smoke on Pickle v4.9.1 (SHA256 equal to GitHub's digest, assembly 4.9.1.0), filter aggregate-minimal,aggregate-no-biotech,!aggregate-no-biotech: exitReason passed, 1/1, only the minimal scenario in the report, in 2026-09-23-v4.9.1-minimal-en-filter. (deleted 2026-10-19, superseded by the Pickle 6.6.3 runs, docs/runs/aggregate.md) It shows the new filter working (extension-less name, exclusion beating inclusion) and a startup on the new version. The baseline is now v4.9.1; every matrix pass recorded above on v4.8.4 has NOT been replayed on it."
   - "resolved, 2026-09-22 migration: VefFactionSteps was promoted from QuietNewFactions and built/checked offline. The migrated optional companion replayed from PickleTools/QuietNewFactions with 5/5 scenarios passed; this does not certify the aggregate bundle."
-protocols_read_sha: 86d6023cbbe423ba26271a516379f3517a781a37
+protocols_read_sha: 620c70bb8bd136389863d6e271600524a77b9b49
 ---
 # Status
 
