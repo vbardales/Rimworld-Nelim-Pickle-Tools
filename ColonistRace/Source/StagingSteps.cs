@@ -154,6 +154,90 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not HaulToCell (unreachable cell or the item is reserved)");
         }
 
+        /// <summary>
+        /// Starts the job Goto on a pawn (an animal or a colonist, by short name) by force: it walks from where it stands to a cell. The pawn is not moved.
+        /// The walk is drawn only while the game ticks, so let ticks pass after this step and pause only then. Fails when the pawn is unknown or not
+        /// spawned, the cell is outside the map, not standable or unreachable for it, or Goto does not become the current job.
+        /// Written 2026-10-23 for AACaK's shotlist v6. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is forced to walk to \\({int}, {int}\\)")]
+        public void ForcedToWalk(PickleContext ctx, string name, int x, int z)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            Map map = pawn.Map;
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map) && cell.Standable(map), $"the cell ({x}, {z}) is outside the map or not standable");
+            ctx.Require(pawn.CanReach(cell, PathEndMode.OnCell, Danger.Deadly), $"{name} at {pawn.Position} cannot reach ({x}, {z})");
+            JobDef jobDef = RequireJob(ctx, "Goto");
+            StartJob(ctx, name, pawn, jobDef, JobMaker.MakeJob(jobDef, cell));
+        }
+
+        /// <summary>
+        /// Starts the job FollowClose on a pawn (an animal, by short name) by force: it walks after a colonist and keeps within about three cells of
+        /// them, for as long as the game runs. The pawn is not moved. The following is drawn only while the game ticks. Fails when either pawn is
+        /// unknown or not spawned, or FollowClose does not become the current job.
+        /// Written 2026-10-23 for AACaK's shotlist v6. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} follows {string}")]
+        public void Follows(PickleContext ctx, string followerName, string leaderName)
+        {
+            FollowWithin(ctx, followerName, leaderName, 3);
+        }
+
+        /// <summary>
+        /// The same, keeping within the given number of cells of the leader instead of about three.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} follows {string} within {int} cells")]
+        public void FollowsWithin(PickleContext ctx, string followerName, string leaderName, int cells)
+        {
+            FollowWithin(ctx, followerName, leaderName, cells);
+        }
+
+        private static void FollowWithin(PickleContext ctx, string followerName, string leaderName, int cells)
+        {
+            ctx.Require(cells >= 1, "the follow distance is at least 1 cell");
+            Pawn follower = RequireSpawnedPawn(ctx, followerName);
+            Pawn leader = RequireSpawnedPawn(ctx, leaderName);
+            ctx.Require(follower != leader, "a pawn cannot follow itself");
+            JobDef jobDef = RequireJob(ctx, "FollowClose");
+            Job job = JobMaker.MakeJob(jobDef, leader);
+            job.followRadius = cells;
+            job.expiryInterval = 600000;
+            StartJob(ctx, followerName, follower, jobDef, job);
+        }
+
+        /// <summary>
+        /// Starts the job LayDown on the cell a pawn (an animal, by short name) stands on, forced to sleep, as the game's own rest giver does for an
+        /// animal without a bed. The pawn is not moved. The lying pose is drawn only while the game ticks. Fails when the pawn is unknown or not
+        /// spawned, or LayDown does not become the current job.
+        /// Written 2026-10-23 for AACaK's shotlist v6. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} lies down")]
+        public void LiesDown(PickleContext ctx, string name)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            JobDef jobDef = RequireJob(ctx, "LayDown");
+            Job job = JobMaker.MakeJob(jobDef, pawn.Position);
+            job.forceSleep = true;
+            StartJob(ctx, name, pawn, jobDef, job);
+        }
+
+        private static Pawn RequireSpawnedPawn(PickleContext ctx, string name)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            Pawn pawn = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && string.Equals(p.LabelShort, name, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(pawn != null, $"no pawn named '{name}' is on the current map");
+            return pawn;
+        }
+
+        private static void StartJob(PickleContext ctx, string name, Pawn pawn, JobDef jobDef, Job job)
+        {
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            Log.Message($"[stage] {name} forced into {jobDef.defName} from {pawn.Position}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not {jobDef.defName} (the job did not start: refused for this pawn)");
+        }
+
         private static JobDef RequireJob(PickleContext ctx, string jobName)
         {
             JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail(jobName);

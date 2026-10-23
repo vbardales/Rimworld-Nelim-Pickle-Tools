@@ -30,7 +30,7 @@ SleepyFrieren.beautygenefa 3685072616
 ria.cuterkidsforfacialanimation 3807706870
 Moshii.NLFA.InitFix 3609895011
 ccj.nlfaloadfix 3721489042
-RaccoonCuddler.ShowHair 3255379190
+lordfelix.HatHairControl 3760821540
 
 # Camera zoom (2026-10-22, tickets 54d3 and 46b3): SimpleCameraSetting lifts the game bound on the camera root size with its default settings, and the root size stays the drawn size (Camera+ keeps the root size at 11 and remaps it, so the frame steps would no longer compute the picture they name).
 ray1203.SimpleCameraSetting 3232415388

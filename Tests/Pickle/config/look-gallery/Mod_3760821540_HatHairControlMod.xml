@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Seed for the hat-hair-hhc pass: Hat Hair Control (lordfelix.HatHairControl, 3760821540), 2026-10-23.
+  Why: its defaults are hideHatsIndoors = true and hideHatsWhileSleeping = true (HatHairControlSettings.cs). Nelim stands in a walled room of the
+  Sanctuary, so the mod hid every hat (runs 79e2 and 02f6: no hat drawn, hair fully visible, even with the roof removed, the room still counting as
+  indoors). Hats are shown here, and hair is shown under the four hats of pickletools-hat-hair.feature.
+-->
+<SettingsBlock>
+  <ModSettings Class="HatHairControl.HatHairControlSettings">
+    <hideHatsIndoors>False</hideHatsIndoors>
+    <hideHatsWhileSleeping>False</hideHatsWhileSleeping>
+    <showHatsOnlyWhenDrafted>False</showHatsOnlyWhenDrafted>
+    <showHairDefs>
+      <li>Apparel_CowboyHat</li>
+      <li>Apparel_Tuque</li>
+      <li>Apparel_Flophat</li>
+      <li>Apparel_ArmorHelmetRecon</li>
+    </showHairDefs>
+  </ModSettings>
+</SettingsBlock>
