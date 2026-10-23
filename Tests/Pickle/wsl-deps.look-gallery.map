@@ -40,3 +40,7 @@ VanillaExpanded.VHE 1888705256
 
 # Camera zoom (2026-10-22, tickets 54d3 and 46b3): SimpleCameraSetting lifts the game bound on the camera root size with its default settings, and the root size stays the drawn size (Camera+ keeps the root size at 11 and remaps it, so the frame steps would no longer compute the picture they name).
 ray1203.SimpleCameraSetting 3232415388
+
+# Weapons in hand (2026-10-23, ticket 0165 drew no weapon with a paused game): Show Me Your Hands draws hands on the weapon, Show Me Your Tools (fork) the tools held for work.
+Mlie.ShowMeYourHands 2475965842
+meathax.ShowMeYourTools 3774821567
