@@ -92,6 +92,104 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// The same job, targeting the first building of a def (by defName) at a cell: the colonist is put beside it and the job started by force.
+        /// For Refuel the job is the one the game's own work giver builds (the target plus the nearest fuel it finds), since the driver needs the fuel as
+        /// a second target; it fails saying so when the building is full or no fuel can be reached. Written 2026-10-23 for AlphaMythology. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is forced into the job {string} on the building {string} at \\({int}, {int}\\)")]
+        public void ForcedJobOnBuilding(PickleContext ctx, string nickname, string jobName, string defName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Thing target = cell.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == defName);
+            ctx.Require(target != null, $"no {defName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            StartForced(ctx, nickname, pawn, map, RequireJob(ctx, jobName), target, true);
+        }
+
+        /// <summary>
+        /// The same job, targeting the plant at a cell (Harvest, CutPlant...): the colonist is put beside it and the job started by force. Fails when no
+        /// plant stands there.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is forced into the job {string} on the plant at \\({int}, {int}\\)")]
+        public void ForcedJobOnPlant(PickleContext ctx, string nickname, string jobName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Thing target = cell.GetPlant(map);
+            ctx.Require(target != null, $"no plant stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            StartForced(ctx, nickname, pawn, map, RequireJob(ctx, jobName), target, true);
+        }
+
+        /// <summary>
+        /// Makes a stack of an item (by defName, made of its default stuff) on the colonist's cell and starts the job HaulToCell by force: the colonist
+        /// picks it up and carries it to the cell, so the item is drawn in the hands while the game ticks. The colonist is not moved: stand it where the
+        /// walk should start. Fails when the def is unknown or the job does not become the current job (cell unreachable).
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is forced to haul {int} of the item {string} to \\({int}, {int}\\)")]
+        public void ForcedHaul(PickleContext ctx, string nickname, int count, string defName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null && pawn.Spawned, "no map is loaded or the colonist is not spawned");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map) && cell.Standable(map), $"the cell ({x}, {z}) is outside the map or not standable");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ctx.Require(count >= 1 && count <= def.stackLimit, $"{defName} stacks to {def.stackLimit}, not {count}");
+            JobDef jobDef = RequireJob(ctx, "HaulToCell");
+            Thing item = ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def));
+            item.stackCount = count;
+            GenPlace.TryPlaceThing(item, pawn.Position, map, ThingPlaceMode.Near);
+            ctx.Require(item.Spawned, $"the {defName} could not be placed near {nickname}");
+            Job job = JobMaker.MakeJob(jobDef, item, cell);
+            job.count = count;
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            Log.Message($"[stage] {nickname} forced to haul {count} {defName} to {cell} from {pawn.Position}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not HaulToCell (unreachable cell or the item is reserved)");
+        }
+
+        private static JobDef RequireJob(PickleContext ctx, string jobName)
+        {
+            JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail(jobName);
+            ctx.Require(jobDef != null, $"no JobDef named '{jobName}'; jobs containing it: " + string.Join(", ",
+                DefDatabase<JobDef>.AllDefsListForReading.Where(j => j.defName.IndexOf(jobName, StringComparison.OrdinalIgnoreCase) >= 0).Select(j => j.defName).Take(30)));
+            return jobDef;
+        }
+
+        private static void StartForced(PickleContext ctx, string nickname, Pawn pawn, Map map, JobDef jobDef, Thing target, bool placeBeside)
+        {
+            if (placeBeside)
+            {
+                IntVec3 cell = GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
+                    .OrderBy(c => c.DistanceToSquared(pawn.Position)).FirstOrDefault();
+                ctx.Require(cell.IsValid, $"no standable free cell beside {target.LabelShort} at {target.Position}");
+                PlaceAt(pawn, map, cell, null);
+                pawn.Rotation = Rot4.FromAngleFlat((target.DrawPos - cell.ToVector3Shifted()).AngleFlat());
+            }
+
+            Job job;
+            if (jobDef.defName == "Refuel" || jobDef.defName == "RefuelAtomic")
+            {
+                job = RefuelWorkGiverUtility.RefuelJob(pawn, target, true);
+                ctx.Require(job != null, $"the game builds no refuel job for {target.LabelShort}: it is full, or no fuel it accepts can be reached");
+            }
+            else
+            {
+                job = JobMaker.MakeJob(jobDef, target);
+            }
+
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            Log.Message($"[stage] {nickname} forced into {job.def.defName} on {target.LabelShort} at {target.Position}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == job.def, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not {job.def.defName} (the job did not start: reserved, unreachable or refused for this target)");
+        }
+
+        /// <summary>
         /// Puts a colonist on the cell of a building of a def (a chair, a stool) and turns them the way the building faces, as a seated guest. Stops the
         /// colonist's jobs. The seated posture is the game's own and is drawn only when the colonist has a job that sits; here the colonist is placed on
         /// the seat, in the seat's direction. Fails when the colonist is unknown or no building of that def stands on that cell.
