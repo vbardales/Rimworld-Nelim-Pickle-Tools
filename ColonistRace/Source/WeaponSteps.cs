@@ -45,6 +45,7 @@ namespace Nelim.PickleTools.ColonistRace
                 }
 
                 pawn.drafter.Drafted = true;
+                ctx.Assert(pawn.Drafted, $"{nickname} should be drafted so the game draws the weapon; the drafter refused (violence-incapable or downed pawn?)");
             }
 
             pawn.Drawer.renderer.SetAllGraphicsDirty();
