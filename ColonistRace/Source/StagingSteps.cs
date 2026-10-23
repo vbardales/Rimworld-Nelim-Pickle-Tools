@@ -63,6 +63,35 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Puts a colonist on a standable cell beside a pawn (colonist or animal, by short name), turned towards it, and starts a job on it by force
+        /// (a JobDef by defName with the pawn as target: Tame, Train, a nuzzle or feed job a mod adds). The job is held as the current job; the
+        /// animation is drawn only while the game ticks. Fails when the colonist or the target is unknown, the JobDef does not exist (the failure lists
+        /// the jobs whose name contains the text), no cell beside the target is standable, or the job does not become the current job.
+        /// Written 2026-10-23 for AlphaMythology's gallery (hands towards the animal). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is forced into the job {string} on {string}")]
+        public void ForcedJobOn(PickleContext ctx, string nickname, string jobName, string targetName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            Pawn target = map.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p != pawn && p.Name != null && string.Equals(p.LabelShort, targetName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(target != null, $"no pawn named '{targetName}' is on the current map");
+            JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail(jobName);
+            ctx.Require(jobDef != null, $"no JobDef named '{jobName}'; jobs containing it: " + string.Join(", ",
+                DefDatabase<JobDef>.AllDefsListForReading.Where(j => j.defName.IndexOf(jobName, StringComparison.OrdinalIgnoreCase) >= 0).Select(j => j.defName).Take(30)));
+            IntVec3 cell = GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
+                .OrderBy(c => c.DistanceToSquared(pawn.Position)).FirstOrDefault();
+            ctx.Require(cell.IsValid, $"no standable free cell beside {targetName} at {target.Position}");
+
+            PlaceAt(pawn, map, cell, null);
+            pawn.Rotation = Rot4.FromAngleFlat((target.DrawPos - cell.ToVector3Shifted()).AngleFlat());
+            pawn.jobs.StartJob(JobMaker.MakeJob(jobDef, target), JobCondition.InterruptForced);
+            Log.Message($"[stage] {nickname} forced into {jobDef.defName} on {targetName} from {cell}, facing {pawn.Rotation}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not {jobDef.defName} (the job did not start: reserved, unreachable or refused for this target)");
+        }
+
+        /// <summary>
         /// Puts a colonist on the cell of a building of a def (a chair, a stool) and turns them the way the building faces, as a seated guest. Stops the
         /// colonist's jobs. The seated posture is the game's own and is drawn only when the colonist has a job that sits; here the colonist is placed on
         /// the seat, in the seat's direction. Fails when the colonist is unknown or no building of that def stands on that cell.

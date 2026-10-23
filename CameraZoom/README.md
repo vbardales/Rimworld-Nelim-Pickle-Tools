@@ -7,6 +7,8 @@ Two steps for a capture that needs the camera closer than Pickle's own zoom step
 | `Nelim's Pickle Tools: the camera root size is set to {float}` | Calls `CameraDriver.SetRootSize` directly (smaller is closer) and waits 90 frames, since the game smooths the zoom. Does not check the size reached. |
 | `Nelim's Pickle Tools: the camera root size is {float}` | Asserts the root size reads that value to 0.05; the failure prints the value read, which says whether the game bounds the zoom or the zoom had not finished. |
 | `Nelim's Pickle Tools: the camera orthographic size is {float}` | Asserts the size the camera really draws (`Find.Camera.orthographicSize`, half the screen height in cells), to 0.05; the failure prints the value read. Added 2026-10-22: a camera mod can leave the root size alone and change what is drawn. |
+| `Nelim's Pickle Tools: the camera frames the head of {string} at root size {float}` | Centres on a pawn's head (0.6 cell north of its drawn position) and reads the root size back. Added 2026-10-23 for AlphaMythology, compiled, not played. |
+| `Nelim's Pickle Tools: the camera frames the head of {string} and {string} at root size {float}` | The same, centred between the first pawn's head and the second pawn, so a face and the animal beside it share a picture. Compiled, not played. |
 
 ## Why it exists
 

@@ -78,6 +78,55 @@ namespace Nelim.PickleTools.CameraZoom
                 $"the camera root size should be {size}; it reads {read}: the game bounds the zoom there, or the zoom had not finished");
         }
 
+        /// <summary>
+        /// Centres the camera on the head of a pawn (colonist or animal, by short name), about 0.6 cell north of its drawn position where a standing
+        /// pawn's head is, at a root size, and reads it back. For a face to read in a capture: root size 2 to 3 (below 11 needs a camera mod such as
+        /// SimpleCameraSetting, or ScreenshotStudio's own lifted limit). Written 2026-10-23 for AlphaMythology. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the camera frames the head of {string} at root size {float}", TimeoutSeconds = 150f)]
+        public async Task FrameHead(PickleContext ctx, string pawnName, float size)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            await CenterAt(ctx, HeadPos(pawn), size);
+        }
+
+        /// <summary>
+        /// Like the head step, centred on the middle between the head of the first pawn and the second pawn, so that a colonist's face and the animal
+        /// beside it are in the same picture. The two should stand within about two cells of each other at the root size asked for.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the camera frames the head of {string} and {string} at root size {float}", TimeoutSeconds = 150f)]
+        public async Task FrameHeadAndPawn(PickleContext ctx, string pawnName, string otherName, float size)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            Pawn other = FindPawn(ctx, otherName);
+            await CenterAt(ctx, (HeadPos(pawn) + other.DrawPos) / 2f, size);
+        }
+
+        private static Pawn FindPawn(PickleContext ctx, string pawnName)
+        {
+            ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
+            Pawn pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && string.Equals(p.LabelShort, pawnName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(pawn != null, $"no pawn named '{pawnName}' is on the current map");
+            return pawn;
+        }
+
+        private static UnityEngine.Vector3 HeadPos(Pawn pawn)
+        {
+            return pawn.DrawPos + new UnityEngine.Vector3(0f, 0f, 0.6f);
+        }
+
+        private static async Task CenterAt(PickleContext ctx, UnityEngine.Vector3 pos, float size)
+        {
+            ctx.Require(size > 0f, $"a camera root size must be positive, not {size}");
+            Find.CameraDriver.JumpToCurrentMapLoc(pos);
+            Find.CameraDriver.SetRootSize(size);
+            await ctx.WaitFrames(FramesToSettle);
+            float read = Find.CameraDriver.RootSize;
+            ctx.Assert(
+                Math.Abs(read - size) < Tolerance,
+                $"the camera root size should be {size}; it reads {read}: the game bounds the zoom there, or the zoom had not finished");
+        }
+
         private static CellRect? lastFramed;
 
         /// <summary>
