@@ -8,7 +8,7 @@ const md = fs.readFileSync(path.join(__dirname, '..', 'ColonistRace/docs/CATALOG
 const names = []; let on = false;
 for (const l of md) {
   if (/^## /.test(l)) { on = /^## Weapons/.test(l); continue; }
-  if (!on || !l.startsWith('|') || /^\| (Mod|---)/.test(l)) continue;
+  if (!on || !l.startsWith('|') || /^\|\s*(Mod|-+)\s*\|/.test(l)) continue;
   const cells = l.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
   if (cells.length >= 3) names.push(...cells[2].split(', ').map(s => s.trim()).filter(Boolean));
 }

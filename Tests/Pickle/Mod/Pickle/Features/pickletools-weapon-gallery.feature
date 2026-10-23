@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon catalogue)
 
-  Scenario: weapon-gallery-1: hand weapons 1 to 20 of 83
+  Scenario: weapon-gallery-1: hand weapons 1 to 20 of 82
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -18,10 +18,6 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wields "---"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "weapon----"
-    And Nelim's Pickle Tools: "Nelim" puts its weapon away
     When Nelim's Pickle Tools: "Nelim" wields "Gun_HellcatRifle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-Gun_HellcatRifle"
@@ -98,8 +94,12 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-MeleeWeapon_Gladius"
     And Nelim's Pickle Tools: "Nelim" puts its weapon away
+    When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Ikwa"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "weapon-MeleeWeapon_Ikwa"
+    And Nelim's Pickle Tools: "Nelim" puts its weapon away
 
-  Scenario: weapon-gallery-2: hand weapons 21 to 40 of 83
+  Scenario: weapon-gallery-2: hand weapons 21 to 40 of 82
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -114,10 +114,6 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Ikwa"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "weapon-MeleeWeapon_Ikwa"
-    And Nelim's Pickle Tools: "Nelim" puts its weapon away
     When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Knife"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-MeleeWeapon_Knife"
@@ -194,8 +190,12 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-Gun_HeavySMG"
     And Nelim's Pickle Tools: "Nelim" puts its weapon away
+    When Nelim's Pickle Tools: "Nelim" wields "Gun_IncendiaryLauncher"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "weapon-Gun_IncendiaryLauncher"
+    And Nelim's Pickle Tools: "Nelim" puts its weapon away
 
-  Scenario: weapon-gallery-3: hand weapons 41 to 60 of 83
+  Scenario: weapon-gallery-3: hand weapons 41 to 60 of 82
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -210,10 +210,6 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wields "Gun_IncendiaryLauncher"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "weapon-Gun_IncendiaryLauncher"
-    And Nelim's Pickle Tools: "Nelim" puts its weapon away
     When Nelim's Pickle Tools: "Nelim" wields "Gun_InfernoCannon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-Gun_InfernoCannon"
@@ -290,8 +286,12 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-Bow_Great_Unique"
     And Nelim's Pickle Tools: "Nelim" puts its weapon away
+    When Nelim's Pickle Tools: "Nelim" wields "Gun_AssaultRifle_Unique"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "weapon-Gun_AssaultRifle_Unique"
+    And Nelim's Pickle Tools: "Nelim" puts its weapon away
 
-  Scenario: weapon-gallery-4: hand weapons 61 to 80 of 83
+  Scenario: weapon-gallery-4: hand weapons 61 to 80 of 82
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -306,10 +306,6 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wields "Gun_AssaultRifle_Unique"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "weapon-Gun_AssaultRifle_Unique"
-    And Nelim's Pickle Tools: "Nelim" puts its weapon away
     When Nelim's Pickle Tools: "Nelim" wields "Gun_BeamRepeater"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-Gun_BeamRepeater"
@@ -386,8 +382,12 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-MeleeWeapon_PsyfocusStaff"
     And Nelim's Pickle Tools: "Nelim" puts its weapon away
+    When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Warhammer"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "weapon-MeleeWeapon_Warhammer"
+    And Nelim's Pickle Tools: "Nelim" puts its weapon away
 
-  Scenario: weapon-gallery-5: hand weapons 81 to 83 of 83
+  Scenario: weapon-gallery-5: hand weapons 81 to 82 of 82
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -402,10 +402,6 @@ Feature: Every weapon on Nelim, one photograph per value (gallery of the weapon 
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Warhammer"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "weapon-MeleeWeapon_Warhammer"
-    And Nelim's Pickle Tools: "Nelim" puts its weapon away
     When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_Zeushammer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "weapon-MeleeWeapon_Zeushammer"
