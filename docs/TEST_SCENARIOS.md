@@ -21,5 +21,15 @@ behaviour checks, all listed under `automated_tests` in `STATUS.md`).
 | ScreenshotStudio, ScreenshotMode | `flower-meadow-studio`, `load-flower-meadow-studio` | saved fixture and captured image | captured images read by person (`@review`), in English and French |
 | VEF factions | QuietNewFactions' own suite | VEF's dialog is game window | none |
 
+## Manual checks, disposition (AUDIT.md 8.k, 2026-10-23)
+
+| Manual check | Disposition | Reason |
+|---|---|---|
+| Real click on RIMMSQOL's own checkbox | **open, automatable** | a scenario can click it with the KeyedClick step in the restart chain (`aggregate-rimmsqol-restart-1-reveal`); not written, no ticket |
+| Text of ClickDiagnostics failure report | not applicable | probe windows leave Pickle no tag to click, so the symptom cannot be asserted; probe stays in `Upstream/tests/lost-click-probe.feature`, outside the suite |
+| SoundCapture by ear | not applicable to the bundle | optional companion outside the Workshop payload; level measured by ticket 0ce6, listening is hers via `SoundCapture/Run-Windows.ps1` |
+| Tooltip texts of other suites (HoverSteps) | read in `@review` captures | image reading already proven by a scenario, not a manual test |
+| ScreenshotStudio and ScreenshotMode images, English and French | read in `@review` captures | same; French not played on the 1.7 pass (English-only install) |
+
 **No XML tests**: repository ships no Defs, no XML patches, only step assemblies loaded by test runner, so
 no XML to test; nothing artificial added to fill box.
