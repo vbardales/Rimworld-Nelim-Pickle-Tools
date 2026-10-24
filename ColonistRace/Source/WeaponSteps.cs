@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using HarmonyLib;
 using RimWorks.Pickle;
 using RimWorld;
 using Verse;
@@ -50,6 +51,50 @@ namespace Nelim.PickleTools.ColonistRace
 
             pawn.Drawer.renderer.SetAllGraphicsDirty();
             ctx.Assert(pawn.equipment.Primary == weapon, $"{nickname} should hold '{weaponDefName}'; the colonist holds {pawn.equipment.Primary?.def.defName ?? "nothing"}");
+        }
+
+        /// <summary>
+        /// Writes what the game decides about drawing the colonist's weapon to the game log, line prefix "[wield-diag]": draft state, the game's own
+        /// "carry the weapon openly" verdict, the held weapon and its graphic, the job, and the pawn render tree (node class, worker class, label).
+        /// A diagnostic for the weapon gallery, where a wielded weapon was equipped and drafted but not drawn (ticket ea83). Reads only.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the weapon render of {string} is logged")]
+        public void WeaponRenderLogged(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ThingWithComps primary = pawn.equipment?.Primary;
+            Log.Message($"[wield-diag] {nickname} drafted={pawn.Drafted} carryOpenly={PawnRenderUtility.CarryWeaponOpenly(pawn)} rot={pawn.Rotation} spawned={pawn.Spawned} " +
+                $"job={pawn.CurJobDef?.defName ?? "none"} carried={pawn.carryTracker?.CarriedThing?.def.defName ?? "none"} stance={pawn.stances?.curStance?.GetType().Name ?? "none"}");
+            Log.Message($"[wield-diag] primary={primary?.def.defName ?? "none"} graphic={primary?.Graphic?.GetType().Name ?? "none"} path={(primary?.Graphic as Graphic_Single)?.path ?? primary?.def.graphicData?.texPath ?? "?"} equipment={string.Join(",", pawn.equipment?.AllEquipmentListForReading.Select(t => t.def.defName) ?? Enumerable.Empty<string>())}");
+            object tree = Traverse.Create(pawn.Drawer.renderer).Field("renderTree").GetValue();
+            if (tree == null)
+            {
+                Log.Message("[wield-diag] render tree not found on the renderer");
+                return;
+            }
+
+            object root = Traverse.Create(tree).Field("rootNode").GetValue();
+            LogNode(root, 0);
+        }
+
+        private static void LogNode(object node, int depth)
+        {
+            if (node == null || depth > 12)
+            {
+                return;
+            }
+
+            Traverse t = Traverse.Create(node);
+            object props = t.Property("Props").GetValue() ?? t.Field("props").GetValue();
+            Traverse p = Traverse.Create(props);
+            Log.Message($"[wield-diag] {new string(' ', depth * 2)}{node.GetType().Name} label={p.Field("debugLabel").GetValue()} tag={p.Field("tagDef").GetValue()} worker={p.Field("workerClass").GetValue()} visible={p.Field("alwaysVisible").GetValue()}");
+            if (t.Field("children").GetValue() is System.Collections.IEnumerable children)
+            {
+                foreach (object child in children)
+                {
+                    LogNode(child, depth + 1);
+                }
+            }
         }
 
         /// <summary>Takes the weapons these steps gave away from the colonist and puts the draft state back as it was before the first one.</summary>
