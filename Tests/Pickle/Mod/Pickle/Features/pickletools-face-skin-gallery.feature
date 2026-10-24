@@ -335,6 +335,170 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "lid-Biotech_Eyes_Beauty2"
 
+  Scenario: face-tattoo-gallery-1: face tattoos 1 to 20 of 40 on a bald Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "NoTattoo_Face"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-NoTattoo_Face"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Cobweb"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Cobweb"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Eclipse"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Eclipse"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Headshot"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Headshot"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Line"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Line"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Love"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Love"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Oracle"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Oracle"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Pantheon"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Pantheon"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Spider"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Spider"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Stars"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Stars"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tear"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Tear"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tiger"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Tiger"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Warpaint"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Warpaint"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Worried"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Worried"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tilak"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-Face_Tilak"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_Anima"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_Anima"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_Bisect"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_Bisect"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BlackFangs"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_BlackFangs"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BlueFangs"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_BlueFangs"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BrowDots"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_BrowDots"
+
+  Scenario: face-tattoo-gallery-2: face tattoos 21 to 40 of 40 on a bald Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_CheekDots"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_CheekDots"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_CheekStripes"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_CheekStripes"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsBlack"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsBlack"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsBlue"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsBlue"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsRed"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsRed"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsWhite"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsWhite"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeBlack"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeBlack"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeBlue"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeBlue"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripePurple"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_NoseStripePurple"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeRed"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeRed"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeWhite"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeWhite"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_RedFangs"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_RedFangs"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredAir"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SacredAir"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredFire"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SacredFire"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredGrass"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SacredGrass"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredWater"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SacredWater"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunCrown"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SunCrown"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunrisePlains"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SunrisePlains"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunsetPlains"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_SunsetPlains"
+    When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_WhiteFangs"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "facetattoo-STribalTat_Face_WhiteFangs"
+
   Scenario: face-eyeball-swift: the EyeGenes3 eyeballs, Swift redone
     Given the save "Nelims-tribe" is loaded
     And game speed is paused

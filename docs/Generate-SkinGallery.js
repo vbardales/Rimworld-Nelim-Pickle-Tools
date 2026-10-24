@@ -17,6 +17,8 @@ function section(title) {
   return names;
 }
 const skins = section('Skins'), brows = section('Brows'), heads = section('Head shapes'), lids = section('Lids');
+const look = fs.readFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature', 'utf8');
+const faceTattoos = [...new Set([...look.matchAll(/"Nelim" face tattoo is "([^"]+)"/g)].map(m => m[1]))];  // the catalogue list, as the look gallery photographs it
 const eyeballs = ['Courageous', 'Empathetic', 'Swift'];  // EyeGenes3: Swift is redone, the two others stay beside it to compare
 const PT = "Nelim's Pickle Tools: ";
 const head = [
@@ -58,6 +60,10 @@ scenario(out, 'face-skin-closeup-1: the eight flagged skins, no lids, zoom 3', c
 scenario(out, `face-brow-gallery-1: ${brows[0]} to ${brows[brows.length - 1]} (all brows)`, brows.map(v => shot(`"Nelim" brows are "${v}"`, `brow-${v}`)));
 scenario(out, `face-head-gallery-1: ${heads.join(', ')} (all head shapes)`, heads.map(v => shot(`"Nelim" face head shape is "${v}"`, `head-${v}`)));
 scenario(out, `face-lid-gallery-1: ${lids[0]} to ${lids[lids.length - 1]} (all lids, from a normal face, lower priority)`, lids.map(v => shot(`"Nelim" lids are "${v}"`, `lid-${v}`)));
+for (let i = 0, n = 1; i < faceTattoos.length; i += 20, n++) {
+  const part = faceTattoos.slice(i, i + 20);
+  scenario(out, `face-tattoo-gallery-${n}: face tattoos ${i + 1} to ${i + part.length} of ${faceTattoos.length} on a bald Nelim`, part.map(v => shot(`"Nelim" face tattoo is "${v}"`, `facetattoo-${v}`)));
+}
 scenario(out, 'face-eyeball-swift: the EyeGenes3 eyeballs, Swift redone', eyeballs.map(v => shot(`"Nelim" eyeballs are "${v}"`, `eyeball-${v}`)));
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-face-skin-gallery.feature', out.join('\n'));
 
