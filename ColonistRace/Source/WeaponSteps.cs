@@ -4,6 +4,7 @@ using HarmonyLib;
 using RimWorks.Pickle;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Nelim.PickleTools.ColonistRace
 {
@@ -47,6 +48,14 @@ namespace Nelim.PickleTools.ColonistRace
 
                 pawn.drafter.Drafted = true;
                 ctx.Assert(pawn.Drafted, $"{nickname} should be drafted so the game draws the weapon; the drafter refused (violence-incapable or downed pawn?)");
+            }
+
+            // PawnRenderUtility.DrawEquipmentAndApparelExtras draws nothing unless the pawn has a current job that may show the weapon (ticket f256, 2026-10-24:
+            // drafted, carryOpenly true, weapon held, job none, no weapon in the capture). A drafted pawn gets Wait_Combat from the game's own tick, which a paused game never runs.
+            if (pawn.jobs != null && (pawn.CurJob == null || pawn.CurJob.def.neverShowWeapon))
+            {
+                pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Wait_Combat), JobCondition.InterruptForced);
+                ctx.Assert(pawn.CurJob != null && !pawn.CurJob.def.neverShowWeapon, $"{nickname} should have a job that shows the weapon (Wait_Combat); the current job is {pawn.CurJob?.def.defName ?? "none"}");
             }
 
             pawn.Drawer.renderer.SetAllGraphicsDirty();
@@ -142,6 +151,11 @@ namespace Nelim.PickleTools.ColonistRace
                 pawn.equipment.Remove(weapon);
                 weapon.Destroy();
                 Wielded.Remove(weapon);
+            }
+
+            if (pawn.jobs?.curJob != null && pawn.jobs.curJob.def == JobDefOf.Wait_Combat && DraftedBefore.ContainsKey(pawn))
+            {
+                pawn.jobs.EndCurrentJob(JobCondition.InterruptForced, false);
             }
 
             if (pawn.drafter != null && DraftedBefore.TryGetValue(pawn, out bool before))
