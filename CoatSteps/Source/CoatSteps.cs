@@ -152,6 +152,50 @@ namespace Nelim.PickleTools.CoatSteps
             }
         }
 
+        /// <summary>
+        /// Sets the food of one spawned animal, found by its short name, to a percentage. The step above acts only on the animals this file spawns
+        /// (named coat-N); this one serves an animal another step spawned under its own name. Written 2026-10-24 for AnimalsNaturally. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} has food at {int} percent")]
+        public void SetAnimalFood(PickleContext ctx, string animalName, int percent)
+        {
+            ctx.Require(percent >= 0 && percent <= 100, "food is 0 to 100 percent, not " + percent);
+            Pawn animal = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.LabelShort == animalName);
+            ctx.Require(animal != null, "no animal named " + animalName + " is on the map: spawn it first");
+            ctx.Require(animal.needs?.food != null, animal.LabelShort + " has no food need");
+            animal.needs.food.CurLevelPercentage = percent / 100f;
+            ctx.Assert(
+                System.Math.Abs(animal.needs.food.CurLevelPercentage - percent / 100f) < 0.02f,
+                animal.LabelShort + " should have food at " + percent + " percent; it has " + (int)(animal.needs.food.CurLevelPercentage * 100f));
+        }
+
+        /// <summary>
+        /// Clears the Biotech pollution (the blotchy grey-green ground tint) from a rectangle of cells, silently, and fails when a cell is still polluted.
+        /// Needs Biotech. Written 2026-10-24 for AnimalsNaturally's elephant enclosure, where a grey-green patch was not a painted zone. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the pollution is cleared from the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void ClearPollution(PickleContext ctx, int x0, int z0, int x1, int z1)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no current map");
+            ctx.Require(ModsConfig.BiotechActive, "pollution exists only with Biotech");
+            int cleared = 0;
+            for (int x = System.Math.Min(x0, x1); x <= System.Math.Max(x0, x1); x++)
+            {
+                for (int z = System.Math.Min(z0, z1); z <= System.Math.Max(z0, z1); z++)
+                {
+                    var cell = new IntVec3(x, 0, z);
+                    if (cell.InBounds(map) && map.pollutionGrid.IsPolluted(cell))
+                    {
+                        map.pollutionGrid.SetPolluted(cell, false, true);
+                        cleared++;
+                    }
+                }
+            }
+
+            Log.Message("[pollution] cleared " + cleared + " polluted cells in (" + x0 + ", " + z0 + ") to (" + x1 + ", " + z1 + ")");
+        }
+
         // The coat is computed from the pawn's thingIDNumber and the kind's chance (nothing is stored), so it cannot be written; a thing ID
         // that gives the index asked for is searched instead, among IDs above anything the game hands out in a short run, and the index
         // is read back. -1 is the original graphic.
