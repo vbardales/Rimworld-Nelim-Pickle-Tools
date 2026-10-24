@@ -195,6 +195,100 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Beauty2"
 
+  Scenario: face-lid-gallery-1: BIGEYE to Biotech_Eyes_Beauty2 (all lids, from a normal face, lower priority)
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" lids are "BIGEYE"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-BIGEYE"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidAlmond"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidAlmond"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidCheerful"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidCheerful"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidFlashy"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidFlashy"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidFlirty"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidFlirty"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidHardened"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidHardened"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidNone"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidNone"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidNormal"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidPointy"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidPointy"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidQuite"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidQuite"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidShort"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidShort"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidSimple"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidSimple"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidSleepy"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidSleepy"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidSquinting"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidSquinting"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidStuffed"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidStuffed"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidThick"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidThick"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidUnimpressed"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidUnimpressed"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidVK_ClosedEyes"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidVK_ClosedEyes"
+    When Nelim's Pickle Tools: "Nelim" lids are "LidVK_SmilingEyes"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-LidVK_SmilingEyes"
+    When Nelim's Pickle Tools: "Nelim" lids are "BionicBoth"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-BionicBoth"
+    When Nelim's Pickle Tools: "Nelim" lids are "BionicLeft"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-BionicLeft"
+    When Nelim's Pickle Tools: "Nelim" lids are "BionicRight"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-BionicRight"
+    When Nelim's Pickle Tools: "Nelim" lids are "Biotech_Eyes_Beauty"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-Biotech_Eyes_Beauty"
+    When Nelim's Pickle Tools: "Nelim" lids are "Biotech_Eyes_Beauty2"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "lid-Biotech_Eyes_Beauty2"
+
   Scenario: face-eyeball-swift: the EyeGenes3 eyeballs, Swift redone
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
