@@ -28,6 +28,7 @@ namespace Nelim.PickleTools.ColonistRace
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.equipment != null, $"pawn '{nickname}' has no equipment tracker");
+            EnsureShowMeYourHands();
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(weaponDefName);
             ctx.Require(def != null && def.IsWeapon, $"'{weaponDefName}' is not a weapon def");
             ThingWithComps held = pawn.equipment.Primary;
@@ -84,6 +85,38 @@ namespace Nelim.PickleTools.ColonistRace
 
             object root = Traverse.Create(tree).Field("rootNode").GetValue();
             LogNode(root, 0, pawn);
+        }
+
+        private static bool handsMenuRun;
+
+        /// <summary>
+        /// Show Me Your Hands installs its weapon-location patch and its list of valid races only in a postfix of MainMenuDrawer.MainMenuOnGUI (read from
+        /// its decompiled source, 2026-10-24): a run that loads the save without drawing the main menu never gets hands on the weapon. Runs that postfix's
+        /// body once, by reflection, when the mod is loaded; its own flag makes a second call harmless.
+        /// </summary>
+        private static void EnsureShowMeYourHands()
+        {
+            if (handsMenuRun)
+            {
+                return;
+            }
+
+            handsMenuRun = true;
+            System.Type type = AccessTools.TypeByName("ShowMeYourHands.RimWorld_MainMenuDrawer_MainMenuOnGUI");
+            if (type == null)
+            {
+                return;
+            }
+
+            try
+            {
+                AccessTools.Method(type, "MainMenuOnGUI")?.Invoke(null, null);
+                Log.Message("[wield] Show Me Your Hands initialised (its main menu postfix run by the step)");
+            }
+            catch (System.Exception e)
+            {
+                Log.Warning("[wield] Show Me Your Hands could not be initialised: " + e.GetType().Name + " " + e.Message);
+            }
         }
 
         private static void LogNode(object node, int depth, Pawn pawn)
