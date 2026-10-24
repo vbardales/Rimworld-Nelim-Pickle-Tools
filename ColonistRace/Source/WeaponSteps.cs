@@ -74,10 +74,10 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             object root = Traverse.Create(tree).Field("rootNode").GetValue();
-            LogNode(root, 0);
+            LogNode(root, 0, pawn);
         }
 
-        private static void LogNode(object node, int depth)
+        private static void LogNode(object node, int depth, Pawn pawn)
         {
             if (node == null || depth > 12)
             {
@@ -88,11 +88,21 @@ namespace Nelim.PickleTools.ColonistRace
             object props = t.Property("Props").GetValue() ?? t.Field("props").GetValue();
             Traverse p = Traverse.Create(props);
             Log.Message($"[wield-diag] {new string(' ', depth * 2)}{node.GetType().Name} label={p.Field("debugLabel").GetValue()} tag={p.Field("tagDef").GetValue()} worker={p.Field("workerClass").GetValue()} visible={p.Field("alwaysVisible").GetValue()}");
+            if (node is PawnRenderNode rn && p.Field("debugLabel").GetValue() as string == "Weapon/carried thing")
+            {
+                Graphic g = null;
+                try { g = Traverse.Create(rn).Method("GraphicFor", new[] { typeof(Pawn) }, new object[] { pawn }).GetValue<Graphic>(); }
+                catch (System.Exception e) { Log.Message("[wield-diag] weapon node GraphicFor failed: " + e.GetType().Name + " " + e.Message); }
+                Log.Message($"[wield-diag] weapon node graphic={(g == null ? "null" : g.GetType().Name + " " + ((g as Graphic_Single)?.path ?? g.data?.texPath) + " drawSize=" + g.drawSize)} " +
+                    $"drawData={(p.Field("drawData").GetValue() == null ? "none" : "set")} node.Graphics={(rn.Graphics?.Count.ToString() ?? "null")} " +
+                    $"meshSet={(t.Field("meshSet").GetValue() == null ? "null" : "set")} parentDepth={depth}");
+            }
+
             if (t.Field("children").GetValue() is System.Collections.IEnumerable children)
             {
                 foreach (object child in children)
                 {
-                    LogNode(child, depth + 1);
+                    LogNode(child, depth + 1, pawn);
                 }
             }
         }
