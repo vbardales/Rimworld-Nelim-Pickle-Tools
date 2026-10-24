@@ -2,6 +2,7 @@
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.camerazoom
 @requires:nelim.sanctuarybacklot
+@requires:nelim.pickletools.clickdiagnostics
 Feature: The white veil on outdoor captures (diagnostic, 2026-10-25): the light of the map, with and without presentation mode, by day and by night
 
   Background:
