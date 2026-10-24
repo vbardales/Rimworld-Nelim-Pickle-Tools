@@ -14,6 +14,7 @@ Feature: Short and tied hairstyles in black for Ryu and Nelim, one photograph pe
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" also wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
