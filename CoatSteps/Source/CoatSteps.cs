@@ -177,6 +177,24 @@ namespace Nelim.PickleTools.CoatSteps
             ctx.Require(false, "no thing ID in 20000 tries gives " + animal.LabelShort + " the coat " + coat + "; the kind's alternateGraphicChance may make it unreachable");
         }
 
+        /// <summary>
+        /// Sets the gender of a spawned animal, "male" or "female", and redraws it (the picture of a kind can differ by gender). A spawn gives a
+        /// random gender; this makes a named animal the sex its canon says. Written 2026-10-24 for SanctuaryBacklot's cats. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} has gender {word}")]
+        public void SetAnimalGender(PickleContext ctx, string animalName, string gender)
+        {
+            Pawn animal = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.LabelShort == animalName);
+            ctx.Require(animal != null, "no animal named " + animalName + " is on the map: spawn it first");
+            ctx.Require(animal.RaceProps.hasGenders, animal.LabelShort + " is of a kind without genders");
+            Gender wanted = string.Equals(gender, "male", System.StringComparison.OrdinalIgnoreCase) ? Gender.Male
+                : string.Equals(gender, "female", System.StringComparison.OrdinalIgnoreCase) ? Gender.Female : Gender.None;
+            ctx.Require(wanted != Gender.None, "the gender is male or female, not '" + gender + "'");
+            animal.gender = wanted;
+            animal.Drawer.renderer.SetAllGraphicsDirty();
+            ctx.Assert(animal.gender == wanted, animal.LabelShort + " should be " + wanted + "; it is " + animal.gender);
+        }
+
         private static float AdultAge(PawnKindDef kind)
         {
             var ages = kind.RaceProps.lifeStageAges;
