@@ -43,14 +43,18 @@ const head = [
 ];
 const tags = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.colonistrace', '@requires:nelim.pickletools.camerazoom'];
 const shot = (step, name, frames = 5) => [`When ${PT}${step}`, `And ${PT}I let ${frames} frames pass`, `And I take a screenshot "${name}"`];
-function scenario(out, title, shots) {   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
+function scenario(out, title, shots, base = head) {   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
   out.push(`  Scenario: ${title}`);
-  head.forEach(h => out.push('    ' + h));
+  base.forEach(h => out.push('    ' + h));
   shots.forEach(s => s.forEach(x => out.push('    ' + x)));
   out.push('');
 }
 const out = [...tags, 'Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, neutral and without blush (the redone part of the face gallery)', ''];
 scenario(out, `face-skin-gallery-1: ${skins[0]} to ${skins[skins.length - 1]} (all skins)`, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `skin-${v}`)));
+// Close-ups of the skins the owner flagged as hard to read (2026-10-25): no lids at all (no lashes over the eyes), closer zoom.
+const closeSkins = ['AKN_SkinSnoot', 'SkinLeftChin', 'SkinDecrepit', 'SkinFreckles2', 'SkinFreckles3', 'SkinFurrows', 'SkinRightEye', 'SkinTiredEyes'];
+const closeHead = head.map(h => h.includes('lids are') ? h.replace('LidNormal', 'LidNone') : h.includes('at zoom 2') ? h.replace('zoom 2', 'zoom 3') : h);
+scenario(out, 'face-skin-closeup-1: the eight flagged skins, no lids, zoom 3', closeSkins.map(v => shot(`"Nelim" face skin is "${v}"`, `skinclose-${v}`)), closeHead);
 scenario(out, `face-brow-gallery-1: ${brows[0]} to ${brows[brows.length - 1]} (all brows)`, brows.map(v => shot(`"Nelim" brows are "${v}"`, `brow-${v}`)));
 scenario(out, `face-head-gallery-1: ${heads.join(', ')} (all head shapes)`, heads.map(v => shot(`"Nelim" face head shape is "${v}"`, `head-${v}`)));
 scenario(out, `face-lid-gallery-1: ${lids[0]} to ${lids[lids.length - 1]} (all lids, from a normal face, lower priority)`, lids.map(v => shot(`"Nelim" lids are "${v}"`, `lid-${v}`)));

@@ -91,6 +91,52 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skin-SkinTiredEyes"
 
+  Scenario: face-skin-closeup-1: the eight flagged skins, no lids, zoom 3
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNone"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    When Nelim's Pickle Tools: "Nelim" face skin is "AKN_SkinSnoot"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-AKN_SkinSnoot"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinLeftChin"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinLeftChin"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinDecrepit"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinDecrepit"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinFreckles2"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinFreckles2"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinFreckles3"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinFreckles3"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinFurrows"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinFurrows"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinRightEye"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinRightEye"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SkinTiredEyes"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skinclose-SkinTiredEyes"
+
   Scenario: face-brow-gallery-1: BrowNormal to MonoScarredBrows (all brows)
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
