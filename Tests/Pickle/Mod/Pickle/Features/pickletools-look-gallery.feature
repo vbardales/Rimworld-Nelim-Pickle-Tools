@@ -2877,7 +2877,6 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And I take a screenshot "garment-Apparel_ArmorReconPrestige"
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" wears "Apparel_PsyfocusShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PsyfocusShirt"
