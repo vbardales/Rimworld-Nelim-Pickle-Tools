@@ -141,7 +141,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
 
             pawn.apparel.Wear(apparel, true, false);
-            ctx.Assert(pawn.apparel.WornApparel.Contains(apparel), nickname + " should wear '" + apparelDefName + "'; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
+            ctx.Assert(pawn.apparel.WornApparel.Contains(apparel), nickname + " should wear '" + apparelDefName + "'; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)) + "; " + WhyNotWorn(pawn, def));
+        }
+
+        // What the game says about this garment on this body, so that a refusal can be read from the failure alone.
+        private static string WhyNotWorn(Pawn pawn, ThingDef def)
+        {
+            string tracker = pawn.apparel == null ? "none" : pawn.apparel.pawn == pawn ? "owned by the animal" : "owned by " + pawn.apparel.pawn;
+            string wanted = def.apparel == null ? "no apparel properties" : string.Join(", ", def.apparel.bodyPartGroups.Select(g => g.defName)) + " on layers " + string.Join(", ", def.apparel.layers.Select(l => l.defName));
+            string body = string.Join(", ", pawn.RaceProps.body.AllParts.SelectMany(p => p.groups).Select(g => g.defName).Distinct());
+            return $"HasPartsToWear {ApparelUtility.HasPartsToWear(pawn, def)}; apparel tracker {tracker}; the garment covers {wanted}; the body of {pawn.def.defName} has the groups {body}";
         }
 
         /// <summary>Asserts the animal wears the apparel (by defName); the failure lists what it wears.</summary>
