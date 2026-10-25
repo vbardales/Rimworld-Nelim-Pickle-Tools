@@ -72,6 +72,33 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Logs every weather of the game (<c>[look-weather]</c>): one line per mod, each defName followed by the flags the def gives in brackets (rain and
+        /// snow when the rate is above 0, fog when the name says so, bad when <c>isBad</c>). The weather is set by name with <c>I set the weather to "X"</c>.
+        /// Written 2026-10-25 for the weather catalogue (owner). Never fails. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the weather options are listed")]
+        public void ListWeathers(PickleContext ctx)
+        {
+            List<WeatherDef> all = DefDatabase<WeatherDef>.AllDefsListForReading.ToList();
+            foreach (var mod in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                Log.Message("[look-weather] " + mod.Key + " (" + mod.Count() + "): " + string.Join(", ", mod.Select(d => d.defName + WeatherFlags(d)).OrderBy(n => n)));
+            }
+
+            Log.Message("[look-weather] total " + all.Count);
+        }
+
+        private static string WeatherFlags(WeatherDef d)
+        {
+            var flags = new List<string>();
+            if (d.rainRate > 0f) flags.Add("rain");
+            if (d.snowRate > 0f) flags.Add("snow");
+            if (d.defName.IndexOf("Fog", System.StringComparison.OrdinalIgnoreCase) >= 0) flags.Add("fog");
+            if (d.isBad) flags.Add("bad");
+            return flags.Count == 0 ? "" : "[" + string.Join("/", flags) + "]";
+        }
+
+        /// <summary>
         /// Logs the weapons (<c>[look-weapon]</c>: one line per mod and per kind, Melee or Ranged, each defName) and what the game can craft (<c>[look-craft]</c>:
         /// one line per mod and per work table, each defName of the products of the recipes it offers, with the recipe count), so a session can pick a weapon
         /// or a craftable item by name. Never fails.
