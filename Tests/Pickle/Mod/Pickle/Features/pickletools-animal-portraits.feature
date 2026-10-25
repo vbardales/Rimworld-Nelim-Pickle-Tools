@@ -1,6 +1,7 @@
 # Front portraits of the fixture animals (Virginie, 2026-10-18: a labrador, a thrumbo, a cat seen from the front). Each animal stands on the cell (176, 120) facing South (the camera side).
 # Shogun is the labrador, Atticus and Rain the thrumbos of Nelims-tribe. Cats: pick from the cat breed captures of ColorfulCoatsCatsAndDogsRenew, or add them here once named.
-#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.faceparts.map -Filter 'pickletools-animal-portraits'
+# Rain wears a scarf (the thrumbos have one coat): map wsl-deps.animal-portraits.map (Animal Apparel Framework and Collars and Kit Renew).
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.animal-portraits.map -Filter 'pickletools-animal-portraits'
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.camerazoom
 @requires:nelim.pickletools.colonistrace
@@ -47,6 +48,7 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the animal "Rain" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the animal "Rain" is dressed in "Apparel_LargeAnimalScarf"
     And Nelim's Pickle Tools: I frame the animal "Rain" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "portrait-rain-thrumbo"
