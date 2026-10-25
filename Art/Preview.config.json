@@ -1,30 +1,29 @@
 {
-  "title": "Nelim's Pickle Tools",
-  "modIconSource": "ModIcon-source.png",
-  "titleSize": 44,
-  "titleParts": [
-    {
-      "text": "Nelim's",
-      "font": "ui",
-      "scale": 0.72
-    },
-    {
-      "text": "Pickle Tools",
-      "breakBefore": true
-    }
-  ],
-  "suffix": "",
-  "tag": "",
-  "copyLines": [
-    "Shared Pickle steps for",
-    "testing RimWorld mods."
-  ],
-  "panelAnchor": "bottom-left",
+  "panel": {
+    "title": "Nelim's Pickle Tools",
+    "modIconSource": "ModIcon-source.png",
+    "titleSize": 44,
+    "titleParts": [
+      {
+        "text": "Nelim's",
+        "font": "ui",
+        "scale": 0.72
+      },
+      {
+        "text": "Pickle Tools",
+        "breakBefore": true
+      }
+    ],
+    "copyLines": [
+      "Shared Pickle steps for",
+      "testing RimWorld mods."
+    ]
+  },
   "echo": {
     "file": "echo-concept.png",
     "color": "var(--accent)"
   },
-  "iconBadge": {
+  "icon": {
     "file": "ModIcon-source.png",
     "corner": "bottom-right"
   },
