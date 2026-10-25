@@ -129,12 +129,12 @@ fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-gene-gallery.feat
 const SP = "Nelim's Pickle Tools: ";
 const serenOut = [...tags, 'Feature: One photograph per gene of Seren, from Stardust (skin colours, hair colours, look genes)', ''];
 let sn = 0;
-function serenScenario(title, genes, pre, per) {
+function serenScenario(title, genes, pre, per, nude) {
   const size = Math.ceil(genes.length / Math.ceil(genes.length / 20));
   for (let i = 0; i < genes.length; i += size) {
     const part = genes.slice(i, i + size); sn++;
     serenOut.push(`  Scenario: seren-gallery-${sn}: ${title} ${i + 1} to ${i + part.length} of ${genes.length}`);
-    skinBase.forEach(l => serenOut.push('    ' + l));
+    (nude ? skinBase.filter(l => !l.includes('UnderWhere')) : skinBase).forEach(l => serenOut.push('    ' + l));
     pre.forEach(l => serenOut.push('    ' + l));
     for (const g of part) per(g).forEach(l => serenOut.push('    ' + l));
     serenOut.push('');
@@ -145,6 +145,6 @@ const take = (g, prefix, reset) => [
   `And ${SP}I let 5 frames pass`, `And I take a screenshot "${prefix}-${g.name}"`];
 serenScenario('skin colours', serenSkins, [], g => take(g, 'skingene', false));
 serenScenario('hair colours', serenHair, [`And ${SP}"Nelim" hairstyle is "Afro"`], g => take(g, 'hairgene', false));
-serenScenario('look genes', serenLooks, [], g => take(g, 'lookgene', true));
+serenScenario('look genes', serenLooks, [], g => take(g, 'lookgene', true), true);   // undressed: a marking or a body mask is on the skin (owner, 2026-10-25)
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-seren-gallery.feature', serenOut.join('\n'));
 console.log(`${eyes.length} eye genes, ${skins.length} skin genes, Seren: ${serenSkins.length} skins, ${serenHair.length} hair, ${serenLooks.length} look genes, ${sn} scenarios`);

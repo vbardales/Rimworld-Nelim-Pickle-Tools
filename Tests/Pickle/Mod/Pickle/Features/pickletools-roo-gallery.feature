@@ -180,8 +180,6 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "RBBirthmarkBodyA"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -245,8 +243,6 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" is undressed
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Chesttext"
     And Nelim's Pickle Tools: I let 5 frames pass

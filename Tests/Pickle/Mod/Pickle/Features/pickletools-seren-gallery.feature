@@ -171,8 +171,6 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenMarkings_Big"
@@ -244,8 +242,6 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenSensors_Drop"
