@@ -17,7 +17,7 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the animal "Shogun" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: I frame the animal "Shogun" at zoom 3
+    And Nelim's Pickle Tools: I frame the animal "Shogun" at zoom 2
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "portrait-shogun-labrador"
 
@@ -32,7 +32,7 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the animal "Atticus" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: I frame the animal "Atticus" at zoom 2
+    And Nelim's Pickle Tools: I frame the animal "Atticus" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "portrait-atticus-thrumbo"
 
@@ -47,7 +47,7 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the animal "Rain" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: I frame the animal "Rain" at zoom 2
+    And Nelim's Pickle Tools: I frame the animal "Rain" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "portrait-rain-thrumbo"
 
