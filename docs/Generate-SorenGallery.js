@@ -5,7 +5,10 @@
 const fs = require('fs');
 const look = fs.readFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature', 'utf8');
 const values = re => [...new Set([...look.matchAll(re)].map(m => m[1]))];
-const bodyTattoos = values(/"Nelim" body tattoo is "([^"]+)"/g).filter(t => !/^none$/i.test(t));
+// Roo's two mods (tattoos and birthmarks) are not in the look gallery steps: read their body defs from the catalogue, as Generate-RooGallery.js does.
+const rooBody = fs.readFileSync('ColonistRace/docs/CATALOGUE-LOOKS.md', 'utf8').split(/\r?\n/).filter(l => /^\| Roo's (Birthmarks|Tattoos)/.test(l))
+  .flatMap(r => r.split('|')[2].replace(/^\s*\(\d+\)\s*/, '').split(', ').map(s => s.trim().match(/^(\S+) \(Body\)$/)).filter(m => m && m[1] !== 'Body_Royal').map(m => m[1]));
+const bodyTattoos = [...values(/"Nelim" body tattoo is "([^"]+)"/g).filter(t => !/^none$/i.test(t)), ...rooBody.filter(t => !values(/"Nelim" body tattoo is "([^"]+)"/g).includes(t))];
 const beards = values(/"Nelim" beard is "([^"]+)"/g);
 const P = "Nelim's Pickle Tools: ";
 const pre = [
@@ -32,7 +35,7 @@ function scenarios(kind, items, setup, frame, step, views, CHUNK) {
     out += '\n';
   }
 }
-scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`, `"Soren" wears "UnderWhere_Panties"`].map(s => P + s), '(176, 120) at zoom 2', t => `${P}"Soren" body tattoo is "${t}"`, [{ facing: 'South', suffix: '-front' }, { facing: 'North', suffix: '-back' }], 12);
+scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`].map(s => P + s), '(176, 120) at zoom 2', t => `${P}"Soren" body tattoo is "${t}"`, [{ facing: 'South', suffix: '-front' }, { facing: 'North', suffix: '-back' }], 12);
 scenarios('beard', beards, [], '(176, 119) at zoom 3', b => `${P}"Soren" beard is "${b}"`, [{ suffix: '' }], 20);
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-soren-gallery.feature', out);
 console.log(`${n} scenarios: ${bodyTattoos.length} body tattoos, ${beards.length} beards`);

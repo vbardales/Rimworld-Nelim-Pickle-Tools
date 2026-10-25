@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: Body tattoos and beards on Soren, one photograph per value (the male half of the look catalogues)
 
-  Scenario: soren-gallery-1: bodytattoo 1 to 12 of 73
+  Scenario: soren-gallery-1: bodytattoo 1 to 12 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -23,7 +23,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "NoTattoo_Body"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -110,7 +109,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-Body_Skeleton-back"
 
-  Scenario: soren-gallery-2: bodytattoo 13 to 24 of 73
+  Scenario: soren-gallery-2: bodytattoo 13 to 24 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -130,7 +129,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Skull"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -217,7 +215,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-Body_Claws-back"
 
-  Scenario: soren-gallery-3: bodytattoo 25 to 36 of 73
+  Scenario: soren-gallery-3: bodytattoo 25 to 36 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -237,7 +235,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Deer"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -324,7 +321,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-Body_Koi-back"
 
-  Scenario: soren-gallery-4: bodytattoo 37 to 48 of 73
+  Scenario: soren-gallery-4: bodytattoo 37 to 48 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -344,7 +341,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Labyrinth"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -431,7 +427,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-Body_Shark-back"
 
-  Scenario: soren-gallery-5: bodytattoo 49 to 60 of 73
+  Scenario: soren-gallery-5: bodytattoo 49 to 60 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -451,7 +447,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Skull_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -538,7 +533,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-STribalTat_Body_Anima-back"
 
-  Scenario: soren-gallery-6: bodytattoo 61 to 72 of 73
+  Scenario: soren-gallery-6: bodytattoo 61 to 72 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -558,7 +553,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_BlackClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -645,7 +639,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-STribalTat_Body_Vines-back"
 
-  Scenario: soren-gallery-7: bodytattoo 73 to 73 of 73
+  Scenario: soren-gallery-7: bodytattoo 73 to 84 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -665,7 +659,6 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
-    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_WhiteClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
@@ -674,8 +667,269 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-bodytattoo-STribalTat_Body_WhiteClaw-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyA"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyA-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyA-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyB"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyB-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyB-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyC"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyC-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBBirthmarkBodyC-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBLightningScars"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBLightningScars-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBLightningScars-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyA"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyA-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyA-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyB"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyB-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyB-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyC"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyC-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyC-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyD"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyD-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyD-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyE"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyE-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBMolesBodyE-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBPsoriasisBody"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBPsoriasisBody-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBPsoriasisBody-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBStitchesBodyA"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStitchesBodyA-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStitchesBodyA-back"
 
-  Scenario: soren-gallery-8: beard 1 to 20 of 41
+  Scenario: soren-gallery-8: bodytattoo 85 to 96 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBStitchesBodyB"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStitchesBodyB-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStitchesBodyB-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBStretchMarksBody"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStretchMarksBody-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBStretchMarksBody-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "RBVitiligoBody"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBVitiligoBody-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-RBVitiligoBody-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Barcode"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Barcode-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Barcode-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Cassandra"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Cassandra-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Cassandra-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Chesttext"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Chesttext-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Chesttext-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_DarkPsycaster"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_DarkPsycaster-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_DarkPsycaster-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Fullbody"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Fullbody-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Fullbody-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Kitsune"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Kitsune-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Kitsune-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Lancaster"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Lancaster-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Lancaster-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Nonipples"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Nonipples-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Nonipples-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Oni"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Oni-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Oni-back"
+
+  Scenario: soren-gallery-9: bodytattoo 97 to 104 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Phoebe"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Phoebe-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Phoebe-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Randy"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Randy-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Randy-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Rave"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Rave-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Rave-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Ribcage"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Ribcage-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Ribcage-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Soulmateleft"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Soulmateleft-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Soulmateleft-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Soulmateright"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Soulmateright-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Soulmateright-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Yakuza"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Yakuza-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Yakuza-back"
+    When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Yorkshire"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Yorkshire-front"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "soren-bodytattoo-Body_Yorkshire-back"
+
+  Scenario: soren-gallery-10: beard 1 to 20 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -756,7 +1010,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-beard-Ducktail"
 
-  Scenario: soren-gallery-9: beard 21 to 40 of 41
+  Scenario: soren-gallery-11: beard 21 to 40 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -837,7 +1091,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "soren-beard-VanDyke"
 
-  Scenario: soren-gallery-10: beard 41 to 41 of 41
+  Scenario: soren-gallery-12: beard 41 to 41 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden

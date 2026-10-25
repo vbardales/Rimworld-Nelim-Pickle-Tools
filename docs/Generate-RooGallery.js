@@ -40,6 +40,7 @@ const faceBase = [...common,
   `And ${P}"Nelim" face head shape is "HeadNormal"`,
   `And ${P}"Nelim" facial expression is "normal"`,
   `And ${P}"Nelim" face is held neutral`,
+  `And ${P}"Nelim" wears "Apparel_Pants"`,   // owner, 2026-10-25: the bare lower body showed in the face shots
   `And ${P}I frame the cell (176, 119) at zoom 3`,   // the zoom of the look gallery: the face crop of Make-LookSheets fits it
 ];
 const bodyBase = [...common,
