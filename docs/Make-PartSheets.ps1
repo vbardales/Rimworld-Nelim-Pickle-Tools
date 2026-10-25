@@ -16,6 +16,7 @@ foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23'
 $kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks'; kit = 'Kits' }
 $tile = 220; $label = 22; $cols = 6
 $crop = New-Object System.Drawing.Rectangle 868, 118, 184, 184
+$cropClose = New-Object System.Drawing.Rectangle 880, 110, 160, 160
 $font = New-Object System.Drawing.Font 'Segoe UI', 9
 foreach ($kind in $kinds.Keys) {
     $names = @($files.Keys | Where-Object { $_ -like "$kind-*" } | Sort-Object)
@@ -27,7 +28,7 @@ foreach ($kind in $kinds.Keys) {
     for ($i = 0; $i -lt $names.Count; $i++) {
         $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
         $img = [System.Drawing.Image]::FromFile($files[$names[$i]])
-        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $crop, [System.Drawing.GraphicsUnit]::Pixel)
+        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $(if ($kind -eq 'skinclose') { $cropClose } else { $crop }), [System.Drawing.GraphicsUnit]::Pixel)
         $img.Dispose()
         $text = $names[$i].Substring($kind.Length + 1)
         $g.DrawString($text, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))

@@ -55,7 +55,7 @@ const out = [...tags, 'Feature: Skins, brows, head shapes and the EyeGenes3 eyeb
 scenario(out, `face-skin-gallery-1: ${skins[0]} to ${skins[skins.length - 1]} (all skins)`, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `skin-${v}`)));
 // Close-ups of the skins the owner flagged as hard to read (2026-10-25): no lids at all (no lashes over the eyes), closer zoom.
 const closeSkins = ['AKN_SkinSnoot', 'SkinLeftChin', 'SkinDecrepit', 'SkinFreckles2', 'SkinFreckles3', 'SkinFurrows', 'SkinRightEye', 'SkinTiredEyes'];
-const closeHead = head.map(h => h.includes('lids are') ? h.replace('LidNormal', 'LidNone') : h.includes('at zoom 2') ? `And ${PT}the camera frames the head of "Nelim" at root size 2` : h);  // root size: smaller = closer (zoom 3 was LESS close than zoom 2)
+const closeHead = head.map(h => h.includes('lids are') ? h.replace('LidNormal', 'LidNone') : h);  // root size: smaller = closer (zoom 3 was LESS close than zoom 2)
 scenario(out, 'face-skin-closeup-1: the eight flagged skins, no lids, head framed at root size 2', closeSkins.map(v => shot(`"Nelim" face skin is "${v}"`, `skinclose-${v}`)), closeHead);
 scenario(out, `face-brow-gallery-1: ${brows[0]} to ${brows[brows.length - 1]} (all brows)`, brows.map(v => shot(`"Nelim" brows are "${v}"`, `brow-${v}`)));
 scenario(out, `face-head-gallery-1: ${heads.join(', ')} (all head shapes)`, heads.map(v => shot(`"Nelim" face head shape is "${v}"`, `head-${v}`)));
