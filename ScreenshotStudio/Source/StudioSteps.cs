@@ -72,6 +72,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 if (done % 50 == 49) await ctx.WaitFrames(1);
             }
 
+            // The drawn position of a pawn eases towards its real cell at the game's tick rate, which is 0 while paused: without this the capture shows the
+            // pawn where it was before the ticks (ticket 1071, 2026-10-25: two frames 20 ticks apart were identical, the hauled logs in the hands but no walk).
+            foreach (Pawn pawn in Find.CurrentMap.mapPawns.AllPawnsSpawned)
+            {
+                pawn.Drawer?.tweener?.ResetTweenedPosToRoot();
+            }
+
             await ctx.WaitFrames(3);
             ctx.Assert(tm.TicksGame == start + ticks, "the game should be at tick " + (start + ticks) + "; it is at " + tm.TicksGame);
             ctx.Assert(tm.Paused, "the game should still be paused; it runs at " + tm.CurTimeSpeed);
