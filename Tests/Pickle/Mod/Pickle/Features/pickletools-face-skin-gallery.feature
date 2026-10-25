@@ -23,6 +23,7 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (255, 244, 238)
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" face skin is "SkinLeftChin"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -111,6 +112,7 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (255, 244, 238)
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" face skin is "AKN_SkinSnoot"
     And Nelim's Pickle Tools: I let 5 frames pass

@@ -43,6 +43,8 @@ const head = [
   `And ${PT}"Nelim" face is held neutral`,
   `And ${PT}I frame the cell (176, 119) at zoom 2`,
 ];
+// The skin catalogue is photographed on a very white skin (owner, 2026-10-25): the dark overlays of the skins read better on it than on the orange default.
+const whiteHead = [...head.slice(0, -1), `And ${PT}"Nelim" skin colour is rgb (255, 244, 238)`, head[head.length - 1]];
 const tags = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.colonistrace', '@requires:nelim.pickletools.camerazoom'];
 const shot = (step, name, frames = 5) => [`When ${PT}${step}`, `And ${PT}I let ${frames} frames pass`, `And I take a screenshot "${name}"`];
 function scenario(out, title, shots, base = head) {   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
@@ -52,10 +54,10 @@ function scenario(out, title, shots, base = head) {   // at most 25 shots per sc
   out.push('');
 }
 const out = [...tags, 'Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, neutral and without blush (the redone part of the face gallery)', ''];
-scenario(out, `face-skin-gallery-1: ${skins[0]} to ${skins[skins.length - 1]} (all skins)`, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `skin-${v}`)));
+scenario(out, `face-skin-gallery-1: ${skins[0]} to ${skins[skins.length - 1]} (all skins)`, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `skin-${v}`)), whiteHead);
 // Close-ups of the skins the owner flagged as hard to read (2026-10-25): no lids at all (no lashes over the eyes), closer zoom.
 const closeSkins = ['AKN_SkinSnoot', 'SkinLeftChin', 'SkinDecrepit', 'SkinFreckles2', 'SkinFreckles3', 'SkinFurrows', 'SkinRightEye', 'SkinTiredEyes'];
-const closeHead = head.map(h => h.includes('lids are') ? h.replace('LidNormal', 'LidNone') : h);  // root size: smaller = closer (zoom 3 was LESS close than zoom 2)
+const closeHead = whiteHead.map(h => h.includes('lids are') ? h.replace('LidNormal', 'LidNone') : h);  // root size: smaller = closer (zoom 3 was LESS close than zoom 2)
 scenario(out, 'face-skin-closeup-1: the eight flagged skins, no lids, head framed at root size 2', closeSkins.map(v => shot(`"Nelim" face skin is "${v}"`, `skinclose-${v}`)), closeHead);
 scenario(out, `face-brow-gallery-1: ${brows[0]} to ${brows[brows.length - 1]} (all brows)`, brows.map(v => shot(`"Nelim" brows are "${v}"`, `brow-${v}`)));
 scenario(out, `face-head-gallery-1: ${heads.join(', ')} (all head shapes)`, heads.map(v => shot(`"Nelim" face head shape is "${v}"`, `head-${v}`)));
