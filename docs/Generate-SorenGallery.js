@@ -15,7 +15,7 @@ const pre = [
   'Given the save "Nelims-tribe" is loaded', 'And game speed is paused',
   `And ${P}the item and name labels are hidden`, `And ${P}the tooltips are hidden`, `And ${P}the colonist bar is hidden`, `And ${P}the learning helper is hidden`,
   `And ${P}the temperature of the map is 20 degrees`, `And ${P}I let 10 ticks pass`, `And ${P}I frame the area centred on (177, 121) at root size 6.5`,
-  'And a colonist "Soren" exists', 'And "Soren" is 30 years old', `And ${P}"Soren" gender is male`,
+  'And a colonist "Soren" exists', 'And "Soren" is 30 years old', `And ${P}"Soren" gender is male`, `And ${P}"Soren" hairstyle is "Bald"`,   // hair hides the back tattoos and the beards (owner, 2026-10-25)
   `And ${P}"Soren" stands at (176, 120) facing South`, `And ${P}the other colonists are out of frame`,
   `And ${P}"Soren" face kit is "neutral"`, `And ${P}"Soren" facial expression is "normal"`, `And ${P}"Soren" face is held neutral`,
   `And ${P}"Soren" body type is Male`,

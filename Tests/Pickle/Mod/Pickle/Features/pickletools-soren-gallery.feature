@@ -16,6 +16,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -122,6 +123,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -228,6 +230,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -334,6 +337,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -440,6 +444,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -546,6 +551,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -652,6 +658,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -758,6 +765,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -864,6 +872,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -942,6 +951,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -1023,6 +1033,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
@@ -1104,6 +1115,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And a colonist "Soren" exists
     And "Soren" is 30 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
