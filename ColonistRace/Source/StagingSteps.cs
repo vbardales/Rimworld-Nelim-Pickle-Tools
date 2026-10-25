@@ -222,6 +222,27 @@ namespace Nelim.PickleTools.ColonistRace
             StartJob(ctx, name, pawn, jobDef, job);
         }
 
+        /// <summary>
+        /// Starts the job Ingest by force on an item lying at a cell (by defName): the animal walks to it and eats or drinks from it, head lowered, while
+        /// the game ticks. The pawn is not moved. Fails when the pawn is unknown, no such item lies at the cell, the item is not ingestible by this pawn,
+        /// or Ingest does not become the current job. Written 2026-10-25 for EbbbsRenew (a jug of Milk on the ground). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]
+        public void AnimalForcedToIngest(PickleContext ctx, string name, string defName, int x, int z)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            Map map = pawn.Map;
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Thing item = cell.GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
+            ctx.Require(item != null, $"no {defName} lies at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            ctx.Require(item.def.IsIngestible, $"{defName} is not ingestible (no ingestible properties): the Ingest job cannot eat it");
+            JobDef jobDef = RequireJob(ctx, "Ingest");
+            Job job = JobMaker.MakeJob(jobDef, item);
+            job.count = Math.Max(1, Math.Min(item.stackCount, FoodUtility.WillIngestStackCountOf(pawn, item.def, item.GetStatValue(StatDefOf.Nutrition))));
+            StartJob(ctx, name, pawn, jobDef, job);
+        }
+
         private static Pawn RequireSpawnedPawn(PickleContext ctx, string name)
         {
             Map map = Find.CurrentMap;
