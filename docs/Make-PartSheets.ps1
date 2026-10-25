@@ -1,7 +1,7 @@
 <#
 .SYNOPSIS
   Builds the contact sheets of the face parts gallery (ColonistRace/docs/img/parts-<kind>.jpg) from the photographs of
-  evidence/face-parts-gallery-1, -23 and -45: the face of Nelim cropped out of each 1920 x 1080 capture, with the name of the
+  evidence/face-parts-gallery-1, -23 and -45, then Tests/Pickle/Inbox/face-redo and face-redo-2 (a later folder replaces the earlier tile of the same value): the face of Nelim cropped out of each 1920 x 1080 capture, with the name of the
   value under it. The captures are gitignored; the sheets are what the documentation keeps.
 #>
 Add-Type -AssemblyName System.Drawing
@@ -9,11 +9,11 @@ $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img'
 New-Item -ItemType Directory -Force $out | Out-Null
 $files = @{}
-foreach ($d in 'face-parts-gallery-1', 'face-parts-gallery-23', 'face-parts-gallery-45') {
-    $s = Join-Path $root "evidence/$d/screenshots"
+foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2') {
+    $s = Join-Path $root "$d/screenshots"
     if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
 }
-$kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; eyeball = 'Eyeballs'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks'; kit = 'Kits' }
+$kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks'; kit = 'Kits' }
 $tile = 220; $label = 22; $cols = 6
 $crop = New-Object System.Drawing.Rectangle 868, 118, 184, 184
 $font = New-Object System.Drawing.Font 'Segoe UI', 9
