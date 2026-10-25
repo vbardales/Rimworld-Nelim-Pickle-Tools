@@ -145,4 +145,8 @@ $genes = 'CATALOGUE-GENES.md'
 Run-Job 'eyegene' 'eyegene' (Read-Section $genes '^## Eye colours') $eye $false $false
 Run-Job 'skingene' 'skingene' (Read-Section $genes '^## Skin colours') $body $false $false
 
+# Weather (CATALOGUE-WEATHER.md, 2026-10-25): wide shots of the gravel yard, the central square of the frame.
+$wide = New-Object System.Drawing.Rectangle 480, 60, 960, 960
+Run-Job 'weather' 'weather' (Read-Section 'CATALOGUE-WEATHER.md' '^## Weather') $wide $false $false
+
 Run-Job 'weapon' 'weapon' (Read-Section 'CATALOGUE-WEAPONS-CRAFTS.md' '^## Weapons') $body $false $true
