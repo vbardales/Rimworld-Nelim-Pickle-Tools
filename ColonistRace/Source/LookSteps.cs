@@ -4,6 +4,7 @@ using RimWorld;
 using RimWorks.Pickle;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Nelim.PickleTools.ColonistRace
 {
@@ -328,6 +329,31 @@ namespace Nelim.PickleTools.ColonistRace
             Place(ctx, name, x, z, Direction(direction), true);
         }
 
+        /// <summary>
+        /// Puts an animal on a standable cell turned North, East, South or West, then starts the job LayDown on it, forced to sleep, so it is drawn
+        /// lying. The job's first toil runs when the job starts, so the pose is set even on a paused game; nothing here has been checked on a capture.
+        /// Fails like the stands-at step, or when LayDown does not become the current job.
+        /// Written 2026-10-25 for ABR's shotlist (Shogun, shots 5 and 7). NOT PLAYED when written.
+        /// </summary>
+        /// <param name="name">the short name of the animal</param>
+        /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
+        [Given("Nelim's Pickle Tools: the animal {string} lies at \\({int}, {int}\\) facing {word}")]
+        public void AnimalLiesAtFacing(PickleContext ctx, string name, int x, int z, string direction)
+        {
+            Rot4 facing = Direction(direction);
+            Place(ctx, name, x, z, facing, true);
+            Pawn pawn = AnyPawn(ctx, name);
+            JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail("LayDown");
+            ctx.Require(jobDef != null, "no JobDef named 'LayDown'");
+            Job job = JobMaker.MakeJob(jobDef, pawn.Position);
+            job.forceSleep = true;
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            pawn.Rotation = facing;
+            Redraw(pawn);
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not LayDown");
+            ctx.Assert(pawn.Rotation == facing, $"{name} should face {facing}; it faces {pawn.Rotation}");
+        }
+
         /// <summary>Turns a pawn (colonist or animal, found by its short name) where it stands, without moving it.</summary>
         /// <param name="name">the short name of a colonist or of an animal</param>
         /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
@@ -337,6 +363,7 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn pawn = AnyPawn(ctx, name);
             Rot4 facing = Direction(direction);
             pawn.Rotation = facing;
+            HoldRotation(pawn, facing);
             Redraw(pawn);
             ctx.Assert(pawn.Rotation == facing, $"{name} should face {facing}; it faces {pawn.Rotation}");
         }
@@ -426,6 +453,16 @@ namespace Nelim.PickleTools.ColonistRace
                 HoldRotation(pawn, facing.Value);
             }
             else HeldRotation.Remove(pawn);
+
+            // An animal placed here stays put while ticks pass: without a job a tame animal wanders off (written 2026-10-25 for AACaK, not played).
+            JobDef wait = anyPawn && pawn.RaceProps.Animal ? DefDatabase<JobDef>.GetNamedSilentFail("Wait") : null;
+            if (wait != null)
+            {
+                Job hold = JobMaker.MakeJob(wait);
+                hold.expiryInterval = 600000;
+                hold.checkOverrideOnExpire = false;
+                pawn.jobs.StartJob(hold, JobCondition.InterruptForced);
+            }
 
             Subjects.Add(pawn);
             Redraw(pawn);

@@ -57,6 +57,26 @@ namespace Nelim.PickleTools.ScreenshotStudio
             finally { Find.TickManager.CurTimeSpeed = before; }
         }
 
+        // Exactly N ticks on a game that stays paused: TickManager.DoSingleTick N times (what the game's own step-one-tick key does), so a pawn is caught mid-stride on a known tick.
+        // "I let N ticks pass" runs the game at its fastest speed and may overshoot by a few ticks. Written 2026-10-25 for ABR's walk-pose shot. NOT PLAYED when written.
+        [When(Prefix + "I advance the paused game by exactly {int} ticks", TimeoutSeconds = 240f)]
+        public async Task AdvanceExactly(PickleContext ctx, int ticks)
+        {
+            ctx.Require(ticks >= 1, "the tick count is at least 1");
+            var tm = Find.TickManager;
+            ctx.Require(tm.Paused, "the game must be paused first (time is paused for the capture); it runs at " + tm.CurTimeSpeed);
+            int start = tm.TicksGame;
+            for (int done = 0; done < ticks; done++)
+            {
+                tm.DoSingleTick();
+                if (done % 50 == 49) await ctx.WaitFrames(1);
+            }
+
+            await ctx.WaitFrames(3);
+            ctx.Assert(tm.TicksGame == start + ticks, "the game should be at tick " + (start + ticks) + "; it is at " + tm.TicksGame);
+            ctx.Assert(tm.Paused, "the game should still be paused; it runs at " + tm.CurTimeSpeed);
+        }
+
         // Any map: centre the camera on the rectangle and take the smallest root size that holds it whole (1080p frame: 2N cells tall, about 3.56N wide), plus one cell of margin on each side.
         [When(Prefix + "I frame the rectangle from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 60f)]
         public async Task FrameRectangle(PickleContext ctx, int x1, int z1, int x2, int z2)
