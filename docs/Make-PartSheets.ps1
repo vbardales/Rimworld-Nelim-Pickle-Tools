@@ -9,7 +9,7 @@ $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img'
 New-Item -ItemType Directory -Force $out | Out-Null
 $files = @{}
-foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-6') {
+foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6') {
     $s = Join-Path $root "$d/screenshots"
     if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
 }
