@@ -139,8 +139,8 @@ foreach ($b in $bt) {
 }
 Build-Sheets 'body' 'all' $tiles $body $false
 
-# Genes (CATALOGUE-GENES.md, 2026-10-25): eye colours framed on the head close up (the crop is a guess until the first photographs exist: adjust $eye), skin colours on the body.
-$eye = New-Object System.Drawing.Rectangle 660, 240, 600, 600
+# Genes (CATALOGUE-GENES.md, 2026-10-25): eye colours framed on the head close up (crop set on the first photographs, 2026-10-25: the head sits at (960, 610) at root size 2), skin colours on the body.
+$eye = New-Object System.Drawing.Rectangle 860, 520, 200, 200
 $genes = 'CATALOGUE-GENES.md'
 Run-Job 'eyegene' 'eyegene' (Read-Section $genes '^## Eye colours') $eye $false $false
 Run-Job 'skingene' 'skingene' (Read-Section $genes '^## Skin colours') $body $false $false
