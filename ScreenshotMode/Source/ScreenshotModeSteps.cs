@@ -6,7 +6,9 @@ using System.Reflection;
 using System.Threading.Tasks;
 using RimWorld;
 using RimWorks.Pickle;
+using UnityEngine;
 using Verse;
+using Verse.Grammar;
 
 namespace Nelim.PickleTools.ScreenshotMode
 {
@@ -148,12 +150,93 @@ namespace Nelim.PickleTools.ScreenshotMode
             await ctx.WaitFrames(3);
         }
 
-        /// <summary>Puts the windows, the screenshot mode and the game speed back (what <c>the map is shown alone for a capture</c> and <c>time is paused for the capture</c> changed).</summary>
+        /// <summary>
+        /// Draws a short text in big letters at the top centre of the screen, with no fade and no message box, so it survives a capture
+        /// (it also draws in the game's screenshot mode). The text goes through <c>GrammarResolver.Resolve</c> as a <c>Rule_String</c>
+        /// first, like the game does for a message, so a grammar mod that patches the resolver shows in the capture. Keep it to one
+        /// line (34 characters or fewer reads at 268 px). A second call replaces the first. Removed by <c>the interface is shown again</c>
+        /// or after the scenario. Written 2026-10-25 for French Grammar Renew; not played when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: a big message {string} is held on screen", TimeoutSeconds = 30f)]
+        public async Task BigMessage(PickleContext ctx, string text)
+        {
+            ctx.Require(Current.Game != null, "no game is running: load the fixture before this step");
+            var request = default(GrammarRequest);
+            request.Rules.Add(new Rule_String("r_root", text));
+            var body = GrammarResolver.Resolve("r_root", request, "Nelim's Pickle Tools big message", capitalizeFirstSentence: false);
+            RemoveBigMessage();
+            bigMessage = new BigMessageWindow(body);
+            Find.WindowStack.Add(bigMessage);
+            await ctx.WaitFrames(3);
+        }
+
+        private BigMessageWindow bigMessage;
+
+        private void RemoveBigMessage()
+        {
+            if (bigMessage != null) bigMessage.Close(false);
+            bigMessage = null;
+        }
+
+        private sealed class BigMessageWindow : Window
+        {
+            private const float Scale = 2f;
+            private readonly string text;
+
+            public BigMessageWindow(string text)
+            {
+                this.text = text;
+                doWindowBackground = false;
+                drawShadow = false;
+                doCloseButton = false;
+                doCloseX = false;
+                closeOnClickedOutside = false;
+                closeOnAccept = false;
+                closeOnCancel = false;
+                absorbInputAroundWindow = false;
+                preventCameraMotion = false;
+                focusWhenOpened = false;
+                layer = WindowLayer.Super;
+                drawInScreenshotMode = true;
+                soundAppear = null;
+                soundClose = null;
+            }
+
+            public override Vector2 InitialSize => new Vector2(UI.screenWidth, 120f);
+
+            protected override float Margin => 0f;
+
+            protected override void SetInitialSizeAndPosition()
+            {
+                windowRect = new Rect(0f, 40f, UI.screenWidth, 120f);
+            }
+
+            public override void DoWindowContents(Rect inRect)
+            {
+                var previousFont = Text.Font;
+                var previousAnchor = Text.Anchor;
+                var previousMatrix = GUI.matrix;
+                var pivot = new Vector2(inRect.width / 2f, inRect.height / 2f);
+                GUIUtility.ScaleAroundPivot(new Vector2(Scale, Scale), pivot);
+                Text.Font = GameFont.Medium;
+                Text.Anchor = TextAnchor.MiddleCenter;
+                GUI.color = Color.black;
+                Widgets.Label(new Rect(inRect.x + 2f, inRect.y + 2f, inRect.width, inRect.height), text);
+                GUI.color = Color.white;
+                Widgets.Label(inRect, text);
+                GUI.matrix = previousMatrix;
+                Text.Font = previousFont;
+                Text.Anchor = previousAnchor;
+            }
+        }
+
+        /// <summary>Puts the windows, the screenshot mode and the game speed back (what <c>the map is shown alone for a capture</c> and <c>time is paused for the capture</c> changed), and removes the big message.</summary>
         [When("Nelim's Pickle Tools: the interface is shown again")]
         public void InterfaceBack(PickleContext ctx)
         {
             Restore();
             RestorePause();
+            RemoveBigMessage();
         }
 
         private bool paused;
@@ -169,6 +252,7 @@ namespace Nelim.PickleTools.ScreenshotMode
         {
             Restore();
             RestorePause();
+            RemoveBigMessage();
             RestoreDeveloperMode();
         }
 
