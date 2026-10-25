@@ -40,6 +40,33 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        /// <summary>
+        /// Puts N things of a def (by defName, made of its default stuff) on the ground at a cell, as one stack when N fits the stack limit and as
+        /// several stacks next to each other otherwise (the game finds the nearest free cells). Fails when the def is unknown, the cell is outside
+        /// the map, or a stack cannot be placed. Written 2026-10-25 for GeniusesCraftFastRenew (a stack of N on a bench). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {int} of the item {string} are spawned at \\({int}, {int}\\)")]
+        public void SpawnedStack(PickleContext ctx, int count, string defName, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ctx.Require(count > 0, "the count is 1 or more");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            int left = count;
+            while (left > 0)
+            {
+                int n = System.Math.Min(left, def.stackLimit);
+                Thing thing = ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def));
+                thing.stackCount = n;
+                GenPlace.TryPlaceThing(thing, cell, map, ThingPlaceMode.Near);
+                ctx.Assert(thing.Spawned || thing.Destroyed, $"a stack of {n} {defName} could not be placed near ({x}, {z})");
+                left -= n;
+            }
+        }
+
         /// <summary>Forbids the first thing of a def (by defName) on a cell of the current map.</summary>
         [Given("Nelim's Pickle Tools: the thing {string} at \\({int}, {int}\\) is forbidden")]
         public void Forbidden(PickleContext ctx, string defName, int x, int z)

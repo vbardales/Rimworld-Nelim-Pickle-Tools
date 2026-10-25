@@ -270,6 +270,52 @@ namespace Nelim.PickleTools.ColonistRace
             return jobDef;
         }
 
+        /// <summary>
+        /// Gives a work table (a building that holds bills, by defName, at a cell) a bill for a recipe (a RecipeDef by defName) that it offers, repeated
+        /// forever, so that the job DoBill, forced on that building, has something to do: the colonist is then put beside the bench and starts the bill
+        /// the way the game's own work giver builds it (ingredients must lie on the map and be reachable, and a bench that needs power must be powered).
+        /// Fails when no such building stands on the cell, it holds no bills, the recipe is unknown or not one of its recipes.
+        /// Written 2026-10-25 for GeniusesCraftFastRenew (a crafter at work). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) has the bill {string}")]
+        public void HasBill(PickleContext ctx, string defName, int x, int z, string recipeName)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Building building = cell.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            var giver = building as IBillGiver;
+            ctx.Require(giver != null, $"{defName} does not hold bills");
+            RecipeDef recipe = DefDatabase<RecipeDef>.GetNamedSilentFail(recipeName);
+            ctx.Require(recipe != null, $"no RecipeDef named '{recipeName}'");
+            ctx.Require(building.def.AllRecipes.Contains(recipe), $"{defName} does not offer {recipeName}; it offers: " + string.Join(", ", building.def.AllRecipes.Select(r => r.defName).Take(40)));
+            Bill bill = recipe.MakeNewBill();
+            var production = bill as Bill_Production;
+            if (production != null) production.repeatMode = BillRepeatModeDefOf.Forever;
+            giver.BillStack.AddBill(bill);
+            Log.Message($"[stage] {defName} at {cell} has the bill {recipeName}, bills now {giver.BillStack.Count}");
+            ctx.Assert(giver.BillStack.Bills.Contains(bill), $"the bill {recipeName} was not added to {defName}");
+        }
+
+        /// <summary>The job the game's own work giver of that bench gives the colonist (forced), so ingredients and the bill are set as in play.</summary>
+        private static Job BillJob(PickleContext ctx, Pawn pawn, Thing bench)
+        {
+            ctx.Require(bench is IBillGiver, $"{bench.def.defName} does not hold bills");
+            ctx.Require(((IBillGiver)bench).BillStack.Count > 0, $"{bench.def.defName} at {bench.Position} has no bill: add one with 'the building \"{bench.def.defName}\" at ({bench.Position.x}, {bench.Position.z}) has the bill \"<recipe>\"'");
+            foreach (WorkGiverDef giverDef in DefDatabase<WorkGiverDef>.AllDefsListForReading)
+            {
+                var scanner = giverDef.Worker as WorkGiver_DoBill;
+                if (scanner == null) continue;
+                if (giverDef.fixedBillGiverDefs == null || !giverDef.fixedBillGiverDefs.Contains(bench.def)) continue;
+                Job job = scanner.JobOnThing(pawn, bench, true);
+                if (job != null) return job;
+            }
+            ctx.Require(false, $"the game gives {pawn.LabelShort} no bill job on {bench.def.defName} at {bench.Position}: ingredients missing or out of reach, the bench unpowered or forbidden, or the colonist cannot do that work type");
+            return null;
+        }
+
         private static void StartForced(PickleContext ctx, string nickname, Pawn pawn, Map map, JobDef jobDef, Thing target, bool placeBeside)
         {
             if (placeBeside)
@@ -286,6 +332,10 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 job = RefuelWorkGiverUtility.RefuelJob(pawn, target, true);
                 ctx.Require(job != null, $"the game builds no refuel job for {target.LabelShort}: it is full, or no fuel it accepts can be reached");
+            }
+            else if (jobDef.defName == "DoBill")
+            {
+                job = BillJob(ctx, pawn, target);
             }
             else
             {
