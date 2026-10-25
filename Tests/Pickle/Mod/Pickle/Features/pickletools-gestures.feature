@@ -20,3 +20,24 @@ Feature: Gestures caught mid-step
     And I take a screenshot "gestures-1-frame-20"
     And Nelim's Pickle Tools: I advance the paused game by exactly 20 ticks
     And I take a screenshot "gestures-1-frame-40"
+
+  Scenario: gestures-2: a female and a male adult cat and a female kitten, sex asserted by the step
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: a female adult animal of kind "Cat" named "Mere" is spawned at (197, 152)
+    And Nelim's Pickle Tools: a male adult animal of kind "Cat" named "Pere" is spawned at (199, 152)
+    And Nelim's Pickle Tools: a female animal of kind "Cat" named "Chaton" is spawned at (201, 152) at life stage 0
+    When Nelim's Pickle Tools: I frame the animal "Mere" at zoom 4
+    And I take a screenshot "gestures-2-sexes"
+
+  Scenario: gestures-3: Nelim leaves a jug of Milk on the ground, a cat is forced to eat it, caught after 30 ticks
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing East
+    And Nelim's Pickle Tools: an adult animal of kind "Cat" named "Minou" is spawned at (188, 121)
+    And Nelim's Pickle Tools: "Nelim" is forced to haul 1 of the item "Milk" to (186, 121)
+    When Nelim's Pickle Tools: I advance the paused game by exactly 400 ticks
+    And Nelim's Pickle Tools: the animal "Minou" is forced into the job "Ingest" on the item "Milk" at (186, 121)
+    And Nelim's Pickle Tools: I advance the paused game by exactly 30 ticks
+    And Nelim's Pickle Tools: I frame the cell (186, 121) at zoom 4
+    And I take a screenshot "gestures-3-ingest"
