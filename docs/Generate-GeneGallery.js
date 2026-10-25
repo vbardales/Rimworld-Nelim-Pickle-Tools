@@ -76,7 +76,7 @@ const base = (zoomLine, lids) => [
   `And ${PT}"Nelim" face is held neutral`,
   ...zoomLine,
 ];
-const eyeBase = base([`And ${PT}the camera frames the head of "Nelim" at root size 1.6`], 'LidNormal');   // root size: smaller = closer
+const eyeBase = base([`And ${PT}the camera frames the head of "Nelim" at root size 2`], 'LidNormal');   // root size: smaller = closer, 2 is the bound of the game
 const skinBase = base([`And ${PT}"Nelim" wears "UnderWhere_Panties"`, `And ${PT}"Nelim" wears "UnderWhere_Bra"`, `And ${PT}I frame the cell (176, 120) at zoom 2`], 'LidNormal');
 const tags = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.colonistrace', '@requires:nelim.pickletools.camerazoom'];
 const shot = (g, prefix) => [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "${prefix}-${g.name}"`];
