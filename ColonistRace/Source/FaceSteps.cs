@@ -277,6 +277,8 @@ namespace Nelim.PickleTools.ColonistRace
             heldNeutral.Add(pawn);
             BeforeUpdateAnimation(face);
             update.Invoke(face, null);
+            // The update refills the list from the pawn's current job (a forced Wait job after "stands at"): empty it again, the prefix does it before every later update.
+            BeforeUpdateAnimation(face);
             compType.GetMethod("SetDirty", Any)?.Invoke(face, null);
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
             var list = compJobList.GetValue(face) as IEnumerable;
