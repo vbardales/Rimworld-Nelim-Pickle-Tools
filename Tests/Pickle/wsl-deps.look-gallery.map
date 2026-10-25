@@ -36,6 +36,7 @@ lordfelix.HatHairControl 3760821540
 # Added 2026-10-19 for the look gallery lots: the mods whose hairstyles and tattoos the scenarios choose (a lot fails with "no hairstyle ..." without them; values come from run 1d58 on wsl-deps.look-catalogue.map).
 Shenanigans.TribalTattoos 2782262247
 Qux.Tattoos 2569243583
+Rooboid.RooTattoo 2555588467
 rooboid.hdhair.continued 3559870636
 VanillaExpanded.VHE 1888705256
 
