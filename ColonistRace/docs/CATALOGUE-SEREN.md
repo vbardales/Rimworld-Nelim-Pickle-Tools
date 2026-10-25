@@ -107,8 +107,22 @@ Abstract (not usable): OL_SerenPawnkindBase, OL_SerenCivilModel, OL_SerenRoughMo
 | Culture (Ideology) | `Cultures_Seren.xml` |
 | Backstories | 58 `SerenBackstories.xml` entries (children: SerenOrphan ... SerenQuietChild; adults: SerenPOW ... SerenPriest) |
 
+## Photographs
+
+Sheets are in `ColonistRace/docs/img/looks/` (one tile per value in `tiles/`).
+
+| What | Sheet | State |
+|---|---|---|
+| Skin colour genes (13) | `skingene-seren-from-stardust-biotech-fork-1.jpg` | done |
+| Hair colour genes (19) | `hairgene-seren-from-stardust-biotech-fork-1.jpg` | done |
+| Look genes (23): markings 7, sensors (horns) 8, ears, eyes, body masks 6 | `lookgene-seren-from-stardust-biotech-fork-1.jpg` | done |
+| Face parts (Experimentals: 3 heads, 7 lids, 4 eyeballs, 2 brows, 2 mouths) and 7 marking skins | `parts-seren-*` (to build) | filed 2026-10-25, feature `pickletools-seren-face-gallery` (generator `docs/Generate-SerenGallery.js`, map `wsl-deps.seren-face-gallery.map`) |
+| The whole Seren pawn, female (Nelim) and male (Soren), front, side, back | `seren-xeno-*` | same feature |
+
+Not photographed: pawn kinds (their look comes from random gear and the same xenotype, so a portrait of each shows nothing the xenotype photograph does not), and the face sets of VTE and NiceFA (not loaded by NSB).
+
 ## What to do for the looks of Ada and Koji
 
 1. The face is picked by name per part: head, lids, eyes, brows, mouth and skin come from the Experimentals table above. Every name there exists on the NSB map.
 2. A face part only draws on a pawn that has the gene `OL_SerenEyes`; a skin part only with its marking gene.
-3. No photograph of any Experimentals part exists yet: the face-parts gallery (`FACE-PARTS.md`) covers Nelim's own set, not these. File a ticket when the owner wants one shot per Seren part (3 heads, 7 lids, 4 eyes, 2 brows, 2 mouths, 7 skins = 25).
+3. The photographs of the Experimentals face parts are in the table above (filed, not yet read).
