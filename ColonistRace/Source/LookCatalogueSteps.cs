@@ -88,6 +88,25 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message("[look-weather] total " + all.Count);
         }
 
+        /// <summary>
+        /// Logs every job def that has a concrete driver (<c>[look-job]</c>: one line per mod, each defName) and the work givers by work type
+        /// (<c>[look-workgiver]</c>: <c>WorkType:GiverDefName</c>, to relate a work to the target it needs). The jobs are the ones the step
+        /// <c>"X" is forced into the job "Y" on ...</c> takes. Written 2026-10-25 for the job pose catalogue (owner: one pose per job, with Show Me Your
+        /// Tools). Never fails. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the job options are listed")]
+        public void ListJobs(PickleContext ctx)
+        {
+            List<JobDef> all = DefDatabase<JobDef>.AllDefsListForReading.Where(d => d.driverClass != null && !d.driverClass.IsAbstract).ToList();
+            foreach (var mod in all.GroupBy(d => d.modContentPack?.Name ?? "(none)").OrderBy(g => g.Key))
+            {
+                Log.Message("[look-job] " + mod.Key + " (" + mod.Count() + "): " + string.Join(", ", mod.Select(d => d.defName).OrderBy(n => n)));
+            }
+
+            Log.Message("[look-job] total " + all.Count);
+            Log.Message("[look-workgiver] " + string.Join(", ", DefDatabase<WorkGiverDef>.AllDefsListForReading.Where(g => g.workType != null).Select(g => g.workType.defName + ":" + g.defName).OrderBy(n => n)));
+        }
+
         private static string WeatherFlags(WeatherDef d)
         {
             var flags = new List<string>();
