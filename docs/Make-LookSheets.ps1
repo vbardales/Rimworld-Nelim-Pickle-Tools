@@ -38,6 +38,7 @@ function Read-Section($file, $titleRegex) {
         foreach ($r in $names) {
             $type = ''; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
             $hex = ''; if ($r -match '#([0-9A-Fa-f]{6})$') { $hex = $Matches[1]; $r = $r -replace '#[0-9A-Fa-f]{6}$', '' }
+            $r = $r -replace '#$', ''   # a gene with no colour is written NAME# in CATALOGUE-GENES.md
             $slot = ''; if ($r -match '\[(.*)\]$') { $slot = $Matches[1] }
             $name = ($r -replace ' \([A-Za-z]+\)$', '' -replace '\[.*\]$', '').Trim()
             $items += [pscustomobject]@{ mod = ($cells[0] -replace ' \(continued\)$', ''); group = $group; name = $name; type = $type; hex = $hex; slot = $slot }
