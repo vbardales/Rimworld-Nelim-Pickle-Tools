@@ -23,7 +23,7 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBAcneA"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-RBAcneA"
@@ -105,7 +105,7 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBMolesB"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-RBMolesB"
