@@ -227,8 +227,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// the game ticks. The pawn is not moved. Fails when the pawn is unknown, no such item lies at the cell, the item is not ingestible by this pawn,
         /// or Ingest does not become the current job. Written 2026-10-25 for EbbbsRenew (a jug of Milk on the ground). NOT PLAYED when written.
         /// </summary>
-        [Given("Nelim's Pickle Tools: the animal {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]
-        public void AnimalForcedToIngest(PickleContext ctx, string name, string defName, int x, int z)
+        [Given("Nelim's Pickle Tools: the animal {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]        public void AnimalForcedToIngest(PickleContext ctx, string name, string defName, int x, int z)
         {
             Pawn pawn = RequireSpawnedPawn(ctx, name);
             Map map = pawn.Map;
@@ -242,6 +241,10 @@ namespace Nelim.PickleTools.ColonistRace
             job.count = Math.Max(1, Math.Min(item.stackCount, FoodUtility.WillIngestStackCountOf(pawn, item.def, item.GetStatValue(StatDefOf.Nutrition))));
             StartJob(ctx, name, pawn, jobDef, job);
         }
+
+        /// <summary>The same for any pawn by short name, a colonist at a table included: it walks to the item, sits if the item lies on a table, and eats. Written 2026-10-25 for FlavorTextExtended. NOT PLAYED when written.</summary>
+        [Given("Nelim's Pickle Tools: {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]
+        public void PawnForcedToIngest(PickleContext ctx, string name, string defName, int x, int z) => AnimalForcedToIngest(ctx, name, defName, x, z);
 
         private static Pawn RequireSpawnedPawn(PickleContext ctx, string name)
         {
