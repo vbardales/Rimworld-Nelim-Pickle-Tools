@@ -20,7 +20,7 @@ Feature: One photograph per eye colour gene and per skin colour gene on a bald N
     And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
     And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
     And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
-    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeBig"
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
@@ -94,7 +94,7 @@ Feature: One photograph per eye colour gene and per skin colour gene on a bald N
     And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
     And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
     And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
-    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeBig"
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral

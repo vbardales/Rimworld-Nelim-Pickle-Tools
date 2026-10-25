@@ -53,7 +53,7 @@ fs.writeFileSync('ColonistRace/docs/CATALOGUE-GENES.md', [
 ].join('\n'));
 
 const PT = "Nelim's Pickle Tools: ";
-const base = (zoomLine, lids) => [
+const base = (zoomLine, lids, eyeballs = 'EyeNormal') => [
   'Given the save "Nelims-tribe" is loaded',
   'And game speed is paused',
   `And ${PT}the item and name labels are hidden`,
@@ -70,13 +70,13 @@ const base = (zoomLine, lids) => [
   `And ${PT}"Nelim" brows are "BrowNormal"`,
   `And ${PT}"Nelim" lids are "${lids}"`,
   `And ${PT}"Nelim" face skin is "SkinNormal"`,
-  `And ${PT}"Nelim" eyeballs are "EyeNormal"`,
+  `And ${PT}"Nelim" eyeballs are "${eyeballs}"`,
   `And ${PT}"Nelim" face head shape is "HeadNormal"`,
   `And ${PT}"Nelim" facial expression is "normal"`,
   `And ${PT}"Nelim" face is held neutral`,
   ...zoomLine,
 ];
-const eyeBase = base([`And ${PT}the camera frames the head of "Nelim" at root size 2`], 'LidNormal');   // root size: smaller = closer, 2 is the bound of the game
+const eyeBase = base([`And ${PT}the camera frames the head of "Nelim" at root size 2`], 'LidNormal', 'EyeBig');   // EyeBig: a larger iris so the gene colour reads (owner, 2026-10-25, the first sheet had small beauty eyes);   // root size: smaller = closer, 2 is the bound of the game
 const skinBase = base([`And ${PT}"Nelim" wears "UnderWhere_Panties"`, `And ${PT}"Nelim" wears "UnderWhere_Bra"`, `And ${PT}I frame the cell (176, 120) at zoom 2`], 'LidNormal');
 const tags = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.colonistrace', '@requires:nelim.pickletools.camerazoom'];
 const shot = (g, prefix) => [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "${prefix}-${g.name}"`];
