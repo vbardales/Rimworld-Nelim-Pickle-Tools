@@ -91,7 +91,7 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skin-SkinTiredEyes"
 
-  Scenario: face-skin-closeup-1: the eight flagged skins, no lids, head framed at root size 1.6
+  Scenario: face-skin-closeup-1: the eight flagged skins, no lids, head framed at root size 2
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -111,7 +111,7 @@ Feature: Skins, brows, head shapes and the EyeGenes3 eyeballs on a bald Nelim, n
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: the camera frames the head of "Nelim" at root size 1.6
+    And Nelim's Pickle Tools: the camera frames the head of "Nelim" at root size 2
     When Nelim's Pickle Tools: "Nelim" face skin is "AKN_SkinSnoot"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skinclose-AKN_SkinSnoot"
