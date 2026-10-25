@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: One wide photograph per weather of the game (the weather catalogue)
 
-  Scenario: weather-gallery-1: weather 1 to 12 of 24
+  Scenario: weather-gallery-1: weather 1 to 4 of 24
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -27,6 +27,19 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     When I set the weather to "Undercave"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Undercave"
+
+  Scenario: weather-gallery-2: weather 5 to 8 of 24
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And I set the hour to 12
+    And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
     When I set the weather to "UnnaturalDarkness_Stage1"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-UnnaturalDarkness_Stage1"
@@ -39,6 +52,19 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     When I set the weather to "Clear"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Clear"
+
+  Scenario: weather-gallery-3: weather 9 to 12 of 24
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And I set the hour to 12
+    And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
     When I set the weather to "DryThunderstorm"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-DryThunderstorm"
@@ -52,7 +78,7 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Rain"
 
-  Scenario: weather-gallery-2: weather 13 to 24 of 24
+  Scenario: weather-gallery-4: weather 13 to 16 of 24
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -76,6 +102,19 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     When I set the weather to "Underground"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Underground"
+
+  Scenario: weather-gallery-5: weather 17 to 20 of 24
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And I set the hour to 12
+    And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
     When I set the weather to "BlindFog"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-BlindFog"
@@ -88,6 +127,19 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     When I set the weather to "Overcast"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Overcast"
+
+  Scenario: weather-gallery-6: weather 21 to 24 of 24
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And I set the hour to 12
+    And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
     When I set the weather to "Sandstorm"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Sandstorm"
