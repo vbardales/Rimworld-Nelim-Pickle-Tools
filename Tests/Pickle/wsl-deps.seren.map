@@ -1,0 +1,53 @@
+# The pass of the face parts gallery (pickletools-face-parts-gallery.feature): the Sanctuary's facial animation list, staged from this repository.
+# Copy of SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map of 2026-10-09; seeds in config/faceparts/.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.faceparts.map -Filter '::face-parts-gallery-1'
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.coatsteps path:PickleTools/CoatSteps/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools.screenshotmode path:PickleTools/ScreenshotMode/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+# UnderWhere BEFORE WDI (2026-10-18, VTW maps wsl-deps.app-wdi-underwear.map and vanilla-combinations.map): WDI re-skins UnderWhere's Textures/UWUnderwear paths, and the later mod wins. NSB had said after WDI; VTW and the texture rule disagree with it, not tested yet. Og.UnderWherePatches (loadAfter UnderWhere) untested anywhere, 1.7 not checked.
+Malistaticy.UnderWhere 1870010563
+# Og.UnderWherePatches 3354891128: dropped by the staging as incompatible with 1.6 (dropped-mods.txt, 2026-10-18), left out.
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+# astryl.FacialAnimationPerformancePatch 3790129900: in neither the Windows subscriptions nor the WSL cache (lot look-gallery-n02, 2026-10-19, staging error); a performance patch, not needed for the look captures, left out.
+vk.addeyes.EX 3694711465
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+Moshii.NLFA.InitFix 3609895011
+ccj.nlfaloadfix 3721489042
+lordfelix.HatHairControl 3760821540
+
+# Added 2026-10-19 for the look gallery lots: the mods whose hairstyles and tattoos the scenarios choose (a lot fails with "no hairstyle ..." without them; values come from run 1d58 on wsl-deps.look-catalogue.map).
+Shenanigans.TribalTattoos 2782262247
+Qux.Tattoos 2569243583
+Rooboid.RooTattoo 2555588467
+Rooboid.BirthmarksandBlemishes 2890180936
+rooboid.hdhair.continued 3559870636
+VanillaExpanded.VHE 1888705256
+
+# Camera zoom (2026-10-22, tickets 54d3 and 46b3): SimpleCameraSetting lifts the game bound on the camera root size with its default settings, and the root size stays the drawn size (Camera+ keeps the root size at 11 and remaps it, so the frame steps would no longer compute the picture they name).
+ray1203.SimpleCameraSetting 3232415388
+
+# Weapons in hand (2026-10-23, ticket 0165 drew no weapon with a paused game): Show Me Your Hands draws hands on the weapon, Show Me Your Tools (fork) the tools held for work.
+Mlie.ShowMeYourHands 2475965842
+meathax.ShowMeYourTools 3774821567
+
+# Seren, from Stardust [Biotech Fork] (2026-10-25, owner): its genes are photographed on this map only, so that the shared look-gallery map keeps its mod list. Vanilla Expanded Framework is its dependency.
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+odysseylotus.serenbiotech 3726565301

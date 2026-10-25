@@ -28,6 +28,22 @@ for (const b of fs.readFileSync(skinFile, 'utf8').split(/<GeneDef[ >]/).slice(1)
   if (name && c && name.startsWith('Skin_')) skins.push({ name, hex: hex(+c[1], +c[2], +c[3]) });
 }
 
+// Seren, from Stardust [Biotech Fork] (Workshop 3726565301, 2026-10-25, owner): skin and hair colour genes, and the look genes (markings, sensors, ears, eyes, body masks).
+const SEREN = STEAM + '/workshop/content/294100/3726565301/1.6/Defs/GeneDefs/';
+function serenGenes(file, colourTag) {
+  const out = [];
+  for (const b of fs.readFileSync(SEREN + file, 'utf8').split(/<GeneDef[ >]/).slice(1)) {
+    const name = (b.match(/<defName>([^<]+)</) || [])[1];
+    if (!name) continue;
+    const c = colourTag && b.match(new RegExp('<' + colourTag + '>\\(?\\s*(\\d+)\\s*,\\s*(\\d+)\\s*,\\s*(\\d+)'));
+    out.push({ name, hex: c ? hex(+c[1], +c[2], +c[3]) : '' });
+  }
+  return out;
+}
+const serenSkins = serenGenes('GeneDefs_Seren_SkinColors.xml', 'skinColorOverride').filter(g => g.hex);
+const serenHair = serenGenes('GeneDefs_Seren_HairColors.xml', 'hairColorOverride').filter(g => g.hex);
+const serenLooks = ['Markings', 'Sensors', 'Ears', 'Eyes', 'BodyMasks'].flatMap(f => serenGenes('GeneDefs_Seren_' + f + '.xml', null));
+
 const row = (mod, list) => `| ${mod} | ${list.map(x => `${x.name}#${x.hex}`).join(', ')} |`;
 fs.writeFileSync('ColonistRace/docs/CATALOGUE-GENES.md', [
   '# Genes: eye colours and skin colours',
@@ -49,6 +65,23 @@ fs.writeFileSync('ColonistRace/docs/CATALOGUE-GENES.md', [
   '| Mod | Names |',
   '|---|---|',
   row('Biotech', skins),
+  row('Seren, from Stardust [Biotech Fork]', serenSkins),
+  '',
+  '## Hair colours',
+  '',
+  `${serenHair.length} genes of Seren, from Stardust (Workshop 3726565301). The photograph frames the whole body in underwear with the hairstyle Afro. The colour after # is the RGB of the gene.`,
+  '',
+  '| Mod | Names |',
+  '|---|---|',
+  row('Seren, from Stardust [Biotech Fork]', serenHair),
+  '',
+  '## Look genes',
+  '',
+  `${serenLooks.length} genes of Seren, from Stardust that draw something: markings, sensors (horns), ears, eyes and body masks. One photograph each, every other gene removed first (\`loses all genes\`), the whole body in underwear.`,
+  '',
+  '| Mod | Names |',
+  '|---|---|',
+  row('Seren, from Stardust [Biotech Fork]', serenLooks),
   '',
 ].join('\n'));
 
@@ -92,4 +125,26 @@ scenario(`gene-gallery-eyes-1: eye genes 1 to ${half} of ${eyes.length}`, eyeBas
 scenario(`gene-gallery-eyes-2: eye genes ${half + 1} to ${eyes.length} of ${eyes.length}`, eyeBase, eyes.slice(half), 'eyegene');
 scenario(`gene-gallery-skins-1: the ${skins.length} skin colour genes`, skinBase, skins, 'skingene');
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-gene-gallery.feature', out.join('\n'));
-console.log(`${eyes.length} eye genes, ${skins.length} skin genes`);
+// The Seren photographs need their own mod list (map wsl-deps.seren.map): a separate feature.
+const SP = "Nelim's Pickle Tools: ";
+const serenOut = [...tags, 'Feature: One photograph per gene of Seren, from Stardust (skin colours, hair colours, look genes)', ''];
+let sn = 0;
+function serenScenario(title, genes, pre, per) {
+  const size = Math.ceil(genes.length / Math.ceil(genes.length / 20));
+  for (let i = 0; i < genes.length; i += size) {
+    const part = genes.slice(i, i + size); sn++;
+    serenOut.push(`  Scenario: seren-gallery-${sn}: ${title} ${i + 1} to ${i + part.length} of ${genes.length}`);
+    skinBase.forEach(l => serenOut.push('    ' + l));
+    pre.forEach(l => serenOut.push('    ' + l));
+    for (const g of part) per(g).forEach(l => serenOut.push('    ' + l));
+    serenOut.push('');
+  }
+}
+const take = (g, prefix, reset) => [
+  ...(reset ? [`When ${SP}"Nelim" loses all genes`, `And ${SP}"Nelim" has the gene "${g.name}"`] : [`When ${SP}"Nelim" has the gene "${g.name}"`]),
+  `And ${SP}I let 5 frames pass`, `And I take a screenshot "${prefix}-${g.name}"`];
+serenScenario('skin colours', serenSkins, [], g => take(g, 'skingene', false));
+serenScenario('hair colours', serenHair, [`And ${SP}"Nelim" hairstyle is "Afro"`], g => take(g, 'hairgene', false));
+serenScenario('look genes', serenLooks, [], g => take(g, 'lookgene', true));
+fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-seren-gallery.feature', serenOut.join('\n'));
+console.log(`${eyes.length} eye genes, ${skins.length} skin genes, Seren: ${serenSkins.length} skins, ${serenHair.length} hair, ${serenLooks.length} look genes, ${sn} scenarios`);
