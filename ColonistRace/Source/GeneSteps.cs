@@ -35,6 +35,37 @@ namespace Nelim.PickleTools.ColonistRace
                 "pawn '" + nickname + "' does not hold the gene '" + geneName + "'; it holds " + string.Join(", ", pawn.genes.GenesListForReading.Select(x => x.def.defName)));
         }
 
+        /// <summary>
+        /// Logs every gene of a colonist (<c>[genes]</c>: endogenes and xenogenes, defName and the exclusion tags). Never fails. Written 2026-10-25 to find
+        /// what draws the "beauty" look of the fixture eyes (owner: the eye catalogue still shows lashes and a liner). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the genes of {string} are logged")]
+        public void LogGenes(PickleContext ctx, string nickname)
+        {
+            ctx.Require(ModsConfig.BiotechActive, "genes need Biotech, and it is not active in this run");
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.genes != null, "pawn '" + nickname + "' has no genes");
+            Log.Message("[genes] " + nickname + " xenotype " + (pawn.genes.Xenotype?.defName ?? pawn.genes.xenotypeName ?? "custom") + ": "
+                + string.Join(", ", pawn.genes.GenesListForReading.Select(g => g.def.defName + (g.def.exclusionTags != null && g.def.exclusionTags.Count > 0 ? "{" + string.Join("/", g.def.exclusionTags) + "}" : "") + (pawn.genes.Xenogenes.Contains(g) ? "(xeno)" : ""))));
+        }
+
+        /// <summary>
+        /// Removes every gene of a colonist, endogenes and xenogenes, and redraws it: a plain pawn whose face a gallery sets part by part, with no gene
+        /// (a beauty gene, an eye colour) steering the look. A gene added afterwards (<c>has the gene</c>) is the only one it holds. Needs Biotech.
+        /// Written 2026-10-25. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} loses all genes")]
+        public void LoseAllGenes(PickleContext ctx, string nickname)
+        {
+            ctx.Require(ModsConfig.BiotechActive, "genes need Biotech, and it is not active in this run");
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.genes != null, "pawn '" + nickname + "' has no genes");
+            foreach (Gene g in pawn.genes.GenesListForReading.ToList())
+                pawn.genes.RemoveGene(g);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            ctx.Assert(pawn.genes.GenesListForReading.Count == 0, "pawn '" + nickname + "' still holds " + string.Join(", ", pawn.genes.GenesListForReading.Select(x => x.def.defName)));
+        }
+
         /// <summary>Asserts that a colonist holds a gene, by its def name. The failure lists the genes the pawn holds.</summary>
         [Then("Nelim's Pickle Tools: {string} holds the gene {string}")]
         public void HoldsGene(PickleContext ctx, string nickname, string geneName)
