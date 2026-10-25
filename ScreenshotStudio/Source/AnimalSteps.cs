@@ -29,6 +29,37 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "an adult animal of kind {string} named {string} is spawned at \\({int}, {int}\\)")]
         public void SpawnAdult(PickleContext ctx, string kindName, string nickname, int x, int z) => Spawn(ctx, kindName, nickname, x, z, int.MaxValue, null);
 
+        /// <summary>The same adult with its sex fixed (word: female or male), for a mother and a father that must read as such. Written 2026-10-25 for Creatures of Ki. NOT PLAYED.</summary>
+        [Given(Prefix + "a {word} adult animal of kind {string} named {string} is spawned at \\({int}, {int}\\)")]
+        public void SpawnAdultOfSex(PickleContext ctx, string sex, string kindName, string nickname, int x, int z) => Spawn(ctx, kindName, nickname, x, z, int.MaxValue, null, RequireSex(ctx, sex));
+
+        /// <summary>The same by life stage index (0 = youngest, last = adult), sex fixed. NOT PLAYED.</summary>
+        [Given(Prefix + "a {word} animal of kind {string} named {string} is spawned at \\({int}, {int}\\) at life stage {int}")]
+        public void SpawnAtStageIndexOfSex(PickleContext ctx, string sex, string kindName, string nickname, int x, int z, int stageIndex) => Spawn(ctx, kindName, nickname, x, z, stageIndex, null, RequireSex(ctx, sex));
+
+        private static Gender RequireSex(PickleContext ctx, string sex)
+        {
+            ctx.Require(sex == "female" || sex == "male", "the sex is female or male, not '" + sex + "'");
+            return sex == "female" ? Gender.Female : Gender.Male;
+        }
+
+        /// <summary>
+        /// Names the animal the game's own hatcher (or birth) produced: the youngest spawned animal of that PawnKindDef that has no name yet. Then every
+        /// step that takes an animal's nickname addresses it (stands at, forced to walk to, frame). Fails when none is found, or when two unnamed animals
+        /// of the kind share the youngest age (the failure says so: name the other first). Written 2026-10-25 for Creatures of Ki. NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the newborn animal of kind {string} is named {string}")]
+        public void NameNewborn(PickleContext ctx, string kindName, string nickname)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var unnamed = AreaOps.SpawnedPawns(map).Where(p => p.RaceProps.Animal && p.kindDef != null && p.kindDef.defName == kindName && p.Name == null).OrderBy(p => p.ageTracker.AgeBiologicalTicks).ToList();
+            ctx.Require(unnamed.Count > 0, "No unnamed spawned animal of kind " + kindName + " (a hatched or born animal that already has a name cannot be found this way)");
+            ctx.Require(unnamed.Count == 1 || unnamed[0].ageTracker.AgeBiologicalTicks != unnamed[1].ageTracker.AgeBiologicalTicks, unnamed.Count + " unnamed animals of kind " + kindName + " and the two youngest have the same age: name the others first");
+            unnamed[0].Name = new NameSingle(nickname);
+            ctx.Assert(AnimalNamed(ctx, nickname) == unnamed[0], "the animal named " + nickname + " is not the newborn found");
+        }
+
         // Centres the camera on a spawned animal, found by its nickname, at the given camera root size.
         [When(Prefix + "I frame the animal {string} at zoom {int}")]
         public async Task FrameAnimal(PickleContext ctx, string nickname, int size)
@@ -208,7 +239,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
-        private static void Spawn(PickleContext ctx, string kindName, string nickname, int x, int z, int stageIndex, string stageDefName)
+        private static void Spawn(PickleContext ctx, string kindName, string nickname, int x, int z, int stageIndex, string stageDefName, Gender? sex = null)
         {
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "No loaded map");
@@ -227,7 +258,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             if (index == int.MaxValue) index = stages.Count - 1;
             ctx.Require(index >= 0 && index < stages.Count, kindName + " has " + stages.Count + " life stages (0 to " + (stages.Count - 1) + "), not " + index);
 
-            Pawn pawn = PawnGenerator.GeneratePawn(new PawnGenerationRequest(kind, Faction.OfPlayer));
+            Pawn pawn = PawnGenerator.GeneratePawn(sex.HasValue ? new PawnGenerationRequest(kind, Faction.OfPlayer, fixedGender: sex.Value) : new PawnGenerationRequest(kind, Faction.OfPlayer));
             // Half-way into the stage, or a quarter year past the start of the last one.
             float years = index == stages.Count - 1 ? stages[index].minAge + 0.25f : (stages[index].minAge + stages[index + 1].minAge) * 0.5f;
             if (index == 0 && stages.Count > 1) years = Math.Min(years, stages[1].minAge * 0.5f);
@@ -237,6 +268,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             pawn.Name = new NameSingle(nickname);
             GenSpawn.Spawn(pawn, cell, map);
             ctx.Require(pawn.ageTracker.CurLifeStageIndex == index, nickname + " is at life stage " + pawn.ageTracker.CurLifeStageIndex + " instead of " + index);
+            ctx.Assert(!sex.HasValue || pawn.gender == sex.Value, nickname + " is " + pawn.gender + " instead of " + sex + " (a kind with no sex of its own cannot honour the request)");
         }
     }
 }
