@@ -1,7 +1,7 @@
-// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-male-gallery.feature: the body tattoos and the beards, one photograph per value, on
+// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature: the body tattoos and the beards, one photograph per value, on
 // Soren (the male colonist, never Nelim): the tattoos on a bare male body in briefs (UnderWhere_Panties, to show as much tattoo as possible), seen from the front and from the back (12 tattoos, 24 shots, per scenario), the
 // beards in a face close-up. The values are read from the steps of pickletools-look-gallery.feature (which holds the catalogue lists).
-// Written 2026-10-25 at the owner's request. usage: node docs/Generate-MaleGallery.js   (from the repository root)
+// Written 2026-10-25 at the owner's request. usage: node docs/Generate-BeardTattooGallery.js   (from the repository root)
 const fs = require('fs');
 const look = fs.readFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature', 'utf8');
 const values = re => [...new Set([...look.matchAll(re)].map(m => m[1]))];
@@ -26,16 +26,16 @@ let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.picklet
 function scenarios(kind, items, setup, frame, step, views, CHUNK) {
   for (let i = 0; i < items.length; i += CHUNK) {
     const part = items.slice(i, i + CHUNK); n++;
-    out += `  Scenario: male-gallery-${n}: ${kind} ${i + 1} to ${i + part.length} of ${items.length}\n`;
+    out += `  Scenario: beard-tattoo-gallery-${n}: ${kind} ${i + 1} to ${i + part.length} of ${items.length}\n`;
     for (const l of [...pre, ...setup, `${P}I frame the cell ${frame}`]) out += `    ${/^(Given|And) /.test(l) ? '' : 'And '}${l}\n`;
     for (const it of part) {
       out += `    When ${step(it)}\n`;
-      for (const v of views) out += (v.facing ? `    And ${P}"Soren" stands at (176, 120) facing ${v.facing}\n` : '') + `    And ${P}I let 5 frames pass\n    And I take a screenshot "male-${kind}-${it}${v.suffix}"\n`;
+      for (const v of views) out += (v.facing ? `    And ${P}"Soren" stands at (176, 120) facing ${v.facing}\n` : '') + `    And ${P}I let 5 frames pass\n    And I take a screenshot "${kind}-${it}${v.suffix}"\n`;
     }
     out += '\n';
   }
 }
 scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`].map(s => P + s), '(176, 120) at zoom 2', t => `${P}"Soren" body tattoo is "${t}"`, [{ facing: 'South', suffix: '-front' }, { facing: 'North', suffix: '-back' }], 12);
 scenarios('beard', beards, [], '(176, 119) at zoom 3', b => `${P}"Soren" beard is "${b}"`, [{ suffix: '' }], 20);
-fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-male-gallery.feature', out);
+fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature', out);
 console.log(`${n} scenarios: ${bodyTattoos.length} body tattoos, ${beards.length} beards`);
