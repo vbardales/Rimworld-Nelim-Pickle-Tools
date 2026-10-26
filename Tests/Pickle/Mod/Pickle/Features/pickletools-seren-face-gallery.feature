@@ -138,11 +138,6 @@ Feature: One photograph per face part of Seren (Experimentals set) and the whole
     And Nelim's Pickle Tools: "Nelim" xenotype is "OL_SerenBase"
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
-    And Nelim's Pickle Tools: "Nelim" mouth is "SerenMouthNormal"
-    And Nelim's Pickle Tools: "Nelim" brows are "SerenBrowNormal"
-    And Nelim's Pickle Tools: "Nelim" lids are "SerenLidNormal"
-    And Nelim's Pickle Tools: "Nelim" eyeballs are "SerenEyesNormal"
-    And Nelim's Pickle Tools: "Nelim" face head shape is "SerenHeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
