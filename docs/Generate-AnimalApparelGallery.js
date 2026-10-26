@@ -14,10 +14,13 @@ for (const f of fs.readdirSync(DEFS).filter(f => f.endsWith('.xml')).sort()) {
     if (!name) continue;
     const hosts = [...((b.match(/<descriptionHyperlinks>([\s\S]*?)<\/descriptionHyperlinks>/) || ['', ''])[1]).matchAll(/<ThingDef>([^<]+)</g)].map(z => z[1]);
     const groups = [...((b.match(/<bodyPartGroups>([\s\S]*?)<\/bodyPartGroups>/) || ['', ''])[1]).matchAll(/<li>([^<]+)</g)].map(z => z[1]);
-    items.push({ name, hosts, groups, file: f.replace(/^Apparel_/, '').replace(/\.xml$/, '') });
+    const tags = [...b.matchAll(/<li[^>]*>defName([^<]+)</g)].map(z => z[1]);
+    items.push({ name, hosts, tags, groups, file: f.replace(/^Apparel_/, '').replace(/\.xml$/, '') });
   }
 }
-const hostOf = i => 'Thrumbo';   // owner 2026-10-26: every garment is shown on a thrumbo (i.hosts lists the hosts the def itself names, kept in the catalogue)
+// The garments are whitelisted by race (apparel tags defName<Race>): a Thrumbo is refused the Small and dog ones ('tried to wear ... but is not allowed to', 2026-10-26, d81b bdbe).
+const PREFERRED = ['Thrumbo', 'LabradorRetriever', 'Husky', 'Alpaca', 'Wolf_Timber', 'Fox_Red'];
+const hostOf = i => PREFERRED.find(r => i.tags.includes(r)) || i.tags[0] || 'Husky';   // owner 2026-10-26: a thrumbo whenever the def allows it
 const md = ['# Animal apparel catalogue', '',
   `Read on 2026-10-26 from the Defs of Animal Apparel Collars and Kit Renew (${items.length} garments). One photograph each, on the first host the def lists (Husky when it lists none): shots \`animalapparel-<defName>\`, feature \`pickletools-animal-apparel-gallery\`, map \`wsl-deps.animal-portraits.map\`. The garments other mods add are not in this first pass.`, '',
   'Step text: `the animal "<name>" is dressed in "<defName>"`.', '',

@@ -23,21 +23,21 @@ Step text: `the animal "<name>" is dressed in "<defName>"`.
 
 | Garment | Photographed on | Listed hosts | Body groups |
 | --- | --- | --- | --- |
-| Apparel_SmallAnimalScarf | Thrumbo | Alpaca, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Husky, LabradorRetriever, Lynx, Megascarab, Spelopede, Squirrel, Warg, Wolf_Arctic, Wolf_Timber |  |
+| Apparel_SmallAnimalScarf | LabradorRetriever | Alpaca, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Husky, LabradorRetriever, Lynx, Megascarab, Spelopede, Squirrel, Warg, Wolf_Arctic, Wolf_Timber |  |
 | Apparel_LargeAnimalScarf | Thrumbo | Cougar, Cow, Horse, Megaspider, Megasloth, Muffalo, Panther, Thrumbo |  |
 | Apparel_bridle | Thrumbo | Elephant, Horse, Spelopede, Thrumbo |  |
-| Apparel_SmallAnimalClothes | Thrumbo | Alpaca, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Lynx, Megascarab, Spelopede, Squirrel, Warg |  |
+| Apparel_SmallAnimalClothes | Alpaca | Alpaca, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Lynx, Megascarab, Spelopede, Squirrel, Warg |  |
 | Apparel_LargeAnimalClothes | Thrumbo | Cougar, Cow, Elephant, Horse, Megaspider, Megasloth, Muffalo, Panther, Thrumbo |  |
-| Apparel_SmallAnimalPowerArmor | Thrumbo | Alpaca, Boomrat, Capybara, Chicken, Chinchilla, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Squirrel, Warg |  |
+| Apparel_SmallAnimalPowerArmor | Husky | Alpaca, Boomrat, Capybara, Chicken, Chinchilla, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Squirrel, Warg |  |
 | Apparel_LargeAnimalPowerArmor | Thrumbo | Bear_Grizzly, Bear_Polar, Boomalope, Cow, Dromedary, Elephant, Megasloth, Rhinoceros, Thrumbo |  |
-| Apparel_SmallAnimalPowerArmorHelmet | Thrumbo | Alpaca, Cat, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Lynx, Megascarab, Spelopede, Squirrel, Warg, WildBoar, Wolf_Arctic, Wolf_Timber |  |
+| Apparel_SmallAnimalPowerArmorHelmet | Alpaca | Alpaca, Cat, Cobra, Fox_Arctic, Fox_Fennec, Fox_Red, Lynx, Megascarab, Spelopede, Squirrel, Warg, WildBoar, Wolf_Arctic, Wolf_Timber |  |
 | Apparel_LargeAnimalPowerArmorHelmet | Thrumbo | Bear_Grizzly, Bear_Polar, Cougar, Elephant, Megasloth, Panther, Rhinoceros, Thrumbo |  |
 | diaper | Thrumbo | none listed | AnimalLegs |
-| Apparel_dogbow | Thrumbo | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
-| Apparel_GoatMail | Thrumbo | Goat | AnimalBody, AnimalNeck, AnimalHead, AnimalLegs |
-| Apparel_leatherdogcollar | Thrumbo | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
-| Apparel_MedievalHorsePlate | Thrumbo | Horse | AnimalBody, AnimalNeck, AnimalLegs |
-| Apparel_MedievalHorseHelmet | Thrumbo | Horse | AnimalHead |
-| Apparel_MedievalHorseSaddle | Thrumbo | Horse | AnimalBody |
-| Apparel_shielddogcollar | Thrumbo | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
-| Apparel_studdeddogcollar | Thrumbo | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
+| Apparel_dogbow | LabradorRetriever | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
+| Apparel_GoatMail | Goat | Goat | AnimalBody, AnimalNeck, AnimalHead, AnimalLegs |
+| Apparel_leatherdogcollar | LabradorRetriever | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
+| Apparel_MedievalHorsePlate | Horse | Horse | AnimalBody, AnimalNeck, AnimalLegs |
+| Apparel_MedievalHorseHelmet | Horse | Horse | AnimalHead |
+| Apparel_MedievalHorseSaddle | Horse | Horse | AnimalBody |
+| Apparel_shielddogcollar | LabradorRetriever | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
+| Apparel_studdeddogcollar | LabradorRetriever | Fox_Arctic, Fox_Fennec, Fox_Red, Husky, Wolf_Arctic, Wolf_Timber, LabradorRetriever, Warg, YorkshireTerrier |  |
