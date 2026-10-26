@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: Body tattoos and beards on Soren, one photograph per value (the male half of the look catalogues)
 
-  Scenario: beard-tattoo-gallery-1: bodytattoo 1 to 12 of 104
+  Scenario: beard-tattoo-gallery-1: bodytattoo 1 to 6 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -73,7 +73,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Jester-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-2: bodytattoo 7 to 12 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Moon"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -122,7 +145,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skeleton-back"
 
-  Scenario: beard-tattoo-gallery-2: bodytattoo 13 to 24 of 104
+  Scenario: beard-tattoo-gallery-3: bodytattoo 13 to 18 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -192,7 +215,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Bear-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-4: bodytattoo 19 to 24 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Birds"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -241,7 +287,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Claws-back"
 
-  Scenario: beard-tattoo-gallery-3: bodytattoo 25 to 36 of 104
+  Scenario: beard-tattoo-gallery-5: bodytattoo 25 to 30 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -311,7 +357,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Japan-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-6: bodytattoo 31 to 36 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_1c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -360,7 +429,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Koi-back"
 
-  Scenario: beard-tattoo-gallery-4: bodytattoo 37 to 48 of 104
+  Scenario: beard-tattoo-gallery-7: bodytattoo 37 to 42 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -430,7 +499,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_pentagram-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-8: bodytattoo 43 to 48 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_rose"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -479,7 +571,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Shark-back"
 
-  Scenario: beard-tattoo-gallery-5: bodytattoo 49 to 60 of 104
+  Scenario: beard-tattoo-gallery-9: bodytattoo 49 to 54 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -549,7 +641,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_3c-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-10: bodytattoo 55 to 60 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back_4c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -598,7 +713,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Anima-back"
 
-  Scenario: beard-tattoo-gallery-6: bodytattoo 61 to 72 of 104
+  Scenario: beard-tattoo-gallery-11: bodytattoo 61 to 66 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -668,7 +783,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredGrass-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-12: bodytattoo 67 to 72 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SacredWater"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -717,7 +855,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Vines-back"
 
-  Scenario: beard-tattoo-gallery-7: bodytattoo 73 to 84 of 104
+  Scenario: beard-tattoo-gallery-13: bodytattoo 73 to 78 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -787,7 +925,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyA-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-14: bodytattoo 79 to 84 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyB"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -836,7 +997,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBStitchesBodyA-back"
 
-  Scenario: beard-tattoo-gallery-8: bodytattoo 85 to 96 of 104
+  Scenario: beard-tattoo-gallery-15: bodytattoo 85 to 90 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -906,7 +1067,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Chesttext-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-16: bodytattoo 91 to 96 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_DarkPsycaster"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -955,7 +1139,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Oni-back"
 
-  Scenario: beard-tattoo-gallery-9: bodytattoo 97 to 104 of 104
+  Scenario: beard-tattoo-gallery-17: bodytattoo 97 to 102 of 104
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -1025,7 +1209,30 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Soulmateright-back"
-    And Nelim's Pickle Tools: the look of "Soren" is restored
+
+  Scenario: beard-tattoo-gallery-18: bodytattoo 103 to 104 of 104
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Soren" exists
+    And "Soren" is 30 years old
+    And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Soren" face kit is "neutral"
+    And Nelim's Pickle Tools: "Soren" facial expression is "normal"
+    And Nelim's Pickle Tools: "Soren" face is held neutral
+    And Nelim's Pickle Tools: "Soren" body type is Male
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Yakuza"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -1042,7 +1249,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Yorkshire-back"
 
-  Scenario: beard-tattoo-gallery-10: beard 1 to 20 of 41
+  Scenario: beard-tattoo-gallery-19: beard 1 to 20 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -1144,7 +1351,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Ducktail"
 
-  Scenario: beard-tattoo-gallery-11: beard 21 to 40 of 41
+  Scenario: beard-tattoo-gallery-20: beard 21 to 40 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -1246,7 +1453,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-VanDyke"
 
-  Scenario: beard-tattoo-gallery-12: beard 41 to 41 of 41
+  Scenario: beard-tattoo-gallery-21: beard 41 to 41 of 41
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden

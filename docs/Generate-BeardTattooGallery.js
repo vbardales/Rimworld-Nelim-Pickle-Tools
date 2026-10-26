@@ -1,5 +1,5 @@
 // Writes Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature: the body tattoos and the beards, one photograph per value, on
-// Soren (the male colonist, never Nelim): the tattoos on a bare male body in briefs (UnderWhere_Panties, to show as much tattoo as possible), seen from the front and from the back (12 tattoos, 24 shots, per scenario), the
+// Soren (the male colonist, never Nelim): the tattoos on a bare male body in briefs (UnderWhere_Panties, to show as much tattoo as possible), seen from the front and from the back (6 tattoos, 12 shots, per scenario: 12 tattoos killed the game four times on 2026-10-26), the
 // beards in a face close-up. The values are read from the steps of pickletools-look-gallery.feature (which holds the catalogue lists).
 // Written 2026-10-25 at the owner's request. usage: node docs/Generate-BeardTattooGallery.js   (from the repository root)
 const fs = require('fs');
@@ -35,7 +35,7 @@ function scenarios(kind, items, setup, frame, step, views, CHUNK) {
     out += '\n';
   }
 }
-scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`].map(s => P + s), '(176, 120) at zoom 2', t => `${P}"Soren" body tattoo is "${t}"`, [{ facing: 'South', suffix: '-front' }, { facing: 'North', suffix: '-back' }], 12);
+scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`].map(s => P + s), '(176, 120) at zoom 2', t => `${P}"Soren" body tattoo is "${t}"`, [{ facing: 'South', suffix: '-front' }, { facing: 'North', suffix: '-back' }], 6);
 scenarios('beard', beards, [], '(176, 119) at zoom 3', b => `${P}"Soren" beard is "${b}"`, [{ suffix: '' }], 20);
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature', out);
 console.log(`${n} scenarios: ${bodyTattoos.length} body tattoos, ${beards.length} beards`);

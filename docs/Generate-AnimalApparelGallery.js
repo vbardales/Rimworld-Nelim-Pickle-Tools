@@ -17,7 +17,7 @@ for (const f of fs.readdirSync(DEFS).filter(f => f.endsWith('.xml')).sort()) {
     items.push({ name, hosts, groups, file: f.replace(/^Apparel_/, '').replace(/\.xml$/, '') });
   }
 }
-const hostOf = i => i.hosts[0] || 'Husky';
+const hostOf = i => 'Thrumbo';   // owner 2026-10-26: every garment is shown on a thrumbo (i.hosts lists the hosts the def itself names, kept in the catalogue)
 const md = ['# Animal apparel catalogue', '',
   `Read on 2026-10-26 from the Defs of Animal Apparel Collars and Kit Renew (${items.length} garments). One photograph each, on the first host the def lists (Husky when it lists none): shots \`animalapparel-<defName>\`, feature \`pickletools-animal-apparel-gallery\`, map \`wsl-deps.animal-portraits.map\`. The garments other mods add are not in this first pass.`, '',
   'Step text: `the animal "<name>" is dressed in "<defName>"`.', '',
@@ -34,19 +34,22 @@ const out = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pi
 const pre = ['Given the save "Nelims-tribe" is loaded', 'And game speed is paused',
   `And ${P}the item and name labels are hidden`, `And ${P}the tooltips are hidden`, `And ${P}the colonist bar is hidden`, `And ${P}the learning helper is hidden`,
   `And ${P}the temperature of the map is 20 degrees`, `And ${P}the other colonists are out of frame`];
-const CHUNK = 12;   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s); a spawn, a dress and a frame per shot
+const CHUNK = 6;   // 12 shots per scenario (front and side): a long scenario was killed by the game on 2026-10-26 (man tattoos, 12 x 2 shots); Pickle's watchdog stops one at 300 s
 for (let c = 0; c * CHUNK < items.length; c++) {
   const part = items.slice(c * CHUNK, (c + 1) * CHUNK);
   out.push(`  Scenario: animal-apparel-gallery-${c + 1}: garments ${c * CHUNK + 1} to ${c * CHUNK + part.length} of ${items.length}`);
   pre.forEach(l => out.push('    ' + l));
   part.forEach((i, k) => {
-    const nick = `Mannequin${k + 1}`, x = 160 + 6 * k;
-    out.push(`    And ${P}an adult animal of kind "${hostOf(i)}" named "${nick}" is spawned at (${x}, 120)`,
-      `    And ${P}the animal "${nick}" stands at (${x}, 120) facing South`,
+    const nick = `Mannequin${k + 1}`, x = 160 + 6 * k, z = [172, 202].includes(x) ? 121 : 120;   // (172, 120) holds a TorchLamp and (202, 120) a Reliquary in the Nelims-tribe fixture
+    out.push(`    And ${P}an adult animal of kind "${hostOf(i)}" named "${nick}" is spawned at (${x}, ${z})`,
+      `    And ${P}the animal "${nick}" stands at (${x}, ${z}) facing South`,
       `    And ${P}the animal "${nick}" is dressed in "${i.name}"`,
       `    And ${P}I frame the animal "${nick}" at zoom 5`,
       `    And ${P}I let 5 frames pass`,
-      `    And I take a screenshot "animalapparel-${i.name}"`);
+      `    And I take a screenshot "animalapparel-${i.name}-front"`,
+      `    And ${P}the animal "${nick}" stands at (${x}, ${z}) facing East`,
+      `    And ${P}I let 5 frames pass`,
+      `    And I take a screenshot "animalapparel-${i.name}-side"`);
   });
   out.push('');
 }

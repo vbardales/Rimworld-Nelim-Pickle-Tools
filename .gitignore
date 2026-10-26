@@ -36,3 +36,6 @@ PROMPT_*.md
 Tests/Pickle/Evidence/
 Tests/Pickle/Inbox/
 Tests/Pickle/Parked/
+
+# Local copy of a third-party mod (Seren 3726565301 with a patched LoadFolders.xml), not ours to redistribute.
+.local/

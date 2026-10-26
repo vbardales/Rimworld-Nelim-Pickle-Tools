@@ -71,21 +71,33 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I frame the animal "CandA" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "candidate-thrumbo-bridle"
+    And Nelim's Pickle Tools: the animal "CandA" stands at (160, 120) facing East
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-bridle-side"
     And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandB" is spawned at (166, 120)
     And Nelim's Pickle Tools: the animal "CandB" stands at (166, 120) facing South
     And Nelim's Pickle Tools: the animal "CandB" is dressed in "Apparel_LargeAnimalClothes" dyed "#3A4F7A"
     And Nelim's Pickle Tools: I frame the animal "CandB" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "candidate-thrumbo-clothes"
+    And Nelim's Pickle Tools: the animal "CandB" stands at (166, 120) facing East
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-clothes-side"
     And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandC" is spawned at (172, 120)
-    And Nelim's Pickle Tools: the animal "CandC" stands at (172, 120) facing South
+    And Nelim's Pickle Tools: the animal "CandC" stands at (172, 121) facing South
     And Nelim's Pickle Tools: the animal "CandC" is dressed in "Apparel_LargeAnimalScarf" dyed "#2E6F5B"
     And Nelim's Pickle Tools: I frame the animal "CandC" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "candidate-thrumbo-scarf-green"
+    And Nelim's Pickle Tools: the animal "CandC" stands at (172, 121) facing East
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-scarf-green-side"
     And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandD" is spawned at (178, 120)
     And Nelim's Pickle Tools: the animal "CandD" stands at (178, 120) facing South
     And Nelim's Pickle Tools: the animal "CandD" is dressed in "Apparel_LargeAnimalPowerArmorHelmet"
     And Nelim's Pickle Tools: I frame the animal "CandD" at zoom 5
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "candidate-thrumbo-helmet"
+    And Nelim's Pickle Tools: the animal "CandD" stands at (178, 120) facing East
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-helmet-side"
