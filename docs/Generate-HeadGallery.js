@@ -29,3 +29,5 @@ for (let i = 0; i < heads.length; i += CHUNK) {
 }
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-head-gallery.feature', out.map(l => '    ' === l.slice(0, 4) || /^  Scenario|^Feature|^@|^$/.test(l) ? l : '    ' + l.replace(/^ +/, '')).join('\n'));
 console.log(heads.length + ' male heads');
+
+require('./Add-LookReset').apply('Tests/Pickle/Mod/Pickle/Features/pickletools-head-gallery.feature');   // the look is saved once and restored before each photograph (owner, 2026-10-26)

@@ -39,3 +39,5 @@ scenarios('bodytattoo', bodyTattoos, [`"Soren" is undressed`].map(s => P + s), '
 scenarios('beard', beards, [], '(176, 119) at zoom 3', b => `${P}"Soren" beard is "${b}"`, [{ suffix: '' }], 20);
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature', out);
 console.log(`${n} scenarios: ${bodyTattoos.length} body tattoos, ${beards.length} beards`);
+
+require('./Add-LookReset').apply('Tests/Pickle/Mod/Pickle/Features/pickletools-beard-tattoo-gallery.feature');   // the look is saved once and restored before each photograph (owner, 2026-10-26)

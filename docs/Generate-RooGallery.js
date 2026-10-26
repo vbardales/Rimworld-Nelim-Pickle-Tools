@@ -66,3 +66,5 @@ scenarios('facetattoo', face, faceBase, v => `"Nelim" face tattoo is "${v}"`);
 scenarios('bodytattoo', body, bodyBase, v => `"Nelim" body tattoo is "${v}"`);
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-roo-gallery.feature', out.join('\n'));
 console.log(`${face.length} face, ${body.length} body, ${n} scenarios`);
+
+require('./Add-LookReset').apply('Tests/Pickle/Mod/Pickle/Features/pickletools-roo-gallery.feature');   // the look is saved once and restored before each photograph (owner, 2026-10-26)
