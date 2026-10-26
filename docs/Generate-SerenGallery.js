@@ -40,6 +40,8 @@ const parts = [
 scenario(`face parts: ${heads.length} heads, ${lids.length} lids, ${eyes.length} eyeballs, ${brows.length} brows, ${mouths.length} mouths`, faceBase,
   parts.flatMap(([k, step, list]) => list.map(v => shot(`"Nelim" ${step} "${v}"`, `seren-${k}-${v}`))));
 scenario(`face skins: ${skins.length} marking skins`, faceBase, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `seren-skin-${v}`)));
+// The Vanilla Textures Expanded set has one brow of its own (OL_SerenBrowNone, owner 2026-10-26: the brow sheet should show it): its own scenario, since the def only exists when that set is loaded.
+scenario('VTE brow: OL_SerenBrowNone', faceBase, [shot(`"Nelim" brows are "OL_SerenBrowNone"`, 'seren-brow-OL_SerenBrowNone')]);
 // The whole Seren pawn (xenotype OL_SerenBase: ears, one sensor, markings, skin and hair colours its genes give), clothed as the fixture is.
 for (const who of ['Nelim', 'Soren']) {
   scenario(`the whole Seren pawn: ${who}`, [...common(who),

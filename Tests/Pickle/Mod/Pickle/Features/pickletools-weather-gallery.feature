@@ -15,16 +15,16 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "BloodRain"
+    When Nelim's Pickle Tools: the weather is set at once to "BloodRain"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-BloodRain"
-    When I set the weather to "GrayPall"
+    When Nelim's Pickle Tools: the weather is set at once to "GrayPall"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-GrayPall"
-    When I set the weather to "MetalHell"
+    When Nelim's Pickle Tools: the weather is set at once to "MetalHell"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-MetalHell"
-    When I set the weather to "Undercave"
+    When Nelim's Pickle Tools: the weather is set at once to "Undercave"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Undercave"
 
@@ -40,16 +40,16 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "UnnaturalDarkness_Stage1"
+    When Nelim's Pickle Tools: the weather is set at once to "UnnaturalDarkness_Stage1"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-UnnaturalDarkness_Stage1"
-    When I set the weather to "UnnaturalDarkness_Stage2"
+    When Nelim's Pickle Tools: the weather is set at once to "UnnaturalDarkness_Stage2"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-UnnaturalDarkness_Stage2"
-    When I set the weather to "UnnaturalFog"
+    When Nelim's Pickle Tools: the weather is set at once to "UnnaturalFog"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-UnnaturalFog"
-    When I set the weather to "Clear"
+    When Nelim's Pickle Tools: the weather is set at once to "Clear"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Clear"
 
@@ -65,16 +65,16 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "DryThunderstorm"
+    When Nelim's Pickle Tools: the weather is set at once to "DryThunderstorm"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-DryThunderstorm"
-    When I set the weather to "Fog"
+    When Nelim's Pickle Tools: the weather is set at once to "Fog"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Fog"
-    When I set the weather to "FoggyRain"
+    When Nelim's Pickle Tools: the weather is set at once to "FoggyRain"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-FoggyRain"
-    When I set the weather to "Rain"
+    When Nelim's Pickle Tools: the weather is set at once to "Rain"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Rain"
 
@@ -90,16 +90,16 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "RainyThunderstorm"
+    When Nelim's Pickle Tools: the weather is set at once to "RainyThunderstorm"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-RainyThunderstorm"
-    When I set the weather to "SnowGentle"
+    When Nelim's Pickle Tools: the weather is set at once to "SnowGentle"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-SnowGentle"
-    When I set the weather to "SnowHard"
+    When Nelim's Pickle Tools: the weather is set at once to "SnowHard"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-SnowHard"
-    When I set the weather to "Underground"
+    When Nelim's Pickle Tools: the weather is set at once to "Underground"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Underground"
 
@@ -115,16 +115,16 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "BlindFog"
+    When Nelim's Pickle Tools: the weather is set at once to "BlindFog"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-BlindFog"
-    When I set the weather to "Blizzard"
+    When Nelim's Pickle Tools: the weather is set at once to "Blizzard"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Blizzard"
-    When I set the weather to "Orbit"
+    When Nelim's Pickle Tools: the weather is set at once to "Orbit"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Orbit"
-    When I set the weather to "Overcast"
+    When Nelim's Pickle Tools: the weather is set at once to "Overcast"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Overcast"
 
@@ -140,15 +140,15 @@ Feature: One wide photograph per weather of the game (the weather catalogue)
     And Nelim's Pickle Tools: "Nelim" stands at (170, 141) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: I frame the area centred on (170, 143) at root size 9
-    When I set the weather to "Sandstorm"
+    When Nelim's Pickle Tools: the weather is set at once to "Sandstorm"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Sandstorm"
-    When I set the weather to "TorrentialRain"
+    When Nelim's Pickle Tools: the weather is set at once to "TorrentialRain"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-TorrentialRain"
-    When I set the weather to "ToxRain"
+    When Nelim's Pickle Tools: the weather is set at once to "ToxRain"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-ToxRain"
-    When I set the weather to "Windy"
+    When Nelim's Pickle Tools: the weather is set at once to "Windy"
     And Nelim's Pickle Tools: I let 60 frames pass
     And I take a screenshot "weather-Windy"

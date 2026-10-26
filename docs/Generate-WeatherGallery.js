@@ -26,7 +26,7 @@ for (let i = 0; i < all.length; i += CHUNK) {
   const part = all.slice(i, i + CHUNK); n++;
   out.push(`  Scenario: weather-gallery-${n}: weather ${i + 1} to ${i + part.length} of ${all.length}`);
   base.forEach(l => out.push('    ' + l));
-  for (const w of part) out.push(`    When I set the weather to "${w.def}"`, `    And ${P}I let 60 frames pass`, `    And I take a screenshot "weather-${w.def}"`);
+  for (const w of part) out.push(`    When ${P}the weather is set at once to "${w.def}"`, `    And ${P}I let 60 frames pass`, `    And I take a screenshot "weather-${w.def}"`);
   out.push('');
 }
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-weather-gallery.feature', out.join('\n'));
