@@ -11,6 +11,7 @@ Feature: One photograph per animal garment (the animal apparel catalogue)
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: the weather is set at once to "Clear"
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: an adult animal of kind "LabradorRetriever" named "Mannequin1" is spawned at (160, 120)
     And Nelim's Pickle Tools: the animal "Mannequin1" stands at (160, 120) facing South
@@ -75,6 +76,7 @@ Feature: One photograph per animal garment (the animal apparel catalogue)
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: the weather is set at once to "Clear"
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "Mannequin1" is spawned at (160, 120)
     And Nelim's Pickle Tools: the animal "Mannequin1" stands at (160, 120) facing South
@@ -139,6 +141,7 @@ Feature: One photograph per animal garment (the animal apparel catalogue)
     And Nelim's Pickle Tools: the colonist bar is hidden
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: the weather is set at once to "Clear"
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: an adult animal of kind "LabradorRetriever" named "Mannequin1" is spawned at (160, 120)
     And Nelim's Pickle Tools: the animal "Mannequin1" stands at (160, 120) facing South

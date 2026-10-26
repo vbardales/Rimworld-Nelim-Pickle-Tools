@@ -36,7 +36,7 @@ const out = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pi
   'Feature: One photograph per animal garment (the animal apparel catalogue)', ''];
 const pre = ['Given the save "Nelims-tribe" is loaded', 'And game speed is paused',
   `And ${P}the item and name labels are hidden`, `And ${P}the tooltips are hidden`, `And ${P}the colonist bar is hidden`, `And ${P}the learning helper is hidden`,
-  `And ${P}the temperature of the map is 20 degrees`, `And ${P}the other colonists are out of frame`];
+  `And ${P}the temperature of the map is 20 degrees`, `And ${P}the weather is set at once to "Clear"`, `And ${P}the other colonists are out of frame`];
 const CHUNK = 6;   // 12 shots per scenario (front and side): a long scenario was killed by the game on 2026-10-26 (man tattoos, 12 x 2 shots); Pickle's watchdog stops one at 300 s
 for (let c = 0; c * CHUNK < items.length; c++) {
   const part = items.slice(c * CHUNK, (c + 1) * CHUNK);
