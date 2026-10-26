@@ -48,7 +48,8 @@ function Read-Section($file, $titleRegex) {
 }
 
 $cols = 6; $tile = 200; $label = 32; $perPage = 30
-$face = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # head and shoulders: the pubis is out of the frame (owner, 2026-10-26); tiles cut before were recropped 25,0,150,150
+$face = New-Object System.Drawing.Rectangle 810, 190, 300, 300   # dressed photographs: hair, hats, heads, beards (a tighter crop was too close, owner 2026-10-26)
+$faceTight = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # nude photographs (face tattoos): head and shoulders, the pubis is out of the frame; tiles cut before were recropped 25,0,150,150
 $body = New-Object System.Drawing.Rectangle 760, 320, 400, 400
 $font = New-Object System.Drawing.Font 'Segoe UI', 8
 $hatch = New-Object System.Drawing.Drawing2D.HatchBrush ([System.Drawing.Drawing2D.HatchStyle]::LightUpwardDiagonal), ([System.Drawing.Color]::FromArgb(225, 225, 225)), ([System.Drawing.Color]::White)
@@ -117,7 +118,7 @@ Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
-Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
+Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $faceTight $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
 # Body tattoos on a man (feature pickletools-beard-tattoo-gallery, shots bodytattoo-<def>-front and -back; the beards are the beard-<name> shots of the same feature): one sheet per view, same table as the female ones.
 foreach ($view in 'front', 'back') {

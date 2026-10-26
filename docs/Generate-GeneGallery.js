@@ -134,7 +134,7 @@ function serenScenario(title, genes, pre, per, nude) {
   for (let i = 0; i < genes.length; i += size) {
     const part = genes.slice(i, i + size); sn++;
     serenOut.push(`  Scenario: seren-gallery-${sn}: ${title} ${i + 1} to ${i + part.length} of ${genes.length}`);
-    (nude ? skinBase.filter(l => !l.includes('UnderWhere')) : skinBase).forEach(l => serenOut.push('    ' + l));
+    (nude ? skinBase.filter(l => !l.includes('UnderWhere_Bra')) : skinBase).forEach(l => serenOut.push('    ' + l));
     pre.forEach(l => serenOut.push('    ' + l));
     for (const g of part) per(g).forEach(l => serenOut.push('    ' + l));
     serenOut.push('');
