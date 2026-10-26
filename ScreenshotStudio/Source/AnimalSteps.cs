@@ -172,6 +172,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
 
             pawn.apparel.Wear(apparel, true, false);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();   // the render tree is built before the garment exists: rebuild it so the garment is drawn (Rain, 2026-10-26: worn but not drawn)
             ctx.Assert(pawn.apparel.WornApparel.Contains(apparel), nickname + " should wear '" + apparelDefName + "'; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)) + "; " + WhyNotWorn(pawn, def));
         }
 
