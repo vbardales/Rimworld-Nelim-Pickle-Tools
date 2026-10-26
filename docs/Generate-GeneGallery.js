@@ -146,7 +146,7 @@ const take = (g, prefix, reset) => [
 serenScenario('skin colours', serenSkins, [], g => take(g, 'skingene', false));
 serenScenario('hair colours', serenHair, [`And ${SP}"Nelim" hairstyle is "Afro"`], g => take(g, 'hairgene', false));
 serenScenario('look genes', serenLooks, [], g => take(g, 'lookgene', true), true);   // undressed: a marking or a body mask is on the skin (owner, 2026-10-25)
-// Body masks of Seren (owner, 2026-10-26: barely readable in the look-gene photograph): the masks alone, undressed, on a flat pale skin so the tint reads,
+// Body masks of Seren (owner, 2026-10-26: barely readable in the look-gene photograph): the masks alone, undressed, on a flat DARK skin: the masks are thin white constellations (textures read 2026-10-26), invisible on a pale one,
 // front and back, on Nelim and on the man (the mannequin, never named in the files). Shots: bodymask-<gene>-<who>-<view>.
 const masks = serenLooks.filter(g => /BodyMask/.test(g.name));
 function maskScenario(who, nick) {
@@ -156,8 +156,8 @@ function maskScenario(who, nick) {
   const at = lines.findIndex(l => l.includes(`"${nick}" stands at`));   // the man is created just before he is placed
   if (nick !== 'Nelim') lines.splice(at, 0, `And a colonist "${nick}" exists`, `And ${SP}"${nick}" gender is male`, `And ${SP}"${nick}" body type is Male`);
   lines.forEach(l => serenOut.push('    ' + l));
-  serenOut.push(`    And ${SP}"${nick}" skin colour is rgb (235, 225, 215)`);
-  for (const g of masks) for (const [view, dir] of [['front', 'South'], ['back', 'North']])
+  serenOut.push(`    And ${SP}"${nick}" skin colour is rgb (70, 50, 80)`);
+  for (const g of masks) for (const [view, dir] of [['front', 'South'], ['back', 'North']].filter(([v]) => v === 'front' || /_02$/.test(g.name)))   // only Mask2 has a north (back) texture
     [`When ${SP}"${nick}" loses all genes`, `And ${SP}"${nick}" has the gene "${g.name}"`, `And ${SP}"${nick}" stands at (176, 120) facing ${dir}`, `And ${SP}I let 5 frames pass`, `And I take a screenshot "bodymask-${g.name}-${who}-${view}"`].forEach(l => serenOut.push('    ' + l));
   serenOut.push('');
 }

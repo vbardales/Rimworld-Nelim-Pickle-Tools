@@ -312,17 +312,12 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (235, 225, 215)
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (70, 50, 80)
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_01"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_01-nelim-front"
-    When Nelim's Pickle Tools: "Nelim" loses all genes
-    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_01"
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_01-nelim-back"
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_02"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
@@ -339,40 +334,20 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_03-nelim-front"
     When Nelim's Pickle Tools: "Nelim" loses all genes
-    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_03"
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_03-nelim-back"
-    When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_04"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_04-nelim-front"
-    When Nelim's Pickle Tools: "Nelim" loses all genes
-    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_04"
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_04-nelim-back"
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_05"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_05-nelim-front"
     When Nelim's Pickle Tools: "Nelim" loses all genes
-    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_05"
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_05-nelim-back"
-    When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_06"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_06-nelim-front"
-    When Nelim's Pickle Tools: "Nelim" loses all genes
-    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_06"
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_06-nelim-back"
 
   Scenario: seren-gallery-6: body masks on man, front and back (6 genes)
     Given the save "Nelims-tribe" is loaded
@@ -399,17 +374,12 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Mannequin" facial expression is "normal"
     And Nelim's Pickle Tools: "Mannequin" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (235, 225, 215)
+    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (70, 50, 80)
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_01"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_01-man-front"
-    When Nelim's Pickle Tools: "Mannequin" loses all genes
-    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_01"
-    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_01-man-back"
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_02"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
@@ -426,37 +396,17 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_03-man-front"
     When Nelim's Pickle Tools: "Mannequin" loses all genes
-    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_03"
-    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_03-man-back"
-    When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_04"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_04-man-front"
-    When Nelim's Pickle Tools: "Mannequin" loses all genes
-    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_04"
-    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_04-man-back"
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_05"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_05-man-front"
     When Nelim's Pickle Tools: "Mannequin" loses all genes
-    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_05"
-    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_05-man-back"
-    When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_06"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-SerenBodyMask_06-man-front"
-    When Nelim's Pickle Tools: "Mannequin" loses all genes
-    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_06"
-    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "bodymask-SerenBodyMask_06-man-back"
