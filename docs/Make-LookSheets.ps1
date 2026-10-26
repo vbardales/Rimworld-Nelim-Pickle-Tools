@@ -165,3 +165,7 @@ foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -
         $maskTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
 }
 if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
+
+# Animal garments (CATALOGUE-ANIMAL-APPAREL.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
+$animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
+Run-Job 'animalapparel' 'animalapparel' (Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments') $animalCrop $false $false

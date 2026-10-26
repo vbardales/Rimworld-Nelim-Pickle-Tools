@@ -43,6 +43,7 @@ const tabs = [
   ['faceparts', 'Face parts', 'FACE-PARTS.md'], ['modlooks', 'Mods: looks', 'CATALOGUE-MODS-LOOKS.md'],
   ['modgear', 'Mods: gear', 'CATALOGUE-MODS-GEAR.md'], ['modworld', 'Mods: world', 'CATALOGUE-MODS-WORLD.md'],
   ['genes', 'Genes', 'CATALOGUE-GENES.md'], ['seren', 'Seren', 'CATALOGUE-SEREN.md'], ['weather', 'Weather', 'CATALOGUE-WEATHER.md'], ['jobs', 'Jobs', 'CATALOGUE-JOBS.md'],
+  ['animalapparel', 'Animal apparel', 'CATALOGUE-ANIMAL-APPAREL.md'],
   ['coverage', 'Coverage', 'CATALOGUE-COVERAGE.md'],
 ];
 
@@ -64,7 +65,7 @@ const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
   return files.length ? '<div class="sheets wide">' + files.map(f => `<a href="img/looks/${f}" target="_blank"><img loading="lazy" src="img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>' : '';
 };
-const sectionKinds = [[/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
+const sectionKinds = [[/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['haircolour', 'ideocolour', 'colour']], [/^Weapons/, ['weapon']],
   [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, text) => {
