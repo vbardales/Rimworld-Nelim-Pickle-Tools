@@ -22,7 +22,7 @@ $files = @{}
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
 $runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-)' } } | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
-    if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
+    if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
 }
 
 # Items of one section of a catalogue: @{ mod; group; name; type; hex }
@@ -173,7 +173,11 @@ if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false 
 
 # Animal garments (CATALOGUE-ANIMAL-APPAREL.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
 $animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
-Run-Job 'animalapparel' 'animalapparel' (Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments') $animalCrop $false $false
+$aa = Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments'
+foreach ($view in 'front', 'side') {
+    $av = @($aa | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-$view"; type = $_.type; hex = $_.hex; slot = $_.slot } })
+    Run-Job "animalapparel-$view" 'animalapparel' $av $animalCrop $false $false
+}
 
 # Seren face parts and skins (feature pickletools-seren-face-gallery, ticket d55c): every photograph present, one sheet per part kind; shots seren-<part>-<defName>, the whole pawn seren-xeno-<who>-<view>.
 $serenFace = New-Object System.Drawing.Rectangle 810, 40, 300, 300   # these shots frame the whole pawn higher in the picture: the head sits near y 200
