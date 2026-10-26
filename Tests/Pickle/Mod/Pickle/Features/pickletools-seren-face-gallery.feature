@@ -124,7 +124,7 @@ Feature: One photograph per face part of Seren (Experimentals set) and the whole
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "seren-skin-SerenTriStar"
 
-  Scenario: seren-face-gallery-3: VTE brow: OL_SerenBrowNone
+  Scenario: seren-face-gallery-3: VTE set: brow OL_SerenBrowNone and the 7 marking skins
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -144,6 +144,27 @@ Feature: One photograph per face part of Seren (Experimentals set) and the whole
     When Nelim's Pickle Tools: "Nelim" brows are "OL_SerenBrowNone"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "seren-brow-OL_SerenBrowNone"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenBrows"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenBrows"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenCenterLarge"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenCenterLarge"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenCenterSmall"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenCenterSmall"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenCheeks"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenCheeks"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenFreckles"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenFreckles"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenTarget"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenTarget"
+    When Nelim's Pickle Tools: "Nelim" face skin is "SerenTriStar"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "seren-vte-skin-SerenTriStar"
 
   Scenario: seren-face-gallery-4: the whole Seren pawn: Nelim
     Given the save "Nelims-tribe" is loaded

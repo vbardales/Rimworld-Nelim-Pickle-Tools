@@ -41,7 +41,8 @@ scenario(`face parts: ${heads.length} heads, ${lids.length} lids, ${eyes.length}
   parts.flatMap(([k, step, list]) => list.map(v => shot(`"Nelim" ${step} "${v}"`, `seren-${k}-${v}`))));
 scenario(`face skins: ${skins.length} marking skins`, faceBase, skins.map(v => shot(`"Nelim" face skin is "${v}"`, `seren-skin-${v}`)));
 // The Vanilla Textures Expanded set has one brow of its own (OL_SerenBrowNone, owner 2026-10-26: the brow sheet should show it): its own scenario, since the def only exists when that set is loaded.
-scenario('VTE brow: OL_SerenBrowNone', [...common('Nelim'), `And ${P}"Nelim" facial expression is "normal"`, `And ${P}"Nelim" face is held neutral`, `And ${P}I frame the cell (176, 119) at zoom 2`], [shot(`"Nelim" brows are "OL_SerenBrowNone"`, 'seren-brow-OL_SerenBrowNone')]);
+const vteBase = [...common('Nelim'), `And ${P}"Nelim" facial expression is "normal"`, `And ${P}"Nelim" face is held neutral`, `And ${P}I frame the cell (176, 119) at zoom 2`];
+scenario('VTE set: brow OL_SerenBrowNone and the 7 marking skins', vteBase, [shot(`"Nelim" brows are "OL_SerenBrowNone"`, 'seren-brow-OL_SerenBrowNone'), ...skins.map(v => shot(`"Nelim" face skin is "${v}"`, `seren-vte-skin-${v}`))]);
 // The whole Seren pawn (xenotype OL_SerenBase: ears, one sensor, markings, skin and hair colours its genes give), clothed as the fixture is.
 for (const who of ['Nelim', 'Soren']) {
   scenario(`the whole Seren pawn: ${who}`, [...common(who),

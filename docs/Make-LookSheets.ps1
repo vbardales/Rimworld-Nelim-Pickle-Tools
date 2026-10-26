@@ -179,3 +179,7 @@ foreach ($part in 'head', 'lid', 'eyeball', 'brow', 'mouth', 'skin') {
 }
 $sx = @($files.Keys | Where-Object { $_ -like 'seren-xeno-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-xeno-'.Length); hex = '' } })
 if ($sx.Count) { Build-Sheets 'serenxeno' 'pawn' $sx $body $false }
+
+# Seren, Vanilla Textures Expanded face set (map wsl-deps.seren-vte.map, scenario "VTE set"): its marking skins, shots seren-vte-skin-<defName>; its brow joins the brow sheet (seren-brow-OL_SerenBrowNone).
+$vs = @($files.Keys | Where-Object { $_ -like 'seren-vte-skin-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-vte-skin-'.Length); hex = '' } })
+if ($vs.Count) { Build-Sheets 'serenvteskin' 'face' $vs $serenFace $false }
