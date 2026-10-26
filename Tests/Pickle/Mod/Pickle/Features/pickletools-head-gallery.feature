@@ -24,30 +24,39 @@ Feature: The male head types on a male pawn (the head catalogue)
     And Nelim's Pickle Tools: "Mannequin" facial expression is "normal"
     And Nelim's Pickle Tools: "Mannequin" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Mannequin" is saved
     When Nelim's Pickle Tools: "Mannequin" head type is "DarkScholar_Male"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-DarkScholar_Male"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Leathery_Male"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Leathery_Male"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_HeavyJawNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_HeavyJawNormal"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_AverageNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_AverageNormal"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_AveragePointy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_AveragePointy"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_AverageWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_AverageWide"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_NarrowNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_NarrowNormal"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_NarrowPointy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_NarrowPointy"
+    And Nelim's Pickle Tools: the look of "Mannequin" is restored
     When Nelim's Pickle Tools: "Mannequin" head type is "Male_NarrowWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_NarrowWide"

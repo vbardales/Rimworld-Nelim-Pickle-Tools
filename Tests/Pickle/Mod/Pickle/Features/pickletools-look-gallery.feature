@@ -18,63 +18,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "DoubleTuft"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-DoubleTuft"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Furious"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Furious"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Hungry"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Hungry"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Ravenous"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Ravenous"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Twisted"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Twisted"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Vengeful"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Vengeful"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Warped"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Warped"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ghoul_Wicked"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ghoul_Wicked"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "LargeTuft"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-LargeTuft"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "LongMess"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-LongMess"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "LongOily"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-LongOily"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Parted"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Parted"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "PatchyShave"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-PatchyShave"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RoughShave"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RoughShave"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "ShavedMohawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-ShavedMohawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "ShortCut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-ShortCut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "SideCut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-SideCut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "SideSpikes"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-SideSpikes"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Afro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Afro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Bald"
@@ -94,63 +114,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Bob"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Bob"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Bowlcut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Bowlcut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "BraidedKnot"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-BraidedKnot"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Bravo"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Bravo"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "BriefPonytail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-BriefPonytail"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Burgundy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Burgundy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Cleopatra"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Cleopatra"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Curly"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Curly"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Cute"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Cute"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Decent"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Decent"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Elder"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Elder"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "FancyBun"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-FancyBun"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Firestarter"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Firestarter"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Flowy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Flowy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Fringe"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Fringe"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Frozen"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Frozen"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "GreasySwoop"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-GreasySwoop"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Junkie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Junkie"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Keeper"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Keeper"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Lackland"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Lackland"
@@ -170,63 +210,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Locks"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Locks"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Long"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Messy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Messy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Mohawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Mohawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Mop"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Mop"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Pigtails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Pigtails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Ponytails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Ponytails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Primal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Primal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Princess"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Princess"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Randy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Randy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Recruit"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Recruit"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Revolt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Revolt"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Rockstar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Rockstar"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Rookie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Rookie"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Savage"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Savage"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Scatman"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Scatman"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "ScorpionTail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-ScorpionTail"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Scrapper"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Scrapper"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Senorita"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Senorita"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Shaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Shaved"
@@ -246,63 +306,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "ShaveTopBraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-ShaveTopBraid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Snazzy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Snazzy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Spikes"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Spikes"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Sticky"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Sticky"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Topdog"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Topdog"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Troubadour"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Troubadour"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Tuft"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Tuft"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Warden"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Warden"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Wavy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Wavy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BalaclavaL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BalaclavaL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BalaclavaS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BalaclavaS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Bandages"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Bandages"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BandanaL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BandanaL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BandanaLocsL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BandanaLocsL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BandanaLocsS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BandanaLocsS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BandanaM"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BandanaM"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BandanaS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BandanaS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BowL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BowL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BowS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BowS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_BowT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_BowT"
@@ -322,63 +402,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EarringL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EarringL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EarringS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EarringS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EyePadL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EyePadL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EyePadS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EyePadS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EyepatchL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EyepatchL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EyepatchS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EyepatchS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_EyepatchT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_EyepatchT"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_FaceMaskL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_FaceMaskL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_FaceMaskS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_FaceMaskS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_FlowerCrown"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_FlowerCrown"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_GogglesS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_GogglesS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_GogglesT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_GogglesT"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Hachimaki"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Hachimaki"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadbandL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadbandL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadbandS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadbandS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadbandT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadbandT"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadphonesL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadphonesL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadphonesS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadphonesS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadsetS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadsetS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_HeadsetT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_HeadsetT"
@@ -398,63 +498,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Hijab"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Hijab"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Laurel"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Laurel"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_NasogastricTube"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_NasogastricTube"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Plasters"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Plasters"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_Scarf"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_Scarf"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_SockHatL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_SockHatL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_SockHatS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_SockHatS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_SportsbandS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_SportsbandS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_SportsbandT"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_SportsbandT"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_TurbanL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_TurbanL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBAHD_TurbanS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBAHD_TurbanS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Alpha"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Alpha"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Amp"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Amp"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Astra"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Astra"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Bookworm"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Bookworm"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Buzzdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Buzzdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Camden"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Camden"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Clipsmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Clipsmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Crunch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Crunch"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Dreadsmohawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Dreadsmohawk"
@@ -474,63 +594,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Fairy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Fairy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Halfdyed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Halfdyed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Halfdyedmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Halfdyedmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Halfshavedreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Halfshavedreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Hangout"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Hangout"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Hangoutmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Hangoutmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Headbanddreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Headbanddreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Headbanddreadsmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Headbanddreadsmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Longdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Longdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Loosemale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Loosemale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Manbun"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Manbun"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Mane"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Mane"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Mediator"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Mediator"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Neat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Neat"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Paladin"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Paladin"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Ponytaildreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Ponytaildreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Poppy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Poppy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Puffs"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Puffs"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Relaxed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Relaxed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Shortdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Shortdreads"
@@ -550,63 +690,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Sweptbackdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Sweptbackdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Sweptover"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Sweptover"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Turban"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Turban"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Twinbuns"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Twinbuns"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Twintails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Twintails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBDHD_Widepart"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBDHD_Widepart"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Anaglyph"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Anaglyph"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_AviatorL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_AviatorL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_AviatorS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_AviatorS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Kitsuragi"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Kitsuragi"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Lennon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Lennon"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Liquid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Liquid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesbald"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesbald"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesdreadsmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesdreadsmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglasseslong"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglasseslong"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglasseslongmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglasseslongmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesmediummale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesmediummale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassespony"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassespony"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesshaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesshaved"
@@ -626,63 +786,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesshavedmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesshavedmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesshort"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesshort"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassesshortmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassesshortmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassessmedium"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassessmedium"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassessupdo"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassessupdo"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Roundglassestied"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Roundglassestied"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_RoyalL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_RoyalL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_RoyalS"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_RoyalS"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesbald"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesbald"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesdreadsmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesdreadsmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglasseslong"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglasseslong"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglasseslongmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglasseslongmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesmedium"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesmedium"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesmediummale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesmediummale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassespony"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassespony"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesshaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesshaved"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesshavedmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesshavedmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesshort"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesshort"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassesshortmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassesshortmale"
@@ -702,63 +882,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassessupdo"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassessupdo"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Smallroundglassestied"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Smallroundglassestied"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_SpectaclesL"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_SpectaclesL"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Stanardglassessupdo"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Stanardglassessupdo"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesbald"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesbald"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesdreads"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesdreads"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesdreadsmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesdreadsmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglasseslong"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglasseslong"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglasseslongmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglasseslongmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesmedium"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesmedium"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesmediummale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesmediummale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassespony"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassespony"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesshaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesshaved"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesshavedmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesshavedmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesshort"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesshort"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassesshortmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassesshortmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "RBGHD_Standardglassestiedmale"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-RBGHD_Standardglassestiedmale"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Almond"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Almond"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Angelwings"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Angelwings"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Barber"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Barber"
@@ -778,63 +978,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Block"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Block"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Brave"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Brave"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Breezy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Breezy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Bubblegum"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Bubblegum"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Chestnut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Chestnut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Chilli"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Chilli"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Choppy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Choppy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Cloud"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Cloud"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Cool"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Cool"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Dreadbuns"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Dreadbuns"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_FeatheredM"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_FeatheredM"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Flames"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Flames"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Halfshaveafro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Halfshaveafro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Highpigtails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Highpigtails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Highpony"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Highpony"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Hipster"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Hipster"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Idol"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Idol"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Lamb"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Lamb"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Lander"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Lander"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Lefteye"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Lefteye"
@@ -854,63 +1074,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Mariya"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Mariya"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Natural"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Natural"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Octopus"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Octopus"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Onion"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Onion"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Overgrown"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Overgrown"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Palmtree"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Palmtree"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Pixie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Pixie"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Puffy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Puffy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Pushback"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Pushback"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Quiet"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Quiet"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Ranger"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Ranger"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Raven"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Raven"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_River"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_River"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Rough"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Rough"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Sedona"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Sedona"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Shell"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Shell"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Shy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Shy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Slack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Slack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Slick"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Slick"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_SlickM"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_SlickM"
@@ -930,63 +1170,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Spike"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Spike"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_SpikeM"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_SpikeM"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Stylish"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Stylish"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Supersonic"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Supersonic"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Swan"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Swan"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Sweep"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Sweep"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Tatsuro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Tatsuro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Tboz"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Tboz"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Technotails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Technotails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Thick"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Thick"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Tidy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Tidy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Topknot"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Topknot"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Twinbraids"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Twinbraids"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Undercut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Undercut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Vampire"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Vampire"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Walnut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Walnut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Waterfall"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Waterfall"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Waterfall2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Waterfall2"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Weevil"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Weevil"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_HD_Hair_Whippet"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_HD_Hair_Whippet"
@@ -1006,63 +1266,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_AlmonerHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_AlmonerHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_AncientHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_AncientHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BaroqueHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BaroqueHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BattleBunsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BattleBunsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BeadsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BeadsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_Bob1HD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_Bob1HD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_Bob2HD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_Bob2HD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_Bob3HD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_Bob3HD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BraidsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BraidsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BuncoversHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BuncoversHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_BunsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_BunsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_CircletHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_CircletHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_CircletmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_CircletmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_CleancutHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_CleancutHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_CurlyHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_CurlyHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_DeietyfemaleeHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_DeietyfemaleeHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_DeietymaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_DeietymaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_DragonHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_DragonHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_DragonianmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_DragonianmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_DreadlocksHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_DreadlocksHD"
@@ -1082,63 +1362,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ElvenHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ElvenHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ElvenmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ElvenmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_EvilHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_EvilHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_EvilmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_EvilmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_GeikoHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_GeikoHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_GeorgianHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_GeorgianHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_GeorgianmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_GeorgianmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_HalftiedHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_HalftiedHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_KingHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_KingHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_KnightHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_KnightHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_LaurelHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_LaurelHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_LionHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_LionHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_LongcurlsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_LongcurlsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_LongHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_LongHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_LooseponytailHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_LooseponytailHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_MaidenbunHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_MaidenbunHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_Malebob2HD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_Malebob2HD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_MalebobHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_MalebobHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ManggeonHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ManggeonHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_NaturalcurlsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_NaturalcurlsHD"
@@ -1158,63 +1458,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_NeatmaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_NeatmaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_OrderHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_OrderHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_OrnateHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_OrnateHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_PoetHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_PoetHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_PrinceHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_PrinceHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_PrincessHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_PrincessHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_RibbonHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_RibbonHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_SangtuHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_SangtuHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ShogunHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ShogunHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_SlickHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_SlickHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_SquireHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_SquireHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_TighttiedHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_TighttiedHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_TribalbigHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_TribalbigHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_TribalsmallHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_TribalsmallHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_TwinribbonHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_TwinribbonHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_TwintailsHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_TwintailsHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ViscountessHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ViscountessHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_WarriorHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_WarriorHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_WarriormaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_WarriormaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_WavyHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_WavyHD"
@@ -1234,63 +1554,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_WavymaleHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_WavymaleHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Roo_Royal_ZeusHD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Roo_Royal_ZeusHD"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Anne"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Anne"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Artist"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Artist"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Elisabeth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Elisabeth"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Henry"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Henry"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Jane"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Jane"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Lisa"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Lisa"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Mary"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Mary"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Richard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Richard"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Stephen"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Stephen"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "Victoria"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-Victoria"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "William"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-William"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Abigail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Abigail"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Annointed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Annointed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Aslaug"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Aslaug"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Barren"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Barren"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_BattleBraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_BattleBraid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_BattleBraids"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_BattleBraids"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Beautiful"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Beautiful"
@@ -1310,63 +1650,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Bereaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Bereaved"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Beth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Beth"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Bill"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Bill"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Bjorn"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Bjorn"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Blinder"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Blinder"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Braid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Braid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_BraidedHawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_BraidedHawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Brave"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Brave"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Buzzcut"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Buzzcut"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Celebrity"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Celebrity"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Chosen"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Chosen"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Connor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Connor"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Corporal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Corporal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Cyberpunk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Cyberpunk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dapp"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Dapp"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dean"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Dean"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Distinguished"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Distinguished"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_DoubleHawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_DoubleHawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dreadlock"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Dreadlock"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dusk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Dusk"
@@ -1386,63 +1746,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Dutch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Dutch"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Egil"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Egil"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Erik"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Erik"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Faerie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Faerie"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Farmboy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Farmboy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_FauxHawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_FauxHawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Festive"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Festive"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_FireKeeper"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_FireKeeper"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Flak"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Flak"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_FlatAfro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_FlatAfro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Fox"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Fox"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Freydis"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Freydis"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Frida"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Frida"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Gangster"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Gangster"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_General"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_General"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Gentleman"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Gentleman"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Grimshaw"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Grimshaw"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Gunnar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Gunnar"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Halfdan"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Halfdan"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_HalfShaved"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_HalfShaved"
@@ -1462,63 +1842,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Harald"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Harald"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Hardened"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Hardened"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Helga"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Helga"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Hideout"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Hideout"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_HighTop"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_HighTop"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Hunter"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Hunter"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Jerry"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Jerry"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Karen"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Karen"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Lagertha"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Lagertha"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Librarian"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Librarian"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Long"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Long"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_LongAfro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_LongAfro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_LongPonytail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_LongPonytail"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Major"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Major"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Maniac"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Maniac"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Marston"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Marston"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Messy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Messy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Micah"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Micah"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Midlife"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Midlife"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Mohawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Mohawk"
@@ -1538,63 +1938,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Monk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Monk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Mortimer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Mortimer"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Mother"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Mother"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Mystic"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Mystic"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Oskar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Oskar"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Part"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Part"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Pearson"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Pearson"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_PinUp"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_PinUp"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Princess"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Princess"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Private"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Private"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Quaf"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Quaf"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Queen"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Queen"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Ragnar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Ragnar"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Raider"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Raider"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Regal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Regal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Sad"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Sad"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Sam"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Sam"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Sanchez"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Sanchez"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Sarge"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Sarge"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_ScorpionKing"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_ScorpionKing"
@@ -1614,63 +2034,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Senator"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Senator"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Shelby"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Shelby"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_ShortAfro"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_ShortAfro"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_SideBraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_SideBraid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Sigurd"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Sigurd"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Slick"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Slick"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Slicked"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Slicked"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_SlickedShort"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_SlickedShort"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Smith"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Smith"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Smuggler"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Smuggler"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Spikey"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Spikey"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Straight"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Straight"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Strongman"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Strongman"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Summer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Summer"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Tower"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Tower"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Tribal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Tribal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_TuftHawk"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_TuftHawk"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Twisted"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Twisted"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_TwoTails"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_TwoTails"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Ulfrik"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Ulfrik"
@@ -1690,24 +2130,31 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Unkept"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Unkept"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Vile"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Vile"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Warrior"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Warrior"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Widow"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Widow"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Wilderness"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Wilderness"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Willow"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Willow"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hairstyle is "VHE_Wrap"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hair-VHE_Wrap"
@@ -1728,27 +2175,35 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Afro"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (237, 202, 156)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-Blonde"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (51, 51, 51)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-DarkBlack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (90, 58, 32)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-DarkBrown"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (64, 51, 38)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-DarkReddish"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (76, 51, 26)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-DarkSaturatedReddish"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (79, 71, 66)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-MidBlack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (26, 26, 26)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-PitchBlack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" hair colour is rgb (193, 146, 85)
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "haircolour-SandyBlonde"
@@ -1768,63 +2223,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinKnots"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinKnots"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinMegabraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMegabraid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinMonkey"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMonkey"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinMoustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMoustache"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinScruffy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinScruffy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinSenile"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSenile"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinSideChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSideChops"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinSideTufts"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSideTufts"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardFurskinStrongChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinStrongChops"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "FurskinCurlyMoustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-FurskinCurlyMoustache"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Anchor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Anchor"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BeardCurly"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardCurly"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Boxed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Boxed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Braided"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Braided"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Bushy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Bushy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "BushyStyled"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BushyStyled"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Circle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Circle"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Classy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Classy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Curtain"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Curtain"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Ducktail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Ducktail"
@@ -1844,63 +2319,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" beard is "Fork"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Fork"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "French"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-French"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Full"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Full"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Goatee"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Goatee"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Lincoln"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Lincoln"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "LongDutch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-LongDutch"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Machete"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Machete"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Moustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Moustache"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "MuttonChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-MuttonChops"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "NoBeard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-NoBeard"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Norse"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Norse"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "OldDutch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-OldDutch"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Seer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Seer"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "SideWhiskers"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-SideWhiskers"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "SoulPatch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-SoulPatch"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "StacheAndChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-StacheAndChops"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Stubble"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Stubble"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "TriBraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-TriBraid"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "Urist"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Urist"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" beard is "VanDyke"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-VanDyke"
@@ -1920,6 +2415,7 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" beard is "Wizard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Wizard"
@@ -1939,63 +2435,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" head type is "CultEscapee"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-CultEscapee"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "DarkScholar_Female"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-DarkScholar_Female"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Ghoul_Heavy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Ghoul_Heavy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Ghoul_Narrow"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Ghoul_Narrow"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Ghoul_Normal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Ghoul_Normal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Ghoul_Wide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Ghoul_Wide"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Leathery_Female"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Leathery_Female"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "TimelessOne"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-TimelessOne"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_HeavyJawNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_HeavyJawNormal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average1"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Average1"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Average2"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average3"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Average3"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Gaunt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Gaunt"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Heavy1"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Heavy1"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Heavy2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Heavy2"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Heavy3"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Heavy3"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow1"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Narrow1"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Narrow2"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow3"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Narrow3"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Gaunt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Gaunt"
@@ -2015,27 +2531,35 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AverageNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AverageNormal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AveragePointy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AveragePointy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AverageWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AverageWide"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_NarrowNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_NarrowNormal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_NarrowPointy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_NarrowPointy"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Female_NarrowWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_NarrowWide"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Skull"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Skull"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" head type is "Stump"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Stump"
@@ -2055,63 +2579,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "NoTattoo_Face"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-NoTattoo_Face"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Cobweb"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Cobweb"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Eclipse"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Eclipse"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Headshot"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Headshot"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Line"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Line"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Love"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Love"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Oracle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Oracle"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Pantheon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Pantheon"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Spider"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Spider"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Stars"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Stars"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tear"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Tear"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tiger"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Tiger"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Warpaint"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Warpaint"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Worried"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Worried"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tilak"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Tilak"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_Anima"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_Anima"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_Bisect"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_Bisect"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BlackFangs"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_BlackFangs"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BlueFangs"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_BlueFangs"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_BrowDots"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_BrowDots"
@@ -2131,63 +2675,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_CheekDots"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_CheekDots"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_CheekStripes"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_CheekStripes"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsBlack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsBlack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsBlue"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsBlue"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsRed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsRed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_MiddleDotsWhite"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_MiddleDotsWhite"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeBlack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeBlack"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeBlue"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeBlue"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripePurple"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripePurple"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeRed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeRed"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeWhite"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeWhite"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_RedFangs"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_RedFangs"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredAir"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SacredAir"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredFire"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SacredFire"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredGrass"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SacredGrass"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SacredWater"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SacredWater"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunCrown"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SunCrown"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunrisePlains"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SunrisePlains"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_SunsetPlains"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_SunsetPlains"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_WhiteFangs"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_WhiteFangs"
@@ -2210,63 +2774,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "NoTattoo_Body"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-NoTattoo_Body"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Buttons"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Buttons"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Cross"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cross"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Heart"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Heart"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Insect"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Insect"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Jester"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Jester"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Moon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Moon"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Power"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Power"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Rings"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Rings"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Royal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Royal"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Scar"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Scar"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Skeleton"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skeleton"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Skull"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skull"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Spike"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Spike"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Sun"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Sun"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tiger"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tiger"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Wings"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Wings"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Bear"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Bear"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Birds"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Birds"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Bull"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Bull"
@@ -2289,63 +2873,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Butterfly"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Butterfly"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Cat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cat"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_circles"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_circles"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Claws"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Claws"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Deer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Deer"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Dragon"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Dragon"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Dragon_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Dragon_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Illuminati"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Illuminati"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_invertedcross"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_invertedcross"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Japan"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Japan"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_kanji_1c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_1c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_kanji_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_kanji_3c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_3c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_kanji_4c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_4c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_kanji_5c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_5c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Koi"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Koi"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Labyrinth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Labyrinth"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_leviathan"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_leviathan"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Lion"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Lion"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Lizard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Lizard"
@@ -2368,63 +2972,83 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_lucifer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_lucifer"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_pentagram"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_pentagram"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_rose"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_rose"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_samurai"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_samurai"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_satanic_1c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_satanic_1c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_satanic_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_satanic_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_scythe"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_scythe"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Shark"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Shark"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Skull_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skull_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tiger_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tiger_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Triangle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Triangle"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tribal_back"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tribal_back_2c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_2c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tribal_back_3c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_3c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tribal_back_4c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_4c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Tribal_back_5c"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_5c"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_wings"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_wings"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Wolf"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Wolf"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_yinyang"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_yinyang"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_Anima"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Anima"
@@ -2447,42 +3071,55 @@ Feature: Every look value on Nelim, one photograph per value (gallery of the loo
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_BlackClaw"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_BlackClaw"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_BlueClaw"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_BlueClaw"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_RedClaw"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_RedClaw"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_SacredAir"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredAir"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_SacredFire"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredFire"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_SacredGrass"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredGrass"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_SacredWater"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredWater"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_Smoke"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Smoke"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_Spiral"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Spiral"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_Stripes"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Stripes"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_SunsBlessing"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SunsBlessing"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_Vines"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Vines"
+    And Nelim's Pickle Tools: the look of "Nelim" is restored
     When Nelim's Pickle Tools: "Nelim" body tattoo is "STribalTat_Body_WhiteClaw"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_WhiteClaw"

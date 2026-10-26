@@ -25,6 +25,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "NoTattoo_Body"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -32,6 +33,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-NoTattoo_Body-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Buttons"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -39,6 +41,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Buttons-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Cross"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -46,6 +49,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cross-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Heart"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -53,6 +57,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Heart-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Insect"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -60,6 +65,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Insect-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Jester"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -67,6 +73,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Jester-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Moon"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -74,6 +81,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Moon-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Power"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -81,6 +89,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Power-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Rings"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -88,6 +97,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Rings-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Royal"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -95,6 +105,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Royal-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Scar"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -102,6 +113,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Scar-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Skeleton"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -132,6 +144,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Skull"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -139,6 +152,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skull-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Spike"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -146,6 +160,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Spike-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Sun"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -153,6 +168,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Sun-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tiger"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -160,6 +176,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tiger-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Wings"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -167,6 +184,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Wings-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Bear"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -174,6 +192,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Bear-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Birds"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -181,6 +200,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Birds-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Bull"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -188,6 +208,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Bull-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Butterfly"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -195,6 +216,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Butterfly-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Cat"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -202,6 +224,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cat-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_circles"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -209,6 +232,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_circles-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Claws"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -239,6 +263,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Deer"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -246,6 +271,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Deer-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Dragon"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -253,6 +279,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Dragon-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Dragon_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -260,6 +287,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Dragon_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Illuminati"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -267,6 +295,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Illuminati-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_invertedcross"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -274,6 +303,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_invertedcross-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Japan"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -281,6 +311,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Japan-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_1c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -288,6 +319,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_1c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -295,6 +327,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_3c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -302,6 +335,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_3c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_4c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -309,6 +343,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_4c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_kanji_5c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -316,6 +351,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_kanji_5c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Koi"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -346,6 +382,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Labyrinth"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -353,6 +390,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Labyrinth-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_leviathan"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -360,6 +398,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_leviathan-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Lion"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -367,6 +406,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Lion-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Lizard"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -374,6 +414,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Lizard-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_lucifer"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -381,6 +422,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_lucifer-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_pentagram"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -388,6 +430,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_pentagram-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_rose"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -395,6 +438,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_rose-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_samurai"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -402,6 +446,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_samurai-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_satanic_1c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -409,6 +454,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_satanic_1c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_satanic_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -416,6 +462,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_satanic_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_scythe"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -423,6 +470,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_scythe-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Shark"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -453,6 +501,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Skull_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -460,6 +509,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Skull_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tiger_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -467,6 +517,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tiger_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Triangle"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -474,6 +525,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Triangle-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -481,6 +533,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back_2c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -488,6 +541,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_2c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back_3c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -495,6 +549,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_3c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back_4c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -502,6 +557,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_4c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Tribal_back_5c"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -509,6 +565,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Tribal_back_5c-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_wings"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -516,6 +573,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_wings-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Wolf"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -523,6 +581,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Wolf-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_yinyang"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -530,6 +589,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_yinyang-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_Anima"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -560,6 +620,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_BlackClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -567,6 +628,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_BlackClaw-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_BlueClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -574,6 +636,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_BlueClaw-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_RedClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -581,6 +644,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_RedClaw-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SacredAir"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -588,6 +652,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredAir-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SacredFire"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -595,6 +660,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredFire-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SacredGrass"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -602,6 +668,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredGrass-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SacredWater"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -609,6 +676,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SacredWater-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_Smoke"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -616,6 +684,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Smoke-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_Spiral"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -623,6 +692,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Spiral-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_Stripes"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -630,6 +700,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_Stripes-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_SunsBlessing"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -637,6 +708,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_SunsBlessing-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_Vines"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -667,6 +739,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "STribalTat_Body_WhiteClaw"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -674,6 +747,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-STribalTat_Body_WhiteClaw-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyA"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -681,6 +755,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBBirthmarkBodyA-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyB"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -688,6 +763,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBBirthmarkBodyB-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBBirthmarkBodyC"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -695,6 +771,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBBirthmarkBodyC-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBLightningScars"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -702,6 +779,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBLightningScars-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyA"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -709,6 +787,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyA-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyB"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -716,6 +795,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyB-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyC"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -723,6 +803,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyC-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyD"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -730,6 +811,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyD-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBMolesBodyE"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -737,6 +819,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyE-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBPsoriasisBody"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -744,6 +827,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBPsoriasisBody-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBStitchesBodyA"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -774,6 +858,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBStitchesBodyB"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -781,6 +866,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBStitchesBodyB-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBStretchMarksBody"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -788,6 +874,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBStretchMarksBody-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "RBVitiligoBody"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -795,6 +882,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBVitiligoBody-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Barcode"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -802,6 +890,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Barcode-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Cassandra"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -809,6 +898,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cassandra-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Chesttext"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -816,6 +906,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Chesttext-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_DarkPsycaster"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -823,6 +914,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_DarkPsycaster-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Fullbody"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -830,6 +922,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Fullbody-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Kitsune"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -837,6 +930,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Kitsune-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Lancaster"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -844,6 +938,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Lancaster-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Nonipples"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -851,6 +946,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Nonipples-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Oni"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -881,6 +977,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Phoebe"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -888,6 +985,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Phoebe-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Randy"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -895,6 +993,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Randy-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Rave"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -902,6 +1001,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Rave-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Ribcage"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -909,6 +1009,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Ribcage-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Soulmateleft"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -916,6 +1017,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Soulmateleft-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Soulmateright"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -923,6 +1025,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Soulmateright-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Yakuza"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -930,6 +1033,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Yakuza-back"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" body tattoo is "Body_Yorkshire"
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -959,63 +1063,83 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinKnots"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinKnots"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinMegabraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMegabraid"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinMonkey"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMonkey"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinMoustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinMoustache"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinScruffy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinScruffy"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinSenile"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSenile"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinSideChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSideChops"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinSideTufts"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinSideTufts"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardFurskinStrongChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardFurskinStrongChops"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "FurskinCurlyMoustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-FurskinCurlyMoustache"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Anchor"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Anchor"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BeardCurly"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BeardCurly"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Boxed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Boxed"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Braided"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Braided"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Bushy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Bushy"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "BushyStyled"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-BushyStyled"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Circle"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Circle"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Classy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Classy"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Curtain"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Curtain"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Ducktail"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Ducktail"
@@ -1041,63 +1165,83 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" beard is "Fork"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Fork"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "French"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-French"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Full"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Full"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Goatee"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Goatee"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Lincoln"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Lincoln"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "LongDutch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-LongDutch"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Machete"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Machete"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Moustache"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Moustache"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "MuttonChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-MuttonChops"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "NoBeard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-NoBeard"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Norse"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Norse"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "OldDutch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-OldDutch"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Seer"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Seer"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "SideWhiskers"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-SideWhiskers"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "SoulPatch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-SoulPatch"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "StacheAndChops"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-StacheAndChops"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Stubble"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Stubble"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "TriBraid"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-TriBraid"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "Urist"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Urist"
+    And Nelim's Pickle Tools: the look of "Soren" is restored
     When Nelim's Pickle Tools: "Soren" beard is "VanDyke"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-VanDyke"
@@ -1123,6 +1267,7 @@ Feature: Body tattoos and beards on Soren, one photograph per value (the male ha
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: "Soren" body type is Male
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: the look of "Soren" is saved
     When Nelim's Pickle Tools: "Soren" beard is "Wizard"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "beard-Wizard"
