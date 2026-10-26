@@ -253,6 +253,21 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]
         public void PawnForcedToIngest(PickleContext ctx, string name, string defName, int x, int z) => AnimalForcedToIngest(ctx, name, defName, x, z);
 
+        /// <summary>
+        /// Starts a job by force on another pawn (an animal, by short name): the animal walks to its target and acts while the game ticks, so a hunt or an
+        /// attack can be stopped by pausing before contact. The pawn is not moved. Fails when either pawn is unknown or not spawned, the job is unknown, or
+        /// the job does not become the current job (refused for this pawn: a predator job on a non-predator, a prey out of reach).
+        /// Written 2026-10-27 for MengwuExpandedAnimalsRenew's shotlist (a cat about to pounce on a jerboa, job PredatorHunt). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} is forced into the job {string} targeting the animal {string}")]
+        public void AnimalForcedIntoJobOnAnimal(PickleContext ctx, string name, string jobName, string targetName)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            Pawn target = RequireSpawnedPawn(ctx, targetName);
+            JobDef jobDef = RequireJob(ctx, jobName);
+            StartJob(ctx, name, pawn, jobDef, JobMaker.MakeJob(jobDef, target));
+        }
+
         private static Pawn RequireSpawnedPawn(PickleContext ctx, string name)
         {
             Map map = Find.CurrentMap;
