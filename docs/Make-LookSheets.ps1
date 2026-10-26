@@ -162,28 +162,7 @@ Run-Job 'weapon' 'weapon' (Read-Section 'CATALOGUE-WEAPONS-CRAFTS.md' '^## Weapo
 # Seren body masks (feature pickletools-seren-gallery, scenarios 5 and 6): each mask on a pale skin, Nelim and the man, front and back; shots bodymask-<gene>-<who>-<view>.
 $maskTiles = @()
 foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -match 'BodyMask' })) {
-    foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') { if ($view -eq 'back' -and $m.name -notmatch '_02
-        $maskTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
-}
-if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
-
-# Animal garments (CATALOGUE-ANIMAL-APPAREL.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
-$animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
-Run-Job 'animalapparel' 'animalapparel' (Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments') $animalCrop $false $false
-
-# Seren face parts and skins (feature pickletools-seren-face-gallery, ticket d55c): every photograph present, one sheet per part kind; shots seren-<part>-<defName>, the whole pawn seren-xeno-<who>-<view>.
-$serenFace = New-Object System.Drawing.Rectangle 810, 40, 300, 300   # these shots frame the whole pawn higher in the picture: the head sits near y 200
-foreach ($part in 'head', 'lid', 'eyeball', 'brow', 'mouth', 'skin') {
-    $st = @($files.Keys | Where-Object { $_ -like "seren-$part-*" } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring("seren-$part-".Length); hex = '' } })
-    if ($st.Count) { Build-Sheets "seren$part" 'face' $st $serenFace $false }
-}
-$sx = @($files.Keys | Where-Object { $_ -like 'seren-xeno-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-xeno-'.Length); hex = '' } })
-if ($sx.Count) { Build-Sheets 'serenxeno' 'pawn' $sx $body $false }
-
-# Seren, Vanilla Textures Expanded face set (map wsl-deps.seren-vte.map, scenario "VTE set"): its marking skins, shots seren-vte-skin-<defName>; its brow joins the brow sheet (seren-brow-OL_SerenBrowNone).
-$vs = @($files.Keys | Where-Object { $_ -like 'seren-vte-skin-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-vte-skin-'.Length); hex = '' } })
-if ($vs.Count) { Build-Sheets 'serenvteskin' 'face' $vs $serenFace $false }
-) { continue }
+    foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') { if ($view -eq 'back' -and $m.name -notmatch '_02$') { continue }
         $maskTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
 }
 if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
