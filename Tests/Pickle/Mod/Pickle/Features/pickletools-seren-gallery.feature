@@ -313,6 +313,7 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     And Nelim's Pickle Tools: "Nelim" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Nelim" is undressed
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_01"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
@@ -375,6 +376,7 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Mannequin" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Mannequin" is undressed
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_01"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South

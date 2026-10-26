@@ -157,6 +157,7 @@ function maskScenario(who, nick) {
   if (nick !== 'Nelim') lines.splice(at, 0, `And a colonist "${nick}" exists`, `And ${SP}"${nick}" gender is male`, `And ${SP}"${nick}" body type is Male`);
   lines.forEach(l => serenOut.push('    ' + l));
   serenOut.push(`    And ${SP}"${nick}" skin colour is rgb (70, 50, 80)`);
+  serenOut.push(`    And ${SP}"${nick}" is undressed`);   // naked: the fixture's clothes (a corset, a shirt) hid the masks (ticket 1059, 2026-10-26)
   for (const g of masks) for (const [view, dir] of [['front', 'South'], ['back', 'North']].filter(([v]) => v === 'front' || /_02$/.test(g.name)))   // only Mask2 has a north (back) texture
     [`When ${SP}"${nick}" loses all genes`, `And ${SP}"${nick}" has the gene "${g.name}"`, `And ${SP}"${nick}" stands at (176, 120) facing ${dir}`, `And ${SP}I let 5 frames pass`, `And I take a screenshot "bodymask-${g.name}-${who}-${view}"`].forEach(l => serenOut.push('    ' + l));
   serenOut.push('');
