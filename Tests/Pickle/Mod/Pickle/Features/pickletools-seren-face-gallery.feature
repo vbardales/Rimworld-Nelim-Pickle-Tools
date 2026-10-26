@@ -174,10 +174,10 @@ Feature: One photograph per face part of Seren (Experimentals set) and the whole
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "seren-xeno-Soren-front"
+    And I take a screenshot "seren-xeno-man-front"
     When Nelim's Pickle Tools: "Soren" stands at (176, 120) facing East
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "seren-xeno-Soren-side"
+    And I take a screenshot "seren-xeno-man-side"
     When Nelim's Pickle Tools: "Soren" stands at (176, 120) facing North
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "seren-xeno-Soren-back"
+    And I take a screenshot "seren-xeno-man-back"

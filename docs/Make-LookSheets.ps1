@@ -170,3 +170,12 @@ if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false 
 # Animal garments (CATALOGUE-ANIMAL-APPAREL.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
 $animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
 Run-Job 'animalapparel' 'animalapparel' (Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments') $animalCrop $false $false
+
+# Seren face parts and skins (feature pickletools-seren-face-gallery, ticket d55c): every photograph present, one sheet per part kind; shots seren-<part>-<defName>, the whole pawn seren-xeno-<who>-<view>.
+$serenFace = New-Object System.Drawing.Rectangle 810, 40, 300, 300   # these shots frame the whole pawn higher in the picture: the head sits near y 200
+foreach ($part in 'head', 'lid', 'eyeball', 'brow', 'mouth', 'skin') {
+    $st = @($files.Keys | Where-Object { $_ -like "seren-$part-*" } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring("seren-$part-".Length); hex = '' } })
+    if ($st.Count) { Build-Sheets "seren$part" 'face' $st $serenFace $false }
+}
+$sx = @($files.Keys | Where-Object { $_ -like 'seren-xeno-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-xeno-'.Length); hex = '' } })
+if ($sx.Count) { Build-Sheets 'serenxeno' 'pawn' $sx $body $false }

@@ -44,7 +44,7 @@ scenario(`face skins: ${skins.length} marking skins`, faceBase, skins.map(v => s
 for (const who of ['Nelim', 'Soren']) {
   scenario(`the whole Seren pawn: ${who}`, [...common(who),
     `And ${P}"${who}" facial expression is "normal"`, `And ${P}"${who}" face is held neutral`, `And ${P}I frame the cell (176, 120) at zoom 2`],
-    [shot(`"${who}" stands at (176, 120) facing South`, `seren-xeno-${who}-front`), shot(`"${who}" stands at (176, 120) facing East`, `seren-xeno-${who}-side`), shot(`"${who}" stands at (176, 120) facing North`, `seren-xeno-${who}-back`)]);
+    [shot(`"${who}" stands at (176, 120) facing South`, `seren-xeno-${who === 'Soren' ? 'man' : who}-front`), shot(`"${who}" stands at (176, 120) facing East`, `seren-xeno-${who === 'Soren' ? 'man' : who}-side`), shot(`"${who}" stands at (176, 120) facing North`, `seren-xeno-${who === 'Soren' ? 'man' : who}-back`)]);
 }
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-seren-face-gallery.feature', out.join('\n'));
 console.log(`${heads.length} heads, ${lids.length} lids, ${eyes.length} eyeballs, ${brows.length} brows, ${mouths.length} mouths, ${skins.length} skins; ${n} scenarios`);
