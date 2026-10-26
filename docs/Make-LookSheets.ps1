@@ -7,7 +7,7 @@
   once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
   Photographs: every Tests/Pickle/Inbox and Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
   Each tile is also cut to ColonistRace/docs/img/looks/tiles/ (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
-  Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
+  Prefixes: hair, beard, male-beard, male-bodytattoo (-front, -back), head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path $PSScriptRoot -Parent
@@ -120,6 +120,11 @@ Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
+# Male body tattoos (feature pickletools-male-gallery, shots male-bodytattoo-<def>-front and -back): one sheet per view, same table as the female ones.
+foreach ($view in 'front', 'back') {
+    $mt = @($tat | Where-Object type -eq 'Body' | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-$view"; type = $_.type; hex = $_.hex; slot = $_.slot } })
+    Run-Job "malebodytattoo-$view" 'male-bodytattoo' $mt $body $false $false
+}
 $app = Read-Section 'CATALOGUE-APPAREL.md' '^## Garments'
 $isHat = { $_.slot -match '^(UpperHead|FullHead|Mouth|Eyes)(/|$)' }
 Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $false $false
