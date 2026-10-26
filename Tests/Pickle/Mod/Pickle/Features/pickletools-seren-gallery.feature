@@ -287,3 +287,174 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_06"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "lookgene-SerenBodyMask_06"
+
+  Scenario: seren-gallery-5: body masks on nelim, front and back (6 genes)
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (235, 225, 215)
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_01"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_01-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_01"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_01-nelim-back"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_02"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_02-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_02"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_02-nelim-back"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_03"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_03-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_03"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_03-nelim-back"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_04"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_04-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_04"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_04-nelim-back"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_05"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_05-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_05"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_05-nelim-back"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_06"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_06-nelim-front"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenBodyMask_06"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_06-nelim-back"
+
+  Scenario: seren-gallery-6: body masks on man, front and back (6 genes)
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Mannequin" exists
+    And Nelim's Pickle Tools: "Mannequin" gender is male
+    And Nelim's Pickle Tools: "Mannequin" body type is Male
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Mannequin" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Mannequin" face tattoo is "none"
+    And Nelim's Pickle Tools: "Mannequin" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Mannequin" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Mannequin" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Mannequin" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Mannequin" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Mannequin" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Mannequin" facial expression is "normal"
+    And Nelim's Pickle Tools: "Mannequin" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (235, 225, 215)
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_01"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_01-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_01"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_01-man-back"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_02"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_02-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_02"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_02-man-back"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_03"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_03-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_03"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_03-man-back"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_04"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_04-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_04"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_04-man-back"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_05"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_05-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_05"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_05-man-back"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_06"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_06-man-front"
+    When Nelim's Pickle Tools: "Mannequin" loses all genes
+    And Nelim's Pickle Tools: "Mannequin" has the gene "SerenBodyMask_06"
+    And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing North
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-SerenBodyMask_06-man-back"

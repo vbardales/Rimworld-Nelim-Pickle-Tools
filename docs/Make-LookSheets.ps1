@@ -157,3 +157,11 @@ $wide = New-Object System.Drawing.Rectangle 480, 60, 960, 960
 Run-Job 'weather' 'weather' (Read-Section 'CATALOGUE-WEATHER.md' '^## Weather') $wide $false $false
 
 Run-Job 'weapon' 'weapon' (Read-Section 'CATALOGUE-WEAPONS-CRAFTS.md' '^## Weapons') $body $false $true
+
+# Seren body masks (feature pickletools-seren-gallery, scenarios 5 and 6): each mask on a pale skin, Nelim and the man, front and back; shots bodymask-<gene>-<who>-<view>.
+$maskTiles = @()
+foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -match 'BodyMask' })) {
+    foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') {
+        $maskTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
+}
+if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
