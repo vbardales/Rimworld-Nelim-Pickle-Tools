@@ -9,7 +9,7 @@ const P = "Nelim's Pickle Tools: ";
 const plant = (job, def, x, z) => ({ job, setup: [`${P}I place the decor "${def}" at (${x}, ${z}) fully grown`], force: `${P}"Nelim" is forced into the job "${job}" on the plant at (${x}, ${z})`, frame: [x, z] });
 const animal = (job, kind, name, x, z) => ({ job, setup: [`${P}an adult animal of kind "${kind}" named "${name}" is spawned at (${x}, ${z})`], force: `${P}"Nelim" is forced into the job "${job}" on "${name}"`, frame: [x, z] });
 const jobs = [
-  plant('CutPlant', 'Plant_Bamboo', 192, 150), plant('Harvest', 'Plant_Rice', 197, 150),
+  plant('CutPlant', 'Plant_TreeOak', 192, 150), plant('Harvest', 'Plant_Rice', 197, 150),
   animal('Milk', 'Cow', 'Vache', 192, 154), animal('Shear', 'Sheep', 'Mouton', 197, 154),
   animal('Slaughter', 'Pig', 'Cochon', 192, 148), animal('Train', 'Horse', 'Cheval', 197, 148),
 ];

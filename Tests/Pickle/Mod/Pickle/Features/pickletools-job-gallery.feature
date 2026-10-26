@@ -16,7 +16,7 @@ Feature: One pose per job, first lot (the job catalogue)
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelim" stands at (195, 152) facing South
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: I place the decor "Plant_Bamboo" at (192, 150) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeOak" at (192, 150) fully grown
     And Nelim's Pickle Tools: "Nelim" is forced into the job "CutPlant" on the plant at (192, 150)
     And Nelim's Pickle Tools: I advance the paused game by exactly 25 ticks
     And Nelim's Pickle Tools: I frame the cell (192, 150) at zoom 4
