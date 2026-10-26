@@ -48,7 +48,7 @@ function Read-Section($file, $titleRegex) {
 }
 
 $cols = 6; $tile = 200; $label = 32; $perPage = 30
-$face = New-Object System.Drawing.Rectangle 810, 190, 300, 300
+$face = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # head and shoulders: the pubis is out of the frame (owner, 2026-10-26); tiles cut before were recropped 25,0,150,150
 $body = New-Object System.Drawing.Rectangle 760, 320, 400, 400
 $font = New-Object System.Drawing.Font 'Segoe UI', 8
 $hatch = New-Object System.Drawing.Drawing2D.HatchBrush ([System.Drawing.Drawing2D.HatchStyle]::LightUpwardDiagonal), ([System.Drawing.Color]::FromArgb(225, 225, 225)), ([System.Drawing.Color]::White)
