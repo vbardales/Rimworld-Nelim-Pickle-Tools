@@ -55,3 +55,37 @@ Feature: Front portraits of the fixture animals
     When Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "portrait-rain-thrumbo"
 
+
+  Scenario: animal-portrait-4: candidate garments for the second thrumbo (the scarf was not pretty, owner 2026-10-26)
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandA" is spawned at (160, 120)
+    And Nelim's Pickle Tools: the animal "CandA" stands at (160, 120) facing South
+    And Nelim's Pickle Tools: the animal "CandA" is dressed in "Apparel_bridle" dyed "#8A5A2B"
+    And Nelim's Pickle Tools: I frame the animal "CandA" at zoom 5
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-bridle"
+    And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandB" is spawned at (166, 120)
+    And Nelim's Pickle Tools: the animal "CandB" stands at (166, 120) facing South
+    And Nelim's Pickle Tools: the animal "CandB" is dressed in "Apparel_LargeAnimalClothes" dyed "#3A4F7A"
+    And Nelim's Pickle Tools: I frame the animal "CandB" at zoom 5
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-clothes"
+    And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandC" is spawned at (172, 120)
+    And Nelim's Pickle Tools: the animal "CandC" stands at (172, 120) facing South
+    And Nelim's Pickle Tools: the animal "CandC" is dressed in "Apparel_LargeAnimalScarf" dyed "#2E6F5B"
+    And Nelim's Pickle Tools: I frame the animal "CandC" at zoom 5
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-scarf-green"
+    And Nelim's Pickle Tools: an adult animal of kind "Thrumbo" named "CandD" is spawned at (178, 120)
+    And Nelim's Pickle Tools: the animal "CandD" stands at (178, 120) facing South
+    And Nelim's Pickle Tools: the animal "CandD" is dressed in "Apparel_LargeAnimalPowerArmorHelmet"
+    And Nelim's Pickle Tools: I frame the animal "CandD" at zoom 5
+    When Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "candidate-thrumbo-helmet"
