@@ -115,7 +115,7 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
 $looks = 'CATALOGUE-LOOKS.md'
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
-Run-Job 'sorenbeard' 'soren-beard' (Read-Section $looks '^## Beards') $face $false $false
+Run-Job 'malebeard' 'male-beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $face $false $false
