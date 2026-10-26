@@ -54,10 +54,17 @@ namespace Nelim.PickleTools.ColonistRace
             IntVec3 cell = building.InteractionCell;
             ctx.Require(cell.IsValid && cell.InBounds(map) && cell.Standable(map), $"the interaction cell {cell} of {defName} at {building.Position} is not standable");
 
-            PlaceAt(pawn, map, cell, null);
-            pawn.Rotation = Rot4.FromAngleFlat((building.DrawPos - cell.ToVector3Shifted()).AngleFlat());
             Job job = JobMaker.MakeJob(jobDef, building);
-            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            try
+            {
+                PlaceAt(pawn, map, cell, null);
+                pawn.Rotation = Rot4.FromAngleFlat((building.DrawPos - cell.ToVector3Shifted()).AngleFlat());
+                pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            }
+            catch (Exception e)
+            {
+                ctx.Require(false, $"starting Play_MusicalInstrument on {defName} at {building.Position} (rot {building.Rotation}, interaction cell {cell}) threw: {e}");
+            }
             Log.Message($"[stage] {nickname} plays {defName} at {building.Position} from {cell}, facing {pawn.Rotation}, job now {pawn.CurJob?.def.defName ?? "none"}");
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not Play_MusicalInstrument (the job did not start: reserved or unreachable)");
         }
