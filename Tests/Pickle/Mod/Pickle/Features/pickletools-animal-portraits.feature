@@ -48,7 +48,7 @@ Feature: Front portraits of the fixture animals
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the animal "Rain" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: the animal "Rain" is dressed in "Apparel_LargeAnimalScarf"
+    And Nelim's Pickle Tools: the animal "Rain" is dressed in "Apparel_LargeAnimalScarf" dyed "#B03A48"
     And Nelim's Pickle Tools: I let 5 frames pass
     And Nelim's Pickle Tools: the render tree of the animal "Rain" draws "Apparel_LargeAnimalScarf"
     And Nelim's Pickle Tools: I frame the animal "Rain" at zoom 5
