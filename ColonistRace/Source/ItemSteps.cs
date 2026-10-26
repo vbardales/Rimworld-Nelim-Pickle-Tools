@@ -157,9 +157,37 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(giver != null, $"no joy giver '{giverDefName}'");
             ctx.Require(pawn.jobs != null, $"{nickname} has no job tracker");
             Job job = giver.Worker.TryGiveJob(pawn);
-            ctx.Require(job != null, $"joy giver {giverDefName} gives no job to {nickname}");
+            ctx.Require(job != null, $"joy giver {giverDefName} gives no job to {nickname}; " + WhyNoJoyJob(pawn, giver));
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
             Log.Message($"[joy-giver] forced {job.def.defName} on {nickname} from {giverDefName}; current job now {pawn.CurJob?.def.defName ?? "none"}");
+        }
+
+
+        // Why a joy giver of buildings returns no job: the checks of JoyGiver_InteractBuilding.CanInteractWith and of the two TryGivePlayJob variants, per candidate thing.
+        // Time, the Joy need, weather and temperature are NOT checked by TryGiveJob (they belong to JobGiver_GetJoy), so they never explain a null here.
+        private static string WhyNoJoyJob(Pawn pawn, JoyGiverDef giver)
+        {
+            var sb = new System.Text.StringBuilder();
+            sb.Append($"giver class {giver.giverClass?.Name}, requireChair {giver.requireChair}, unroofedOnly {giver.unroofedOnly}, CanBeGivenTo {Try(() => giver.Worker.CanBeGivenTo(pawn))}; ");
+            if (giver.thingDefs == null) return sb.Append("no thingDefs on the giver (not a building giver)").ToString();
+            Map map = pawn.Map;
+            foreach (ThingDef td in giver.thingDefs)
+                foreach (Thing t in map.listerThings.ThingsOfDef(td).Take(3))
+                {
+                    sb.Append($"[{td.defName} at {t.Position}: ");
+                    sb.Append($"canReserve {Try(() => pawn.CanReserve(t, giver.jobDef?.joyMaxParticipants ?? 1))}, forbidden {Try(() => t.IsForbidden(pawn))}, fogged {Try(() => t.Fogged())}, ");
+                    sb.Append($"sociallyProper {Try(() => t.IsSociallyProper(pawn))}, politicallyProper {Try(() => t.IsPoliticallyProper(pawn))}, ");
+                    CompPowerTrader power = t.TryGetComp<CompPowerTrader>();
+                    sb.Append($"power {(power == null ? "none needed" : power.PowerOn.ToString())}, roofed {t.Position.Roofed(map)}, ");
+                    sb.Append("cardinal cells: " + string.Join(" ", GenAdj.CellsAdjacentCardinal(t).Select(c =>
+                    {
+                        Building e = c.GetEdifice(map);
+                        return $"{c}(sittable {e != null && e.def.building.isSittable}, forbidden {c.IsForbidden(pawn)}, reservable {Try(() => pawn.CanReserveSittableOrSpot(c))})";
+                    })));
+                    sb.Append("] ");
+                }
+            if (sb.ToString().IndexOf('[') < 0) sb.Append("no such thing on this map");
+            return sb.ToString();
         }
 
         private static string Try<T>(System.Func<T> read)
