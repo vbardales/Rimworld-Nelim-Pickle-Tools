@@ -11,7 +11,7 @@ namespace Nelim.PickleTools.ColonistRace
     /// <summary>
     /// A weapon in a colonist's hands for a photograph. The game draws an equipped weapon only while the pawn is drafted (or aiming), so the
     /// step equips the weapon and drafts the colonist; the second step puts everything back. Written 2026-10-18 for EntityGazing's gallery
-    /// (a colonist wielding a weapon). The weapon names are in docs/CATALOGUE-WEAPONS-CRAFTS.md. Not played.
+    /// (a colonist wielding a weapon). The weapon names are in docs/catalogues/weapons-crafts.md. Not played.
     /// </summary>
     [PickleSteps]
     public class WeaponSteps

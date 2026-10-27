@@ -1,6 +1,6 @@
 # Seren, from Stardust [Biotech Fork]: catalogue
 
-Read 2026-10-25 from the mod folder (Workshop 3726565301, packageId `odysseylotus.serenbiotech`, supports 1.6 and 1.7; 1.6 and 1.7 hold the same defs). Names only: this catalogue is what the XML defines, not a photograph. Colour, look and ear genes (hair, skin, markings, sensors, ears, eyes, body masks) are in `CATALOGUE-GENES.md`; this file lists the rest and, above all, the face parts, which are loaded by a compatibility folder and not by the main defs.
+Read 2026-10-25 from the mod folder (Workshop 3726565301, packageId `odysseylotus.serenbiotech`, supports 1.6 and 1.7; 1.6 and 1.7 hold the same defs). Names only: this catalogue is what the XML defines, not a photograph. Colour, look and ear genes (hair, skin, markings, sensors, ears, eyes, body masks) are in `genes.md`; this file lists the rest and, above all, the face parts, which are loaded by a compatibility folder and not by the main defs.
 
 Mod folder: `C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/3726565301`.
 
@@ -68,7 +68,7 @@ Its second patch (`Remove_Biotech_Markings_When_FA`) removes the render nodes of
 
 The head, lid, eye and brow defNames of NiceFA and Experimentals overlap (`SerenHeadNormal`, `SerenLidNormal`, ...) but never load together: the three sets are exclusive.
 
-## Genes not photographed in `CATALOGUE-GENES.md`
+## Genes not photographed in `genes.md`
 
 | Gene | What it is |
 |---|---|
@@ -77,7 +77,7 @@ The head, lid, eye and brow defNames of NiceFA and Experimentals overlap (`Seren
 | OL_DarkVision | dark vision |
 | OL_ElongatedFingers | elongated fingers (hands) |
 
-Genes of colour: 13 skin (`OL_Skin<Teal, Cobalt, Indigo, Royal, Violet, Plum, Orchid, Magenta, Rouge, Albino, Twilight, Nebula, Planetary>`) and 19 hair (`OL_Hair<Sky, Powder, Periwinkle, Aegean, Navy, Lapis, Lilac, Lavender, Mauve, Indigo, Eggplant, Plum, Wisteria, Blush, Rose, Berry, Wine, Amaranth, Albino>`): hex in `CATALOGUE-GENES.md`.
+Genes of colour: 13 skin (`OL_Skin<Teal, Cobalt, Indigo, Royal, Violet, Plum, Orchid, Magenta, Rouge, Albino, Twilight, Nebula, Planetary>`) and 19 hair (`OL_Hair<Sky, Powder, Periwinkle, Aegean, Navy, Lapis, Lilac, Lavender, Mauve, Indigo, Eggplant, Plum, Wisteria, Blush, Rose, Berry, Wine, Amaranth, Albino>`): hex in `genes.md`.
 
 ## Xenotype
 

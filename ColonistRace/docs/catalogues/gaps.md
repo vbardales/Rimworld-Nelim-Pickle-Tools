@@ -15,7 +15,7 @@ Hairstyles, beards, head types, face and body tattoos (Roo's two mods added 2026
 | **Weather** | `I set the weather to` | WeatherDef | one wide shot each (listing step and ticket 4b4a, 2026-10-25) |
 | **Xenotypes** | `"X" xenotype is "Y"` | XenotypeDef | one pawn each |
 | **Genes other than eye and skin colour** | `has the gene "X"` | GeneDef (the ones that change the look: hair, body, ears, tail) | one pawn each |
-| **Pawn kinds (animal and race portraits)** | `animals of kind`, `a colonist of kind` | PawnKindDef | one portrait each (animal portraits ticket 5abb never refiled; `CATALOGUE-MODS-WORLD.md` only counts animals by mod) |
+| **Pawn kinds (animal and race portraits)** | `animals of kind`, `a colonist of kind` | PawnKindDef | one portrait each (animal portraits ticket 5abb never refiled; `mods-world.md` only counts animals by mod) |
 | **Studio presets** | `I frame the studio "X"` | the presets of ScreenshotStudio | one shot each |
 
 ## Not a catalogue of its own

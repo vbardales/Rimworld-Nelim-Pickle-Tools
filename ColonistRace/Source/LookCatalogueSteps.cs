@@ -9,7 +9,7 @@ namespace Nelim.PickleTools.ColonistRace
 {
     /// <summary>
     /// Lists, in the log, every value the look steps accept in the loaded game, mod by mod: hairstyles, beards, head types, tattoos, bodies and
-    /// garments. It is how a catalogue of the options is made (docs/CATALOGUE-LOOKS.md): played once on a pass that stages the mods whose
+    /// garments. It is how a catalogue of the options is made (docs/catalogues/looks.md): played once on a pass that stages the mods whose
     /// options are wanted, then the lines are copied into the catalogue. Written 2026-10-15 at the owner's request, so that the sessions that
     /// choose what a pawn wears, its hair and its face can pick from a list. Not played here.
     /// </summary>

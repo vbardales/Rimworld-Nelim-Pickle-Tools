@@ -5,7 +5,7 @@
 // from the folders Tests/Pickle/Inbox/look-gallery-bodytattoo-N. The old tiles of these values must be deleted first (the tile cache would keep them).
 // usage: node Docs/Generate-BodyTattooGallery.js   (from the repository root; map wsl-deps.look-gallery.map)
 const fs = require('fs');
-const md = fs.readFileSync('ColonistRace/docs/CATALOGUE-LOOKS.md', 'utf8').split(/\r?\n/);
+const md = fs.readFileSync('ColonistRace/docs/catalogues/looks.md', 'utf8').split(/\r?\n/);
 const rows = md.filter(l => /^\| (Ideology|Tattoos Expanded|Tribal Tattoos) \|/.test(l));
 if (rows.length !== 3) throw new Error('expected 3 rows, found ' + rows.length);
 const body = [];

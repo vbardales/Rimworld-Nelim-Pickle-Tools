@@ -1,10 +1,10 @@
-// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-weapon-gallery.feature: one photograph per weapon of ColonistRace/docs/CATALOGUE-WEAPONS-CRAFTS.md
+// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-weapon-gallery.feature: one photograph per weapon of ColonistRace/docs/catalogues/weapons-crafts.md
 // (section "Weapons"), Nelim wielding it on the save Nelims-tribe, the way pickletools-look-gallery does it for the other looks.
 //   node Docs/Generate-WeaponGallery.js
 // Hand-held weapons go in lots of 20; turret guns, artillery and mech guns go in a last lot of their own, so that a refusal of the equip step there
 // does not lose the others. The photographs are named weapon-<defName> (Docs/Make-LookSheets.ps1 reads them from look-gallery* run folders).
 const fs = require('fs'), path = require('path');
-const md = fs.readFileSync(path.join(__dirname, '..', 'ColonistRace/docs/CATALOGUE-WEAPONS-CRAFTS.md'), 'utf8').split('\n');
+const md = fs.readFileSync(path.join(__dirname, '..', 'ColonistRace/docs/catalogues/weapons-crafts.md'), 'utf8').split('\n');
 const names = []; let on = false;
 for (const l of md) {
   if (/^## /.test(l)) { on = /^## Weapons/.test(l); continue; }

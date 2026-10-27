@@ -1,4 +1,4 @@
-// Writes ColonistRace/docs/CATALOGUE-ANIMAL-APPAREL.md and Tests/Pickle/Mod/Pickle/Features/pickletools-animal-apparel-gallery.feature: one photograph per
+// Writes ColonistRace/docs/catalogues/animal-apparel.md and Tests/Pickle/Mod/Pickle/Features/pickletools-animal-apparel-gallery.feature: one photograph per
 // garment of Animal Apparel Collars and Kit Renew (read from its Defs), worn by the first animal the def itself lists as a host (descriptionHyperlinks;
 // Husky when it lists none). Shots: animalapparel-<defName>. Map wsl-deps.animal-portraits.map (Animal Apparel Framework and Collars and Kit Renew).
 // Written 2026-10-26 at the owner's request. The garments other mods add (Mods/*/ patches, VEF Apparel_Universal) are NOT in this first pass.
@@ -30,7 +30,7 @@ for (const i of items) (byFile[i.file] = byFile[i.file] || []).push(i.name);
 for (const [g, names] of Object.entries(byFile)) md.push(`| Collars and Kit Renew | ${g} | (${names.length}) ${names.join(', ')} |`);
 md.push('', '## Hosts', '', '| Garment | Photographed on | Listed hosts | Body groups |', '| --- | --- | --- | --- |');
 for (const i of items) md.push(`| ${i.name} | ${hostOf(i)} | ${i.hosts.join(', ') || 'none listed'} | ${i.groups.join(', ') || ''} |`);
-fs.writeFileSync('ColonistRace/docs/CATALOGUE-ANIMAL-APPAREL.md', md.join('\n') + '\n');
+fs.writeFileSync('ColonistRace/docs/catalogues/animal-apparel.md', md.join('\n') + '\n');
 
 const out = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.camerazoom', '@requires:nelim.pickletools.colonistrace',
   'Feature: One photograph per animal garment (the animal apparel catalogue)', ''];

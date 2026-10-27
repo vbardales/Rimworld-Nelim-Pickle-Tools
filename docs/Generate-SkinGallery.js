@@ -1,11 +1,11 @@
 // Writes Tests/Pickle/Mod/Pickle/Features/pickletools-face-skin-gallery.feature: skins, brows, head shapes and the EyeGenes3 eyeballs redone on a
 // bald Nelim with the neutral kit, expression normal, face held neutral (no blush, no hair), and pickletools-face-animation.feature: short photo
-// sequences (blink, smile, brows) to be joined into animated sheets. Values come from ColonistRace/docs/FACE-PARTS.md. Written 2026-10-25 at the
+// sequences (blink, smile, brows) to be joined into animated sheets. Values come from ColonistRace/docs/catalogues/face-parts.md. Written 2026-10-25 at the
 // owner's request (skins, brows and head shapes from a normal bald face; BrowSwift, BrowEmpathetic, Beauty and Beauty2 were hard to read; eyeball Swift redone).
-// No face kit anywhere: the base face is set part by part (the kits are not used, owner 2026-10-25; the kit table of FACE-PARTS.md is not redone).
+// No face kit anywhere: the base face is set part by part (the kits are not used, owner 2026-10-25; the kit table of face-parts.md is not redone).
 // usage: node docs/Generate-SkinGallery.js   (from the repository root)
 const fs = require('fs');
-const md = fs.readFileSync('ColonistRace/docs/FACE-PARTS.md', 'utf8').split(/\r?\n/);
+const md = fs.readFileSync('ColonistRace/docs/catalogues/face-parts.md', 'utf8').split(/\r?\n/);
 function section(title) {
   let on = false; const names = [];
   for (const l of md) {

@@ -1,9 +1,9 @@
-// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-head-gallery.feature: the head types marked (Male) in ColonistRace/docs/CATALOGUE-LOOKS.md, which the game
+// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-head-gallery.feature: the head types marked (Male) in ColonistRace/docs/catalogues/looks.md, which the game
 // refuses on Nelim, photographed on a male pawn (owner, 2026-10-26: use a male mannequin). Shots head-<defName>, so the head sheets (Make-LookSheets, kind head) fill.
 // Written 2026-10-26. usage: node docs/Generate-HeadGallery.js   (from the repository root; map wsl-deps.look-gallery.map)
 const fs = require('fs');
 const P = "Nelim's Pickle Tools: ";
-const md = fs.readFileSync('ColonistRace/docs/CATALOGUE-LOOKS.md', 'utf8').split(/\n## Head types[^\n]*\n/)[1].split(/\n## /)[0];
+const md = fs.readFileSync('ColonistRace/docs/catalogues/looks.md', 'utf8').split(/\n## Head types[^\n]*\n/)[1].split(/\n## /)[0];
 const heads = [];
 for (const l of md.split('\n')) {
   if (!l.startsWith('|') || /^\| (Mod|---)/.test(l)) continue;

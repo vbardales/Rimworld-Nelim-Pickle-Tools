@@ -12,7 +12,7 @@
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img/looks'
-$docs = Join-Path $root 'ColonistRace/docs'
+$docs = Join-Path $root 'ColonistRace/docs/catalogues'
 New-Item -ItemType Directory -Force $out | Out-Null
 $tileDir = Join-Path $out 'tiles'
 New-Item -ItemType Directory -Force $tileDir | Out-Null
@@ -38,7 +38,7 @@ function Read-Section($file, $titleRegex) {
         foreach ($r in $names) {
             $type = ''; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
             $hex = ''; if ($r -match '#([0-9A-Fa-f]{6})$') { $hex = $Matches[1]; $r = $r -replace '#[0-9A-Fa-f]{6}$', '' }
-            $r = $r -replace '#$', ''   # a gene with no colour is written NAME# in CATALOGUE-GENES.md
+            $r = $r -replace '#$', ''   # a gene with no colour is written NAME# in genes.md
             $slot = ''; if ($r -match '\[(.*)\]$') { $slot = $Matches[1] }
             $name = ($r -replace ' \([A-Za-z]+\)$', '' -replace '\[.*\]$', '').Trim()
             $items += [pscustomobject]@{ mod = ($cells[0] -replace ' \(continued\)$', ''); group = $group; name = $name; type = $type; hex = $hex; slot = $slot }
@@ -114,7 +114,7 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
     }
 }
 
-$looks = 'CATALOGUE-LOOKS.md'
+$looks = 'looks.md'
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
@@ -129,12 +129,12 @@ foreach ($view in 'front', 'back') {
     $mt = @($tat | Where-Object type -eq 'Body' | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-$view"; type = $_.type; hex = $_.hex; slot = $_.slot } })
     Run-Job "bodytattoo-$view" 'bodytattoo' $mt $body $false $false
 }
-$app = Read-Section 'CATALOGUE-APPAREL.md' '^## Garments'
+$app = Read-Section 'apparel.md' '^## Garments'
 $isHat = { $_.slot -match '^(UpperHead|FullHead|Mouth|Eyes)(/|$)' }
 Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $false $false
 Run-Job 'hat' 'hat' @($app | Where-Object { & $isHat }) $face $false $false
 
-$col = Read-Section 'CATALOGUE-COLOURS.md' '^## Colours'
+$col = Read-Section 'colours.md' '^## Colours'
 Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $face $false $false
 Run-Job 'ideocolour' 'ideocolour' @($col | Where-Object { $_.group -eq 'Ideo' }) $body $false $false
 $flat = @($col | Where-Object { $_.group -in 'Misc', 'Planning', 'Structure', 'Weapon' })
@@ -149,19 +149,19 @@ foreach ($b in $bt) {
 }
 Build-Sheets 'body' 'all' $tiles $body $false
 
-# Genes (CATALOGUE-GENES.md, 2026-10-25): eye colours framed on the head close up (crop set on the first photographs, 2026-10-25: the head sits at (960, 610) at root size 2), skin colours on the body.
+# Genes (genes.md, 2026-10-25): eye colours framed on the head close up (crop set on the first photographs, 2026-10-25: the head sits at (960, 610) at root size 2), skin colours on the body.
 $eye = New-Object System.Drawing.Rectangle 880, 550, 160, 160
-$genes = 'CATALOGUE-GENES.md'
+$genes = 'genes.md'
 Run-Job 'eyegene' 'eyegene' (Read-Section $genes '^## Eye colours') $eye $false $false
 Run-Job 'skingene' 'skingene' (Read-Section $genes '^## Skin colours') $body $false $false
 Run-Job 'hairgene' 'hairgene' (Read-Section $genes '^## Hair colours') $body $false $false
 Run-Job 'lookgene' 'lookgene' (Read-Section $genes '^## Look genes') $body $false $false
 
-# Weather (CATALOGUE-WEATHER.md, 2026-10-25): wide shots of the gravel yard, the central square of the frame.
+# Weather (weather.md, 2026-10-25): wide shots of the gravel yard, the central square of the frame.
 $wide = New-Object System.Drawing.Rectangle 480, 60, 960, 960
-Run-Job 'weather' 'weather' (Read-Section 'CATALOGUE-WEATHER.md' '^## Weather') $wide $false $false
+Run-Job 'weather' 'weather' (Read-Section 'weather.md' '^## Weather') $wide $false $false
 
-Run-Job 'weapon' 'weapon' (Read-Section 'CATALOGUE-WEAPONS-CRAFTS.md' '^## Weapons') $body $false $true
+Run-Job 'weapon' 'weapon' (Read-Section 'weapons-crafts.md' '^## Weapons') $body $false $true
 
 # Seren body masks (feature pickletools-seren-gallery, scenarios 5 and 6): each mask on a pale skin, Nelim and the man, front and back; shots bodymask-<gene>-<who>-<view>.
 $maskTiles = @()
@@ -171,9 +171,9 @@ foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -
 }
 if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
 
-# Animal garments (CATALOGUE-ANIMAL-APPAREL.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
+# Animal garments (animal-apparel.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
 $animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
-$aa = Read-Section 'CATALOGUE-ANIMAL-APPAREL.md' '^## Animal garments'
+$aa = Read-Section 'animal-apparel.md' '^## Animal garments'
 foreach ($view in 'front', 'side') {
     $av = @($aa | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-$view"; type = $_.type; hex = $_.hex; slot = $_.slot } })
     Run-Job "animalapparel-$view" 'animalapparel' $av $animalCrop $false $false

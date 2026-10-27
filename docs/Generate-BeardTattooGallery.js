@@ -6,7 +6,7 @@ const fs = require('fs');
 const look = fs.readFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-look-gallery.feature', 'utf8');
 const values = re => [...new Set([...look.matchAll(re)].map(m => m[1]))];
 // Roo's two mods (tattoos and birthmarks) are not in the look gallery steps: read their body defs from the catalogue, as Generate-RooGallery.js does.
-const rooBody = fs.readFileSync('ColonistRace/docs/CATALOGUE-LOOKS.md', 'utf8').split(/\r?\n/).filter(l => /^\| Roo's (Birthmarks|Tattoos)/.test(l))
+const rooBody = fs.readFileSync('ColonistRace/docs/catalogues/looks.md', 'utf8').split(/\r?\n/).filter(l => /^\| Roo's (Birthmarks|Tattoos)/.test(l))
   .flatMap(r => r.split('|')[2].replace(/^\s*\(\d+\)\s*/, '').split(', ').map(s => s.trim().match(/^(\S+) \(Body\)$/)).filter(m => m && m[1] !== 'Body_Royal').map(m => m[1]));
 const bodyTattoos = [...values(/"Nelim" body tattoo is "([^"]+)"/g).filter(t => !/^none$/i.test(t)), ...rooBody.filter(t => !values(/"Nelim" body tattoo is "([^"]+)"/g).includes(t))];
 const beards = values(/"Nelim" beard is "([^"]+)"/g);

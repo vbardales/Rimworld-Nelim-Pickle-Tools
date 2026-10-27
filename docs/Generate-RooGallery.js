@@ -1,14 +1,14 @@
 // Writes Tests/Pickle/Mod/Pickle/Features/pickletools-roo-gallery.feature: one photograph per tattoo def of Roo's Tattoos - Starter Pack and
 // Roo's Birthmarks and Blemishes (both are tattoo defs, RB* for the birthmarks), on a bald Nelim for the face (the base of
 // pickletools-face-skin-gallery) and on Nelim undressed for the body (owner, 2026-10-25: a body tattoo is on the skin, the underwear hid it) (the base of pickletools-look-gallery). Shots are named
-// facetattoo-<def> and bodytattoo-<def>, so that docs/Make-LookSheets.ps1 (jobs facetattoo and bodytattoo, rows of ColonistRace/docs/CATALOGUE-LOOKS.md)
+// facetattoo-<def> and bodytattoo-<def>, so that docs/Make-LookSheets.ps1 (jobs facetattoo and bodytattoo, rows of ColonistRace/docs/catalogues/looks.md)
 // fills their tiles from the folder Tests/Pickle/Inbox/look-gallery-roo*. Written 2026-10-25 from run d15c. Body_Royal is left out: it is also an
 // Ideology def and the game keeps one of the two, so a photograph of it does not say which (see the catalogue).
 // usage: node docs/Generate-RooGallery.js   (from the repository root; map wsl-deps.look-gallery.map holds both Roo mods)
 const fs = require('fs');
-const md = fs.readFileSync('ColonistRace/docs/CATALOGUE-LOOKS.md', 'utf8').split(/\r?\n/);
+const md = fs.readFileSync('ColonistRace/docs/catalogues/looks.md', 'utf8').split(/\r?\n/);
 const rows = md.filter(l => /^\| Roo's (Birthmarks|Tattoos)/.test(l));
-if (rows.length !== 2) throw new Error('expected the two Roo rows in CATALOGUE-LOOKS.md, found ' + rows.length);
+if (rows.length !== 2) throw new Error('expected the two Roo rows in looks.md, found ' + rows.length);
 const face = [], body = [];
 for (const r of rows) {
   for (const raw of r.split('|')[2].replace(/^\s*\(\d+\)\s*/, '').split(', ')) {

@@ -22,28 +22,28 @@
     "kit": "<c>smile</c> (MouthSmile, LidCheerful, BrowEven, SkinRosyCheeks), <c>calm</c> (MouthLipsTinySmile, LidSimple, BrowEven), <c>sad</c> (MouthSad, LidUnimpressed, BrowRaised), <c>angry</c> (MouthScowl, LidHardened, BrowTriangle), <c>smug</c> (MouthSmug, LidFlirty, BrowEven), <c>neutral</c> (MouthSimpleMouth, LidSimple, BrowEven); any case" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} mouth is {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/FACE-PARTS.md (Mouths), a wrong name fails with the list" } },
+    "typeName": "a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/catalogues/face-parts.md (Mouths), a wrong name fails with the list" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} brows are {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a BrowTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Brows)" } },
+    "typeName": "a BrowTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Brows)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} lids are {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a LidTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lids)" } },
+    "typeName": "a LidTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Lids)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} face skin is {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a SkinTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Skins)" } },
+    "typeName": "a SkinTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Skins)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} eyeballs are {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "an EyeballTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Eyeballs)" } },
+    "typeName": "an EyeballTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Eyeballs)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} lid option is {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a LidOptionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lid options)" } },
+    "typeName": "a LidOptionTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Lid options)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} emotion mark is {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "an EmotionTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Emotion marks)" } },
+    "typeName": "an EmotionTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Emotion marks)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} face head shape is {string}", "params": {
     "nickname": "the colonist's nickname",
-    "typeName": "a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/FACE-PARTS.md (Head shapes)" } },
+    "typeName": "a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/catalogues/face-parts.md (Head shapes)" } },
   { "file": "ColonistRace/Source/FaceSteps.cs", "step": "{string} mouth reads {string}", "params": {
     "nickname": "the colonist's nickname",
     "typeName": "a MouthTypeDef name, as the mouth step takes it" } },

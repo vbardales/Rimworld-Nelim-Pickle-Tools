@@ -1,10 +1,11 @@
-// Builds ColonistRace/docs/catalogues.html: one page over the look, apparel, colour, weapon, item and mod catalogues
-// (ColonistRace/docs/CATALOGUE-*.md, FACE-PARTS.md) and the photograph sheets of ColonistRace/docs/img.
+// Builds ColonistRace/docs/catalogues/index.html: one page over the look, apparel, colour, weapon, item and mod catalogues
+// (ColonistRace/docs/catalogues/*.md) and the photograph sheets of ColonistRace/docs/img.
 //   node Docs/Make-CatalogueHtml.js        (run from the repository root; rerun after Docs/Make-LookSheets.ps1)
 // No dependency: the markdown subset the catalogues use (headings, tables, lists, images, links, code, bold) is rendered here.
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
 const docs = path.join(root, 'ColonistRace', 'docs');
+const cat = path.join(docs, 'catalogues');
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 function inline(s) {
@@ -38,13 +39,13 @@ function render(md) {
 }
 
 const tabs = [
-  ['looks', 'Looks', 'CATALOGUE-LOOKS.md'], ['apparel', 'Apparel', 'CATALOGUE-APPAREL.md'], ['colours', 'Colours', 'CATALOGUE-COLOURS.md'],
-  ['weapons', 'Weapons and crafts', 'CATALOGUE-WEAPONS-CRAFTS.md'], ['items', 'Utility items', 'CATALOGUE-ITEMS.md'],
-  ['faceparts', 'Face parts', 'FACE-PARTS.md'], ['modlooks', 'Mods: looks', 'CATALOGUE-MODS-LOOKS.md'],
-  ['modgear', 'Mods: gear', 'CATALOGUE-MODS-GEAR.md'], ['modworld', 'Mods: world', 'CATALOGUE-MODS-WORLD.md'],
-  ['genes', 'Genes', 'CATALOGUE-GENES.md'], ['seren', 'Seren', 'CATALOGUE-SEREN.md'], ['weather', 'Weather', 'CATALOGUE-WEATHER.md'], ['jobs', 'Jobs', 'CATALOGUE-JOBS.md'],
-  ['animalapparel', 'Animal apparel', 'CATALOGUE-ANIMAL-APPAREL.md'],
-  ['coverage', 'Coverage', 'CATALOGUE-COVERAGE.md'],
+  ['looks', 'Looks', 'looks.md'], ['apparel', 'Apparel', 'apparel.md'], ['colours', 'Colours', 'colours.md'],
+  ['weapons', 'Weapons and crafts', 'weapons-crafts.md'], ['items', 'Utility items', 'items.md'],
+  ['faceparts', 'Face parts', 'face-parts.md'], ['modlooks', 'Mods: looks', 'mods-looks.md'],
+  ['modgear', 'Mods: gear', 'mods-gear.md'], ['modworld', 'Mods: world', 'mods-world.md'],
+  ['genes', 'Genes', 'genes.md'], ['seren', 'Seren', 'seren.md'], ['weather', 'Weather', 'weather.md'], ['jobs', 'Jobs', 'jobs.md'],
+  ['animalapparel', 'Animal apparel', 'animal-apparel.md'],
+  ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
 ];
 
 // Photograph sheets: img/looks/<kind>-<mod>-<page>.jpg grouped by kind, plus the part sheets and the building tabs.
@@ -53,17 +54,17 @@ const byKind = {};
 for (const f of sheetFiles) (byKind[f.split('-')[0]] = byKind[f.split('-')[0]] || []).push(f);
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
-  gallery += `<h3>${k}</h3><div class="sheets">` + files.map(f => `<a href="img/looks/${f}" target="_blank"><img loading="lazy" src="img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>';
+  gallery += `<h3>${k}</h3><div class="sheets">` + files.map(f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>';
 const extra = [];
-for (const f of fs.readdirSync(path.join(docs, 'img')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('img/' + f);
+for (const f of fs.readdirSync(path.join(docs, 'img')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('../img/' + f);
 if (fs.existsSync(path.join(docs, 'img', 'buildings')))
-  for (const f of fs.readdirSync(path.join(docs, 'img', 'buildings')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('img/buildings/' + f);
+  for (const f of fs.readdirSync(path.join(docs, 'img', 'buildings')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('../img/buildings/' + f);
 gallery += '<h3>parts, animations, buildings</h3><div class="sheets">' + extra.map(f => `<a href="${f}" target="_blank"><img loading="lazy" src="${f}" alt="${f}"><span>${path.basename(f)}</span></a>`).join('') + '</div>';
 
 // The sheets of a kind go right under the heading of their section in the catalogue pages.
 const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
-  return files.length ? '<div class="sheets wide">' + files.map(f => `<a href="img/looks/${f}" target="_blank"><img loading="lazy" src="img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>' : '';
+  return files.length ? '<div class="sheets wide">' + files.map(f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>' : '';
 };
 const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['haircolour', 'ideocolour', 'colour']], [/^Weapons/, ['weapon']],
@@ -74,7 +75,7 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 });
 
 const sections = tabs.map(([id, title, file]) => {
-  const p = path.join(docs, file);
+  const p = path.join(cat, file);
   return `<section id="${id}" hidden><h1>${title}</h1><p class="src">${file}</p>${fs.existsSync(p) ? withSheets(render(fs.readFileSync(p, 'utf8').replace(/^# .*\n/, ''))) : '<p>Missing file.</p>'}</section>`;
 }).join('\n');
 
@@ -118,5 +119,5 @@ links.forEach(a=>a.onclick=()=>{location.hash=a.dataset.t;show(a.dataset.t)});q.
 let start=location.hash.slice(1);try{start=start||localStorage.getItem('cat-tab')}catch(e){}
 show(secs.some(s=>s.id===start)?start:'looks');
 </script></body></html>`;
-fs.writeFileSync(path.join(docs, 'catalogues.html'), html);
-console.log('wrote ColonistRace/docs/catalogues.html', (html.length / 1024).toFixed(0) + ' KB,', sheetFiles.length, 'sheets');
+fs.writeFileSync(path.join(cat, 'index.html'), html);
+console.log('wrote ColonistRace/docs/catalogues/index.html', (html.length / 1024).toFixed(0) + ' KB,', sheetFiles.length, 'sheets');

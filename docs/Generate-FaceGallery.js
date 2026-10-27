@@ -1,8 +1,8 @@
-// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-face-parts-gallery.feature from ColonistRace/docs/FACE-PARTS.md:
+// Writes Tests/Pickle/Mod/Pickle/Features/pickletools-face-parts-gallery.feature from ColonistRace/docs/catalogues/face-parts.md:
 // one photograph per face part value and per kit, on Nelim, 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s).
 // usage: node docs/Generate-FaceGallery.js   (from the repository root)
 const fs = require('fs');
-const md = fs.readFileSync('ColonistRace/docs/FACE-PARTS.md', 'utf8').split(/\r?\n/);
+const md = fs.readFileSync('ColonistRace/docs/catalogues/face-parts.md', 'utf8').split(/\r?\n/);
 const secs = {};
 let cur = null;
 for (const l of md) {

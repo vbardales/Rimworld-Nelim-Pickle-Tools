@@ -89,38 +89,38 @@ namespace Nelim.PickleTools.ColonistRace
         /// animation: it does not depend on the job, the mood or the heat. Reads the part back; a name that does not exist fails with the list.
         /// </summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/FACE-PARTS.md (Mouths), a wrong name fails with the list</param>
+        /// <param name="typeName">a MouthTypeDef name; the valid names by mod are in ColonistRace/docs/catalogues/face-parts.md (Mouths), a wrong name fails with the list</param>
         [Given("Nelim's Pickle Tools: {string} mouth is {string}")]
         public void SetMouth(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Mouth", typeName);
 
         /// <summary>Gives a colonist brows by <c>BrowTypeDef</c> name, as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a BrowTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Brows)</param>
+        /// <param name="typeName">a BrowTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Brows)</param>
         [Given("Nelim's Pickle Tools: {string} brows are {string}")]
         public void SetBrows(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Brow", typeName);
 
         /// <summary>Gives a colonist lids (the look of the eyes: cheerful, almond, squinting...) by <c>LidTypeDef</c> name, as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a LidTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Lids)</param>
+        /// <param name="typeName">a LidTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Lids)</param>
         [Given("Nelim's Pickle Tools: {string} lids are {string}")]
         public void SetLids(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Lid", typeName);
 
         /// <summary>Gives a colonist a skin detail (rosy cheeks, freckles, smile lines...) by <c>SkinTypeDef</c> name, as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a SkinTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Skins)</param>
+        /// <param name="typeName">a SkinTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Skins)</param>
         [Given("Nelim's Pickle Tools: {string} face skin is {string}")]
         public void SetFaceSkin(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Skin", typeName);
 
         /// <summary>Gives a colonist eyeballs (the iris and white shape) by <c>EyeballTypeDef</c> name, as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">an EyeballTypeDef name; see ColonistRace/docs/FACE-PARTS.md (Eyeballs)</param>
+        /// <param name="typeName">an EyeballTypeDef name; see ColonistRace/docs/catalogues/face-parts.md (Eyeballs)</param>
         [Given("Nelim's Pickle Tools: {string} eyeballs are {string}")]
         public void SetEyeballs(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Eyeball", typeName);
 
 
         /// <summary>Gives a colonist a face head shape by Facial Animation's own <c>HeadTypeDef</c> name (not the game's head type), as the mouth step does for the mouth.</summary>
         /// <param name="nickname">the colonist's nickname</param>
-        /// <param name="typeName">a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/FACE-PARTS.md (Head shapes)</param>
+        /// <param name="typeName">a Facial Animation HeadTypeDef name (not the game's head type); see ColonistRace/docs/catalogues/face-parts.md (Head shapes)</param>
         [Given("Nelim's Pickle Tools: {string} face head shape is {string}")]
         public void SetFaceHead(PickleContext ctx, string nickname, string typeName) => SetPart(ctx, nickname, "Head", typeName);
 
