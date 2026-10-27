@@ -1,6 +1,6 @@
 # One photograph per body type (looks.md, Body types). With Female Body Variants (tiagocc0.FemaleBodyVariants) Fat, Hulk and Thin differ by sex:
 # Nelim shoots Female, Fat, Hulk, Thin; her male alter ego Soren (a second colonist, not Nelim) shoots Male, Fat, Hulk, Thin, then Child and Baby (a boy).
-# Both keep the fixture clothes as underwear. Pass: Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue.map -Filter 'body-gallery'
+# Both keep the fixture clothes as underwear. Pass: Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.look-gallery.map -Filter 'pickletools-body-gallery::body-gallery'
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.camerazoom

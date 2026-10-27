@@ -18,6 +18,7 @@ Feature: Child garments, one photograph each (gallery of the look catalogues)
     And a colonist "Soren" exists
     And "Soren" is 8 years old
     And Nelim's Pickle Tools: "Soren" gender is male
+    And Nelim's Pickle Tools: "Soren" body type is Child
     And Nelim's Pickle Tools: "Soren" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Soren" face kit is "neutral"
