@@ -48,23 +48,25 @@ const tabs = [
   ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
 ];
 
-// Photograph sheets: img/looks/<kind>-<mod>-<page>.jpg grouped by kind, plus the part sheets and the building tabs.
-const sheetFiles = fs.readdirSync(path.join(docs, 'img', 'looks')).filter(f => /\.jpg$/.test(f)).sort();
+// Photograph sheets: img/looks/<kind>/<kind>-<mod>-<page>.jpg grouped by kind, plus the part sheets, the animation sheets and the building tabs.
+const looksDir = path.join(docs, 'img', 'looks');
 const byKind = {};
-for (const f of sheetFiles) (byKind[f.split('-')[0]] = byKind[f.split('-')[0]] || []).push(f);
+for (const k of fs.readdirSync(looksDir, { withFileTypes: true }).filter(d => d.isDirectory() && d.name !== 'tiles').map(d => d.name).sort())
+  byKind[k] = fs.readdirSync(path.join(looksDir, k)).filter(f => /.jpg$/.test(f)).sort().map(f => k + '/' + f);
+const sheet = f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${path.basename(f).replace(/.jpg$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
-  gallery += `<h3>${k}</h3><div class="sheets">` + files.map(f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>';
+  gallery += `<h3>${k}</h3><div class="sheets">` + files.map(sheet).join('') + '</div>';
 const extra = [];
-for (const f of fs.readdirSync(path.join(docs, 'img')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('../img/' + f);
-if (fs.existsSync(path.join(docs, 'img', 'buildings')))
-  for (const f of fs.readdirSync(path.join(docs, 'img', 'buildings')).filter(f => /\.(jpg|png)$/.test(f)).sort()) extra.push('../img/buildings/' + f);
+for (const d of ['parts', 'anim', 'buildings'])
+  if (fs.existsSync(path.join(docs, 'img', d)))
+    for (const f of fs.readdirSync(path.join(docs, 'img', d)).filter(f => /.(jpg|png)$/.test(f)).sort()) extra.push('../img/' + d + '/' + f);
 gallery += '<h3>parts, animations, buildings</h3><div class="sheets">' + extra.map(f => `<a href="${f}" target="_blank"><img loading="lazy" src="${f}" alt="${f}"><span>${path.basename(f)}</span></a>`).join('') + '</div>';
 
 // The sheets of a kind go right under the heading of their section in the catalogue pages.
 const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
-  return files.length ? '<div class="sheets wide">' + files.map(f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${f.replace(/\.jpg$/, '')}</span></a>`).join('') + '</div>' : '';
+  return files.length ? '<div class="sheets wide">' + files.map(sheet).join('') + '</div>' : '';
 };
 const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['haircolour', 'ideocolour', 'colour']], [/^Weapons/, ['weapon']],
@@ -120,4 +122,4 @@ let start=location.hash.slice(1);try{start=start||localStorage.getItem('cat-tab'
 show(secs.some(s=>s.id===start)?start:'looks');
 </script></body></html>`;
 fs.writeFileSync(path.join(cat, 'index.html'), html);
-console.log('wrote ColonistRace/docs/catalogues/index.html', (html.length / 1024).toFixed(0) + ' KB,', sheetFiles.length, 'sheets');
+console.log('wrote ColonistRace/docs/catalogues/index.html', (html.length / 1024).toFixed(0) + ' KB,', Object.values(byKind).flat().length, 'sheets');

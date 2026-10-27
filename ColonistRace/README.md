@@ -20,6 +20,8 @@ it found:
 | `Nelim's Pickle Tools: {string} has xenotype {string}` | the xenotype def; a custom xenotype reads as the def it was built from, and the failure names the custom one. Needs Biotech |
 | `Nelim's Pickle Tools: {string} is of race {string}` | the race def name: `Human`, or a race a mod adds |
 | `Nelim's Pickle Tools: {string} is at the {word} stage of life` | `Baby`, `Newborn`, `Child` or `Adult`; the failure adds the age |
+| `Nelim's Pickle Tools: {string} is the {word} of {string}` | Given: `mother`, `father`, `parent` (the first colonist is the parent of the second) or `daughter`, `son`, `child` (the first is the child of the second); `mother`/`son`/... also check the gender; stores the game's Parent relation on the child. NOT PLAYED |
+| `Nelim's Pickle Tools: {string} is recorded as the {word} of {string}` | Then: reads it back, same words; the failure lists the parents found. Another text than the Given because two steps with the same text are Ambiguous. NOT PLAYED |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.

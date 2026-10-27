@@ -8,8 +8,8 @@ let added = 0;
 for (let i = 0; i < lines.length; i++) {
   out.push(lines[i]);
   const h = lines[i].match(/^## (.+?) \(`/);
-  if (h && sheets[h[1]] && !lines[i + 2] ?.includes('img/parts-')) {
-    out.push('', `![${h[1]}: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-${sheets[h[1]]}.jpg)`);
+  if (h && sheets[h[1]] && !lines[i + 2] ?.includes('img/parts/parts-')) {
+    out.push('', `![${h[1]}: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-${sheets[h[1]]}.jpg)`);
     added++;
   }
 }

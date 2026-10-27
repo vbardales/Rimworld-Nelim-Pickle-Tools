@@ -1,6 +1,6 @@
 // Writes ColonistRace/docs/catalogues/weather.md (the weathers of the game, from the [look-weather] lines of a pickletools-weather-catalogue run) and
 // Tests/Pickle/Mod/Pickle/Features/pickletools-weather-gallery.feature (one wide photograph per weather, noon, the gravel yard, Nelim standing in it).
-// Shots are named weather-<defName>; docs/Make-LookSheets.ps1 (job weather) builds ColonistRace/docs/img/looks/weather-<mod>-<page>.jpg from them.
+// Shots are named weather-<defName>; docs/Make-LookSheets.ps1 (job weather) builds ColonistRace/docs/img/looks/weather/weather-<mod>-<page>.jpg from them.
 // Written 2026-10-25 (owner: the weather catalogue was missing).
 // usage: node docs/Generate-WeatherGallery.js [Player.log]   (from the repository root; default Tests/Pickle/Inbox/weather-list/Player.log)
 const fs = require('fs');

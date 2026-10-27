@@ -8,7 +8,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Mouths (`mouth is`)
 
-![Mouths: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-mouth.jpg)
+![Mouths: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-mouth.jpg)
 
 | Mod | Names |
 |---|---|
@@ -19,7 +19,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Brows (`brows are`)
 
-![Brows: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-brow.jpg)
+![Brows: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-brow.jpg)
 
 | Mod | Names |
 |---|---|
@@ -29,7 +29,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Lids (`lids are`)
 
-![Lids: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-lid.jpg)
+![Lids: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-lid.jpg)
 
 | Mod | Names |
 |---|---|
@@ -40,7 +40,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Skins (`face skin is`)
 
-![Skins: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-skin.jpg)
+![Skins: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-skin.jpg)
 
 | Mod | Names |
 |---|---|
@@ -52,7 +52,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Eyeballs (`eyeballs are`)
 
-![Eyeballs: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-eyeball.jpg)
+![Eyeballs: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-eyeball.jpg)
 
 | Mod | Names |
 |---|---|
@@ -61,7 +61,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Head shapes (`face head shape is`)
 
-![Head shapes: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-head.jpg)
+![Head shapes: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-head.jpg)
 
 | Mod | Names |
 |---|---|
@@ -70,7 +70,7 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Kits (`face kit is`)
 
-![Kits: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts-kit.jpg)
+![Kits: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/parts/parts-kit.jpg)
 
 Fixed list in the code (`ColonistRace/Source/FaceSteps.cs`). Each kit sets its parts together; a part step run afterwards overrides one part. A kit fails, naming the part, if a def is missing from the loaded mods.
 

@@ -51,10 +51,10 @@ Defined by `[NL] Facial Animation - Experimentals` (43), `[NL] Facial Animation 
 - Face parts and kits (`mouth is`, `lids are`, `face kit is`) use def names that depend on the loaded mods; a mod list that lacks the def makes the step fail and print the valid names.
 - Eye colour by `eye colour is rgb (...)` changes what the controller stores but not what is drawn on Nelim: use the genes.
 
-![Part 1](img/animations-part1.png)
+![Part 1](img/anim/animations-part1.png)
 
-![Part 2](img/animations-part2.png)
+![Part 2](img/anim/animations-part2.png)
 
-![Part 3](img/animations-part3.png)
+![Part 3](img/anim/animations-part3.png)
 
-![Part 4](img/animations-part4.png)
+![Part 4](img/anim/animations-part4.png)

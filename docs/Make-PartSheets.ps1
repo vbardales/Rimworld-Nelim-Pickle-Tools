@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the face parts gallery (ColonistRace/docs/img/parts-<kind>.jpg) from the photographs of
+  Builds the contact sheets of the face parts gallery (ColonistRace/docs/img/parts/parts-<kind>.jpg) from the photographs of
   evidence/face-parts-gallery-1, -23 and -45, then Tests/Pickle/Inbox/face-redo and face-redo-2 (a later folder replaces the earlier tile of the same value): the face of Nelim cropped out of each 1920 x 1080 capture, with the name of the
   value under it. The captures are gitignored; the sheets are what the documentation keeps.
 #>
 Add-Type -AssemblyName System.Drawing
 $root = Split-Path $PSScriptRoot -Parent
-$out = Join-Path $root 'ColonistRace/docs/img'
+$out = Join-Path $root 'ColonistRace/docs/img/parts'
 New-Item -ItemType Directory -Force $out | Out-Null
 $files = @{}
 foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6') {

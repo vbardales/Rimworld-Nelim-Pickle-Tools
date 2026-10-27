@@ -119,9 +119,9 @@ Feature: One pose per job, first lot (the job catalogue)
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelim" stands at (195, 152) facing South
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: an adult animal of kind "Horse" named "Cheval" is spawned at (197, 148)
-    And Nelim's Pickle Tools: the animal "Cheval" is ready for the job "Train"
-    And Nelim's Pickle Tools: "Nelim" is forced into the job "Train" on "Cheval"
+    And Nelim's Pickle Tools: an adult animal of kind "LabradorRetriever" named "Chien" is spawned at (197, 148)
+    And Nelim's Pickle Tools: the animal "Chien" is ready for the job "Train"
+    And Nelim's Pickle Tools: "Nelim" is forced into the job "Train" on "Chien"
     And Nelim's Pickle Tools: I advance the paused game by exactly 25 ticks
     And Nelim's Pickle Tools: I frame the cell (197, 148) at zoom 4
     And Nelim's Pickle Tools: I let 5 frames pass

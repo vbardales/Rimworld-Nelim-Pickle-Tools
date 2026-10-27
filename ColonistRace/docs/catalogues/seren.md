@@ -109,7 +109,7 @@ Abstract (not usable): OL_SerenPawnkindBase, OL_SerenCivilModel, OL_SerenRoughMo
 
 ## Photographs
 
-Sheets are in `ColonistRace/docs/img/looks/` (one tile per value in `tiles/`).
+Sheets are in `ColonistRace/docs/img/looks/<kind>/` (one tile per value in `looks/tiles/<kind>/`).
 
 | What | Sheet | State |
 |---|---|---|

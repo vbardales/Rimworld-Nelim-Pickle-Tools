@@ -4,7 +4,7 @@ Read on 2026-10-18 from run `20261018-003441-640-4813` (feature `pickletools-loo
 
 ## Weapons (94)
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`weapon-anomaly-ranged-1`](../img/looks/weapon-anomaly-ranged-1.jpg), [`weapon-biotech-ranged-1`](../img/looks/weapon-biotech-ranged-1.jpg), [`weapon-core-melee-1`](../img/looks/weapon-core-melee-1.jpg), [`weapon-core-ranged-1`](../img/looks/weapon-core-ranged-1.jpg), [`weapon-core-ranged-2`](../img/looks/weapon-core-ranged-2.jpg), [`weapon-odyssey-melee-1`](../img/looks/weapon-odyssey-melee-1.jpg), [`weapon-odyssey-ranged-1`](../img/looks/weapon-odyssey-ranged-1.jpg), [`weapon-royalty-melee-1`](../img/looks/weapon-royalty-melee-1.jpg)
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`weapon-anomaly-ranged-1`](../img/looks/weapon/weapon-anomaly-ranged-1.jpg), [`weapon-biotech-ranged-1`](../img/looks/weapon/weapon-biotech-ranged-1.jpg), [`weapon-core-melee-1`](../img/looks/weapon/weapon-core-melee-1.jpg), [`weapon-core-ranged-1`](../img/looks/weapon/weapon-core-ranged-1.jpg), [`weapon-core-ranged-2`](../img/looks/weapon/weapon-core-ranged-2.jpg), [`weapon-odyssey-melee-1`](../img/looks/weapon/weapon-odyssey-melee-1.jpg), [`weapon-odyssey-ranged-1`](../img/looks/weapon/weapon-odyssey-ranged-1.jpg), [`weapon-royalty-melee-1`](../img/looks/weapon/weapon-royalty-melee-1.jpg)
 
 | Mod | Kind | Names |
 |---|---|---|

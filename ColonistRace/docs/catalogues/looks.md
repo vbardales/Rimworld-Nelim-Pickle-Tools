@@ -56,7 +56,7 @@ Step texts: `"<pawn>" face tattoo is "<defName>"` and `"<pawn>" body tattoo is "
 
 ## Body types (7)
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`body-all-1`](../img/looks/body-all-1.jpg)
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`body-all-1`](../img/looks/body/body-all-1.jpg)
 
 Step texts: none yet in the look steps (the values are listed for the sessions that choose a body)
 

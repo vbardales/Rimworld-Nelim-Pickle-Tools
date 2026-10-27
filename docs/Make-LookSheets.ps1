@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<kind>-<mod>-<page>.jpg, in the order of the
+  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<kind>/<kind>-<mod>-<page>.jpg, in the order of the
   tables of ColonistRace/docs/CATALOGUE-*.md: hairstyles, beards, head types, face and body tattoos, garments, hair and ideology colours,
   the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
   A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
   once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
   Photographs: every Tests/Pickle/Inbox and Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
-  Each tile is also cut to ColonistRace/docs/img/looks/tiles/ (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
+  Each tile is also cut to ColonistRace/docs/img/looks/tiles/<kind>/ (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
   Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
@@ -16,6 +16,13 @@ $docs = Join-Path $root 'ColonistRace/docs/catalogues'
 New-Item -ItemType Directory -Force $out | Out-Null
 $tileDir = Join-Path $out 'tiles'
 New-Item -ItemType Directory -Force $tileDir | Out-Null
+# Tiles and sheets live in one subfolder per kind (the part of the name before its first dash): looks/<kind>/ and looks/tiles/<kind>/.
+function Get-TilePath($key) {
+    $name = $key -replace '[^A-Za-z0-9._-]+', '_'
+    $dir = Join-Path $tileDir $name.Split('-')[0]
+    New-Item -ItemType Directory -Force $dir | Out-Null
+    Join-Path $dir ($name + '.jpg')
+}
 
 $files = @{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
@@ -83,9 +90,9 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
                 # Tile cache: the run folders are pruned (Prune-Evidence keeps a few JPEG only), so each tile is kept here once cut.
                 $tb = New-Object System.Drawing.Bitmap $tile, $tile
                 $tg = [System.Drawing.Graphics]::FromImage($tb); $tg.DrawImage($bmp, (New-Object System.Drawing.Rectangle 0, 0, $tile, $tile), $r, [System.Drawing.GraphicsUnit]::Pixel); $tg.Dispose()
-                $tb.Save((Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg')), $enc, $p); $tb.Dispose()
-            } elseif (Test-Path (Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg'))) {
-                $img = [System.Drawing.Image]::FromFile((Join-Path $tileDir ((($part[$i].key -replace '[^A-Za-z0-9._-]+', '_')) + '.jpg')))
+                $tb.Save((Get-TilePath $part[$i].key), $enc, $p); $tb.Dispose()
+            } elseif (Test-Path (Get-TilePath $part[$i].key)) {
+                $img = [System.Drawing.Image]::FromFile((Get-TilePath $part[$i].key))
                 $g.DrawImage($img, $r); $img.Dispose(); $have++
             } else {
                 $g.FillRectangle($hatch, $r)
@@ -101,7 +108,8 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
             $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, $box)
         }
         $g.Dispose()
-        $path = Join-Path $out ("{0}-{1}-{2}.jpg" -f $kind, $slug, ($pg + 1))
+        $kindDir = Join-Path $out $kind; New-Item -ItemType Directory -Force $kindDir | Out-Null
+        $path = Join-Path $kindDir ("{0}-{1}-{2}.jpg" -f $kind, $slug, ($pg + 1))
         $bmp.Save($path, $enc, $p); $bmp.Dispose()
         Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }

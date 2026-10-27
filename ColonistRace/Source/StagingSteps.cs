@@ -295,7 +295,8 @@ namespace Nelim.PickleTools.ColonistRace
                     break;
                 case "Train":
                     ctx.Require(animal.training != null, $"{name} cannot be trained");
-                    ctx.Assert(animal.training.CanAssignToTrain(TrainableDefOf.Obedience).Accepted, $"{name} cannot be assigned Obedience training");
+                    AcceptanceReport trainable = animal.training.CanAssignToTrain(TrainableDefOf.Obedience);
+                    ctx.Assert(trainable.Accepted, $"{name} cannot be assigned Obedience training: '{trainable.Reason}' (faction {animal.Faction?.Name ?? "none"}, age {animal.ageTracker.AgeBiologicalYears}, trainability {animal.RaceProps.trainability?.defName ?? "none"})");
                     animal.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
                     break;
                 default:

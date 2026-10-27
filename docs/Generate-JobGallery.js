@@ -11,7 +11,7 @@ const animal = (job, kind, name, x, z) => ({ job, setup: [`${P}an adult animal o
 const jobs = [
   plant('CutPlant', 'Plant_TreeOak', 192, 150), plant('Harvest', 'Plant_Rice', 197, 150),
   animal('Milk', 'Cow', 'Vache', 192, 154), animal('Shear', 'Sheep', 'Mouton', 197, 154),
-  animal('Slaughter', 'Pig', 'Cochon', 192, 148), animal('Train', 'Horse', 'Cheval', 197, 148),
+  animal('Slaughter', 'Pig', 'Cochon', 192, 148), animal('Train', 'LabradorRetriever', 'Chien', 197, 148),
 ];
 const pre = ['    Given the save "Nelims-tribe" is loaded', '    And game speed is paused',
   `    And ${P}the item and name labels are hidden`, `    And ${P}the tooltips are hidden`, `    And ${P}the colonist bar is hidden`, `    And ${P}the learning helper is hidden`,
