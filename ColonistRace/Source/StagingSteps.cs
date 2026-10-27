@@ -268,6 +268,42 @@ namespace Nelim.PickleTools.ColonistRace
             StartJob(ctx, name, pawn, jobDef, JobMaker.MakeJob(jobDef, target));
         }
 
+        /// <summary>
+        /// Gives an animal what a work job needs before it is forced on a colonist, because a job whose fail condition holds ends at once and the
+        /// colonist then takes RopeToPen: <c>Milk</c> and <c>Shear</c> fill the animal's milk or wool to full, <c>Slaughter</c> designates the animal
+        /// for slaughter, <c>Train</c> asks for its Obedience training. Fails for any other job name, or when the animal cannot take it (not milkable,
+        /// not trainable). Written 2026-10-27 for the job catalogue (Milk, Shear, Slaughter and Train all ended on RopeToPen, run ada2). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} is ready for the job {string}")]
+        public void AnimalReadyForJob(PickleContext ctx, string name, string jobName)
+        {
+            Pawn animal = RequireSpawnedPawn(ctx, name);
+            switch (jobName)
+            {
+                case "Milk":
+                case "Shear":
+                    CompHasGatherableBodyResource comp = animal.AllComps.OfType<CompHasGatherableBodyResource>().FirstOrDefault();
+                    ctx.Require(comp != null, $"{name} has nothing to gather: no milk or wool comp");
+                    FieldInfo fullness = typeof(CompHasGatherableBodyResource).GetField("fullness", BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public);
+                    ctx.Require(fullness != null, "CompHasGatherableBodyResource has no field 'fullness' in this game version");
+                    fullness.SetValue(comp, 1f);
+                    ctx.Assert(comp.ActiveAndFull, $"{name} is not ready to be {(jobName == "Milk" ? "milked" : "sheared")} after filling it (is the comp active: adult, right sex?)");
+                    break;
+                case "Slaughter":
+                    animal.Map.designationManager.AddDesignation(new Designation(animal, DesignationDefOf.Slaughter));
+                    ctx.Assert(animal.Map.designationManager.DesignationOn(animal, DesignationDefOf.Slaughter) != null, $"{name} could not be designated for slaughter");
+                    break;
+                case "Train":
+                    ctx.Require(animal.training != null, $"{name} cannot be trained");
+                    ctx.Assert(animal.training.CanAssignToTrain(TrainableDefOf.Obedience).Accepted, $"{name} cannot be assigned Obedience training");
+                    animal.training.SetWantedRecursive(TrainableDefOf.Obedience, true);
+                    break;
+                default:
+                    ctx.Require(false, $"no preparation known for the job '{jobName}': Milk, Shear, Slaughter or Train");
+                    break;
+            }
+        }
+
         private static Pawn RequireSpawnedPawn(PickleContext ctx, string name)
         {
             Map map = Find.CurrentMap;
