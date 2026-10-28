@@ -74,7 +74,7 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 - [garment-core-1.jpg](../img/looks/0803%20Vetements%20-%20Core%20-%201.jpg): Core, page 1, 23 of 23
 - [garment-ideology-1.jpg](../img/looks/0804%20Vetements%20-%20Ideology%20-%201.jpg): Ideology, page 1, 2 of 2
 - [garment-odyssey-1.jpg](../img/looks/0805%20Vetements%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 3 of 4
-- [garment-royalty-1.jpg](../img/looks/0806%20Vetements%20-%20Royalty%20-%201.jpg): Royalty, page 1, 17 of 17
+- [garment-royalty-1.jpg](../img/looks/0809%20Vetements%20-%20Royalty%20-%201.jpg): Royalty, page 1, 17 of 17
 
 ### hat
 
@@ -83,7 +83,7 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 - [hat-core-1.jpg](../img/looks/0903%20Chapeaux%20-%20Core%20-%201.jpg): Core, page 1, 13 of 13
 - [hat-ideology-1.jpg](../img/looks/0904%20Chapeaux%20-%20Ideology%20-%201.jpg): Ideology, page 1, 11 of 11
 - [hat-odyssey-1.jpg](../img/looks/0905%20Chapeaux%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 1 of 1
-- [hat-royalty-1.jpg](../img/looks/0906%20Chapeaux%20-%20Royalty%20-%201.jpg): Royalty, page 1, 13 of 13
+- [hat-royalty-1.jpg](../img/looks/0908%20Chapeaux%20-%20Royalty%20-%201.jpg): Royalty, page 1, 13 of 13
 
 ### haircolour
 
@@ -116,7 +116,7 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 - [weapon-core-ranged-2.jpg](../img/looks/1205%20Armes%20-%20Core%20Ranged%20-%202.jpg): Core Ranged, page 2, 0 of 9
 - [weapon-odyssey-melee-1.jpg](../img/looks/1206%20Armes%20-%20Odyssey%20Melee%20-%201.jpg): Odyssey Melee, page 1, 0 of 2
 - [weapon-odyssey-ranged-1.jpg](../img/looks/1207%20Armes%20-%20Odyssey%20Ranged%20-%201.jpg): Odyssey Ranged, page 1, 0 of 16
-- [weapon-royalty-melee-1.jpg](../img/looks/1208%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
+- [weapon-royalty-melee-1.jpg](../img/looks/1225%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
 
 ## Not photographed on purpose
 
