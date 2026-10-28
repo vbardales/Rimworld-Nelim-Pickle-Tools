@@ -37,3 +37,6 @@ ponpeco.PonpecoPajamas 3482959515
 oracle.erin.tattoos 2854739731
 # Added 2026-10-28 at the owner request (catalogue): Erin's Hairstyles - Redux (49 hairstyles, read in its 1.6 folder).
 Erin.Hairredux 2361911135
+# Added 2026-10-28 (owner asked "ça ?"): Genetic Biotech for Facial Animation (Facial Animation heads for the Biotech head types, lids for Gray and Red eyes) and the framework it needs for variations and multi-gene heads (Genetic Heads Framework, packageId read from the loadAfter of the first).
+sd.fa.geneticheadsframework 3498759997
+sd.fa.geneticheadsbiotech 3501317537
