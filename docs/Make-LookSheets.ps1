@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<NNN> <label> - <mod> - <page>.jpg, in the order of the
+  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<NNNN> <label> - <mod> - <page>.jpg, in the order of the
   tables of ColonistRace/docs/CATALOGUE-*.md: hairstyles, beards, head types, face and body tattoos, garments, hair and ideology colours,
   the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
   A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
   once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
   Photographs: every Tests/Pickle/Inbox and Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
-  Each tile is also cut to ColonistRace/docs/img/looks/tiles/<NNN>-<key>.jpg (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
+  Each tile is also cut to ColonistRace/docs/img/looks/tiles/<block>-<key>.jpg (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
   Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
@@ -16,17 +16,19 @@ $docs = Join-Path $root 'ColonistRace/docs/catalogues'
 New-Item -ItemType Directory -Force $out | Out-Null
 $tileDir = Join-Path $out 'tiles'
 New-Item -ItemType Directory -Force $tileDir | Out-Null
-# No subfolders (owner, 2026-10-28): sheets are looks/<NNN>-<kind>-<mod>-<page>.jpg and tiles looks/tiles/<NNN>-<key>.jpg. NNN groups a kind (the part of the name before its first dash;
-# Seren face parts have their own numbers), tens apart so a new kind slots in. Make-CatalogueHtml.js reads the kind back from the file name.
-$kindNumber = @{ hair = '010'; haircolour = '020'; beard = '030'; head = '040'; facetattoo = '050'; bodytattoo = '060'; body = '070'; bodymask = '075'; garment = '080'; hat = '090'; colour = '100'; ideocolour = '110'
-    weapon = '120'; eyegene = '130'; skingene = '140'; hairgene = '150'; lookgene = '160'; weather = '170'; animalapparel = '180'
-    serenhead = '200'; serenlid = '210'; sereneyeball = '220'; serenbrow = '230'; serenmouth = '240'; serenskin = '250'; serenvteskin = '260'; serenxeno = '270'; seren = '200' }
-function Get-KindNumber($name) {
+# No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
+# a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
+# Make-CatalogueHtml.js groups by block, so the two tables must agree.
+$kindBlock = [ordered]@{ hair = 0; haircolour = 1; beard = 2; head = 3; facetattoo = 4; bodytattoo = 5; body = 6; bodymask = 7; garment = 8; hat = 9; colour = 10; ideocolour = 11
+    weapon = 12; eyegene = 13; skingene = 14; hairgene = 15; lookgene = 16; weather = 17; animalapparel = 18
+    serenhead = 19; serenlid = 20; sereneyeball = 21; serenbrow = 22; serenmouth = 23; serenskin = 24; serenvteskin = 25; serenxeno = 26; seren = 19 }
+$sheetRank = @{}
+function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
-    if (-not $kindNumber.ContainsKey($k)) { throw "no number for the kind '$k': add it to the kindNumber table in Make-LookSheets.ps1" }
-    $kindNumber[$k]
+    if (-not $kindBlock.Contains($k)) { throw "no block for the kind '$k': add it to the kindBlock table in Make-LookSheets.ps1" }
+    [int]$kindBlock[$k]
 }
-# Readable sheet names (owner, 2026-10-28): "<NNN> <label> - <mod> - <page>.jpg". The label is French without accents; a kind that is a view (bodytattoo-front) has its own.
+# Readable sheet names (owner, 2026-10-28): "<NNNN> <label> - <mod> - <page>.jpg". The label is French without accents; a kind that is a view (bodytattoo-front) has its own.
 $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 'Barbes'; head = 'Tetes'; facetattoo = 'Tatouages visage'; 'facetattoo-side' = 'Tatouages visage profil'
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
@@ -34,7 +36,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
-    Join-Path $tileDir ((Get-KindNumber $name) + '-' + $name + '.jpg')
+    Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
 }
 
 $files = @{}
@@ -123,7 +125,9 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
         $g.Dispose()
         $kindText = if ($kindLabel.ContainsKey($kind)) { $kindLabel[$kind] } else { throw "no label for the kind '$kind': add it to the kindLabel table in Make-LookSheets.ps1" }
         $modText = ($modName -replace "'", '' -replace '[^A-Za-z0-9 ]+', ' ' -replace ' {2,}', ' ').Trim()
-        $path = Join-Path $out ("{0} {1} - {2} - {3}.jpg" -f (Get-KindNumber $kind), $kindText, $modText, ($pg + 1))
+        $block = Get-KindBlock $kind; $sheetRank[$block] = 1 + [int]$sheetRank[$block]
+        if ($sheetRank[$block] -gt 99) { throw "more than 99 sheets in the block of '$kind': widen the blocks" }
+        $path = Join-Path $out ("{0:0000} {1} - {2} - {3}.jpg" -f ($block * 100 + $sheetRank[$block]), $kindText, $modText, ($pg + 1))
         $bmp.Save($path, $enc, $p); $bmp.Dispose()
         Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }

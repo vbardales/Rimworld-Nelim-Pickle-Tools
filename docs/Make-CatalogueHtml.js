@@ -8,10 +8,17 @@ const docs = path.join(root, 'ColonistRace', 'docs');
 const cat = path.join(docs, 'catalogues');
 
 const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+// A link to a look sheet keeps working when a new sheet shifts the numbers: it is matched on what follows the number ("<label> - <mod> - <page>.jpg").
+function sheetLink(u) {
+  const m = decodeURI(u).match(/^\.\.\/img\/looks\/[0-9]{3,4} (.*\.jpg)$/);
+  if (!m) return u;
+  const hit = Object.values(byBlock).flat().find(f => f.slice(5) === m[1]);
+  return hit ? '../img/looks/' + encodeURI(hit) : u;
+}
 function inline(s) {
   s = esc(s);
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, a, u) => `<img loading="lazy" src="${u}" alt="${a}">`);
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => `<a href="${u}">${a}</a>`);
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, a, u) => `<img loading="lazy" src="${sheetLink(u)}" alt="${a}">`);
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => `<a href="${sheetLink(u)}">${a}</a>`);
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
   return s;
 }
@@ -48,16 +55,16 @@ const tabs = [
   ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
 ];
 
-// Photograph sheets: img/looks/<NNN> <label> - <mod> - <page>.jpg grouped by kind (its number), plus the part sheets, the animation sheets and the building tabs.
+// Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
-// Sheets are named "<NNN> <label> - <mod> - <page>.jpg"; a kind is its number (sections ask for kinds by name, this table gives the number).
-const kindNum = { hair: '010', haircolour: '020', beard: '030', head: '040', facetattoo: '050', bodytattoo: '060', body: '070', bodymask: '075', garment: '080', hat: '090', colour: '100', ideocolour: '110',
-  weapon: '120', eyegene: '130', skingene: '140', hairgene: '150', lookgene: '160', weather: '170', animalapparel: '180',
-  serenhead: '200', serenlid: '210', sereneyeball: '220', serenbrow: '230', serenmouth: '240', serenskin: '250', serenvteskin: '260', serenxeno: '270' };
-const byNum = {};
-for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{3} .*\.jpg$/.test(f)).sort()) (byNum[f.slice(0, 3)] = byNum[f.slice(0, 3)] || []).push(f);
+// Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
+const kindBlock = { hair: 0, haircolour: 1, beard: 2, head: 3, facetattoo: 4, bodytattoo: 5, body: 6, bodymask: 7, garment: 8, hat: 9, colour: 10, ideocolour: 11,
+  weapon: 12, eyegene: 13, skingene: 14, hairgene: 15, lookgene: 16, weather: 17, animalapparel: 18,
+  serenhead: 19, serenlid: 20, sereneyeball: 21, serenbrow: 22, serenmouth: 23, serenskin: 24, serenvteskin: 25, serenxeno: 26 };
+const byBlock = {};
+for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.jpg$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
-for (const [k, n] of Object.entries(kindNum)) if (byNum[n]) byKind[k] = byNum[n];
+for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBlock[n];
 const sheet = f => `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.jpg$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
