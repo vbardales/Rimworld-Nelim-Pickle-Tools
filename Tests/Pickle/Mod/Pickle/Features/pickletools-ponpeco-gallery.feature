@@ -355,82 +355,102 @@ Feature: Ponpeco Accessories and Kids' Clothes, one photograph per garment (gall
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCBackpack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCBackpack"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKBranch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKBranch"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKPlushie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKPlushie"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCVacsuitChildrenA"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCVacsuitChildrenA"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCVacsuitChildrenB"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCVacsuitChildrenB"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCHalloweenWerewolf"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCHalloweenWerewolf"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCHalloweenWitch"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCHalloweenWitch"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCRoyalBoy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCRoyalBoy"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCRoyalGirl"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCRoyalGirl"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCSailorSuit"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCSailorSuit"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCSummerDress"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCSummerDress"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKBorderShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKBorderShirt"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKCamisoleDress"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKCamisoleDress"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKCatPajama"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKCatPajama"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKDinoPajama"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKDinoPajama"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKFormalOnePiece"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKFormalOnePiece"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKKidsSuit"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKKidsSuit"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKKnitVest"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKKnitVest"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKMedievalBoy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKMedievalBoy"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKMedievalGirl"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKMedievalGirl"
@@ -456,50 +476,62 @@ Feature: Ponpeco Accessories and Kids' Clothes, one photograph per garment (gall
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKSFBoy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKSFBoy"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKSFGirl"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKSFGirl"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKSkirtLeggings"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKSkirtLeggings"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCCheckedCoat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCCheckedCoat"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCHeroCape"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCHeroCape"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCRaincoat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCRaincoat"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCSailorShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCSailorShirt"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCScallopCardigan"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCScallopCardigan"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PKCShortCape"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PKCShortCape"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKFurCoat"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKFurCoat"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKKidsHoodie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKKidsHoodie"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_PPKSummerHoodie"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_PPKSummerHoodie"

@@ -47,7 +47,7 @@ scenarios('accessory hats', accHats, NELIM, [`${P}"Nelim" hairstyle is "Long"`],
   `${P}"Nelim" gets back the clothes it had\n    And ${P}"Nelim" hairstyle is "Long"`);
 scenarios('accessory neck pieces', accWear, NELIM, [], BODY,
   a => `${P}"Nelim" is undressed\n    And ${P}"Nelim" wears "UnderWhere_Panties"\n    And ${P}"Nelim" wears "UnderWhere_Bra"\n    And ${P}"Nelim" wears "${a}"`, a => 'garment-' + a);
-scenarios('kids clothes', kidWear, SOREN, [], BODY, a => `${P}"Soren" is undressed\n    And ${P}"Soren" wears "${a}"`, a => 'garment-' + a);
+scenarios('kids clothes', kidWear, SOREN, [], BODY, a => `${P}"Soren" is undressed\n    And ${P}"Soren" wears "UnderWhere_Loincloth"\n    And ${P}"Soren" wears "${a}"`, a => 'garment-' + a);   // a loincloth under every garment (owner, 2026-10-28)
 scenarios('kids hats', kidHats, SOREN, [], FACE, a => `${P}"Soren" is undressed\n    And ${P}"Soren" wears "${a}"`, a => 'hat-' + a);
 fs.writeFileSync(path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-ponpeco-gallery.feature'), out);
 console.log(`${n} scenarios: accessory hats ${accHats.length}, accessory neck pieces ${accWear.length}, kids clothes ${kidWear.length}, kids hats ${kidHats.length}`);

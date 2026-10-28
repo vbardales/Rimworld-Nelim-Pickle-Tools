@@ -26,30 +26,37 @@ Feature: Child garments, one photograph each (gallery of the look catalogues)
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidPants"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidPants"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidRomper"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidRomper"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidShirt"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidShirt"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidTribal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidTribal"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidHelmet"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidHelmet"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_KidParka"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_KidParka"
     When Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: "Soren" wears "Apparel_VacsuitChildren"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "garment-Apparel_VacsuitChildren"

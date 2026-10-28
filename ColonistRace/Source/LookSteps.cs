@@ -506,6 +506,33 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Removes the loose things lying within a number of cells of a colonist (garments dropped when its age or body changed, items on the floor: everything that is an item and not a building,
+        /// a plant or a pawn), so a photograph shows nothing unworn behind the subject. Logs what it removed ([cleared]). Written 2026-10-28 (the child and baby shots of the body gallery showed
+        /// a garment left on the ground). Fails when the radius is not between 1 and 10.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the loose things within {int} cells of {string} are removed")]
+        public void RemoveLooseThings(PickleContext ctx, int radius, string nickname)
+        {
+            ctx.Require(radius >= 1 && radius <= 10, "the radius must be between 1 and 10 cells");
+            Pawn pawn = AnyPawn(ctx, nickname);
+            Map map = pawn.Map;
+            ctx.Require(map != null, $"{nickname} is not on a map");
+            var removed = new System.Collections.Generic.List<string>();
+            foreach (IntVec3 c in GenRadial.RadialCellsAround(pawn.Position, radius, true))
+            {
+                if (!c.InBounds(map)) continue;
+                foreach (Thing t in map.thingGrid.ThingsListAt(c).ToList())
+                    if (t.def.category == ThingCategory.Item && !(t is Pawn) && t.Spawned)
+                    {
+                        removed.Add(t.def.defName);
+                        t.Destroy();
+                    }
+            }
+
+            Log.Message($"[cleared] around {nickname}: {(removed.Count == 0 ? "(nothing)" : string.Join(", ", removed))}");
+        }
+
+        /// <summary>
         /// Takes a colonist off the map (despawns it) so it is not in the picture, e.g. the other colonists a fixture puts on the camera cell.
         /// The pawn is not destroyed; a reload brings the fixture back as it was. Fails if the colonist is not on a map.
         /// </summary>
