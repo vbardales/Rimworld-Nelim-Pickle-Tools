@@ -42,7 +42,7 @@ function Get-TilePath($key) {
 $files = @{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-)' } } | Sort-Object LastWriteTime | ForEach-Object {
+$runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|nude-tattoo|body-child|body-girl|beard-colour|seren-sbe-masks)' } } | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
 }
