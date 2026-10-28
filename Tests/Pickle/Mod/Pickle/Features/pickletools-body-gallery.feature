@@ -91,8 +91,11 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: "Soren" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Soren" body type is Child
+    And Nelim's Pickle Tools: "Soren" is undressed
+    And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "body-Child"
+    When Nelim's Pickle Tools: "Soren" gets back the clothes it had
     When "Soren" is 0 years old
     And Nelim's Pickle Tools: "Soren" body type is Baby
     And Nelim's Pickle Tools: I let 5 frames pass
