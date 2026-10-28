@@ -72,7 +72,8 @@ function Read-Section($file, $titleRegex) {
 $cols = 6; $tile = 200; $label = 32; $perPage = 30
 $face = New-Object System.Drawing.Rectangle 810, 190, 300, 300   # dressed photographs: hair, hats, heads, beards (a tighter crop was too close, owner 2026-10-26)
 $faceTight = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # nude photographs (face tattoos): head and shoulders, the pubis is out of the frame; tiles cut before were recropped 25,0,150,150
-$faceSide = New-Object System.Drawing.Rectangle 880, 85, 200, 200   # profile photographs (bald Nelim facing right, head at (915..1060, 100..250))
+$faceTat = New-Object System.Drawing.Rectangle 875, 85, 170, 170   # face tattoo photographs of 2026-10-28 (dressed bald Nelim, head at (890..1030, 100..250)): the head and the top of the shoulders, no chest (owner: the old crop cut the head and showed the breasts)
+$faceSide = New-Object System.Drawing.Rectangle 905, 90, 160, 160   # profile photographs (bald Nelim facing right, head at (915..1060, 100..250)); stops above the chest (owner, 2026-10-28), old crop 880, 85, 200, 200
 $body = New-Object System.Drawing.Rectangle 760, 320, 400, 400
 $font = New-Object System.Drawing.Font 'Segoe UI', 8
 $hatch = New-Object System.Drawing.Drawing2D.HatchBrush ([System.Drawing.Drawing2D.HatchStyle]::LightUpwardDiagonal), ([System.Drawing.Color]::FromArgb(225, 225, 225)), ([System.Drawing.Color]::White)
@@ -145,7 +146,7 @@ Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
-Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $faceTight $false $false
+Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $faceTat $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
 # Face tattoo profiles on a bald Nelim (feature pickletools-face-tattoo-side-gallery, shots facetattoo-<def>-side): same table, same crop as the front sheets.
 $ft = @($tat | Where-Object type -eq 'Face' | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-side"; type = $_.type; hex = $_.hex; slot = $_.slot } })
