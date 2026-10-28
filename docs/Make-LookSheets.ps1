@@ -31,7 +31,7 @@ function Get-KindBlock($name) {
 # Readable sheet names (owner, 2026-10-28): "<NNNN> <label> - <mod> - <page>.jpg". The label is French without accents; a kind that is a view (bodytattoo-front) has its own.
 $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 'Barbes'; head = 'Tetes'; facetattoo = 'Tatouages visage'; 'facetattoo-side' = 'Tatouages visage profil'
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
-    garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux Seren'
+    garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
     serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe' }
 function Get-TilePath($key) {
