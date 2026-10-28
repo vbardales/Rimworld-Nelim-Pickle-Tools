@@ -192,8 +192,15 @@ Run-Job 'weather' 'weather' (Read-Section 'weather.md' '^## Weather') $wide $fal
 
 Run-Job 'weapon' 'weapon' (Read-Section 'weapons-crafts.md' '^## Weapons') $body $false $true
 
-# Seren body masks (owner, 2026-10-28: the sheet follows SBE, Seren Biotech Extended, zero-based as in SBE; the fork's six masks are no longer on the sheet; feature pickletools-seren-sbe-gallery,
-# 4 scenarios): each mask on Nelim and on a man, front and back; shots bodymask-SerenOriginalMask_<n>-<nelim|man>-<front|back>, no accent gene (the colour written on the gene).
+# Seren body masks (owner, 2026-10-28: BOTH, "SBE requires the fork"): first the fork's SerenBodyMask_01..06 (feature pickletools-seren-gallery, scenarios 5 and 6: Nelim and a man, front,
+# back for 02; shots bodymask-<gene>-<who>-<view>), then SBE's SerenOriginalMask_0..11 (feature pickletools-seren-sbe-gallery, 4 scenarios: each mask on Nelim and on a man, front and back, zero-based
+# as in SBE, no accent gene: the colour written on the gene). Two labelled groups, fork then SBE, one sheet name each ("... - fork - 1", "... - SBE - 1").
+$forkTiles = @()
+foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -match 'BodyMask' })) {
+    foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') { if ($view -eq 'back' -and $m.name -notmatch '_02$') { continue }
+        $forkTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
+}
+if ($forkTiles.Count) { Build-Sheets 'bodymask' 'fork' $forkTiles $body $false }
 $maskTiles = @()
 foreach ($m in 0..11) { foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') {
     $maskTiles += [pscustomobject]@{ key = "bodymask-SerenOriginalMask_$m-$who-$view"; name = "SerenOriginalMask_$m $who $view"; hex = '' } } } }
