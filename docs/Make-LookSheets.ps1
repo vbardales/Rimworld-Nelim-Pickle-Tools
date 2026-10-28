@@ -74,7 +74,8 @@ $face = New-Object System.Drawing.Rectangle 810, 190, 300, 300   # dressed photo
 $faceTight = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # nude photographs (face tattoos): head and shoulders, the pubis is out of the frame; tiles cut before were recropped 25,0,150,150
 $faceHead = New-Object System.Drawing.Rectangle 881, 190, 163, 163   # head types (owner, 2026-10-28): the head and the neck only, no bust (tiles recut 25,0,150,150 then 30,0,145,145)
 $faceTat = New-Object System.Drawing.Rectangle 875, 85, 170, 170   # face tattoo photographs of 2026-10-28 (dressed bald Nelim, head at (890..1030, 100..250)): the head and the top of the shoulders, no chest (owner: the old crop cut the head and showed the breasts)
-$faceSideRoo = New-Object System.Drawing.Rectangle 915, 238, 105, 105   # the profile photographs of Roo's mods (run 7e48, 2026-10-28: Nelim framed on cell (176, 119) at zoom 3, head at (930..1030, 248..350)); head only, the chest tattoo starts at y 350
+$faceTatRoo = New-Object System.Drawing.Rectangle 921, 240, 112, 112   # the FRONT photographs of Roo's mods (roo-gallery framing, cell (176, 119) at zoom 3, head at about (925..1030, 248..350)): head only; a first guess from the profile photographs, to check on the photographs of ticket 876e
+$faceSideRoo = New-Object System.Drawing.Rectangle 918, 240, 108, 108   # the profile photographs of Roo's mods (run 7e48, 2026-10-28: Nelim framed on cell (176, 119) at zoom 3, head at (930..1030, 248..350)); head only, the chest tattoo starts at y 350
 $faceSide = New-Object System.Drawing.Rectangle 912, 88, 138, 138   # profile photographs (bald Nelim facing right, head at (915..1060, 100..250)); stops above the chest (owner, 2026-10-28), old crop 880, 85, 200, 200
 $body = New-Object System.Drawing.Rectangle 760, 320, 400, 400
 $font = New-Object System.Drawing.Font 'Segoe UI', 8
@@ -148,7 +149,8 @@ Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $faceHead $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 $tat = Read-Section $looks '^## Tattoos'
-Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object type -eq 'Face') $faceTat $false $false
+Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -notmatch "^Roo" }) $faceTat $false $false
+Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -match "^Roo" }) $faceTatRoo $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
 # Face tattoo profiles on a bald Nelim (feature pickletools-face-tattoo-side-gallery, shots facetattoo-<def>-side): same table, same crop as the front sheets.
 $ft = @($tat | Where-Object type -eq 'Face' | ForEach-Object { [pscustomobject]@{ mod = $_.mod; group = $_.group; name = "$($_.name)-side"; type = $_.type; hex = $_.hex; slot = $_.slot } })
