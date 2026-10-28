@@ -51,6 +51,36 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asserts the hair colour the game draws for a colonist (<c>story.HairColor</c>: what a hair colour gene or the hair colour step gave) is this RGB, each channel within 3 of 255.
+        /// A pure read: it sets nothing, so it tells whether a gene took effect. The failure prints the colour found. Written 2026-10-28 for SanctuaryBacklot (colours by genes, no rgb).
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} hair colour reads rgb ({int}, {int}, {int})")]
+        public void HairColourReads(PickleContext ctx, string nickname, int r, int g, int b)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no hair colour");
+            ColourReads(ctx, nickname, "hair", pawn.story.HairColor, r, g, b);
+        }
+
+        /// <summary>The same for the skin colour the game draws (<c>story.SkinColor</c>: the override if one is set, else the colour of the skin genes, then hediff changes).</summary>
+        [Then("Nelim's Pickle Tools: {string} skin colour reads rgb ({int}, {int}, {int})")]
+        public void SkinColourReads(PickleContext ctx, string nickname, int r, int g, int b)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no skin colour");
+            ColourReads(ctx, nickname, "skin", pawn.story.SkinColor, r, g, b);
+        }
+
+        private static void ColourReads(PickleContext ctx, string nickname, string what, Color read, int r, int g, int b)
+        {
+            ctx.Require(r >= 0 && r <= 255 && g >= 0 && g <= 255 && b >= 0 && b <= 255, "rgb values run from 0 to 255");
+            int rr = Mathf.RoundToInt(read.r * 255f), rg = Mathf.RoundToInt(read.g * 255f), rb = Mathf.RoundToInt(read.b * 255f);
+            Log.Message($"[colour] {nickname} {what} colour rgb ({rr}, {rg}, {rb})");
+            ctx.Assert(System.Math.Abs(rr - r) <= 3 && System.Math.Abs(rg - g) <= 3 && System.Math.Abs(rb - b) <= 3,
+                $"{nickname}'s {what} colour should read rgb ({r}, {g}, {b}) within 3; it reads rgb ({rr}, {rg}, {rb})");
+        }
+
+        /// <summary>
         /// Gives a colonist a face tattoo by <c>TattooDef</c> name, or <c>none</c> to remove it, and redraws it. Needs Ideology. The tattoo
         /// must belong to the face: the game's own face tattoos are the ones whose <c>tattooType</c> is Face.
         /// </summary>
