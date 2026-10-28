@@ -19,8 +19,8 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; haircolour = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; bodytattoo = 6; body = 7; bodymask = 8; garment = 9; hat = 10; colour = 11; ideocolour = 12
-    weapon = 13; skingene = 14; hairgene = 15; lookgene = 16; weather = 17; animalapparel = 18
+$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; bodytattoo = 6; body = 7; bodymask = 8; garment = 9; hat = 10; colour = 11; ideocolour = 12
+    weapon = 13; skingene = 14; lookgene = 16; weather = 17; animalapparel = 18
     serenhead = 19; serenlid = 20; sereneyeball = 21; serenbrow = 22; serenmouth = 23; serenskin = 24; serenvteskin = 25; serenxeno = 26; beardcolour = 27; seren = 19 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
@@ -31,8 +31,8 @@ function Get-KindBlock($name) {
 # Readable sheet names (owner, 2026-10-28): "<NNNN> <label> - <mod> - <page>.jpg". The label is French without accents; a kind that is a view (bodytattoo-front) has its own.
 $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 'Barbes'; head = 'Tetes'; facetattoo = 'Tatouages visage'; 'facetattoo-side' = 'Tatouages visage profil'
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
-    garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
-    lookgene = 'Genes apparence'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
+    garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux Seren'
+    lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
     serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
@@ -162,7 +162,7 @@ Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $fa
 Run-Job 'hat' 'hat' @($app | Where-Object { & $isHat }) $face $false $false
 
 $col = Read-Section 'colours.md' '^## Colours'
-Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $faceTight $false $false
+# No sheet of the vanilla hair colours any more (owner, 2026-10-28: the hair colour genes, block 01, take their place); they stay in colours.md and feed the beard colour sheet below.
 # The same colours on a man with a beard (feature pickletools-beard-colour-gallery, shots beardcolour-<name>; a beard is drawn in the hair colour).
 Run-Job 'beardcolour' 'beardcolour' @($col | Where-Object { $_.group -eq 'Hair' }) $faceTight $false $false
 Run-Job 'ideocolour' 'ideocolour' @($col | Where-Object { $_.group -eq 'Ideo' }) $body $false $false

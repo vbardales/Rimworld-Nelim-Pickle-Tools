@@ -87,7 +87,6 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 
 ### haircolour
 
-- [haircolour-core-1.jpg](../img/looks/0101%20Couleurs%20de%20cheveux%20-%20Core%20-%201.jpg): Core, page 1, 8 of 8
 
 ### ideocolour
 
