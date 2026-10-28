@@ -521,12 +521,34 @@ namespace Nelim.PickleTools.ColonistRace
         /// worn with it go to the inventory, and the clothes it had come back with the step that gives them back.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} wears {string}")]
-        public void Wears(PickleContext ctx, string nickname, string apparelDefName)
+        public void Wears(PickleContext ctx, string nickname, string apparelDefName) => WearsCore(ctx, nickname, apparelDefName, null);
+
+        /// <summary>
+        /// The same, made of a chosen stuff (a <c>ThingDef</c> name such as Gold, Silver, Jade or Steel) instead of the default one. Fails when the
+        /// garment is not made from a stuff, or when the stuff is not one the garment accepts (the failure lists the accepted ones). Written 2026-10-28
+        /// for PreciousStonesAndJewelryRenew. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} wears {string} made of {string}")]
+        public void WearsMadeOf(PickleContext ctx, string nickname, string apparelDefName, string stuffName) => WearsCore(ctx, nickname, apparelDefName, stuffName);
+
+        /// <summary>The stuff a def is made of when a step names it: the def must be made from a stuff and accept that one (the failure lists the accepted ones).</summary>
+        internal static ThingDef StuffFor(PickleContext ctx, ThingDef def, string stuffName)
+        {
+            ctx.Require(def.MadeFromStuff, $"'{def.defName}' is not made from a stuff");
+            ThingDef stuff = Def<ThingDef>(ctx, stuffName, "stuff");
+            ctx.Require(
+                GenStuff.AllowedStuffsFor(def).Contains(stuff),
+                $"'{def.defName}' cannot be made of '{stuffName}'; it accepts {string.Join(", ", GenStuff.AllowedStuffsFor(def).Select(s => s.defName))}");
+            return stuff;
+        }
+
+        private void WearsCore(PickleContext ctx, string nickname, string apparelDefName, string stuffName)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
             ThingDef def = Def<ThingDef>(ctx, apparelDefName, "apparel");
             ctx.Require(def.IsApparel, $"'{apparelDefName}' is not an apparel def");
+            ThingDef stuffDef = stuffName == null ? null : StuffFor(ctx, def, stuffName);
             ctx.Require(ApparelUtility.HasPartsToWear(pawn, def), $"{nickname} has no body part to wear '{apparelDefName}' on");
 
             if (!OriginalClothes.ContainsKey(pawn))
@@ -537,7 +559,7 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             StowApparel(pawn, a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
-            var apparel = (Apparel)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            var apparel = (Apparel)ThingMaker.MakeThing(def, stuffDef ?? (def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null));
             pawn.apparel.Wear(apparel, false);
             DressedIn.Add(apparel);
             Redraw(pawn);

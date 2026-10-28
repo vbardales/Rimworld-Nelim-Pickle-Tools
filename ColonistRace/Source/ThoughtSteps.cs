@@ -17,8 +17,39 @@ namespace Nelim.PickleTools.ColonistRace
         private static List<Thought> Thoughts(Pawn pawn)
         {
             var all = new List<Thought>();
+            // A paused game never reaches the 100-tick refresh of the situational thoughts: a garment or trait given by a step would not show until then.
+            pawn.needs?.mood?.thoughts?.situational?.Notify_SituationalThoughtsDirty();
             pawn.needs?.mood?.thoughts?.GetAllMoodThoughts(all);
             return all;
+        }
+
+        /// <summary>
+        /// Asserts the label of a colonist's thought (its current stage's label, with {0} filled by the game, as the mood tab shows it) equals the text,
+        /// ignoring case. Fails when the colonist has no such thought; the failure lists the thoughts with their labels. Written 2026-10-28 for PreciousStonesAndJewelryRenew. NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} thought {string} label reads {string}")]
+        public void ThoughtLabelReads(PickleContext ctx, string nickname, string thoughtName, string text)
+        {
+            string label = ThoughtLabel(ctx, nickname, thoughtName);
+            ctx.Assert(string.Equals(label, text, System.StringComparison.OrdinalIgnoreCase), $"{nickname}'s thought {thoughtName} should be labelled \"{text}\"; it is labelled \"{label}\"");
+        }
+
+        /// <summary>The same, asserting the label contains the text (ignoring case): for a label that holds an item name the game words.</summary>
+        [Then("Nelim's Pickle Tools: {string} thought {string} label contains {string}")]
+        public void ThoughtLabelContains(PickleContext ctx, string nickname, string thoughtName, string text)
+        {
+            string label = ThoughtLabel(ctx, nickname, thoughtName);
+            ctx.Assert(label.IndexOf(text, System.StringComparison.OrdinalIgnoreCase) >= 0, $"{nickname}'s thought {thoughtName} label should contain \"{text}\"; it is \"{label}\"");
+        }
+
+        private static string ThoughtLabel(PickleContext ctx, string nickname, string thoughtName)
+        {
+            var all = Thoughts(ColonistLookup.Require(nickname));
+            Thought found = all.FirstOrDefault(t => t.def.defName == thoughtName);
+            ctx.Require(found != null, $"{nickname} has no thought {thoughtName}; it has {string.Join(", ", all.Select(t => t.def.defName + " \"" + t.LabelCap + "\""))}");
+            string label = found.LabelCap;
+            Log.Message($"[thoughts] {nickname} {thoughtName}: label \"{label}\"");
+            return label;
         }
 
         /// <summary>

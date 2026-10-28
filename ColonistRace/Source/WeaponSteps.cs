@@ -24,20 +24,30 @@ namespace Nelim.PickleTools.ColonistRace
         /// the colonist held goes to the inventory. Fails when the def is unknown or not a weapon, or the colonist cannot wield it (a violence-incapable pawn).
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} wields {string}")]
-        public void Wields(PickleContext ctx, string nickname, string weaponDefName)
+        public void Wields(PickleContext ctx, string nickname, string weaponDefName) => WieldsCore(ctx, nickname, weaponDefName, null);
+
+        /// <summary>
+        /// The same, made of a chosen stuff (a <c>ThingDef</c> name such as Gold, Silver or Steel) instead of the default one. Fails when the weapon is
+        /// not made from a stuff or does not accept it (the failure lists the accepted ones). Written 2026-10-28 for PreciousStonesAndJewelryRenew. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} wields {string} made of {string}")]
+        public void WieldsMadeOf(PickleContext ctx, string nickname, string weaponDefName, string stuffName) => WieldsCore(ctx, nickname, weaponDefName, stuffName);
+
+        private void WieldsCore(PickleContext ctx, string nickname, string weaponDefName, string stuffName)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.equipment != null, $"pawn '{nickname}' has no equipment tracker");
             EnsureShowMeYourHands();
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(weaponDefName);
             ctx.Require(def != null && def.IsWeapon, $"'{weaponDefName}' is not a weapon def");
+            ThingDef stuffDef = stuffName == null ? null : LookSteps.StuffFor(ctx, def, stuffName);
             ThingWithComps held = pawn.equipment.Primary;
             if (held != null)
             {
                 pawn.equipment.TryTransferEquipmentToContainer(held, pawn.inventory.innerContainer);
             }
 
-            var weapon = (ThingWithComps)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            var weapon = (ThingWithComps)ThingMaker.MakeThing(def, stuffDef ?? (def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null));
             pawn.equipment.AddEquipment(weapon);
             Wielded.Add(weapon);
             if (pawn.drafter != null)
