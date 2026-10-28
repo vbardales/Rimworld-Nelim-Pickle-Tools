@@ -1,0 +1,47 @@
+# The pass of the face parts gallery (pickletools-face-parts-gallery.feature): the Sanctuary's facial animation list, staged from this repository.
+# Copy of SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map of 2026-10-09; seeds in config/faceparts/.
+#
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.coatsteps path:PickleTools/CoatSteps/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools.screenshotmode path:PickleTools/ScreenshotMode/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+Malistaticy.UnderWhere 1870010563
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+vk.addeyes.EX 3694711465
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+Moshii.NLFA.InitFix 3609895011
+ccj.nlfaloadfix 3721489042
+lordfelix.HatHairControl 3760821540
+
+Shenanigans.TribalTattoos 2782262247
+Qux.Tattoos 2569243583
+Rooboid.RooTattoo 2555588467
+Rooboid.BirthmarksandBlemishes 2890180936
+rooboid.hdhair.continued 3559870636
+VanillaExpanded.VHE 1888705256
+
+ray1203.SimpleCameraSetting 3232415388
+
+Mlie.ShowMeYourHands 2475965842
+meathax.ShowMeYourTools 3774821567
+
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+odysseylotus.serenbiotech 3726565301
+# Seren Biotech Extended (local, not published), 2026-10-28: the body masks sheet follows its indexation.
+nelim.serenbiotechextended path:SerenBiotechExtended/Mod

@@ -192,13 +192,12 @@ Run-Job 'weather' 'weather' (Read-Section 'weather.md' '^## Weather') $wide $fal
 
 Run-Job 'weapon' 'weapon' (Read-Section 'weapons-crafts.md' '^## Weapons') $body $false $true
 
-# Seren body masks (feature pickletools-seren-gallery, scenarios 5 and 6): each mask on a pale skin, Nelim and the man, front and back; shots bodymask-<gene>-<who>-<view>.
+# Seren body masks (owner, 2026-10-28: the sheet follows SBE, Seren Biotech Extended, zero-based as in SBE; the fork's six masks are no longer on the sheet; feature pickletools-seren-sbe-gallery,
+# 4 scenarios): each mask on Nelim and on a man, front and back; shots bodymask-SerenOriginalMask_<n>-<nelim|man>-<front|back>, no accent gene (the colour written on the gene).
 $maskTiles = @()
-foreach ($m in @(Read-Section $genes '^## Look genes' | Where-Object { $_.name -match 'BodyMask' })) {
-    foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') { if ($view -eq 'back' -and $m.name -notmatch '_02$') { continue }
-        $maskTiles += [pscustomobject]@{ key = "bodymask-$($m.name)-$who-$view"; name = "$($m.name) $who $view"; hex = '' } } }
-}
-if ($maskTiles.Count) { Build-Sheets 'bodymask' 'seren' $maskTiles $body $false }
+foreach ($m in 0..11) { foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') {
+    $maskTiles += [pscustomobject]@{ key = "bodymask-SerenOriginalMask_$m-$who-$view"; name = "SerenOriginalMask_$m $who $view"; hex = '' } } } }
+Build-Sheets 'bodymask' 'SBE' $maskTiles $body $false
 
 # Animal garments (animal-apparel.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
 $animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
