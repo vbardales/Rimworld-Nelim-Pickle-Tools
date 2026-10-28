@@ -85,6 +85,18 @@ namespace Nelim.PickleTools.LoadAudit
         }
 
         /// <summary>
+        /// A keyed translation with no symbol (a message that names no pawn), in the language the game runs in, contains the expected text; fails
+        /// when the key has no translation (the game would show the raw key). Written 2026-10-28 for Seren Biotech Extended scenario 13. Not played here.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the translation of the key {string} reads {string}")]
+        public void KeyReads(PickleContext ctx, string key, string expected)
+        {
+            ctx.Require(key.CanTranslate(), $"the key '{key}' has no translation in {LanguageDatabase.activeLanguage?.FriendlyNameNative}: the game would show it raw");
+            string shown = key.Translate().Resolve();
+            ctx.Assert(shown.Contains(expected), $"{key}: [{shown}] does not contain [{expected}]");
+        }
+
+        /// <summary>
         /// No text of the mod (labels and descriptions of its defs, of the stages of its hediffs and thoughts, and its keyed translations
         /// in the active language) still holds a gender switch. For the presentations that remove them (Inclusive, MiddleDot,
         /// Masculine): the mod's own step sets the mode first.
