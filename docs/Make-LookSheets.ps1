@@ -1,6 +1,6 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<NNN>-<kind>-<mod>-<page>.jpg, in the order of the
+  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<NNN> <label> - <mod> - <page>.jpg, in the order of the
   tables of ColonistRace/docs/CATALOGUE-*.md: hairstyles, beards, head types, face and body tattoos, garments, hair and ideology colours,
   the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
   A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
@@ -26,6 +26,12 @@ function Get-KindNumber($name) {
     if (-not $kindNumber.ContainsKey($k)) { throw "no number for the kind '$k': add it to the kindNumber table in Make-LookSheets.ps1" }
     $kindNumber[$k]
 }
+# Readable sheet names (owner, 2026-10-28): "<NNN> <label> - <mod> - <page>.jpg". The label is French without accents; a kind that is a view (bodytattoo-front) has its own.
+$kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 'Barbes'; head = 'Tetes'; facetattoo = 'Tatouages visage'; 'facetattoo-side' = 'Tatouages visage profil'
+    bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
+    garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
+    lookgene = 'Genes apparence'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir ((Get-KindNumber $name) + '-' + $name + '.jpg')
@@ -115,7 +121,9 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
             $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, $box)
         }
         $g.Dispose()
-        $path = Join-Path $out ("{0}-{1}-{2}-{3}.jpg" -f (Get-KindNumber $kind), $kind, $slug, ($pg + 1))
+        $kindText = if ($kindLabel.ContainsKey($kind)) { $kindLabel[$kind] } else { throw "no label for the kind '$kind': add it to the kindLabel table in Make-LookSheets.ps1" }
+        $modText = ($modName -replace "'", '' -replace '[^A-Za-z0-9 ]+', ' ' -replace ' {2,}', ' ').Trim()
+        $path = Join-Path $out ("{0} {1} - {2} - {3}.jpg" -f (Get-KindNumber $kind), $kindText, $modText, ($pg + 1))
         $bmp.Save($path, $enc, $p); $bmp.Dispose()
         Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }

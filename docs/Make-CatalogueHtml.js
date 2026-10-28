@@ -48,14 +48,17 @@ const tabs = [
   ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
 ];
 
-// Photograph sheets: img/looks/<NNN>-<kind>-<mod>-<page>.jpg grouped by kind (the word after the number), plus the part sheets, the animation sheets and the building tabs.
+// Photograph sheets: img/looks/<NNN> <label> - <mod> - <page>.jpg grouped by kind (its number), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
+// Sheets are named "<NNN> <label> - <mod> - <page>.jpg"; a kind is its number (sections ask for kinds by name, this table gives the number).
+const kindNum = { hair: '010', haircolour: '020', beard: '030', head: '040', facetattoo: '050', bodytattoo: '060', body: '070', bodymask: '075', garment: '080', hat: '090', colour: '100', ideocolour: '110',
+  weapon: '120', eyegene: '130', skingene: '140', hairgene: '150', lookgene: '160', weather: '170', animalapparel: '180',
+  serenhead: '200', serenlid: '210', sereneyeball: '220', serenbrow: '230', serenmouth: '240', serenskin: '250', serenvteskin: '260', serenxeno: '270' };
+const byNum = {};
+for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{3} .*\.jpg$/.test(f)).sort()) (byNum[f.slice(0, 3)] = byNum[f.slice(0, 3)] || []).push(f);
 const byKind = {};
-for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{3}-.*\.jpg$/.test(f)).sort()) {
-  const k = f.replace(/^[0-9]{3}-/, '').split('-')[0];
-  (byKind[k] = byKind[k] || []).push(f);
-}
-const sheet = f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${path.basename(f).replace(/.jpg$/, '')}</span></a>`;
+for (const [k, n] of Object.entries(kindNum)) if (byNum[n]) byKind[k] = byNum[n];
+const sheet = f => `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.jpg$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
   gallery += `<h3>${k}</h3><div class="sheets">` + files.map(sheet).join('') + '</div>';
