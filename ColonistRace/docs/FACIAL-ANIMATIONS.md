@@ -1,6 +1,7 @@
 # Facial animations on a colonist (Nals Facial Animation)
 
 Written 2026-10-08 from the gallery photos (all 55 animations seen, runs d9cc, 80e3, 8cfb, 988f). Every description is what a still photo shows; many animations are made for movement and look alike.
+Seren: none. Seren Biotech Extended defines no animation (SBE session, 2026-10-28; its optional VTE face set only adds still face parts, see the Seren face part sheets); a comparison with the original Seren (2704627783) found none, not exhaustively searched.
 Photos: Nelim of the save `Nelims-tribe`, temperature held at 20 degrees, every animation played as `normal+<name>` (a neutral face with the animation on top), zoom 4.
 
 ## How to play one
