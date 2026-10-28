@@ -101,7 +101,7 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "body-Baby"
 
-  Scenario: body-gallery-4: a girl child (Lyra) in a loincloth
+  Scenario: body-gallery-4: a girl child (Mina, human) in a loincloth
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -111,17 +111,17 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And a colonist "Lyra" exists
-    And "Lyra" is 8 years old
-    And Nelim's Pickle Tools: "Lyra" gender is female
-    And Nelim's Pickle Tools: "Lyra" stands at (176, 120) facing South
+    And a colonist "Mina" exists
+    And "Mina" is 8 years old
+    And Nelim's Pickle Tools: "Mina" gender is female
+    And Nelim's Pickle Tools: "Mina" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
-    And Nelim's Pickle Tools: "Lyra" face kit is "neutral"
-    And Nelim's Pickle Tools: "Lyra" facial expression is "normal"
-    And Nelim's Pickle Tools: "Lyra" face is held neutral
+    And Nelim's Pickle Tools: "Mina" face kit is "neutral"
+    And Nelim's Pickle Tools: "Mina" facial expression is "normal"
+    And Nelim's Pickle Tools: "Mina" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Lyra" body type is Child
-    And Nelim's Pickle Tools: "Lyra" is undressed
-    And Nelim's Pickle Tools: "Lyra" wears "UnderWhere_Loincloth"
+    When Nelim's Pickle Tools: "Mina" body type is Child
+    And Nelim's Pickle Tools: "Mina" is undressed
+    And Nelim's Pickle Tools: "Mina" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "body-Child-female"
