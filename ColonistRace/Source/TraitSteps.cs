@@ -93,6 +93,38 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(string.Equals(description, text, StringComparison.OrdinalIgnoreCase), $"the description of the trait {traitName} should read \"{text}\"; it is \"{description}\"");
         }
 
+        /// <summary>
+        /// Asserts the description of the trait a colonist HAS, resolved for that colonist as the game's trait tooltip does (the degree it holds,
+        /// with {PAWN_pronoun}, {PAWN_gender} and the other pawn switches filled), contains the text, ignoring case. Fails when the colonist
+        /// has no such trait. Give the colonist the trait and the gender first (<c>has the trait</c>, <c>gender is neutral</c>). Written 2026-10-28 for PreciousStonesAndJewelryRenew. NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} trait {string} description contains {string}")]
+        public void ColonistDescriptionContains(PickleContext ctx, string nickname, string traitName, string text)
+        {
+            string description = ColonistDescription(ctx, nickname, traitName);
+            ctx.Assert(description.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0, $"{nickname}'s trait {traitName} description should contain \"{text}\"; it reads \"{description}\"");
+        }
+
+        /// <summary>The same, asserting the resolved description equals the text (ignoring case).</summary>
+        [Then("Nelim's Pickle Tools: {string} trait {string} description reads {string}")]
+        public void ColonistDescriptionReads(PickleContext ctx, string nickname, string traitName, string text)
+        {
+            string description = ColonistDescription(ctx, nickname, traitName);
+            ctx.Assert(string.Equals(description, text, StringComparison.OrdinalIgnoreCase), $"{nickname}'s trait {traitName} description should read \"{text}\"; it reads \"{description}\"");
+        }
+
+        private static string ColonistDescription(PickleContext ctx, string nickname, string traitName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            TraitDef def = Trait(ctx, traitName);
+            ctx.Require(pawn.story?.traits != null, $"pawn '{nickname}' has no traits");
+            Trait trait = pawn.story.traits.allTraits.FirstOrDefault(t => t.def == def);
+            ctx.Require(trait != null, $"{nickname} has no trait {traitName}; it has {string.Join(", ", pawn.story.traits.allTraits.Select(t => t.def.defName))}");
+            string description = trait.CurrentData.description.Formatted(pawn.Named("PAWN")).AdjustedFor(pawn).Resolve();
+            Log.Message($"[trait] {nickname} {traitName} gender {pawn.gender}: \"{description}\"");
+            return description;
+        }
+
         private static string Description(PickleContext ctx, string traitName)
         {
             TraitDef def = Trait(ctx, traitName);
