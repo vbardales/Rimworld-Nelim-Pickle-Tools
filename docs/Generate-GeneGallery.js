@@ -171,7 +171,21 @@ const take = (g, prefix, reset) => [
   ...(reset ? [`When ${SP}"Nelim" loses all genes`, `And ${SP}"Nelim" has the gene "${g.name}"`] : [`When ${SP}"Nelim" has the gene "${g.name}"`]),
   `And ${SP}I let 5 frames pass`, `And I take a screenshot "${prefix}-${g.name}"`];
 serenScenario('skin colours', serenSkins, [], g => take(g, 'skingene', false));
-serenScenario('hair colours', serenHair, [`And ${SP}"Nelim" hairstyle is "Afro"`], g => take(g, 'hairgene', false));
+// The Seren hair colours are photographed on a SEREN model (owner, 2026-10-28: a human Nelim is not a Seren): a colonist of kind OL_SerenColonist, female, hairstyle Afro, the gene then the colour the genes define.
+{
+  const size = Math.ceil(serenHair.length / Math.ceil(serenHair.length / 20));
+  for (let i = 0; i < serenHair.length; i += size) {
+    const part = serenHair.slice(i, i + size); sn++;
+    serenOut.push(`  Scenario: seren-gallery-${sn}: hair colours on a Seren model ${i + 1} to ${i + part.length} of ${serenHair.length}`);
+    const lines = skinBase.map(l => l.replace(/"Nelim"/g, '"SerenModel"'));
+    const at = lines.findIndex(l => l.includes('"SerenModel" stands at'));
+    lines.splice(at, 0, `And a colonist "SerenModel" of kind "OL_SerenColonist" exists`, `And ${SP}"SerenModel" gender is Female`);
+    lines.forEach(l => serenOut.push('    ' + l));
+    serenOut.push(`    And ${SP}"SerenModel" hairstyle is "Afro"`);
+    for (const g of part) [`When ${SP}"SerenModel" has the gene "${g.name}"`, `And ${SP}"SerenModel" hair colour is taken from its genes`, `And ${SP}I let 5 frames pass`, `And I take a screenshot "hairgene-${g.name}"`].forEach(l => serenOut.push('    ' + l));
+    serenOut.push('');
+  }
+}
 serenScenario('look genes', serenLooks, [], g => take(g, 'lookgene', true), true);   // undressed: a marking or a body mask is on the skin (owner, 2026-10-25)
 // Body masks of Seren (owner, 2026-10-26: barely readable in the look-gene photograph): the masks alone, undressed, on a flat DARK skin: the masks are thin white constellations (textures read 2026-10-26), invisible on a pale one,
 // front and back, on Nelim and on the man (the mannequin, never named in the files). Shots: bodymask-<gene>-<who>-<view>.

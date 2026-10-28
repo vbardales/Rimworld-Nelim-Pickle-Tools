@@ -67,7 +67,7 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skingene-OL_SkinPlanetary"
 
-  Scenario: seren-gallery-2: hair colours 1 to 19 of 19
+  Scenario: seren-gallery-2: hair colours on a Seren model 1 to 19 of 19
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -76,77 +76,98 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And a colonist "SerenModel" of kind "OL_SerenColonist" exists
+    And Nelim's Pickle Tools: "SerenModel" gender is Female
+    And Nelim's Pickle Tools: "SerenModel" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
-    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
-    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
-    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
-    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
-    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
-    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
-    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
-    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: "SerenModel" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "SerenModel" face tattoo is "none"
+    And Nelim's Pickle Tools: "SerenModel" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "SerenModel" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "SerenModel" lids are "LidNormal"
+    And Nelim's Pickle Tools: "SerenModel" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "SerenModel" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "SerenModel" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "SerenModel" facial expression is "normal"
+    And Nelim's Pickle Tools: "SerenModel" face is held neutral
+    And Nelim's Pickle Tools: "SerenModel" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "SerenModel" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Nelim" hairstyle is "Afro"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairSky"
+    And Nelim's Pickle Tools: "SerenModel" hairstyle is "Afro"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairSky"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairSky"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairPowder"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairPowder"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairPowder"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairPeriwinkle"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairPeriwinkle"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairPeriwinkle"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairAegean"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairAegean"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairAegean"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairNavy"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairNavy"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairNavy"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairLapis"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairLapis"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairLapis"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairLilac"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairLilac"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairLilac"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairLavender"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairLavender"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairLavender"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairMauve"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairMauve"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairMauve"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairIndigo"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairIndigo"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairIndigo"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairEggplant"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairEggplant"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairEggplant"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairPlum"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairPlum"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairPlum"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairWisteria"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairWisteria"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairWisteria"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairBlush"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairBlush"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairBlush"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairRose"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairRose"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairRose"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairBerry"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairBerry"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairBerry"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairWine"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairWine"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairWine"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairAmaranth"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairAmaranth"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairAmaranth"
-    When Nelim's Pickle Tools: "Nelim" has the gene "OL_HairAlbino"
+    When Nelim's Pickle Tools: "SerenModel" has the gene "OL_HairAlbino"
+    And Nelim's Pickle Tools: "SerenModel" hair colour is taken from its genes
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "hairgene-OL_HairAlbino"
 
