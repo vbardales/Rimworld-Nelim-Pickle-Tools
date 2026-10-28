@@ -19,8 +19,8 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; haircolour = 1; beard = 2; head = 3; facetattoo = 4; bodytattoo = 5; body = 6; bodymask = 7; garment = 8; hat = 9; colour = 10; ideocolour = 11
-    weapon = 12; eyegene = 13; skingene = 14; hairgene = 15; lookgene = 16; weather = 17; animalapparel = 18
+$kindBlock = [ordered]@{ hair = 0; haircolour = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; bodytattoo = 6; body = 7; bodymask = 8; garment = 9; hat = 10; colour = 11; ideocolour = 12
+    weapon = 13; skingene = 14; hairgene = 15; lookgene = 16; weather = 17; animalapparel = 18
     serenhead = 19; serenlid = 20; sereneyeball = 21; serenbrow = 22; serenmouth = 23; serenskin = 24; serenvteskin = 25; serenxeno = 26; beardcolour = 27; seren = 19 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
