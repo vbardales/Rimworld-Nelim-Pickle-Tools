@@ -35,3 +35,5 @@ ponpeco.PonpecoPajamas 3482959515
 # Owner request 2026-10-28: Akeron - Caretaker Apparel (Workshop 2799570243, uniform, vest, cloaks, headwear). packageId NOT read yet (not installed here, page does not give it): add the line "<packageId> 2799570243" once known.
 # Added 2026-10-28 at the owner request (catalogue): Oracle + Erin's HD Tattoos (5 new body tattoos OE_Body_*, and HD retextures of the vanilla tattoos: it changes how the vanilla ones photograph).
 oracle.erin.tattoos 2854739731
+# Added 2026-10-28 at the owner request (catalogue): Erin's Hairstyles - Redux (49 hairstyles, read in its 1.6 folder).
+Erin.Hairredux 2361911135
