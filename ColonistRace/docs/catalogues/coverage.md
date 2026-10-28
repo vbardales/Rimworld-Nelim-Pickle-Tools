@@ -61,61 +61,61 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 
 ### bodytattoo
 
-- [bodytattoo-core-1.jpg](../img/looks/0601%20Tatouages%20corps%20femme%20-%20Core%20-%201.jpg): Core, page 1, 1 of 1
-- [bodytattoo-ideology-1.jpg](../img/looks/0602%20Tatouages%20corps%20femme%20-%20Ideology%20-%201.jpg): Ideology, page 1, 16 of 16
-- [bodytattoo-tattoos-expanded-1.jpg](../img/looks/0603%20Tatouages%20corps%20femme%20-%20Tattoos%20Expanded%20-%201.jpg): Tattoos Expanded, page 1, 30 of 30
-- [bodytattoo-tattoos-expanded-2.jpg](../img/looks/0604%20Tatouages%20corps%20femme%20-%20Tattoos%20Expanded%20-%202.jpg): Tattoos Expanded, page 2, 12 of 12
-- [bodytattoo-tribal-tattoos-1.jpg](../img/looks/0605%20Tatouages%20corps%20femme%20-%20Tribal%20Tattoos%20-%201.jpg): Tribal Tattoos, page 1, 14 of 14
+- [bodytattoo-core-1.jpg](../img/looks/2001%20Tatouages%20corps%20femme%20-%20Core%20-%201.jpg): Core, page 1, 1 of 1
+- [bodytattoo-ideology-1.jpg](../img/looks/2002%20Tatouages%20corps%20femme%20-%20Ideology%20-%201.jpg): Ideology, page 1, 16 of 16
+- [bodytattoo-tattoos-expanded-1.jpg](../img/looks/2003%20Tatouages%20corps%20femme%20-%20Tattoos%20Expanded%20-%201.jpg): Tattoos Expanded, page 1, 30 of 30
+- [bodytattoo-tattoos-expanded-2.jpg](../img/looks/2004%20Tatouages%20corps%20femme%20-%20Tattoos%20Expanded%20-%202.jpg): Tattoos Expanded, page 2, 12 of 12
+- [bodytattoo-tribal-tattoos-1.jpg](../img/looks/2005%20Tatouages%20corps%20femme%20-%20Tribal%20Tattoos%20-%201.jpg): Tribal Tattoos, page 1, 14 of 14
 
 ### garment
 
-- [garment-anomaly-1.jpg](../img/looks/0901%20Vetements%20-%20Anomaly%20-%201.jpg): Anomaly, page 1, 7 of 7
-- [garment-biotech-1.jpg](../img/looks/0902%20Vetements%20-%20Biotech%20-%201.jpg): Biotech, page 1, 7 of 12
-- [garment-core-1.jpg](../img/looks/0903%20Vetements%20-%20Core%20-%201.jpg): Core, page 1, 23 of 23
-- [garment-ideology-1.jpg](../img/looks/0904%20Vetements%20-%20Ideology%20-%201.jpg): Ideology, page 1, 2 of 2
-- [garment-odyssey-1.jpg](../img/looks/0905%20Vetements%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 3 of 4
-- [garment-royalty-1.jpg](../img/looks/0909%20Vetements%20-%20Royalty%20-%201.jpg): Royalty, page 1, 17 of 17
+- [garment-anomaly-1.jpg](../img/looks/2301%20Vetements%20-%20Anomaly%20-%201.jpg): Anomaly, page 1, 7 of 7
+- [garment-biotech-1.jpg](../img/looks/2302%20Vetements%20-%20Biotech%20-%201.jpg): Biotech, page 1, 7 of 12
+- [garment-core-1.jpg](../img/looks/2303%20Vetements%20-%20Core%20-%201.jpg): Core, page 1, 23 of 23
+- [garment-ideology-1.jpg](../img/looks/2304%20Vetements%20-%20Ideology%20-%201.jpg): Ideology, page 1, 2 of 2
+- [garment-odyssey-1.jpg](../img/looks/2305%20Vetements%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 3 of 4
+- [garment-royalty-1.jpg](../img/looks/2309%20Vetements%20-%20Royalty%20-%201.jpg): Royalty, page 1, 17 of 17
 
 ### hat
 
-- [hat-anomaly-1.jpg](../img/looks/1001%20Chapeaux%20-%20Anomaly%20-%201.jpg): Anomaly, page 1, 2 of 2
-- [hat-biotech-1.jpg](../img/looks/1002%20Chapeaux%20-%20Biotech%20-%201.jpg): Biotech, page 1, 6 of 7
-- [hat-core-1.jpg](../img/looks/1003%20Chapeaux%20-%20Core%20-%201.jpg): Core, page 1, 13 of 13
-- [hat-ideology-1.jpg](../img/looks/1004%20Chapeaux%20-%20Ideology%20-%201.jpg): Ideology, page 1, 11 of 11
-- [hat-odyssey-1.jpg](../img/looks/1005%20Chapeaux%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 1 of 1
-- [hat-royalty-1.jpg](../img/looks/1008%20Chapeaux%20-%20Royalty%20-%201.jpg): Royalty, page 1, 13 of 13
+- [hat-anomaly-1.jpg](../img/looks/2401%20Chapeaux%20-%20Anomaly%20-%201.jpg): Anomaly, page 1, 2 of 2
+- [hat-biotech-1.jpg](../img/looks/2402%20Chapeaux%20-%20Biotech%20-%201.jpg): Biotech, page 1, 6 of 7
+- [hat-core-1.jpg](../img/looks/2403%20Chapeaux%20-%20Core%20-%201.jpg): Core, page 1, 13 of 13
+- [hat-ideology-1.jpg](../img/looks/2404%20Chapeaux%20-%20Ideology%20-%201.jpg): Ideology, page 1, 11 of 11
+- [hat-odyssey-1.jpg](../img/looks/2405%20Chapeaux%20-%20Odyssey%20-%201.jpg): Odyssey, page 1, 1 of 1
+- [hat-royalty-1.jpg](../img/looks/2408%20Chapeaux%20-%20Royalty%20-%201.jpg): Royalty, page 1, 13 of 13
 
 ### haircolour
 
 
 ### ideocolour
 
-- [ideocolour-ideology-1.jpg](../img/looks/1201%20Couleurs%20Ideologie%20-%20Ideology%20-%201.jpg): Ideology, page 1, 30 of 30
-- [ideocolour-ideology-2.jpg](../img/looks/1202%20Couleurs%20Ideologie%20-%20Ideology%20-%202.jpg): Ideology, page 2, 4 of 4
+- [ideocolour-ideology-1.jpg](../img/looks/2101%20Couleurs%20Ideologie%20-%20Ideology%20-%201.jpg): Ideology, page 1, 30 of 30
+- [ideocolour-ideology-2.jpg](../img/looks/2102%20Couleurs%20Ideologie%20-%20Ideology%20-%202.jpg): Ideology, page 2, 4 of 4
 
 ### colour
 
-- [colour-core-misc-1.jpg](../img/looks/1101%20Couleurs%20-%20Core%20Misc%20-%201.jpg): Core Misc, page 1, 1 of 1
-- [colour-core-planning-1.jpg](../img/looks/1102%20Couleurs%20-%20Core%20Planning%20-%201.jpg): Core Planning, page 1, 9 of 9
-- [colour-core-structure-1.jpg](../img/looks/1103%20Couleurs%20-%20Core%20Structure%20-%201.jpg): Core Structure, page 1, 30 of 30
-- [colour-core-structure-2.jpg](../img/looks/1104%20Couleurs%20-%20Core%20Structure%20-%202.jpg): Core Structure, page 2, 30 of 30
-- [colour-core-structure-3.jpg](../img/looks/1105%20Couleurs%20-%20Core%20Structure%20-%203.jpg): Core Structure, page 3, 3 of 3
-- [colour-odyssey-weapon-1.jpg](../img/looks/1106%20Couleurs%20-%20Odyssey%20Weapon%20-%201.jpg): Odyssey Weapon, page 1, 20 of 20
+- [colour-core-misc-1.jpg](../img/looks/2201%20Couleurs%20-%20Core%20Misc%20-%201.jpg): Core Misc, page 1, 1 of 1
+- [colour-core-planning-1.jpg](../img/looks/2202%20Couleurs%20-%20Core%20Planning%20-%201.jpg): Core Planning, page 1, 9 of 9
+- [colour-core-structure-1.jpg](../img/looks/2203%20Couleurs%20-%20Core%20Structure%20-%201.jpg): Core Structure, page 1, 30 of 30
+- [colour-core-structure-2.jpg](../img/looks/2204%20Couleurs%20-%20Core%20Structure%20-%202.jpg): Core Structure, page 2, 30 of 30
+- [colour-core-structure-3.jpg](../img/looks/2205%20Couleurs%20-%20Core%20Structure%20-%203.jpg): Core Structure, page 3, 3 of 3
+- [colour-odyssey-weapon-1.jpg](../img/looks/2206%20Couleurs%20-%20Odyssey%20Weapon%20-%201.jpg): Odyssey Weapon, page 1, 20 of 20
 
 ### body
 
-- [body-all-1.jpg](../img/looks/0701%20Corpulences%20-%20all%20-%201.jpg): all, page 1, 8 of 10
+- [body-all-1.jpg](../img/looks/1301%20Corpulences%20-%20all%20-%201.jpg): all, page 1, 8 of 10
 
 ### weapon
 
-- [weapon-anomaly-ranged-1.jpg](../img/looks/1301%20Armes%20-%20Anomaly%20Ranged%20-%201.jpg): Anomaly Ranged, page 1, 0 of 4
-- [weapon-biotech-ranged-1.jpg](../img/looks/1302%20Armes%20-%20Biotech%20Ranged%20-%201.jpg): Biotech Ranged, page 1, 0 of 12
-- [weapon-core-melee-1.jpg](../img/looks/1303%20Armes%20-%20Core%20Melee%20-%201.jpg): Core Melee, page 1, 0 of 12
-- [weapon-core-ranged-1.jpg](../img/looks/1304%20Armes%20-%20Core%20Ranged%20-%201.jpg): Core Ranged, page 1, 0 of 30
-- [weapon-core-ranged-2.jpg](../img/looks/1305%20Armes%20-%20Core%20Ranged%20-%202.jpg): Core Ranged, page 2, 0 of 9
-- [weapon-odyssey-melee-1.jpg](../img/looks/1306%20Armes%20-%20Odyssey%20Melee%20-%201.jpg): Odyssey Melee, page 1, 0 of 2
-- [weapon-odyssey-ranged-1.jpg](../img/looks/1307%20Armes%20-%20Odyssey%20Ranged%20-%201.jpg): Odyssey Ranged, page 1, 0 of 16
-- [weapon-royalty-melee-1.jpg](../img/looks/1308%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
+- [weapon-anomaly-ranged-1.jpg](../img/looks/2501%20Armes%20-%20Anomaly%20Ranged%20-%201.jpg): Anomaly Ranged, page 1, 0 of 4
+- [weapon-biotech-ranged-1.jpg](../img/looks/2502%20Armes%20-%20Biotech%20Ranged%20-%201.jpg): Biotech Ranged, page 1, 0 of 12
+- [weapon-core-melee-1.jpg](../img/looks/2503%20Armes%20-%20Core%20Melee%20-%201.jpg): Core Melee, page 1, 0 of 12
+- [weapon-core-ranged-1.jpg](../img/looks/2504%20Armes%20-%20Core%20Ranged%20-%201.jpg): Core Ranged, page 1, 0 of 30
+- [weapon-core-ranged-2.jpg](../img/looks/2505%20Armes%20-%20Core%20Ranged%20-%202.jpg): Core Ranged, page 2, 0 of 9
+- [weapon-odyssey-melee-1.jpg](../img/looks/2506%20Armes%20-%20Odyssey%20Melee%20-%201.jpg): Odyssey Melee, page 1, 0 of 2
+- [weapon-odyssey-ranged-1.jpg](../img/looks/2507%20Armes%20-%20Odyssey%20Ranged%20-%201.jpg): Odyssey Ranged, page 1, 0 of 16
+- [weapon-royalty-melee-1.jpg](../img/looks/2508%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
 
 ## Not photographed on purpose
 

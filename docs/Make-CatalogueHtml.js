@@ -58,9 +58,7 @@ const tabs = [
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
-const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, bodytattoo: 6, body: 7, bodymask: 8, garment: 9, hat: 10, colour: 11, ideocolour: 12,
-  weapon: 13, skingene: 14, lookgene: 16, weather: 17, animalapparel: 18,
-  serenhead: 19, serenlid: 20, sereneyeball: 21, serenbrow: 22, serenmouth: 23, serenskin: 24, serenvteskin: 25, serenxeno: 26, beardcolour: 27, faceparts: 28, bodymasktextures: 29, animations: 30, buildings: 31, animalportraits: 32 };
+const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, beardcolour: 28 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};

@@ -15,8 +15,8 @@ foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23'
 }
 $kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks'; kit = 'Kits' }
 # Sheet names (block 28 of Make-LookSheets.ps1's numbering): the number, then a French label.
-$sheetName = @{ mouth = '2801 Parties du visage - Bouches'; brow = '2802 Parties du visage - Sourcils'; lid = '2803 Parties du visage - Paupieres'; skin = '2804 Parties du visage - Peaux'; skinclose = '2805 Parties du visage - Peaux en gros plan'
-    eyeball = '2806 Parties du visage - Yeux'; head = '2807 Parties du visage - Formes de tete'; kit = '2808 Parties du visage - Kits'; facetattoo = '2809 Parties du visage - Tatouages visage'; lidoption = '2810 Parties du visage - Options de paupieres'; emotion = '2811 Parties du visage - Marques d emotion' }
+$sheetName = @{ mouth = '0601 Parties du visage - Bouches'; brow = '0602 Parties du visage - Sourcils'; lid = '0603 Parties du visage - Paupieres'; skin = '0604 Parties du visage - Peaux'; skinclose = '0605 Parties du visage - Peaux en gros plan'
+    eyeball = '0606 Parties du visage - Yeux'; head = '0607 Parties du visage - Formes de tete'; kit = '0608 Parties du visage - Kits'; facetattoo = '0609 Parties du visage - Tatouages visage'; lidoption = '0610 Parties du visage - Options de paupieres'; emotion = '0611 Parties du visage - Marques d emotion' }
 $tile = 220; $label = 22; $cols = 6
 $crop = New-Object System.Drawing.Rectangle 868, 118, 184, 184
 $cropClose = New-Object System.Drawing.Rectangle 880, 110, 160, 160
