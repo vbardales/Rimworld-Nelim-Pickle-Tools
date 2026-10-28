@@ -276,7 +276,11 @@ namespace Nelim.PickleTools.ColonistRace
             }
             heldNeutral.Add(pawn);
             BeforeUpdateAnimation(face);
-            update.Invoke(face, null);
+            // This warm-up update is not needed for the hold (the prefix empties the list before every later update). Another mod that patches the controller
+            // can make it throw (ticket da59 of Ancient Buildings, 2026-10-29: a NullReferenceException with sd.fa.movingvanillaeyes in the patch list), so a throw is
+            // logged with its inner exception and the step goes on; the check on the empty list below still decides.
+            try { update.Invoke(face, null); }
+            catch (TargetInvocationException e) { Log.Warning("[face-held-neutral] " + nickname + ": the warm-up UpdateAnimation threw, continued: " + (e.InnerException ?? e)); }
             // The update refills the list from the pawn's current job (a forced Wait job after "stands at"): empty it again, the prefix does it before every later update.
             BeforeUpdateAnimation(face);
             compType.GetMethod("SetDirty", Any)?.Invoke(face, null);
