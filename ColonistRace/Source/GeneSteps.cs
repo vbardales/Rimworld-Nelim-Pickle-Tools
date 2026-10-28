@@ -66,6 +66,42 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(pawn.genes.GenesListForReading.Count == 0, "pawn '" + nickname + "' still holds " + string.Join(", ", pawn.genes.GenesListForReading.Select(x => x.def.defName)));
         }
 
+        /// <summary>
+        /// Gives a colonist the hair colour its genes define, as the generator does for a xenotype: the colour of the first active gene that has a hair colour (the game does not rewrite
+        /// <c>story.HairColor</c> when a gene is ADDED later, so <c>has the gene</c> alone leaves the old colour). Fails when no active gene defines a hair colour (it lists the genes) or when the
+        /// colour read back differs. Written 2026-10-28 for SanctuaryBacklot (colours by genes, no rgb). NOT PLAYED when written. Needs Biotech.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} hair colour is taken from its genes")]
+        public void HairColourFromGenes(PickleContext ctx, string nickname)
+        {
+            ctx.Require(ModsConfig.BiotechActive, "genes need Biotech, and it is not active in this run");
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.genes != null && pawn.story != null, "pawn '" + nickname + "' has no genes or no story");
+            Gene gene = pawn.genes.GenesListForReading.FirstOrDefault(g => g.Active && g.def.hairColorOverride.HasValue);
+            ctx.Require(gene != null, "no active gene of '" + nickname + "' defines a hair colour; it holds " + string.Join(", ", pawn.genes.GenesListForReading.Select(x => x.def.defName + (x.def.hairColorOverride.HasValue ? "(hair)" : ""))));
+            UnityEngine.Color wanted = gene.def.hairColorOverride.Value;
+            pawn.story.HairColor = wanted;
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            UnityEngine.Color read = pawn.story.HairColor;
+            Log.Message("[colour] " + nickname + " hair colour from gene " + gene.def.defName + ": rgb (" + UnityEngine.Mathf.RoundToInt(read.r * 255f) + ", " + UnityEngine.Mathf.RoundToInt(read.g * 255f) + ", " + UnityEngine.Mathf.RoundToInt(read.b * 255f) + ")");
+            ctx.Assert(UnityEngine.Mathf.Abs(read.r - wanted.r) < 0.01f && UnityEngine.Mathf.Abs(read.g - wanted.g) < 0.01f && UnityEngine.Mathf.Abs(read.b - wanted.b) < 0.01f,
+                nickname + "'s hair colour should read the colour of " + gene.def.defName + " " + wanted + "; it reads " + read + " (something forces another colour)");
+        }
+
+        /// <summary>
+        /// Removes the skin colour override of a colonist (<c>story.skinColorOverride</c>, what the step <c>skin colour is rgb</c> writes and what a save keeps), so the skin is the colour of its
+        /// skin genes. Does nothing when there is none. Reads it back. Written 2026-10-28 for SanctuaryBacklot. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} skin colour override is cleared")]
+        public void ClearSkinOverride(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, "pawn '" + nickname + "' has no story, so it has no skin colour");
+            pawn.story.skinColorOverride = null;
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            ctx.Assert(!pawn.story.skinColorOverride.HasValue, nickname + "'s skin colour override should be cleared; it is " + pawn.story.skinColorOverride);
+        }
+
         /// <summary>Asserts that a colonist holds a gene, by its def name. The failure lists the genes the pawn holds.</summary>
         [Then("Nelim's Pickle Tools: {string} holds the gene {string}")]
         public void HoldsGene(PickleContext ctx, string nickname, string geneName)
