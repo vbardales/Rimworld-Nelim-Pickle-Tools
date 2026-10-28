@@ -125,5 +125,5 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 ## Not sheeted yet
 
 - Utility items: values in [items.md](items.md) (run 6e69), no photographs by design.
-- Buildings: one photograph per Architect tab in `img/buildings/` (4 of 14 tabs so far: Joy, Misc, Security, Ship).
+- Buildings: one photograph per Architect tab in `img/looks/` (blocks 31xx) (4 of 14 tabs so far: Joy, Misc, Security, Ship).
 - Animals: portraits not photographed yet (ticket 5abb to refile).
