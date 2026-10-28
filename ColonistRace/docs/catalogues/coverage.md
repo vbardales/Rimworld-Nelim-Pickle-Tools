@@ -116,7 +116,7 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 - [weapon-core-ranged-2.jpg](../img/looks/1205%20Armes%20-%20Core%20Ranged%20-%202.jpg): Core Ranged, page 2, 0 of 9
 - [weapon-odyssey-melee-1.jpg](../img/looks/1206%20Armes%20-%20Odyssey%20Melee%20-%201.jpg): Odyssey Melee, page 1, 0 of 2
 - [weapon-odyssey-ranged-1.jpg](../img/looks/1207%20Armes%20-%20Odyssey%20Ranged%20-%201.jpg): Odyssey Ranged, page 1, 0 of 16
-- [weapon-royalty-melee-1.jpg](../img/looks/1225%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
+- [weapon-royalty-melee-1.jpg](../img/looks/1208%20Armes%20-%20Royalty%20Melee%20-%201.jpg): Royalty Melee, page 1, 0 of 9
 
 ## Not photographed on purpose
 
