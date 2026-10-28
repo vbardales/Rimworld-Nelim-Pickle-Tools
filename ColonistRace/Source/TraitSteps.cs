@@ -20,9 +20,32 @@ namespace Nelim.PickleTools.ColonistRace
             return def;
         }
 
+        // The traits a colonist had before a step changed them, put back after the scenario so a saved colonist reacquired by name is unchanged.
+        private static readonly System.Collections.Generic.Dictionary<Pawn, System.Collections.Generic.List<(TraitDef Def, int Degree)>> Original =
+            new System.Collections.Generic.Dictionary<Pawn, System.Collections.Generic.List<(TraitDef, int)>>();
+
+        private static void Remember(Pawn pawn)
+        {
+            if (!Original.ContainsKey(pawn)) Original[pawn] = pawn.story.traits.allTraits.Select(t => (t.def, t.Degree)).ToList();
+        }
+
+        [AfterScenario]
+        public void RestoreTraits()
+        {
+            foreach (var pair in Original.ToList())
+            {
+                Pawn pawn = pair.Key;
+                if (pawn.Destroyed || pawn.story?.traits == null) continue;
+                foreach (Trait t in pawn.story.traits.allTraits.ToList()) pawn.story.traits.RemoveTrait(t);
+                foreach (var (def, degree) in pair.Value) pawn.story.traits.GainTrait(new Trait(def, degree, true), true);
+            }
+
+            Original.Clear();
+        }
+
         /// <summary>
         /// Gives a colonist a trait by <c>TraitDef</c> name, at its first degree, and removes the traits that conflict with it first (Greedy replaces
-        /// Ascetic). Does nothing when the colonist already has it. Reads it back. Redraws nothing: a trait changes thoughts, not the picture.
+        /// Ascetic). Does nothing when the colonist already has it. Reads it back. The colonist's own traits come back after the scenario.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} has the trait {string}")]
         public void GivesTrait(PickleContext ctx, string nickname, string traitName)
@@ -30,6 +53,7 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.story?.traits != null, $"pawn '{nickname}' has no traits");
             TraitDef def = Trait(ctx, traitName);
+            Remember(pawn);
             if (pawn.story.traits.HasTrait(def)) return;
             foreach (Trait t in pawn.story.traits.allTraits.Where(x => def.conflictingTraits != null && def.conflictingTraits.Contains(x.def)).ToList())
                 pawn.story.traits.RemoveTrait(t);
@@ -44,6 +68,7 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.story?.traits != null, $"pawn '{nickname}' has no traits");
             TraitDef def = Trait(ctx, traitName);
+            Remember(pawn);
             foreach (Trait t in pawn.story.traits.allTraits.Where(x => x.def == def).ToList())
                 pawn.story.traits.RemoveTrait(t);
             ctx.Assert(!pawn.story.traits.HasTrait(def), $"{nickname} should not have the trait {traitName}; it still has it");

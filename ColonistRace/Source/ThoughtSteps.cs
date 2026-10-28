@@ -42,6 +42,36 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(label.IndexOf(text, System.StringComparison.OrdinalIgnoreCase) >= 0, $"{nickname}'s thought {thoughtName} label should contain \"{text}\"; it is \"{label}\"");
         }
 
+        /// <summary>
+        /// Asserts the description of a colonist's thought (the current stage's text, as the mood tab's tooltip shows it, with {PAWN_...} and gender
+        /// switches resolved for THIS colonist) equals the text, ignoring case. For a text that changes with the colonist's gender, give the colonist
+        /// the gender first (<c>gender is neutral</c> for none). Written 2026-10-28 for PreciousStonesAndJewelryRenew. NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} thought {string} description reads {string}")]
+        public void ThoughtDescriptionReads(PickleContext ctx, string nickname, string thoughtName, string text)
+        {
+            string description = ThoughtDescription(ctx, nickname, thoughtName);
+            ctx.Assert(string.Equals(description, text, System.StringComparison.OrdinalIgnoreCase), $"{nickname}'s thought {thoughtName} description should read \"{text}\"; it reads \"{description}\"");
+        }
+
+        /// <summary>The same, asserting the description contains the text (ignoring case).</summary>
+        [Then("Nelim's Pickle Tools: {string} thought {string} description contains {string}")]
+        public void ThoughtDescriptionContains(PickleContext ctx, string nickname, string thoughtName, string text)
+        {
+            string description = ThoughtDescription(ctx, nickname, thoughtName);
+            ctx.Assert(description.IndexOf(text, System.StringComparison.OrdinalIgnoreCase) >= 0, $"{nickname}'s thought {thoughtName} description should contain \"{text}\"; it reads \"{description}\"");
+        }
+
+        private static string ThoughtDescription(PickleContext ctx, string nickname, string thoughtName)
+        {
+            var all = Thoughts(ColonistLookup.Require(nickname));
+            Thought found = all.FirstOrDefault(t => t.def.defName == thoughtName);
+            ctx.Require(found != null, $"{nickname} has no thought {thoughtName}; it has {string.Join(", ", all.Select(t => t.def.defName))}");
+            string description = found.Description;
+            Log.Message($"[thoughts] {nickname} {thoughtName}: description \"{description}\"");
+            return description;
+        }
+
         private static string ThoughtLabel(PickleContext ctx, string nickname, string thoughtName)
         {
             var all = Thoughts(ColonistLookup.Require(nickname));

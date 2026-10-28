@@ -50,7 +50,31 @@ namespace Nelim.PickleTools.ColonistRace
         /// <param name="nickname">the colonist's nickname</param>
         /// <param name="gender"><c>male</c>, <c>female</c>, <c>neutral</c>, <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c> (the last five are Gender.None); any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} gender is {word}")]
-        public void SetGender(PickleContext ctx, string nickname, string gender)
+        public void SetGender(PickleContext ctx, string nickname, string gender) => SetGenderCore(ctx, nickname, gender);
+
+        // What a saved colonist was before a step changed its gender (and the body and head that follow it): put back after the scenario, for a suite that reuses the fixture's colonists by name (2026-10-28, PSaJ).
+        private static readonly System.Collections.Generic.Dictionary<Pawn, (Gender Gender, BodyTypeDef Body, HeadTypeDef Head)> GenderBefore =
+            new System.Collections.Generic.Dictionary<Pawn, (Gender, BodyTypeDef, HeadTypeDef)>();
+
+        [AfterScenario]
+        public void RestoreGenders()
+        {
+            foreach (var pair in GenderBefore.ToList())
+            {
+                Pawn pawn = pair.Key;
+                if (!pawn.Destroyed && pawn.story != null)
+                {
+                    pawn.gender = pair.Value.Gender;
+                    pawn.story.bodyType = pair.Value.Body;
+                    pawn.story.headType = pair.Value.Head;
+                    pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+                }
+            }
+
+            GenderBefore.Clear();
+        }
+
+        private void SetGenderCore(PickleContext ctx, string nickname, string gender)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             Gender wanted;
@@ -63,6 +87,7 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no gender to set");
+            if (!GenderBefore.ContainsKey(pawn)) GenderBefore[pawn] = (pawn.gender, pawn.story.bodyType, pawn.story.headType);
             pawn.gender = wanted;
             if (wanted != Gender.None && (pawn.story.bodyType == BodyTypeDefOf.Male || pawn.story.bodyType == BodyTypeDefOf.Female))
             {
