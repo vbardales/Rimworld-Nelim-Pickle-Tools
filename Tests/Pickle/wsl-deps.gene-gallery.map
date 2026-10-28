@@ -34,3 +34,5 @@ lordfelix.HatHairControl 3760821540
 # Camera zoom (2026-10-22, tickets 54d3 and 46b3): SimpleCameraSetting lifts the game bound on the camera root size with its default settings, and the root size stays the drawn size (Camera+ keeps the root size at 11 and remaps it, so the frame steps would no longer compute the picture they name).
 ray1203.SimpleCameraSetting 3232415388
 
+# Added 2026-10-28 (owner, catalogue): Genes Expanded - Skin, the skin genes (GES_Skin_*, Ada has GES_Skin_PaleLavender).
+LazyFridayStudio.GenesExpandedSkin 3214172563

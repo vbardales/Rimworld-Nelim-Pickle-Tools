@@ -28,6 +28,21 @@ for (const b of fs.readFileSync(skinFile, 'utf8').split(/<GeneDef[ >]/).slice(1)
   if (name && c && name.startsWith('Skin_')) skins.push({ name, hex: hex(+c[1], +c[2], +c[3]) });
 }
 
+// Vanilla (Core defs of 1.6, Biotech DLC genes): the 9 melanin skin genes and the 18 hair colour genes; Genes Expanded - Skin (Workshop 3214172563, 2026-10-28, owner: the skin of Ada): GES_Skin_*.
+const colourOf = b => { const c = b.match(/<(?:skinColorBase|skinColorOverride|hairColorOverride)>\(?\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)/); if (!c) return ''; const v = [+c[1], +c[2], +c[3]].map(x => (c[0].includes('.') && x <= 1 ? x * 255 : x)); return hex(...v); };
+function genesOf(file, prefix) {
+  const out = [];
+  for (const b of fs.readFileSync(file, 'utf8').split(/<GeneDef[ >]/).slice(1)) {
+    const name = (b.match(/<defName>([^<]+)</) || [])[1];
+    const h = name && name.startsWith(prefix) ? colourOf(b) : '';
+    if (h) out.push({ name, hex: h });
+  }
+  return out;
+}
+const melanin = genesOf(STEAM + '/common/RimWorld/Data/Core/Defs/GeneDefs/GeneDefs_Endogenes.xml', 'Skin_Melanin');
+const vanillaHair = genesOf(STEAM + '/common/RimWorld/Data/Core/Defs/GeneDefs/GeneDefs_Endogenes.xml', 'Hair_');
+const GES = STEAM + '/workshop/content/294100/3214172563/Versions/1.6/Defs/GeneDefs/Skin/';
+const gesSkins = fs.readdirSync(GES).filter(n => n.endsWith('.xml')).flatMap(n => genesOf(GES + n, 'GES_Skin_'));
 // Seren, from Stardust [Biotech Fork] (Workshop 3726565301, 2026-10-25, owner): skin and hair colour genes, and the look genes (markings, sensors, ears, eyes, body masks).
 const SEREN = STEAM + '/workshop/content/294100/3726565301/1.6/Defs/GeneDefs/';
 function serenGenes(file, colourTag) {
@@ -60,19 +75,22 @@ fs.writeFileSync('ColonistRace/docs/catalogues/genes.md', [
   '',
   '## Skin colours',
   '',
-  `${skins.length} genes. The photograph frames the whole body in underwear, hair removed.`,
+  `${skins.length + melanin.length + gesSkins.length + serenSkins.length} genes. The photograph frames the whole body in underwear, hair removed. Vanilla melanin genes (Skin_Melanin1..9) are the natural human skin tones; Genes Expanded - Skin (Workshop 3214172563) adds ${gesSkins.length} colours.`,
   '',
   '| Mod | Names |',
   '|---|---|',
   row('Biotech', skins),
+  row('Biotech, melanin (vanilla)', melanin),
+  row('Genes Expanded - Skin', gesSkins),
   row('Seren, from Stardust [Biotech Fork]', serenSkins),
   '',
   '## Hair colours',
   '',
-  `${serenHair.length} genes of Seren, from Stardust (Workshop 3726565301). The photograph frames the whole body in underwear with the hairstyle Afro. The colour after # is the RGB of the gene.`,
+  `${vanillaHair.length} vanilla hair colour genes and ${serenHair.length} genes of Seren, from Stardust (Workshop 3726565301). The photograph frames the whole body in underwear with the hairstyle Afro. The colour after # is the RGB of the gene.`,
   '',
   '| Mod | Names |',
   '|---|---|',
+  row('Biotech, vanilla hair colours', vanillaHair),
   row('Seren, from Stardust [Biotech Fork]', serenHair),
   '',
   '## Look genes',
@@ -123,7 +141,16 @@ function scenario(title, baseLines, genes, prefix) {
 const half = Math.ceil(eyes.length / 2);   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
 scenario(`gene-gallery-eyes-1: eye genes 1 to ${half} of ${eyes.length}`, eyeBase, eyes.slice(0, half), 'eyegene');
 scenario(`gene-gallery-eyes-2: eye genes ${half + 1} to ${eyes.length} of ${eyes.length}`, eyeBase, eyes.slice(half), 'eyegene');
-scenario(`gene-gallery-skins-1: the ${skins.length} skin colour genes`, skinBase, skins, 'skingene');
+const allSkins = [...skins, ...melanin, ...gesSkins];
+const skinChunk = Math.ceil(allSkins.length / Math.ceil(allSkins.length / 22));   // 22 shots at most: about 150 s a scenario
+for (let i = 0, k = 1; i < allSkins.length; i += skinChunk, k++)
+  scenario(`gene-gallery-skins-${k}: skin colour genes ${i + 1} to ${Math.min(i + skinChunk, allSkins.length)} of ${allSkins.length}`, skinBase, allSkins.slice(i, i + skinChunk), 'skingene');
+// The vanilla hair colours: the gene, then the colour the genes define (the game does not rewrite the hair colour when a gene is added), hairstyle Afro, shots hairgene-<gene>.
+out.push('  Scenario: gene-gallery-hair-1: vanilla hair colour genes 1 to ' + vanillaHair.length + ' of ' + vanillaHair.length);
+skinBase.forEach(l => out.push('    ' + l));
+out.push(`    And ${PT}"Nelim" hairstyle is "Afro"`);
+for (const g of vanillaHair) [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}"Nelim" hair colour is taken from its genes`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "hairgene-${g.name}"`].forEach(l => out.push('    ' + l));
+out.push('');
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-gene-gallery.feature', out.join('\n'));
 // The Seren photographs need their own mod list (map wsl-deps.seren.map): a separate feature.
 const SP = "Nelim's Pickle Tools: ";
@@ -165,4 +192,4 @@ function maskScenario(who, nick) {
 maskScenario('nelim', 'Nelim');
 maskScenario('man', 'Mannequin');
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-seren-gallery.feature', serenOut.join('\n'));
-console.log(`${eyes.length} eye genes, ${skins.length} skin genes, Seren: ${serenSkins.length} skins, ${serenHair.length} hair, ${serenLooks.length} look genes, ${sn} scenarios`);
+console.log(`${melanin.length} melanin, ${gesSkins.length} GES skins, ${vanillaHair.length} vanilla hair, ${eyes.length} eye genes, ${skins.length} skin genes, Seren: ${serenSkins.length} skins, ${serenHair.length} hair, ${serenLooks.length} look genes, ${sn} scenarios`);
