@@ -48,11 +48,13 @@ const tabs = [
   ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
 ];
 
-// Photograph sheets: img/looks/<kind>/<kind>-<mod>-<page>.jpg grouped by kind, plus the part sheets, the animation sheets and the building tabs.
+// Photograph sheets: img/looks/<NNN>-<kind>-<mod>-<page>.jpg grouped by kind (the word after the number), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 const byKind = {};
-for (const k of fs.readdirSync(looksDir, { withFileTypes: true }).filter(d => d.isDirectory() && d.name !== 'tiles').map(d => d.name).sort())
-  byKind[k] = fs.readdirSync(path.join(looksDir, k)).filter(f => /.jpg$/.test(f)).sort().map(f => k + '/' + f);
+for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{3}-.*\.jpg$/.test(f)).sort()) {
+  const k = f.replace(/^[0-9]{3}-/, '').split('-')[0];
+  (byKind[k] = byKind[k] || []).push(f);
+}
 const sheet = f => `<a href="../img/looks/${f}" target="_blank"><img loading="lazy" src="../img/looks/${f}" alt="${f}"><span>${path.basename(f).replace(/.jpg$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))

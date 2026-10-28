@@ -4,7 +4,7 @@ Read on 2026-10-18 from run `20261018-003441-640-4813` (feature `pickletools-loo
 
 ## Colours (135)
 
-Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`colour-core-misc-1`](../img/looks/colour/colour-core-misc-1.jpg), [`colour-core-planning-1`](../img/looks/colour/colour-core-planning-1.jpg), [`colour-core-structure-1`](../img/looks/colour/colour-core-structure-1.jpg), [`colour-core-structure-2`](../img/looks/colour/colour-core-structure-2.jpg), [`colour-core-structure-3`](../img/looks/colour/colour-core-structure-3.jpg), [`colour-odyssey-weapon-1`](../img/looks/colour/colour-odyssey-weapon-1.jpg), [`haircolour-core-1`](../img/looks/haircolour/haircolour-core-1.jpg), [`ideocolour-ideology-1`](../img/looks/ideocolour/ideocolour-ideology-1.jpg), [`ideocolour-ideology-2`](../img/looks/ideocolour/ideocolour-ideology-2.jpg)
+Sheets (hatched tile = not photographed yet, rerun `docs/Make-LookSheets.ps1` when photographs exist): [`colour-core-misc-1`](../img/looks/100-colour-core-misc-1.jpg), [`colour-core-planning-1`](../img/looks/100-colour-core-planning-1.jpg), [`colour-core-structure-1`](../img/looks/100-colour-core-structure-1.jpg), [`colour-core-structure-2`](../img/looks/100-colour-core-structure-2.jpg), [`colour-core-structure-3`](../img/looks/100-colour-core-structure-3.jpg), [`colour-odyssey-weapon-1`](../img/looks/100-colour-odyssey-weapon-1.jpg), [`haircolour-core-1`](../img/looks/020-haircolour-core-1.jpg), [`ideocolour-ideology-1`](../img/looks/110-ideocolour-ideology-1.jpg), [`ideocolour-ideology-2`](../img/looks/110-ideocolour-ideology-2.jpg)
 
 | Mod | Type | Names |
 |---|---|---|

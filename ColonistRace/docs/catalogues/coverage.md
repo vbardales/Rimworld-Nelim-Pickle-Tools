@@ -22,101 +22,101 @@ Generated from the output of `docs/Make-LookSheets.ps1` on 2026-10-23. The conta
 
 ### hair
 
-- [hair-anomaly-1.jpg](../img/looks/hair/hair-anomaly-1.jpg): Anomaly, page 1, 18 of 18
-- [hair-core-1.jpg](../img/looks/hair/hair-core-1.jpg): Core, page 1, 30 of 30
-- [hair-core-2.jpg](../img/looks/hair/hair-core-2.jpg): Core, page 2, 21 of 21
-- [hair-roo-s-hd-hairstyles-1.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-1.jpg): Roo's HD Hairstyles, page 1, 30 of 30
-- [hair-roo-s-hd-hairstyles-2.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-2.jpg): Roo's HD Hairstyles, page 2, 30 of 30
-- [hair-roo-s-hd-hairstyles-3.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-3.jpg): Roo's HD Hairstyles, page 3, 30 of 30
-- [hair-roo-s-hd-hairstyles-4.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-4.jpg): Roo's HD Hairstyles, page 4, 30 of 30
-- [hair-roo-s-hd-hairstyles-5.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-5.jpg): Roo's HD Hairstyles, page 5, 30 of 30
-- [hair-roo-s-hd-hairstyles-6.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-6.jpg): Roo's HD Hairstyles, page 6, 30 of 30
-- [hair-roo-s-hd-hairstyles-7.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-7.jpg): Roo's HD Hairstyles, page 7, 30 of 30
-- [hair-roo-s-hd-hairstyles-8.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-8.jpg): Roo's HD Hairstyles, page 8, 30 of 30
-- [hair-roo-s-hd-hairstyles-9.jpg](../img/looks/hair/hair-roo-s-hd-hairstyles-9.jpg): Roo's HD Hairstyles, page 9, 13 of 13
-- [hair-royalty-1.jpg](../img/looks/hair/hair-royalty-1.jpg): Royalty, page 1, 11 of 11
-- [hair-vanilla-hair-expanded-1.jpg](../img/looks/hair/hair-vanilla-hair-expanded-1.jpg): Vanilla Hair Expanded, page 1, 30 of 30
-- [hair-vanilla-hair-expanded-2.jpg](../img/looks/hair/hair-vanilla-hair-expanded-2.jpg): Vanilla Hair Expanded, page 2, 30 of 30
-- [hair-vanilla-hair-expanded-3.jpg](../img/looks/hair/hair-vanilla-hair-expanded-3.jpg): Vanilla Hair Expanded, page 3, 30 of 30
-- [hair-vanilla-hair-expanded-4.jpg](../img/looks/hair/hair-vanilla-hair-expanded-4.jpg): Vanilla Hair Expanded, page 4, 24 of 24
+- [hair-anomaly-1.jpg](../img/looks/010-hair-anomaly-1.jpg): Anomaly, page 1, 18 of 18
+- [hair-core-1.jpg](../img/looks/010-hair-core-1.jpg): Core, page 1, 30 of 30
+- [hair-core-2.jpg](../img/looks/010-hair-core-2.jpg): Core, page 2, 21 of 21
+- [hair-roo-s-hd-hairstyles-1.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-1.jpg): Roo's HD Hairstyles, page 1, 30 of 30
+- [hair-roo-s-hd-hairstyles-2.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-2.jpg): Roo's HD Hairstyles, page 2, 30 of 30
+- [hair-roo-s-hd-hairstyles-3.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-3.jpg): Roo's HD Hairstyles, page 3, 30 of 30
+- [hair-roo-s-hd-hairstyles-4.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-4.jpg): Roo's HD Hairstyles, page 4, 30 of 30
+- [hair-roo-s-hd-hairstyles-5.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-5.jpg): Roo's HD Hairstyles, page 5, 30 of 30
+- [hair-roo-s-hd-hairstyles-6.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-6.jpg): Roo's HD Hairstyles, page 6, 30 of 30
+- [hair-roo-s-hd-hairstyles-7.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-7.jpg): Roo's HD Hairstyles, page 7, 30 of 30
+- [hair-roo-s-hd-hairstyles-8.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-8.jpg): Roo's HD Hairstyles, page 8, 30 of 30
+- [hair-roo-s-hd-hairstyles-9.jpg](../img/looks/010-hair-roo-s-hd-hairstyles-9.jpg): Roo's HD Hairstyles, page 9, 13 of 13
+- [hair-royalty-1.jpg](../img/looks/010-hair-royalty-1.jpg): Royalty, page 1, 11 of 11
+- [hair-vanilla-hair-expanded-1.jpg](../img/looks/010-hair-vanilla-hair-expanded-1.jpg): Vanilla Hair Expanded, page 1, 30 of 30
+- [hair-vanilla-hair-expanded-2.jpg](../img/looks/010-hair-vanilla-hair-expanded-2.jpg): Vanilla Hair Expanded, page 2, 30 of 30
+- [hair-vanilla-hair-expanded-3.jpg](../img/looks/010-hair-vanilla-hair-expanded-3.jpg): Vanilla Hair Expanded, page 3, 30 of 30
+- [hair-vanilla-hair-expanded-4.jpg](../img/looks/010-hair-vanilla-hair-expanded-4.jpg): Vanilla Hair Expanded, page 4, 24 of 24
 
 ### beard
 
-- [beard-biotech-1.jpg](../img/looks/beard/beard-biotech-1.jpg): Biotech, page 1, 0 of 10
-- [beard-core-1.jpg](../img/looks/beard/beard-core-1.jpg): Core, page 1, 0 of 30
-- [beard-core-2.jpg](../img/looks/beard/beard-core-2.jpg): Core, page 2, 0 of 1
+- [beard-biotech-1.jpg](../img/looks/030-beard-biotech-1.jpg): Biotech, page 1, 0 of 10
+- [beard-core-1.jpg](../img/looks/030-beard-core-1.jpg): Core, page 1, 0 of 30
+- [beard-core-2.jpg](../img/looks/030-beard-core-2.jpg): Core, page 2, 0 of 1
 
 ### head
 
-- [head-anomaly-1.jpg](../img/looks/head/head-anomaly-1.jpg): Anomaly, page 1, 8 of 10
-- [head-biotech-1.jpg](../img/looks/head/head-biotech-1.jpg): Biotech, page 1, 12 of 13
-- [head-core-1.jpg](../img/looks/head/head-core-1.jpg): Core, page 1, 8 of 14
+- [head-anomaly-1.jpg](../img/looks/040-head-anomaly-1.jpg): Anomaly, page 1, 8 of 10
+- [head-biotech-1.jpg](../img/looks/040-head-biotech-1.jpg): Biotech, page 1, 12 of 13
+- [head-core-1.jpg](../img/looks/040-head-core-1.jpg): Core, page 1, 8 of 14
 
 ### facetattoo
 
-- [facetattoo-core-1.jpg](../img/looks/facetattoo/facetattoo-core-1.jpg): Core, page 1, 1 of 1
-- [facetattoo-ideology-1.jpg](../img/looks/facetattoo/facetattoo-ideology-1.jpg): Ideology, page 1, 13 of 13
-- [facetattoo-tattoos-expanded-1.jpg](../img/looks/facetattoo/facetattoo-tattoos-expanded-1.jpg): Tattoos Expanded, page 1, 1 of 1
-- [facetattoo-tribal-tattoos-1.jpg](../img/looks/facetattoo/facetattoo-tribal-tattoos-1.jpg): Tribal Tattoos, page 1, 25 of 25
+- [facetattoo-core-1.jpg](../img/looks/050-facetattoo-core-1.jpg): Core, page 1, 1 of 1
+- [facetattoo-ideology-1.jpg](../img/looks/050-facetattoo-ideology-1.jpg): Ideology, page 1, 13 of 13
+- [facetattoo-tattoos-expanded-1.jpg](../img/looks/050-facetattoo-tattoos-expanded-1.jpg): Tattoos Expanded, page 1, 1 of 1
+- [facetattoo-tribal-tattoos-1.jpg](../img/looks/050-facetattoo-tribal-tattoos-1.jpg): Tribal Tattoos, page 1, 25 of 25
 
 ### bodytattoo
 
-- [bodytattoo-core-1.jpg](../img/looks/bodytattoo/bodytattoo-core-1.jpg): Core, page 1, 1 of 1
-- [bodytattoo-ideology-1.jpg](../img/looks/bodytattoo/bodytattoo-ideology-1.jpg): Ideology, page 1, 16 of 16
-- [bodytattoo-tattoos-expanded-1.jpg](../img/looks/bodytattoo/bodytattoo-tattoos-expanded-1.jpg): Tattoos Expanded, page 1, 30 of 30
-- [bodytattoo-tattoos-expanded-2.jpg](../img/looks/bodytattoo/bodytattoo-tattoos-expanded-2.jpg): Tattoos Expanded, page 2, 12 of 12
-- [bodytattoo-tribal-tattoos-1.jpg](../img/looks/bodytattoo/bodytattoo-tribal-tattoos-1.jpg): Tribal Tattoos, page 1, 14 of 14
+- [bodytattoo-core-1.jpg](../img/looks/060-bodytattoo-core-1.jpg): Core, page 1, 1 of 1
+- [bodytattoo-ideology-1.jpg](../img/looks/060-bodytattoo-ideology-1.jpg): Ideology, page 1, 16 of 16
+- [bodytattoo-tattoos-expanded-1.jpg](../img/looks/060-bodytattoo-tattoos-expanded-1.jpg): Tattoos Expanded, page 1, 30 of 30
+- [bodytattoo-tattoos-expanded-2.jpg](../img/looks/060-bodytattoo-tattoos-expanded-2.jpg): Tattoos Expanded, page 2, 12 of 12
+- [bodytattoo-tribal-tattoos-1.jpg](../img/looks/060-bodytattoo-tribal-tattoos-1.jpg): Tribal Tattoos, page 1, 14 of 14
 
 ### garment
 
-- [garment-anomaly-1.jpg](../img/looks/garment/garment-anomaly-1.jpg): Anomaly, page 1, 7 of 7
-- [garment-biotech-1.jpg](../img/looks/garment/garment-biotech-1.jpg): Biotech, page 1, 7 of 12
-- [garment-core-1.jpg](../img/looks/garment/garment-core-1.jpg): Core, page 1, 23 of 23
-- [garment-ideology-1.jpg](../img/looks/garment/garment-ideology-1.jpg): Ideology, page 1, 2 of 2
-- [garment-odyssey-1.jpg](../img/looks/garment/garment-odyssey-1.jpg): Odyssey, page 1, 3 of 4
-- [garment-royalty-1.jpg](../img/looks/garment/garment-royalty-1.jpg): Royalty, page 1, 17 of 17
+- [garment-anomaly-1.jpg](../img/looks/080-garment-anomaly-1.jpg): Anomaly, page 1, 7 of 7
+- [garment-biotech-1.jpg](../img/looks/080-garment-biotech-1.jpg): Biotech, page 1, 7 of 12
+- [garment-core-1.jpg](../img/looks/080-garment-core-1.jpg): Core, page 1, 23 of 23
+- [garment-ideology-1.jpg](../img/looks/080-garment-ideology-1.jpg): Ideology, page 1, 2 of 2
+- [garment-odyssey-1.jpg](../img/looks/080-garment-odyssey-1.jpg): Odyssey, page 1, 3 of 4
+- [garment-royalty-1.jpg](../img/looks/080-garment-royalty-1.jpg): Royalty, page 1, 17 of 17
 
 ### hat
 
-- [hat-anomaly-1.jpg](../img/looks/hat/hat-anomaly-1.jpg): Anomaly, page 1, 2 of 2
-- [hat-biotech-1.jpg](../img/looks/hat/hat-biotech-1.jpg): Biotech, page 1, 6 of 7
-- [hat-core-1.jpg](../img/looks/hat/hat-core-1.jpg): Core, page 1, 13 of 13
-- [hat-ideology-1.jpg](../img/looks/hat/hat-ideology-1.jpg): Ideology, page 1, 11 of 11
-- [hat-odyssey-1.jpg](../img/looks/hat/hat-odyssey-1.jpg): Odyssey, page 1, 1 of 1
-- [hat-royalty-1.jpg](../img/looks/hat/hat-royalty-1.jpg): Royalty, page 1, 13 of 13
+- [hat-anomaly-1.jpg](../img/looks/090-hat-anomaly-1.jpg): Anomaly, page 1, 2 of 2
+- [hat-biotech-1.jpg](../img/looks/090-hat-biotech-1.jpg): Biotech, page 1, 6 of 7
+- [hat-core-1.jpg](../img/looks/090-hat-core-1.jpg): Core, page 1, 13 of 13
+- [hat-ideology-1.jpg](../img/looks/090-hat-ideology-1.jpg): Ideology, page 1, 11 of 11
+- [hat-odyssey-1.jpg](../img/looks/090-hat-odyssey-1.jpg): Odyssey, page 1, 1 of 1
+- [hat-royalty-1.jpg](../img/looks/090-hat-royalty-1.jpg): Royalty, page 1, 13 of 13
 
 ### haircolour
 
-- [haircolour-core-1.jpg](../img/looks/haircolour/haircolour-core-1.jpg): Core, page 1, 8 of 8
+- [haircolour-core-1.jpg](../img/looks/020-haircolour-core-1.jpg): Core, page 1, 8 of 8
 
 ### ideocolour
 
-- [ideocolour-ideology-1.jpg](../img/looks/ideocolour/ideocolour-ideology-1.jpg): Ideology, page 1, 30 of 30
-- [ideocolour-ideology-2.jpg](../img/looks/ideocolour/ideocolour-ideology-2.jpg): Ideology, page 2, 4 of 4
+- [ideocolour-ideology-1.jpg](../img/looks/110-ideocolour-ideology-1.jpg): Ideology, page 1, 30 of 30
+- [ideocolour-ideology-2.jpg](../img/looks/110-ideocolour-ideology-2.jpg): Ideology, page 2, 4 of 4
 
 ### colour
 
-- [colour-core-misc-1.jpg](../img/looks/colour/colour-core-misc-1.jpg): Core Misc, page 1, 1 of 1
-- [colour-core-planning-1.jpg](../img/looks/colour/colour-core-planning-1.jpg): Core Planning, page 1, 9 of 9
-- [colour-core-structure-1.jpg](../img/looks/colour/colour-core-structure-1.jpg): Core Structure, page 1, 30 of 30
-- [colour-core-structure-2.jpg](../img/looks/colour/colour-core-structure-2.jpg): Core Structure, page 2, 30 of 30
-- [colour-core-structure-3.jpg](../img/looks/colour/colour-core-structure-3.jpg): Core Structure, page 3, 3 of 3
-- [colour-odyssey-weapon-1.jpg](../img/looks/colour/colour-odyssey-weapon-1.jpg): Odyssey Weapon, page 1, 20 of 20
+- [colour-core-misc-1.jpg](../img/looks/100-colour-core-misc-1.jpg): Core Misc, page 1, 1 of 1
+- [colour-core-planning-1.jpg](../img/looks/100-colour-core-planning-1.jpg): Core Planning, page 1, 9 of 9
+- [colour-core-structure-1.jpg](../img/looks/100-colour-core-structure-1.jpg): Core Structure, page 1, 30 of 30
+- [colour-core-structure-2.jpg](../img/looks/100-colour-core-structure-2.jpg): Core Structure, page 2, 30 of 30
+- [colour-core-structure-3.jpg](../img/looks/100-colour-core-structure-3.jpg): Core Structure, page 3, 3 of 3
+- [colour-odyssey-weapon-1.jpg](../img/looks/100-colour-odyssey-weapon-1.jpg): Odyssey Weapon, page 1, 20 of 20
 
 ### body
 
-- [body-all-1.jpg](../img/looks/body/body-all-1.jpg): all, page 1, 8 of 10
+- [body-all-1.jpg](../img/looks/070-body-all-1.jpg): all, page 1, 8 of 10
 
 ### weapon
 
-- [weapon-anomaly-ranged-1.jpg](../img/looks/weapon/weapon-anomaly-ranged-1.jpg): Anomaly Ranged, page 1, 0 of 4
-- [weapon-biotech-ranged-1.jpg](../img/looks/weapon/weapon-biotech-ranged-1.jpg): Biotech Ranged, page 1, 0 of 12
-- [weapon-core-melee-1.jpg](../img/looks/weapon/weapon-core-melee-1.jpg): Core Melee, page 1, 0 of 12
-- [weapon-core-ranged-1.jpg](../img/looks/weapon/weapon-core-ranged-1.jpg): Core Ranged, page 1, 0 of 30
-- [weapon-core-ranged-2.jpg](../img/looks/weapon/weapon-core-ranged-2.jpg): Core Ranged, page 2, 0 of 9
-- [weapon-odyssey-melee-1.jpg](../img/looks/weapon/weapon-odyssey-melee-1.jpg): Odyssey Melee, page 1, 0 of 2
-- [weapon-odyssey-ranged-1.jpg](../img/looks/weapon/weapon-odyssey-ranged-1.jpg): Odyssey Ranged, page 1, 0 of 16
-- [weapon-royalty-melee-1.jpg](../img/looks/weapon/weapon-royalty-melee-1.jpg): Royalty Melee, page 1, 0 of 9
+- [weapon-anomaly-ranged-1.jpg](../img/looks/120-weapon-anomaly-ranged-1.jpg): Anomaly Ranged, page 1, 0 of 4
+- [weapon-biotech-ranged-1.jpg](../img/looks/120-weapon-biotech-ranged-1.jpg): Biotech Ranged, page 1, 0 of 12
+- [weapon-core-melee-1.jpg](../img/looks/120-weapon-core-melee-1.jpg): Core Melee, page 1, 0 of 12
+- [weapon-core-ranged-1.jpg](../img/looks/120-weapon-core-ranged-1.jpg): Core Ranged, page 1, 0 of 30
+- [weapon-core-ranged-2.jpg](../img/looks/120-weapon-core-ranged-2.jpg): Core Ranged, page 2, 0 of 9
+- [weapon-odyssey-melee-1.jpg](../img/looks/120-weapon-odyssey-melee-1.jpg): Odyssey Melee, page 1, 0 of 2
+- [weapon-odyssey-ranged-1.jpg](../img/looks/120-weapon-odyssey-ranged-1.jpg): Odyssey Ranged, page 1, 0 of 16
+- [weapon-royalty-melee-1.jpg](../img/looks/120-weapon-royalty-melee-1.jpg): Royalty Melee, page 1, 0 of 9
 
 ## Not photographed on purpose
 

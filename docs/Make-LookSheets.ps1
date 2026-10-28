@@ -1,12 +1,12 @@
 <#
 .SYNOPSIS
-  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<kind>/<kind>-<mod>-<page>.jpg, in the order of the
+  Builds the contact sheets of the look catalogues into ColonistRace/docs/img/looks/<NNN>-<kind>-<mod>-<page>.jpg, in the order of the
   tables of ColonistRace/docs/CATALOGUE-*.md: hairstyles, beards, head types, face and body tattoos, garments, hair and ideology colours,
   the other colours (flat swatches, nothing to photograph), body types (Fat, Hulk, Thin on both sexes), weapons.
   A value with no photograph yet gets an empty hatched tile of the same size with its name and "not photographed": rerun the script
   once the photographs exist and the tile fills. Recipes (craftable items) have no photograph: no sheet.
   Photographs: every Tests/Pickle/Inbox and Evidence/look-gallery*/screenshots/manual--<prefix>-<name>--step0.png (newest wins).
-  Each tile is also cut to ColonistRace/docs/img/looks/tiles/<kind>/ (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
+  Each tile is also cut to ColonistRace/docs/img/looks/tiles/<NNN>-<key>.jpg (200 px) so the sheets survive the pruning of the run folders; a value with no photograph reads its cached tile.
   Prefixes: hair, beard, head, facetattoo, bodytattoo, garment, haircolour, ideocolour, body (body-<type> or body-<type>-female|male), weapon.
 #>
 Add-Type -AssemblyName System.Drawing
@@ -16,12 +16,19 @@ $docs = Join-Path $root 'ColonistRace/docs/catalogues'
 New-Item -ItemType Directory -Force $out | Out-Null
 $tileDir = Join-Path $out 'tiles'
 New-Item -ItemType Directory -Force $tileDir | Out-Null
-# Tiles and sheets live in one subfolder per kind (the part of the name before its first dash): looks/<kind>/ and looks/tiles/<kind>/.
+# No subfolders (owner, 2026-10-28): sheets are looks/<NNN>-<kind>-<mod>-<page>.jpg and tiles looks/tiles/<NNN>-<key>.jpg. NNN groups a kind (the part of the name before its first dash;
+# Seren face parts have their own numbers), tens apart so a new kind slots in. Make-CatalogueHtml.js reads the kind back from the file name.
+$kindNumber = @{ hair = '010'; haircolour = '020'; beard = '030'; head = '040'; facetattoo = '050'; bodytattoo = '060'; body = '070'; bodymask = '075'; garment = '080'; hat = '090'; colour = '100'; ideocolour = '110'
+    weapon = '120'; eyegene = '130'; skingene = '140'; hairgene = '150'; lookgene = '160'; weather = '170'; animalapparel = '180'
+    serenhead = '200'; serenlid = '210'; sereneyeball = '220'; serenbrow = '230'; serenmouth = '240'; serenskin = '250'; serenvteskin = '260'; serenxeno = '270'; seren = '200' }
+function Get-KindNumber($name) {
+    $k = $name.Split('-')[0]
+    if (-not $kindNumber.ContainsKey($k)) { throw "no number for the kind '$k': add it to the kindNumber table in Make-LookSheets.ps1" }
+    $kindNumber[$k]
+}
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
-    $dir = Join-Path $tileDir $name.Split('-')[0]
-    New-Item -ItemType Directory -Force $dir | Out-Null
-    Join-Path $dir ($name + '.jpg')
+    Join-Path $tileDir ((Get-KindNumber $name) + '-' + $name + '.jpg')
 }
 
 $files = @{}
@@ -108,8 +115,7 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
             $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, $box)
         }
         $g.Dispose()
-        $kindDir = Join-Path $out $kind; New-Item -ItemType Directory -Force $kindDir | Out-Null
-        $path = Join-Path $kindDir ("{0}-{1}-{2}.jpg" -f $kind, $slug, ($pg + 1))
+        $path = Join-Path $out ("{0}-{1}-{2}-{3}.jpg" -f (Get-KindNumber $kind), $kind, $slug, ($pg + 1))
         $bmp.Save($path, $enc, $p); $bmp.Dispose()
         Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }
