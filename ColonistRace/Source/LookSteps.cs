@@ -54,7 +54,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// Asserts the hair colour the game draws for a colonist (<c>story.HairColor</c>: what a hair colour gene or the hair colour step gave) is this RGB, each channel within 3 of 255.
         /// A pure read: it sets nothing, so it tells whether a gene took effect. The failure prints the colour found. Written 2026-10-28 for SanctuaryBacklot (colours by genes, no rgb).
         /// </summary>
-        [Then("Nelim's Pickle Tools: {string} hair colour reads rgb ({int}, {int}, {int})")]
+        [Then("Nelim's Pickle Tools: {string} hair colour reads rgb \({int}, {int}, {int}\)")]
         public void HairColourReads(PickleContext ctx, string nickname, int r, int g, int b)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
@@ -63,7 +63,7 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>The same for the skin colour the game draws (<c>story.SkinColor</c>: the override if one is set, else the colour of the skin genes, then hediff changes).</summary>
-        [Then("Nelim's Pickle Tools: {string} skin colour reads rgb ({int}, {int}, {int})")]
+        [Then("Nelim's Pickle Tools: {string} skin colour reads rgb \({int}, {int}, {int}\)")]
         public void SkinColourReads(PickleContext ctx, string nickname, int r, int g, int b)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
