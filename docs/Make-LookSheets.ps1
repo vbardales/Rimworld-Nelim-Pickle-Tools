@@ -167,11 +167,11 @@ Run-Job 'ideocolour' 'ideocolour' @($col | Where-Object { $_.group -eq 'Ideo' })
 $flat = @($col | Where-Object { $_.group -in 'Misc', 'Planning', 'Structure', 'Weapon' })
 Run-Job 'colour' 'colour' $flat $body $true $true
 
-# Body types: Fat, Hulk, Thin differ by sex with Female Body Variants, so one tile per sex for them.
+# Body types: Fat, Hulk, Thin (and Child, a boy and a girl, 2026-10-28) differ by sex with Female Body Variants, so one tile per sex for them.
 $bt = Read-Section $looks '^## Body types'
 $tiles = @()
 foreach ($b in $bt) {
-    if ($b.name -in 'Fat', 'Hulk', 'Thin') { foreach ($sx in 'female', 'male') { $tiles += [pscustomobject]@{ key = "body-$($b.name)-$sx"; name = "$($b.name) ($sx)"; hex = '' } } }
+    if ($b.name -in 'Fat', 'Hulk', 'Thin', 'Child') { foreach ($sx in 'female', 'male') { $tiles += [pscustomobject]@{ key = "body-$($b.name)-$sx"; name = "$($b.name) ($sx)"; hex = '' } } }
     else { $tiles += [pscustomobject]@{ key = "body-$($b.name)"; name = $b.name; hex = '' } }
 }
 Build-Sheets 'body' 'all' $tiles $body $false

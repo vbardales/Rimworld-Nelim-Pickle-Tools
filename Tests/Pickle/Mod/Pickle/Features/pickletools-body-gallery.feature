@@ -94,9 +94,34 @@ Feature: Every body type, one photograph per value and sex (gallery of the look 
     And Nelim's Pickle Tools: "Soren" is undressed
     And Nelim's Pickle Tools: "Soren" wears "UnderWhere_Loincloth"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "body-Child"
+    And I take a screenshot "body-Child-male"
     When Nelim's Pickle Tools: "Soren" gets back the clothes it had
     When "Soren" is 0 years old
     And Nelim's Pickle Tools: "Soren" body type is Baby
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "body-Baby"
+
+  Scenario: body-gallery-4: a girl child (Lyra) in a loincloth
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I let 10 ticks pass
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And a colonist "Lyra" exists
+    And "Lyra" is 8 years old
+    And Nelim's Pickle Tools: "Lyra" gender is female
+    And Nelim's Pickle Tools: "Lyra" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Lyra" face kit is "neutral"
+    And Nelim's Pickle Tools: "Lyra" facial expression is "normal"
+    And Nelim's Pickle Tools: "Lyra" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Lyra" body type is Child
+    And Nelim's Pickle Tools: "Lyra" is undressed
+    And Nelim's Pickle Tools: "Lyra" wears "UnderWhere_Loincloth"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "body-Child-female"
