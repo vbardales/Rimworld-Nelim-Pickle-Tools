@@ -21,7 +21,7 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
 $kindBlock = [ordered]@{ hair = 0; haircolour = 1; beard = 2; head = 3; facetattoo = 4; bodytattoo = 5; body = 6; bodymask = 7; garment = 8; hat = 9; colour = 10; ideocolour = 11
     weapon = 12; eyegene = 13; skingene = 14; hairgene = 15; lookgene = 16; weather = 17; animalapparel = 18
-    serenhead = 19; serenlid = 20; sereneyeball = 21; serenbrow = 22; serenmouth = 23; serenskin = 24; serenvteskin = 25; serenxeno = 26; seren = 19 }
+    serenhead = 19; serenlid = 20; sereneyeball = 21; serenbrow = 22; serenmouth = 23; serenskin = 24; serenvteskin = 25; serenxeno = 26; beardcolour = 27; seren = 19 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
@@ -33,7 +33,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
-    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages' }
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
@@ -142,7 +142,7 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
 }
 
 $looks = 'looks.md'
-Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $face $false $false
+Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $face $false $false
 $tat = Read-Section $looks '^## Tattoos'
@@ -162,7 +162,9 @@ Run-Job 'garment' 'garment' @($app | Where-Object { -not (& $isHat) }) $body $fa
 Run-Job 'hat' 'hat' @($app | Where-Object { & $isHat }) $face $false $false
 
 $col = Read-Section 'colours.md' '^## Colours'
-Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $face $false $false
+Run-Job 'haircolour' 'haircolour' @($col | Where-Object { $_.group -eq 'Hair' }) $faceTight $false $false
+# The same colours on a man with a beard (feature pickletools-beard-colour-gallery, shots beardcolour-<name>; a beard is drawn in the hair colour).
+Run-Job 'beardcolour' 'beardcolour' @($col | Where-Object { $_.group -eq 'Hair' }) $faceTight $false $false
 Run-Job 'ideocolour' 'ideocolour' @($col | Where-Object { $_.group -eq 'Ideo' }) $body $false $false
 $flat = @($col | Where-Object { $_.group -in 'Misc', 'Planning', 'Structure', 'Weapon' })
 Run-Job 'colour' 'colour' $flat $body $true $true

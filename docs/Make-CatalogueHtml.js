@@ -60,7 +60,7 @@ const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
 const kindBlock = { hair: 0, haircolour: 1, beard: 2, head: 3, facetattoo: 4, bodytattoo: 5, body: 6, bodymask: 7, garment: 8, hat: 9, colour: 10, ideocolour: 11,
   weapon: 12, eyegene: 13, skingene: 14, hairgene: 15, lookgene: 16, weather: 17, animalapparel: 18,
-  serenhead: 19, serenlid: 20, sereneyeball: 21, serenbrow: 22, serenmouth: 23, serenskin: 24, serenvteskin: 25, serenxeno: 26 };
+  serenhead: 19, serenlid: 20, sereneyeball: 21, serenbrow: 22, serenmouth: 23, serenskin: 24, serenvteskin: 25, serenxeno: 26, beardcolour: 27 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.jpg$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
@@ -80,7 +80,7 @@ const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
   return files.length ? '<div class="sheets wide">' + files.map(sheet).join('') + '</div>' : '';
 };
-const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
+const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard', 'beardcolour']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['haircolour', 'ideocolour', 'colour']], [/^Weapons/, ['weapon']],
   [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, text) => {
