@@ -29,3 +29,6 @@ nelim.adaptivestorageneolithic path:AdaptiveStorageNeolithicRenew/Mod
 nelim.foodcourt path:FoodCourt/Mod
 ferny.betterarchitect 3563882422
 com.bymarcin.architecticons 1195427067
+# TEMP until the building catalogue run is read. Added 2026-10-29 at the owner request ("catalogue :"): Vanilla Furniture Expanded - Medical Module (medical furniture; needs Harmony and the Vanilla Expanded Framework, line first).
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+VanillaExpanded.VFEMedical 1718191613
