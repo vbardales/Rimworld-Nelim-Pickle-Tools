@@ -128,3 +128,5 @@ TheVanityProject.FemaleAnimeHair 3393734237
 # TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (she sent the EBSG Framework link): Det's Xenotypes - Brawnum and its framework (Brawnum needs Biotech, EBSG Framework and the framework above).
 EBSG.Framework 3112549163
 det.brawnum 3429572581
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("general textures aussi"): General Textures Collection (30 retextures). The catalogue run LISTS defNames and changes none, so a retexture does no harm here; it WOULD change the look of any gallery photographed with it: never put it in a gallery map.
+Kas.GeneralCollection 3789119336
