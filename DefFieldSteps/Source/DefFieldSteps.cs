@@ -242,6 +242,52 @@ namespace Nelim.PickleTools.DefFields
             return race.AllRecipes.Where(r => r.IsSurgery).Select(r => r.defName).OrderBy(n => n, StringComparer.Ordinal).ToList();
         }
 
+
+        /// <summary>Asserts a def of that type and name is loaded (any def type the game knows, such as StyleCategoryDef or ThingStyleDef). Written 2026-10-29 for PropsAsStyle. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} is loaded")]
+        public void DefIsLoaded(PickleContext ctx, string defName, string typeName) => Find(ctx, defName, typeName);
+
+        /// <summary>The negative twin: no def of that type and name is loaded (an optional source mod is absent). Fails when the type is not a def type the game knows. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} is not loaded")]
+        public void DefIsNotLoaded(PickleContext ctx, string defName, string typeName)
+        {
+            Type type = GenTypes.GetTypeInAnyAssembly(typeName);
+            ctx.Require(type != null && typeof(Def).IsAssignableFrom(type), $"'{typeName}' is not a def type the game knows (a name such as StyleCategoryDef or ThingDef)");
+            ctx.Assert(GenDefDatabase.GetDefSilentFail(type, defName, false) == null, $"a {type.Name} named '{defName}' is loaded, and it should not be");
+        }
+
+        /// <summary>Asserts an ideoligion style category gives a thing the style: its <c>thingDefStyles</c> holds the pair (thing, style). Written 2026-10-29 for PropsAsStyle. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the style category {string} gives the thing {string} the style {string}")]
+        public void CategoryGivesStyle(PickleContext ctx, string categoryName, string thingName, string styleName)
+        {
+            var category = DefDatabase<StyleCategoryDef>.GetNamedSilentFail(categoryName);
+            ctx.Require(category != null, $"no StyleCategoryDef named '{categoryName}'");
+            var thing = DefDatabase<ThingDef>.GetNamedSilentFail(thingName);
+            ctx.Require(thing != null, $"no ThingDef named '{thingName}'");
+            var style = DefDatabase<ThingStyleDef>.GetNamedSilentFail(styleName);
+            ctx.Require(style != null, $"no ThingStyleDef named '{styleName}'");
+            ctx.Assert(category.thingDefStyles != null && category.thingDefStyles.Any(s => s.ThingDef == thing && s.StyleDef == style),
+                $"category '{categoryName}' does not give '{thingName}' the style '{styleName}'; its styles for that thing: "
+                + string.Join(", ", (category.thingDefStyles ?? new System.Collections.Generic.List<ThingDefStyle>()).Where(s => s.ThingDef == thing).Select(s => s.StyleDef?.defName ?? "(null)")));
+        }
+
+        /// <summary>
+        /// Asserts the graphic a style gives a thing resolves: the graphic is built from the style's own graphicData (or the thing's, when the style has
+        /// none) and its material is not the game's pink bad-texture material. A def-level read: no thing is placed. Written 2026-10-29 for PropsAsStyle. Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the style {string} of the thing {string} draws a texture that resolves")]
+        public void StyleGraphicResolves(PickleContext ctx, string styleName, string thingName)
+        {
+            var style = DefDatabase<ThingStyleDef>.GetNamedSilentFail(styleName);
+            ctx.Require(style != null, $"no ThingStyleDef named '{styleName}'");
+            var thing = DefDatabase<ThingDef>.GetNamedSilentFail(thingName);
+            ctx.Require(thing != null, $"no ThingDef named '{thingName}'");
+            Graphic graphic = style.graphicData != null ? style.graphicData.Graphic : thing.graphic;
+            ctx.Assert(graphic != null, $"style '{styleName}' of '{thingName}' builds no graphic");
+            ctx.Assert(graphic.MatSingle != null && graphic.MatSingle != BaseContent.BadMat,
+                $"style '{styleName}' of '{thingName}' draws the pink bad-texture material (texPath '{graphic.path}')");
+        }
+
         private static Def Find(PickleContext ctx, string defName, string typeName)
         {
             Type type = GenTypes.GetTypeInAnyAssembly(typeName);
