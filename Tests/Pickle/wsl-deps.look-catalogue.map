@@ -137,3 +137,6 @@ Mlie.MercerBackpacksNanoSuit 2014570220
 wool.UselessClothes 3044882634
 # TEMP until the catalogue run is read. Added 2026-10-29 at the owner request: Flak Dusters (duster and flak jacket coat, 1.4 to 1.7). Retextured Apparel and Skin Tight Recon still not downloaded.
 VerriganHolmes.FlakDusters 2563894152
+# TEMP until the catalogue run is read. Added 2026-10-29 after the owner subscribed again (she says both work in 1.6): Retextured Apparel (retextures vanilla clothes, heads and bodies: load before Facial Animation for a gallery, never in a gallery map) and Skin Tight Recon. NOT in ticket 11c1 (its map was read at launch): a second pass.
+tenthwit.apparel 2042613316
+Jayrizzel06.skintightrecon 2900128137
