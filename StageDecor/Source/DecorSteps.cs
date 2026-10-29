@@ -89,6 +89,118 @@ namespace Nelim.PickleTools.StageDecor
                 $"the {thingDefName} at ({x}, {z}) draws the pink bad-texture material (texPath '{graphic.path}', style '{thing.StyleDef?.defName ?? "none"}')");
         }
 
+
+        private static readonly Dictionary<string, int> RememberedHitPoints = new Dictionary<string, int>();
+
+        /// <summary>
+        /// Asserts how many things a storage building holds (the things lying in its slot group, one per stack, not the sum of the stacks). The building is
+        /// found by def at a cell of its footprint. Fails when no such building stands there or it is not a storage building. Written 2026-10-29 for PropsInUse
+        /// (a ten-book shelf). Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the storage building {string} at \\({int}, {int}\\) holds {int} things")]
+        public void StorageHolds(PickleContext ctx, string buildingDefName, int x, int z, int expected)
+        {
+            var storage = StorageAt(ctx, buildingDefName, x, z);
+            int count = storage.GetSlotGroup().HeldThings.Count();
+            ctx.Assert(count == expected, $"the {buildingDefName} at ({x}, {z}) holds {count} thing(s), not {expected}: " + string.Join(", ", storage.GetSlotGroup().HeldThings.Select(t => t.def.defName + " x" + t.stackCount)));
+        }
+
+        /// <summary>
+        /// Puts N things of a def onto the cells of a storage building with the game's own placing (<c>GenPlace.TryPlaceThing</c>), as a way to fill it
+        /// without a hauling job. Fails when the building is unknown or not a storage building, or when nothing reached it. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I fill the storage building {string} at \\({int}, {int}\\) with {int} things {string}")]
+        public void FillStorage(PickleContext ctx, string buildingDefName, int x, int z, int count, string thingDefName)
+        {
+            var storage = StorageAt(ctx, buildingDefName, x, z);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
+            Map map = CurrentMap(ctx);
+            int before = storage.GetSlotGroup().HeldThings.Count();
+            for (int i = 0; i < count; i++)
+            {
+                Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+                thing.stackCount = 1;
+                GenPlace.TryPlaceThing(thing, storage.Position, map, ThingPlaceMode.Direct, out Thing placed);
+                if (placed != null) Placed.Add(placed);
+            }
+
+            int after = storage.GetSlotGroup().HeldThings.Count();
+            ctx.Assert(after - before >= 1, $"no {thingDefName} reached the {buildingDefName} at ({x}, {z}) ({before} before, {after} after)");
+        }
+
+        /// <summary>
+        /// Asks the game whether it would store a thing of a def in the storage building (<c>StoreUtility.IsGoodStoreCell</c> on each cell of its footprint,
+        /// for the player faction): true when the building takes another one, false when it is full or refuses the def. Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the storage building {string} at \\({int}, {int}\\) accepts another {string}")]
+        public void StorageAccepts(PickleContext ctx, string buildingDefName, int x, int z, string thingDefName)
+        {
+            ctx.Assert(WouldStore(ctx, buildingDefName, x, z, thingDefName), $"the {buildingDefName} at ({x}, {z}) would not take another {thingDefName}");
+        }
+
+        /// <summary>The negative twin: the game would not store another thing of that def in the building (a full shelf, the eleventh book). Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the storage building {string} at \\({int}, {int}\\) refuses another {string}")]
+        public void StorageRefuses(PickleContext ctx, string buildingDefName, int x, int z, string thingDefName)
+        {
+            ctx.Assert(!WouldStore(ctx, buildingDefName, x, z, thingDefName), $"the {buildingDefName} at ({x}, {z}) would take another {thingDefName}, and it should not");
+        }
+
+        /// <summary>Asserts the hit points of the thing of a def at a cell (an item, a building, a plant). Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the thing {string} at \\({int}, {int}\\) has {int} hit points")]
+        public void ThingHasHitPoints(PickleContext ctx, string thingDefName, int x, int z, int expected)
+        {
+            Thing thing = ThingAt(ctx, thingDefName, x, z);
+            ctx.Assert(thing.HitPoints == expected, $"the {thingDefName} at ({x}, {z}) has {thing.HitPoints} hit points, not {expected}");
+        }
+
+        /// <summary>Remembers the hit points of the thing of a def at a cell until the scenario ends, so a later step can compare (hay in the rain). Compiled, not played.</summary>
+        [Given("Nelim's Pickle Tools: the hit points of the thing {string} at \\({int}, {int}\\) are remembered")]
+        public void RememberHitPoints(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            Thing thing = ThingAt(ctx, thingDefName, x, z);
+            RememberedHitPoints[thingDefName + "@" + x + "," + z] = thing.HitPoints;
+        }
+
+        /// <summary>Asserts the hit points of the thing equal what the remembering step stored: it did not deteriorate. Fails when nothing was remembered for that thing and cell. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the thing {string} at \\({int}, {int}\\) has kept its remembered hit points")]
+        public void ThingKeptHitPoints(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            string key = thingDefName + "@" + x + "," + z;
+            ctx.Require(RememberedHitPoints.TryGetValue(key, out int before), $"no hit points were remembered for the {thingDefName} at ({x}, {z})");
+            Thing thing = ThingAt(ctx, thingDefName, x, z);
+            ctx.Assert(thing.HitPoints == before, $"the {thingDefName} at ({x}, {z}) has {thing.HitPoints} hit points, it had {before} when remembered");
+        }
+
+        [AfterScenario]
+        public void ForgetHitPoints() => RememberedHitPoints.Clear();
+
+        private static Building_Storage StorageAt(PickleContext ctx, string buildingDefName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            Building_Storage storage = cell.GetThingList(map).OfType<Building_Storage>().FirstOrDefault(b => b.def.defName == buildingDefName);
+            ctx.Require(storage != null, $"no storage building {buildingDefName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            return storage;
+        }
+
+        private static bool WouldStore(PickleContext ctx, string buildingDefName, int x, int z, string thingDefName)
+        {
+            var storage = StorageAt(ctx, buildingDefName, x, z);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
+            Map map = CurrentMap(ctx);
+            Thing probe = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            try
+            {
+                return storage.OccupiedRect().Cells.Any(c => StoreUtility.IsGoodStoreCell(c, map, probe, null, Faction.OfPlayer));
+            }
+            finally
+            {
+                probe.Destroy();
+            }
+        }
         private static Thing ThingAt(PickleContext ctx, string thingDefName, int x, int z)
         {
             Map map = CurrentMap(ctx);
