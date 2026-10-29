@@ -40,7 +40,7 @@ Erin.Hairredux 2361911135
 # Added 2026-10-28 (owner asked "ça ?"): Genetic Biotech for Facial Animation (Facial Animation heads for the Biotech head types, lids for Gray and Red eyes) and the framework it needs for variations and multi-gene heads (Genetic Heads Framework, packageId read from the loadAfter of the first).
 sd.fa.geneticheadsframework 3498759997
 sd.fa.geneticheadsbiotech 3501317537
-# Added 2026-10-29 at the owner request (catalogue): Tech Tattoos (13 body and 15 face tattoos), five UNAGI apparel mods (Another Duster Coat, Winter clothing, Battle Coat, CAFE, Royalty Apparel; packageIds read from their About.xml) and Orchid Sovereign Regalia (one royal gown, female Normal/Thin bodies only, needs Royalty). Not run yet: regroup with the other additions into one pickletools-look-catalogue run.
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (catalogue): Tech Tattoos (13 body and 15 face tattoos), five UNAGI apparel mods (Another Duster Coat, Winter clothing, Battle Coat, CAFE, Royalty Apparel; packageIds read from their About.xml) and Orchid Sovereign Regalia (one royal gown, female Normal/Thin bodies only, needs Royalty). Not run yet: regroup with the other additions into one pickletools-look-catalogue run.
 Shenanigans.TechTattoos 2789726696
 UNAGI.A.D.coat 3253300748
 UNAGI.huyuhuku.SET 3266399912
