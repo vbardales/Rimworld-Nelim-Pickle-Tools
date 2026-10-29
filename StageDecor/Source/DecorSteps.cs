@@ -48,6 +48,56 @@ namespace Nelim.PickleTools.StageDecor
             Placed.Add(GenSpawn.Spawn(thing, cell, map, WipeMode.Vanish));
         }
 
+
+        /// <summary>
+        /// Places a thing like "I place the decor" and gives it an ideoligion thing style (a <c>ThingStyleDef</c>, by defName) the way the game does
+        /// when a style category applies: <c>Thing.SetStyleDef</c>. Fails when the style is unknown, or when the thing does not hold the style after
+        /// the step. The style is not checked against a style category: any style can be forced, which is what a test of a style's graphic wants.
+        /// Written 2026-10-29 for PropsAsStyle. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} with the style {string} at \\({int}, {int}\\)")]
+        public void PlaceDecorStyled(PickleContext ctx, string thingDefName, string styleDefName, int x, int z)
+        {
+            ThingStyleDef style = DefDatabase<ThingStyleDef>.GetNamedSilentFail(styleDefName);
+            ctx.Require(style != null, $"no ThingStyleDef named '{styleDefName}' in this game");
+            PlaceDecor(ctx, thingDefName, x, z);
+            Thing thing = Placed.Last();
+            thing.SetStyleDef(style);
+            ctx.Assert(thing.StyleDef == style, $"the {thingDefName} at ({x}, {z}) holds the style '{thing.StyleDef?.defName ?? "none"}' after the step, not '{styleDefName}'");
+        }
+
+        /// <summary>Asserts the thing of a def standing at a cell holds a given thing style. Reads the map as it is now, so it works after a save and a reload. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the thing {string} at \\({int}, {int}\\) has the style {string}")]
+        public void ThingHasStyle(PickleContext ctx, string thingDefName, int x, int z, string styleDefName)
+        {
+            Thing thing = ThingAt(ctx, thingDefName, x, z);
+            ctx.Assert(thing.StyleDef != null && thing.StyleDef.defName == styleDefName,
+                $"the {thingDefName} at ({x}, {z}) holds the style '{thing.StyleDef?.defName ?? "none"}', not '{styleDefName}'");
+        }
+
+        /// <summary>
+        /// Asserts the graphic the thing at a cell draws now (the style's, when it holds one) is built and is not the pink bad-texture material.
+        /// Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the thing {string} at \\({int}, {int}\\) draws a texture that resolves")]
+        public void ThingGraphicResolves(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            Thing thing = ThingAt(ctx, thingDefName, x, z);
+            Graphic graphic = thing.Graphic;
+            ctx.Assert(graphic != null, $"the {thingDefName} at ({x}, {z}) has no graphic");
+            ctx.Assert(graphic.MatSingle != null && graphic.MatSingle != BaseContent.BadMat,
+                $"the {thingDefName} at ({x}, {z}) draws the pink bad-texture material (texPath '{graphic.path}', style '{thing.StyleDef?.defName ?? "none"}')");
+        }
+
+        private static Thing ThingAt(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            Thing thing = cell.GetThingList(map).FirstOrDefault(t => t.def.defName == thingDefName);
+            ctx.Require(thing != null, $"no {thingDefName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            return thing;
+        }
         /// <summary>
         /// Places a thing like "I place the decor" and, when it is a plant, brings it to full growth in the same step, so a flower or a bush shows at
         /// its adult size without a second step. A thing that is not a plant is placed as it is.
