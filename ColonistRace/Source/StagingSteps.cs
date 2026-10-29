@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection;
 using RimWorld;
 using RimWorks.Pickle;
+using RimWorks.Pickle.Runtime;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -227,6 +228,40 @@ namespace Nelim.PickleTools.ColonistRace
             Job job = JobMaker.MakeJob(jobDef, pawn.Position);
             job.forceSleep = true;
             StartJob(ctx, name, pawn, jobDef, job);
+        }
+
+        private static readonly System.Collections.Generic.List<Action> SleepHooks = new System.Collections.Generic.List<Action>();
+
+        /// <summary>
+        /// Starts LayDown (forced sleep) on the cell the animal stands on, as <c>lies down</c> does, and then holds the animal asleep until the scenario
+        /// ends: on every rendered frame, even with the game paused or while <c>I let N ticks pass</c> runs, it puts LayDown back if anything replaced the
+        /// job (an adult's presence, a forced walk, a baby waking) and keeps the rest need low so the sleep does not end by itself. The hold is lifted
+        /// after the scenario. Fails when the pawn is unknown or not spawned, or LayDown does not become the current job.
+        /// Written 2026-10-29 for aSl (ticket 7ec6, an adult sloth and a baby that woke). NOT PLAYED when written.
+        /// </summary>
+        /// <param name="name">the short name of the animal (a baby too)</param>
+        [Given("Nelim's Pickle Tools: the animal {string} is kept asleep")]
+        public void KeptAsleep(PickleContext ctx, string name)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            JobDef jobDef = RequireJob(ctx, "LayDown");
+            Func<Job> layDown = () => { Job j = JobMaker.MakeJob(jobDef, pawn.Position); j.forceSleep = true; return j; };
+            StartJob(ctx, name, pawn, jobDef, layDown());
+            Action hook = () =>
+            {
+                if (pawn == null || !pawn.Spawned || pawn.Dead || pawn.jobs == null) return;
+                if (pawn.needs?.rest != null && pawn.needs.rest.CurLevel > 0.3f) pawn.needs.rest.CurLevel = 0.3f;
+                if (pawn.CurJob == null || pawn.CurJob.def != jobDef) pawn.jobs.StartJob(layDown(), JobCondition.InterruptForced);
+            };
+            SleepHooks.Add(hook);
+            PickleDriver.Instance.AddFrameHook(hook);
+        }
+
+        [AfterScenario]
+        public void ReleaseSleepHolds()
+        {
+            foreach (Action hook in SleepHooks) PickleDriver.Instance?.RemoveFrameHook(hook);
+            SleepHooks.Clear();
         }
 
         /// <summary>
