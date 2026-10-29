@@ -116,3 +116,5 @@ MustasMoreVanity.Glasses 3723950542
 VanillaExpanded.VAEAccessories 2521176396
 # TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("catalogue :"): Vanilla Ideology Expanded - Sophian Style (an Ideology style inspired by the Empire; needs Ideology, Harmony and the framework above).
 VanillaExpanded.Ideo.SophianStyle 3194606539
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("oui"): Vanilla Hair Retextured. WARNING: it retextures every vanilla hairstyle, so the vanilla hair sheets of that run show its look, not the game's own.
+Neronix17.Retexture.VanillaHair 2748834409
