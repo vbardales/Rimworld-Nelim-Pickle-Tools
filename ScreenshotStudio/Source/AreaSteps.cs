@@ -264,7 +264,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 }
                 rows.Add(z + ": " + (runs.Count == 0 ? "none" : string.Join(", ", runs)));
             }
-            Log.Message("[free-cells] area " + area + ", " + total + " free standable cell(s), runs per row z: x1-x2\n" + string.Join("\n", rows));
+            string report = "area " + area + ", " + total + " free standable cell(s), runs per row z: x1-x2\n" + string.Join("\n", rows);
+            Log.Message("[free-cells] " + report);
+            ctx.Attach("free-cells", report);
         }
 
         private static bool IsFreeStandable(Map map, IntVec3 c)
