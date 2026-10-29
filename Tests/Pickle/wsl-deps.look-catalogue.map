@@ -118,3 +118,10 @@ VanillaExpanded.VAEAccessories 2521176396
 VanillaExpanded.Ideo.SophianStyle 3194606539
 # TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("oui"): Vanilla Hair Retextured. WARNING: it retextures every vanilla hairstyle, so the vanilla hair sheets of that run show its look, not the game's own.
 Neronix17.Retexture.VanillaHair 2748834409
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (downloaded today): Banana Suit (Continued), Gravship Captain Set (needs Odyssey), Spacer Arsenal, The Vanity Project beards, female hair and female anime hair. Left out: Police Uniforms (1.5 only), Boglegs (About lists 1.4 and 1.5; Steam tags 1.6), Brawnum (needs EBSG Framework, id not found), Little Playgrounds and NewRatkinPlus (not clothes for humans).
+zal.bananasuit 3364370362
+Kilo.CapVacHelm 3528780638
+det.spacerarsenal 3247891820
+TheVanityProject.Beards 3143138787
+TheVanityProject.FemaleHair 3129825640
+TheVanityProject.FemaleAnimeHair 3393734237
