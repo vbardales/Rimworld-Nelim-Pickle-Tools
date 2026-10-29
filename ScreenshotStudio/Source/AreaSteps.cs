@@ -233,6 +233,48 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return found.Count;
         }
 
+        /// <summary>
+        /// Logs (lines starting <c>[free-cells]</c>) the cells of the rectangle a pawn can stand on with nothing on them (no building, item, plant,
+        /// pawn or blueprint; filth and motes do not count), as runs per row, the top row (largest z) first: the format of the old
+        /// sanctuary listing. A cell with a wall, a rock or any impassable thing is not standable and is left out.
+        /// </summary>
+        public static void ListFreeCells(PickleContext ctx, MapArea area)
+        {
+            Map map = RequireMap(ctx);
+            var rows = new List<string>();
+            int total = 0;
+            for (int z = area.MaxZ; z >= area.MinZ; z--)
+            {
+                var runs = new List<string>();
+                int start = int.MinValue, prev = int.MinValue;
+                for (int x = area.MinX; x <= area.MaxX + 1; x++)
+                {
+                    bool free = x <= area.MaxX && IsFreeStandable(map, new IntVec3(x, 0, z));
+                    if (free)
+                    {
+                        total++;
+                        if (start == int.MinValue) start = x;
+                        prev = x;
+                    }
+                    else if (start != int.MinValue)
+                    {
+                        runs.Add(start == prev ? start.ToString() : start + "-" + prev);
+                        start = int.MinValue;
+                    }
+                }
+                rows.Add(z + ": " + (runs.Count == 0 ? "none" : string.Join(", ", runs)));
+            }
+            Log.Message("[free-cells] area " + area + ", " + total + " free standable cell(s), runs per row z: x1-x2\n" + string.Join("\n", rows));
+        }
+
+        private static bool IsFreeStandable(Map map, IntVec3 c)
+        {
+            if (!c.InBounds(map) || !c.Walkable(map) || !c.Standable(map)) return false;
+            foreach (Thing t in map.thingGrid.ThingsListAtFast(c))
+                if (!(t is Filth) && !(t is Mote)) return false;
+            return true;
+        }
+
         internal static void StopKeepingAnimalsOut()
         {
             foreach (var hook in KeepOutHooks) PickleDriver.Instance?.RemoveFrameHook(hook);
@@ -281,6 +323,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Removes the roofs of the rectangle (thick roofs stay) so the sun lights it.</summary>
         [Given(Prefix + "the roof is removed from the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
         public void RemoveRoof(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.RemoveRoof(ctx, new MapArea(x0, z0, x1, z1));
+
+        /// <summary>Writes to the game log (lines starting <c>[free-cells]</c>) the cells of the rectangle a pawn can stand on with nothing on them, as runs per row (top row first). Reads only, changes nothing. Compiled, not played.</summary>
+        [When(Prefix + "the free standable cells of the area from \\({int}, {int}\\) to \\({int}, {int}\\) are listed")]
+        public void ListFreeCells(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.ListFreeCells(ctx, new MapArea(x0, z0, x1, z1));
 
         /// <summary>Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there.</summary>
         [Given(Prefix + "the things {string} within {int} cells of \\({int}, {int}\\) are hidden")]
