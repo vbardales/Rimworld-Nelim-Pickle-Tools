@@ -130,3 +130,6 @@ EBSG.Framework 3112549163
 det.brawnum 3429572581
 # TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("general textures aussi"): General Textures Collection (30 retextures). The catalogue run LISTS defNames and changes none, so a retexture does no harm here; it WOULD change the look of any gallery photographed with it: never put it in a gallery map.
 Kas.GeneralCollection 3789119336
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request: Zealous Innocence (nappies and other clothes, 1.3 to 1.7; the Steam page says Dubs Bad Hygiene Lite or full is optional) and Mercer's Backpacks + Nano Suit (Continued) (backpacks and a nanosuit, 1.0 to 1.7). Retextured Apparel, Skin Tight Recon and Flak Dusters wait for their download.
+Proximo.ZealousInnocence 2857297111
+Mlie.MercerBackpacksNanoSuit 2014570220
