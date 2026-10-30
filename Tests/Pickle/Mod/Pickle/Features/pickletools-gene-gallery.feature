@@ -175,6 +175,33 @@ Feature: One photograph per eye colour gene and per skin colour gene on a bald N
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin1"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin1"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin2"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin2"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin3"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin3"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin4"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin4"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin5"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin5"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin6"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin6"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin7"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin7"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin8"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin8"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin9"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "skingene-Skin_Melanin9"
     When Nelim's Pickle Tools: "Nelim" has the gene "Skin_InkBlack"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skingene-Skin_InkBlack"
@@ -208,33 +235,6 @@ Feature: One photograph per eye colour gene and per skin colour gene on a bald N
     When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Orange"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skingene-Skin_Orange"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Green"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Green"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin1"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin1"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin2"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin2"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin3"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin3"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin4"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin4"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin5"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin5"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin6"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin6"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin7"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin7"
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin8"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin8"
 
   Scenario: gene-gallery-skins-2: skin colour genes 21 to 40 of 96
     Given the save "Nelims-tribe" is loaded
@@ -260,9 +260,9 @@ Feature: One photograph per eye colour gene and per skin colour gene on a bald N
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Melanin9"
+    When Nelim's Pickle Tools: "Nelim" has the gene "Skin_Green"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "skingene-Skin_Melanin9"
+    And I take a screenshot "skingene-Skin_Green"
     When Nelim's Pickle Tools: "Nelim" has the gene "GES_Skin_Yellowfin"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "skingene-GES_Skin_Yellowfin"

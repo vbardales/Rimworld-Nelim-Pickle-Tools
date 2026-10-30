@@ -141,7 +141,7 @@ function scenario(title, baseLines, genes, prefix) {
 const half = Math.ceil(eyes.length / 2);   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
 scenario(`gene-gallery-eyes-1: eye genes 1 to ${half} of ${eyes.length}`, eyeBase, eyes.slice(0, half), 'eyegene');
 scenario(`gene-gallery-eyes-2: eye genes ${half + 1} to ${eyes.length} of ${eyes.length}`, eyeBase, eyes.slice(half), 'eyegene');
-const allSkins = [...skins, ...melanin, ...gesSkins];
+const allSkins = [...melanin, ...skins, ...gesSkins];
 const skinChunk = Math.ceil(allSkins.length / Math.ceil(allSkins.length / 22));   // 22 shots at most: about 150 s a scenario
 for (let i = 0, k = 1; i < allSkins.length; i += skinChunk, k++)
   scenario(`gene-gallery-skins-${k}: skin colour genes ${i + 1} to ${Math.min(i + skinChunk, allSkins.length)} of ${allSkins.length}`, skinBase, allSkins.slice(i, i + skinChunk), 'skingene');
