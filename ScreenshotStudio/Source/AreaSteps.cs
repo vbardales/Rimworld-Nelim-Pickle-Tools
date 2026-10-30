@@ -158,6 +158,24 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
+        /// <summary>
+        /// Sets every dry cell of the area to the named terrain (<c>TerrainDef</c> defName, for instance <c>Concrete</c> or <c>Soil</c>) and removes
+        /// the paint. Water cells are skipped. Fails when the terrain does not exist. Roofs, things and walls stay. NOT PLAYED when written (2026-10-30,
+        /// for AnimalsNaturally's neutral-ground captures).
+        /// </summary>
+        public static void SetFloor(PickleContext ctx, MapArea area, string terrainDefName)
+        {
+            Map map = RequireMap(ctx);
+            TerrainDef ground = DefDatabase<TerrainDef>.GetNamedSilentFail(terrainDefName);
+            ctx.Require(ground != null, "no terrain '" + terrainDefName + "' (is the mod that defines it loaded in this pass?)");
+            foreach (var c in area.Cells(map))
+            {
+                if (c.GetTerrain(map).IsWater) continue;
+                map.terrainGrid.SetTerrain(c, ground);
+                map.terrainGrid.SetTerrainColor(c, null);
+            }
+        }
+
         /// <summary>Despawns (does not kill) the animals standing in the area now, once: an animal that walks in later stays. Returns how many.</summary>
         public static int RemoveAnimals(PickleContext ctx, MapArea area)
         {
@@ -309,6 +327,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Gives the dry cells of the rectangle the terrain of a chosen cell, without paint (the sample cell for an enclosure or mixed ground).</summary>
         [Given(Prefix + "the floor of the area from \\({int}, {int}\\) to \\({int}, {int}\\) is bared like the cell \\({int}, {int}\\)")]
         public void BareFloorLike(PickleContext ctx, int x0, int z0, int x1, int z1, int sx, int sz) => AreaOps.BareFloor(ctx, new MapArea(x0, z0, x1, z1), new IntVec3(sx, 0, sz));
+
+        /// <summary>Sets the dry cells of the rectangle to a named terrain (<c>Concrete</c>, <c>Soil</c>...), without paint. Fails when the terrain does not exist. Not played yet (2026-10-30).</summary>
+        [Given(Prefix + "the floor of the area from \\({int}, {int}\\) to \\({int}, {int}\\) is set to the terrain {string}")]
+        public void SetFloor(PickleContext ctx, int x0, int z0, int x1, int z1, string terrainDefName) => AreaOps.SetFloor(ctx, new MapArea(x0, z0, x1, z1), terrainDefName);
 
         /// <summary>Despawns the animals standing in the rectangle now, once. Colonists stay. Does not fail when there is none.</summary>
         [Given(Prefix + "the animals are removed from the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
