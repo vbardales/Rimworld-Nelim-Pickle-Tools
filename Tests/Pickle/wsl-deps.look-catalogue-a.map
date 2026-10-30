@@ -1,0 +1,70 @@
+# HALF A (lines 1-69 of wsl-deps.look-catalogue.map, 2026-10-30): ae5b got SIGKILL (exit 137, memory) with the whole map. Not played.
+# The pass that lists the look options (feature pickletools-look-catalogue). Stage here, as the owner decides, every mod whose hairstyles,
+# garments, tattoos or face parts the sessions may choose (the fixture's own list, plus Facial Animation). NOT PLAYED.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue.map -Filter pickletools-look-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# The mods of the Sanctuary pass (SanctuaryBacklot/Tests/Pickle/wsl-deps.sanctuary.map), added 2026-10-18 at the request of NSB (owner's choice: vanilla, Ideology and these mods). Same order: bodies and trousers before WDI, then Facial Animation and its add-ons.
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+vk.addeyes.EX 3694711465
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+RaccoonCuddler.ShowHair 3255379190
+# Added 2026-10-18 for EntityGazing (its request): tattoo and hairstyle mods, to catalogue their defNames and read their load log next to Facial Animation, WDI, AB and Show Hair.
+Shenanigans.TribalTattoos 2782262247
+Qux.Tattoos 2569243583
+Rooboid.RooTattoo 2555588467
+Rooboid.BirthmarksandBlemishes 2890180936
+rooboid.hdhair.continued 3559870636
+VanillaExpanded.VHE 1888705256
+# Added 2026-10-28 at the owner request (catalogue): Ponpeco Accessories (hats, glasses, earrings, scarves, hairpins) and Ponpeco Kids Clothes (Biotech child garments).
+ponpeco.PonpecoAccessories 3298397484
+ponpeco.KidsClothes 3237739433
+# Added 2026-10-28 at the owner request (catalogue): Ponpeco Pajamas (night garments: Fluffy and Classic pajamas, hoodie, slippers).
+ponpeco.PonpecoPajamas 3482959515
+# Owner request 2026-10-28: Akeron - Caretaker Apparel (Workshop 2799570243, uniform, vest, cloaks, headwear). packageId NOT read yet (not installed here, page does not give it): add the line "<packageId> 2799570243" once known.
+# Added 2026-10-28 at the owner request (catalogue): Oracle + Erin's HD Tattoos (5 new body tattoos OE_Body_*, and HD retextures of the vanilla tattoos: it changes how the vanilla ones photograph).
+oracle.erin.tattoos 2854739731
+# Added 2026-10-28 at the owner request (catalogue): Erin's Hairstyles - Redux (49 hairstyles, read in its 1.6 folder).
+Erin.Hairredux 2361911135
+# Added 2026-10-28 (owner asked "ça ?"): Genetic Biotech for Facial Animation (Facial Animation heads for the Biotech head types, lids for Gray and Red eyes) and the framework it needs for variations and multi-gene heads (Genetic Heads Framework, packageId read from the loadAfter of the first).
+sd.fa.geneticheadsframework 3498759997
+sd.fa.geneticheadsbiotech 3501317537
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (catalogue): Tech Tattoos (13 body and 15 face tattoos), five UNAGI apparel mods (Another Duster Coat, Winter clothing, Battle Coat, CAFE, Royalty Apparel; packageIds read from their About.xml) and Orchid Sovereign Regalia (one royal gown, female Normal/Thin bodies only, needs Royalty). Not run yet: regroup with the other additions into one pickletools-look-catalogue run.
+Shenanigans.TechTattoos 2789726696
+UNAGI.A.D.coat 3253300748
+UNAGI.huyuhuku.SET 3266399912
+UNAGI.Battle.coat 3301577366
+UNAGI.Cafe.gohan 3325530853
+UNAGI.Ap.Dress 3352990362
+shirowd.orchidsovereignregalia 3784364360
+# TEMP until the catalogue run is read. Added 2026-10-29 (owner: "fais comme tu veux"): the clothes, hairs and skin genes of her list that arrived; retexture mods (ATH Retexture Female Apparel, Retextured Apparel) left out because they change how the vanilla ones photograph. Styleable framework and Fix Styled Blueprints first, ATH Gothic needs them.
+Shadowcrafts.Skinprint 3815708054
+Hysteria82.MousekinWorkApparel 3709891968
+Hysteria82.MousekinNobleApparel 3793389289
+UNAGI.Hairs.B.Zibunyou 3386935298
+Pumpkin.PumpkinHairs2 3783859385
+Gunmar.VictorianEraApparels 2814195394
+CAT.Imperial.Attires 3465257079
+Hartarok.Dresses 3138641568
+TheVanityProject.MaidOutfits 3165702066
+soap.BS 2852949475
+kaitorisenkou.Swimwear 2840348927
+soap.BattleMaid 3624591057
+HalituisAmaricanous.ArmoredLeotard 2619914097
+gilieart.beautifulbodyapparel 2881748658
+anthitei.athsstyleableframework.style 3016405872
+kathanon.FixStyledBlueprints 2957953663
+Anthitei.ATHsStyleFemaleDresses.Style 3154539205
+anthitei.athsstylegothic.style 3136210612
