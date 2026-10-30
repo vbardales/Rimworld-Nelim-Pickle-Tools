@@ -81,6 +81,7 @@ namespace Nelim.PickleTools.ColonistRace
             ModContentPack pack = PackOf(ctx, packageId);
             Mod handle = PageOf(pack);
             ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            if (IsMsf(handle)) { MsfSet(ctx, handle, pack, option, value); return; }
             object owner; MemberInfo member;
             ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
             Type t = member is FieldInfo f ? f.FieldType : ((PropertyInfo)member).PropertyType;
@@ -95,6 +96,12 @@ namespace Nelim.PickleTools.ColonistRace
             ModContentPack pack = PackOf(ctx, packageId);
             Mod handle = PageOf(pack);
             ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            if (IsMsf(handle))
+            {
+                string read = MsfRead(ctx, handle, pack, option);
+                ctx.Assert(string.Equals(read, expected, StringComparison.OrdinalIgnoreCase), $"option '{option}' of {pack.Name} (Mod Settings Framework) is '{read}', not '{expected}'");
+                return;
+            }
             object owner; MemberInfo member;
             ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
             object v = member is FieldInfo f ? f.GetValue(owner) : ((PropertyInfo)member).GetValue(owner);
@@ -110,11 +117,100 @@ namespace Nelim.PickleTools.ColonistRace
             ModContentPack pack = PackOf(ctx, packageId);
             Mod handle = PageOf(pack);
             ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            if (IsMsf(handle)) { MsfFileHolds(ctx, pack, option, expected); return; }
             string path = (string)typeof(LoadedModManager).GetMethod("GetSettingsFilename", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, new object[] { handle.Content.FolderName, handle.GetType().Name });
             ctx.Require(path != null && File.Exists(path), $"no settings file for {pack.Name} at '{path}'");
             XElement el = XDocument.Load(path).Descendants().FirstOrDefault(e => string.Equals(e.Name.LocalName, option, StringComparison.OrdinalIgnoreCase));
             ctx.Require(el != null, $"{path} holds no element '{option}'; its elements: " + string.Join(", ", XDocument.Load(path).Descendants().Select(e => e.Name.LocalName)));
             ctx.Assert(string.Equals(el.Value, expected, StringComparison.OrdinalIgnoreCase), $"{path}: '{option}' is '{el.Value}', not '{expected}'");
+        }
+
+        // ---- Mod Settings Framework (bundled in Vanilla Expanded Framework): its options are not members of the handle's settings. Read by reflection, no reference to it.
+        // The handle is a ModSettingsFramework.ModSettingsFrameworkMod (field modPackOverride = the mod the page belongs to); the values live in the container
+        // ModSettingsFrameworkSettings.GetModSettingsContainer(packageId): patchOperationStates (id -> bool, checkboxes) and patchOperationValues (id -> float, sliders).
+        // An option never touched is absent there and reads as the defaultValue of its patch operation. The file is Config/ModSettingsFrameworkMod_Settings.xml.
+        private static bool IsMsf(Mod handle) => handle.GetType().FullName == "ModSettingsFramework.ModSettingsFrameworkMod";
+
+        private static ModContentPack MsfTarget(Mod handle, ModContentPack pack) => handle.GetType().GetField("modPackOverride", AnyMember)?.GetValue(handle) as ModContentPack ?? pack;
+
+        private static object MsfContainer(PickleContext ctx, Mod handle, ModContentPack pack)
+        {
+            ModContentPack target = MsfTarget(handle, pack);
+            Type settings = handle.GetType().Assembly.GetType("ModSettingsFramework.ModSettingsFrameworkSettings");
+            ctx.Require(settings != null, "ModSettingsFramework.ModSettingsFrameworkSettings not found in the assembly of the handle");
+            object container = settings.GetMethod("GetModSettingsContainer", BindingFlags.Public | BindingFlags.Static, null, new[] { typeof(string) }, null)?.Invoke(null, new object[] { target.PackageIdPlayerFacing });
+            ctx.Require(container != null, $"Mod Settings Framework has no settings container for {target.PackageIdPlayerFacing}");
+            return container;
+        }
+
+        // The patch operation of the mod whose id is the option (null when none), and the ids of every patch operation of the mod that has one.
+        private static object MsfPatch(Mod handle, ModContentPack pack, string option, out List<string> ids)
+        {
+            ids = new List<string>();
+            object found = null;
+            foreach (var patch in MsfTarget(handle, pack).Patches)
+            {
+                string id = patch.GetType().GetField("id", AnyMember)?.GetValue(patch) as string;
+                if (id == null) continue;
+                ids.Add(id);
+                if (id == option) found = patch;
+            }
+            return found;
+        }
+
+        private static string MsfRead(PickleContext ctx, Mod handle, ModContentPack pack, string option)
+        {
+            object container = MsfContainer(ctx, handle, pack);
+            var states = (IDictionary<string, bool>)container.GetType().GetField("patchOperationStates").GetValue(container);
+            var values = (IDictionary<string, float>)container.GetType().GetField("patchOperationValues").GetValue(container);
+            if (states.TryGetValue(option, out bool state)) return state ? "True" : "False";
+            if (values.TryGetValue(option, out float number)) return number.ToString(System.Globalization.CultureInfo.InvariantCulture);
+            object patch = MsfPatch(handle, pack, option, out List<string> ids);
+            ctx.Require(patch != null, $"no option '{option}' of Mod Settings Framework in {pack.Name}; the options of its patches: " + string.Join(", ", ids) + "; stored: " + string.Join(", ", states.Keys.Concat(values.Keys)));
+            object def = patch.GetType().GetField("defaultValue", AnyMember)?.GetValue(patch);
+            Log.Message($"[mod-options] {option} of {pack.Name} was never set: reads the default {def}");
+            return def is bool b ? (b ? "True" : "False") : Convert.ToString(def, System.Globalization.CultureInfo.InvariantCulture);
+        }
+
+        private static void MsfSet(PickleContext ctx, Mod handle, ModContentPack pack, string option, string value)
+        {
+            object container = MsfContainer(ctx, handle, pack);
+            MsfPatch(handle, pack, option, out List<string> ids);
+            ctx.Require(ids.Contains(option), $"no option '{option}' of Mod Settings Framework in {pack.Name}; the options of its patches: " + string.Join(", ", ids));
+            var states = (IDictionary<string, bool>)container.GetType().GetField("patchOperationStates").GetValue(container);
+            var values = (IDictionary<string, float>)container.GetType().GetField("patchOperationValues").GetValue(container);
+            bool isBool = bool.TryParse(value, out bool state);
+            if (isBool) states[option] = state;
+            else
+            {
+                ctx.Require(float.TryParse(value, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out float number), $"'{value}' is neither true, false nor a number");
+                values[option] = number;
+            }
+            handle.WriteSettings();
+            string read = MsfRead(ctx, handle, pack, option);
+            ctx.Assert(string.Equals(read, isBool ? (state ? "True" : "False") : value, StringComparison.OrdinalIgnoreCase), $"option '{option}' reads '{read}' after the step, not '{value}'");
+        }
+
+        // The file keeps one container per mod: modSettingsPerModId/{keys,values}/li; a container holds packageID and the dictionaries patchOperationStates and patchOperationValues as {keys,values}/li.
+        private static void MsfFileHolds(PickleContext ctx, ModContentPack pack, string option, string expected)
+        {
+            string path = Path.Combine(GenFilePaths.ConfigFolderPath, "ModSettingsFrameworkMod_Settings.xml");
+            ctx.Require(File.Exists(path), $"no Mod Settings Framework settings file at '{path}' (it is written when a setting is changed and saved)");
+            XDocument doc = XDocument.Load(path);
+            XElement container = doc.Descendants("packageID").Where(e => string.Equals(e.Value, pack.PackageIdPlayerFacing, StringComparison.OrdinalIgnoreCase)).Select(e => e.Parent).FirstOrDefault();
+            ctx.Require(container != null, $"{path} holds no container for {pack.PackageIdPlayerFacing}; its packageIDs: " + string.Join(", ", doc.Descendants("packageID").Select(e => e.Value)));
+            foreach (string dictName in new[] { "patchOperationStates", "patchOperationValues" })
+            {
+                XElement dict = container.Element(dictName);
+                if (dict == null) continue;
+                var keys = dict.Element("keys")?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>();
+                var vals = dict.Element("values")?.Elements("li").Select(e => e.Value).ToList() ?? new List<string>();
+                int i = keys.IndexOf(option);
+                if (i < 0 || i >= vals.Count) continue;
+                ctx.Assert(string.Equals(vals[i], expected, StringComparison.OrdinalIgnoreCase), $"{path}: '{option}' is '{vals[i]}', not '{expected}'");
+                return;
+            }
+            ctx.Require(false, $"{path} holds no value for '{option}' (an option never changed from its default is not written); the leaf values of the container: " + string.Join(", ", container.Descendants("li").Where(e => !e.HasElements).Select(e => e.Value).Take(40)));
         }
 
         private static bool FindMember(object root, string name, out object owner, out MemberInfo member)
