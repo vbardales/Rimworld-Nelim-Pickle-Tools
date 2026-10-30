@@ -226,14 +226,32 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// Despawns every spawned thing of this def within <paramref name="radius"/> cells (square, both axes) of the cell, for this run only.
         /// Fails when none is there, so a save that changed, or a step that ran twice, is told. Returns how many were hidden.
         /// </summary>
-        public static int HideThings(PickleContext ctx, string defName, int x, int z, int radius)
+        public static int HideThings(PickleContext ctx, string defName, int x, int z, int radius, bool mustFind = true)
         {
             Map map = RequireMap(ctx);
-            var found = map.listerThings.AllThings.Where(t => t.Spawned && t.def.defName == defName
+            // defName is one exact defName or several separated by commas (spaces around them ignored).
+            var names = defName.Split(',').Select(n => n.Trim()).Where(n => n.Length > 0).ToList();
+            var found = map.listerThings.AllThings.Where(t => t.Spawned && names.Contains(t.def.defName)
                 && Math.Abs(t.Position.x - x) <= radius && Math.Abs(t.Position.z - z) <= radius).ToList();
-            ctx.Require(found.Count > 0, "No " + defName + " within " + radius + " cells of (" + x + ", " + z + "): the save changed, or the step already ran");
+            Log.Message("[hide-things] " + found.Count + " of " + defName + " within " + radius + " cells of (" + x + ", " + z + "): " + string.Join(", ", found.Select(t => t.def.defName + "@" + t.Position.x + "," + t.Position.z)));
+            ctx.Require(found.Count > 0 || !mustFind, "No " + defName + " within " + radius + " cells of (" + x + ", " + z + "): the save changed, or the step already ran");
             foreach (var t in found) t.DeSpawn();
             return found.Count;
+        }
+
+        /// <summary>
+        /// Logs (<c>[things-near]</c>) and attaches to the report (<c>things-near</c>) every spawned thing within <paramref name="radius"/> cells (square) of the cell that is
+        /// not a pawn, filth or mote: defName, position and class, so a hide step can name the right defNames. Reads only. Written 2026-10-30 for GeniusesCraftFast.
+        /// </summary>
+        public static void ListThingsNear(PickleContext ctx, int x, int z, int radius)
+        {
+            Map map = RequireMap(ctx);
+            var found = map.listerThings.AllThings.Where(t => t.Spawned && !(t is Pawn) && !(t is Filth) && !(t is Mote)
+                && Math.Abs(t.Position.x - x) <= radius && Math.Abs(t.Position.z - z) <= radius).OrderBy(t => t.def.defName).ThenBy(t => t.Position.x).ThenBy(t => t.Position.z).ToList();
+            string report = found.Count + " thing(s) within " + radius + " cells of (" + x + ", " + z + ")\n"
+                + string.Join("\n", found.Select(t => t.def.defName + "@" + t.Position.x + "," + t.Position.z + " (" + t.GetType().Name + ", " + t.def.category + ")"));
+            Log.Message("[things-near] " + report);
+            ctx.Attach("things-near", report);
         }
 
         /// <summary>
@@ -352,9 +370,17 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [When(Prefix + "the free standable cells of the area from \\({int}, {int}\\) to \\({int}, {int}\\) are listed")]
         public void ListFreeCells(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.ListFreeCells(ctx, new MapArea(x0, z0, x1, z1));
 
-        /// <summary>Despawns the things of a def (by defName) within N cells of a cell, for this run only. Fails when none is there.</summary>
+        /// <summary>Despawns the things of a def (exact defName; several defNames may be separated by commas) within N cells of a cell (square, both axes), for this run only. Fails when none is there.</summary>
         [Given(Prefix + "the things {string} within {int} cells of \\({int}, {int}\\) are hidden")]
         public void HideThings(PickleContext ctx, string defName, int radius, int x, int z) => AreaOps.HideThings(ctx, defName, x, z, radius);
+
+        /// <summary>The same, and does not fail when none is there (it logs how many it hid). Compiled, not played.</summary>
+        [Given(Prefix + "the things {string} within {int} cells of \\({int}, {int}\\) are hidden when present")]
+        public void HideThingsWhenPresent(PickleContext ctx, string defName, int radius, int x, int z) => AreaOps.HideThings(ctx, defName, x, z, radius, false);
+
+        /// <summary>Lists (log lines <c>[things-near]</c> and the report attachment <c>things-near</c>) the defName, cell and class of every thing within N cells of a cell (square), pawns, filth and motes left out. Reads only. Compiled, not played.</summary>
+        [When(Prefix + "the things within {int} cells of \\({int}, {int}\\) are listed")]
+        public void ListThingsNear(PickleContext ctx, int radius, int x, int z) => AreaOps.ListThingsNear(ctx, x, z, radius);
 
         /// <summary>Despawns every artificial building within N cells of a cell, for this run only (what draws red focus lines on a selected anima tree). Does not fail when none is there.</summary>
         [Given(Prefix + "the artificial buildings within {int} cells of \\({int}, {int}\\) are hidden")]
