@@ -1,0 +1,32 @@
+# BATCH 4 of 5 of wsl-deps.look-catalogue.map (22 mods each, 2026-10-30): halves a and b were killed by memory (137). Not played.
+# The pass that lists the look options (feature pickletools-look-catalogue). Stage here, as the owner decides, every mod whose hairstyles,
+# garments, tattoos or face parts the sessions may choose (the fixture's own list, plus Facial Animation). NOT PLAYED.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue.map -Filter pickletools-look-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+sd.leafskirt 3423798414
+CatLover366.BootsAndGloves 3552813398
+VanillaExpanded.VAPPE 1814987817
+oracle.miscellania 3279582979
+BiomesTeam.BiomesFossils 3100958580
+VanillaExpanded.VIEHAR 2567387768
+ocarina.prisonerjumpsuits 3402467889
+matte.rimstuff.tacticoolops 3560450391
+Trickity.Samurai.Faction 2559958496
+SK.BandageWrap 3535716415
+Gerrymon.StylizedSlaveCollar 3040600773
+OskarPotocki.VFE.Medieval2 3444347874
+# TEMP until the catalogue run is read. Added 2026-10-29 (Progression: Attire list, owner "oui"): Vanilla Armour Expanded (needs the framework line above).
+VanillaExpanded.VARME 1814988282
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("oui", baby and child mods, ask of SBE too): Dubs Bad Hygiene (needed by The Children Need To Poo!), Toddlers add-ons, onesies, nappies, baby carry, child clothes. Left out: Simple Slavery Collars Child Patch (its parent mod is not in the map), Unrestricted Apparel - Child (no version tag read, overlaps Children Wear Anything), OnesiesForAll Nerfed Patch.
+Dubwise.DubsBadHygiene 836308268
+isle.toddlersaddon 3811463286
+drati.ChildcareHygienePatch 3731915276
+drati.ToddlersPlayExpanded 3738445489
+Cantaloupe.OnesiesForAll 2969148114
+b4ttl3m3ds.simplebabycarry 3692756679
+nep.childsizedarmor 2882401405
+csk.childclothingideology 2878324520
+csk.childtribal 2878239828

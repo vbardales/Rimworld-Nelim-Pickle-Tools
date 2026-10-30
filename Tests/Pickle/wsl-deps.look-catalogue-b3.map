@@ -1,0 +1,33 @@
+# BATCH 3 of 5 of wsl-deps.look-catalogue.map (22 mods each, 2026-10-30): halves a and b were killed by memory (137). Not played.
+# The pass that lists the look options (feature pickletools-look-catalogue). Stage here, as the owner decides, every mod whose hairstyles,
+# garments, tattoos or face parts the sessions may choose (the fixture's own list, plus Facial Animation). NOT PLAYED.
+#
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue.map -Filter pickletools-look-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+kaitorisenkou.Swimwear 2840348927
+soap.BattleMaid 3624591057
+HalituisAmaricanous.ArmoredLeotard 2619914097
+gilieart.beautifulbodyapparel 2881748658
+anthitei.athsstyleableframework.style 3016405872
+kathanon.FixStyledBlueprints 2957953663
+Anthitei.ATHsStyleFemaleDresses.Style 3154539205
+anthitei.athsstylegothic.style 3136210612
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (catalogue, children): Toddlers (toddler life stage, baby clothes to craft; needs Harmony and Biotech).
+cyanobot.toddlers 2903359152
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (catalogue, "oui"): clothes mods of the Progression: Attire list that are installed, plus child clothing mods. Vanilla Expanded Framework and Props and Decor first (Vanilla Apparel Expanded, Medieval 2, Samurai, Charmweavers and Oracle's Miscellania need them). Left out: Socks and Stockings for NL Realistic Body (needs Nals.RealisticBody, installed only in the local Mods folder), Kid Dusters (1.4 only), Children school and learning (not a look mod).
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+VanillaExpanded.VFEPropsandDecor 2102143149
+LoneKin.ChildrenWearAnything 3688530033
+nep.childsizedeltex 2895385684
+zal.eltexbodysuit 2919589935
+KidApparelExpanded.Goblins4Lyfe 3548557988
+csk.childvanillaclothing 2881631784
+Dress.Cinderella 3627646170
+Mouse.gloomydress 2187064189
+MO.Size.Valentine.Apparel 3295274246
+Needy.Girl.Overdose 3432762722
+Loopus.PrimHairs 3416781129
+# NOT DOWNLOADED 2026-10-30 (9242 died at staging, owner must subscribe): ReSplice.XOTR.Charmweavers 3131996691
+yamazaki.PreschoolerOutfits 2937387968
