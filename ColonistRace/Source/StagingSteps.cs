@@ -55,7 +55,10 @@ namespace Nelim.PickleTools.ColonistRace
             IntVec3 cell = building.InteractionCell;
             ctx.Require(cell.IsValid && cell.InBounds(map) && cell.Standable(map), $"the interaction cell {cell} of {defName} at {building.Position} is not standable");
 
-            Job job = JobMaker.MakeJob(jobDef, building);
+            // JobDriver_SitFacingBuilding reserves the building (target A) and the spot the pawn sits on (target B, the cell the game's own giver
+            // passes): with B left invalid, ReserveSittableOrSpot reads the edifice of the invalid cell and throws IndexOutOfRange (CCCaD ticket 5157, Harp).
+            Job job = JobMaker.MakeJob(jobDef, building, cell);
+            Log.Message($"[stage] {nickname} about to play {defName} at {building.Position}: target A the building, target B the interaction cell {cell}");
             try
             {
                 PlaceAt(pawn, map, cell, null);
