@@ -58,5 +58,35 @@ namespace Nelim.PickleTools.SaveSteps
 
             ctx.Assert(File.Exists(destination), $"the saved game was not copied to {destination}");
         }
+
+        /// <summary>
+        /// Copies the saved game of that name into the folder Pickle writes the run's report to (the <c>-pickle-report-dir</c> of the launch), as
+        /// <c>&lt;name&gt;.rws</c>, so the file comes out of the container with the run's evidence (<c>Tests/Pickle/Inbox/&lt;run&gt;</c>). The hand-over step above writes into
+        /// the staged copy of the mod, which dies with the container: use this one to KEEP a save, then move the file into the mod's <c>Pickle/Fixtures</c> by hand.
+        /// Fails when the game was not saved under that name, or when the launch has no report directory. Written 2026-10-30 for SanctuaryBacklot. NOT PLAYED.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the saved game {string} is copied to the run folder")]
+        public void CopyToRunFolder(PickleContext ctx, string name)
+        {
+            string path = GenFilePaths.FilePathForSavedGame(name);
+            ctx.Require(File.Exists(path), $"no saved game named '{name}' ({path}): use 'the game is saved as' first");
+            const string flag = "-pickle-report-dir=";
+            string arg = System.Environment.GetCommandLineArgs().FirstOrDefault(a => a.StartsWith(flag));
+            ctx.Require(arg != null, $"the launch has no {flag}<folder> argument; its arguments: " + string.Join(" ", System.Environment.GetCommandLineArgs().Where(a => a.StartsWith("-pickle"))));
+            string folder = arg.Substring(flag.Length).Trim('"');
+            string destination = Path.Combine(folder, name + ".rws");
+            try
+            {
+                Directory.CreateDirectory(folder);
+                File.Copy(path, destination, true);
+            }
+            catch (System.Exception e) when (e is IOException || e is System.UnauthorizedAccessException)
+            {
+                ctx.Require(false, $"cannot write {destination}: {e.Message}");
+            }
+
+            Log.Message($"[save] {name}.rws copied to {destination} ({new FileInfo(destination).Length} bytes)");
+            ctx.Assert(File.Exists(destination), $"the saved game was not copied to {destination}");
+        }
     }
 }

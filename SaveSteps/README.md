@@ -8,5 +8,6 @@ Written 2026-10-11 from the same pair of steps that three mods had written alike
 | --- | --- |
 | `Nelim's Pickle Tools: the game is saved as {string}` | Saves the game with the game's own saver under that name; fails when the file is not written |
 | `Nelim's Pickle Tools: the saved game {string} is handed to the mod {string}` | Copies the saved game into `Pickle/Fixtures` of the active mod with that packageId (any case) as `<name>.rws`, so a later launch loads it as a fixture |
+| `Nelim's Pickle Tools: the saved game {string} is copied to the run folder` | Copies the saved game as `<name>.rws` into the launch's `-pickle-report-dir`, so it leaves the container with the run evidence (`Tests/Pickle/Inbox/<run>`). The hand-over writes into the staged copy of the mod, lost with the container |
 
 Reading what the save holds (a check of the mod's words in it, for example) stays in the mod's own suite.
