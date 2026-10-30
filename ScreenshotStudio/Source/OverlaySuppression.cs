@@ -16,7 +16,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched;
+        private static bool? zonesShownBefore;
 
         public static bool Active { get; private set; }
         public static bool TooltipsHidden { get; private set; }
@@ -24,6 +25,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static bool ReadoutHidden { get; private set; }
         public static bool AlertsHidden { get; private set; }
         public static bool BracketsHidden { get; private set; }
+        public static bool AreasHidden { get; private set; }
         public static bool StatusIconsKept { get; set; }
 
         public static void Begin()
@@ -121,7 +123,38 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
-        public static void End() { Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false; }
+        /// <summary>
+        /// Hides the area and zone overlays: the zone paint (the game's own "show zones" toggle off, put back by <see cref="End"/>) and the areas
+        /// (Home, allowed areas, roofs), whose drawing is requested every frame by <c>Area.MarkForDraw</c> and skipped here. Needs Harmony.
+        /// </summary>
+        public static void HideAreas()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!areasPatched)
+                {
+                    harmony.Patch(AccessTools.Method(typeof(Area), nameof(Area.MarkForDraw)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipAreas)));
+                    areasPatched = true;
+                }
+                if (zonesShownBefore == null) zonesShownBefore = Find.PlaySettings.showZones;
+                Find.PlaySettings.showZones = false;
+                Find.CurrentMap?.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Zone);
+                AreasHidden = true;
+            }
+        }
+
+        public static void End()
+        {
+            if (zonesShownBefore != null && Current.ProgramState == ProgramState.Playing && Find.PlaySettings != null)
+            {
+                Find.PlaySettings.showZones = zonesShownBefore.Value;
+                Find.CurrentMap?.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Zone);
+            }
+            zonesShownBefore = null;
+            AreasHidden = false;
+            Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false;
+        }
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
 
@@ -143,5 +176,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static bool SkipReadout() => !ReadoutHidden;
         private static bool SkipAlerts() => !AlertsHidden;
         private static bool SkipBrackets() => !BracketsHidden;
+        private static bool SkipAreas() => !AreasHidden;
     }
 }

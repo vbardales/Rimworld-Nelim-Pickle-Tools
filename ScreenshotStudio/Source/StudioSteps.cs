@@ -297,6 +297,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
         // Interface kept, but without the mouse-over tooltips (a hover left on the subject). Needs Harmony; without it the scenario goes on with a warning.
         [When(Prefix + "I hide the tooltips")]
         public void HideTooltips_Alt(PickleContext ctx) { HideTooltips(ctx); }
+        // The zone paint (stockpiles, growing zones) and the areas (Home, allowed areas) are not drawn: the "show zones" toggle off plus no area drawing, put back after the scenario. Needs a loaded map and Harmony. NOT PLAYED when written (2026-10-30, for FireworkStand).
+        [Given(Prefix + "the area and zone overlays are hidden")]
+        public void HideAreaOverlays(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "Load a map first");
+            try { OverlaySuppression.HideAreas(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[areas] stay drawn: Harmony is not loaded"); }
+        }
         [Given(Prefix + "the tooltips are hidden")]
         public void HideTooltips(PickleContext ctx)
         {
