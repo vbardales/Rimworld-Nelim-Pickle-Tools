@@ -49,11 +49,20 @@ namespace Nelim.PickleTools.ScreenshotStudio
             // The mood thoughts that depend on the temperature are cached and refreshed on ticks; the scene runs paused, so drop them now.
             foreach (Pawn p in PawnsFinder.AllMaps_FreeColonists.ToList())
             {
-                object situational = p.needs?.mood?.thoughts?.situational;
-                if (situational == null) continue;
-                situational.GetType().GetMethod("Notify_SituationalThoughtsDirty", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.Invoke(situational, null);
-                var cache = situational.GetType().GetField("cachedThoughts", BindingFlags.Instance | BindingFlags.NonPublic);
-                (cache?.GetValue(situational) as System.Collections.IList)?.Clear();
+                // Cosmetic refresh: a mod's thought that throws while it is rebuilt (an ArgumentOutOfRangeException from the thoughts of a pawn, fa-head-gallery-1, 2026-10-30)
+                // must not fail the step, the temperature is already held at this point.
+                try
+                {
+                    object situational = p.needs?.mood?.thoughts?.situational;
+                    if (situational == null) continue;
+                    situational.GetType().GetMethod("Notify_SituationalThoughtsDirty", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.Invoke(situational, null);
+                    var cache = situational.GetType().GetField("cachedThoughts", BindingFlags.Instance | BindingFlags.NonPublic);
+                    (cache?.GetValue(situational) as System.Collections.IList)?.Clear();
+                }
+                catch (Exception e)
+                {
+                    Log.Warning("[temperature] the situational thoughts of " + p.LabelShort + " could not be refreshed: " + (e.InnerException ?? e).GetType().Name + ": " + (e.InnerException ?? e).Message);
+                }
             }
         }
 
