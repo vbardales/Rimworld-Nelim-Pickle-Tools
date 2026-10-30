@@ -1,0 +1,10 @@
+# STEP 1b (2026-10-30, bisect of 2be6/fc04 hang): base + the six Nelim building mods, NO ferny.betterarchitect, NO architecticons. A load that reaches Pickle (even a failing step) clears the Nelim mods; a hang puts them under suspicion. NOT PLAYED.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+nelim.imperialfurnishings path:ImperialFurnishings/Mod
+nelim.ancientbuildings path:AncientBuildingsRenew/Mod
+nelim.fireworkstand path:FireworkStand/Mod
+nelim.foxlamprenew path:FoxLampRenew/Mod
+nelim.adaptivestorageneolithic path:AdaptiveStorageNeolithicRenew/Mod
+nelim.foodcourt path:FoodCourt/Mod
