@@ -7,6 +7,12 @@ nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 # Buildings of Nelim's mods and the architect menu mods, added 2026-10-18 for ArchitectStudio's gallery (its request, through the Ticket Manager).
+# Hard dependencies of the six Nelim building mods (2026-10-30: their absence was the load hang of 2be6 fcb4 aed9, a mod listed in About.xml but not staged): VEF for ImperialFurnishings, Fireworks for FireworkStand, Daily Fox for FoxLamp, Adaptive Storage Framework, Eden Garden for FoodCourt.
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+telardo.Fireworks 2922179297
+Mlie.AFSydailyFox 3540588386
+adaptive.storage.framework 3033901359
+nelim.edengarden path:EdenGarden/Mod
 nelim.imperialfurnishings path:ImperialFurnishings/Mod
 nelim.ancientbuildings path:AncientBuildingsRenew/Mod
 nelim.fireworkstand path:FireworkStand/Mod
