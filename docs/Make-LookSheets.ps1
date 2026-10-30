@@ -42,7 +42,7 @@ $files = @{}
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
 $runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|nude-tattoo|body-child|body-girl|beard-colour|seren-)' } } | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
-    if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
+    if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
 }
 
 # Items of one section of a catalogue: @{ mod; group; name; type; hex }
@@ -103,7 +103,10 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
                 $txt += ' #' + $part[$i].hex
             } elseif ($files.ContainsKey($part[$i].key)) {
                 $img = [System.Drawing.Image]::FromFile($files[$part[$i].key])
-                $g.DrawImage($img, $r, $crop, [System.Drawing.GraphicsUnit]::Pixel); $img.Dispose(); $have++
+                # The crops are in pixels of a 1920 x 1080 capture; a minified photograph (Evidence keeps 1280 x 720 JPEG) is cut with the same crop scaled.
+                $k = $img.Width / 1920.0
+                $srcCrop = New-Object System.Drawing.Rectangle ([int][Math]::Round($crop.X * $k)), ([int][Math]::Round($crop.Y * $k)), ([int][Math]::Round($crop.Width * $k)), ([int][Math]::Round($crop.Height * $k))
+                $g.DrawImage($img, $r, $srcCrop, [System.Drawing.GraphicsUnit]::Pixel); $img.Dispose(); $have++
                 # Tile cache: the run folders are pruned (Prune-Evidence keeps a few JPEG only), so each tile is kept here once cut.
                 $tb = New-Object System.Drawing.Bitmap $tile, $tile
                 $tg = [System.Drawing.Graphics]::FromImage($tb); $tg.DrawImage($bmp, (New-Object System.Drawing.Rectangle 0, 0, $tile, $tile), $r, [System.Drawing.GraphicsUnit]::Pixel); $tg.Dispose()
