@@ -7,6 +7,7 @@ nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 Nals.FacialAnimation 1635901197
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
 # Added 2026-10-28 at the owner request (catalogue): Ponpeco Pajamas (night garments: Fluffy and Classic pajamas, hoodie, slippers).
 ponpeco.PonpecoPajamas 3482959515
 # Owner request 2026-10-28: Akeron - Caretaker Apparel (Workshop 2799570243, uniform, vest, cloaks, headwear). packageId NOT read yet (not installed here, page does not give it): add the line "<packageId> 2799570243" once known.
