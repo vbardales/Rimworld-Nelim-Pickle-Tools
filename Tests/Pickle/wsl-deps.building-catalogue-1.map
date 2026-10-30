@@ -1,0 +1,24 @@
+# STEP 1 (2026-10-30, baby steps): base + Nelim buildings + architect mods only, no face mods. The full map hung at load three times (b32a, f9f1, 523a, fc04). Not played.
+# The pass that lists the buildings of the Architect menu (feature pickletools-building-catalogue): the look-catalogue map plus the buildings of Nelim's mods and the architect menu mods.
+# Stage here every mod whose buildings a session may place. NOT PLAYED.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.building-catalogue.map -Filter pickletools-building-catalogue
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# Buildings of Nelim's mods and the architect menu mods, added 2026-10-18 for ArchitectStudio's gallery (its request, through the Ticket Manager).
+nelim.imperialfurnishings path:ImperialFurnishings/Mod
+nelim.ancientbuildings path:AncientBuildingsRenew/Mod
+nelim.fireworkstand path:FireworkStand/Mod
+nelim.foxlamprenew path:FoxLampRenew/Mod
+nelim.adaptivestorageneolithic path:AdaptiveStorageNeolithicRenew/Mod
+nelim.foodcourt path:FoodCourt/Mod
+ferny.betterarchitect 3563882422
+com.bymarcin.architecticons 1195427067
+# TEMP until the building catalogue run is read. Added 2026-10-29 at the owner request ("catalogue :"): Vanilla Furniture Expanded - Medical Module (medical furniture; needs Harmony and the Vanilla Expanded Framework, line first).
+# HANG-SUSPECT 2026-10-30 (523a still hung without Boris and Ponpeco): OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+# HANG-SUSPECT 2026-10-30 (523a still hung without Boris and Ponpeco): VanillaExpanded.VFEMedical 1718191613
+# TEMP until the building catalogue run is read. Added 2026-10-29 at the owner request ("catalogue :"): [RH2] Uncle Boris' - Used Furniture (furniture, 1.3 to 1.6, needs Harmony).
+# HANG-SUSPECT 2026-10-30 (f9f1 and b32a hung at load, not yet run): CP.Uncle.Boris.Used.Furniture 2563508405
+# TEMP until the building catalogue run is read. Added 2026-10-29 at the owner request (link sent): Ponpeco Furnitures : Kids' Room (children's room furniture, 1.4 to 1.6).
+# HANG-SUSPECT 2026-10-30 (f9f1 and b32a hung at load, not yet run): ponpeco.PFKidsRoom 3367310887
