@@ -137,5 +137,48 @@ namespace Nelim.PickleTools.ColonistRace
             SkillRequirement found = recipe.skillRequirements?.FirstOrDefault(s => s.skill.defName == skillName);
             ctx.Assert(found != null && found.minLevel == level, $"the recipe {recipe.defName} should require {skillName} {level}; it requires {(recipe.skillRequirements == null || recipe.skillRequirements.Count == 0 ? "no skill" : string.Join(", ", recipe.skillRequirements.Select(s => s.skill.defName + " " + s.minLevel)))}");
         }
+
+        private static int CountOnMap(Map map, ThingDef def) => map.listerThings.ThingsOfDef(def).ToList().Sum(t => t.stackCount);
+
+        /// <summary>
+        /// Waits, with the game running at the speed the scenario set, until the number of things of this def on the map is above what it was when the step
+        /// began, or until this many game ticks have passed, or until this many real seconds have passed: whichever comes first. Logs one line
+        /// <c>[wait] stopped: ...</c> that says which one and the counts, ticks, seconds and game speed, and the bills and the colonists' jobs at the benches when it
+        /// ran out. Never fails by itself (the assertion is the step that follows). Unlike the stock "I wait for bill to finish", which gives the bill 120 real
+        /// seconds and then ends the game with no report, it is bounded by what you pass and says why it stopped. The count is the stack count of the things
+        /// of the def anywhere on the map (a pawn counts 1). Written 2026-10-30 for DustBunniesRenew. NOT PLAYED when written: compiled only.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I wait up to {int} ticks or {int} seconds until more {string} exist", TimeoutSeconds = 1200f)]
+        public async System.Threading.Tasks.Task WaitUntilMore(PickleContext ctx, int maxTicks, int maxSeconds, string defName)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "Load a map first");
+            ctx.Require(maxTicks >= 1 && maxSeconds >= 1 && maxSeconds <= 1100, "ticks must be 1 or more and seconds from 1 to 1100");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no thing def '{defName}' in this game");
+            int before = CountOnMap(map, def);
+            int startTick = Find.TickManager.TicksGame;
+            var clock = System.Diagnostics.Stopwatch.StartNew();
+            string reason = null;
+            int now = before;
+            while (reason == null)
+            {
+                await ctx.WaitFrames(30);
+                now = CountOnMap(map, def);
+                int ticks = Find.TickManager.TicksGame - startTick;
+                if (now > before) reason = $"the count of {defName} rose from {before} to {now}";
+                else if (ticks >= maxTicks) reason = $"the tick cap of {maxTicks} was reached ({defName} count still {now})";
+                else if (clock.Elapsed.TotalSeconds >= maxSeconds) reason = $"the real-time cap of {maxSeconds} s was reached after {ticks} ticks ({defName} count still {now})";
+            }
+            int used = Find.TickManager.TicksGame - startTick;
+            string detail = "";
+            if (now <= before)
+            {
+                var benches = map.listerBuildings.allBuildingsColonist.OfType<Building_WorkTable>().ToList();
+                detail = $"; paused: {Find.TickManager.Paused}; benches: " + string.Join(", ", benches.Select(b => $"{b.def.defName} bills {b.BillStack.Count}"))
+                    + "; colonist jobs: " + string.Join(", ", map.mapPawns.FreeColonistsSpawned.Select(p => $"{p.LabelShortCap} {(p.CurJob == null ? "none" : p.CurJob.def.defName)}"));
+            }
+            Log.Message($"[wait] stopped: {reason}; {used} ticks, {clock.Elapsed.TotalSeconds:0} s, speed {Find.TickManager.CurTimeSpeed}{detail}");
+        }
     }
 }
