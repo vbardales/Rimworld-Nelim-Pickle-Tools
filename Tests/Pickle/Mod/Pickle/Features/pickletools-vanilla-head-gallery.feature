@@ -17,6 +17,8 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And a colonist "Mannequin" exists
     And Nelim's Pickle Tools: "Mannequin" gender is male
     And Nelim's Pickle Tools: "Mannequin" body type is Male
+    And Nelim's Pickle Tools: "Mannequin" is undressed
+    And Nelim's Pickle Tools: "Mannequin" wears "UnderWhere_Boxers"
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Mannequin" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Mannequin" face tattoo is "none"
@@ -60,6 +62,9 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
@@ -106,6 +111,9 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
@@ -152,6 +160,9 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"

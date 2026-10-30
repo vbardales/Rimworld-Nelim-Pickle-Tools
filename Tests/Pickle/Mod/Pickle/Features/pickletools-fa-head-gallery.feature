@@ -14,6 +14,9 @@ Feature: One photograph per Facial Animation head shape (the head shape catalogu
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
@@ -62,6 +65,9 @@ Feature: One photograph per Facial Animation head shape (the head shape catalogu
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
@@ -110,6 +116,9 @@ Feature: One photograph per Facial Animation head shape (the head shape catalogu
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"

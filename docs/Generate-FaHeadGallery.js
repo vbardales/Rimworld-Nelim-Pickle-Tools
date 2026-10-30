@@ -26,7 +26,7 @@ for (let i = 0; i < heads.length; i += CHUNK) {
     `    And ${P}the item and name labels are hidden`, `    And ${P}the tooltips are hidden`, `    And ${P}the colonist bar is hidden`, `    And ${P}the learning helper is hidden`,
     `    And ${P}the temperature of the map is 20 degrees`, `    And ${P}I frame the area centred on (177, 121) at root size 6.5`,
     `    And ${P}"Nelim" stands at (176, 120) facing South`, `    And ${P}the other colonists are out of frame`,
-    `    And ${P}"Nelim" hairstyle is "Bald"`, `    And ${P}"Nelim" face tattoo is "none"`,
+    `    And ${P}"Nelim" is undressed`, `    And ${P}"Nelim" wears "UnderWhere_Panties"`, `    And ${P}"Nelim" wears "UnderWhere_Bra"`, `    And ${P}"Nelim" hairstyle is "Bald"`, `    And ${P}"Nelim" face tattoo is "none"`,
     `    And ${P}"Nelim" face kit is "neutral"`, `    And ${P}"Nelim" facial expression is "normal"`, `    And ${P}"Nelim" face is held neutral`,
     `    And ${P}I frame the cell (176, 119) at zoom 2`);
   for (const [n] of part) out.push(`    When ${P}"Nelim" face head shape is "${n}"`, `    And ${P}I let 5 frames pass`, `    And I take a screenshot "fahead-${n}"`);
