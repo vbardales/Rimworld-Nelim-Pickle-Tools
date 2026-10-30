@@ -49,7 +49,7 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Male_NarrowWide"
 
-  Scenario: vanilla-head-gallery-other-1: other head types 1 to 10 of 29
+  Scenario: vanilla-head-gallery-other-1: other head types 1 to 10 of 28
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -64,9 +64,6 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
-    When Nelim's Pickle Tools: "Nelim" head type is "---"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head----"
     When Nelim's Pickle Tools: "Nelim" head type is "CultEscapee"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-CultEscapee"
@@ -94,8 +91,11 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     When Nelim's Pickle Tools: "Nelim" head type is "Female_HeavyJawNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_HeavyJawNormal"
+    When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average1"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "head-Furskin_Average1"
 
-  Scenario: vanilla-head-gallery-other-2: other head types 11 to 20 of 29
+  Scenario: vanilla-head-gallery-other-2: other head types 11 to 20 of 28
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -110,9 +110,6 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
-    When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average1"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Furskin_Average1"
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Average2"
@@ -140,8 +137,11 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Narrow3"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Narrow3"
+    When Nelim's Pickle Tools: "Nelim" head type is "Gaunt"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "head-Gaunt"
 
-  Scenario: vanilla-head-gallery-other-3: other head types 21 to 29 of 29
+  Scenario: vanilla-head-gallery-other-3: other head types 21 to 28 of 28
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -156,9 +156,6 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
-    When Nelim's Pickle Tools: "Nelim" head type is "Gaunt"
-    And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "head-Gaunt"
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AverageNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AverageNormal"
