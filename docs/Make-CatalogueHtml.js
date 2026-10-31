@@ -128,7 +128,7 @@ for (const [id, title, file] of tabs) {
   for (const part of parts) {
     const head = (part.match(/^## (.*)/) || [])[1] || '';
     const sub = head ? place(file, head) : null;
-    if (sub) { (placed[sub] = placed[sub] || []).push(`<h4 class="from">${esc(title)} : ${esc(head)}</h4>` + render(part.replace(/^## .*\n/, ''))); any = true; }
+    if (sub) { (placed[sub] = placed[sub] || []).push(`<h4 class="from">${esc(title)} : ${esc(head)}${(() => { const h = sectionKinds2.find(([re]) => re.test(head)); return h ? numLabel(h[1]) : ''; })()}</h4>` + render(part.replace(/^## .*\n/, ''))); any = true; }
     else if (!head && parts.length > 1) { /* introduction of the page: kept with the page text below */ }
   }
   if (!any) docTabs.push([id, title, file]);
