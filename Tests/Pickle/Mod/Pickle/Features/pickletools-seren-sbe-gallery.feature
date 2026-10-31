@@ -26,7 +26,7 @@ Feature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim a
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (75, 32, 70)
     And Nelim's Pickle Tools: "Nelim" is undressed
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenOriginalMask_0"
@@ -111,7 +111,7 @@ Feature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim a
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (75, 32, 70)
     And Nelim's Pickle Tools: "Nelim" is undressed
     When Nelim's Pickle Tools: "Nelim" loses all genes
     And Nelim's Pickle Tools: "Nelim" has the gene "SerenOriginalMask_0"
@@ -199,7 +199,7 @@ Feature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim a
     And Nelim's Pickle Tools: "Mannequin" facial expression is "normal"
     And Nelim's Pickle Tools: "Mannequin" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (75, 32, 70)
     And Nelim's Pickle Tools: "Mannequin" is undressed
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenOriginalMask_0"
@@ -287,7 +287,7 @@ Feature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim a
     And Nelim's Pickle Tools: "Mannequin" facial expression is "normal"
     And Nelim's Pickle Tools: "Mannequin" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
-    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (70, 50, 80)
+    And Nelim's Pickle Tools: "Mannequin" skin colour is rgb (75, 32, 70)
     And Nelim's Pickle Tools: "Mannequin" is undressed
     When Nelim's Pickle Tools: "Mannequin" loses all genes
     And Nelim's Pickle Tools: "Mannequin" has the gene "SerenOriginalMask_0"

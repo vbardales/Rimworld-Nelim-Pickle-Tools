@@ -1,5 +1,5 @@
 // Writes Tests/Pickle/Mod/Pickle/Features/pickletools-seren-sbe-gallery.feature: the 12 body mask genes of Seren Biotech Extended (SerenOriginalMask_0 .. _11, zero-based as in SBE) on Nelim and on a man,
-// front and back, 4 scenarios of 12 shots. Same set-up as the body mask scenarios of pickletools-seren-gallery.feature (undressed, skin colour rgb (70, 50, 80)); no accent gene, so the masks
+// front and back, 4 scenarios of 12 shots. Same set-up as the body mask scenarios of pickletools-seren-gallery.feature (undressed, skin colour rgb (75, 32, 70)); no accent gene, so the masks
 // keep the colour written on the gene. Shots bodymask-SerenOriginalMask_<n>-<nelim|man>-<front|back>. Written 2026-10-28 at the owner's request (sheet 0801 follows SBE).
 // Pass: Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.seren-sbe.map -Filter 'pickletools-seren-sbe-gallery::seren-sbe-gallery'
 const fs = require('fs'), path = require('path');
@@ -12,7 +12,7 @@ function subject(name, man) {
   s.push(`And ${P}"${name}" stands at (176, 120) facing South`, `And ${P}the other colonists are out of frame`, `And ${P}"${name}" hairstyle is "Bald"`, `And ${P}"${name}" face tattoo is "none"`,
     `And ${P}"${name}" mouth is "MouthNormal"`, `And ${P}"${name}" brows are "BrowNormal"`, `And ${P}"${name}" lids are "LidNormal"`, `And ${P}"${name}" face skin is "SkinNormal"`,
     `And ${P}"${name}" eyeballs are "EyeNormal"`, `And ${P}"${name}" face head shape is "HeadNormal"`, `And ${P}"${name}" facial expression is "normal"`, `And ${P}"${name}" face is held neutral`,
-    `And ${P}I frame the cell (176, 120) at zoom 2`, `And ${P}"${name}" skin colour is rgb (70, 50, 80)`, `And ${P}"${name}" is undressed`);
+    `And ${P}I frame the cell (176, 120) at zoom 2`, `And ${P}"${name}" skin colour is rgb (75, 32, 70)`, `And ${P}"${name}" is undressed`);
   return s;
 }
 let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n@requires:nelim.serenbiotechextended\nFeature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim and on a man\n\n';
