@@ -70,7 +70,7 @@ function Read-Section($file, $titleRegex) {
 $cols = 6; $tile = 200; $label = 32; $perPage = 30
 $face = New-Object System.Drawing.Rectangle 810, 190, 300, 300   # dressed photographs: hair, hats, heads, beards (a tighter crop was too close, owner 2026-10-26)
 $faceTight = New-Object System.Drawing.Rectangle 847, 190, 225, 225   # nude photographs (face tattoos): head and shoulders, the pubis is out of the frame; tiles cut before were recropped 25,0,150,150
-$faceHead = New-Object System.Drawing.Rectangle 881, 190, 163, 163   # head types (owner, 2026-10-28): the head and the neck only, no bust (tiles recut 25,0,150,150 then 30,0,145,145)
+$faceHead = New-Object System.Drawing.Rectangle 880, 95, 160, 160   # head types (owner, 2026-10-28): the head and the neck only, no bust (tiles recut 25,0,150,150 then 30,0,145,145)
 $faceTat = New-Object System.Drawing.Rectangle 875, 85, 170, 170   # face tattoo photographs of 2026-10-28 (dressed bald Nelim, head at (890..1030, 100..250)): the head and the top of the shoulders, no chest (owner: the old crop cut the head and showed the breasts)
 $faceTatRoo = New-Object System.Drawing.Rectangle 921, 240, 112, 112   # the FRONT photographs of Roo's mods (roo-gallery framing, cell (176, 119) at zoom 3, head at about (925..1030, 248..350)): head only; a first guess from the profile photographs, to check on the photographs of ticket 876e
 $faceSideRoo = New-Object System.Drawing.Rectangle 918, 240, 108, 108   # the profile photographs of Roo's mods (run 7e48, 2026-10-28: Nelim framed on cell (176, 119) at zoom 3, head at (930..1030, 248..350)); head only, the chest tattoo starts at y 350

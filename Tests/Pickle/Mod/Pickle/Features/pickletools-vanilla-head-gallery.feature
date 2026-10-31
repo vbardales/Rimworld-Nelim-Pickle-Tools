@@ -22,7 +22,7 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Mannequin" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Mannequin" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Mannequin" face tattoo is "none"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Mannequin" head type is "DarkScholar_Male"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-DarkScholar_Male"
@@ -68,7 +68,7 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" head type is "CultEscapee"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-CultEscapee"
@@ -117,7 +117,7 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" head type is "Furskin_Average2"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Furskin_Average2"
@@ -166,7 +166,7 @@ Feature: The vanilla head types on a bald pawn, on a map without Facial Animatio
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" head type is "Female_AverageNormal"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "head-Female_AverageNormal"

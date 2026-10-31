@@ -23,7 +23,7 @@ function family(list, nick, extra, label) {
   for (let i = 0; i < list.length; i += CHUNK) {
     const part = list.slice(i, i + CHUNK);
     out.push(`  Scenario: vanilla-head-gallery-${label}-${i / CHUNK + 1}: ${label} head types ${i + 1} to ${i + part.length} of ${list.length}`);
-    for (const l of [...pre, ...extra, `And ${P}"${nick}" stands at (176, 120) facing South`, `And ${P}"${nick}" hairstyle is "Bald"`, `And ${P}"${nick}" face tattoo is "none"`, `And ${P}I frame the cell (176, 119) at zoom 3`]) out.push('    ' + l);
+    for (const l of [...pre, ...extra, `And ${P}"${nick}" stands at (176, 120) facing South`, `And ${P}"${nick}" hairstyle is "Bald"`, `And ${P}"${nick}" face tattoo is "none"`, `And ${P}I frame the cell (176, 119) at zoom 2`]) out.push('    ' + l);
     for (const h of part) out.push(`    When ${P}"${nick}" head type is "${h}"`, `    And ${P}I let 5 frames pass`, `    And I take a screenshot "head-${h}"`);
     out.push('');
   }
