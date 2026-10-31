@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: Profile of every face tattoo on a bald Nelim (side view of the face tattoo gallery)
 
-  Scenario: face-tattoo-side-gallery-1: profile of face tattoos 1 to 20 of 40 on a bald Nelim
+  Scenario: face-tattoo-side-gallery-1a: profile of face tattoos 1 to 20 of 40 on a bald Nelim
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -54,6 +54,28 @@ Feature: Profile of every face tattoo on a bald Nelim (side view of the face tat
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Stars"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Stars-side"
+
+  Scenario: face-tattoo-side-gallery-1b: profile of face tattoos 1 to 20 of 40 on a bald Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing East
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Tear"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Tear-side"
@@ -85,7 +107,7 @@ Feature: Profile of every face tattoo on a bald Nelim (side view of the face tat
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_BrowDots-side"
 
-  Scenario: face-tattoo-side-gallery-2: profile of face tattoos 21 to 40 of 40 on a bald Nelim
+  Scenario: face-tattoo-side-gallery-2a: profile of face tattoos 21 to 40 of 40 on a bald Nelim
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -136,6 +158,28 @@ Feature: Profile of every face tattoo on a bald Nelim (side view of the face tat
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeRed"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeRed-side"
+
+  Scenario: face-tattoo-side-gallery-2b: profile of face tattoos 21 to 40 of 40 on a bald Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing East
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     When Nelim's Pickle Tools: "Nelim" face tattoo is "STribalTat_Face_NoseStripeWhite"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-STribalTat_Face_NoseStripeWhite-side"
