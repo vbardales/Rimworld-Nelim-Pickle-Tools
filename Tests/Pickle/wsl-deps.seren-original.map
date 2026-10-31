@@ -1,0 +1,8 @@
+# The ORIGINAL Seren race (Workshop 2704627783, odysseylotus.seren, a Humanoid Alien Races race), for the reference capture of its body masks (2026-10-31, asked by SerenBiotechExtended, owner's order).
+# No WDI Realistic Bodies, no Facial Animation (the original's Facial Animation folder loads only with FA), no fork. XmlExtensions (its Settings folder) left out on purpose.
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+erdelf.HumanoidAlienRaces 839005762
+odysseylotus.seren 2704627783
