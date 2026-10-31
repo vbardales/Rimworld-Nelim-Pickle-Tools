@@ -10,6 +10,7 @@ const molongGenes = ['GS_Headbone_Skinhorns', 'GS_Ears_MFiend', 'GS_TigerEyeGene
 const garments = ['Apparel_FrillPantsA', 'Apparel_FrillPantsB', 'Apparel_FrillShirt', 'Apparel_FrillCoatG', 'Apparel_FrillCoatP', 'Apparel_FrillCoatR', 'Apparel_FrillScapula', 'Apparel_FrillSmock',
   'Apparel_FrillBrigandine', 'Apparel_FrillGambeson', 'Apparel_FrillTricorn', 'Apparel_FrillHelmet', 'Apparel_FrillDoublet', 'Apparel_FrillCourtlyBreeches', 'Apparel_FrillGown', 'Apparel_FrillCorset',
   'Apparel_FrillFeatherCloak', 'Apparel_FrillRobe', 'Apparel_FrillRoyalArmor', 'Apparel_FrillCirclet', 'Apparel_FrillCircletGem', 'Apparel_FrillDiadem', 'Apparel_FrillCrown'];
+const papouGenes = ['papagoBody1', 'papagoBody2', 'papagoTail', 'papagoWing0', 'papagoWing1', 'papagoWing2', 'papagoWing3', 'papagoWing4', 'papagoSkinColor1', 'papagoSkinColor2', 'papagoHairRed', 'papagoHairYellow', 'papagoCheek0', 'papagoCheek1', 'papagoEar0', 'papagoEar1', 'papagoEar2', 'papagoEar3', 'papagoEar4'];   // Papou (2882466074, 1.4 only, Sounds folder): its own map wsl-deps.races-papou.map, a Sounds folder may hang the load like Zealous Innocence
 const heads = ['FrilleumSkull', 'FrilleumFaceA', 'FrilleumFaceB', 'FrilleumFaceC'];
 const animals = [['IceDrake', 'IceDrake1', 170], ['ShieldDrake', 'ShieldDrake1', 172], ['TundraDrake', 'TundraDrake1', 174], ['Shellox', 'Shellox1', 178]];
 const out = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.pickletools.colonistrace', '@requires:nelim.pickletools.camerazoom',
@@ -40,5 +41,7 @@ scenario('races-gallery-5: Frilleum head types on a Frilleum colonist', subject(
   heads.flatMap(h => [`When ${P}"Fril" head type is "${h}"`, `And ${P}I let 5 frames pass`, `And I take a screenshot "race-${h}"`]));
 scenario('races-gallery-6: Frilleum drakes and the shellox', [],
   animals.flatMap(([kind, name, x]) => [`Given ${P}an adult animal of kind "${kind}" named "${name}" is spawned at (${x}, 126)`, `When ${P}I frame the animal "${name}" at zoom 2`, `And ${P}I let 5 frames pass`, `And I take a screenshot "race-${kind}"`]));
+scenario('races-gallery-7: Papou genes 1 to 10 of 19 on Nelim', subject('Nelim', null), geneShots('Nelim', papouGenes.slice(0, 10)));
+scenario('races-gallery-8: Papou genes 11 to 19 of 19 on Nelim', subject('Nelim', null), geneShots('Nelim', papouGenes.slice(10)));
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-races-gallery.feature', out.join('\n') + '\n');
-console.log('6 scenarios');
+console.log('8 scenarios');

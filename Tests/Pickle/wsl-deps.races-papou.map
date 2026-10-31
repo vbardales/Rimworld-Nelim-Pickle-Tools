@@ -1,0 +1,6 @@
+# Papou Race: emotional birds (Workshop 2882466074, com.yayo.papagoRace), gene based, declares 1.4 only and ships a Sounds folder (2026-10-31, Audit relays Virginie). Its own map: a Sounds folder may hang the load on the Linux runner like Zealous Innocence did.
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+com.yayo.papagoRace 2882466074

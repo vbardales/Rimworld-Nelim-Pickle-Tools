@@ -296,3 +296,130 @@ Feature: Four race mods before the owner unsubscribes: Charmweavers, Molong and 
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "race-Shellox"
 
+  Scenario: races-gallery-7: Papou genes 1 to 10 of 19 on Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoBody1"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoBody1"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoBody2"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoBody2"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoTail"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoTail"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoWing0"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoWing0"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoWing1"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoWing1"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoWing2"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoWing2"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoWing3"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoWing3"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoWing4"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoWing4"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoSkinColor1"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoSkinColor1"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoSkinColor2"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoSkinColor2"
+
+  Scenario: races-gallery-8: Papou genes 11 to 19 of 19 on Nelim
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoHairRed"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoHairRed"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoHairYellow"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoHairYellow"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoCheek0"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoCheek0"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoCheek1"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoCheek1"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoEar0"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoEar0"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoEar1"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoEar1"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoEar2"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoEar2"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoEar3"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoEar3"
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "papagoEar4"
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "race-papagoEar4"
+
