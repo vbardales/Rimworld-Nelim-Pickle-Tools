@@ -1,0 +1,12 @@
+# Four race mods the owner re-subscribed to and wants catalogued before she unsubscribes again (2026-10-31, Audit relays Virginie): Frilleum (HAR race), Charmweavers, Molong (Papou 2882466074 not on the disk yet).
+# Lean map: no Facial Animation, no WDI. Dependencies from docs/registre/worklist-npt-2026-10-31.md of the protocols root: Humanoid Alien Races, EBSG Framework, Vanilla Expanded Framework, Biotech.
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+erdelf.HumanoidAlienRaces 839005762
+EBSG.Framework 3112549163
+ArmoredAmpharos.Frilleum 2444583084
+ReSplice.XOTR.Charmweavers 3131996691
+Sov.Tengri 3789407175
