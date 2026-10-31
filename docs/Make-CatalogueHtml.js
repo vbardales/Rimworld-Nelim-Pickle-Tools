@@ -33,8 +33,10 @@ function render(md) {
       while (i < lines.length && lines[i].startsWith('|')) { rows.push(lines[i]); i++; } i--;
       const cells = r => r.trim().replace(/^\||\|$/g, '').split('|').map(c => c.trim());
       const head = cells(rows[0]), body = rows.slice(2).map(cells);
-      out.push('<table><thead><tr>' + head.map(c => `<th>${inline(c)}</th>`).join('') + '</tr></thead><tbody>' +
-        body.map(r => '<tr>' + r.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') + '</tbody></table>');
+      const table = '<table><thead><tr>' + head.map(c => `<th>${inline(c)}</th>`).join('') + '</tr></thead><tbody>' +
+        body.map(r => '<tr>' + r.map(c => `<td>${inline(c)}</td>`).join('') + '</tr>').join('') + '</tbody></table>';
+      // The Mod | Names tables (the lists of defNames per mod) are long: folded by default (owner, 2026-10-31); the filter box opens the ones that match.
+      out.push(head.length === 2 && head[0] === 'Mod' && head[1] === 'Names' ? `<details class="names"><summary>Liste des noms par mod (${body.length} lignes)</summary>${table}</details>` : table);
     } else if (/^\s*[-*] /.test(l)) {
       const items = [];
       while (i < lines.length && /^\s*[-*] /.test(lines[i])) { items.push(lines[i].replace(/^\s*[-*] /, '')); i++; } i--;
@@ -155,7 +157,7 @@ nav a.on{background:var(--acc);color:#fff}
 main{flex:1;min-width:0;padding:20px 28px 60px}
 #jump{display:block;margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font:inherit;max-width:420px;width:100%}#q{width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);margin-bottom:12px}
 h1{margin:0 0 4px}.src{color:var(--mut);margin:0 0 16px;font-size:13px}
-h2,h3,h4{margin:24px 0 8px}h4.from{font-size:13px;color:var(--mut);margin:14px 0 4px}
+h2,h3,h4{margin:24px 0 8px}details.names{margin:8px 0}details.names summary{cursor:pointer;color:var(--mut);padding:4px 0}h4.from{font-size:13px;color:var(--mut);margin:14px 0 4px}
 table{border-collapse:collapse;width:100%;background:var(--card);margin:8px 0}
 th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:14px;overflow-wrap:anywhere}td:not(:last-child),th:not(:last-child){white-space:nowrap;overflow-wrap:normal}a{color:var(--acc)}
 th{background:color-mix(in srgb,var(--acc) 12%,var(--card))}
@@ -175,7 +177,7 @@ ${sections}
 <script>
 const links=[...document.querySelectorAll('nav a,nav summary')],secs=[...document.querySelectorAll('main section')],q=document.getElementById('q');
 function show(id,j){links.forEach(a=>a.classList.toggle('on',a.dataset.t===id&&(!a.dataset.j||a.dataset.j===j)));secs.forEach(s=>s.hidden=s.id!==id);try{localStorage.setItem('cat-tab',id)}catch(e){}filter();if(j){const el=document.getElementById(j);if(el)el.scrollIntoView()}else window.scrollTo(0,0)}
-function filter(){const v=q.value.toLowerCase();document.querySelectorAll('main section:not([hidden]) tbody tr').forEach(r=>r.classList.toggle('hide',v&&!r.textContent.toLowerCase().includes(v)))}
+function filter(){const v=q.value.toLowerCase();document.querySelectorAll('main section:not([hidden]) tbody tr').forEach(r=>r.classList.toggle('hide',v&&!r.textContent.toLowerCase().includes(v)));document.querySelectorAll('main section:not([hidden]) details.names').forEach(d=>{if(v)d.open=!!d.querySelector('tbody tr:not(.hide)')})}
 links.forEach(a=>a.onclick=()=>{location.hash=a.dataset.j||a.dataset.t;show(a.dataset.t,a.dataset.j)});q.oninput=filter;
 const jump=document.getElementById('jump');
 jump.onchange=()=>{const o=jump.options[jump.selectedIndex];if(!o.value)return;location.hash=o.value;show(o.dataset.t,o.value);jump.selectedIndex=0};
