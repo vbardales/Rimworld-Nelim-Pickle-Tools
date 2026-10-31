@@ -1,0 +1,14 @@
+# BATCH 5b half 2 (2026-10-31): b5b hung at load (guard stop, log ends in asset unloading) while b5a ran green, so b5b is halved again.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+Nals.FacialAnimation 1635901197
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request (she sent the EBSG Framework link): Det's Xenotypes - Brawnum and its framework (Brawnum needs Biotech, EBSG Framework and the framework above).
+EBSG.Framework 3112549163
+det.brawnum 3429572581
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request ("general textures aussi"): General Textures Collection (30 retextures). The catalogue run LISTS defNames and changes none, so a retexture does no harm here; it WOULD change the look of any gallery photographed with it: never put it in a gallery map.
+Kas.GeneralCollection 3789119336
+# TEMP until the catalogue run is read. Added 2026-10-29 after the owner subscribed again (she says both work in 1.6): Retextured Apparel (retextures vanilla clothes, heads and bodies: load before Facial Animation for a gallery, never in a gallery map) and Skin Tight Recon. NOT in ticket 11c1 (its map was read at launch): a second pass.
+tenthwit.apparel 2042613316
+Jayrizzel06.skintightrecon 2900128137

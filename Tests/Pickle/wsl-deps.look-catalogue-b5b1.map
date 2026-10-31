@@ -1,0 +1,14 @@
+# BATCH 5b half 1 (2026-10-31): b5b hung at load (guard stop, log ends in asset unloading) while b5a ran green, so b5b is halved again.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+Nals.FacialAnimation 1635901197
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+TheVanityProject.FemaleHair 3129825640
+TheVanityProject.FemaleAnimeHair 3393734237
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request: Zealous Innocence (nappies and other clothes, 1.3 to 1.7; the Steam page says Dubs Bad Hygiene Lite or full is optional) and Mercer's Backpacks + Nano Suit (Continued) (backpacks and a nanosuit, 1.0 to 1.7). Retextured Apparel, Skin Tight Recon and Flak Dusters wait for their download.
+Proximo.ZealousInnocence 2857297111
+Mlie.MercerBackpacksNanoSuit 2014570220
+# REMOVED 2026-10-29: Useful Clothes (Continued) (TSP) 3044882634 (wool.UselessClothes): its About folder holds about.xml in lowercase, no About.xml, so the Linux staging dies ("declares no packageId"). Windows reads it, Linux does not. Not a catalogue case until its author fixes the file name.
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request: Flak Dusters (duster and flak jacket coat, 1.4 to 1.7). Retextured Apparel and Skin Tight Recon still not downloaded.
+VerriganHolmes.FlakDusters 2563894152
