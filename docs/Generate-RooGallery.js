@@ -40,8 +40,8 @@ const faceBase = [...common,
   `And ${P}"Nelim" face head shape is "HeadNormal"`,
   `And ${P}"Nelim" facial expression is "normal"`,
   `And ${P}"Nelim" face is held neutral`,
-  `And ${P}"Nelim" wears "Apparel_Pants"`,   // owner, 2026-10-25: the bare lower body showed in the face shots
-  `And ${P}I frame the cell (176, 119) at zoom 3`,   // the zoom of the look gallery: the face crop of Make-LookSheets fits it
+  `And ${P}"Nelim" is undressed`, `And ${P}"Nelim" wears "UnderWhere_Panties"`, `And ${P}"Nelim" wears "UnderWhere_Bra"`,   // underwear (owner, 2026-10-31); the pants of 2026-10-25 hid the bare lower body
+  `And ${P}I frame the cell (176, 119) at zoom 2`,   // zoom 2 like the Facial Animation head gallery (owner, 2026-10-31: the zoom 3 crops were blurry): one wide head crop for every face sheet
 ];
 const bodyBase = [...common,
   `And ${P}"Nelim" facial expression is "normal"`,
@@ -53,7 +53,7 @@ const tags = ['@requires:nelim.pickletools.screenshotstudio', '@requires:nelim.p
 const out = [...tags, "Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (look catalogue, Roo)", ''];
 let n = 0;
 function scenarios(kind, items, base, step) {
-  const size = Math.ceil(items.length / Math.ceil(items.length / 20));   // even chunks of at most 20 shots (Pickle's watchdog stops a scenario at 300 s)
+  const size = Math.ceil(items.length / Math.ceil(items.length / 10));   // even chunks of at most 10 shots (Pickle's watchdog stops a scenario at 300 s)
   for (let i = 0; i < items.length; i += size) {
     const part = items.slice(i, i + size); n++;
     out.push(`  Scenario: roo-gallery-${n}: ${kind} ${i + 1} to ${i + part.length} of ${items.length}`);

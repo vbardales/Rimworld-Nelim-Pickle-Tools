@@ -3,7 +3,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (look catalogue, Roo)
 
-  Scenario: roo-gallery-1: facetattoo 1 to 20 of 40
+  Scenario: roo-gallery-1: facetattoo 1 to 10 of 40
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -23,8 +23,10 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBAcneA"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -65,7 +67,32 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBBlushB"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-RBBlushB"
-    And Nelim's Pickle Tools: the look of "Nelim" is restored
+
+  Scenario: roo-gallery-2: facetattoo 11 to 20 of 40
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBChinDimple"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-RBChinDimple"
@@ -106,7 +133,7 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-RBMolesA"
 
-  Scenario: roo-gallery-2: facetattoo 21 to 40 of 40
+  Scenario: roo-gallery-3: facetattoo 21 to 30 of 40
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -126,8 +153,10 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
     And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: "Nelim" face is held neutral
-    And Nelim's Pickle Tools: "Nelim" wears "Apparel_Pants"
-    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
     And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "RBMolesB"
     And Nelim's Pickle Tools: I let 5 frames pass
@@ -168,7 +197,32 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Eyebrows"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Eyebrows"
-    And Nelim's Pickle Tools: the look of "Nelim" is restored
+
+  Scenario: roo-gallery-4: facetattoo 31 to 40 of 40
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
+    And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Bra"
+    And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" face tattoo is "Face_Hairfade"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Hairfade"
@@ -209,7 +263,7 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "facetattoo-Face_Thirdeye"
 
-  Scenario: roo-gallery-3: bodytattoo 1 to 16 of 31
+  Scenario: roo-gallery-5: bodytattoo 1 to 8 of 31
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -255,7 +309,22 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     When Nelim's Pickle Tools: "Nelim" body tattoo is "RBMolesBodyD"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyD"
-    And Nelim's Pickle Tools: the look of "Nelim" is restored
+
+  Scenario: roo-gallery-6: bodytattoo 9 to 16 of 31
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "RBMolesBodyE"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-RBMolesBodyE"
@@ -288,7 +357,7 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Cassandra"
 
-  Scenario: roo-gallery-4: bodytattoo 17 to 31 of 31
+  Scenario: roo-gallery-7: bodytattoo 17 to 24 of 31
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -334,7 +403,22 @@ Feature: One photograph per tattoo and birthmark of Roo's two mods on Nelim (loo
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Phoebe"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Phoebe"
-    And Nelim's Pickle Tools: the look of "Nelim" is restored
+
+  Scenario: roo-gallery-8: bodytattoo 25 to 31 of 31
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: the look of "Nelim" is saved
     When Nelim's Pickle Tools: "Nelim" body tattoo is "Body_Randy"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodytattoo-Body_Randy"
