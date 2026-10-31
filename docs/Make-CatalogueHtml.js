@@ -58,7 +58,7 @@ const tabs = [
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
-const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27 };
+const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
@@ -73,13 +73,38 @@ const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
   return files.length ? '<div class="sheets wide">' + files.map(sheet).join('') + '</div>' : '';
 };
-const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
+const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head', 'fahead']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['ideocolour', 'colour']], [/^Weapons/, ['weapon']],
   [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, text) => {
   const hit = sectionKinds.find(([re]) => re.test(text));
   return m + (hit ? sheetsFor(hit[1]) : '');
 });
+
+// Browsing by category (owner, 2026-10-31: "I want to go straight to a sub-category, a drop-down menu"): the categories follow the columns of the NSB roster (Roster.xlsx:
+// Physique, Apparence peau, Apparence cheveux, Visage, Apparence yeux, Tete, Caractere et animation, Tenues). Each sub-category lists the sheets of its kinds and the page that holds
+// the tables; a kind that has no sheet yet is listed as such. The drop-down at the top jumps to a sub-category.
+const categories = [
+  ['Peau', [['Couleurs de peau (genes)', ['skingene', 'serenskin', 'serenvteskin'], 'genes'], ['Tatouages du corps', ['bodytattoo'], 'looks'], ['Masques corporels Seren', ['bodymask'], 'genes']]],
+  ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene'], 'genes'], ['Coiffures', ['hair'], 'looks']]],
+  ['Visage', [['Formes de tete (vanilla)', ['head'], 'looks'], ['Formes de tete (Facial Animation)', ['fahead'], 'faceparts'], ['Tatouages du visage', ['facetattoo'], 'looks'], ['Barbes et couleurs de barbe', ['beard'], 'looks'], ['Parties du visage (bouches, sourcils, paupieres, peaux, kits)', ['faceparts'], 'faceparts'], ['Seren : formes de tete, peaux, bouches', ['serenhead', 'serenmouth', 'serenskin'], 'seren']]],
+  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene'], 'genes'], ['Seren : yeux, paupieres, sourcils', ['sereneyeball', 'serenlid', 'serenbrow'], 'seren']]],
+  ['Tete : oreilles, cornes, marques', [['Genes d\'apparence (marques, capteurs, oreilles)', ['lookgene'], 'genes']]],
+  ['Corps', [['Corpulences', ['body'], 'looks']]],
+  ['Animations', [['Animations du visage', ['animations'], 'faceparts']]],
+  ['Tenues', [['Vetements', ['garment'], 'apparel'], ['Chapeaux', ['hat'], 'apparel'], ['Armes', ['weapon'], 'weapons'], ['Couleurs (Ideologie et autres)', ['ideocolour', 'colour'], 'colours']]],
+  ['Animaux', [['Vetements pour animaux', ['animalapparel'], 'animalapparel']]],
+  ['Monde', [['Meteo', ['weather'], 'weather']]],
+];
+const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+const tabTitle = Object.fromEntries(tabs.map(([id, t]) => [id, t]));
+const catSection = '<section id="cat" hidden><h1>Par categorie</h1><p class="src">categories d\'apres les colonnes du roster NSB (Roster.xlsx)</p>' + categories.map(([c, subs]) =>
+  `<h2 id="cat-${slug(c)}">${esc(c)}</h2>` + subs.map(([s, kinds, page]) => {
+    const have = kinds.some(k => byKind[k] && byKind[k].length);
+    return `<h3 id="cat-${slug(c)}-${slug(s)}">${esc(s)}</h3><p class="src">Tableaux : <a class="go" data-t="${page}">${esc(tabTitle[page] || page)}</a></p>` + (have ? sheetsFor(kinds) : '<p class="src">Pas encore de photographie.</p>');
+  }).join('')).join('') + '</section>';
+const jumpMenu = '<select id="jump"><option value="">Aller a...</option>' + categories.map(([c, subs]) =>
+  `<optgroup label="${esc(c)}">` + subs.map(([s]) => `<option value="cat-${slug(c)}-${slug(s)}">${esc(s)}</option>`).join('') + '</optgroup>').join('') + '</select>';
 
 const sections = tabs.map(([id, title, file]) => {
   const p = path.join(cat, file);
@@ -98,7 +123,7 @@ nav h2{font-size:13px;text-transform:uppercase;letter-spacing:.06em;color:var(--
 nav a{display:block;padding:6px 8px;border-radius:6px;color:var(--fg);text-decoration:none;cursor:pointer}
 nav a.on{background:var(--acc);color:#fff}
 main{flex:1;min-width:0;padding:20px 28px 60px}
-#q{width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);margin-bottom:12px}
+#jump{display:block;margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font:inherit;max-width:420px;width:100%}#q{width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);margin-bottom:12px}
 h1{margin:0 0 4px}.src{color:var(--mut);margin:0 0 16px;font-size:13px}
 h2,h3,h4{margin:24px 0 8px}
 table{border-collapse:collapse;width:100%;background:var(--card);margin:8px 0}
@@ -112,9 +137,10 @@ main img{max-width:100%}p>img,li>img{display:block;margin:8px 0}
 tr.hide{display:none}
 @media(max-width:700px){body{display:block}nav{width:auto;height:auto;position:static;border:0;border-bottom:1px solid var(--line)}main{padding:16px}}
 </style></head><body>
-<nav><h2>Catalogues</h2>
+<nav><h2>Catalogues</h2><a data-t="cat">Par categorie</a>
 ${tabs.map(([id, t]) => `<a data-t="${id}">${t}</a>`).join('')}<a data-t="photos">Photographs</a></nav>
-<main><input id="q" type="search" placeholder="Filter rows (a defName, a mod...)">
+<main>${jumpMenu}<input id="q" type="search" placeholder="Filter rows (a defName, a mod...)">
+${catSection}
 ${sections}
 <section id="photos" hidden><h1>Photographs</h1><p class="src">ColonistRace/docs/img</p>${gallery}</section>
 </main>
@@ -124,7 +150,9 @@ function show(id){links.forEach(a=>a.classList.toggle('on',a.dataset.t===id));se
 function filter(){const v=q.value.toLowerCase();document.querySelectorAll('main section:not([hidden]) tbody tr').forEach(r=>r.classList.toggle('hide',v&&!r.textContent.toLowerCase().includes(v)))}
 links.forEach(a=>a.onclick=()=>{location.hash=a.dataset.t;show(a.dataset.t)});q.oninput=filter;
 let start=location.hash.slice(1);try{start=start||localStorage.getItem('cat-tab')}catch(e){}
-show(secs.some(s=>s.id===start)?start:'looks');
+document.getElementById('jump').onchange=e=>{const id=e.target.value;if(!id)return;show('cat');location.hash=id;const el=document.getElementById(id);if(el)el.scrollIntoView();e.target.value=''};
+document.addEventListener('click',e=>{const a=e.target.closest('a.go');if(a){location.hash=a.dataset.t;show(a.dataset.t)}});
+show(secs.some(s=>s.id===start)?start:'cat');
 </script></body></html>`;
 fs.writeFileSync(path.join(cat, 'index.html'), html);
 console.log('wrote ColonistRace/docs/catalogues/index.html', (html.length / 1024).toFixed(0) + ' KB,', Object.values(byKind).flat().length, 'sheets');
