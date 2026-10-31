@@ -69,7 +69,9 @@ for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBl
 if (byBlock[2]) { byKind.beardcolour = byBlock[2].filter(f => / Couleurs de barbe /.test(f)); byKind.beard = byBlock[2].filter(f => !/ Couleurs de barbe /.test(f)); }
 // The face part sheets (block 6, Make-PartSheets.ps1) are split by their label so that each goes with its own sub-category (the eyes, the eyelids and the brows are with the eyes, not with the face).
 for (const [k, re] of Object.entries({ fpMouth: /Bouches/, fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
-const sheet = f => `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
+let sheetText = {}; try { sheetText = JSON.parse(fs.readFileSync(path.join(looksDir, 'sheets.json'), 'utf8')); } catch (e) { /* no manifest: the sheets stay images */ }
+const sheetCells = f => { const c = sheetText[f]; return c ? (Array.isArray(c) ? c : [c]) : null; };
+const sheet = f => sheetCells(f) ? `<div class="sheet"><div class="shname"><a href="../img/looks/${encodeURI(f)}" target="_blank">${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</a></div><div class="tl">` + sheetCells(f).map(c => `<figure>${c.tile ? `<img loading="lazy" src="../img/looks/tiles/${encodeURI(c.tile)}" alt="${esc(c.text)}">` : '<div class="nophoto"></div>'}<figcaption>${c.hex ? `<i class="sw" style="background:#${c.hex}"></i>` : ''}${esc(c.text)}</figcaption></figure>`).join('') + '</div></div>' : `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
   gallery += `<h3>${k}</h3><div class="sheets">` + files.map(sheet).join('') + '</div>';
@@ -183,6 +185,7 @@ code{background:color-mix(in srgb,var(--fg) 8%,transparent);padding:1px 4px;bord
 main img{max-width:100%}p>img,li>img{display:block;margin:8px 0}
 .sheets{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .sheets a{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;text-decoration:none;color:var(--mut);font-size:12px}
+.sheet{grid-column:1/-1}.shname{font-size:12px;color:var(--mut);margin:6px 0}.tl{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}.tl figure{margin:0;font-size:11px;word-break:break-word}.tl img{width:100%;display:block;border-radius:4px}.nophoto{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--card),var(--card) 4px,var(--line) 4px,var(--line) 5px);border-radius:4px}.sw{display:inline-block;width:10px;height:10px;margin-right:4px;border:1px solid var(--line)}
 .sheets.wide{grid-template-columns:repeat(auto-fill,minmax(520px,1fr))}.sheets img{width:100%;display:block;border-radius:4px}
 tr.hide{display:none}
 @media(max-width:700px){body{display:block}nav{width:auto;height:auto;position:static;border:0;border-bottom:1px solid var(--line)}main{padding:16px}}

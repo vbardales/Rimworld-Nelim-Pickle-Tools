@@ -38,6 +38,8 @@ function Get-TilePath($key) {
 }
 
 $files = @{}
+# Text of every sheet (img/looks/sheets.json): the page shows the tiles with their captions as text, so the names can be searched and copied.
+$manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
 $runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } } | Sort-Object LastWriteTime | ForEach-Object {
@@ -92,7 +94,7 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
         $bmp = New-Object System.Drawing.Bitmap ($cols * $tile), ($rows * ($tile + $label))
         $g = [System.Drawing.Graphics]::FromImage($bmp)
         $g.Clear([System.Drawing.Color]::White)
-        $have = 0
+        $have = 0; $cells = @()
         for ($i = 0; $i -lt $part.Count; $i++) {
             $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
             $r = New-Object System.Drawing.Rectangle $x, $y, $tile, $tile
@@ -124,6 +126,7 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
                 $br = New-Object System.Drawing.SolidBrush $c; $g.FillRectangle($br, $x + $tile - 40, $y + $tile - 40, 40, 40); $br.Dispose()
                 $txt += ' #' + $part[$i].hex
             }
+            $tp = Get-TilePath $part[$i].key; $cells += [pscustomobject]@{ tile = $(if (-not $swatchOnly -and (Test-Path $tp)) { Split-Path $tp -Leaf } else { $null }); text = $txt; hex = [string]$part[$i].hex }
             $box = New-Object System.Drawing.RectangleF ([float]($x + 2)), ([float]($y + $tile + 2)), ([float]($tile - 4)), ([float]($label - 2))
             $g.DrawString($txt, $font, [System.Drawing.Brushes]::Black, $box)
         }
@@ -134,6 +137,7 @@ function Build-Sheets($kind, $modName, $items, $crop, $swatchOnly) {
         if ($sheetRank[$block] -gt 99) { throw "more than 99 sheets in the block of '$kind': widen the blocks" }
         $path = Join-Path $out ("{0:0000} {1} - {2} - {3}.jpg" -f ($block * 100 + $sheetRank[$block]), $kindText, $modText, ($pg + 1))
         $bmp.Save($path, $enc, $p); $bmp.Dispose()
+        $manifest[(Split-Path $path -Leaf)] = $cells
         Write-Output ("{0} {1} p{2}: {3} of {4} -> {5}" -f $kind, $modName, ($pg + 1), $have, $part.Count, ((Split-Path $path -Leaf)))
     }
 }
@@ -240,3 +244,4 @@ if ($sx.Count) { Build-Sheets 'serenxeno' 'pawn' $sx $body $false }
 # Seren, Vanilla Textures Expanded face set (map wsl-deps.seren-vte.map, scenario "VTE set"): its marking skins, shots seren-vte-skin-<defName>; its brow joins the brow sheet (seren-brow-OL_SerenBrowNone).
 $vs = @($files.Keys | Where-Object { $_ -like 'seren-vte-skin-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = $_.Substring('seren-vte-skin-'.Length); hex = '' } })
 if ($vs.Count) { Build-Sheets 'serenvteskin' 'face' $vs $serenFace $false }
+[System.IO.File]::WriteAllText((Join-Path $out 'sheets.json'), ($manifest | ConvertTo-Json -Depth 5), (New-Object System.Text.UTF8Encoding $false))
