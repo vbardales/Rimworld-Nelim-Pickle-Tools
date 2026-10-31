@@ -8,8 +8,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Mouths (`mouth is`)
 
-![Mouths: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0601%20Parties%20du%20visage%20-%20Bouches.jpg)
-
 | Mod | Names |
 |---|---|
 | (none, Facial Animation core) | MouthEdnaLipsMale, MouthLipsBigMale, MouthLipsSimpleMale, MouthLipsSimpleSmileMale, MouthLipsSmallSmileMale, MouthLipsSmirkMale, MouthLipsTinySmileMale, MouthLipsWorriedMale, MouthLittle, MouthNone, MouthSubtle |
@@ -19,8 +17,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Brows (`brows are`)
 
-![Brows: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0602%20Parties%20du%20visage%20-%20Sourcils.jpg)
-
 | Mod | Names |
 |---|---|
 | [NL] Facial Animation - Experimentals | BrowNormal |
@@ -28,8 +24,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 | Vanilla Textures Expanded - [NL] Facial Animation | BrowEven, BrowFurryMonobrow, BrowFuzzy, BrowNone, BrowRaised, BrowSquare, BrowStreamer, BrowThin, BrowTriangle, MonoBrow, MonoScarredBrows |
 
 ## Lids (`lids are`)
-
-![Lids: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0603%20Parties%20du%20visage%20-%20Paupieres.jpg)
 
 | Mod | Names |
 |---|---|
@@ -39,8 +33,6 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 | Visual beauty for Facial Animation | Biotech_Eyes_Beauty, Biotech_Eyes_Beauty2 |
 
 ## Skins (`face skin is`)
-
-![Skins: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0604%20Parties%20du%20visage%20-%20Peaux.jpg)
 
 | Mod | Names |
 |---|---|
@@ -52,16 +44,12 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Eyeballs (`eyeballs are`)
 
-![Eyeballs: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0606%20Parties%20du%20visage%20-%20Yeux.jpg)
-
 | Mod | Names |
 |---|---|
 | (none) | BIGEYE, EyeBig, EyeNone, EyeNormal, EyeSmall, EyeThin, EyeWide |
 | EyeGenes3 | Courageous, Empathetic, Swift |
 
 ## Head shapes (`face head shape is`)
-
-![Head shapes: one photograph per value, Nelim at 20 degrees, run of 2026-10-09](../img/looks/0607%20Parties%20du%20visage%20-%20Formes%20de%20tete.jpg)
 
 | Mod | Names |
 |---|---|
