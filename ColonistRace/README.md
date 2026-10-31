@@ -196,3 +196,12 @@ Reached by reflection (no reference to HAR). Written for SerenBiotechExtended: t
 | `Nelim's Pickle Tools: {string} alien head mask variant is {int}` | The same for `headMaskVariant`. |
 
 The list step also prints the four variant numbers and each addon's `name`; the set-addon step also matches the addon `name`. **Compiled, never played.**
+
+## Genes on an animal (2026-10-31)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the animal {string} has the gene {string}` | Gives a spawned animal found by its short name the gene. Does not create a gene tracker: an animal with `Pawn.genes == null` fails with a message that says so (the proof that a mod is needed). |
+| `Nelim's Pickle Tools: the animal {string} holds the gene {string}` | Asserts the gene is held; the failure lists the genes held or says there is no tracker. |
+
+Written for SanctuaryBacklot (Atticus's eye gene). **Compiled, never played.**
