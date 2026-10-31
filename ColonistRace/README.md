@@ -180,3 +180,12 @@ Not here: a head type or face shape, and a neutral pose.
 | Step | What it does |
 | --- | --- |
 | `Nelim's Pickle Tools: a portrait of {string} is saved as {string} at {int} pixels and zoom {float}` | Renders the colonist's portrait (south, game portrait renderer, not the camera) at N by N pixels (64 to 2048) and saves it as a jpeg at `screenshots/film/pickletools-portrait--<name>/0000.jpg` of the report (read from the first run, NSB 2026-10-31: the folder is under film/, and a portrait asked at 512 pixels came out 640 x 640). Zoom 1 shows the whole body, about 3 the head. Written for SanctuaryBacklot (Miel's face parts at a legible size: the camera stops at root size 2, a face of about 150 px). **Played once (NSB ticket 9a3a, Miel, zoom 2, 3 and 4 at 512 px, green)**: the game portrait draws the Facial Animation parts (brows, mouth, eyes; lids and face skin marks are subtle at this size). Owner validated Miel's face on these portraits. |
+
+## Humanoid Alien Races body addons (2026-10-31)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the alien addons of {string} are listed` | Logs (`[alien-addon]`, one line per addon in race-definition order: index, path, bodyPart, variantCount, current variant) and attaches `alien-addons`. Fails on a pawn that is not of a HAR race. |
+| `Nelim's Pickle Tools: {string} alien addon {string} variant is {int}` | Sets `AlienComp.addonVariants` for the addon whose path equals or ends with the text, redraws, reads back; fails listing the addons when none matches, when the variant is not below the variant count, or when the value did not stick. |
+
+Reached by reflection (no reference to HAR). Written for SerenBiotechExtended: the original Seren draws its body masks as HAR body addons chosen at random per pawn, with no gene or setting. Member names were read from AlienRace.dll's metadata, **compiled, never played**.
