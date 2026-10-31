@@ -28,6 +28,23 @@ out += `    And ${P}I let 5 frames pass
     And I take a screenshot "bodymask-probe-nogene"
 
 `;
+// Probes 00 and 01 (2026-10-31): the set-up plus only "loses all genes" (00), then plus one mask gene (01), after the set-up alone (0) passed.
+for (const [id, gene] of [['00', false], ['01', true]]) {
+  out += `  Scenario: seren-sbe-gallery-${id}: probe, ${gene ? 'loses all genes then one mask gene' : 'loses all genes only'}
+`;
+  for (const l of PRE) out += `    ${l}
+`;
+  for (const l of subject("Nelim", false)) out += `    ${l}
+`;
+  out += `    When ${P}"Nelim" loses all genes
+`;
+  if (gene) out += `    And ${P}"Nelim" has the gene "SerenOriginalMask_0"
+`;
+  out += `    And ${P}I let 5 frames pass
+    And I take a screenshot "bodymask-probe-${gene ? 'gene' : 'nogenes'}"
+
+`;
+}
 for (const [who, name, man] of [['nelim', 'Nelim', false], ['man', 'Mannequin', true]]) {
   for (const [view, dir] of [['front', 'South'], ['back', 'North']]) {
     // Chunks of 4 genes (2026-10-31): the scenario of 12 was killed at exit 137 four times in a row (5011, dd35, e4da and 3fee), so each scenario holds fewer masks.

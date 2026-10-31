@@ -31,6 +31,63 @@ Feature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim a
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "bodymask-probe-nogene"
 
+  Scenario: seren-sbe-gallery-00: probe, loses all genes only
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (75, 32, 70)
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-probe-nogenes"
+
+  Scenario: seren-sbe-gallery-01: probe, loses all genes then one mask gene
+    Given the save "Nelims-tribe" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the item and name labels are hidden
+    And Nelim's Pickle Tools: the tooltips are hidden
+    And Nelim's Pickle Tools: the colonist bar is hidden
+    And Nelim's Pickle Tools: the learning helper is hidden
+    And Nelim's Pickle Tools: the temperature of the map is 20 degrees
+    And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
+    And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
+    And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
+    And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
+    And Nelim's Pickle Tools: "Nelim" mouth is "MouthNormal"
+    And Nelim's Pickle Tools: "Nelim" brows are "BrowNormal"
+    And Nelim's Pickle Tools: "Nelim" lids are "LidNormal"
+    And Nelim's Pickle Tools: "Nelim" face skin is "SkinNormal"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeNormal"
+    And Nelim's Pickle Tools: "Nelim" face head shape is "HeadNormal"
+    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
+    And Nelim's Pickle Tools: "Nelim" face is held neutral
+    And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (75, 32, 70)
+    And Nelim's Pickle Tools: "Nelim" is undressed
+    When Nelim's Pickle Tools: "Nelim" loses all genes
+    And Nelim's Pickle Tools: "Nelim" has the gene "SerenOriginalMask_0"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "bodymask-probe-gene"
+
   Scenario: seren-sbe-gallery-1: SBE body masks on nelim, front (genes 0 to 3)
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
