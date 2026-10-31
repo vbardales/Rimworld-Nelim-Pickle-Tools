@@ -1,10 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using HarmonyLib;
 using RimWorks.Pickle;
 using RimWorld;
 using Verse;
@@ -12,7 +9,7 @@ using Verse;
 namespace Nelim.PickleTools.IdeologySteps
 {
     /// <summary>
-    /// Steps that read what happened: the interaction modes the prisoner tab offers for a prisoner, a message the game posted,
+    /// Steps that read what happened: the interaction modes the prisoner tab offers for a prisoner,
     /// and the job a colonist is doing. Each waits for the state, since it may come a few frames or ticks after the action.
     /// </summary>
     [PickleSteps]
@@ -51,28 +48,6 @@ namespace Nelim.PickleTools.IdeologySteps
                 WaitSeconds);
         }
 
-        /// <summary>
-        /// Asserts that the game posted a message whose text is the translation of the key, since the scenario began. The key is
-        /// compared, not an English sentence: the fixed text around the placeholders of the translation must appear in the
-        /// message, in order, whatever the language and whatever fills the placeholders.
-        /// </summary>
-        [Then("Nelim's Pickle Tools: a message {string} appeared", TimeoutSeconds = 15f)]
-        public async Task MessageAppeared(PickleContext ctx, string key)
-        {
-            ctx.Require(MessageLog.Installed, "the message log is not installed: its [BeforeScenario] did not run, or the game has no Messages.Message(Message, bool)");
-            ctx.Require(
-                key.CanTranslate(),
-                $"no translation is loaded for \"{key}\"; active language: {LanguageDatabase.activeLanguage?.FriendlyNameEnglish ?? "(none)"}");
-            string template = key.Translate().Resolve();
-            Regex pattern = MessageLog.PatternOf(template);
-
-            await ctx.AssertEventually(
-                () => MessageLog.Texts().Any(t => pattern.IsMatch(t)),
-                () => $"no message matching the translation of \"{key}\" ({template}) appeared within {WaitSeconds} seconds; the messages were: " +
-                    (MessageLog.Texts().Count == 0 ? "(none)" : string.Join(" | ", MessageLog.Texts())),
-                WaitSeconds);
-        }
-
         /// <summary>Asserts that the job a colonist is doing now is this JobDef, by defName, waiting up to 30 seconds for it.</summary>
         [Then("Nelim's Pickle Tools: the colonist {string} is doing the job {string}", TimeoutSeconds = 35f)]
         public async Task IsDoing(PickleContext ctx, string nickname, string jobName)
@@ -85,13 +60,6 @@ namespace Nelim.PickleTools.IdeologySteps
                 () => $"the colonist '{nickname}' should be doing the job '{jobName}' within 30 seconds; it is doing '{pawn.CurJobDef?.defName ?? "(no job)"}'" +
                     $"{(pawn.CurJob?.targetA.Thing != null ? " on " + pawn.CurJob.targetA.Thing.LabelShort : string.Empty)}",
                 30f);
-        }
-
-        [BeforeScenario]
-        public void InstallMessageLog(PickleContext ctx)
-        {
-            MessageLog.Install();
-            MessageLog.Clear();
         }
 
         /// <summary>The game's own test for a row of the prisoner tab, found by name in the compiler-generated closure of DoPrisonerTab.</summary>
@@ -153,71 +121,6 @@ namespace Nelim.PickleTools.IdeologySteps
                 wildMan.SetValue(instance, WildManUtility.IsWildMan(pawn));
                 owner.SetValue(instance, tab);
                 return (bool)method.Invoke(instance, new object[] { pawn, mode });
-            }
-        }
-
-        /// <summary>
-        /// Keeps the text of every message the game was asked to show since the scenario began. All the Messages.Message overloads end in
-        /// Messages.Message(Message, bool), so one prefix there sees them all, including a message the game then drops as a duplicate.
-        /// </summary>
-        internal static class MessageLog
-        {
-            private static readonly List<string> Seen = new List<string>();
-            private static bool installed;
-
-            public static bool Installed { get { return installed; } }
-
-            public static void Install()
-            {
-                if (installed)
-                {
-                    return;
-                }
-
-                MethodInfo target = AccessTools.Method(typeof(Messages), "Message", new[] { typeof(Message), typeof(bool) });
-                if (target == null)
-                {
-                    return;
-                }
-
-                new Harmony("nelim.pickletools.ideologysteps").Patch(target, prefix: new HarmonyMethod(typeof(MessageLog), nameof(Record)));
-                installed = true;
-            }
-
-            public static void Clear()
-            {
-                lock (Seen)
-                {
-                    Seen.Clear();
-                }
-            }
-
-            public static List<string> Texts()
-            {
-                lock (Seen)
-                {
-                    return Seen.ToList();
-                }
-            }
-
-            /// <summary>The fixed parts of a translation (the text between its {placeholders}), in order, as a pattern.</summary>
-            public static Regex PatternOf(string template)
-            {
-                IEnumerable<string> parts = Regex.Split(template, @"\{[^}]*\}").Where(s => s.Trim().Length > 0).Select(Regex.Escape);
-                return new Regex(string.Join(".*", parts), RegexOptions.Singleline | RegexOptions.IgnoreCase);
-            }
-
-            private static void Record(Message msg)
-            {
-                if (msg?.text == null)
-                {
-                    return;
-                }
-
-                lock (Seen)
-                {
-                    Seen.Add(msg.text);
-                }
             }
         }
     }

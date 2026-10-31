@@ -23,7 +23,6 @@ Every step needs the Ideology DLC and fails saying so otherwise; a scenario tags
 | `Nelim's Pickle Tools: the prisoner {string} interaction mode is {string}` | Sets the exclusive mode by `PrisonerInteractionModeDef` name and reads it back. |
 | `Nelim's Pickle Tools: the colonist {string} has the work type {string} enabled` / `... disabled` | One work type, the others untouched. |
 | `Nelim's Pickle Tools: the prisoner {string} is offered the interaction mode {string}` / `... is not offered ...` | Whether the prisoner tab lists the mode, by the game's own test (see below). |
-| `Nelim's Pickle Tools: a message {string} appeared` | A message posted since the scenario began whose text is the translation of the key. |
 | `Nelim's Pickle Tools: the colonist {string} is doing the job {string}` | The `JobDef` the colonist is on now, waiting up to 30 seconds. |
 
 Each failure says the state it found. `docs/steps.md` lists them all, generated from the sources.
@@ -45,8 +44,6 @@ Each failure says the state it found. `docs/steps.md` lists them all, generated 
   the compiler turns into a method of a nested closure class. The step finds it by the name `CanUsePrisonerInteractionMode`, hands it a
   closure with `wildMan` and a tab, and fails saying what changed if the shape is not what it expects. **This is fragile across game
   versions** (read from the 1.6.4871 reference on 2026-10-01); it is the price of not copying the test.
-- **Messages are compared by key.** The text between the placeholders of the key's translation must appear in the message, in order.
-  A message the game was asked to show counts even if it then dropped it as a duplicate. Only messages after the scenario started are seen.
 - **The interaction mode is set on the field the tab sets** (`Pawn_GuestTracker.interactionMode`, private, reached by reflection) and not
   through the tab, so the tab's warnings (for instance that no warden can enslave) do not fire.
 
