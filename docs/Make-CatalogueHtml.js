@@ -65,6 +65,8 @@ const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
 for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBlock[n];
+// The face part sheets (block 6, Make-PartSheets.ps1) are split by their label so that each goes with its own sub-category (the eyes, the eyelids and the brows are with the eyes, not with the face).
+for (const [k, re] of Object.entries({ fpMouth: /Bouches/, fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
 const sheet = f => `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
@@ -88,10 +90,10 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 // (the sections of the .md pages) that belong to it. `place` says where each section of each page goes; what it does not place stays in the Documentation group.
 // [category, [[sub-category, [photograph kinds]], ...]]
 const categories = [
-  ['Peau', [['Couleurs de peau (genes)', ['skingene', 'serenskin', 'serenvteskin']], ['Tatouages (visage et corps)', ['facetattoo', 'bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
+  ['Peau', [['Couleurs de peau (genes)', ['skingene', 'serenskin', 'serenvteskin']], ['Tatouages (visage et corps)', ['facetattoo', 'fpTattoo', 'bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
-  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead']], ['Barbes et couleurs de barbe', ['beard']], ['Parties du visage (bouches, peaux, kits)', ['faceparts', 'serenmouth', 'serenhead']]]],
-  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes, paupieres, sourcils', ['sereneyeball', 'serenlid', 'serenbrow']]]],
+  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead']], ['Barbes et couleurs de barbe', ['beard']], ['Bouches, peaux du visage, marques d\'emotion', ['fpMouth', 'fpSkin', 'fpEmotion', 'serenmouth', 'serenhead']]]],
+  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes, paupieres, sourcils', ['fpEye', 'fpLid', 'fpLidOption', 'fpBrow', 'sereneyeball', 'serenlid', 'serenbrow']]]],
   ['Tete : oreilles, cornes, marques', [['Genes d\'apparence', ['lookgene']]]],
   ['Corps', [['Corpulences', ['body']]]],
   ['Animations', [['Animations du visage', ['animations']], ['Taches (jobs)', []]]],
@@ -103,7 +105,7 @@ const categories = [
 const place = (file, h) => {
   const rules = {
     'looks.md': [[/^Hairstyles/, 'Coiffures'], [/^Beards/, 'Barbes et couleurs de barbe'], [/^Head types/, 'Formes de tete (vanilla)'], [/^Tattoos/, 'Tatouages (visage et corps)'], [/^Body types/, 'Corpulences']],
-    'face-parts.md': [[/^(Mouths|Skins|Kits)/, 'Parties du visage (bouches, peaux, kits)'], [/^(Brows|Lids|Eyeballs)/, 'Globes, paupieres, sourcils'], [/^Head shapes/, 'Formes de tete (Facial Animation)'], [/^Heat/, 'Animations du visage']],
+    'face-parts.md': [[/^(Mouths|Skins)/, 'Bouches, peaux du visage, marques d\'emotion'], [/^(Brows|Lids|Eyeballs)/, 'Globes, paupieres, sourcils'], [/^Head shapes/, 'Formes de tete (Facial Animation)'], [/^Heat/, 'Animations du visage']],
     'genes.md': [[/^Eye colours/, 'Couleurs des yeux (genes)'], [/^Skin colours/, 'Couleurs de peau (genes)'], [/^Hair colours/, 'Couleurs de cheveux (genes)'], [/^Look genes/, 'Genes d\'apparence']],
     'apparel.md': [[/./, 'Vetements et chapeaux']], 'colours.md': [[/./, 'Couleurs']], 'weapons-crafts.md': [[/./, 'Armes et objets fabriques']], 'items.md': [[/./, 'Objets utiles']],
     'weather.md': [[/./, 'Meteo']], 'animal-apparel.md': [[/./, 'Vetements pour animaux']], 'jobs.md': [[/./, 'Taches (jobs)']], 'seren.md': [[/./, 'Xenotype Seren']],
@@ -111,6 +113,10 @@ const place = (file, h) => {
   const hit = rules.find(([re]) => re.test(h));
   return hit ? hit[1] : null;
 };
+// Sheet numbers shown next to a table title and a sub-category title.
+const numsOf = kinds => [...new Set(kinds.flatMap(k => byKind[k] || []).map(f => f.slice(0, 4)))].sort();
+const sectionKinds2 = [[/^Mouths/, ['fpMouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
+const numLabel = kinds => { const n = numsOf(kinds); return n.length ? ' : planche' + (n.length > 1 ? 's ' : ' ') + n.join(', ') : ''; };
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // Split every placed page at its "## " headings: [{sub, html}]; the first block of a page (before any "## ") goes with the page's first section.
 const placed = {}, docTabs = [];
@@ -122,7 +128,7 @@ for (const [id, title, file] of tabs) {
   for (const part of parts) {
     const head = (part.match(/^## (.*)/) || [])[1] || '';
     const sub = head ? place(file, head) : null;
-    if (sub) { (placed[sub] = placed[sub] || []).push(`<h4 class="from">${esc(title)} : ${esc(head)}</h4>` + render(part.replace(/^## .*\n/, ''))); any = true; }
+    if (sub) { (placed[sub] = placed[sub] || []).push(`<h4 class="from">${esc(title)} : ${esc(head)}${(() => { const h = sectionKinds2.find(([re]) => re.test(head)); return h ? numLabel(h[1]) : ''; })()}</h4>` + render(part.replace(/^## .*\n/, ''))); any = true; }
     else if (!head && parts.length > 1) { /* introduction of the page: kept with the page text below */ }
   }
   if (!any) docTabs.push([id, title, file]);
@@ -132,7 +138,7 @@ const catId = (c, s) => `cat-${slug(c)}-${slug(s)}`;
 const sections = [
   ...categories.map(([c, subs]) => `<section id="c-${slug(c)}" hidden><h1>${esc(c)}</h1>` + subs.map(([s, kinds]) => {
     const have = kinds.some(k => byKind[k] && byKind[k].length);
-    return `<h2 id="${catId(c, s)}">${esc(s)}</h2>` + (kinds.length ? (have ? sheetsFor(kinds) : '<p class="src">Pas encore de photographie.</p>') : '') + (placed[s] || []).join('\n');
+    return `<h2 id="${catId(c, s)}">${esc(s)}${kinds.length ? '<span class="num">' + esc(numLabel(kinds)) + '</span>' : ''}</h2>` + (kinds.length ? (have ? sheetsFor(kinds) : '<p class="src">Pas encore de photographie.</p>') : '') + (placed[s] || []).join('\n');
   }).join('\n') + '</section>'),
   ...docTabs.map(([id, title, file]) => `<section id="${id}" hidden><h1>${title}</h1><p class="src">${file}</p>${withSheets(render(fs.readFileSync(path.join(cat, file), 'utf8').replace(/^# .*\n/, '')))}</section>`),
 ].join('\n');
@@ -157,7 +163,7 @@ nav a.on{background:var(--acc);color:#fff}
 main{flex:1;min-width:0;padding:20px 28px 60px}
 #jump{display:block;margin:0 0 10px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font:inherit;max-width:420px;width:100%}#q{width:100%;max-width:420px;padding:8px 10px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);margin-bottom:12px}
 h1{margin:0 0 4px}.src{color:var(--mut);margin:0 0 16px;font-size:13px}
-h2,h3,h4{margin:24px 0 8px}details.names{margin:8px 0}details.names summary{cursor:pointer;color:var(--mut);padding:4px 0}h4.from{font-size:13px;color:var(--mut);margin:14px 0 4px}
+h2,h3,h4{margin:24px 0 8px}span.num{font-size:13px;font-weight:400;color:var(--mut);margin-left:8px}details.names{margin:8px 0}details.names summary{cursor:pointer;color:var(--mut);padding:4px 0}h4.from{font-size:13px;color:var(--mut);margin:14px 0 4px}
 table{border-collapse:collapse;width:100%;background:var(--card);margin:8px 0}
 th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top;font-size:14px;overflow-wrap:anywhere}td:not(:last-child),th:not(:last-child){white-space:nowrap;overflow-wrap:normal}a{color:var(--acc)}
 th{background:color-mix(in srgb,var(--acc) 12%,var(--card))}
