@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-474 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+475 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -228,6 +228,7 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: the schedule of {string} is joy all day` (Given) | Sets all 24 hours of the colonist's schedule to joy, disables every work type, and ends the job in progress, so that work does not come before a recreation giver (a bored colonist went milking, 63 cells away, in an Anima Song run). The change is to the colonist's schedule and work settings, kept in a save made after it. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the error log is marked` (Given) | Starts counting the errors the game logs (Log.Error and exceptions) from this point. Put it right after the save is loaded. The step 'no error was logged since the error log was marked' then reads the count. Several marks: the last one counts. |
 | `Nelim's Pickle Tools: no error was logged since the error log was marked` (Then) | Fails when the game logged an error after the last mark; the failure quotes the first three. Fails too when nothing was marked. |
+| `Nelim's Pickle Tools: no error was logged while the game loaded` (Then) | Fails when the game's own message queue (`Log.Messages`, the last 1000 messages the in-game debug log keeps) holds an error: config errors, XML errors, exceptions raised while the defs and the save loaded. Put it first in the scenario, after the save is loaded. The failure quotes the first three and says how many there are. |
 | `Nelim's Pickle Tools: {string} does not hold the hediff {string}` (Then) | Asserts a pawn (colonist or animal, by short name) holds no hediff of that def. **Parameters:** `name` (string): the short name of the pawn (colonist or animal) or of the thing; `hediffName` (string). |
 | `Nelim's Pickle Tools: the thing {string} exists at \({int}, {int}\)` (Then) | Asserts a thing of a def (by defName) lies on a cell of the current map. **Parameters:** `defName` (string): a def name of the loaded game (any case); `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: the thing {string} is gone from \({int}, {int}\)` (Then) | Asserts no thing of a def (by defName) lies on a cell of the current map. **Parameters:** `defName` (string): a def name of the loaded game (any case); `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |

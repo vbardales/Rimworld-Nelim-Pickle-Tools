@@ -56,6 +56,19 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(n == 0, $"{n} error(s) logged since the mark: " + string.Join(" | ", errorTexts.Skip(mark).Take(3)));
         }
 
+        /// <summary>
+        /// Fails when the game's own message queue (<c>Log.Messages</c>, the last 1000 messages the in-game debug log keeps) holds an error: config
+        /// errors, XML errors, exceptions raised while the defs and the save loaded. Put it first in the scenario, after the save is loaded. The
+        /// failure quotes the first three and says how many there are. A queue that already overflowed may have dropped the oldest.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: no error was logged while the game loaded")]
+        public void NoErrorWhileLoading(PickleContext ctx)
+        {
+            List<string> errors = Log.Messages.Where(m => m.type == LogMessageType.Error).Select(m => m.text).ToList();
+            ctx.Assert(errors.Count == 0, $"{errors.Count} error(s) in the game's message queue ({Log.Messages.Count()} messages kept): "
+                + string.Join(" | ", errors.Take(3).Select(e => e.Length > 200 ? e.Substring(0, 200) : e)));
+        }
+
         /// <summary>Asserts a pawn (colonist or animal, by short name) holds no hediff of that def.</summary>
         [Then("Nelim's Pickle Tools: {string} does not hold the hediff {string}")]
         public void DoesNotHoldHediff(PickleContext ctx, string name, string hediffName)
