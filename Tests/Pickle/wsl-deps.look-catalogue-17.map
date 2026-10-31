@@ -1,0 +1,16 @@
+# RimWorld 1.7 look listing (feature pickletools-look-catalogue-17): the mods of the owner's lists that are made for 1.7. The tool folders are the net10.0 builds of the 1.7 session, outside this repository (WSL ~/pt17/mods), rebuilt 2026-10-31 from the current sources.
+# Run: Submit-PickleRun.ps1 -Game /home/nelim/rimworld17 -DepMap wsl-deps.look-catalogue-17.map -Filter '::the look options are listed on 1.7'
+nelim.pickletools.colonistrace     path:../../../../../../home/nelim/pt17/mods/ColonistRace
+nelim.pickletools.screenshotstudio path:../../../../../../home/nelim/pt17/mods/ScreenshotStudio
+nelim.pickletools.camerazoom       path:../../../../../../home/nelim/pt17/mods/CameraZoom
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+brrainz.harmony 2009463077
+Mlie.NoVersionWarning 2599504692
+# Facial Animation 1.6 builds plus the community 1.7 compatibility patch (loads after both), owner 2026-10-31.
+Nals.FacialAnimation 1635901197
+Nals.FacialAnimationExperimentals 2581693737
+local.facialanimation.compat17 3821248395
+# Mods for 1.7: hairstyles (1.5 to 1.7), Tattoo Face Scars (1.6, 1.7), Tattoo of Desire (1.7, hediffs).
+RI.RimImmortals.Hairstyle 3265157569
+luxsolace.tattoofacescars 3792233113
+Ss.yinwen.GHDY 3820227087
