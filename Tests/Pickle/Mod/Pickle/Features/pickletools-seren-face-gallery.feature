@@ -15,6 +15,7 @@ Feature: One photograph per face part of Seren (Experimentals set) and the whole
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Nelim" xenotype is "OL_SerenBase"
+    And Nelim's Pickle Tools: "Nelim" skin colour is rgb (75, 32, 70)
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Bald"
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" mouth is "SerenMouthNormal"
