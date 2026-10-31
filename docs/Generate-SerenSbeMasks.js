@@ -1,5 +1,5 @@
 // Writes Tests/Pickle/Mod/Pickle/Features/pickletools-seren-sbe-gallery.feature: the 12 body mask genes of Seren Biotech Extended (SerenOriginalMask_0 .. _11, zero-based as in SBE) on Nelim and on a man,
-// front and back, 4 scenarios of 12 shots. Same set-up as the body mask scenarios of pickletools-seren-gallery.feature (undressed, skin colour rgb (75, 32, 70)); no accent gene, so the masks
+// front and back, 12 scenarios of 4 shots (chunks since 2026-10-31). Same set-up as the body mask scenarios of pickletools-seren-gallery.feature (undressed, skin colour rgb (75, 32, 70)); no accent gene, so the masks
 // keep the colour written on the gene. Shots bodymask-SerenOriginalMask_<n>-<nelim|man>-<front|back>. Written 2026-10-28 at the owner's request (sheet 0801 follows SBE).
 // Pass: Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.seren-sbe.map -Filter 'pickletools-seren-sbe-gallery::seren-sbe-gallery'
 const fs = require('fs'), path = require('path');
@@ -19,12 +19,15 @@ let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.picklet
 let n = 0;
 for (const [who, name, man] of [['nelim', 'Nelim', false], ['man', 'Mannequin', true]]) {
   for (const [view, dir] of [['front', 'South'], ['back', 'North']]) {
-    n++;
-    out += `  Scenario: seren-sbe-gallery-${n}: SBE body masks on ${who}, ${view} (12 genes)\n`;
-    for (const l of PRE) out += `    ${l}\n`;
-    for (const l of subject(name, man)) out += `    ${l}\n`;
-    for (let m = 0; m < 12; m++) out += `    When ${P}"${name}" loses all genes\n    And ${P}"${name}" has the gene "SerenOriginalMask_${m}"\n    And ${P}"${name}" stands at (176, 120) facing ${dir}\n    And ${P}I let 5 frames pass\n    And I take a screenshot "bodymask-SerenOriginalMask_${m}-${who}-${view}"\n`;
-    out += '\n';
+    // Chunks of 4 genes (2026-10-31): the scenario of 12 was killed at exit 137 four times in a row (5011, dd35, e4da and 3fee), so each scenario holds fewer masks.
+    for (let from = 0; from < 12; from += 4) {
+      n++;
+      out += `  Scenario: seren-sbe-gallery-${n}: SBE body masks on ${who}, ${view} (genes ${from} to ${from + 3})\n`;
+      for (const l of PRE) out += `    ${l}\n`;
+      for (const l of subject(name, man)) out += `    ${l}\n`;
+      for (let m = from; m < from + 4; m++) out += `    When ${P}"${name}" loses all genes\n    And ${P}"${name}" has the gene "SerenOriginalMask_${m}"\n    And ${P}"${name}" stands at (176, 120) facing ${dir}\n    And ${P}I let 5 frames pass\n    And I take a screenshot "bodymask-SerenOriginalMask_${m}-${who}-${view}"\n`;
+      out += '\n';
+    }
   }
 }
 fs.writeFileSync(path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-seren-sbe-gallery.feature'), out);
