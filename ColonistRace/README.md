@@ -174,3 +174,9 @@ Not here: a head type or face shape, and a neutral pose.
 | `Nelim's Pickle Tools: {string} stands next to {string}` | Places the first colonist beside the second (game teleport notification, within 2.5 cells) |
 | `Nelim's Pickle Tools: I remember {string}'s stat {string}` / `{string}'s stat {string} changed by {float}` / `... is {float} times the remembered value` | A StatDef of a colonist remembered, then compared (difference within 2 percent, ratio within 0.005) after an edit |
 | `Nelim's Pickle Tools: {string} currently feels the mood thought {string}` / `currently does not feel ...` | The mood thought is felt, with an offset other than zero after the situational thoughts are recomputed: `has the thought` counts a thought a trait cancels as present, these do not |
+
+## Close face portrait (2026-10-31)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: a portrait of {string} is saved as {string} at {int} pixels and zoom {float}` | Renders the colonist's portrait (south, game portrait renderer, not the camera) at N by N pixels (64 to 2048) and saves it as a jpeg in the report's screenshots folder, `pickletools-portrait--<name>`. Zoom 1 shows the whole body, about 3 the head. Written for SanctuaryBacklot (Miel's face parts at a legible size: the camera stops at root size 2, a face of about 150 px). **Compiled, never played**: whether Facial Animation parts show in the portrait is for the first run to say. |
