@@ -2985,7 +2985,421 @@
                                                                "hex":  ""
                                                            }
                                                        ],
-    "0405 Tatouages visage - Roos Birthmarks and Blemishes - 1.jpg":  [
+    "0405 Tatouages visage - Bill Doors Miqote Tattoo - 1.jpg":  [
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Face_Miqote (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Face_Miqote_II (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Face_Miqote_III (not photographed)",
+                                                                         "hex":  ""
+                                                                     }
+                                                                 ],
+    "0406 Tatouages visage - Misc Tattoos - 1.jpg":  [
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Aged (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Anti (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BarCode (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Beautymarks (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Blush (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BMA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BMB (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BMC (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Bodycount (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BraveHeart (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Bridge (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Burn (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Burn2 (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Carnivore (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_ClownA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Contour (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Dark (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Dryad (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Eczema (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Eyeburn (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_EyeShadow (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Freckles (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Gash (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_GodOfWar (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Gorvachev (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_GothA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Harley (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Mole2 (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Mole3 (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_NoRegurts (not photographed)",
+                                                             "hex":  ""
+                                                         }
+                                                     ],
+    "0407 Tatouages visage - Misc Tattoos - 2.jpg":  [
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Radioactive (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Red (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_RedWarpaint (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Scar (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Scarification (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Scarification2 (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_ScarsA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Scratch (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Skeletal (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_SkullA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Sombre (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Spraytan (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Teton (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_TRIBALA (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Tyson (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Viking (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Vitiglio (not photographed)",
+                                                             "hex":  ""
+                                                         }
+                                                     ],
+    "0408 Tatouages visage - Morphs Assorted Tattoos - 1.jpg":  [
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_Crescent (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_Crescent_Inv (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_Foxy (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_LightningBandaid (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_Stitches (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_Sukuna (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_TechStripe (not photographed)",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  null,
+                                                                        "text":  "Face_TechStripe_Inv (not photographed)",
+                                                                        "hex":  ""
+                                                                    }
+                                                                ],
+    "0409 Tatouages visage - Myfs Tattoos - 1.jpg":  [
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_BridgeFourForehead (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Gaara (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_Ghostbloods (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_IX (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_NaleCresent (not photographed)",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  null,
+                                                             "text":  "Face_ShashBrand (not photographed)",
+                                                             "hex":  ""
+                                                         }
+                                                     ],
+    "0410 Tatouages visage - Sunnys Dr Stone Scars Tattoos - 1.jpg":  [
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDGen (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDGenCute (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDHyoga (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDKinro (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDSenku (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDTaiju (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDTsukasa (not photographed)",
+                                                                              "hex":  ""
+                                                                          },
+                                                                          {
+                                                                              "tile":  null,
+                                                                              "text":  "Face_SDYo (not photographed)",
+                                                                              "hex":  ""
+                                                                          }
+                                                                      ],
+    "0411 Tatouages visage - Tattoo Face Scars - 1.jpg":  [
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarAcrossFace (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarBalalaika (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarBear (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarCrossCheek (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarCrossMiddle (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarEye (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarNose (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Lux_ScarOgata (not photographed)",
+                                                                  "hex":  ""
+                                                              }
+                                                          ],
+    "0412 Tatouages visage - Roos Birthmarks and Blemishes - 1.jpg":  [
                                                                           {
                                                                               "tile":  "0400-facetattoo-RBAcneA.jpg",
                                                                               "text":  "RBAcneA",
@@ -3122,7 +3536,7 @@
                                                                               "hex":  ""
                                                                           }
                                                                       ],
-    "0406 Tatouages visage - Roos Tattoos Starter Pack - 1.jpg":  [
+    "0413 Tatouages visage - Roos Tattoos Starter Pack - 1.jpg":  [
                                                                       {
                                                                           "tile":  "0400-facetattoo-Face_Backface.jpg",
                                                                           "text":  "Face_Backface",
@@ -3728,14 +4142,212 @@
                                                                                "hex":  ""
                                                                            }
                                                                        ],
-    "0407 Tatouages visage profil - Core - 1.jpg":  [
+    "2008 Tatouages corps femme - Misc Tattoos - 1.jpg":  [
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Anchor (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Blossoms (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Bones (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_ClownA (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Communist (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Cosmic (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Demon (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_ExtremeA (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_ExtremeB (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Firestarter (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Mask (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Mermaid (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Nagual (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Octopus (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Ocular (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  "2000-bodytattoo-Body_Pentagram.jpg",
+                                                                  "text":  "Body_Pentagram",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Seer (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Smokeleaf (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Swords (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Templar (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_USA (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Warlord (not photographed)",
+                                                                  "hex":  ""
+                                                              }
+                                                          ],
+    "2009 Tatouages corps femme - Myfs Tattoos - 1.jpg":  [
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Bondsmith (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_BondsmithBack (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Cursemark (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Ghostbloods (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Lightweaver (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_LightweaverBack (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_Windrunner (not photographed)",
+                                                                  "hex":  ""
+                                                              },
+                                                              {
+                                                                  "tile":  null,
+                                                                  "text":  "Body_WindrunnerBack (not photographed)",
+                                                                  "hex":  ""
+                                                              }
+                                                          ],
+    "2010 Tatouages corps femme - Oracle Erins HD Tattoos - 1.jpg":  [
+                                                                         {
+                                                                             "tile":  null,
+                                                                             "text":  "OE_Body_Alchemist (not photographed)",
+                                                                             "hex":  ""
+                                                                         },
+                                                                         {
+                                                                             "tile":  null,
+                                                                             "text":  "OE_Body_Comet (not photographed)",
+                                                                             "hex":  ""
+                                                                         },
+                                                                         {
+                                                                             "tile":  null,
+                                                                             "text":  "OE_Body_DualStars (not photographed)",
+                                                                             "hex":  ""
+                                                                         },
+                                                                         {
+                                                                             "tile":  null,
+                                                                             "text":  "OE_Body_Phoenix (not photographed)",
+                                                                             "hex":  ""
+                                                                         },
+                                                                         {
+                                                                             "tile":  null,
+                                                                             "text":  "OE_Body_TribalHeart (not photographed)",
+                                                                             "hex":  ""
+                                                                         }
+                                                                     ],
+    "2011 Tatouages corps femme - Sunnys Dr Stone Scars Tattoos - 1.jpg":  [
+                                                                               {
+                                                                                   "tile":  null,
+                                                                                   "text":  "Body_SDHomura (not photographed)",
+                                                                                   "hex":  ""
+                                                                               },
+                                                                               {
+                                                                                   "tile":  null,
+                                                                                   "text":  "Body_SDTsukasa (not photographed)",
+                                                                                   "hex":  ""
+                                                                               },
+                                                                               {
+                                                                                   "tile":  null,
+                                                                                   "text":  "Body_SDYuzuriha (not photographed)",
+                                                                                   "hex":  ""
+                                                                               }
+                                                                           ],
+    "0414 Tatouages visage profil - Core - 1.jpg":  [
                                                         {
                                                             "tile":  "0400-facetattoo-NoTattoo_Face-side.jpg",
                                                             "text":  "NoTattoo_Face-side",
                                                             "hex":  ""
                                                         }
                                                     ],
-    "0408 Tatouages visage profil - Ideology - 1.jpg":  [
+    "0415 Tatouages visage profil - Ideology - 1.jpg":  [
                                                             {
                                                                 "tile":  "0400-facetattoo-Face_Cobweb-side.jpg",
                                                                 "text":  "Face_Cobweb-side",
@@ -3802,14 +4414,14 @@
                                                                 "hex":  ""
                                                             }
                                                         ],
-    "0409 Tatouages visage profil - Tattoos Expanded - 1.jpg":  [
+    "0416 Tatouages visage profil - Tattoos Expanded - 1.jpg":  [
                                                                     {
                                                                         "tile":  "0400-facetattoo-Face_Tilak-side.jpg",
                                                                         "text":  "Face_Tilak-side",
                                                                         "hex":  ""
                                                                     }
                                                                 ],
-    "0410 Tatouages visage profil - Tribal Tattoos - 1.jpg":  [
+    "0417 Tatouages visage profil - Tribal Tattoos - 1.jpg":  [
                                                                   {
                                                                       "tile":  "0400-facetattoo-STribalTat_Face_Anima-side.jpg",
                                                                       "text":  "STribalTat_Face_Anima-side",
@@ -3936,7 +4548,421 @@
                                                                       "hex":  ""
                                                                   }
                                                               ],
-    "0411 Tatouages visage profil - Roos Birthmarks and Blemishes - 1.jpg":  [
+    "0418 Tatouages visage profil - Bill Doors Miqote Tattoo - 1.jpg":  [
+                                                                            {
+                                                                                "tile":  null,
+                                                                                "text":  "Face_Miqote-side (not photographed)",
+                                                                                "hex":  ""
+                                                                            },
+                                                                            {
+                                                                                "tile":  null,
+                                                                                "text":  "Face_Miqote_II-side (not photographed)",
+                                                                                "hex":  ""
+                                                                            },
+                                                                            {
+                                                                                "tile":  null,
+                                                                                "text":  "Face_Miqote_III-side (not photographed)",
+                                                                                "hex":  ""
+                                                                            }
+                                                                        ],
+    "0419 Tatouages visage profil - Misc Tattoos - 1.jpg":  [
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Aged-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Anti-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BarCode-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Beautymarks-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Blush-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BMA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BMB-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BMC-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Bodycount-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BraveHeart-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Bridge-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Burn-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Burn2-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Carnivore-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_ClownA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Contour-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Dark-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Dryad-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Eczema-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Eyeburn-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_EyeShadow-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Freckles-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Gash-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_GodOfWar-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Gorvachev-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_GothA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Harley-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Mole2-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Mole3-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_NoRegurts-side (not photographed)",
+                                                                    "hex":  ""
+                                                                }
+                                                            ],
+    "0420 Tatouages visage profil - Misc Tattoos - 2.jpg":  [
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Radioactive-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Red-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_RedWarpaint-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Scar-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Scarification-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Scarification2-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_ScarsA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Scratch-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Skeletal-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_SkullA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Sombre-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Spraytan-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Teton-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_TRIBALA-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Tyson-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Viking-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Vitiglio-side (not photographed)",
+                                                                    "hex":  ""
+                                                                }
+                                                            ],
+    "0421 Tatouages visage profil - Morphs Assorted Tattoos - 1.jpg":  [
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_Crescent-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_Crescent_Inv-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_Foxy-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_LightningBandaid-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_Stitches-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_Sukuna-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_TechStripe-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           },
+                                                                           {
+                                                                               "tile":  null,
+                                                                               "text":  "Face_TechStripe_Inv-side (not photographed)",
+                                                                               "hex":  ""
+                                                                           }
+                                                                       ],
+    "0422 Tatouages visage profil - Myfs Tattoos - 1.jpg":  [
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_BridgeFourForehead-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Gaara-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_Ghostbloods-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_IX-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_NaleCresent-side (not photographed)",
+                                                                    "hex":  ""
+                                                                },
+                                                                {
+                                                                    "tile":  null,
+                                                                    "text":  "Face_ShashBrand-side (not photographed)",
+                                                                    "hex":  ""
+                                                                }
+                                                            ],
+    "0423 Tatouages visage profil - Sunnys Dr Stone Scars Tattoos - 1.jpg":  [
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDGen-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDGenCute-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDHyoga-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDKinro-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDSenku-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDTaiju-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDTsukasa-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  null,
+                                                                                     "text":  "Face_SDYo-side (not photographed)",
+                                                                                     "hex":  ""
+                                                                                 }
+                                                                             ],
+    "0424 Tatouages visage profil - Tattoo Face Scars - 1.jpg":  [
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarAcrossFace-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarBalalaika-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarBear-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarCrossCheek-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarCrossMiddle-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarEye-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarNose-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     },
+                                                                     {
+                                                                         "tile":  null,
+                                                                         "text":  "Lux_ScarOgata-side (not photographed)",
+                                                                         "hex":  ""
+                                                                     }
+                                                                 ],
+    "0425 Tatouages visage profil - Roos Birthmarks and Blemishes - 1.jpg":  [
                                                                                  {
                                                                                      "tile":  "0400-facetattoo-RBAcneA-side.jpg",
                                                                                      "text":  "RBAcneA-side",
@@ -4073,7 +5099,7 @@
                                                                                      "hex":  ""
                                                                                  }
                                                                              ],
-    "0412 Tatouages visage profil - Roos Tattoos Starter Pack - 1.jpg":  [
+    "0426 Tatouages visage profil - Roos Tattoos Starter Pack - 1.jpg":  [
                                                                              {
                                                                                  "tile":  "0400-facetattoo-Face_Backface-side.jpg",
                                                                                  "text":  "Face_Backface-side",
@@ -4140,14 +5166,14 @@
                                                                                  "hex":  ""
                                                                              }
                                                                          ],
-    "2008 Tatouages corps homme face - Core - 1.jpg":  [
+    "2012 Tatouages corps homme face - Core - 1.jpg":  [
                                                            {
                                                                "tile":  "2000-bodytattoo-NoTattoo_Body-front.jpg",
                                                                "text":  "NoTattoo_Body-front",
                                                                "hex":  ""
                                                            }
                                                        ],
-    "2009 Tatouages corps homme face - Ideology - 1.jpg":  [
+    "2013 Tatouages corps homme face - Ideology - 1.jpg":  [
                                                                {
                                                                    "tile":  "2000-bodytattoo-Body_Buttons-front.jpg",
                                                                    "text":  "Body_Buttons-front",
@@ -4229,7 +5255,7 @@
                                                                    "hex":  ""
                                                                }
                                                            ],
-    "2010 Tatouages corps homme face - Tattoos Expanded - 1.jpg":  [
+    "2014 Tatouages corps homme face - Tattoos Expanded - 1.jpg":  [
                                                                        {
                                                                            "tile":  "2000-bodytattoo-Body_Bear-front.jpg",
                                                                            "text":  "Body_Bear-front",
@@ -4381,7 +5407,7 @@
                                                                            "hex":  ""
                                                                        }
                                                                    ],
-    "2011 Tatouages corps homme face - Tattoos Expanded - 2.jpg":  [
+    "2015 Tatouages corps homme face - Tattoos Expanded - 2.jpg":  [
                                                                        {
                                                                            "tile":  "2000-bodytattoo-Body_Shark-front.jpg",
                                                                            "text":  "Body_Shark-front",
@@ -4443,7 +5469,7 @@
                                                                            "hex":  ""
                                                                        }
                                                                    ],
-    "2012 Tatouages corps homme face - Tribal Tattoos - 1.jpg":  [
+    "2016 Tatouages corps homme face - Tribal Tattoos - 1.jpg":  [
                                                                      {
                                                                          "tile":  "2000-bodytattoo-STribalTat_Body_Anima-front.jpg",
                                                                          "text":  "STribalTat_Body_Anima-front",
@@ -4515,7 +5541,7 @@
                                                                          "hex":  ""
                                                                      }
                                                                  ],
-    "2013 Tatouages corps homme face - Roos Birthmarks and Blemishes - 1.jpg":  [
+    "2017 Tatouages corps homme face - Roos Birthmarks and Blemishes - 1.jpg":  [
                                                                                     {
                                                                                         "tile":  "2000-bodytattoo-RBBirthmarkBodyA-front.jpg",
                                                                                         "text":  "RBBirthmarkBodyA-front",
@@ -4587,7 +5613,7 @@
                                                                                         "hex":  ""
                                                                                     }
                                                                                 ],
-    "2014 Tatouages corps homme face - Roos Tattoos Starter Pack - 1.jpg":  [
+    "2018 Tatouages corps homme face - Roos Tattoos Starter Pack - 1.jpg":  [
                                                                                 {
                                                                                     "tile":  "2000-bodytattoo-Body_Barcode-front.jpg",
                                                                                     "text":  "Body_Barcode-front",
@@ -4679,14 +5705,212 @@
                                                                                     "hex":  ""
                                                                                 }
                                                                             ],
-    "2015 Tatouages corps homme dos - Core - 1.jpg":  [
+    "2019 Tatouages corps homme face - Misc Tattoos - 1.jpg":  [
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Anchor-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Blossoms-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Bones-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_ClownA-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Communist-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Cosmic-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Demon-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_ExtremeA-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_ExtremeB-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Firestarter-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Mask-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Mermaid-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Nagual-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Octopus-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Ocular-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  "2000-bodytattoo-Body_Pentagram-front.jpg",
+                                                                       "text":  "Body_Pentagram-front",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Seer-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Smokeleaf-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Swords-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Templar-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_USA-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Warlord-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   }
+                                                               ],
+    "2020 Tatouages corps homme face - Myfs Tattoos - 1.jpg":  [
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Bondsmith-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_BondsmithBack-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Cursemark-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Ghostbloods-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Lightweaver-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_LightweaverBack-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_Windrunner-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  null,
+                                                                       "text":  "Body_WindrunnerBack-front (not photographed)",
+                                                                       "hex":  ""
+                                                                   }
+                                                               ],
+    "2021 Tatouages corps homme face - Oracle Erins HD Tattoos - 1.jpg":  [
+                                                                              {
+                                                                                  "tile":  null,
+                                                                                  "text":  "OE_Body_Alchemist-front (not photographed)",
+                                                                                  "hex":  ""
+                                                                              },
+                                                                              {
+                                                                                  "tile":  null,
+                                                                                  "text":  "OE_Body_Comet-front (not photographed)",
+                                                                                  "hex":  ""
+                                                                              },
+                                                                              {
+                                                                                  "tile":  null,
+                                                                                  "text":  "OE_Body_DualStars-front (not photographed)",
+                                                                                  "hex":  ""
+                                                                              },
+                                                                              {
+                                                                                  "tile":  null,
+                                                                                  "text":  "OE_Body_Phoenix-front (not photographed)",
+                                                                                  "hex":  ""
+                                                                              },
+                                                                              {
+                                                                                  "tile":  null,
+                                                                                  "text":  "OE_Body_TribalHeart-front (not photographed)",
+                                                                                  "hex":  ""
+                                                                              }
+                                                                          ],
+    "2022 Tatouages corps homme face - Sunnys Dr Stone Scars Tattoos - 1.jpg":  [
+                                                                                    {
+                                                                                        "tile":  null,
+                                                                                        "text":  "Body_SDHomura-front (not photographed)",
+                                                                                        "hex":  ""
+                                                                                    },
+                                                                                    {
+                                                                                        "tile":  null,
+                                                                                        "text":  "Body_SDTsukasa-front (not photographed)",
+                                                                                        "hex":  ""
+                                                                                    },
+                                                                                    {
+                                                                                        "tile":  null,
+                                                                                        "text":  "Body_SDYuzuriha-front (not photographed)",
+                                                                                        "hex":  ""
+                                                                                    }
+                                                                                ],
+    "2023 Tatouages corps homme dos - Core - 1.jpg":  [
                                                           {
                                                               "tile":  "2000-bodytattoo-NoTattoo_Body-back.jpg",
                                                               "text":  "NoTattoo_Body-back",
                                                               "hex":  ""
                                                           }
                                                       ],
-    "2016 Tatouages corps homme dos - Ideology - 1.jpg":  [
+    "2024 Tatouages corps homme dos - Ideology - 1.jpg":  [
                                                               {
                                                                   "tile":  "2000-bodytattoo-Body_Buttons-back.jpg",
                                                                   "text":  "Body_Buttons-back",
@@ -4768,7 +5992,7 @@
                                                                   "hex":  ""
                                                               }
                                                           ],
-    "2017 Tatouages corps homme dos - Tattoos Expanded - 1.jpg":  [
+    "2025 Tatouages corps homme dos - Tattoos Expanded - 1.jpg":  [
                                                                       {
                                                                           "tile":  "2000-bodytattoo-Body_Bear-back.jpg",
                                                                           "text":  "Body_Bear-back",
@@ -4920,7 +6144,7 @@
                                                                           "hex":  ""
                                                                       }
                                                                   ],
-    "2018 Tatouages corps homme dos - Tattoos Expanded - 2.jpg":  [
+    "2026 Tatouages corps homme dos - Tattoos Expanded - 2.jpg":  [
                                                                       {
                                                                           "tile":  "2000-bodytattoo-Body_Shark-back.jpg",
                                                                           "text":  "Body_Shark-back",
@@ -4982,7 +6206,7 @@
                                                                           "hex":  ""
                                                                       }
                                                                   ],
-    "2019 Tatouages corps homme dos - Tribal Tattoos - 1.jpg":  [
+    "2027 Tatouages corps homme dos - Tribal Tattoos - 1.jpg":  [
                                                                     {
                                                                         "tile":  "2000-bodytattoo-STribalTat_Body_Anima-back.jpg",
                                                                         "text":  "STribalTat_Body_Anima-back",
@@ -5054,7 +6278,7 @@
                                                                         "hex":  ""
                                                                     }
                                                                 ],
-    "2020 Tatouages corps homme dos - Roos Birthmarks and Blemishes - 1.jpg":  [
+    "2028 Tatouages corps homme dos - Roos Birthmarks and Blemishes - 1.jpg":  [
                                                                                    {
                                                                                        "tile":  "2000-bodytattoo-RBBirthmarkBodyA-back.jpg",
                                                                                        "text":  "RBBirthmarkBodyA-back",
@@ -5126,7 +6350,7 @@
                                                                                        "hex":  ""
                                                                                    }
                                                                                ],
-    "2021 Tatouages corps homme dos - Roos Tattoos Starter Pack - 1.jpg":  [
+    "2029 Tatouages corps homme dos - Roos Tattoos Starter Pack - 1.jpg":  [
                                                                                {
                                                                                    "tile":  "2000-bodytattoo-Body_Barcode-back.jpg",
                                                                                    "text":  "Body_Barcode-back",
@@ -5218,6 +6442,204 @@
                                                                                    "hex":  ""
                                                                                }
                                                                            ],
+    "2030 Tatouages corps homme dos - Misc Tattoos - 1.jpg":  [
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Anchor-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Blossoms-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Bones-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_ClownA-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Communist-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Cosmic-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Demon-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_ExtremeA-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_ExtremeB-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Firestarter-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Mask-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Mermaid-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Nagual-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Octopus-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Ocular-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  "2000-bodytattoo-Body_Pentagram-back.jpg",
+                                                                      "text":  "Body_Pentagram-back",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Seer-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Smokeleaf-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Swords-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Templar-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_USA-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Warlord-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  }
+                                                              ],
+    "2031 Tatouages corps homme dos - Myfs Tattoos - 1.jpg":  [
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Bondsmith-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_BondsmithBack-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Cursemark-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Ghostbloods-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Lightweaver-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_LightweaverBack-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_Windrunner-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  },
+                                                                  {
+                                                                      "tile":  null,
+                                                                      "text":  "Body_WindrunnerBack-back (not photographed)",
+                                                                      "hex":  ""
+                                                                  }
+                                                              ],
+    "2032 Tatouages corps homme dos - Oracle Erins HD Tattoos - 1.jpg":  [
+                                                                             {
+                                                                                 "tile":  null,
+                                                                                 "text":  "OE_Body_Alchemist-back (not photographed)",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  null,
+                                                                                 "text":  "OE_Body_Comet-back (not photographed)",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  null,
+                                                                                 "text":  "OE_Body_DualStars-back (not photographed)",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  null,
+                                                                                 "text":  "OE_Body_Phoenix-back (not photographed)",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  null,
+                                                                                 "text":  "OE_Body_TribalHeart-back (not photographed)",
+                                                                                 "hex":  ""
+                                                                             }
+                                                                         ],
+    "2033 Tatouages corps homme dos - Sunnys Dr Stone Scars Tattoos - 1.jpg":  [
+                                                                                   {
+                                                                                       "tile":  null,
+                                                                                       "text":  "Body_SDHomura-back (not photographed)",
+                                                                                       "hex":  ""
+                                                                                   },
+                                                                                   {
+                                                                                       "tile":  null,
+                                                                                       "text":  "Body_SDTsukasa-back (not photographed)",
+                                                                                       "hex":  ""
+                                                                                   },
+                                                                                   {
+                                                                                       "tile":  null,
+                                                                                       "text":  "Body_SDYuzuriha-back (not photographed)",
+                                                                                       "hex":  ""
+                                                                                   }
+                                                                               ],
     "2301 Vetements - Anomaly - 1.jpg":  [
                                              {
                                                  "tile":  "2300-garment-Apparel_BiomutationLance.jpg",
@@ -7636,7 +9058,54 @@
                                                               "hex":  "015581"
                                                           }
                                                       ],
-    "1406 Genes peau - Seren from Stardust Biotech Fork - 1.jpg":  [
+    "1406 Genes peau - Cookie Genes - 1.jpg":  [
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_LightPurple.jpg",
+                                                       "text":  "LYN_Skin_LightPurple #B07ED6",
+                                                       "hex":  "B07ED6"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_IceBlue.jpg",
+                                                       "text":  "LYN_Skin_IceBlue #BCC7EB",
+                                                       "hex":  "BCC7EB"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Pale.jpg",
+                                                       "text":  "LYN_Skin_Pale #FCF5E8",
+                                                       "hex":  "FCF5E8"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Bronze.jpg",
+                                                       "text":  "LYN_Skin_Bronze #825B3D",
+                                                       "hex":  "825B3D"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Golden.jpg",
+                                                       "text":  "LYN_Skin_Golden #D4BC50",
+                                                       "hex":  "D4BC50"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Rosey.jpg",
+                                                       "text":  "LYN_Skin_Rosey #F7DABA",
+                                                       "hex":  "F7DABA"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Pink.jpg",
+                                                       "text":  "LYN_Skin_Pink #ED9ADF",
+                                                       "hex":  "ED9ADF"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Jade.jpg",
+                                                       "text":  "LYN_Skin_Jade #5CA15C",
+                                                       "hex":  "5CA15C"
+                                                   },
+                                                   {
+                                                       "tile":  "1400-skingene-LYN_Skin_Sapphire.jpg",
+                                                       "text":  "LYN_Skin_Sapphire #5D6CC7",
+                                                       "hex":  "5D6CC7"
+                                                   }
+                                               ],
+    "1407 Genes peau - Seren from Stardust Biotech Fork - 1.jpg":  [
                                                                        {
                                                                            "tile":  "1400-skingene-OL_SkinTeal.jpg",
                                                                            "text":  "OL_SkinTeal #407080",
@@ -7795,7 +9264,445 @@
                                                                           "hex":  "BF5656"
                                                                       }
                                                                   ],
-    "0102 Genes cheveux - Seren from Stardust Biotech Fork - 1.jpg":  [
+    "0102 Genes cheveux - Cookie Genes - 1.jpg":  [
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Verdant.jpg",
+                                                          "text":  "LYN_Hair_Verdant #45A350",
+                                                          "hex":  "45A350"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Golden.jpg",
+                                                          "text":  "LYN_Hair_Golden #E6CF4E",
+                                                          "hex":  "E6CF4E"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Azure.jpg",
+                                                          "text":  "LYN_Hair_Azure #6DABC9",
+                                                          "hex":  "6DABC9"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_DeepBlue.jpg",
+                                                          "text":  "LYN_Hair_DeepBlue #3E467A",
+                                                          "hex":  "3E467A"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Crimson.jpg",
+                                                          "text":  "LYN_Hair_Crimson #BD3333",
+                                                          "hex":  "BD3333"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Fiery.jpg",
+                                                          "text":  "LYN_Hair_Fiery #ED872D",
+                                                          "hex":  "ED872D"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Teal.jpg",
+                                                          "text":  "LYN_Hair_Teal #7EC4AA",
+                                                          "hex":  "7EC4AA"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Maroon.jpg",
+                                                          "text":  "LYN_Hair_Maroon #8A3D33",
+                                                          "hex":  "8A3D33"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Cherry.jpg",
+                                                          "text":  "LYN_Hair_Cherry #EDA8DB",
+                                                          "hex":  "EDA8DB"
+                                                      },
+                                                      {
+                                                          "tile":  "0100-hairgene-LYN_Hair_Violet.jpg",
+                                                          "text":  "LYN_Hair_Violet #8539BF",
+                                                          "hex":  "8539BF"
+                                                      }
+                                                  ],
+    "0103 Genes cheveux - Genes Expanded Hair - 1.jpg":  [
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Yellowfin.jpg",
+                                                                 "text":  "GEH_Hair_Yellowfin #F3F08F",
+                                                                 "hex":  "F3F08F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_BananaSplit.jpg",
+                                                                 "text":  "GEH_Hair_BananaSplit #FEE483",
+                                                                 "hex":  "FEE483"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_TaxiCab.jpg",
+                                                                 "text":  "GEH_Hair_TaxiCab #FFD350",
+                                                                 "hex":  "FFD350"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_GoldFish.jpg",
+                                                                 "text":  "GEH_Hair_GoldFish #F8981D",
+                                                                 "hex":  "F8981D"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_BurntOrange.jpg",
+                                                                 "text":  "GEH_Hair_BurntOrange #D0701C",
+                                                                 "hex":  "D0701C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Clay.jpg",
+                                                                 "text":  "GEH_Hair_Clay #E5711E",
+                                                                 "hex":  "E5711E"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Tangerine.jpg",
+                                                                 "text":  "GEH_Hair_Tangerine #F57421",
+                                                                 "hex":  "F57421"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_PaleLavender.jpg",
+                                                                 "text":  "GEH_Hair_PaleLavender #E3CBE1",
+                                                                 "hex":  "E3CBE1"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Lilac.jpg",
+                                                                 "text":  "GEH_Hair_Lilac #996CA5",
+                                                                 "hex":  "996CA5"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Orchid.jpg",
+                                                                 "text":  "GEH_Hair_Orchid #C081B8",
+                                                                 "hex":  "C081B8"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Plum.jpg",
+                                                                 "text":  "GEH_Hair_Plum #872175",
+                                                                 "hex":  "872175"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Violet.jpg",
+                                                                 "text":  "GEH_Hair_Violet #92278F",
+                                                                 "hex":  "92278F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Grape.jpg",
+                                                                 "text":  "GEH_Hair_Grape #52237F",
+                                                                 "hex":  "52237F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Purple.jpg",
+                                                                 "text":  "GEH_Hair_Purple #362B70",
+                                                                 "hex":  "362B70"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Amethyst.jpg",
+                                                                 "text":  "GEH_Hair_Amethyst #7170B2",
+                                                                 "hex":  "7170B2"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_PurpleHeart.jpg",
+                                                                 "text":  "GEH_Hair_PurpleHeart #3A3578",
+                                                                 "hex":  "3A3578"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Bubblegum.jpg",
+                                                                 "text":  "GEH_Hair_Bubblegum #F394BE",
+                                                                 "hex":  "F394BE"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Fuchsia.jpg",
+                                                                 "text":  "GEH_Hair_Fuchsia #EC068D",
+                                                                 "hex":  "EC068D"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Rose.jpg",
+                                                                 "text":  "GEH_Hair_Rose #D4202B",
+                                                                 "hex":  "D4202B"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Raspberry.jpg",
+                                                                 "text":  "GEH_Hair_Raspberry #C9016C",
+                                                                 "hex":  "C9016C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Redfish.jpg",
+                                                                 "text":  "GEH_Hair_Redfish #EF3125",
+                                                                 "hex":  "EF3125"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_FireRed.jpg",
+                                                                 "text":  "GEH_Hair_FireRed #EF3125",
+                                                                 "hex":  "EF3125"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_MarsRed.jpg",
+                                                                 "text":  "GEH_Hair_MarsRed #C22C1D",
+                                                                 "hex":  "C22C1D"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Cranberry.jpg",
+                                                                 "text":  "GEH_Hair_Cranberry #C60850",
+                                                                 "hex":  "C60850"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Burgundy.jpg",
+                                                                 "text":  "GEH_Hair_Burgundy #98012E",
+                                                                 "hex":  "98012E"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Merlot.jpg",
+                                                                 "text":  "GEH_Hair_Merlot #8C0C03",
+                                                                 "hex":  "8C0C03"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_White.jpg",
+                                                                 "text":  "GEH_Hair_White #DEDEDE",
+                                                                 "hex":  "DEDEDE"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_SilverShiner.jpg",
+                                                                 "text":  "GEH_Hair_SilverShiner #B2B7BB",
+                                                                 "hex":  "B2B7BB"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_GhostGrey.jpg",
+                                                                 "text":  "GEH_Hair_GhostGrey #8C9B94",
+                                                                 "hex":  "8C9B94"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_SilverSmoke.jpg",
+                                                                 "text":  "GEH_Hair_SilverSmoke #949BA1",
+                                                                 "hex":  "949BA1"
+                                                             }
+                                                         ],
+    "0104 Genes cheveux - Genes Expanded Hair - 2.jpg":  [
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_TinCan.jpg",
+                                                                 "text":  "GEH_Hair_TinCan #C2B7B1",
+                                                                 "hex":  "C2B7B1"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_SmokeScreen.jpg",
+                                                                 "text":  "GEH_Hair_SmokeScreen #5F6062",
+                                                                 "hex":  "5F6062"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_ForgedSteel.jpg",
+                                                                 "text":  "GEH_Hair_ForgedSteel #80A3B7",
+                                                                 "hex":  "80A3B7"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_IronOre.jpg",
+                                                                 "text":  "GEH_Hair_IronOre #6A747D",
+                                                                 "hex":  "6A747D"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_StormCloud.jpg",
+                                                                 "text":  "GEH_Hair_StormCloud #455660",
+                                                                 "hex":  "455660"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Black.jpg",
+                                                                 "text":  "GEH_Hair_Black #2C2C2C",
+                                                                 "hex":  "2C2C2C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Rattan.jpg",
+                                                                 "text":  "GEH_Hair_Rattan #C5960C",
+                                                                 "hex":  "C5960C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_MidasGold.jpg",
+                                                                 "text":  "GEH_Hair_MidasGold #F1B310",
+                                                                 "hex":  "F1B310"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_BeesWax.jpg",
+                                                                 "text":  "GEH_Hair_BeesWax #C88C12",
+                                                                 "hex":  "C88C12"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Sunset.jpg",
+                                                                 "text":  "GEH_Hair_Sunset #F68026",
+                                                                 "hex":  "F68026"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Teak.jpg",
+                                                                 "text":  "GEH_Hair_Teak #AE700B",
+                                                                 "hex":  "AE700B"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Almond.jpg",
+                                                                 "text":  "GEH_Hair_Almond #CFAB79",
+                                                                 "hex":  "CFAB79"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_DesertSand.jpg",
+                                                                 "text":  "GEH_Hair_DesertSand #916D00",
+                                                                 "hex":  "916D00"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Copper.jpg",
+                                                                 "text":  "GEH_Hair_Copper #DE7A1C",
+                                                                 "hex":  "DE7A1C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Brown.jpg",
+                                                                 "text":  "GEH_Hair_Brown #994809",
+                                                                 "hex":  "994809"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Chesnut.jpg",
+                                                                 "text":  "GEH_Hair_Chesnut #A94C0F",
+                                                                 "hex":  "A94C0F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Chocolate.jpg",
+                                                                 "text":  "GEH_Hair_Chocolate #431A16",
+                                                                 "hex":  "431A16"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Kiwi.jpg",
+                                                                 "text":  "GEH_Hair_Kiwi #B6DBA5",
+                                                                 "hex":  "B6DBA5"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_PeaSoup.jpg",
+                                                                 "text":  "GEH_Hair_PeaSoup #8EC641",
+                                                                 "hex":  "8EC641"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Sage.jpg",
+                                                                 "text":  "GEH_Hair_Sage #377C2B",
+                                                                 "hex":  "377C2B"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Guacamole.jpg",
+                                                                 "text":  "GEH_Hair_Guacamole #48AA43",
+                                                                 "hex":  "48AA43"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Rainforest.jpg",
+                                                                 "text":  "GEH_Hair_Rainforest #1AB373",
+                                                                 "hex":  "1AB373"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_OakLeaf.jpg",
+                                                                 "text":  "GEH_Hair_OakLeaf #00653B",
+                                                                 "hex":  "00653B"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Jade.jpg",
+                                                                 "text":  "GEH_Hair_Jade #02958F",
+                                                                 "hex":  "02958F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Fern.jpg",
+                                                                 "text":  "GEH_Hair_Fern #008364",
+                                                                 "hex":  "008364"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Evergreen.jpg",
+                                                                 "text":  "GEH_Hair_Evergreen #01573E",
+                                                                 "hex":  "01573E"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Olive.jpg",
+                                                                 "text":  "GEH_Hair_Olive #687718",
+                                                                 "hex":  "687718"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_DesertCamo.jpg",
+                                                                 "text":  "GEH_Hair_DesertCamo #857C17",
+                                                                 "hex":  "857C17"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Taupe.jpg",
+                                                                 "text":  "GEH_Hair_Taupe #5B5403",
+                                                                 "hex":  "5B5403"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Teal.jpg",
+                                                                 "text":  "GEH_Hair_Teal #46C4D3",
+                                                                 "hex":  "46C4D3"
+                                                             }
+                                                         ],
+    "0105 Genes cheveux - Genes Expanded Hair - 3.jpg":  [
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Denim.jpg",
+                                                                 "text":  "GEH_Hair_Denim #4F91CD",
+                                                                 "hex":  "4F91CD"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_CoolMint.jpg",
+                                                                 "text":  "GEH_Hair_CoolMint #01B295",
+                                                                 "hex":  "01B295"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_IslandLagoon.jpg",
+                                                                 "text":  "GEH_Hair_IslandLagoon #01B1AF",
+                                                                 "hex":  "01B1AF"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Bluegill.jpg",
+                                                                 "text":  "GEH_Hair_Bluegill #0069AA",
+                                                                 "hex":  "0069AA"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_BlueSuede.jpg",
+                                                                 "text":  "GEH_Hair_BlueSuede #13488C",
+                                                                 "hex":  "13488C"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_SummerSky.jpg",
+                                                                 "text":  "GEH_Hair_SummerSky #009EDD",
+                                                                 "hex":  "009EDD"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_TidalPool.jpg",
+                                                                 "text":  "GEH_Hair_TidalPool #015A84",
+                                                                 "hex":  "015A84"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_MauiSurf.jpg",
+                                                                 "text":  "GEH_Hair_MauiSurf #01B5CC",
+                                                                 "hex":  "01B5CC"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_CoolAzul.jpg",
+                                                                 "text":  "GEH_Hair_CoolAzul #00718F",
+                                                                 "hex":  "00718F"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_RegalBlue.jpg",
+                                                                 "text":  "GEH_Hair_RegalBlue #1F438A",
+                                                                 "hex":  "1F438A"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_WildBlueberry.jpg",
+                                                                 "text":  "GEH_Hair_WildBlueberry #0168B3",
+                                                                 "hex":  "0168B3"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Cobalt.jpg",
+                                                                 "text":  "GEH_Hair_Cobalt #004890",
+                                                                 "hex":  "004890"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_BlueMarlin.jpg",
+                                                                 "text":  "GEH_Hair_BlueMarlin #005188",
+                                                                 "hex":  "005188"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Blurple.jpg",
+                                                                 "text":  "GEH_Hair_Blurple #273693",
+                                                                 "hex":  "273693"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_Gulfstream.jpg",
+                                                                 "text":  "GEH_Hair_Gulfstream #004A65",
+                                                                 "hex":  "004A65"
+                                                             },
+                                                             {
+                                                                 "tile":  "0100-hairgene-GEH_Hair_DeepSea.jpg",
+                                                                 "text":  "GEH_Hair_DeepSea #015581",
+                                                                 "hex":  "015581"
+                                                             }
+                                                         ],
+    "0106 Genes cheveux - Seren from Stardust Biotech Fork - 1.jpg":  [
                                                                           {
                                                                               "tile":  "0100-hairgene-OL_HairSky.jpg",
                                                                               "text":  "OL_HairSky #80B0C0",
@@ -9121,13 +11028,148 @@
                                                                               "hex":  ""
                                                                           }
                                                                       ],
+    "0701 Seren formes de tete - face - 1.jpg":  [
+                                                     {
+                                                         "tile":  "0700-seren-head-SerenHeadNormal.jpg",
+                                                         "text":  "SerenHeadNormal",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "0700-seren-head-SerenHeadPointy.jpg",
+                                                         "text":  "SerenHeadPointy",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "0700-seren-head-SerenHeadSquare.jpg",
+                                                         "text":  "SerenHeadSquare",
+                                                         "hex":  ""
+                                                     }
+                                                 ],
+    "0801 Seren paupieres - face - 1.jpg":  [
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidFlashy.jpg",
+                                                    "text":  "SerenLidFlashy",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidGeek.jpg",
+                                                    "text":  "SerenLidGeek",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidNormal.jpg",
+                                                    "text":  "SerenLidNormal",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidPointy.jpg",
+                                                    "text":  "SerenLidPointy",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidQuite.jpg",
+                                                    "text":  "SerenLidQuite",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidSharp.jpg",
+                                                    "text":  "SerenLidSharp",
+                                                    "hex":  ""
+                                                },
+                                                {
+                                                    "tile":  "0700-seren-lid-SerenLidSleepy.jpg",
+                                                    "text":  "SerenLidSleepy",
+                                                    "hex":  ""
+                                                }
+                                            ],
+    "1001 Seren yeux - face - 1.jpg":  [
+                                           {
+                                               "tile":  "0700-seren-eyeball-SerenEyesDull.jpg",
+                                               "text":  "SerenEyesDull",
+                                               "hex":  ""
+                                           },
+                                           {
+                                               "tile":  "0700-seren-eyeball-SerenEyesEmpty.jpg",
+                                               "text":  "SerenEyesEmpty",
+                                               "hex":  ""
+                                           },
+                                           {
+                                               "tile":  "0700-seren-eyeball-SerenEyesIntense.jpg",
+                                               "text":  "SerenEyesIntense",
+                                               "hex":  ""
+                                           },
+                                           {
+                                               "tile":  "0700-seren-eyeball-SerenEyesNormal.jpg",
+                                               "text":  "SerenEyesNormal",
+                                               "hex":  ""
+                                           }
+                                       ],
     "0901 Seren sourcils - face - 1.jpg":  [
                                                {
                                                    "tile":  "0700-seren-brow-OL_SerenBrowNone.jpg",
                                                    "text":  "OL_SerenBrowNone",
                                                    "hex":  ""
+                                               },
+                                               {
+                                                   "tile":  "0700-seren-brow-SerenBrowNormal.jpg",
+                                                   "text":  "SerenBrowNormal",
+                                                   "hex":  ""
+                                               },
+                                               {
+                                                   "tile":  "0700-seren-brow-SerenBrowThick.jpg",
+                                                   "text":  "SerenBrowThick",
+                                                   "hex":  ""
                                                }
                                            ],
+    "1101 Seren bouches - face - 1.jpg":  [
+                                              {
+                                                  "tile":  "0700-seren-mouth-SerenMouthHappy.jpg",
+                                                  "text":  "SerenMouthHappy",
+                                                  "hex":  ""
+                                              },
+                                              {
+                                                  "tile":  "0700-seren-mouth-SerenMouthNormal.jpg",
+                                                  "text":  "SerenMouthNormal",
+                                                  "hex":  ""
+                                              }
+                                          ],
+    "1501 Seren peaux - face - 1.jpg":  [
+                                            {
+                                                "tile":  "0700-seren-skin-SerenBrows.jpg",
+                                                "text":  "SerenBrows",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenCenterLarge.jpg",
+                                                "text":  "SerenCenterLarge",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenCenterSmall.jpg",
+                                                "text":  "SerenCenterSmall",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenCheeks.jpg",
+                                                "text":  "SerenCheeks",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenFreckles.jpg",
+                                                "text":  "SerenFreckles",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenTarget.jpg",
+                                                "text":  "SerenTarget",
+                                                "hex":  ""
+                                            },
+                                            {
+                                                "tile":  "0700-seren-skin-SerenTriStar.jpg",
+                                                "text":  "SerenTriStar",
+                                                "hex":  ""
+                                            }
+                                        ],
     "1701 Seren personnages - pawn - 1.jpg":  [
                                                   {
                                                       "tile":  "0700-seren-xeno-man-back.jpg",
