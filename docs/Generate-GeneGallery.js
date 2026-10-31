@@ -43,6 +43,11 @@ const melanin = genesOf(STEAM + '/common/RimWorld/Data/Core/Defs/GeneDefs/GeneDe
 const vanillaHair = genesOf(STEAM + '/common/RimWorld/Data/Core/Defs/GeneDefs/GeneDefs_Endogenes.xml', 'Hair_');
 const GES = STEAM + '/workshop/content/294100/3214172563/Versions/1.6/Defs/GeneDefs/Skin/';
 const gesSkins = fs.readdirSync(GES).filter(n => n.endsWith('.xml')).flatMap(n => genesOf(GES + n, 'GES_Skin_'));
+// Cookie Genes (Workshop 2879072525, skin and hair colours, declared 1.4 and 1.5) and Genes Expanded - Hair (3221946756, loadFolders for 1.5 only): the owner's lists of 2026-10-31, to see whether they still give their genes on 1.6.
+const COOKIE = STEAM + '/workshop/content/294100/2879072525/Defs/GeneDefs/GeneDefs_Cosmetic.xml';
+const cookieSkins = genesOf(COOKIE, 'LYN_Skin_'), cookieHair = genesOf(COOKIE, 'LYN_Hair_');
+const GEH = STEAM + '/workshop/content/294100/3221946756/Versions/1.5/Defs/GeneDefs/Hair/';
+const gehHair = fs.readdirSync(GEH).filter(n => n.endsWith('.xml')).flatMap(n => genesOf(GEH + n, 'GEH_Hair_'));
 // Seren, from Stardust [Biotech Fork] (Workshop 3726565301, 2026-10-25, owner): skin and hair colour genes, and the look genes (markings, sensors, ears, eyes, body masks).
 const SEREN = STEAM + '/workshop/content/294100/3726565301/1.6/Defs/GeneDefs/';
 function serenGenes(file, colourTag) {
@@ -77,7 +82,7 @@ fs.writeFileSync('ColonistRace/docs/catalogues/genes.md', [
   '',
   '## Skin colours',
   '',
-  `${skins.length + melanin.length + gesSkins.length + serenSkins.length} genes. The photograph frames the whole body in underwear, hair removed. Vanilla melanin genes (Skin_Melanin1..9) are the natural human skin tones; Genes Expanded - Skin (Workshop 3214172563) adds ${gesSkins.length} colours.`,
+  `${skins.length + melanin.length + gesSkins.length + cookieSkins.length + serenSkins.length} genes. The photograph frames the whole body in underwear, hair removed. Vanilla melanin genes (Skin_Melanin1..9) are the natural human skin tones; Genes Expanded - Skin (Workshop 3214172563) adds ${gesSkins.length} colours.`,
   '',
   'Step texts: `"<pawn>" has the gene "<defName>"` (the gene replaces the previous skin colour gene), or any colour: `"<pawn>" skin colour is rgb (<r>, <g>, <b>)` (a skin colour of the colonist\'s own, which a gene gives way to: set it only when no skin gene is meant to show).',
   '',
@@ -86,17 +91,20 @@ fs.writeFileSync('ColonistRace/docs/catalogues/genes.md', [
   row('Biotech', skins),
   row('Biotech, melanin (vanilla)', melanin),
   row('Genes Expanded - Skin', gesSkins),
+  row('Cookie Genes', cookieSkins),
   row('Seren, from Stardust [Biotech Fork]', serenSkins),
   '',
   '## Hair colours',
   '',
-  `${vanillaHair.length} vanilla hair colour genes and ${serenHair.length} genes of Seren, from Stardust (Workshop 3726565301). The photograph frames the whole body in underwear with the hairstyle Afro. The colour after # is the RGB of the gene.`,
+  `${vanillaHair.length} vanilla hair colour genes, ${cookieHair.length} of Cookie Genes, ${gehHair.length} of Genes Expanded - Hair and ${serenHair.length} genes of Seren, from Stardust (Workshop 3726565301). The photograph frames the whole body in underwear with the hairstyle Afro. The colour after # is the RGB of the gene.`,
   '',
   'Step texts: `"<pawn>" has the gene "<defName>"`, or any colour: `"<pawn>" hair colour is rgb (<r>, <g>, <b>)`.',
   '',
   '| Mod | Names |',
   '|---|---|',
   row('Biotech, vanilla hair colours', vanillaHair),
+  row('Cookie Genes', cookieHair),
+  row('Genes Expanded - Hair', gehHair),
   row('Seren, from Stardust [Biotech Fork]', serenHair),
   '',
   '## Look genes',
@@ -147,16 +155,20 @@ function scenario(title, baseLines, genes, prefix) {
 const half = Math.ceil(eyes.length / 2);   // at most 25 shots per scenario (Pickle's watchdog stops a scenario at 300 s)
 scenario(`gene-gallery-eyes-1: eye genes 1 to ${half} of ${eyes.length}`, eyeBase, eyes.slice(0, half), 'eyegene');
 scenario(`gene-gallery-eyes-2: eye genes ${half + 1} to ${eyes.length} of ${eyes.length}`, eyeBase, eyes.slice(half), 'eyegene');
-const allSkins = [...melanin, ...skins, ...gesSkins];
+const allSkins = [...melanin, ...skins, ...gesSkins, ...cookieSkins];
 const skinChunk = Math.ceil(allSkins.length / Math.ceil(allSkins.length / 22));   // 22 shots at most: about 150 s a scenario
 for (let i = 0, k = 1; i < allSkins.length; i += skinChunk, k++)
   scenario(`gene-gallery-skins-${k}: skin colour genes ${i + 1} to ${Math.min(i + skinChunk, allSkins.length)} of ${allSkins.length}`, skinBase, allSkins.slice(i, i + skinChunk), 'skingene');
 // The vanilla hair colours: the gene, then the colour the genes define (the game does not rewrite the hair colour when a gene is added), hairstyle Afro, shots hairgene-<gene>.
-out.push('  Scenario: gene-gallery-hair-1: vanilla hair colour genes 1 to ' + vanillaHair.length + ' of ' + vanillaHair.length);
-skinBase.forEach(l => out.push('    ' + l));
-out.push(`    And ${PT}"Nelim" hairstyle is "Afro"`);
-for (const g of vanillaHair) [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}"Nelim" hair colour is taken from its genes`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "hairgene-${g.name}"`].forEach(l => out.push('    ' + l));
-out.push('');
+const allHair = [...vanillaHair, ...cookieHair, ...gehHair];
+const hairChunk = Math.ceil(allHair.length / Math.ceil(allHair.length / 22));
+for (let i = 0, k = 1; i < allHair.length; i += hairChunk, k++) {
+  out.push('  Scenario: gene-gallery-hair-' + k + ': hair colour genes ' + (i + 1) + ' to ' + Math.min(i + hairChunk, allHair.length) + ' of ' + allHair.length);
+  skinBase.forEach(l => out.push('    ' + l));
+  out.push('    And ' + PT + '"Nelim" hairstyle is "Afro"');
+  for (const g of allHair.slice(i, i + hairChunk)) ['When ' + PT + '"Nelim" has the gene "' + g.name + '"', 'And ' + PT + '"Nelim" hair colour is taken from its genes', 'And ' + PT + 'I let 5 frames pass', 'And I take a screenshot "hairgene-' + g.name + '"'].forEach(l => out.push('    ' + l));
+  out.push('');
+}
 fs.writeFileSync('Tests/Pickle/Mod/Pickle/Features/pickletools-gene-gallery.feature', out.join('\n'));
 // The Seren photographs need their own mod list (map wsl-deps.seren.map): a separate feature.
 const SP = "Nelim's Pickle Tools: ";

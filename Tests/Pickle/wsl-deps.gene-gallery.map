@@ -36,3 +36,8 @@ ray1203.SimpleCameraSetting 3232415388
 
 # Added 2026-10-28 (owner, catalogue): Genes Expanded - Skin, the skin genes (GES_Skin_*, Ada has GES_Skin_PaleLavender).
 LazyFridayStudio.GenesExpandedSkin 3214172563
+
+# Added 2026-10-31 (owner, her lists of colour genes): Cookie Genes (skin and hair, declared 1.4 and 1.5) and Genes Expanded - Hair (loadFolders for 1.5 only, needs Harmony): do they still give their genes on 1.6?
+brrainz.harmony 2009463077
+Cookie.Genes 2879072525
+LazyFridayStudio.GenesExpandedHair 3221946756
