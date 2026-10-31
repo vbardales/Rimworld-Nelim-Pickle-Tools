@@ -52,7 +52,9 @@ namespace Nelim.PickleTools.ColonistRace
             for (int i = 0; i < addons.Count; i++)
             {
                 string path = Field<string>(addons[i], "path") ?? "";
-                if (string.Equals(path, addon, StringComparison.OrdinalIgnoreCase) || path.EndsWith(addon, StringComparison.OrdinalIgnoreCase)) { index = i; break; }
+                string name = Field<string>(addons[i], "name") ?? "";
+                if (string.Equals(path, addon, StringComparison.OrdinalIgnoreCase) || path.EndsWith(addon, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(name, addon, StringComparison.OrdinalIgnoreCase)) { index = i; break; }
             }
             ctx.Require(index >= 0, $"no body addon of '{nickname}' has the path '{addon}'. The addons are:\n{listing}");
 
@@ -69,6 +71,34 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Attach("alien-addon", $"{nickname}: addon {index} '{Field<string>(addons[index], "path")}' variant set to {variant} of {count}");
         }
 
+        /// <summary>
+        /// Sets the body mask variant of a Humanoid Alien Races pawn (<c>AlienComp.bodyMaskVariant</c>, the index HAR chose at random among the
+        /// textures of the race's <c>graphicPaths/bodyMasks</c>), redraws the pawn and reads the value back. Which texture a variant number
+        /// names is HAR's rule (the original Seren has Mask, Mask1 to Mask6 for its bodies): check it on the photograph. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: {string} alien body mask variant is {int}")]
+        public void SetBodyMask(PickleContext ctx, string nickname, int variant) => SetMask(ctx, nickname, "bodyMaskVariant", variant);
+
+        /// <summary>The same for the head mask (<c>AlienComp.headMaskVariant</c>). NOT PLAYED when written.</summary>
+        [When("Nelim's Pickle Tools: {string} alien head mask variant is {int}")]
+        public void SetHeadMask(PickleContext ctx, string nickname, int variant) => SetMask(ctx, nickname, "headMaskVariant", variant);
+
+        private static void SetMask(PickleContext ctx, string nickname, string fieldName, int variant)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            object comp = pawn.AllComps.FirstOrDefault(c => c.GetType().Name == "AlienComp");
+            ctx.Require(comp != null, $"'{nickname}' has no AlienComp: its race '{pawn.def.defName}' is not a Humanoid Alien Races race (generate the pawn from an alien kind)");
+            ctx.Assert(variant >= 0, $"a mask variant is zero or more, not {variant}");
+            FieldInfo field = null;
+            for (Type t = comp.GetType(); t != null && field == null; t = t.BaseType) field = t.GetField(fieldName, Any | BindingFlags.DeclaredOnly);
+            ctx.Require(field != null && field.FieldType == typeof(int), $"the AlienComp has no int field '{fieldName}': the HAR build on disk differs from the one this step was written for");
+            field.SetValue(comp, variant);
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            int read = (int)field.GetValue(comp);
+            ctx.Assert(read == variant, $"{fieldName} of '{nickname}' reads {read} after setting {variant}: something reset it");
+            ctx.Attach("alien-mask", $"{nickname}: {fieldName} set to {variant}, read back {read}");
+        }
+
         private static string Describe(PickleContext ctx, Pawn pawn, out IList addons, out object comp)
         {
             comp = pawn.AllComps.FirstOrDefault(c => c.GetType().Name == "AlienComp");
@@ -80,10 +110,14 @@ namespace Nelim.PickleTools.ColonistRace
             var variants = FieldValue(comp, "addonVariants") as IList<int>;
 
             var text = new StringBuilder();
+            text.Append("variants bodyVariant=").Append(FieldValue(comp, "bodyVariant") ?? "?")
+                .Append(" headVariant=").Append(FieldValue(comp, "headVariant") ?? "?")
+                .Append(" bodyMaskVariant=").Append(FieldValue(comp, "bodyMaskVariant") ?? "?")
+                .Append(" headMaskVariant=").Append(FieldValue(comp, "headMaskVariant") ?? "?").Append('\n');
             for (int i = 0; i < addons.Count; i++)
             {
                 object bodyPart = FieldValue(addons[i], "bodyPart");
-                text.Append(i).Append(" path=").Append(Field<string>(addons[i], "path"))
+                text.Append(i).Append(" name=").Append(Field<string>(addons[i], "name")).Append(" path=").Append(Field<string>(addons[i], "path"))
                     .Append(" bodyPart=").Append(bodyPart?.ToString() ?? "(none)")
                     .Append(" variantCount=").Append(Field<int>(addons[i], "variantCount"))
                     .Append(" variant=").Append(variants != null && i < variants.Count ? variants[i].ToString() : "?")

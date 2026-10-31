@@ -189,3 +189,10 @@ Not here: a head type or face shape, and a neutral pose.
 | `Nelim's Pickle Tools: {string} alien addon {string} variant is {int}` | Sets `AlienComp.addonVariants` for the addon whose path equals or ends with the text, redraws, reads back; fails listing the addons when none matches, when the variant is not below the variant count, or when the value did not stick. |
 
 Reached by reflection (no reference to HAR). Written for SerenBiotechExtended: the original Seren draws its body masks as HAR body addons chosen at random per pawn, with no gene or setting. Member names were read from AlienRace.dll's metadata, **compiled, never played**.
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: {string} alien body mask variant is {int}` | Sets `AlienComp.bodyMaskVariant` (HAR's random pick among the race's `graphicPaths/bodyMasks` textures, e.g. original Seren Mask, Mask1 to Mask6), redraws, reads back. Which texture a number names is HAR's rule: check on the photograph. Added 2026-10-31 after reading the 1.6 AlienRace.dll (AlienComp has bodyVariant, headVariant, bodyMaskVariant, headMaskVariant). |
+| `Nelim's Pickle Tools: {string} alien head mask variant is {int}` | The same for `headMaskVariant`. |
+
+The list step also prints the four variant numbers and each addon's `name`; the set-addon step also matches the addon `name`. **Compiled, never played.**
