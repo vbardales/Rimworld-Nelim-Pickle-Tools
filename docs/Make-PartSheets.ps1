@@ -9,9 +9,9 @@ $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img/looks'   # no subfolders (owner, 2026-10-28): numbered like the look sheets, block 28
 New-Item -ItemType Directory -Force $out | Out-Null
 $files = @{}
-foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6') {
+foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6', 'Tests/Pickle/Inbox/uw-fa-head-1', 'Tests/Pickle/Inbox/uw-fa-head-2', 'Tests/Pickle/Inbox/uw-fa-head-3', 'Tests/Pickle/Evidence/look-gallery-facetattoo-bald') {
     $s = Join-Path $root "$d/screenshots"
-    if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
+    if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $k = ($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', ''); $files[$k] = $_.FullName; if ($k -like 'fahead-*') { $files['head-' + $k.Substring(7)] = $_.FullName } } }   # Evidence keeps minified 1280 x 720 JPEG; the Facial Animation head gallery (fahead-<def>) feeds the head shape sheet
 }
 $kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks' }
 # Sheet names (block 28 of Make-LookSheets.ps1's numbering): the number, then a French label.
@@ -32,7 +32,8 @@ foreach ($kind in $kinds.Keys) {
     for ($i = 0; $i -lt $names.Count; $i++) {
         $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
         $img = [System.Drawing.Image]::FromFile($files[$names[$i]])
-        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $(if ($kind -eq 'skinclose') { $cropClose } elseif ($kind -eq 'head' -or $kind -eq 'facetattoo') { $cropWide } else { $crop }), [System.Drawing.GraphicsUnit]::Pixel)
+        $sc = $img.Width / 1920.0
+        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $($cr = if ($kind -eq 'skinclose') { $cropClose } elseif ($kind -eq 'head' -or $kind -eq 'facetattoo') { $cropWide } else { $crop }; New-Object System.Drawing.Rectangle ([int][Math]::Round($cr.X * $sc)), ([int][Math]::Round($cr.Y * $sc)), ([int][Math]::Round($cr.Width * $sc)), ([int][Math]::Round($cr.Height * $sc))), [System.Drawing.GraphicsUnit]::Pixel)
         $img.Dispose()
         $text = $names[$i].Substring($kind.Length + 1)
         $g.DrawString($text, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))
