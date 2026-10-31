@@ -1,0 +1,15 @@
+# TATTOO BATCH (2026-10-31): the owner's tattoo mods with TattooDefs, same scenario as the other look batches (feature pickletools-look-catalogue). Dependencies read from each About.xml: all but Ideology (base) need nothing else.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+Nals.FacialAnimation 1635901197
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+oracle.erin.tattoos 2854739731
+MorphsAssorted.FaceTattoos 2961314564
+Javier.MiscTattoos 2564009013
+SD.DrStone.Tattoos 2915276381
+Myf.Tattoo 3046303150
+Grailnight.AvatarTat.v1 2580006286
+3HSTltd.Tattoo 2806255599
+luxsolace.tattoofacescars 3792233113
+# Not in this batch: GGKTH Eye Tattoo 3544468212 (needs Alpha Genes Character Editor, id not known), Morton's Body Hair 3825963278 (needs Body Hair Framework 3823805934, not on disk), body hair styles 3549854404 3710288053 (StyleItems, not tattoos), EM Tattoos 2030227116 3688048688, TattooMagic 3780107608, Scarification 1843703940 (hediffs), Multi-Layered Tattoos 3656122803 (code), Tattoo of Desire 3820227087 (1.7 only).
