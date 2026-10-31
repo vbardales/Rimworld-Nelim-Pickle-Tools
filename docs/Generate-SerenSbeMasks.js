@@ -17,6 +17,17 @@ function subject(name, man) {
 }
 let out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n@requires:nelim.serenbiotechextended\nFeature: The 12 body masks of Seren Biotech Extended, front and back, on Nelim and on a man\n\n';
 let n = 0;
+// Probe (2026-10-31): the same set-up as a mask scenario with no gene step, to tell whether the exit 137 kills come from the set-up or from the SBE gene.
+out += `  Scenario: seren-sbe-gallery-0: probe, set-up without a gene
+`;
+for (const l of PRE) out += `    ${l}
+`;
+for (const l of subject("Nelim", false)) out += `    ${l}
+`;
+out += `    And ${P}I let 5 frames pass
+    And I take a screenshot "bodymask-probe-nogene"
+
+`;
 for (const [who, name, man] of [['nelim', 'Nelim', false], ['man', 'Mannequin', true]]) {
   for (const [view, dir] of [['front', 'South'], ['back', 'North']]) {
     // Chunks of 4 genes (2026-10-31): the scenario of 12 was killed at exit 137 four times in a row (5011, dd35, e4da and 3fee), so each scenario holds fewer masks.
