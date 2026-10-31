@@ -74,6 +74,23 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Keeps a colonist where it stands while the game TICKS: starts the job Wait on it by force, with a long expiry, so the colonist does not walk off to a job of its
+        /// own when the paused game advances by a few ticks (the animation frames of 2026-10-31 showed Nelim walking out of the shot). Written for the Facial Animation
+        /// animation gallery. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} waits in place")]
+        public void WaitsInPlace(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.jobs != null && pawn.Spawned, $"{nickname} is not a spawned pawn with a job tracker");
+            Job job = JobMaker.MakeJob(JobDefOf.Wait);
+            job.expiryInterval = 6000;
+            job.checkOverrideOnExpire = false;
+            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == JobDefOf.Wait, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not Wait");
+        }
+
+        /// <summary>
         /// Puts a colonist on a standable cell beside a pawn (colonist or animal, by short name), turned towards it, and starts a job on it by force
         /// (a JobDef by defName with the pawn as target: Tame, Train, a nuzzle or feed job a mod adds). The job is held as the current job; the
         /// animation is drawn only while the game ticks. Fails when the colonist or the target is unknown, the JobDef does not exist (the failure lists

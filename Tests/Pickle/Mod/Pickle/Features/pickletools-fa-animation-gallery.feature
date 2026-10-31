@@ -21,6 +21,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "AttackMelee"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-AttackMelee-01"
@@ -57,6 +58,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "AttackMelee2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-AttackMelee2-01"
@@ -93,6 +95,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "AttackStatic"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-AttackStatic-01"
@@ -129,6 +132,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "AttackStatic2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-AttackStatic2-01"
@@ -165,6 +169,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "blink"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-blink-01"
@@ -201,6 +206,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "DoBill"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-DoBill-01"
@@ -237,6 +243,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "DoBill2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-DoBill2-01"
@@ -273,6 +280,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "eyeFlicker"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-eyeFlicker-01"
@@ -309,6 +317,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "eyeMoving"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-eyeMoving-01"
@@ -345,6 +354,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "eyeMoving2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-eyeMoving2-01"
@@ -381,6 +391,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Goto"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Goto-01"
@@ -417,6 +428,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Ingest"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Ingest-01"
@@ -453,6 +465,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "laydown"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-laydown-01"
@@ -489,6 +502,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "laydown2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-laydown2-01"
@@ -525,6 +539,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "laydown3"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-laydown3-01"
@@ -561,6 +576,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Lovin"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Lovin-01"
@@ -597,6 +613,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Lovin2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Lovin2-01"
@@ -633,6 +650,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Mine"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Mine-01"
@@ -669,6 +687,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "normal"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-normal-01"
@@ -705,6 +724,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "RemoveApparel"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-RemoveApparel-01"
@@ -741,6 +761,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "RemoveApparel2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-RemoveApparel2-01"
@@ -777,6 +798,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "RemoveApparel3"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-RemoveApparel3-01"
@@ -813,6 +835,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Research"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Research-01"
@@ -849,6 +872,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Research2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Research2-01"
@@ -885,6 +909,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "SocialRelax"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-SocialRelax-01"
@@ -921,6 +946,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "StandAndBeSociallyActive"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-StandAndBeSociallyActive-01"
@@ -957,6 +983,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Strip"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Strip-01"
@@ -993,6 +1020,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Strip2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Strip2-01"
@@ -1029,6 +1057,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Thought_Naked"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Thought_Naked-01"
@@ -1065,6 +1094,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wait_Combat_Rare"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wait_Combat_Rare-01"
@@ -1101,6 +1131,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wait_Downed"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wait_Downed-01"
@@ -1137,6 +1168,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wait_Downed2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wait_Downed2-01"
@@ -1173,6 +1205,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "WaitCombat"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-WaitCombat-01"
@@ -1209,6 +1242,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wear"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wear-01"
@@ -1245,6 +1279,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wear2"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wear2-01"
@@ -1281,6 +1316,7 @@ Feature: One photo sequence per Facial Animation animation, for the animation gi
     And Nelim's Pickle Tools: "Nelim" face tattoo is "none"
     And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
+    And Nelim's Pickle Tools: "Nelim" waits in place
     When Nelim's Pickle Tools: "Nelim" facial expression is "Wear3"
     And Nelim's Pickle Tools: I advance the paused game by exactly 4 ticks
     And I take a screenshot "faceanim-Wear3-01"

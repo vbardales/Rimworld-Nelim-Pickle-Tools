@@ -31,6 +31,7 @@ names.forEach((n, i) => {
     `    And ${P}"Nelim" is undressed`, `    And ${P}"Nelim" wears "UnderWhere_Panties"`, `    And ${P}"Nelim" wears "UnderWhere_Bra"`,
     `    And ${P}"Nelim" hairstyle is "Bald"`, `    And ${P}"Nelim" face tattoo is "none"`, `    And ${P}"Nelim" face kit is "neutral"`,
     `    And ${P}I frame the cell (176, 119) at zoom 3`,
+    `    And ${P}"Nelim" waits in place`,
     `    When ${P}"Nelim" facial expression is "${n}"`);
   for (let k = 1; k <= FRAMES; k++)
     out.push(`    And ${P}I advance the paused game by exactly ${FRAME_TICKS} ticks`, `    And I take a screenshot "faceanim-${n}-${String(k).padStart(2, '0')}"`);
