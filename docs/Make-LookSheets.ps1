@@ -19,7 +19,7 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; beardcolour = 2; seren = 7 }
+$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; beardcolour = 2; seren = 7 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
@@ -31,7 +31,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
-    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe' }
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
@@ -149,6 +149,14 @@ $looks = 'looks.md'
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $faceHead $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
+
+# Facial Animation head shapes (feature pickletools-fa-head-gallery, shots fahead-<defName>, a bald Nelim in underwear, zoom 2): the names are those of the feature, the head sits at (890..1030, 100..255) of a 1920 x 1080 capture.
+$faHeadCrop = New-Object System.Drawing.Rectangle 880, 95, 160, 160
+$faFeature = Join-Path $root 'Tests/Pickle/Mod/Pickle/Features/pickletools-fa-head-gallery.feature'
+if (Test-Path $faFeature) {
+    $faNames = @([regex]::Matches((Get-Content $faFeature -Raw), 'take a screenshot "fahead-([^"]+)"') | ForEach-Object { $_.Groups[1].Value })
+    Run-Job 'fahead' 'fahead' @($faNames | ForEach-Object { [pscustomobject]@{ mod = 'Facial Animation'; group = ''; name = $_; type = ''; hex = '' } }) $faHeadCrop $false $false
+}
 $tat = Read-Section $looks '^## Tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -notmatch "^Roo" }) $faceTat $false $false
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -match "^Roo" }) $faceTatRoo $false $false
