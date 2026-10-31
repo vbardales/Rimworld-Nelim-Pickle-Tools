@@ -8,7 +8,7 @@
 const fs = require('fs');
 const RUNS = ['Tests/Pickle/Inbox/look-catalogue-9-b6/Player.log', 'Tests/Pickle/Inbox/look-catalogue-8-b2/Player.log'];
 const P = "Nelim's Pickle Tools: ";
-const FRAMES = 8, FRAME_TICKS = 4, GROUP = 4;
+const FRAMES = 8, FRAME_TICKS = 20, GROUP = 4;
 const found = new Map();
 for (const f of RUNS) {
   if (!fs.existsSync(f)) continue;
@@ -32,6 +32,7 @@ names.forEach((n, i) => {
     `    And ${P}"Nelim" hairstyle is "Bald"`, `    And ${P}"Nelim" face tattoo is "none"`, `    And ${P}"Nelim" face kit is "neutral"`,
     `    And ${P}I frame the cell (176, 119) at zoom 3`,
     `    And ${P}"Nelim" waits in place`,
+    `    And ${P}"Nelim" facial expression is "normal"`, `    And ${P}I advance the paused game by exactly 30 ticks`,
     `    When ${P}"Nelim" facial expression is "${n}"`);
   for (let k = 1; k <= FRAMES; k++)
     out.push(`    And ${P}I advance the paused game by exactly ${FRAME_TICKS} ticks`, `    And I take a screenshot "faceanim-${n}-${String(k).padStart(2, '0')}"`);
