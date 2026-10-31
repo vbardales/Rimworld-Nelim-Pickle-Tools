@@ -205,3 +205,11 @@ The list step also prints the four variant numbers and each addon's `name`; the 
 | `Nelim's Pickle Tools: the animal {string} holds the gene {string}` | Asserts the gene is held; the failure lists the genes held or says there is no tracker. |
 
 Written for SanctuaryBacklot (Atticus's eye gene). **Compiled, never played.**
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the animal {string} has the hediff {string}` | Adds a whole-body hediff to a spawned animal found by short name, unless it already holds that def; reads back and lists what is held on failure. |
+| `Nelim's Pickle Tools: the animal {string} loses the hediff {string}` | Removes every hediff of that def from the animal. |
+| `Nelim's Pickle Tools: the animal {string} holds the hediff {string}` | Asserts the animal holds it; the failure lists the hediffs held. |
+
+Added 2026-10-31 for SanctuaryBacklot (Animal Traits System stores traits as AnimalTrait_* hediffs). **Compiled, never played.**

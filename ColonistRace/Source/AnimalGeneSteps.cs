@@ -49,7 +49,7 @@ namespace Nelim.PickleTools.ColonistRace
                 $"the animal '{name}' does not hold the gene '{geneName}'; it holds {string.Join(", ", animal.genes.GenesListForReading.Select(x => x.def.defName))}");
         }
 
-        private static Pawn FindAnimal(PickleContext ctx, string name)
+        internal static Pawn FindAnimal(PickleContext ctx, string name)
         {
             var animals = PawnsFinder.AllMaps_Spawned.Where(p => p.RaceProps != null && p.RaceProps.Animal).ToList();
             Pawn animal = animals.FirstOrDefault(p => string.Equals(p.Name?.ToStringShort, name, StringComparison.OrdinalIgnoreCase));
