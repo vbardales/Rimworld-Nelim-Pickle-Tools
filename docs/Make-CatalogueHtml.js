@@ -90,9 +90,9 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 // (the sections of the .md pages) that belong to it. `place` says where each section of each page goes; what it does not place stays in the Documentation group.
 // [category, [[sub-category, [photograph kinds]], ...]]
 const categories = [
-  ['Peau', [['Couleurs de peau (genes)', ['skingene', 'serenskin', 'serenvteskin']], ['Tatouages (visage et corps)', ['facetattoo', 'fpTattoo', 'bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
+  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages (visage et corps)', ['facetattoo', 'fpTattoo', 'bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
-  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead']], ['Barbes et couleurs de barbe', ['beard']], ['Bouches, peaux du visage, marques d\'emotion', ['fpMouth', 'fpSkin', 'fpEmotion', 'serenmouth', 'serenhead']]]],
+  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead']], ['Barbes et couleurs de barbe', ['beard']], ['Bouches, peaux du visage, marques d\'emotion', ['fpMouth', 'fpSkin', 'fpEmotion', 'serenmouth', 'serenhead']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
   ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes, paupieres, sourcils', ['fpEye', 'fpLid', 'fpLidOption', 'fpBrow', 'sereneyeball', 'serenlid', 'serenbrow']]]],
   ['Tete : oreilles, cornes, marques', [['Genes d\'apparence', ['lookgene']]]],
   ['Corps', [['Corpulences', ['body']]]],
