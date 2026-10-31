@@ -1,0 +1,8 @@
+# b5b1 split (2026-10-31): b5b1 hung at load (second guard stop on the b5 mods); Zealous Innocence ships a Sounds folder, like the earlier suspects. This map: Zealous Innocence alone.
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+Nals.FacialAnimation 1635901197
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+# TEMP until the catalogue run is read. Added 2026-10-29 at the owner request: Zealous Innocence (nappies and other clothes, 1.3 to 1.7; the Steam page says Dubs Bad Hygiene Lite or full is optional) and Mercer's Backpacks + Nano Suit (Continued) (backpacks and a nanosuit, 1.0 to 1.7). Retextured Apparel, Skin Tight Recon and Flak Dusters wait for their download.
+Proximo.ZealousInnocence 2857297111
