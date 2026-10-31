@@ -152,6 +152,7 @@ Feature: Original Seren body mask 6
     And Nelim's Pickle Tools: a colonist "Orig" of kind "SerenRefugee" exists
     And Nelim's Pickle Tools: "Orig" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
+    And Nelim's Pickle Tools: "Orig" gender is male
     And Nelim's Pickle Tools: "Orig" body type is Male
     And Nelim's Pickle Tools: the alien addons of "Orig" are listed
     And Nelim's Pickle Tools: "Orig" is undressed
