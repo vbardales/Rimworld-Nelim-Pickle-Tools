@@ -65,6 +65,8 @@ const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
 for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBlock[n];
+// The colour sheet of the beards (0204) has its own sub-category, with the step that sets the colour.
+if (byBlock[2]) { byKind.beardcolour = byBlock[2].filter(f => / Couleurs de barbe /.test(f)); byKind.beard = byBlock[2].filter(f => !/ Couleurs de barbe /.test(f)); }
 // The face part sheets (block 6, Make-PartSheets.ps1) are split by their label so that each goes with its own sub-category (the eyes, the eyelids and the brows are with the eyes, not with the face).
 for (const [k, re] of Object.entries({ fpMouth: /Bouches/, fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
 const sheet = f => `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
@@ -90,10 +92,10 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 // (the sections of the .md pages) that belong to it. `place` says where each section of each page goes; what it does not place stays in the Documentation group.
 // [category, [[sub-category, [photograph kinds]], ...]]
 const categories = [
-  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages (visage et corps)', ['facetattoo', 'fpTattoo', 'bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
+  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo', 'fpTattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
-  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead']], ['Barbes et couleurs de barbe', ['beard']], ['Bouches, peaux du visage, marques d\'emotion', ['fpMouth', 'fpSkin', 'fpEmotion', 'serenmouth', 'serenhead']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
-  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes, paupieres, sourcils', ['fpEye', 'fpLid', 'fpLidOption', 'fpBrow', 'sereneyeball', 'serenlid', 'serenbrow']]]],
+  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['fpMouth', 'serenmouth']], ['Peaux du visage', ['fpSkin']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
+  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes des yeux', ['fpEye', 'sereneyeball']], ['Paupieres', ['fpLid', 'fpLidOption', 'serenlid']], ['Sourcils', ['fpBrow', 'serenbrow']]]],
   ['Tete : oreilles, cornes, marques', [['Genes d\'apparence', ['lookgene']]]],
   ['Corps', [['Corpulences', ['body']]]],
   ['Animations', [['Animations du visage', ['animations']], ['Taches (jobs)', []]]],
@@ -104,8 +106,8 @@ const categories = [
 ];
 const place = (file, h) => {
   const rules = {
-    'looks.md': [[/^Hairstyles/, 'Coiffures'], [/^Beards/, 'Barbes et couleurs de barbe'], [/^Head types/, 'Formes de tete (vanilla)'], [/^(Face|Body) tattoos/, 'Tatouages (visage et corps)'], [/^Body types/, 'Corpulences']],
-    'face-parts.md': [[/^(Mouths|Skins)/, 'Bouches, peaux du visage, marques d\'emotion'], [/^(Brows|Lids|Eyeballs)/, 'Globes, paupieres, sourcils'], [/^Head shapes/, 'Formes de tete (Facial Animation)'], [/^Heat/, 'Animations du visage']],
+    'looks.md': [[/^Hairstyles/, 'Coiffures'], [/^Beards/, 'Barbes'], [/^Head types/, 'Formes de tete (vanilla)'], [/^Face tattoos/, 'Tatouages de visage'], [/^Body tattoos/, 'Tatouages de corps'], [/^Body types/, 'Corpulences']],
+    'face-parts.md': [[/^Mouths/, 'Bouches'], [/^Skins/, 'Peaux du visage'], [/^Brows/, 'Sourcils'], [/^Lids/, 'Paupieres'], [/^Eyeballs/, 'Globes des yeux'], [/^Head shapes/, 'Formes de tete (Facial Animation)'], [/^Heat/, 'Animations du visage']],
     'genes.md': [[/^Eye colours/, 'Couleurs des yeux (genes)'], [/^Skin colours/, 'Couleurs de peau (genes)'], [/^Hair colours/, 'Couleurs de cheveux (genes)'], [/^Look genes/, 'Genes d\'apparence']],
     'apparel.md': [[/./, 'Vetements et chapeaux']], 'colours.md': [[/./, 'Couleurs']], 'weapons-crafts.md': [[/./, 'Armes et objets fabriques']], 'items.md': [[/./, 'Objets utiles']],
     'weather.md': [[/./, 'Meteo']], 'animal-apparel.md': [[/./, 'Vetements pour animaux']], 'jobs.md': [[/./, 'Taches (jobs)']], 'seren.md': [[/./, 'Xenotype Seren']],
@@ -138,9 +140,10 @@ const kindHow = {
   serenbrow: ['Seren : Brows', '"<pawn>" brows are "<defName>"'], serenmouth: ['Seren : Mouths', '"<pawn>" mouth is "<defName>"'],
   serenskin: ['Seren : Face masks (marking skins)', '"<pawn>" face skin is "<defName>"'], serenvteskin: ['Seren : Face masks (marking skins, Vanilla Textures Expanded set)', '"<pawn>" face skin is "<defName>"'],
   bodymask: ['Seren : Body masks', '"<pawn>" has the gene "<defName>" (the masks are genes: SerenOriginalMask_<n> for Seren Biotech Extended, zero-based)'],
+  beardcolour: ['Looks : Beard colours', '"<pawn>" hair colour is rgb (<r>, <g>, <b>)', ' A beard is drawn in the hair colour: there is no separate beard colour step. The eight hair colours with their hex values are on the sheet.'],
   fahead: ['Facial Animation : Head shapes', '"<pawn>" face head shape is "<defName>"'],
 };
-const howBlock = k => { const h = kindHow[k]; return h ? '<h4 class="from">' + esc(h[0]) + esc(numLabel([k])) + '</h4>' + render('Step texts: ' + String.fromCharCode(96) + h[1] + String.fromCharCode(96) + '.') : ''; };
+const howBlock = k => { const h = kindHow[k]; return h ? '<h4 class="from">' + esc(h[0]) + esc(numLabel([k])) + '</h4>' + render('Step texts: ' + String.fromCharCode(96) + h[1] + String.fromCharCode(96) + '.' + (h[2] || '')) : ''; };
 const catSection = c => '';
 const catId = (c, s) => `cat-${slug(c)}-${slug(s)}`;
 const sections = [
