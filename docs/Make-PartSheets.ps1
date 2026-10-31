@@ -13,13 +13,14 @@ foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23'
     $s = Join-Path $root "$d/screenshots"
     if (Test-Path $s) { Get-ChildItem $s -Filter 'manual--*--step0.png' | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.png$', '')] = $_.FullName } }
 }
-$kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks'; kit = 'Kits' }
+$kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks' }
 # Sheet names (block 28 of Make-LookSheets.ps1's numbering): the number, then a French label.
 $sheetName = @{ mouth = '0601 Parties du visage - Bouches'; brow = '0602 Parties du visage - Sourcils'; lid = '0603 Parties du visage - Paupieres'; skin = '0604 Parties du visage - Peaux'; skinclose = '0605 Parties du visage - Peaux en gros plan'
-    eyeball = '0606 Parties du visage - Yeux'; head = '0607 Parties du visage - Formes de tete'; kit = '0608 Parties du visage - Kits'; facetattoo = '0609 Parties du visage - Tatouages visage'; lidoption = '0610 Parties du visage - Options de paupieres'; emotion = '0611 Parties du visage - Marques d emotion' }
+    eyeball = '0606 Parties du visage - Yeux'; head = '0607 Parties du visage - Formes de tete'; facetattoo = '0609 Parties du visage - Tatouages visage'; lidoption = '0610 Parties du visage - Options de paupieres'; emotion = '0611 Parties du visage - Marques d emotion' }
 $tile = 220; $label = 22; $cols = 6
 $crop = New-Object System.Drawing.Rectangle 868, 118, 184, 184
 $cropClose = New-Object System.Drawing.Rectangle 880, 110, 160, 160
+$cropWide = New-Object System.Drawing.Rectangle 855, 72, 210, 210   # whole head with a margin (head shapes, face tattoos): the tight crop cut the top of the head (owner, 2026-10-31)
 $font = New-Object System.Drawing.Font 'Segoe UI', 9
 foreach ($kind in $kinds.Keys) {
     $names = @($files.Keys | Where-Object { $_ -like "$kind-*" } | Sort-Object)
@@ -31,7 +32,7 @@ foreach ($kind in $kinds.Keys) {
     for ($i = 0; $i -lt $names.Count; $i++) {
         $x = ($i % $cols) * $tile; $y = [Math]::Floor($i / $cols) * ($tile + $label)
         $img = [System.Drawing.Image]::FromFile($files[$names[$i]])
-        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $(if ($kind -eq 'skinclose') { $cropClose } else { $crop }), [System.Drawing.GraphicsUnit]::Pixel)
+        $g.DrawImage($img, (New-Object System.Drawing.Rectangle $x, $y, $tile, $tile), $(if ($kind -eq 'skinclose') { $cropClose } elseif ($kind -eq 'head' -or $kind -eq 'facetattoo') { $cropWide } else { $crop }), [System.Drawing.GraphicsUnit]::Pixel)
         $img.Dispose()
         $text = $names[$i].Substring($kind.Length + 1)
         $g.DrawString($text, $font, [System.Drawing.Brushes]::Black, [float]($x + 2), [float]($y + $tile + 3))
