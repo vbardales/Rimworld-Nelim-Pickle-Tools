@@ -39,9 +39,9 @@ Step texts: `"<pawn>" head type is "<defName>"`
 | Biotech | (13) Female_HeavyJawNormal (Female), Furskin_Average1, Furskin_Average2, Furskin_Average3, Furskin_Gaunt, Furskin_Heavy1, Furskin_Heavy2, Furskin_Heavy3, Furskin_Narrow1, Furskin_Narrow2, Furskin_Narrow3, Gaunt, Male_HeavyJawNormal (Male) |
 | Core | (14) Female_AverageNormal (Female), Female_AveragePointy (Female), Female_AverageWide (Female), Female_NarrowNormal (Female), Female_NarrowPointy (Female), Female_NarrowWide (Female), Male_AverageNormal (Male), Male_AveragePointy (Male), Male_AverageWide (Male), Male_NarrowNormal (Male), Male_NarrowPointy (Male), Male_NarrowWide (Male), Skull, Stump |
 
-## Face tattoos (80)
+## Face tattoos (160)
 
-Step texts: `"<pawn>" face tattoo is "<defName>"` (`none` removes it; needs Ideology). Roo's two mods added 2026-10-25 (run d15c, 72 values, 71 new): Roo's birthmarks and blemishes are tattoo defs too (RB*). **Body_Royal exists in Ideology and in Roo's Starter Pack: the game keeps one def, Roo's when both are loaded**, so its photograph depends on the mod list.
+Step texts: `"<pawn>" face tattoo is "<defName>"` (`none` removes it; needs Ideology). Roo's two mods added 2026-10-25 (run d15c, 72 values, 71 new): Roo's birthmarks and blemishes are tattoo defs too (RB*). **Body_Royal exists in Ideology and in Roo's Starter Pack: the game keeps one def, Roo's when both are loaded**, so its photograph depends on the mod list. Tattoo mods added 2026-10-31 (run 1a9d, map wsl-deps.look-catalogue-tattoo.map, 150 values listed): Misc Tattoos redefines Face_Stars, Face_Warpaint and Body_Dragon, which stay under Ideology and Tattoos Expanded here (one def wins in game). Not listed in that run: Avatar (grailnight.avatartat.v1, dropped by the run).
 
 | Mod | Names |
 |---|---|
@@ -51,8 +51,14 @@ Step texts: `"<pawn>" face tattoo is "<defName>"` (`none` removes it; needs Ideo
 | Tribal Tattoos | (25) STribalTat_Face_Anima, STribalTat_Face_Bisect, STribalTat_Face_BlackFangs, STribalTat_Face_BlueFangs, STribalTat_Face_BrowDots, STribalTat_Face_CheekDots, STribalTat_Face_CheekStripes, STribalTat_Face_MiddleDotsBlack, STribalTat_Face_MiddleDotsBlue, STribalTat_Face_MiddleDotsRed, STribalTat_Face_MiddleDotsWhite, STribalTat_Face_NoseStripeBlack, STribalTat_Face_NoseStripeBlue, STribalTat_Face_NoseStripePurple, STribalTat_Face_NoseStripeRed, STribalTat_Face_NoseStripeWhite, STribalTat_Face_RedFangs, STribalTat_Face_SacredAir, STribalTat_Face_SacredFire, STribalTat_Face_SacredGrass, STribalTat_Face_SacredWater, STribalTat_Face_SunCrown, STribalTat_Face_SunrisePlains, STribalTat_Face_SunsetPlains, STribalTat_Face_WhiteFangs |
 | Roo's Birthmarks and Blemishes | (27) RBAcneA, RBAcneB, RBAcneScars, RBBirthmarkA, RBBirthmarkB, RBBirthmarkC, RBBirthmarkD, RBBirthmarkE, RBBlushA, RBBlushB, RBChinDimple, RBDimples, RBDoubleChin, RBEyeBags, RBEyelashes, RBFrecklesA, RBFrecklesB, RBKisses, RBMakeup, RBMolesA, RBMolesB, RBPsoriasis, RBStitches, RBVitiligoA, RBVitiligoB, RBWrinkleA, RBWrinkleB |
 | Roo's Tattoos - Starter Pack | (13) Face_Backface, Face_Elemental, Face_Eyebrows, Face_Hairfade, Face_Joker, Face_Kabuki, Face_Lipstick, Face_Necromancer, Face_Oni, Face_Piercings, Face_Sixeyes, Face_Sniper, Face_Thirdeye |
+| Bill Doors' Miqo'te Tattoo | (3) Face_Miqote, Face_Miqote_II, Face_Miqote_III |
+| Misc Tattoos | (47) Face_Aged, Face_Anti, Face_BarCode, Face_Beautymarks, Face_Blush, Face_BMA, Face_BMB, Face_BMC, Face_Bodycount, Face_BraveHeart, Face_Bridge, Face_Burn, Face_Burn2, Face_Carnivore, Face_ClownA, Face_Contour, Face_Dark, Face_Dryad, Face_Eczema, Face_Eyeburn, Face_EyeShadow, Face_Freckles, Face_Gash, Face_GodOfWar, Face_Gorvachev, Face_GothA, Face_Harley, Face_Mole2, Face_Mole3, Face_NoRegurts, Face_Radioactive, Face_Red, Face_RedWarpaint, Face_Scar, Face_Scarification, Face_Scarification2, Face_ScarsA, Face_Scratch, Face_Skeletal, Face_SkullA, Face_Sombre, Face_Spraytan, Face_Teton, Face_TRIBALA, Face_Tyson, Face_Viking, Face_Vitiglio |
+| Morphs Assorted: Tattoos | (8) Face_Crescent, Face_Crescent_Inv, Face_Foxy, Face_LightningBandaid, Face_Stitches, Face_Sukuna, Face_TechStripe, Face_TechStripe_Inv |
+| Myf's Tattoos | (6) Face_BridgeFourForehead, Face_Gaara, Face_Ghostbloods, Face_IX, Face_NaleCresent, Face_ShashBrand |
+| Sunny's Dr Stone Scars (Tattoos) | (8) Face_SDGen, Face_SDGenCute, Face_SDHyoga, Face_SDKinro, Face_SDSenku, Face_SDTaiju, Face_SDTsukasa, Face_SDYo |
+| Tattoo Face Scars | (8) Lux_ScarAcrossFace, Lux_ScarBalalaika, Lux_ScarBear, Lux_ScarCrossCheek, Lux_ScarCrossMiddle, Lux_ScarEye, Lux_ScarNose, Lux_ScarOgata |
 
-## Body tattoos (105)
+## Body tattoos (143)
 
 Step texts: `"<pawn>" body tattoo is "<defName>"` (`none` removes it; needs Ideology).
 
@@ -64,6 +70,10 @@ Step texts: `"<pawn>" body tattoo is "<defName>"` (`none` removes it; needs Ideo
 | Tribal Tattoos | (14) STribalTat_Body_Anima, STribalTat_Body_BlackClaw, STribalTat_Body_BlueClaw, STribalTat_Body_RedClaw, STribalTat_Body_SacredAir, STribalTat_Body_SacredFire, STribalTat_Body_SacredGrass, STribalTat_Body_SacredWater, STribalTat_Body_Smoke, STribalTat_Body_Spiral, STribalTat_Body_Stripes, STribalTat_Body_SunsBlessing, STribalTat_Body_Vines, STribalTat_Body_WhiteClaw |
 | Roo's Birthmarks and Blemishes | (14) RBBirthmarkBodyA, RBBirthmarkBodyB, RBBirthmarkBodyC, RBLightningScars, RBMolesBodyA, RBMolesBodyB, RBMolesBodyC, RBMolesBodyD, RBMolesBodyE, RBPsoriasisBody, RBStitchesBodyA, RBStitchesBodyB, RBStretchMarksBody, RBVitiligoBody |
 | Roo's Tattoos - Starter Pack | (18) Body_Barcode, Body_Cassandra, Body_Chesttext, Body_DarkPsycaster, Body_Fullbody, Body_Kitsune, Body_Lancaster, Body_Nonipples, Body_Oni, Body_Phoebe, Body_Randy, Body_Rave, Body_Ribcage, Body_Royal, Body_Soulmateleft, Body_Soulmateright, Body_Yakuza, Body_Yorkshire |
+| Misc Tattoos | (22) Body_Anchor, Body_Blossoms, Body_Bones, Body_ClownA, Body_Communist, Body_Cosmic, Body_Demon, Body_ExtremeA, Body_ExtremeB, Body_Firestarter, Body_Mask, Body_Mermaid, Body_Nagual, Body_Octopus, Body_Ocular, Body_Pentagram, Body_Seer, Body_Smokeleaf, Body_Swords, Body_Templar, Body_USA, Body_Warlord |
+| Myf's Tattoos | (8) Body_Bondsmith, Body_BondsmithBack, Body_Cursemark, Body_Ghostbloods, Body_Lightweaver, Body_LightweaverBack, Body_Windrunner, Body_WindrunnerBack |
+| Oracle + Erin's HD Tattoos | (5) OE_Body_Alchemist, OE_Body_Comet, OE_Body_DualStars, OE_Body_Phoenix, OE_Body_TribalHeart |
+| Sunny's Dr Stone Scars (Tattoos) | (3) Body_SDHomura, Body_SDTsukasa, Body_SDYuzuriha |
 
 ## Body types (7)
 
