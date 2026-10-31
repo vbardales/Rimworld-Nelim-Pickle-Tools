@@ -19,7 +19,7 @@ Step texts: `"<pawn>" hairstyle is "<defName>"`
 ## Beards (41)
 
 
-Step texts: `"<pawn>" beard is "<defName>"`
+Step texts: `"<pawn>" beard is "<defName>"`, colour: `"<pawn>" hair colour is rgb (<r>, <g>, <b>)` (a beard is drawn in the hair colour, there is no separate beard colour step; the eight hair colours with their hex values are on sheet 0204)
 
 
 | Mod | Names |
@@ -39,20 +39,31 @@ Step texts: `"<pawn>" head type is "<defName>"`
 | Biotech | (13) Female_HeavyJawNormal (Female), Furskin_Average1, Furskin_Average2, Furskin_Average3, Furskin_Gaunt, Furskin_Heavy1, Furskin_Heavy2, Furskin_Heavy3, Furskin_Narrow1, Furskin_Narrow2, Furskin_Narrow3, Gaunt, Male_HeavyJawNormal (Male) |
 | Core | (14) Female_AverageNormal (Female), Female_AveragePointy (Female), Female_AverageWide (Female), Female_NarrowNormal (Female), Female_NarrowPointy (Female), Female_NarrowWide (Female), Male_AverageNormal (Male), Male_AveragePointy (Male), Male_AverageWide (Male), Male_NarrowNormal (Male), Male_NarrowPointy (Male), Male_NarrowWide (Male), Skull, Stump |
 
-## Tattoos (184)
+## Face tattoos (80)
 
-
-Step texts: `"<pawn>" face tattoo is "<defName>"` and `"<pawn>" body tattoo is "<defName>"` (the Face or Body type is shown in brackets). Roo's two mods added 2026-10-25 (run d15c, 72 values, 71 new): Roo's birthmarks and blemishes are tattoo defs too (RB*). **Body_Royal exists in Ideology and in Roo's Starter Pack: the game keeps one def, Roo's when both are loaded**, so its photograph depends on the mod list.
-
+Step texts: `"<pawn>" face tattoo is "<defName>"` (`none` removes it; needs Ideology). Roo's two mods added 2026-10-25 (run d15c, 72 values, 71 new): Roo's birthmarks and blemishes are tattoo defs too (RB*). **Body_Royal exists in Ideology and in Roo's Starter Pack: the game keeps one def, Roo's when both are loaded**, so its photograph depends on the mod list.
 
 | Mod | Names |
 |---|---|
-| Core | (2) NoTattoo_Body (Body), NoTattoo_Face (Face) |
-| Ideology | (29) Body_Buttons (Body), Body_Cross (Body), Body_Heart (Body), Body_Insect (Body), Body_Jester (Body), Body_Moon (Body), Body_Power (Body), Body_Rings (Body), Body_Royal (Body), Body_Scar (Body), Body_Skeleton (Body), Body_Skull (Body), Body_Spike (Body), Body_Sun (Body), Body_Tiger (Body), Body_Wings (Body), Face_Cobweb (Face), Face_Eclipse (Face), Face_Headshot (Face), Face_Line (Face), Face_Love (Face), Face_Oracle (Face), Face_Pantheon (Face), Face_Spider (Face), Face_Stars (Face), Face_Tear (Face), Face_Tiger (Face), Face_Warpaint (Face), Face_Worried (Face) |
-| Tattoos Expanded | (43) Body_Bear (Body), Body_Birds (Body), Body_Bull (Body), Body_Butterfly (Body), Body_Cat (Body), Body_circles (Body), Body_Claws (Body), Body_Deer (Body), Body_Dragon (Body), Body_Dragon_2c (Body), Body_Illuminati (Body), Body_invertedcross (Body), Body_Japan (Body), Body_kanji_1c (Body), Body_kanji_2c (Body), Body_kanji_3c (Body), Body_kanji_4c (Body), Body_kanji_5c (Body), Body_Koi (Body), Body_Labyrinth (Body), Body_leviathan (Body), Body_Lion (Body), Body_Lizard (Body), Body_lucifer (Body), Body_pentagram (Body), Body_rose (Body), Body_samurai (Body), Body_satanic_1c (Body), Body_satanic_2c (Body), Body_scythe (Body), Body_Shark (Body), Body_Skull_2c (Body), Body_Tiger_2c (Body), Body_Triangle (Body), Body_Tribal_back (Body), Body_Tribal_back_2c (Body), Body_Tribal_back_3c (Body), Body_Tribal_back_4c (Body), Body_Tribal_back_5c (Body), Body_wings (Body), Body_Wolf (Body), Body_yinyang (Body), Face_Tilak (Face) |
-| Tribal Tattoos | (39) STribalTat_Body_Anima (Body), STribalTat_Body_BlackClaw (Body), STribalTat_Body_BlueClaw (Body), STribalTat_Body_RedClaw (Body), STribalTat_Body_SacredAir (Body), STribalTat_Body_SacredFire (Body), STribalTat_Body_SacredGrass (Body), STribalTat_Body_SacredWater (Body), STribalTat_Body_Smoke (Body), STribalTat_Body_Spiral (Body), STribalTat_Body_Stripes (Body), STribalTat_Body_SunsBlessing (Body), STribalTat_Body_Vines (Body), STribalTat_Body_WhiteClaw (Body), STribalTat_Face_Anima (Face), STribalTat_Face_Bisect (Face), STribalTat_Face_BlackFangs (Face), STribalTat_Face_BlueFangs (Face), STribalTat_Face_BrowDots (Face), STribalTat_Face_CheekDots (Face), STribalTat_Face_CheekStripes (Face), STribalTat_Face_MiddleDotsBlack (Face), STribalTat_Face_MiddleDotsBlue (Face), STribalTat_Face_MiddleDotsRed (Face), STribalTat_Face_MiddleDotsWhite (Face), STribalTat_Face_NoseStripeBlack (Face), STribalTat_Face_NoseStripeBlue (Face), STribalTat_Face_NoseStripePurple (Face), STribalTat_Face_NoseStripeRed (Face), STribalTat_Face_NoseStripeWhite (Face), STribalTat_Face_RedFangs (Face), STribalTat_Face_SacredAir (Face), STribalTat_Face_SacredFire (Face), STribalTat_Face_SacredGrass (Face), STribalTat_Face_SacredWater (Face), STribalTat_Face_SunCrown (Face), STribalTat_Face_SunrisePlains (Face), STribalTat_Face_SunsetPlains (Face), STribalTat_Face_WhiteFangs (Face) |
-| Roo's Birthmarks and Blemishes | (41) RBAcneA (Face), RBAcneB (Face), RBAcneScars (Face), RBBirthmarkA (Face), RBBirthmarkB (Face), RBBirthmarkBodyA (Body), RBBirthmarkBodyB (Body), RBBirthmarkBodyC (Body), RBBirthmarkC (Face), RBBirthmarkD (Face), RBBirthmarkE (Face), RBBlushA (Face), RBBlushB (Face), RBChinDimple (Face), RBDimples (Face), RBDoubleChin (Face), RBEyeBags (Face), RBEyelashes (Face), RBFrecklesA (Face), RBFrecklesB (Face), RBKisses (Face), RBLightningScars (Body), RBMakeup (Face), RBMolesA (Face), RBMolesB (Face), RBMolesBodyA (Body), RBMolesBodyB (Body), RBMolesBodyC (Body), RBMolesBodyD (Body), RBMolesBodyE (Body), RBPsoriasis (Face), RBPsoriasisBody (Body), RBStitches (Face), RBStitchesBodyA (Body), RBStitchesBodyB (Body), RBStretchMarksBody (Body), RBVitiligoA (Face), RBVitiligoB (Face), RBVitiligoBody (Body), RBWrinkleA (Face), RBWrinkleB (Face) |
-| Roo's Tattoos - Starter Pack | (31) Body_Barcode (Body), Body_Cassandra (Body), Body_Chesttext (Body), Body_DarkPsycaster (Body), Body_Fullbody (Body), Body_Kitsune (Body), Body_Lancaster (Body), Body_Nonipples (Body), Body_Oni (Body), Body_Phoebe (Body), Body_Randy (Body), Body_Rave (Body), Body_Ribcage (Body), Body_Royal (Body), Body_Soulmateleft (Body), Body_Soulmateright (Body), Body_Yakuza (Body), Body_Yorkshire (Body), Face_Backface (Face), Face_Elemental (Face), Face_Eyebrows (Face), Face_Hairfade (Face), Face_Joker (Face), Face_Kabuki (Face), Face_Lipstick (Face), Face_Necromancer (Face), Face_Oni (Face), Face_Piercings (Face), Face_Sixeyes (Face), Face_Sniper (Face), Face_Thirdeye (Face) |
+| Core | (1) NoTattoo_Face |
+| Ideology | (13) Face_Cobweb, Face_Eclipse, Face_Headshot, Face_Line, Face_Love, Face_Oracle, Face_Pantheon, Face_Spider, Face_Stars, Face_Tear, Face_Tiger, Face_Warpaint, Face_Worried |
+| Tattoos Expanded | (1) Face_Tilak |
+| Tribal Tattoos | (25) STribalTat_Face_Anima, STribalTat_Face_Bisect, STribalTat_Face_BlackFangs, STribalTat_Face_BlueFangs, STribalTat_Face_BrowDots, STribalTat_Face_CheekDots, STribalTat_Face_CheekStripes, STribalTat_Face_MiddleDotsBlack, STribalTat_Face_MiddleDotsBlue, STribalTat_Face_MiddleDotsRed, STribalTat_Face_MiddleDotsWhite, STribalTat_Face_NoseStripeBlack, STribalTat_Face_NoseStripeBlue, STribalTat_Face_NoseStripePurple, STribalTat_Face_NoseStripeRed, STribalTat_Face_NoseStripeWhite, STribalTat_Face_RedFangs, STribalTat_Face_SacredAir, STribalTat_Face_SacredFire, STribalTat_Face_SacredGrass, STribalTat_Face_SacredWater, STribalTat_Face_SunCrown, STribalTat_Face_SunrisePlains, STribalTat_Face_SunsetPlains, STribalTat_Face_WhiteFangs |
+| Roo's Birthmarks and Blemishes | (27) RBAcneA, RBAcneB, RBAcneScars, RBBirthmarkA, RBBirthmarkB, RBBirthmarkC, RBBirthmarkD, RBBirthmarkE, RBBlushA, RBBlushB, RBChinDimple, RBDimples, RBDoubleChin, RBEyeBags, RBEyelashes, RBFrecklesA, RBFrecklesB, RBKisses, RBMakeup, RBMolesA, RBMolesB, RBPsoriasis, RBStitches, RBVitiligoA, RBVitiligoB, RBWrinkleA, RBWrinkleB |
+| Roo's Tattoos - Starter Pack | (13) Face_Backface, Face_Elemental, Face_Eyebrows, Face_Hairfade, Face_Joker, Face_Kabuki, Face_Lipstick, Face_Necromancer, Face_Oni, Face_Piercings, Face_Sixeyes, Face_Sniper, Face_Thirdeye |
+
+## Body tattoos (105)
+
+Step texts: `"<pawn>" body tattoo is "<defName>"` (`none` removes it; needs Ideology).
+
+| Mod | Names |
+|---|---|
+| Core | (1) NoTattoo_Body |
+| Ideology | (16) Body_Buttons, Body_Cross, Body_Heart, Body_Insect, Body_Jester, Body_Moon, Body_Power, Body_Rings, Body_Royal, Body_Scar, Body_Skeleton, Body_Skull, Body_Spike, Body_Sun, Body_Tiger, Body_Wings |
+| Tattoos Expanded | (42) Body_Bear, Body_Birds, Body_Bull, Body_Butterfly, Body_Cat, Body_circles, Body_Claws, Body_Deer, Body_Dragon, Body_Dragon_2c, Body_Illuminati, Body_invertedcross, Body_Japan, Body_kanji_1c, Body_kanji_2c, Body_kanji_3c, Body_kanji_4c, Body_kanji_5c, Body_Koi, Body_Labyrinth, Body_leviathan, Body_Lion, Body_Lizard, Body_lucifer, Body_pentagram, Body_rose, Body_samurai, Body_satanic_1c, Body_satanic_2c, Body_scythe, Body_Shark, Body_Skull_2c, Body_Tiger_2c, Body_Triangle, Body_Tribal_back, Body_Tribal_back_2c, Body_Tribal_back_3c, Body_Tribal_back_4c, Body_Tribal_back_5c, Body_wings, Body_Wolf, Body_yinyang |
+| Tribal Tattoos | (14) STribalTat_Body_Anima, STribalTat_Body_BlackClaw, STribalTat_Body_BlueClaw, STribalTat_Body_RedClaw, STribalTat_Body_SacredAir, STribalTat_Body_SacredFire, STribalTat_Body_SacredGrass, STribalTat_Body_SacredWater, STribalTat_Body_Smoke, STribalTat_Body_Spiral, STribalTat_Body_Stripes, STribalTat_Body_SunsBlessing, STribalTat_Body_Vines, STribalTat_Body_WhiteClaw |
+| Roo's Birthmarks and Blemishes | (14) RBBirthmarkBodyA, RBBirthmarkBodyB, RBBirthmarkBodyC, RBLightningScars, RBMolesBodyA, RBMolesBodyB, RBMolesBodyC, RBMolesBodyD, RBMolesBodyE, RBPsoriasisBody, RBStitchesBodyA, RBStitchesBodyB, RBStretchMarksBody, RBVitiligoBody |
+| Roo's Tattoos - Starter Pack | (18) Body_Barcode, Body_Cassandra, Body_Chesttext, Body_DarkPsycaster, Body_Fullbody, Body_Kitsune, Body_Lancaster, Body_Nonipples, Body_Oni, Body_Phoebe, Body_Randy, Body_Rave, Body_Ribcage, Body_Royal, Body_Soulmateleft, Body_Soulmateright, Body_Yakuza, Body_Yorkshire |
 
 ## Body types (7)
 

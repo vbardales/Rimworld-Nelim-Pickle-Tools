@@ -77,7 +77,7 @@ const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
   return files.length ? '<div class="sheets wide">' + files.map(sheet).join('') + '</div>' : '';
 };
-const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head', 'fahead']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']],
+const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head', 'fahead']], [/^Face tattoos/, ['facetattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['ideocolour', 'colour']], [/^Weapons/, ['weapon']],
   [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, text) => {
@@ -104,7 +104,7 @@ const categories = [
 ];
 const place = (file, h) => {
   const rules = {
-    'looks.md': [[/^Hairstyles/, 'Coiffures'], [/^Beards/, 'Barbes et couleurs de barbe'], [/^Head types/, 'Formes de tete (vanilla)'], [/^Tattoos/, 'Tatouages (visage et corps)'], [/^Body types/, 'Corpulences']],
+    'looks.md': [[/^Hairstyles/, 'Coiffures'], [/^Beards/, 'Barbes et couleurs de barbe'], [/^Head types/, 'Formes de tete (vanilla)'], [/^(Face|Body) tattoos/, 'Tatouages (visage et corps)'], [/^Body types/, 'Corpulences']],
     'face-parts.md': [[/^(Mouths|Skins)/, 'Bouches, peaux du visage, marques d\'emotion'], [/^(Brows|Lids|Eyeballs)/, 'Globes, paupieres, sourcils'], [/^Head shapes/, 'Formes de tete (Facial Animation)'], [/^Heat/, 'Animations du visage']],
     'genes.md': [[/^Eye colours/, 'Couleurs des yeux (genes)'], [/^Skin colours/, 'Couleurs de peau (genes)'], [/^Hair colours/, 'Couleurs de cheveux (genes)'], [/^Look genes/, 'Genes d\'apparence']],
     'apparel.md': [[/./, 'Vetements et chapeaux']], 'colours.md': [[/./, 'Couleurs']], 'weapons-crafts.md': [[/./, 'Armes et objets fabriques']], 'items.md': [[/./, 'Objets utiles']],
@@ -115,7 +115,7 @@ const place = (file, h) => {
 };
 // Sheet numbers shown next to a table title and a sub-category title.
 const numsOf = kinds => [...new Set(kinds.flatMap(k => byKind[k] || []).map(f => f.slice(0, 4)))].sort();
-const sectionKinds2 = [[/^Mouths/, ['fpMouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Tattoos/, ['facetattoo', 'bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
+const sectionKinds2 = [[/^Mouths/, ['fpMouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Face tattoos/, ['facetattoo', 'fpTattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const numLabel = kinds => { const n = numsOf(kinds); return n.length ? ' : planche' + (n.length > 1 ? 's ' : ' ') + n.join(', ') : ''; };
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // Split every placed page at its "## " headings: [{sub, html}]; the first block of a page (before any "## ") goes with the page's first section.
@@ -128,17 +128,26 @@ for (const [id, title, file] of tabs) {
   for (const part of parts) {
     const head = (part.match(/^## (.*)/) || [])[1] || '';
     const sub = head ? place(file, head) : null;
-    if (sub) { (placed[sub] = placed[sub] || []).push(`<h4 class="from">${esc(title)} : ${esc(head)}${(() => { const h = sectionKinds2.find(([re]) => re.test(head)); return h ? numLabel(h[1]) : ''; })()}</h4>` + render(part.replace(/^## .*\n/, ''))); any = true; }
+    if (sub) { (placed[sub] = placed[sub] || []).push({ kinds: (sectionKinds2.find(([re]) => re.test(head)) || [0, []])[1], html: `<h4 class="from">${esc(title)} : ${esc(head)}${(() => { const h = sectionKinds2.find(([re]) => re.test(head)); return h ? numLabel(h[1]) : ''; })()}</h4>` + render(part.replace(/^## .*\n/, '')) }); any = true; }
     else if (!head && parts.length > 1) { /* introduction of the page: kept with the page text below */ }
   }
   if (!any) docTabs.push([id, title, file]);
 }
+const kindHow = {
+  serenhead: ['Seren : Head shapes', '"<pawn>" face head shape is "<defName>"'], serenlid: ['Seren : Lids', '"<pawn>" lids are "<defName>"'], sereneyeball: ['Seren : Eyeballs', '"<pawn>" eyeballs are "<defName>"'],
+  serenbrow: ['Seren : Brows', '"<pawn>" brows are "<defName>"'], serenmouth: ['Seren : Mouths', '"<pawn>" mouth is "<defName>"'],
+  serenskin: ['Seren : Face masks (marking skins)', '"<pawn>" face skin is "<defName>"'], serenvteskin: ['Seren : Face masks (marking skins, Vanilla Textures Expanded set)', '"<pawn>" face skin is "<defName>"'],
+  bodymask: ['Seren : Body masks', '"<pawn>" has the gene "<defName>" (the masks are genes: SerenOriginalMask_<n> for Seren Biotech Extended, zero-based)'],
+  fahead: ['Facial Animation : Head shapes', '"<pawn>" face head shape is "<defName>"'],
+};
+const howBlock = k => { const h = kindHow[k]; return h ? '<h4 class="from">' + esc(h[0]) + esc(numLabel([k])) + '</h4>' + render('Step texts: ' + String.fromCharCode(96) + h[1] + String.fromCharCode(96) + '.') : ''; };
 const catSection = c => '';
 const catId = (c, s) => `cat-${slug(c)}-${slug(s)}`;
 const sections = [
   ...categories.map(([c, subs]) => `<section id="c-${slug(c)}" hidden><h1>${esc(c)}</h1>` + subs.map(([s, kinds]) => {
     const have = kinds.some(k => byKind[k] && byKind[k].length);
-    return `<h2 id="${catId(c, s)}">${esc(s)}${kinds.length ? '<span class="num">' + esc(numLabel(kinds)) + '</span>' : ''}</h2>` + (kinds.length ? (have ? sheetsFor(kinds) : '<p class="src">Pas encore de photographie.</p>') : '') + (placed[s] || []).join('\n');
+    const shown = new Set();
+    return `<h2 id="${catId(c, s)}">${esc(s)}${kinds.length ? '<span class="num">' + esc(numLabel(kinds)) + '</span>' : ''}</h2>` + (kinds.length ? (have ? kinds.filter(k => (byKind[k] || []).length && !(placed[s] || []).some(e => e.kinds.includes(k))).map(k => sheetsFor([k]) + howBlock(k)).join('') : '<p class="src">Pas encore de photographie.</p>') : '') + (placed[s] || []).map(e => { const own = e.kinds.filter(k => kinds.includes(k) && !shown.has(k)); own.forEach(k => shown.add(k)); return sheetsFor(own) + e.html; }).join('\n');
   }).join('\n') + '</section>'),
   ...docTabs.map(([id, title, file]) => `<section id="${id}" hidden><h1>${title}</h1><p class="src">${file}</p>${withSheets(render(fs.readFileSync(path.join(cat, file), 'utf8').replace(/^# .*\n/, '')))}</section>`),
 ].join('\n');

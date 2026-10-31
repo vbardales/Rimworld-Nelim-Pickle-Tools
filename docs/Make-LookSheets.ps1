@@ -47,16 +47,16 @@ $runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Nam
 
 # Items of one section of a catalogue: @{ mod; group; name; type; hex }
 function Read-Section($file, $titleRegex) {
-    $items = @(); $in = $false
+    $items = @(); $in = $false; $secType = ''
     foreach ($line in (Get-Content (Join-Path $docs $file) -Encoding UTF8)) {
-        if ($line -match '^## ') { $in = $line -match $titleRegex; continue }
+        if ($line -match '^## ') { $in = $line -match $titleRegex; $secType = ''; if ($line -match '^## (Face|Body) tattoos') { $secType = $Matches[1] }; continue }
         if (-not $in -or $line -notmatch '^\| ' -or $line -match '^\| (Mod|---)') { continue }
         $cells = @($line.Trim().Trim('|').Split('|') | ForEach-Object { $_.Trim() })
         if ($cells.Count -lt 2) { continue }
         $names = ($cells[-1] -replace '^\(\d+\) ', '') -split ', '
         $group = if ($cells.Count -gt 2) { $cells[1] -replace ' \(\d+\)$', '' } else { '' }
         foreach ($r in $names) {
-            $type = ''; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
+            $type = $secType; if ($r -match '\((Face|Body)\)$') { $type = $Matches[1] }
             $hex = ''; if ($r -match '#([0-9A-Fa-f]{6})$') { $hex = $Matches[1]; $r = $r -replace '#[0-9A-Fa-f]{6}$', '' }
             $r = $r -replace '#$', ''   # a gene with no colour is written NAME# in genes.md
             $slot = ''; if ($r -match '\[(.*)\]$') { $slot = $Matches[1] }
@@ -157,7 +157,7 @@ if (Test-Path $faFeature) {
     $faNames = @([regex]::Matches((Get-Content $faFeature -Raw), 'take a screenshot "fahead-([^"]+)"') | ForEach-Object { $_.Groups[1].Value })
     Run-Job 'fahead' 'fahead' @($faNames | ForEach-Object { [pscustomobject]@{ mod = 'Facial Animation'; group = ''; name = $_; type = ''; hex = '' } }) $faHeadCrop $false $false
 }
-$tat = Read-Section $looks '^## Tattoos'
+$tat = Read-Section $looks '^## (Face|Body) tattoos'
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -notmatch "^Roo" }) $faceTat $false $false
 Run-Job 'facetattoo' 'facetattoo' @($tat | Where-Object { $_.type -eq 'Face' -and $_.mod -match "^Roo" }) $faceTatRoo $false $false
 Run-Job 'bodytattoo' 'bodytattoo' @($tat | Where-Object type -eq 'Body') $body $false $false
