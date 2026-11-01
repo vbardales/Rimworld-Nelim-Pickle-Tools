@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Nelim.PickleTools.CoatSteps
 {
@@ -237,6 +238,38 @@ namespace Nelim.PickleTools.CoatSteps
             animal.gender = wanted;
             animal.Drawer.renderer.SetAllGraphicsDirty();
             ctx.Assert(animal.gender == wanted, animal.LabelShort + " should be " + wanted + "; it is " + animal.gender);
+        }
+
+        /// <summary>
+        /// Turns a named animal to face south, east, west or north and holds it there with a Wait job that carries the facing,
+        /// so a capture shows the side asked for (a spawn faces a random way; a chest patch is seen from the south or the east only).
+        /// NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} faces {word}")]
+        public void SetAnimalFacing(PickleContext ctx, string animalName, string facing)
+        {
+            Pawn animal = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.LabelShort == animalName);
+            ctx.Require(animal != null, "no animal named " + animalName + " is on the map: spawn it first");
+            Rot4 wanted;
+            switch (facing.ToLowerInvariant())
+            {
+                case "south": wanted = Rot4.South; break;
+                case "east": wanted = Rot4.East; break;
+                case "west": wanted = Rot4.West; break;
+                case "north": wanted = Rot4.North; break;
+                default:
+                    ctx.Require(false, "the facing is south, east, west or north, not '" + facing + "'");
+                    return;
+            }
+
+            animal.pather?.StopDead();
+            animal.jobs?.EndCurrentJob(JobCondition.InterruptForced, false);
+            Job wait = JobMaker.MakeJob(JobDefOf.Wait, 600000);
+            wait.overrideFacing = wanted;
+            animal.jobs?.StartJob(wait, JobCondition.InterruptForced);
+            animal.Rotation = wanted;
+            animal.Drawer.renderer.SetAllGraphicsDirty();
+            ctx.Assert(animal.Rotation == wanted, animal.LabelShort + " should face " + wanted + "; it faces " + animal.Rotation);
         }
 
         private static float AdultAge(PawnKindDef kind)
