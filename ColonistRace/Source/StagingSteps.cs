@@ -463,8 +463,8 @@ namespace Nelim.PickleTools.ColonistRace
 
         /// <summary>
         /// Puts a colonist on the cell of a building of a def (a chair, a stool) and turns them the way the building faces, as a seated guest. Stops the
-        /// colonist's jobs. The seated posture is the game's own and is drawn only when the colonist has a job that sits; here the colonist is placed on
-        /// the seat, in the seat's direction. Fails when the colonist is unknown or no building of that def stands on that cell.
+        /// colonist's jobs, then holds the cell and the facing with a long Wait job (2026-11-02), so the colonist stays on the seat while ticks pass.
+        /// The game has no sitting posture: seated is standing on the seat cell with the seat drawn under. Fails when the colonist is unknown or no building of that def stands on that cell.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} sits on the building {string} at \\({int}, {int}\\)")]
         public void SitsOn(PickleContext ctx, string nickname, string defName, int x, int z)
@@ -477,8 +477,32 @@ namespace Nelim.PickleTools.ColonistRace
             Building seat = cell.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == defName);
             ctx.Require(seat != null, $"no {defName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
             PlaceAt(pawn, map, cell, seat.Rotation);
+
+            // Without a job the colonist's AI walks off the seat as soon as ticks run (CCMf, 2026-11-02: a stool left empty, the colonist beside it).
+            // A Wait job with overrideFacing holds the cell and the facing; the game has no sitting posture (PawnPosture is Standing or lying), so
+            // "seated" is the pawn standing on the seat cell with the seat drawn under it, as in the game's own dining rooms.
+            JobDef wait = DefDatabase<JobDef>.GetNamedSilentFail("Wait");
+            ctx.Require(wait != null, "no JobDef named 'Wait'");
+            Job hold = JobMaker.MakeJob(wait);
+            hold.expiryInterval = 600000;
+            hold.checkOverrideOnExpire = false;
+            hold.overrideFacing = seat.Rotation;
+            pawn.jobs.StartJob(hold, JobCondition.InterruptForced);
             Log.Message($"[stage] {nickname} on {defName} at ({x}, {z}), facing {pawn.Rotation}");
             ctx.Assert(pawn.Position == cell, $"{nickname} should be at ({x}, {z}); it is at {pawn.Position}");
+        }
+
+        /// <summary>
+        /// Asserts a colonist is on a cell, read now: after ticks have passed it proves the colonist stayed where a stands-at or sits-on step put it.
+        /// The failure names the cell it is on and its current job.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} is still at \\({int}, {int}\\)")]
+        public void IsStillAt(PickleContext ctx, string nickname, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Assert(
+                pawn.Spawned && pawn.Position == new IntVec3(x, 0, z),
+                $"{nickname} should be at ({x}, {z}); it is at {pawn.Position}, job {pawn.CurJob?.def.defName ?? "none"}");
         }
 
         /// <summary>

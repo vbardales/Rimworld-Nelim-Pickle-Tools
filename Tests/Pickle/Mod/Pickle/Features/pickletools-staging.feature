@@ -36,3 +36,13 @@ Feature: PickleTools staged capture
     When Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: the camera is centered on "Ned" at root size 11
     Then Nelim's Pickle Tools: the decor is removed
+
+  # 2026-11-02 (CCMf and Ebb: a colonist put on a stool walked off): the colonist stays on the seat while ticks pass. Written, not played.
+  @seat
+  Scenario: a colonist sits on a stool and stays there while ticks pass
+    Given Nelim's Pickle Tools: I place the decor "Stool" at (147, 156)
+    And a colonist "Mara" exists
+    And Nelim's Pickle Tools: "Mara" sits on the building "Stool" at (147, 156)
+    When I wait 600 ticks
+    Then Nelim's Pickle Tools: "Mara" is still at (147, 156)
+    And Nelim's Pickle Tools: the decor is removed
