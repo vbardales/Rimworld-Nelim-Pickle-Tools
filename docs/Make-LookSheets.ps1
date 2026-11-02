@@ -42,10 +42,22 @@ $files = @{}
 $manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } } | Sort-Object LastWriteTime | ForEach-Object {
+$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } })
+$matchedDirs | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
 }
+
+# Guard (Audit, 2026-11-02: the zoom 2 folders roo-front-z2-*, roo-side-z2-*, ftside-z2-* were not matched by the name filter above, so the sheets were cut from older photographs with the new crop): a run folder
+# that holds a photograph named after a sheet kind (manual--<kind>-...) and is not read stops the script, so a new folder name cannot be skipped silently.
+$kindNames = @($kindBlock.Keys | Where-Object { $_ -ne 'seren' })
+$readFolders = @($matchedDirs | ForEach-Object { $_.FullName })
+$deliberatelyUnread = '^(job-gallery|ponpeco-kids|hat-hair-hhc|anomaly-heads)'   # photographs of other galleries (jobs, Ponpeco kids, hat hair, Anomaly heads): no sheet of these kinds is built from them
+$unread = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory } | Where-Object { $readFolders -notcontains $_.FullName -and $_.Name -notmatch $deliberatelyUnread } | Where-Object {
+    $s = Join-Path $_.FullName 'screenshots'
+    (Test-Path $s) -and (Get-ChildItem $s -File | Where-Object { $n = $_.Name; $n -match '^manual--.*--step0\.(png|jpg)$' -and ($kindNames | Where-Object { $n.StartsWith("manual--$_-") }) } | Select-Object -First 1)
+} | ForEach-Object { $_.Name })
+if ($unread.Count) { throw "run folders with photographs of a sheet kind are not read by the name filter of Make-LookSheets.ps1 (add their prefix to it, or delete them): " + ($unread -join ', ') }
 
 # Items of one section of a catalogue: @{ mod; group; name; type; hex }
 function Read-Section($file, $titleRegex) {

@@ -39,3 +39,7 @@ Read from the Defs of each Workshop folder (versions 1.5 and older excluded), no
 HousekeeperAssistanceCat (1541620640); Nemi - magic rabbit (3130332603); [HB] Subbox of the Rainbow (3225592098); [JACKLE] Goth Retheme (3368317881); Humble Xenotypes (3509746266); Rustspark Crisis (3509858311); Blessed by Horax (3547602320); Ketaros Quests (3676193377); Forgenest (3716502926); Creepjoiner: Anomaly Nurse (3794410984); RimOni (3800174512); FrostBite Default Xenos (3803120218); Greek Relics (3803529372); Ancient Xenotypes (3814857701)
 
 Not on disk: Red Wolves Renew (local: mod of this owner, not in the Workshop folder).
+## Deferred
+
+- VRE Skin Colors Patch (3822096385, Yushiren.VRESkinPatch): 4 skin genes (Fungoid_Skin_Orange, Genie_Skin_Blue, Saurid_Skin_Green, Waster_Skin_Brown) that load only when the VRE races fungoid, genie, saurid and waster are active (its LoadFolders.xml, one folder per race). Needs its own map with the four race mods and their dependencies read from About.xml. Deferred, not forgotten (2026-11-02).
+- Batch w1a (map wsl-deps.colour-w1a.map, 6 mods, scenarios colour-w1a-1 to 5): ticket b991 filed for scenario 1; scenarios 2 to 5 follow one by one.
