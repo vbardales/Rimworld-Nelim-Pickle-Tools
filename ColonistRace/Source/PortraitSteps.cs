@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using System.Linq;
 using RimWorld;
 using RimWorks.Pickle;
 using RimWorks.Pickle.Evidence;
@@ -32,7 +34,14 @@ namespace Nelim.PickleTools.ColonistRace
         {
             ctx.Assert(pixels >= 64 && pixels <= 2048, $"{pixels} pixels is out of range: ask for 64 to 2048");
             ctx.Assert(zoom >= 1f && zoom <= 8f, $"zoom {zoom} is out of range: ask for 1 to 8");
-            Pawn pawn = ColonistLookup.Require(nickname);
+            // A colonist by nickname first; else an animal (or any pawn) spawned on the current map, by short label, as the camera steps do.
+            Pawn pawn = ColonistLookup.Find(nickname)
+                ?? Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(
+                    p => string.Equals(p.LabelShort, nickname, StringComparison.OrdinalIgnoreCase));
+            if (pawn == null)
+            {
+                ColonistLookup.Require(nickname);
+            }
 
             PortraitsCache.SetDirty(pawn);
             RenderTexture portrait = PortraitsCache.Get(
@@ -54,7 +63,7 @@ namespace Nelim.PickleTools.ColonistRace
             finally
             {
                 RenderTexture.active = previous;
-                Object.Destroy(picture);
+                UnityEngine.Object.Destroy(picture);
             }
         }
     }
