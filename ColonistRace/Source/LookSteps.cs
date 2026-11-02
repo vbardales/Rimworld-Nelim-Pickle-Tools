@@ -234,6 +234,27 @@ namespace Nelim.PickleTools.ColonistRace
             pawn.Drawer.renderer.SetAllGraphicsDirty();
         }
 
+        /// <summary>
+        /// Takes off only the garments that cover a body part group (a BodyPartGroupDef by defName: Torso for a shirt or a jacket, Legs for trousers,
+        /// Shoulders, Arms, Hands, Feet, Neck, UpperHead, FullHead), the others stay on. The garments go to the inventory and come back at the end of
+        /// the scenario or with <c>gets back the clothes it had</c>, like <c>is undressed</c>. Fails when the group is unknown and lists what the colonist
+        /// still wears when a garment covering the group is still on. Asked for by RWRBP (a Rhy'aeth without its shirt, with its trousers).
+        /// NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} takes off the garments covering {string}")]
+        public void TakesOffCovering(PickleContext ctx, string nickname, string groupName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
+            BodyPartGroupDef group = DefDatabase<BodyPartGroupDef>.GetNamedSilentFail(groupName);
+            ctx.Require(group != null, $"no body part group named '{groupName}'; they are " + string.Join(", ", DefDatabase<BodyPartGroupDef>.AllDefs.Select(g => g.defName)));
+            if (!OriginalClothes.ContainsKey(pawn)) OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+            StowApparel(pawn, a => a.def.apparel.bodyPartGroups.Contains(group));
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            ctx.Assert(!pawn.apparel.WornApparel.Any(a => a.def.apparel.bodyPartGroups.Contains(group)),
+                $"'{nickname}' still wears a garment covering {groupName}: " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
+        }
+
         [When("Nelim's Pickle Tools: {string} gets back the clothes it had")]
         public void GetsBack(PickleContext ctx, string nickname)
         {
