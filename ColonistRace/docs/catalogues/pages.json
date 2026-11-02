@@ -111,6 +111,13 @@
       "group": "Documentation",
       "source": "PickleTools/ColonistRace/docs/catalogues/gaps.md",
       "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "sbe-masks",
+      "title": "Seren body masks",
+      "group": "Mods",
+      "source": "SerenBiotechExtended/Docs/catalogue.md",
+      "imgBase": "SerenBiotechExtended/Docs/img"
     }
   ]
 }
