@@ -2,6 +2,7 @@
 // (ColonistRace/docs/catalogues/*.md) and the photograph sheets of ColonistRace/docs/img.
 //   node Docs/Make-CatalogueHtml.js        (run from the repository root; rerun after Docs/Make-LookSheets.ps1)
 // No dependency: the markdown subset the catalogues use (headings, tables, lists, images, links, code, bold) is rendered here.
+// The pages come from ColonistRace/docs/catalogues/pages.json: another mod adds its own page there, without touching this file (see catalogues/README.md).
 const fs = require('fs'), path = require('path');
 const root = path.resolve(__dirname, '..');
 const docs = path.join(root, 'ColonistRace', 'docs');
@@ -15,10 +16,26 @@ function sheetLink(u) {
   const hit = Object.values(byBlock).flat().find(f => f.slice(5) === m[1]);
   return hit ? '../img/looks/' + encodeURI(hit) : u;
 }
+// The page being rendered (an entry of pages.json): its relative images resolve from its imgBase. A page of this repository keeps its paths (they are relative to
+// catalogues/, where index.html lives, or are rewritten to be); an image of another repository is copied to catalogues/pages/<id>/ so that index.html stays one
+// standalone page that opens from file:/// and survives this repository being published alone.
+let cur = null;
+function pageImg(u) {
+  if (!cur || cur.imgAbs === cat || /^(https?:|data:|#|\/)/.test(u)) return u;
+  const abs = path.join(cur.imgAbs, decodeURI(u).split(/[?#]/)[0]);
+  if (!fs.existsSync(abs)) { console.warn(`warning: page ${cur.id}: image not found: ${abs}`); return u; }
+  const rel = path.relative(root, abs);
+  if (!rel.startsWith('..') && !path.isAbsolute(rel)) return encodeURI(path.relative(cat, abs).split(path.sep).join('/'));
+  const dest = 'pages/' + cur.id + '/' + path.relative(cur.imgAbs, abs).split(path.sep).join('/');
+  fs.mkdirSync(path.dirname(path.join(cat, dest)), { recursive: true });
+  fs.copyFileSync(abs, path.join(cat, dest));
+  return encodeURI(dest);
+}
+const isImage = u => /\.(png|jpe?g|gif|webp)$/i.test(u.split(/[?#]/)[0]);
 function inline(s) {
   s = esc(s);
-  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, a, u) => `<img loading="lazy" src="${sheetLink(u)}" alt="${a}">`);
-  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => `<a href="${sheetLink(u)}">${a}</a>`);
+  s = s.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, (_, a, u) => `<img loading="lazy" src="${sheetLink(pageImg(u))}" alt="${a}">`);
+  s = s.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, a, u) => `<a href="${sheetLink(isImage(u) ? pageImg(u) : u)}">${a}</a>`);
   s = s.replace(/`([^`]+)`/g, '<code>$1</code>').replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>');
   return s;
 }
@@ -47,15 +64,6 @@ function render(md) {
   return out.join('\n');
 }
 
-const tabs = [
-  ['looks', 'Looks', 'looks.md'], ['apparel', 'Apparel', 'apparel.md'], ['colours', 'Colours', 'colours.md'],
-  ['weapons', 'Weapons and crafts', 'weapons-crafts.md'], ['items', 'Utility items', 'items.md'],
-  ['faceparts', 'Face parts', 'face-parts.md'], ['modlooks', 'Mods: looks', 'mods-looks.md'],
-  ['modgear', 'Mods: gear', 'mods-gear.md'], ['modworld', 'Mods: world', 'mods-world.md'],
-  ['genes', 'Genes', 'genes.md'], ['seren', 'Seren', 'seren.md'], ['weather', 'Weather', 'weather.md'], ['jobs', 'Jobs', 'jobs.md'],
-  ['animalapparel', 'Animal apparel', 'animal-apparel.md'],
-  ['coverage', 'Coverage', 'coverage.md'], ['gaps', 'Gaps', 'gaps.md'],
-];
 
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
@@ -124,9 +132,21 @@ const numLabel = kinds => { const n = numsOf(kinds); return n.length ? ' : planc
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // Split every placed page at its "## " headings: [{sub, html}]; the first block of a page (before any "## ") goes with the page's first section.
 const placed = {}, docTabs = [];
-for (const [id, title, file] of tabs) {
-  const p = path.join(cat, file);
-  if (!fs.existsSync(p)) continue;
+// The pages are declared in catalogues/pages.json (see catalogues/README.md): the generator knows no page by name. A page whose file name has no placement rule below
+// gets its own tab in the nav, under its group.
+const mono = path.resolve(root, '..');   // the monorepo root: a page may live in the repository of its own mod
+const taken = new Set(['photos', ...categories.map(([c]) => 'c-' + slug(c))]);
+const pages = JSON.parse(fs.readFileSync(path.join(cat, 'pages.json'), 'utf8')).pages.map((e, seq) => {
+  for (const k of ['id', 'title', 'source']) if (!e[k]) throw new Error(`pages.json, entry ${seq + 1}: "${k}" is required`);
+  if (taken.has(e.id)) throw new Error(`pages.json: duplicate or reserved id "${e.id}"`);
+  taken.add(e.id);
+  const abs = path.resolve(mono, e.source);
+  return { ...e, seq, group: e.group || 'Documentation', abs, imgAbs: e.imgBase ? path.resolve(mono, e.imgBase) : path.dirname(abs) };
+}).sort((a, b) => (a.order ?? 1e6) - (b.order ?? 1e6) || a.seq - b.seq);
+for (const pg of pages) {
+  const { id, title } = pg, file = path.basename(pg.abs), p = pg.abs;
+  if (!fs.existsSync(p)) { console.warn(`warning: page ${id}: source not found, tab skipped: ${pg.source}`); continue; }
+  cur = pg;
   const parts = fs.readFileSync(p, 'utf8').replace(/\r/g, '').replace(/^# .*\n/, '').split(/^(?=## )/m);
   let any = false;
   for (const part of parts) {
@@ -135,8 +155,9 @@ for (const [id, title, file] of tabs) {
     if (sub) { (placed[sub] = placed[sub] || []).push({ kinds: (sectionKinds2.find(([re]) => re.test(head)) || [0, []])[1], html: `<h4 class="from">${esc(title)} : ${esc(head)}${(() => { const h = sectionKinds2.find(([re]) => re.test(head)); return h ? numLabel(h[1]) : ''; })()}</h4>` + render(part.replace(/^## .*\n/, '')) }); any = true; }
     else if (!head && parts.length > 1) { /* introduction of the page: kept with the page text below */ }
   }
-  if (!any) docTabs.push([id, title, file]);
+  if (!any) docTabs.push(pg);
 }
+cur = null;
 const kindHow = {
   serenhead: ['Seren : Head shapes', '"<pawn>" face head shape is "<defName>"'], serenlid: ['Seren : Lids', '"<pawn>" lids are "<defName>"'], sereneyeball: ['Seren : Eyeballs', '"<pawn>" eyeballs are "<defName>"'],
   serenbrow: ['Seren : Brows', '"<pawn>" brows are "<defName>"'], serenmouth: ['Seren : Mouths', '"<pawn>" mouth is "<defName>"'],
@@ -154,10 +175,17 @@ const sections = [
     const shown = new Set();
     return `<h2 id="${catId(c, s)}">${esc(s)}${kinds.length ? '<span class="num">' + esc(numLabel(kinds)) + '</span>' : ''}</h2>` + (kinds.length ? (have ? kinds.filter(k => (byKind[k] || []).length && !(placed[s] || []).some(e => e.kinds.includes(k))).map(k => sheetsFor([k]) + howBlock(k)).join('') : '<p class="src">Pas encore de photographie.</p>') : '') + (placed[s] || []).map(e => { const own = e.kinds.filter(k => kinds.includes(k) && !shown.has(k)); own.forEach(k => shown.add(k)); return sheetsFor(own) + e.html; }).join('\n');
   }).join('\n') + '</section>'),
-  ...docTabs.map(([id, title, file]) => `<section id="${id}" hidden><h1>${title}</h1><p class="src">${file}</p>${withSheets(render(fs.readFileSync(path.join(cat, file), 'utf8').replace(/^# .*\n/, '')))}</section>`),
+  ...docTabs.map(pg => {
+    cur = pg;
+    const body = withSheets(render(fs.readFileSync(pg.abs, 'utf8').replace(/^# .*\n/, '')));
+    cur = null;
+    const m = pg.mod, src = m ? `${esc(pg.source)}, mod ${esc(m.name)}${m.workshopId ? ` (<a href="https://steamcommunity.com/sharedfiles/filedetails/?id=${esc(String(m.workshopId))}">${esc(String(m.workshopId))}</a>)` : ''}` : path.basename(pg.abs);
+    return `<section id="${pg.id}" hidden><h1>${pg.title}</h1><p class="src">${src}</p>${body}</section>`;
+  }),
 ].join('\n');
 const navHtml = categories.map(([c, subs]) => `<details><summary data-t="c-${slug(c)}">${esc(c)}</summary>` + subs.map(([s]) => `<a data-t="c-${slug(c)}" data-j="${catId(c, s)}">${esc(s)}</a>`).join('') + '</details>').join('') +
-  '<h2 style="margin-top:14px">Documentation</h2>' + docTabs.map(([id, t]) => `<a data-t="${id}">${t}</a>`).join('') + '<a data-t="photos">Photographies (toutes)</a>';
+  [...new Set(['Documentation', ...docTabs.map(p => p.group)])].map(g =>
+    `<h2 style="margin-top:14px">${esc(g)}</h2>` + docTabs.filter(p => p.group === g).map(p => `<a data-t="${p.id}">${esc(p.title)}</a>`).join('') + (g === 'Documentation' ? '<a data-t="photos">Photographies (toutes)</a>' : '')).join('');
 const jumpMenu = '<select id="jump"><option value="">Aller a...</option>' + categories.map(([c, subs]) =>
   `<optgroup label="${esc(c)}">` + subs.map(([s]) => `<option value="${catId(c, s)}" data-t="c-${slug(c)}">${esc(s)}</option>`).join('') + '</optgroup>').join('') + '</select>';
 const firstSection = 'c-' + slug(categories[0][0]);

@@ -1,0 +1,116 @@
+{
+  "pages": [
+    {
+      "id": "looks",
+      "title": "Looks",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/looks.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "apparel",
+      "title": "Apparel",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/apparel.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "colours",
+      "title": "Colours",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/colours.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "weapons",
+      "title": "Weapons and crafts",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/weapons-crafts.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "items",
+      "title": "Utility items",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/items.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "faceparts",
+      "title": "Face parts",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/face-parts.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "modlooks",
+      "title": "Mods: looks",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/mods-looks.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "modgear",
+      "title": "Mods: gear",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/mods-gear.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "modworld",
+      "title": "Mods: world",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/mods-world.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "genes",
+      "title": "Genes",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/genes.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "seren",
+      "title": "Seren",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/seren.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "weather",
+      "title": "Weather",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/weather.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "jobs",
+      "title": "Jobs",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/jobs.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "animalapparel",
+      "title": "Animal apparel",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/animal-apparel.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "coverage",
+      "title": "Coverage",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/coverage.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
+      "id": "gaps",
+      "title": "Gaps",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/gaps.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    }
+  ]
+}
