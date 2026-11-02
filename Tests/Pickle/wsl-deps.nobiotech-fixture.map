@@ -1,0 +1,8 @@
+# Builds a colony saved WITHOUT Biotech, for a suite whose scenario plays without that DLC (test-colony was saved with Biotech and throws on load without it).
+#
+#   scripts/Submit-PickleRun.ps1 ... -DepMap wsl-deps.nobiotech-fixture.map -Filter pickletools-nobiotech-fixture -Extra "-pickle-scenario-timeout=400"
+!ludeon.rimworld.biotech
+nelim.pickletools.newcolony   path:PickleTools/NewColony/Mod
+nelim.pickletools.savesteps   path:PickleTools/SaveSteps/Mod
+# The bundle committed under PickleTools/Mod is replaced by this shell, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
