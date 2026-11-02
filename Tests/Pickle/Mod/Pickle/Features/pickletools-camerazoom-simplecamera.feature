@@ -16,3 +16,12 @@ Feature: PickleTools camera zoom with SimpleCameraSetting
     When Nelim's Pickle Tools: the camera root size is set to 6
     Then Nelim's Pickle Tools: the camera root size is 6
     And Nelim's Pickle Tools: the camera orthographic size is 6
+
+  # 2026-11-02, PenguinsRenew request (baby king must fill about 200 px): how low does the root size go with SimpleCameraSetting? The failure prints the value read.
+  Scenario: SimpleCameraSetting at root size 1
+    When Nelim's Pickle Tools: the camera root size is set to 1
+    Then Nelim's Pickle Tools: the camera root size is 1
+
+  Scenario: SimpleCameraSetting at root size 0.5
+    When Nelim's Pickle Tools: the camera root size is set to 0.5
+    Then Nelim's Pickle Tools: the camera root size is 0.5
