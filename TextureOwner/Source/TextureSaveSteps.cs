@@ -23,7 +23,8 @@ namespace Nelim.PickleTools.TextureOwner
         /// Saves the texture at <paramref name="path"/> (relative to a Textures folder, no extension, case-sensitive) at full size
         /// with its alpha, as <paramref name="name"/>.png in the screenshots folder of the report
         /// (<c>pickletools-texture-save--&lt;name&gt;</c>). The texture is the one the game answers with: the last running mod that
-        /// ships the path wins, the same rule as <c>ContentFinder</c> and the ownership steps. A path nobody ships stops the step.
+        /// ships the path wins, the same rule as <c>ContentFinder</c> and the ownership steps; when no mod ships it (vanilla art),
+        /// <c>ContentFinder</c> answers. A path nobody has stops the step.
         /// The file is read through a render texture, so a texture that is not marked readable still comes out. Any number of
         /// paths per scenario, one name each.
         /// </summary>
@@ -35,6 +36,8 @@ namespace Nelim.PickleTools.TextureOwner
             Texture2D source = LoadedModManager.RunningModsListForReading
                 .Select(mod => mod.GetContentHolder<Texture2D>().Get(path))
                 .LastOrDefault(texture => texture != null);
+            // Vanilla art is not in a mod's content holder: the game's own finder reads it.
+            source = source ?? ContentFinder<Texture2D>.Get(path, false);
             ctx.Require(source != null, TextureOwnership.NoProvider(path));
 
             RenderTexture copy = RenderTexture.GetTemporary(

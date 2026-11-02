@@ -639,7 +639,7 @@ Package `nelim.pickletools.textureowner`. In the bundle (`Mod/Pickle/Assemblies`
 | --- | --- |
 | `Nelim's Pickle Tools: the texture {string} is answered by the mod {string}` (Then) | passes when the **last** running mod that ships the path is the one whose packageId is given **Parameters:** `path` (string): a texture path, as a mod ships it (no extension); `packageId` (string): the packageId of a mod, any case. |
 | `Nelim's Pickle Tools: the texture {string} is shipped by at least {int} running mod(s)` (Then) | passes when at least that many running mods ship the path **Parameters:** `path` (string): a texture path, as a mod ships it (no extension); `count` (int): a count, a whole number. |
-| `Nelim's Pickle Tools: the texture {string} is saved as {string}` (When) | Saves the texture at path (relative to a Textures folder, no extension, case-sensitive) at full size with its alpha, as name.png in the screenshots folder of the report (`pickletools-texture-save--<name>`). **Parameters:** `path` (string): a texture path, as a mod ships it (no extension); `name` (string): the short name of the pawn (colonist or animal) or of the thing. |
+| `Nelim's Pickle Tools: the texture {string} is saved as {string}` (When) | Saves the texture at path (relative to a Textures folder, no extension, case-sensitive) at full size with its alpha, as name.png in the screenshots folder of the report (`pickletools-texture-save--<name>`). **Parameters:** `path` (string): a texture path, as a mod ships it (no extension; vanilla art comes from ContentFinder when no mod ships it); `name` (string): the short name of the pawn (colonist or animal) or of the thing. |
 
 ## TradeSteps
 
