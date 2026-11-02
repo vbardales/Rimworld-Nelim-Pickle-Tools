@@ -156,6 +156,38 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Spawns a fully built building of a def (by defName, default stuff, facing north) of the player faction, not a blueprint, with the cell as
+        /// its position (the centre cell of its footprint; a 3x1 bench lies on x-1, x, x+1). Fails, naming the cells, when the def is not a building,
+        /// or when a cell of the footprint is outside the map, impassable, bears another building or cannot be built on. Asked for by ACG (the serum
+        /// bench of its chain scenario). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} is spawned at \\({int}, {int}\\)")]
+        public void BuildingSpawned(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = RequireMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ctx.Require(def.category == ThingCategory.Building && def.thingClass != null && !def.IsBlueprint && !def.IsFrame, $"{defName} is not a building def");
+            var cell = new IntVec3(x, 0, z);
+            Rot4 rot = Rot4.North;
+            var blocked = new List<string>();
+            foreach (IntVec3 c in GenAdj.OccupiedRect(cell, rot, def.size))
+            {
+                if (!c.InBounds(map)) { blocked.Add($"({c.x}, {c.z}) outside the map"); continue; }
+                if (c.Impassable(map)) { blocked.Add($"({c.x}, {c.z}) impassable"); continue; }
+                Building edifice = c.GetEdifice(map);
+                if (edifice != null) { blocked.Add($"({c.x}, {c.z}) holds {edifice.def.defName}"); continue; }
+                if (!GenConstruct.CanBuildOnTerrain(def, c, map, rot)) blocked.Add($"({c.x}, {c.z}) terrain {c.GetTerrain(map).defName} cannot carry it");
+            }
+            ctx.Require(blocked.Count == 0, $"{defName} does not fit at ({x}, {z}) (size {def.size.x}x{def.size.z}): " + string.Join("; ", blocked));
+            Thing thing = ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def));
+            thing.SetFactionDirect(Faction.OfPlayer);
+            GenSpawn.Spawn(thing, cell, map, rot);
+            Log.Message($"[serum] {defName} spawned at ({x}, {z}), footprint {GenAdj.OccupiedRect(cell, rot, def.size)}");
+            ctx.Assert(thing.Spawned && thing.Faction == Faction.OfPlayer, $"{defName} did not spawn at ({x}, {z}) as a player building");
+        }
+
+        /// <summary>
         /// Starts a job by force on a colonist with a pawn (colonist or animal, by short name) as the first target and the first thing of a def lying
         /// at a cell as the second. The colonist is not moved. Fails when the colonist, the pawn, the job or the thing is unknown, or the job does not
         /// become the current job (refused for these targets: reserved, unreachable, a fail condition).
