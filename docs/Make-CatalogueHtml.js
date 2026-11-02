@@ -68,7 +68,7 @@ function render(md) {
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
-const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28 };
+const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28, rhygene: 29 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
@@ -91,7 +91,7 @@ const sheetsFor = kinds => {
 };
 const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head', 'fahead']], [/^Face tattoos/, ['facetattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['ideocolour', 'colour']], [/^Weapons/, ['weapon']],
-  [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
+  [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']], [/^Contact sheets/, ['rhygene']]];
 const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, text) => {
   const hit = sectionKinds.find(([re]) => re.test(text));
   return m + (hit ? sheetsFor(hit[1]) : '');

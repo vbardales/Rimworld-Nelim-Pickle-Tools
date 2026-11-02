@@ -19,7 +19,7 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; beardcolour = 2; seren = 7 }
+$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; rhygene = 29; beardcolour = 2; seren = 7 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
@@ -31,7 +31,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
-    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation' }
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation'; rhygene = 'Parties du corps Rhyaeth' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
@@ -42,7 +42,7 @@ $files = @{}
 $manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } } | Sort-Object LastWriteTime | ForEach-Object {
+$runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } } | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
 }
@@ -223,6 +223,10 @@ $maskTiles = @()
 foreach ($m in 0..11) { foreach ($who in 'nelim', 'man') { foreach ($view in 'front', 'back') {
     $maskTiles += [pscustomobject]@{ key = "bodymask-SerenOriginalMask_$m-$who-$view"; name = "SerenOriginalMask_$m $who $view"; hex = '' } } } }
 Build-Sheets 'bodymask' 'SBE' $maskTiles $body $false
+# Body parts of Erin's Rhy'aeth (feature pickletools-rhyaeth-gallery, shots rhygene-<defName>-<view>; written 2026-11-02 for RWRBP): every photograph found, a taller crop so that a tail and wings are in it.
+$rhyCrop = New-Object System.Drawing.Rectangle 680, 300, 560, 560
+$rhyTiles = @($files.Keys | Where-Object { $_ -like 'rhygene-*' } | Sort-Object | ForEach-Object { [pscustomobject]@{ key = $_; name = ($_ -replace '^rhygene-', '' -replace '^ERN_Rhyaeth(Female|Male)', 'HeadType$1' -replace '^ERN_Rhyaeth', ''); hex = '' } })
+if ($rhyTiles.Count) { Build-Sheets 'rhygene' 'Rhyaeth' $rhyTiles $rhyCrop $false }
 
 # Animal garments (animal-apparel.md, 2026-10-26): the animal in the middle of the frame at zoom 5; shots animalapparel-<defName>.
 $animalCrop = New-Object System.Drawing.Rectangle 710, 290, 500, 500
