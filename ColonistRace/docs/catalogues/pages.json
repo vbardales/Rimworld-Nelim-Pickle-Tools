@@ -118,6 +118,17 @@
       "group": "Mods",
       "source": "SerenBiotechExtended/Docs/catalogue.md",
       "imgBase": "SerenBiotechExtended/Docs/img"
+    },
+    {
+      "id": "rhyaeth",
+      "title": "Rhy'aeth parts",
+      "group": "Mods",
+      "source": "PickleTools/ColonistRace/docs/catalogues/rhyaeth.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "mod": {
+        "name": "Erin's Rhy'aeth",
+        "workshopId": "3707527452"
+      }
     }
   ]
 }
