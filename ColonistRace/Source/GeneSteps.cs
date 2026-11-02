@@ -67,6 +67,25 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Removes one gene of a colonist by its def name, endogene or xenogene, and redraws it. Does nothing when the colonist does not hold it. The game
+        /// picks a body type again when the genes change, so a step that sets the body type (<c>body type is</c>) goes after this one. Asked for by RWRBP
+        /// (the Rhy'aeth colonist without its wings and tail). Fails when the gene is unknown or still held afterwards. Needs Biotech. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} loses the gene {string}")]
+        public void LoseGene(PickleContext ctx, string nickname, string geneName)
+        {
+            ctx.Require(ModsConfig.BiotechActive, "genes need Biotech, and it is not active in this run");
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.genes != null, "pawn '" + nickname + "' has no genes");
+            GeneDef def = DefDatabase<GeneDef>.GetNamedSilentFail(geneName);
+            ctx.Require(def != null, "no gene '" + geneName + "' (is the mod that defines it loaded in this pass?)");
+            foreach (Gene g in pawn.genes.GenesListForReading.Where(x => x.def == def).ToList())
+                pawn.genes.RemoveGene(g);
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            ctx.Assert(!pawn.genes.GenesListForReading.Any(x => x.def == def), "pawn '" + nickname + "' still holds the gene '" + geneName + "'");
+        }
+
+        /// <summary>
         /// Gives a colonist the hair colour its genes define, as the generator does for a xenotype: the colour of the FIRST active gene that has a hair colour, in the order the pawn holds its genes, and no other (it does not blend several: for that use <c>hair colour is refreshed by the game from all its genes</c>; to drop the random gene a new colonist holds, <c>loses the genes that set a hair colour</c>) (the game does not rewrite
         /// <c>story.HairColor</c> when a gene is ADDED later, so <c>has the gene</c> alone leaves the old colour). Fails when no active gene defines a hair colour (it lists the genes) or when the
         /// colour read back differs. Written 2026-10-28 for SanctuaryBacklot (colours by genes, no rgb). NOT PLAYED when written. Needs Biotech.
