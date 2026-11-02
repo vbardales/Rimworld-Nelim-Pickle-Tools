@@ -5,6 +5,7 @@ Two Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Nee
 | Step | What it does |
 | --- | --- |
 | `Nelim's Pickle Tools: I open the {string} inspect tab` | Opens an inspect tab on the selected thing through `InspectPaneUtility.OpenTab`, which switches the main tabs root to Inspect on its own and toggles only a closed tab. Refuses a tab the selection carries but hides. |
+| `Nelim's Pickle Tools: I open the hidden {string} inspect tab` | Same, for a tab the game keeps out of the tab strip (`Hidden`), such as `ITab_Genes` on a genepack, xenogerm or pawn. Only `IsVisible` is required. Compiled, not played (2026-11-02, AnimalCosmeticGenes). |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` | Waits for the named tab to be the one the pane has open, then asserts it. |
 | `Nelim's Pickle Tools: I open the info card of the selected thing on the {string} tab` | Opens the info card (the "i" button) of the single selected thing on a tab named by enum (`Stats`, `Character`, `Health`, `Records`). Not in the Pickle pull request. Written 2026-10-12 for AnimalsNaturally; not played |
 | `Nelim's Pickle Tools: I close the info card` | Closes the info card if one is open, nothing otherwise |

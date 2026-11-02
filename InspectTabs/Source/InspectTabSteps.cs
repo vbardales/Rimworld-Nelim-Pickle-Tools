@@ -48,6 +48,30 @@ namespace Nelim.PickleTools.InspectTabs
         }
 
         /// <summary>
+        /// Opens a tab the game keeps out of the tab strip (<c>Hidden</c>), the way the game opens it from a button: the Genes tab
+        /// (<c>ITab_Genes</c>, Hidden in the base game) opens from the xenotype button of a pawn and from a genepack or xenogerm
+        /// selected on the map. Only <c>IsVisible</c> is required. Written 2026-11-02 for AnimalCosmeticGenes (genepack genes). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I open the hidden {string} inspect tab")]
+        public async Task OpenHiddenInspectTab(PickleContext ctx, string tabName)
+        {
+            List<InspectTabBase> tabs = RequireInspectTabs(ctx);
+            InspectTabBase tab = RequireInspectTab(tabs, tabName);
+
+            ctx.Require(
+                tab.IsVisible,
+                $"inspect tab '{tabName}' is on the selection but not visible (the game says there is nothing to show). " +
+                $"available tabs: {DescribeInspectTabs(tabs)}");
+
+            InspectPaneUtility.OpenTab(tab.GetType());
+            await ctx.WaitFrames(2);
+
+            ctx.Assert(
+                InspectPane().OpenTabType == tab.GetType(),
+                $"inspect tab '{tabName}' should be open; open tab: {DescribeOpenInspectTab()}");
+        }
+
+        /// <summary>
         /// Selects the one thing of a def on a cell, language independent: Pickle's own <c>I select {string}</c> takes a label,
         /// which is text in the language of the run. Clears the selection first. A cell with none, or with two of that def, is
         /// refused, and the message lists what the cell holds, so the scenario never selects "one of them" by luck.
