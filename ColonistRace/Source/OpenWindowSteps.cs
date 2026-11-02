@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using RimWorld;
 using RimWorks.Pickle;
+using UnityEngine;
 using Verse;
 
 namespace Nelim.PickleTools.ColonistRace
@@ -34,6 +35,26 @@ namespace Nelim.PickleTools.ColonistRace
             MethodInfo click = typeof(MainTabWindow_Architect).GetMethod("ClickedCategory", BindingFlags.NonPublic | BindingFlags.Instance);
             if (click != null) click.Invoke(window, new object[] { tab }); else window.selectedDesPanel = tab;
             ctx.Assert(window.selectedDesPanel == tab, $"the Architect menu shows '{window.selectedDesPanel?.def.defName ?? "no tab"}', not '{tab.def.defName}'");
+        }
+
+        /// <summary>
+        /// Opens the drop-down menu of a DesignatorDropdownGroupDef (the Architect button with a "+" that groups several buildings, e.g.
+        /// "Nelim_Composters") on the Architect tab already open, so the options of the group are listed in a menu. Fails when no tab is open or the
+        /// group is not on it, listing the groups of the open tab. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I open the architect dropdown {string}")]
+        public void OpenArchitectDropdown(PickleContext ctx, string groupDefName)
+        {
+            var window = MainButtonDefOf.Architect.TabWindow as MainTabWindow_Architect;
+            ctx.Require(window != null && window.selectedDesPanel != null, "no Architect tab is open: open one with 'I open the architect tab' first");
+            var tab = window.selectedDesPanel;
+            var dropdowns = tab.def.ResolvedAllowedDesignators.OfType<Designator_Dropdown>().ToList();
+            Func<Designator_Dropdown, string> groupOf = d => d.Elements.OfType<Designator_Place>()
+                .Select(p => p.PlacingDef?.designatorDropdown?.defName).FirstOrDefault(n => n != null);
+            Designator_Dropdown dropdown = dropdowns.FirstOrDefault(d => string.Equals(groupOf(d), groupDefName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(dropdown != null, $"no dropdown '{groupDefName}' on the tab '{tab.def.defName}'; its groups are " + string.Join(", ", dropdowns.Select(groupOf)));
+            dropdown.ProcessInput(new Event { type = EventType.MouseDown, button = 0 });
+            ctx.Assert(Find.WindowStack.Windows.Any(w => w is FloatMenu || w is FloatMenuGrid), "the dropdown menu did not open");
         }
 
         /// <summary>
