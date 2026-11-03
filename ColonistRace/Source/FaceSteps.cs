@@ -241,12 +241,14 @@ namespace Nelim.PickleTools.ColonistRace
         private static Harmony neutralHarmony;
         private static readonly System.Collections.Generic.HashSet<Pawn> heldNeutral = new System.Collections.Generic.HashSet<Pawn>();
         private static FieldInfo compPawn, compJobList, compParam, paramNeedReset, paramNeedFilter;
+        private static Def neutralDef;
+        private static ConstructorInfo neutralCtor;
 
         /// <summary>
         /// Keeps the face of a colonist free of the expression its job and state give it, until the scenario ends: Facial Animation picks the
         /// animations of the pawn's job (a drafted pawn waiting in combat gets angry brows and dark red eyes), its mood and its pain again at every
         /// update, so a face kit or a temporary animation does not last. The step makes the update of this pawn start from an empty list of job
-        /// animations, so no expression frame is accumulated and each part of the face takes its neutral shape. A temporary animation played
+        /// animations but the mod's own "normal" one (an empty list gives a frame with no lid shape and the mod throws), so each part of the face takes its neutral shape. A temporary animation played
         /// afterwards (the step <c>facial expression is</c>) and the fixed part types of a face kit still apply. Needs Harmony. NOT PLAYED when written
         /// (2026-10-09, for SanctuaryBacklot, runs 1057 and ebd3, where a kit and a temporary animation did not remove the angry brows of a drafted pawn):
         /// read the capture before relying on it.
@@ -268,6 +270,14 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(paramNeedReset != null && paramNeedFilter != null, "the facial animation parameters changed: update this step");
             MethodInfo update = compType.GetMethod("UpdateAnimation", Any);
             ctx.Require(update != null, "the controller has no UpdateAnimation: Facial Animation changed, update this step");
+            // An empty job list gives the mod a frame with no lid shape and its ApplyFrame throws a NullReferenceException on every update and every portrait
+            // render (ticket eae4 of Ancient Buildings, 2026-11-03), as soon as no temporary animation is running or the one played has ended. The list
+            // therefore holds the mod's own "normal" animation: a neutral frame that defines every part of the face.
+            Type defType = FaType(ctx, "FacialAnimation.FaceAnimationDef");
+            Type animType = FaType(ctx, "FacialAnimation.FaceAnimation");
+            neutralDef = ((IEnumerable)typeof(DefDatabase<>).MakeGenericType(defType).GetProperty("AllDefs", Any).GetValue(null)).Cast<Def>().FirstOrDefault(d => d.defName == "normal");
+            neutralCtor = animType.GetConstructor(new[] { defType, typeof(int) });
+            ctx.Require(neutralDef != null && neutralCtor != null, "Facial Animation has no \"normal\" animation or FaceAnimation(def, startTick) changed: update this step");
             if (neutralHarmony == null)
             {
                 Harmony h = new Harmony("nelim.pickletools.facenet");
@@ -286,7 +296,7 @@ namespace Nelim.PickleTools.ColonistRace
             compType.GetMethod("SetDirty", Any)?.Invoke(face, null);
             pawn.Drawer?.renderer?.SetAllGraphicsDirty();
             var list = compJobList.GetValue(face) as IEnumerable;
-            ctx.Assert(list != null && !list.Cast<object>().Any(), nickname + "'s job animation list should be empty; it still holds animations");
+            ctx.Assert(list != null && list.Cast<object>().Count() == 1, nickname + "'s job animation list should hold only the neutral animation; it holds something else");
         }
 
         private static void BeforeUpdateAnimation(object __instance)
@@ -294,7 +304,9 @@ namespace Nelim.PickleTools.ColonistRace
             if (heldNeutral.Count == 0 || compPawn == null) return;
             if (!(compPawn.GetValue(__instance) is Pawn pawn) || !heldNeutral.Contains(pawn)) return;
             Type element = compJobList.FieldType.IsGenericType ? compJobList.FieldType.GetGenericArguments()[0] : typeof(object);
-            compJobList.SetValue(__instance, Array.CreateInstance(element, 0));
+            Array neutral = Array.CreateInstance(element, neutralCtor != null && neutralDef != null ? 1 : 0);
+            if (neutral.Length == 1) neutral.SetValue(neutralCtor.Invoke(new object[] { neutralDef, Find.TickManager.TicksGame }), 0);
+            compJobList.SetValue(__instance, neutral);
             object param = compParam.GetValue(__instance);
             if (param == null) return;
             paramNeedReset.SetValue(param, false);
