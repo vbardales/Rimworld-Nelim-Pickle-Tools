@@ -12,7 +12,7 @@ Feature: PickleTools world probe steps
   Scenario: a trait at a degree, a static read
     Given a colonist "Ash" exists
     And Nelim's Pickle Tools: "Ash" has the trait "Nerves" at degree 2
-    Then Nelim's Pickle Tools: the static member "TicksPerDay" of the type "Verse.GenDate" is "60000"
+    Then Nelim's Pickle Tools: the static member "TicksPerDay" of the type "GenDate" is "60000"
 
   Scenario: a room held at a temperature, a corpse and spoiled food, a fuelled torch
     Given Nelim's Pickle Tools: a closed roofed room is built at (144, 149) of 5 by 3
@@ -20,6 +20,6 @@ Feature: PickleTools world probe steps
     And Nelim's Pickle Tools: the building "TorchLamp" at (145, 150) is fuelled
     And Nelim's Pickle Tools: the room at (146, 150) is held at 45 degrees
     And Nelim's Pickle Tools: a rotting corpse of the kind "Muffalo" is placed at (147, 150)
-    And Nelim's Pickle Tools: the thing "MealSimple" is placed at (148, 150) at 1 of its time to rot
+    And Nelim's Pickle Tools: the thing "MealSimple" is placed at (146, 150) at 1 of its time to rot
     When Nelim's Pickle Tools: the decor is removed
     Then no "TorchLamp" is at (145, 150)
