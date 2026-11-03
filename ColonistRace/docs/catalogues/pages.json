@@ -57,6 +57,13 @@
       "imgBase": "PickleTools/ColonistRace/docs/catalogues"
     },
     {
+      "id": "genesbyslot",
+      "title": "Genes by slot and category",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/genes-by-slot.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
       "id": "modlooks",
       "title": "Mods: looks",
       "group": "Documentation",
