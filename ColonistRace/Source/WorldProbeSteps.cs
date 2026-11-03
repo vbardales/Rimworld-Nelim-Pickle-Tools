@@ -129,7 +129,7 @@ namespace Nelim.PickleTools.ColonistRace
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
             CompRottable rot = thing.TryGetComp<CompRottable>();
             ctx.Require(rot != null, $"the {defName} cannot rot");
-            GenPlace.TryPlaceThing(thing, cell, map, ThingPlaceMode.Direct);
+            GenSpawn.Spawn(thing, cell, map);
             ctx.Require(thing.Spawned, $"the {defName} did not reach ({x}, {z})");
             Made.Add(thing);
             rot.RotProgress = fraction * rot.PropsRot.TicksToRotStart + (fraction >= 1f ? 1f : 0f);
