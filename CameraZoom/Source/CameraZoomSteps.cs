@@ -61,6 +61,31 @@ namespace Nelim.PickleTools.CameraZoom
                 $"to fill {percent} percent the camera root size should be {size}; it reads {read}: the game bounds the zoom there, or the zoom had not finished");
         }
 
+        /// <summary>
+        /// Like the cell rectangle step, but the rectangle asked for is widened to hold the pawn too (its cell and the cell above it, where the head is drawn),
+        /// so a colonist and the cells she works on are in the same picture. The percentage is the share the widened rectangle fills, so a smaller
+        /// number gives a looser frame; a face reads from about 40 percent on a short rectangle. Written 2026-11-03 for EntityGazing. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the camera frames {string} together with the cells \\({int}, {int}\\) to \\({int}, {int}\\) filling {int} percent of the screen", TimeoutSeconds = 150f)]
+        public async Task FramePawnAndCells(PickleContext ctx, string pawnName, int x1, int z1, int x2, int z2, int percent)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            ctx.Require(percent >= 5 && percent <= 100, $"a rectangle fills 5 to 100 percent of the screen, not {percent}");
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            IntVec3 cell = pawn.Position;
+            int minX = Math.Min(rect.minX, cell.x);
+            int maxX = Math.Max(rect.maxX, cell.x);
+            int minZ = Math.Min(rect.minZ, cell.z);
+            int maxZ = Math.Max(rect.maxZ, cell.z + 1);
+            CellRect wide = CellRect.FromLimits(minX, minZ, maxX, maxZ);
+            float aspect = (float)UI.screenWidth / UI.screenHeight;
+            float fill = percent / 100f;
+            float size = Math.Max(wide.Height / (2f * fill), wide.Width / (2f * fill * aspect));
+
+            lastFramed = wide;
+            await CenterAt(ctx, wide.CenterVector3, size);
+        }
+
         /// <summary>Centres the camera on a named pawn (colonist or animal) at a root size and reads it back, as the cell version does.</summary>
         [When("Nelim's Pickle Tools: the camera is centered on {string} at root size {float}", TimeoutSeconds = 150f)]
         public async Task CenterOnPawn(PickleContext ctx, string pawnName, float size)
