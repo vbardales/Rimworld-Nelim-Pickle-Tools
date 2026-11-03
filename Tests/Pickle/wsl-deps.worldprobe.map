@@ -1,0 +1,7 @@
+# The pass that plays pickletools-colonistrace-worldprobe.feature: ColonistRace and StageDecor staged together from the repository.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.worldprobe.map -Filter pickletools-colonistrace-worldprobe
+nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
+nelim.pickletools.stagedecor   path:PickleTools/StageDecor/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

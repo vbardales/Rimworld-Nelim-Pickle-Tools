@@ -223,7 +223,7 @@ namespace Nelim.PickleTools.ColonistRace
         {
             owner = null; member = null;
             if (o == null || depth > 3 || !seen.Add(o)) return false;
-            foreach (MemberInfo m in o.GetType().GetMembers(AnyMember).Where(m => m is FieldInfo || (m is PropertyInfo p && p.GetIndexParameters().Length == 0 && p.CanRead && p.CanWrite)))
+            foreach (MemberInfo m in o.GetType().GetMembers(AnyMember | BindingFlags.Static).Where(m => m is FieldInfo || (m is PropertyInfo p && p.GetIndexParameters().Length == 0 && p.CanRead && p.CanWrite)))
             {
                 if (string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)) { owner = o; member = m; return true; }
             }

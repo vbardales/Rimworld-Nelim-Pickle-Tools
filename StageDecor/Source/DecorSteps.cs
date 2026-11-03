@@ -101,8 +101,8 @@ namespace Nelim.PickleTools.StageDecor
         public void StorageHolds(PickleContext ctx, string buildingDefName, int x, int z, int expected)
         {
             var storage = StorageAt(ctx, buildingDefName, x, z);
-            int count = storage.GetSlotGroup().HeldThings.Count();
-            ctx.Assert(count == expected, $"the {buildingDefName} at ({x}, {z}) holds {count} thing(s), not {expected}: " + string.Join(", ", storage.GetSlotGroup().HeldThings.Select(t => t.def.defName + " x" + t.stackCount)));
+            int count = Held(storage).Count();
+            ctx.Assert(count == expected, $"the {buildingDefName} at ({x}, {z}) holds {count} thing(s), not {expected}: " + string.Join(", ", Held(storage).Select(t => t.def.defName + " x" + t.stackCount)));
         }
 
         /// <summary>
@@ -112,21 +112,120 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: I fill the storage building {string} at \\({int}, {int}\\) with {int} things {string}")]
         public void FillStorage(PickleContext ctx, string buildingDefName, int x, int z, int count, string thingDefName)
         {
+            Fill(ctx, buildingDefName, x, z, count, thingDefName, null);
+        }
+
+        /// <summary>
+        /// The same, each thing given the quality (Awful, Poor, Normal, Good, Excellent, Masterwork, Legendary; any case) through its quality comp: a book
+        /// of the Book comp carries one. Fails when the def has no quality comp. Written 2026-11-03 for ReadingBonusAndBookshelfRenew. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I fill the storage building {string} at \\({int}, {int}\\) with {int} things {string} of quality {word}")]
+        public void FillStorageOfQuality(PickleContext ctx, string buildingDefName, int x, int z, int count, string thingDefName, string quality)
+        {
+            QualityCategory parsed;
+            try
+            {
+                parsed = (QualityCategory)System.Enum.Parse(typeof(QualityCategory), quality, true);
+            }
+            catch (System.ArgumentException)
+            {
+                ctx.Require(false, $"'{quality}' is not a quality; the qualities are " + string.Join(", ", System.Enum.GetNames(typeof(QualityCategory))));
+                return;
+            }
+
+            Fill(ctx, buildingDefName, x, z, count, thingDefName, parsed);
+        }
+
+        private void Fill(PickleContext ctx, string buildingDefName, int x, int z, int count, string thingDefName, QualityCategory? quality)
+        {
             var storage = StorageAt(ctx, buildingDefName, x, z);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             Map map = CurrentMap(ctx);
-            int before = storage.GetSlotGroup().HeldThings.Count();
+            int before = Held(storage).Count();
             for (int i = 0; i < count; i++)
             {
                 Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
                 thing.stackCount = 1;
-                GenPlace.TryPlaceThing(thing, storage.Position, map, ThingPlaceMode.Direct, out Thing placed);
+                if (quality.HasValue)
+                {
+                    CompQuality comp = thing.TryGetComp<CompQuality>();
+                    ctx.Require(comp != null, $"the {thingDefName} has no quality comp");
+                    comp.SetQuality(quality.Value, ArtGenerationContext.Colony);
+                }
+
+                Thing placed = Put(storage, thing, map);
                 if (placed != null) Placed.Add(placed);
             }
 
-            int after = storage.GetSlotGroup().HeldThings.Count();
+            int after = Held(storage).Count();
             ctx.Assert(after - before >= 1, $"no {thingDefName} reached the {buildingDefName} at ({x}, {z}) ({before} before, {after} after)");
+        }
+
+        /// <summary>
+        /// Builds a closed, roofed room whose south-west inside cell is (x, z): walls around an inside of the given width by depth, a door in the middle of
+        /// the south wall (the inside must be at least 3 wide), a constructed roof over the inside, then waits for the game to make a proper room of it.
+        /// Plants and filth in the way are cleared; fails naming the first cell outside the map or holding a building or a pawn. The walls and the door are
+        /// removed with the other decor. Written 2026-11-03 for ReadingBonusAndBookshelfRenew. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: a closed roofed room is built at \\({int}, {int}\\) of {int} by {int}", TimeoutSeconds = 15f)]
+        public async System.Threading.Tasks.Task BuildRoom(PickleContext ctx, int x, int z, int width, int depth)
+        {
+            Map map = CurrentMap(ctx);
+            ctx.Require(width >= 3 && depth >= 1, $"the inside must be at least 3 by 1, not {width} by {depth}");
+            CellRect inside = new CellRect(x, z, width, depth);
+            CellRect footprint = inside.ExpandedBy(1);
+            IntVec3 doorCell = new IntVec3(x + 1, 0, z - 1);
+            foreach (IntVec3 c in footprint)
+            {
+                ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+                Thing blocker = c.GetThingList(map).FirstOrDefault(t => t is Pawn || t is Building);
+                ctx.Require(blocker == null, $"the cell ({c.x}, {c.z}) already holds {blocker?.def.defName}");
+            }
+
+            foreach (IntVec3 c in footprint)
+            {
+                foreach (Thing t in c.GetThingList(map).Where(t => t.def.category == ThingCategory.Plant || t.def.category == ThingCategory.Filth).ToList())
+                {
+                    t.Destroy();
+                }
+            }
+
+            foreach (IntVec3 c in footprint.Cells.Where(c => !inside.Contains(c)))
+            {
+                ThingDef def = c == doorCell ? ThingDefOf.Door : ThingDefOf.Wall;
+                Placed.Add(GenSpawn.Spawn(ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def)), c, map, WipeMode.Vanish));
+            }
+
+            foreach (IntVec3 c in inside)
+            {
+                map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
+            }
+
+            map.regionAndRoomUpdater.RebuildAllRegionsAndRooms();
+            IntVec3 probe = inside.CenterCell;
+            await ctx.WaitUntil(() => probe.GetRoom(map)?.ProperRoom == true, 10f);
+            Room room = probe.GetRoom(map);
+            ctx.Assert(room != null && room.ProperRoom, $"the room at ({probe.x}, {probe.z}) should be a proper room, proper room: {room?.ProperRoom}, cells: {room?.CellCount}");
+        }
+
+        /// <summary>
+        /// Asserts a stat of the room that holds a cell (RoomStatDef by defName), read after the room's stats are marked dirty, within 0.0001. The failure
+        /// prints the value read. Fails when the cell has no room. Written 2026-11-03 for ReadingBonusAndBookshelfRenew. Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the room at \\({int}, {int}\\) has the stat {string} at {float}")]
+        public void RoomHasStat(PickleContext ctx, int x, int z, string statName, float expected)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map");
+            Room room = cell.GetRoom(map);
+            ctx.Require(room != null, $"no room holds ({x}, {z})");
+            RoomStatDef stat = DefDatabase<RoomStatDef>.GetNamedSilentFail(statName);
+            ctx.Require(stat != null, $"no room stat '{statName}'; the room stats are " + string.Join(", ", DefDatabase<RoomStatDef>.AllDefsListForReading.Select(d => d.defName)));
+            typeof(Room).GetMethod("Notify_RoomShapeChanged", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)?.Invoke(room, null);
+            float actual = room.GetStat(stat);
+            ctx.Assert(System.Math.Abs(actual - expected) <= 0.0001f, $"the room at ({x}, {z}) has {statName} at {actual:0.#####}, not {expected:0.#####}");
         }
 
         /// <summary>
@@ -175,19 +274,38 @@ namespace Nelim.PickleTools.StageDecor
         [AfterScenario]
         public void ForgetHitPoints() => RememberedHitPoints.Clear();
 
-        private static Building_Storage StorageAt(PickleContext ctx, string buildingDefName, int x, int z)
+        // A storage building is a Building_Storage (things lie in its slot group) or a Building_Bookcase (books sit in its own container, no slot group).
+        private static Building StorageAt(PickleContext ctx, string buildingDefName, int x, int z)
         {
             Map map = CurrentMap(ctx);
             var cell = new IntVec3(x, 0, z);
             ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
-            Building_Storage storage = cell.GetThingList(map).OfType<Building_Storage>().FirstOrDefault(b => b.def.defName == buildingDefName);
-            ctx.Require(storage != null, $"no storage building {buildingDefName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.def.defName)));
+            Building storage = cell.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == buildingDefName && (b is Building_Storage || b is Building_Bookcase));
+            ctx.Require(storage != null, $"no storage building or bookcase {buildingDefName} stands at ({x}, {z}); there is " + string.Join(", ", cell.GetThingList(map).Select(t => t.GetType().Name + " " + t.def.defName)));
             return storage;
+        }
+
+        private static IEnumerable<Thing> Held(Building storage)
+        {
+            if (storage is Building_Storage shelf) return shelf.GetSlotGroup().HeldThings;
+            return ((IThingHolder)storage).GetDirectlyHeldThings().ToList();
+        }
+
+        private static Thing Put(Building storage, Thing thing, Map map)
+        {
+            if (storage is Building_Storage)
+            {
+                GenPlace.TryPlaceThing(thing, storage.Position, map, ThingPlaceMode.Direct, out Thing placed);
+                return placed;
+            }
+
+            return ((IThingHolder)storage).GetDirectlyHeldThings().TryAdd(thing, false) ? thing : null;
         }
 
         private static bool WouldStore(PickleContext ctx, string buildingDefName, int x, int z, string thingDefName)
         {
             var storage = StorageAt(ctx, buildingDefName, x, z);
+            ctx.Require(storage is Building_Storage, $"the {buildingDefName} is a bookcase; accepts/refuses reads slot groups, which a bookcase has none");
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             Map map = CurrentMap(ctx);

@@ -61,6 +61,26 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(pawn.story.traits.HasTrait(def), $"{nickname} should have the trait {traitName}; it has {string.Join(", ", pawn.story.traits.allTraits.Select(t => t.def.defName))}");
         }
 
+        /// <summary>
+        /// The same at a given degree of the trait (the <c>degree</c> number of its <c>degreeDatas</c>, such as -1 or 1 for a trait with two). A colonist who
+        /// already has the trait at another degree has it replaced. Fails listing the degrees the trait offers. Written 2026-11-03 for RimScentExtended
+        /// (anosmia and dysosmia). Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} has the trait {string} at degree {int}")]
+        public void GivesTraitAtDegree(PickleContext ctx, string nickname, string traitName, int degree)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story?.traits != null, $"pawn '{nickname}' has no traits");
+            TraitDef def = Trait(ctx, traitName);
+            ctx.Require(def.degreeDatas.Any(d => d.degree == degree), $"the trait {traitName} has no degree {degree}; its degrees are {string.Join(", ", def.degreeDatas.Select(d => d.degree))}");
+            Remember(pawn);
+            foreach (Trait t in pawn.story.traits.allTraits.Where(x => x.def == def || (def.conflictingTraits != null && def.conflictingTraits.Contains(x.def))).ToList())
+                pawn.story.traits.RemoveTrait(t);
+            pawn.story.traits.GainTrait(new Trait(def, degree, true), true);
+            Trait got = pawn.story.traits.GetTrait(def);
+            ctx.Assert(got != null && got.Degree == degree, $"{nickname} should have the trait {traitName} at degree {degree}; it has {string.Join(", ", pawn.story.traits.allTraits.Select(t => t.def.defName + " " + t.Degree))}");
+        }
+
         /// <summary>Takes a trait off a colonist by <c>TraitDef</c> name; does nothing when it has none. Reads it back.</summary>
         [Given("Nelim's Pickle Tools: {string} has no trait {string}")]
         public void RemovesTrait(PickleContext ctx, string nickname, string traitName)
