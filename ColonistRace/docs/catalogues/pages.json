@@ -43,6 +43,13 @@
       "imgBase": "PickleTools/ColonistRace/docs/catalogues"
     },
     {
+      "id": "faceanimations",
+      "title": "Face animations",
+      "group": "Documentation",
+      "source": "PickleTools/ColonistRace/docs/catalogues/face-animations.md",
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+    },
+    {
       "id": "modlooks",
       "title": "Mods: looks",
       "group": "Documentation",
