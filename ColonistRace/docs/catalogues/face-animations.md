@@ -76,3 +76,7 @@ Workshop id 3716502926. `RKFN_Stasis`
 
 Workshop id 3779168289. `RETI_Ratkin_TailPlaySmile`
 
+## Rhyaeth Facial Animation (0)
+
+Workshop id 3736699447, packageId lucius.rhyaethfa, read 2026-11-03: defines no FaceAnimationDef. Its parts (head, mouths, brow, eyeball, lid) are in face-parts.md. A Rhy'aeth head plays the animations of the other sets (listed above), none of them made for it.
+

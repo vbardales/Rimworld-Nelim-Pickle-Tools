@@ -68,6 +68,22 @@ Step texts: `"<pawn>" face head shape is "<defName>"`
 | [NL] Facial Animation - Experimentals | (3) HeadNormal, HeadPointy, HeadSquare |
 | Visual beauty for Facial Animation | (2) Beauty, Beauty2 |
 
+## Rhyaeth Facial Animation (Workshop 3736699447, packageId lucius.rhyaethfa)
+
+Read 2026-11-03 from the mod folder (supports 1.6 and 1.7; needs Nals Facial Animation and Erin's Rhy'aeth). Names only, not photographed. It defines **no FaceAnimationDef**: no expression or animation of its own (see face-animations.md). It adds face parts, all with `targetGeneDefs` `ERN_RhyaethHead`, so they apply to a pawn that has that gene. A patch removes `forcedHeadTypes` from `ERN_RhyaethHead`: the head then comes from the FA head part below.
+
+| Part | Step | Names |
+|---|---|---|
+| Head shape (1) | `face head shape is` | ERN_FA_Rhyaeth_Head |
+| Mouth (2) | `mouth is` | ERN_FA_Rhyaeth_Mouth, ERN_FA_Rhyaeth_InvisibleMouth (probability 0) |
+| Brow (1) | `brows are` | ERN_FA_Rhyaeth_Brow (colour of the skin) |
+| Eyeball (1) | `eyeballs are` | ERN_FA_Rhyaeth_Eye (black; colourable with Eye Genes 3) |
+| Lid (1) | `lids are` | ERN_FA_Rhyaeth_Lid |
+
+The brow, eyeball and lid come from a compatibility folder, loaded only with Vanilla Textures Expanded facial animations (`VanillaExpanded.VTEXE.FacialAnims`) or with Moving Vanilla Eyes / Vanilla Experimentals (`sd.fa.movingvanillaeyes`); the texture changes with the set (static, moving). Without one of them the mod adds only the head and the two mouths. The step `face skin is` has no Rhy'aeth skin: the skin parts stay those of the other sets.
+
+Open, not proved in game: whether the vanilla mouths, brows and lids of Facial Animation stay selectable on a pawn with `ERN_RhyaethHead`. The part steps set a part by name without checking `targetGeneDefs`, so they accept any of them; whether the game keeps the vanilla part when the pawn is drawn is not read.
+
 ## Heat
 
 A kit or part step leaves the heat face (sweat, blush) of the room. To photograph a clean face, follow the parts or kit with `facial expression is "normal"` (proved on a photo, run 4a58); see FACIAL-ANIMATIONS.md for the 55 animations.
