@@ -125,6 +125,78 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(string.Equals(el.Value, expected, StringComparison.OrdinalIgnoreCase), $"{path}: '{option}' is '{el.Value}', not '{expected}'");
         }
 
+        // ---- Sandbox: the mod's settings file is backed up, removed and the settings reset to the code defaults; an [AfterScenario] puts the file back.
+        // The backup sits next to the file (.pickle-sandbox-bak, "absent" marker when there was no file), so a run killed mid-scenario is repaired by the next sandbox step.
+        private const string BackupSuffix = ".pickle-sandbox-bak";
+        private const string AbsentSuffix = ".pickle-sandbox-absent";
+        private static readonly List<Mod> Sandboxed = new List<Mod>();
+
+        private static string SettingsPath(Mod handle) =>
+            (string)typeof(LoadedModManager).GetMethod("GetSettingsFilename", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, new object[] { handle.Content.FolderName, handle.GetType().Name });
+
+        // Forgets the settings object so the next GetSettings reads the file again (the default instance when there is none), as a restart does.
+        private static void Reload(Mod handle)
+        {
+            FieldInfo field = typeof(Mod).GetField("modSettings", AnyMember);
+            if (field == null) throw new InvalidOperationException("Verse.Mod has no field 'modSettings' in this game version");
+            ModSettings current = (ModSettings)field.GetValue(handle);
+            if (current == null) throw new InvalidOperationException($"{handle.Content.Name} has no settings object; it declares no settings");
+            Type type = current.GetType();
+            field.SetValue(handle, null);
+            typeof(Mod).GetMethod("GetSettings", AnyMember | BindingFlags.Public).MakeGenericMethod(type).Invoke(handle, null);
+        }
+
+        private static void RestoreFile(string path)
+        {
+            string bak = path + BackupSuffix, absent = path + AbsentSuffix;
+            if (File.Exists(bak)) { File.Copy(bak, path, true); File.Delete(bak); }
+            else if (File.Exists(absent)) { if (File.Exists(path)) File.Delete(path); }
+            if (File.Exists(absent)) File.Delete(absent);
+        }
+
+        /// <summary>Backs up the settings file of the mod, deletes it and resets its settings to the defaults of its code; the file is restored after the scenario.</summary>
+        [Given("Nelim's Pickle Tools: the settings of the mod {string} are sandboxed at their defaults")]
+        public void SandboxDefaults(PickleContext ctx, string packageId)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            ctx.Require(!IsMsf(handle), $"{pack.Name} keeps its options in Mod Settings Framework: its file is shared with other mods, not sandboxed");
+            string path = SettingsPath(handle);
+            ctx.Require(path != null, $"no settings file name for {pack.Name}");
+            if (File.Exists(path + BackupSuffix) || File.Exists(path + AbsentSuffix)) RestoreFile(path);
+            if (File.Exists(path)) File.Copy(path, path + BackupSuffix, true);
+            else File.WriteAllText(path + AbsentSuffix, "no settings file before the sandbox");
+            if (File.Exists(path)) File.Delete(path);
+            Reload(handle);
+            if (!Sandboxed.Contains(handle)) Sandboxed.Add(handle);
+        }
+
+        /// <summary>Drops the settings in memory and reads the file again, what a restart does.</summary>
+        [When("Nelim's Pickle Tools: the settings of the mod {string} are re-read from the file")]
+        public void Reread(PickleContext ctx, string packageId)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            string path = SettingsPath(handle);
+            ctx.Require(path != null && File.Exists(path), $"no settings file for {pack.Name} at '{path}'; a value must be written before it is re-read");
+            Reload(handle);
+        }
+
+        [AfterScenario]
+        public void RestoreSandboxes()
+        {
+            foreach (Mod handle in Sandboxed)
+            {
+                string path = SettingsPath(handle);
+                if (path == null) continue;
+                RestoreFile(path);
+                try { Reload(handle); } catch (Exception e) { Log.Warning("[mod-options] sandbox restore of " + handle.Content.Name + ": " + e.Message); }
+            }
+            Sandboxed.Clear();
+        }
+
         // ---- Mod Settings Framework (bundled in Vanilla Expanded Framework): its options are not members of the handle's settings. Read by reflection, no reference to it.
         // The handle is a ModSettingsFramework.ModSettingsFrameworkMod (field modPackOverride = the mod the page belongs to); the values live in the container
         // ModSettingsFrameworkSettings.GetModSettingsContainer(packageId): patchOperationStates (id -> bool, checkboxes) and patchOperationValues (id -> float, sliders).
