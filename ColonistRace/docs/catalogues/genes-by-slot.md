@@ -1,35 +1,37 @@
 # Genes by slot and category: the inverse of the cosmetic genes page
 
-Scan of 2026-11-03, same data as the cosmetic genes page (`Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml`, 9706 folders, XML comments stripped, 1.6 or unversioned folders, `ParentName` resolved inside each mod; the vanilla genes are read from the game folder, 1.6 and 1.7 identical). All genes are here, cosmetic or not. Two ways in: the **exclusion tag** (`exclusionTags`, the slot: two genes with the same tag cannot be on one pawn, for example `Fur`, `Headbone`, `BloodColor`) and the **display category** (`displayCategory`, the tab of the gene editor). For each one, the genes by mod. A gene found is not a gene loaded; names from the XML, not photographs. A gene with several tags appears under each.
+Scan of 2026-11-04, same data as the cosmetic genes page (`Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml`, 9824 folders, XML comments stripped, 1.6 or unversioned folders, `ParentName` resolved inside each mod; the vanilla genes are read from the game folder, 1.6 and 1.7 identical). All genes are here, cosmetic or not. Two ways in: the **exclusion tag** (`exclusionTags`, the slot: two genes with the same tag cannot be on one pawn, for example `Fur`, `Headbone`, `BloodColor`) and the **display category** (`displayCategory`, the tab of the gene editor). For each one, the genes by mod. A gene found is not a gene loaded; names from the XML, not photographs. A gene with several tags appears under each.
 
 # Exclusion tags (slots)
 
-Tags carried by two genes or more, biggest first, then the tags with a single gene. 976 tags.
+Tags carried by two genes or more, biggest first, then the tags with a single gene. 1007 tags.
 
 | Exclusion | Genes | Mods |
 |---|---|---|
-| `BloodColor` | 276 | 5 |
-| `Fur` | 202 | 71 |
-| `Ears` | 177 | 19 |
-| `EyeColor` | 171 | 13 |
-| `Wings` | 136 | 22 |
-| `Tail` | 119 | 21 |
+| `Fur` | 224 | 78 |
+| `Blood` | 223 | 18 |
+| `BloodType` | 223 | 18 |
+| `BloodColor` | 200 | 5 |
+| `AG_BloodType` | 189 | 14 |
+| `Ears` | 181 | 22 |
+| `EyeColor` | 175 | 16 |
+| `Wings` | 125 | 24 |
+| `Tail` | 122 | 23 |
 | `HairColor` | 114 | 4 |
-| `BeardStyle` | 100 | 34 |
-| `Wing` | 98 | 17 |
+| `BeardStyle` | 101 | 35 |
+| `SkinColorOverride` | 97 | 11 |
 | `SerenHairColor` | 95 | 2 |
-| `HairStyle` | 81 | 32 |
-| `Bodies` | 76 | 14 |
-| `SkinColorOverride` | 68 | 10 |
-| `Blood` | 66 | 13 |
-| `BloodType` | 66 | 13 |
-| `BodySize` | 66 | 14 |
+| `Wing` | 87 | 19 |
+| `HairStyle` | 83 | 34 |
+| `Bodies` | 78 | 16 |
+| `BodySize` | 67 | 15 |
 | `SerenSkinColor` | 65 | 2 |
+| `ShootingAccuracy` | 65 | 24 |
 | `EBSG_FertilityByAge` | 61 | 5 |
-| `ShootingAccuracy` | 59 | 22 |
-| `Body` | 58 | 14 |
+| `Body` | 60 | 16 |
+| `Skin` | 60 | 12 |
+| `AG_Bodies` | 57 | 12 |
 | `BodyType` | 56 | 16 |
-| `AG_Bodies` | 55 | 10 |
 | `Leather` | 54 | 8 |
 | `AG_Leather` | 51 | 7 |
 | `Leathers` | 51 | 7 |
@@ -41,24 +43,25 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_BeautyChange` | 45 | 3 |
 | `EBSG_ComfortChange` | 45 | 3 |
 | `EBSG_RecreationChange` | 45 | 3 |
+| `Bleeding` | 44 | 8 |
 | `EBSG_Ear` | 44 | 2 |
 | `EBSG_Eye` | 44 | 2 |
+| `Gender` | 44 | 17 |
 | `SerenSensors` | 44 | 4 |
-| `Bleeding` | 43 | 7 |
 | `GenitalType` | 43 | 2 |
-| `Skin` | 42 | 9 |
 | `BloodRecovery` | 41 | 3 |
 | `EBSG_MoodChange` | 41 | 3 |
 | `Immunity` | 41 | 13 |
-| `Beauty` | 40 | 10 |
-| `Gender` | 39 | 15 |
+| `Jaw` | 39 | 13 |
 | `Painful` | 39 | 4 |
+| `Aging` | 38 | 9 |
 | `EBSG_AnimalSlayer` | 38 | 3 |
 | `EBSG_EntitySlayer` | 38 | 3 |
 | `EBSG_HumanlikeSlayer` | 38 | 3 |
 | `EBSG_InsectSlayer` | 38 | 3 |
 | `EBSG_MechanoidSlayer` | 38 | 3 |
-| `Aging` | 37 | 8 |
+| `Headbone` | 38 | 12 |
+| `Armor` | 37 | 6 |
 | `EBSG_Brawler` | 37 | 3 |
 | `EBSG_GestationSpeed` | 37 | 3 |
 | `EBSG_MentalFortitude` | 37 | 3 |
@@ -68,31 +71,30 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_Social_Terrifying` | 37 | 3 |
 | `MorphCondition` | 37 | 2 |
 | `Sleeping` | 37 | 3 |
-| `Armor` | 36 | 5 |
 | `MBSG_NakedSpeeds` | 36 | 3 |
 | `SkinColor` | 36 | 3 |
+| `Aggressive` | 35 | 17 |
 | `Flesh` | 35 | 9 |
 | `Flight` | 35 | 2 |
-| `Jaw` | 35 | 10 |
 | `SerenMarkings` | 35 | 2 |
-| `Headbone` | 34 | 9 |
+| `Beauty` | 34 | 9 |
+| `Head` | 34 | 9 |
+| `AG_Armour` | 33 | 6 |
 | `AG_Meat` | 33 | 8 |
-| `Aggressive` | 33 | 15 |
+| `Armour` | 33 | 6 |
 | `EBSG_BiosculptingSpeed` | 33 | 3 |
 | `EBSG_CarryCapacities` | 33 | 3 |
 | `EBSG_EatingSpeed` | 33 | 3 |
 | `EBSG_KillThirstChange` | 33 | 3 |
-| `Head` | 33 | 8 |
 | `Meat` | 33 | 8 |
-| `AG_Armour` | 32 | 5 |
-| `AG_BloodType` | 32 | 9 |
-| `Armour` | 32 | 5 |
+| `AG_Aging` | 32 | 8 |
 | `EBSG_Brain` | 32 | 2 |
 | `EBSG_Heart` | 32 | 2 |
 | `EBSG_Liver` | 32 | 2 |
 | `SlimesCore` | 32 | 1 |
-| `AG_Aging` | 31 | 7 |
-| `AG_BodySize` | 29 | 11 |
+| `AG_BodySize` | 30 | 12 |
+| `AG_Gender` | 29 | 12 |
+| `AG_Heads` | 29 | 5 |
 | `ArachnidEyeColor` | 29 | 2 |
 | `CompositeEyeColor` | 29 | 2 |
 | `EBSG_Aging` | 29 | 3 |
@@ -107,53 +109,53 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_Hunting` | 29 | 3 |
 | `EBSG_Piloting` | 29 | 3 |
 | `Egglaying` | 29 | 8 |
-| `AG_Gender` | 28 | 11 |
-| `AG_Heads` | 28 | 4 |
 | `Antenna` | 28 | 4 |
 | `EBSG_Stomach` | 28 | 2 |
-| `FireDamage` | 28 | 9 |
+| `Heads` | 28 | 4 |
 | `MonocularEyeColor` | 28 | 1 |
 | `taur` | 28 | 2 |
 | `EBSG_HemogenGain` | 27 | 2 |
-| `Heads` | 27 | 3 |
 | `HeadType` | 27 | 3 |
+| `WoundHealingRate` | 27 | 8 |
 | `Melanin` | 26 | 1 |
 | `ML_Stats` | 26 | 2 |
 | `Bug_BodyAttachment` | 25 | 2 |
 | `EBSG_Biomes` | 25 | 3 |
 | `EBSG_StomachPouches` | 25 | 3 |
+| `FireDamage` | 25 | 9 |
 | `MinTemperature` | 25 | 8 |
-| `WoundHealingRate` | 25 | 7 |
 | `Bleach_Schrift` | 24 | 1 |
 | `EBSG_Crusader` | 24 | 1 |
 | `EBSG_Wimp` | 24 | 4 |
+| `AG_Gestation` | 23 | 5 |
 | `Bleach_ReiryokuTier` | 23 | 1 |
+| `Curiosity` | 23 | 4 |
 | `Pain` | 23 | 9 |
 | `Teeth` | 23 | 2 |
 | `Tusks` | 23 | 5 |
+| `VRE_Curiosity` | 23 | 4 |
 | `Aura` | 22 | 1 |
 | `EBSG_Inquisitor` | 22 | 1 |
 | `EBSG_Sight` | 22 | 3 |
 | `Fertility` | 22 | 7 |
+| `Learning` | 22 | 11 |
 | `MaxTemperature` | 22 | 6 |
 | `RandomStrength` | 22 | 2 |
-| `AG_Gestation` | 21 | 4 |
+| `Toughness` | 22 | 11 |
 | `AG_WeatherCausers` | 21 | 2 |
 | `EBSG_DeathrestSpeed` | 21 | 2 |
 | `EBSG_StrongStomachs` | 21 | 3 |
 | `Hands` | 21 | 5 |
+| `KillThirst` | 21 | 9 |
 | `MeleeDamage` | 21 | 10 |
 | `ToxicEnvironmentResistance` | 21 | 9 |
 | `AG_Egglaying` | 20 | 5 |
+| `AG_Fertility` | 20 | 4 |
 | `EBSG_Spine` | 20 | 2 |
-| `KillThirst` | 20 | 8 |
-| `Learning` | 20 | 10 |
 | `RandomHealing` | 20 | 2 |
 | `RandomSpeed` | 20 | 2 |
-| `Toughness` | 20 | 10 |
 | `WVC_HybridStomach` | 20 | 1 |
 | `AcidDamage` | 19 | 4 |
-| `AG_Fertility` | 18 | 3 |
 | `FrostbiteDamage` | 18 | 3 |
 | `PsychicAbility` | 18 | 6 |
 | `RandomDurability` | 18 | 2 |
@@ -167,6 +169,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_MeatDependency` | 17 | 3 |
 | `EBSG_RawEggDependency` | 17 | 3 |
 | `EBSG_VegetarianDependency` | 17 | 3 |
+| `Mood` | 17 | 5 |
 | `Tusk` | 17 | 4 |
 | `UVSensitivity` | 17 | 6 |
 | `AG_Regeneration` | 16 | 3 |
@@ -181,7 +184,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_MeditationFocus` | 16 | 1 |
 | `EBSG_RemoteRepair` | 16 | 1 |
 | `EBSG_RemoteShield` | 16 | 1 |
-| `Mood` | 16 | 4 |
 | `MoveSpeed` | 16 | 8 |
 | `Nose` | 16 | 3 |
 | `SuperStrengths` | 16 | 1 |
@@ -197,8 +199,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `RandomPerception` | 14 | 2 |
 | `SHG_Specializations` | 14 | 1 |
 | `SHG_SuperMutations` | 14 | 1 |
+| `SkillGenes` | 14 | 2 |
 | `SuperHealings` | 14 | 1 |
 | `SuperSpeeds` | 14 | 1 |
+| `VRE_SkillGenes` | 14 | 2 |
 | `WVC_MechaAI_Firmware` | 14 | 1 |
 | `WVC_NaturalArmor` | 14 | 1 |
 | `AG_VomitType` | 13 | 2 |
@@ -219,6 +223,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_Passion_Shooting` | 13 | 3 |
 | `EBSG_Passion_Social` | 13 | 3 |
 | `EBSG_Smelling` | 13 | 3 |
+| `Tiny` | 13 | 4 |
 | `Vomit` | 13 | 2 |
 | `VomitType` | 13 | 2 |
 | `WestTek_Genes_Xenotype` | 13 | 1 |
@@ -235,6 +240,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Aptitude_Plants` | 12 | 4 |
 | `Aptitude_Shooting` | 12 | 4 |
 | `Body_Size_Multiplier` | 12 | 3 |
+| `FurPatternAccent` | 12 | 1 |
 | `halo` | 12 | 1 |
 | `Halo` | 12 | 3 |
 | `Inbred` | 12 | 1 |
@@ -245,7 +251,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Sleep` | 12 | 5 |
 | `SuperDurabilities` | 12 | 1 |
 | `SuperIntelligences` | 12 | 1 |
-| `SuperTemp` | 12 | 2 |
 | `WVC_Ageless` | 12 | 1 |
 | `WVC_MorphCondition_Targeter` | 12 | 1 |
 | `WVC_XaG_HungerReplenishStomach` | 12 | 1 |
@@ -259,9 +264,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `JIMJAMDodging` | 11 | 1 |
 | `JIMJAMHitting` | 11 | 1 |
 | `Lifespan` | 11 | 3 |
-| `Tiny` | 11 | 3 |
+| `MBSG_Digestion` | 11 | 4 |
 | `WVC_Ageless_FastSlowAging` | 11 | 1 |
 | `AbilityMechlink` | 10 | 1 |
+| `AG_LungRot` | 10 | 3 |
 | `AG_Spikes` | 10 | 1 |
 | `AntisuperHealings` | 10 | 1 |
 | `LightningDamage` | 10 | 1 |
@@ -288,6 +294,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Works` | 9 | 2 |
 | `WVC_ChestBodyParts_Tentacles` | 9 | 1 |
 | `AG_Bandwidth` | 8 | 2 |
+| `AG_Bleeding` | 8 | 4 |
 | `AG_CarryingCapacity` | 8 | 3 |
 | `AG_Frostbite` | 8 | 2 |
 | `AG_MechSummon` | 8 | 2 |
@@ -307,16 +314,16 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `JIMJAMAimSpeed` | 8 | 1 |
 | `JIMJAMHitSpeed` | 8 | 1 |
 | `KnaveHairWool` | 8 | 1 |
-| `MBSG_Digestion` | 8 | 3 |
+| `Libido` | 8 | 5 |
 | `Milk` | 8 | 2 |
 | `SuperClotting` | 8 | 1 |
+| `SuperTemp` | 8 | 1 |
 | `VRE_Morphs` | 8 | 1 |
 | `WVC_Furskin_Wildness` | 8 | 1 |
 | `WVC_MechanitorGenes` | 8 | 1 |
 | `WVC_Monogender` | 8 | 1 |
 | `WVC_Telepathy` | 8 | 1 |
 | `Addiction_Ambrosia` | 7 | 3 |
-| `AG_Bleeding` | 7 | 3 |
 | `AG_Misc` | 7 | 2 |
 | `BS_AgingRate` | 7 | 3 |
 | `DDJY_MilkProduction` | 7 | 1 |
@@ -326,7 +333,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EBSG_Talking` | 7 | 3 |
 | `JIMJAM_Aging` | 7 | 1 |
 | `JIMJAM_ChildAging` | 7 | 1 |
-| `Libido` | 7 | 4 |
 | `LiveMunitionsCategory` | 7 | 1 |
 | `MangekyouType` | 7 | 1 |
 | `MaxNutrition` | 7 | 3 |
@@ -339,7 +345,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `AG_CommandRange` | 6 | 2 |
 | `AG_Filth` | 6 | 3 |
 | `AG_FixSpeed` | 6 | 2 |
-| `AG_LungRot` | 6 | 2 |
 | `AG_ShoulderCritters` | 6 | 1 |
 | `AG_TempSpeedCold` | 6 | 2 |
 | `AG_TempSpeedHeat` | 6 | 2 |
@@ -418,7 +423,9 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `DMRW_Ears` | 6 | 1 |
 | `DurabilitySpecialization` | 6 | 1 |
 | `EarnedAscension` | 6 | 1 |
+| `HeadPatternAccent` | 6 | 1 |
 | `HealingSpecialization` | 6 | 1 |
+| `HVT_Senses` | 6 | 1 |
 | `Hygiene` | 6 | 1 |
 | `IntelligenceSpecialization` | 6 | 1 |
 | `LeatherAmount` | 6 | 1 |
@@ -432,13 +439,12 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `SHG_HemomancerShifter` | 6 | 2 |
 | `SHG_HemomancerThief` | 6 | 2 |
 | `SHG_HemomancerWarrior` | 6 | 2 |
-| `SkillGenes` | 6 | 1 |
 | `SpeedSpecialization` | 6 | 1 |
 | `Storylike_Cognition` | 6 | 2 |
 | `StrengthSpecialization` | 6 | 1 |
 | `SuperPerceptions` | 6 | 1 |
+| `TF_EyeColor` | 6 | 1 |
 | `Thirst` | 6 | 1 |
-| `VRE_SkillGenes` | 6 | 1 |
 | `VRE_TreeAffinity` | 6 | 3 |
 | `WeaponPreference` | 6 | 2 |
 | `WVC_AutoResearch` | 6 | 1 |
@@ -472,6 +478,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `EyeColor_ReplacedByPotFSithEyes` | 5 | 2 |
 | `Fang` | 5 | 2 |
 | `Fangs` | 5 | 2 |
+| `FrostyFur` | 5 | 1 |
 | `guy762_Lifespan` | 5 | 1 |
 | `Mashed_Ashlands_AshResistance` | 5 | 1 |
 | `rjw_genes_sexual_orientation` | 5 | 1 |
@@ -547,6 +554,14 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Hair` | 4 | 2 |
 | `HemogenDrain` | 4 | 2 |
 | `Hunting` | 4 | 1 |
+| `HVT_Charisma` | 4 | 1 |
+| `HVT_Chatting` | 4 | 1 |
+| `HVT_Childcare` | 4 | 1 |
+| `HVT_IdeoImpact` | 4 | 1 |
+| `HVT_Inspiration1` | 4 | 1 |
+| `HVT_Inspiration2` | 4 | 1 |
+| `HVT_Proselytization` | 4 | 1 |
+| `HVT_Strength` | 4 | 1 |
 | `Inhumanized` | 4 | 1 |
 | `JawFeatures` | 4 | 1 |
 | `KidsStudy` | 4 | 1 |
@@ -557,6 +572,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Mech` | 4 | 1 |
 | `MechPrinciples` | 4 | 1 |
 | `Medical` | 4 | 1 |
+| `MeleeAttackSpeed` | 4 | 2 |
 | `Mining` | 4 | 1 |
 | `MoreGeneSexualOrientation` | 4 | 1 |
 | `MoveSpeed_Low` | 4 | 1 |
@@ -580,6 +596,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `PsychicSensitivity` | 4 | 1 |
 | `Psychopath` | 4 | 2 |
 | `PsyLink` | 4 | 1 |
+| `RangedAttackSpeed` | 4 | 2 |
 | `REDS_SpiritSummon` | 4 | 1 |
 | `Religiosity` | 4 | 1 |
 | `Research` | 4 | 1 |
@@ -669,10 +686,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `BS_RotState` | 3 | 1 |
 | `CarryWeight` | 3 | 2 |
 | `Chlorophyll` | 3 | 1 |
-| `Curiosity` | 3 | 2 |
 | `CustomGene` | 3 | 1 |
 | `CYB_LightSensitivity` | 3 | 1 |
 | `CYB_Tabby` | 3 | 1 |
+| `Digestion` | 3 | 3 |
 | `DiseaseFree` | 3 | 2 |
 | `DislikesMen` | 3 | 2 |
 | `DislikesWomen` | 3 | 2 |
@@ -683,19 +700,23 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `FG_Venenum` | 3 | 1 |
 | `FluidAmount` | 3 | 1 |
 | `ForcedSex` | 3 | 2 |
+| `FurPatternFill` | 3 | 1 |
 | `GS_Wings` | 3 | 2 |
 | `guy762_GeneMaskEXTag` | 3 | 1 |
 | `Herbivore` | 3 | 1 |
 | `Inheritance` | 3 | 2 |
 | `JIMSCLUDE_AIMMUNE` | 3 | 1 |
 | `Joy` | 3 | 1 |
+| `MeditationSpeed` | 3 | 1 |
 | `MeleeDodge` | 3 | 1 |
+| `NightOwl` | 3 | 3 |
 | `NoArmor` | 3 | 1 |
 | `nubby horns` | 3 | 1 |
 | `OEAging` | 3 | 1 |
 | `OEGroupPack` | 3 | 1 |
 | `PerfectImmunity` | 3 | 2 |
 | `Pollen` | 3 | 1 |
+| `PsychicEntropy` | 3 | 1 |
 | `QuickSleeper` | 3 | 1 |
 | `RoM-Talent2` | 3 | 1 |
 | `SAB_Heritage` | 3 | 1 |
@@ -709,7 +730,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Trait_Immunity` | 3 | 1 |
 | `Turn_Exclusion_NearSighted` | 3 | 2 |
 | `Turn_Exclusion_NightVision` | 3 | 2 |
-| `VRE_Curiosity` | 3 | 2 |
+| `ViolenceDisabled` | 3 | 2 |
 | `WN_ChakraLevel` | 3 | 1 |
 | `WVC_Chimera` | 3 | 1 |
 | `WVC_FamilyByBlood` | 3 | 1 |
@@ -783,6 +804,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `HearingGene` | 2 | 1 |
 | `heart horns` | 2 | 1 |
 | `Hibernation` | 2 | 1 |
+| `HVT_MoralGuidance` | 2 | 1 |
 | `Jaw spikes` | 2 | 1 |
 | `Jaw studs` | 2 | 1 |
 | `Jawspikes` | 2 | 1 |
@@ -797,7 +819,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `LoS_PerfectCoiledJump` | 2 | 1 |
 | `Makai_Headbone` | 2 | 1 |
 | `Mashed_Ashlands_AshThoughtResistance` | 2 | 1 |
-| `MeleeAttackSpeed` | 2 | 1 |
 | `Milkable` | 2 | 1 |
 | `Mind_Complexity` | 2 | 1 |
 | `MiniJawStuds` | 2 | 1 |
@@ -808,7 +829,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Muriden_Hide` | 2 | 1 |
 | `nasal` | 2 | 1 |
 | `Nasal` | 2 | 1 |
-| `NightOwl` | 2 | 2 |
 | `OAGene_PermanentInjury` | 2 | 1 |
 | `OEFilth` | 2 | 1 |
 | `OEFilthLife` | 2 | 1 |
@@ -818,7 +838,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `pointy nub` | 2 | 1 |
 | `Pupils` | 2 | 1 |
 | `Pyromaniac` | 2 | 2 |
-| `RangedAttackSpeed` | 2 | 1 |
 | `Resolve` | 2 | 1 |
 | `ReturningSoul` | 2 | 1 |
 | `rjw_genes_bisexuality_trait_giver` | 2 | 1 |
@@ -879,20 +898,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `WVC_XenotypesAndGenes_GeneNaturalRandom_Metabolism` | 2 | 1 |
 | `YouthAging` | 2 | 1 |
 
-## Exclusion `BloodColor` (276 genes, 5 mods)
-
-- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
-- Blood Color Genes (2887956113) (41): `BloodAqua`, `BloodBlack`, `BloodBlue`, `BloodBrown`, `BloodCitrus`, `BloodCopper`, `BloodDarkGreen`, `BloodDarkOlive`, `BloodDeepMagenta`, `BloodDodgerBlue`, `BloodEggplant`, `BloodElectricIndigo`, `BloodGold`, `BloodGreen`, `BloodGrey`, `BloodIndigo`, `BloodJade`, `BloodLime`, `BloodMagenta`, `BloodMaroon`, `BloodMediumBlue`, `BloodNavy`, `BloodOlive`, `BloodOrange`, `BloodPeriwinkle`, `BloodPink`, `BloodPlum`, `BloodPrussianBlue`, `BloodPurple`, `BloodRed`, `BloodSangria`, `BloodShamrockGreen`, `BloodSherpaBlue`, `BloodSilver`, `BloodSmalt`, `BloodSpringGreen`, `BloodTeal`, `BloodTenne`, `BloodTyrianPurple`, `BloodWhite`, `BloodYellow`
-- [Alien/Race] Seren, from Stardust (2704627783) (1): `OL_SerenBlood`
-- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
-- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
-
-## Exclusion `Fur` (202 genes, 71 mods)
+## Exclusion `Fur` (224 genes, 78 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (1): `Furskin`
 - Yanzhiko Xenotype Collection (3580656240) (25): `TWC_YZBody_BZoroark`, `TWC_YZBody_Braixen`, `TWC_YZBody_Cheetah`, `TWC_YZBody_Delphox`, `TWC_YZBody_Eevee`, `TWC_YZBody_Espeon`, `TWC_YZBody_Flareon`, `TWC_YZBody_Fressalfar`, `TWC_YZBody_Gardevoir`, `TWC_YZBody_Glaceon`, `TWC_YZBody_Icephox`, `TWC_YZBody_Jaguar`, `TWC_YZBody_Jolteon`, `TWC_YZBody_Kisalfar`, `TWC_YZBody_Leafeon`, `TWC_YZBody_Leo`, `TWC_YZBody_Lombax`, `TWC_YZBody_Meowstic`, `TWC_YZBody_Panther`, `TWC_YZBody_Sylveon`, `TWC_YZBody_Tigris`, `TWC_YZBody_Umbreon`, `TWC_YZBody_Vaporeon`, `TWC_YZBody_Vulpoid`, `TWC_YZBody_WZoroark`
 - WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
 - Outland - Genetics (2910172297) (9): `Outland_BumFluff`, `Outland_ChitinousSkin`, `Outland_ChitinousSkinTinted`, `Outland_DestinyMarks`, `Outland_Furbody`, `Outland_InsectBody`, `Outland_RidgedSkin`, `Outland_ScaleSkin`, `Outland_Scalebody`
+- [LFS] Genes Expanded - Skin Types (3545921603) (8): `GEST_Bark_Skin_Type`, `GEST_Crystalline_Skin_Type`, `GEST_Feathered_Skin_Type`, `GEST_Insectoid_Skin_Type`, `GEST_Rockey_Skin_Type`, `GEST_Sandstone_Skin_Type`, `GEST_Scale_Skin_Type`, `GEST_Slime_Skin_Type`
 - Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
 - [S16] Beautiful Body Variants (3556936541) (10): `S16_FBV_Abs_A`, `S16_FBV_Abs_B`, `S16_FBV_Abs_C`, `S16_FBV_Standard_A`, `S16_FBV_Standard_A_Weight`, `S16_FBV_Standard_A_Weight_More`, `S16_FBV_Standard_B`, `S16_FBV_Standard_B_Weight`, `S16_FBV_Standard_C`, `S16_FBV_Standard_C_Weight`
 - Dr. Arch13's ArchoWonderium - The Xen Empire (3407013231) (6): `FenFur`, `FerFur`, `FridFur`, `LogFur`, `RacFur`, `XenFur`
@@ -927,10 +939,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Vanilla Races Expanded - Saurid (2880990495) (1): `VRESaurids_ScaleSkin`
 - Identity (2882253079) (1): `Furskin`
 - Cyanobot's Genes (2889844371) (1): `CYB_LightFur`
+- Biotech - Avali (2893711709) (1): `Featherskin`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxFur`
 - Star Wars Xenotypes (2915192253) (1): `guy762_Furskin_shortfur`
 - Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_BarkSkin`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallBod`
 - Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions (2974761367) (1): `Ama_Face`
+- Vanilla Races Expanded - Archon (3067715093) (1): `VRE_Leatherskin`
 - Carnarodian, the two Mustelids Xenotypes and Factions (3104049393) (1): `LnS_Face`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
 - Orostonian, the Frontiers Xenotypes and Factions (3147447844) (1): `OrostonianFace`
@@ -945,23 +960,93 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 - Nice Facial Animation [ALT] (3383871379) (1): `Furskin`
 - [DF] Gold Xenotype (3438437353) (1): `Gene_goldSkin`
+- Femboy Xenotypes (3456372943) (1): `FEMB_NoBeardFurskin`
 - Very scuffed 1.5 Sergals (3469468302) (1): `Fluffskin`
 - HelixLabor Syndicate (3502230756) (1): `callousedflesh`
 - Animal Genes (3510541507) (1): `ANG_Feathers`
 - Obsidia Expansion - Tailborne Xenotype (3511930980) (1): `OE_RatscourgeHead`
+- Posthuman Drift Nixie Xenotype (3521815475) (1): `XylScaleskin`
 - ME(b) - Krogan (3524888108) (1): `Krogan_Head`
 - Cybranian - Oryx Xenotype (3527163129) (1): `Hair_Oryx`
 - ME(b) - Turians (3572135997) (1): `Turian_Head`
 - FIP - WestTek (3592202407) (1): `WestTek_Gene_Plantskin`
 - Sergal Genes (3639784628) (1): `Drifter_SergalBody`
 - Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_Fur`
+- Cheech Xenotype (3723106445) (1): `GeneDef_Cheech_Fur_Tufted`
 - [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskySkinPattern`
 - Kemirman (3793645542) (1): `Kemir_CapybaraFur`
 - Avian Xenotype - Eagle (3808135566) (1): `Drifter_Avian_Eagle_Fur`
-- local:rjw-animal-gene-inheritance (local:rjw-animal-gene-inheritance) (1): `AGI_Thin_Fur`
 - local:rjw-elt-patches (local:rjw-elt-patches) (1): `ElToro_CosmeticFurskin`
+- local:rjw-animal-gene-inheritance (local:rjw-animal-gene-inheritance) (1): `AGI_Thin_Fur`
 
-## Exclusion `Ears` (177 genes, 19 mods)
+## Exclusion `Blood` (223 genes, 18 mods)
+
+- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
+- Outland - Genetics (2910172297) (15): `Outland_Blood_Black`, `Outland_Blood_Blue`, `Outland_Blood_Brown`, `Outland_Blood_Cyan`, `Outland_Blood_Gray`, `Outland_Blood_Green`, `Outland_Blood_LightBlue`, `Outland_Blood_Lime`, `Outland_Blood_Magenta`, `Outland_Blood_Orange`, `Outland_Blood_Pink`, `Outland_Blood_Purple`, `Outland_Blood_Red`, `Outland_Blood_White`, `Outland_Blood_Yellow`
+- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
+- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_RotBlood`
+- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
+- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
+- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_BlueBlood`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
+- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
+- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
+- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_BloodSpore`
+- Gexies expies (3738658775) (1): `YellowBlood`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
+- Rim's Destiny: Exo (3771229424) (1): `RD_RadiolariaBlood`
+- Gexies milkies (3775745938) (1): `YellowBlood`
+
+## Exclusion `BloodType` (223 genes, 18 mods)
+
+- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
+- Outland - Genetics (2910172297) (15): `Outland_Blood_Black`, `Outland_Blood_Blue`, `Outland_Blood_Brown`, `Outland_Blood_Cyan`, `Outland_Blood_Gray`, `Outland_Blood_Green`, `Outland_Blood_LightBlue`, `Outland_Blood_Lime`, `Outland_Blood_Magenta`, `Outland_Blood_Orange`, `Outland_Blood_Pink`, `Outland_Blood_Purple`, `Outland_Blood_Red`, `Outland_Blood_White`, `Outland_Blood_Yellow`
+- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
+- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_RotBlood`
+- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
+- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
+- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_BlueBlood`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
+- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
+- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
+- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_BloodSpore`
+- Gexies expies (3738658775) (1): `YellowBlood`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
+- Rim's Destiny: Exo (3771229424) (1): `RD_RadiolariaBlood`
+- Gexies milkies (3775745938) (1): `YellowBlood`
+
+## Exclusion `BloodColor` (200 genes, 5 mods)
+
+- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
+- Blood Color Genes (2887956113) (41): `BloodAqua`, `BloodBlack`, `BloodBlue`, `BloodBrown`, `BloodCitrus`, `BloodCopper`, `BloodDarkGreen`, `BloodDarkOlive`, `BloodDeepMagenta`, `BloodDodgerBlue`, `BloodEggplant`, `BloodElectricIndigo`, `BloodGold`, `BloodGreen`, `BloodGrey`, `BloodIndigo`, `BloodJade`, `BloodLime`, `BloodMagenta`, `BloodMaroon`, `BloodMediumBlue`, `BloodNavy`, `BloodOlive`, `BloodOrange`, `BloodPeriwinkle`, `BloodPink`, `BloodPlum`, `BloodPrussianBlue`, `BloodPurple`, `BloodRed`, `BloodSangria`, `BloodShamrockGreen`, `BloodSherpaBlue`, `BloodSilver`, `BloodSmalt`, `BloodSpringGreen`, `BloodTeal`, `BloodTenne`, `BloodTyrianPurple`, `BloodWhite`, `BloodYellow`
+- [Alien/Race] Seren, from Stardust (2704627783) (1): `OL_SerenBlood`
+- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
+- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
+
+## Exclusion `AG_BloodType` (189 genes, 14 mods)
+
+- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
+- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
+- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_RotBlood`
+- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
+- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_BlueBlood`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
+- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
+- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
+- Gexies expies (3738658775) (1): `YellowBlood`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
+- Gexies milkies (3775745938) (1): `YellowBlood`
+
+## Exclusion `Ears` (181 genes, 22 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (5): `Ears_Cat`, `Ears_Floppy`, `Ears_Human`, `Ears_Pig`, `Ears_Pointed`
 - Outland - Genetics (2910172297) (27): `Outland_Ears_Akhkharu`, `Outland_Ears_BigEars`, `Outland_Ears_Bun`, `Outland_Ears_Curved`, `Outland_Ears_Doe`, `Outland_Ears_Fey`, `Outland_Ears_FlatPointed`, `Outland_Ears_Fleef`, `Outland_Ears_Flick`, `Outland_Ears_Flufftop`, `Outland_Ears_Foxie`, `Outland_Ears_Furred`, `Outland_Ears_Goblinoid`, `Outland_Ears_Jackal`, `Outland_Ears_Large`, `Outland_Ears_Nyoom`, `Outland_Ears_Ratty`, `Outland_Ears_Rounded`, `Outland_Ears_Serrated`, `Outland_Ears_Swish`, `Outland_Ears_Teddy`, `Outland_Ears_Ventral`, `Outland_Ears_Vigilant`, `Outland_Ears_Webbed`, `Outland_Ears_Wild`, `Outland_Ears_Woosh`, `Outland_ElvenEars`
@@ -974,8 +1059,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - NewRatkinPlus (1578693166) (1): `RK_Gene_LargeEars`
 - Zoroark - Xenotype (3047455758) (2): `BZoroarkEarGene`, `WZoroarkEarGene`
 - Skeletal Efflorescence (3685431818) (2): `Eo3_LoogCirrus`, `Eo3_LoogCirrusDistort`
+- 고라니 귀와 꼬리 (Gorani Ears and Tail) (3716953000) (1): `Ears_Gorani`
 - Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenEars`
 - Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsEars`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallEars`
+- Femboy Xenotypes (3456372943) (1): `FEMB_RandomEarsFemboy`
 - GeneAndFactions (3546863281) (1): `GF_CatEar`
 - Foxian League (3639227864) (1): `FL_FoxEar`
 - Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_Ear`
@@ -983,7 +1071,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - 圣蜣螂种族 (3740297753) (1): `ScarabSaintGene`
 - 鼠族（无外星人框架）/ Ratkin Without HAR (3826752382) (1): `RK_Gene_LargeEars`
 
-## Exclusion `EyeColor` (171 genes, 13 mods)
+## Exclusion `EyeColor` (175 genes, 16 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (2): `Eyes_Gray`, `Eyes_Red`
 - EyeGenes3 (3745223213) (66): `Eyes_Blue`, `Eyes_BlueGlow`, `Eyes_BrightGreen`, `Eyes_BrightGreenGlow`, `Eyes_BrightYellow`, `Eyes_BrightYellowGlow`, `Eyes_Brown`, `Eyes_BrownGlow`, `Eyes_Crimson`, `Eyes_CrimsonGlow`, `Eyes_Cyan`, `Eyes_CyanGlow`, `Eyes_DarkBrown`, `Eyes_DarkBrownGlow`, `Eyes_DarkCyan`, `Eyes_DarkCyanGlow`, `Eyes_DarkGray`, `Eyes_DarkGrayGlow`, `Eyes_DarkGreen`, `Eyes_DarkGreenGlow`, `Eyes_DarkPink`, `Eyes_DarkPinkGlow`, `Eyes_DarkPurple`, `Eyes_DarkPurpleGlow`, `Eyes_DarkYellow`, `Eyes_DarkYellowGlow`, `Eyes_DarkestGray`, `Eyes_DarkestGrayGlow`, `Eyes_DeepBlue`, `Eyes_DeepBlueGlow`, `Eyes_DeepRed`, `Eyes_DeepRedGlow`, `Eyes_Golden`, `Eyes_GoldenGlow`, `Eyes_GrayGlow`, `Eyes_Green`, `Eyes_GreenGlow`, `Eyes_LightBlue`, `Eyes_LightBlueGlow`, `Eyes_LightBrown`, `Eyes_LightBrownGlow`, `Eyes_LightGray`, `Eyes_LightGrayGlow`, `Eyes_LightPink`, `Eyes_LightPinkGlow`, `Eyes_LightPurple`, `Eyes_LightPurpleGlow`, `Eyes_LimeGreen`, `Eyes_LimeGreenGlow`, `Eyes_OceanBlue`, `Eyes_OceanBlueGlow`, `Eyes_Orange`, `Eyes_OrangeGlow`, `Eyes_Pink`, `Eyes_PinkGlow`, `Eyes_Purple`, `Eyes_PurpleGlow`, `Eyes_RedGlow`, `Eyes_Silver`, `Eyes_SilverGlow`, `Eyes_SkyBlue`, `Eyes_SkyBlueGlow`, `Eyes_White`, `Eyes_WhiteGlow`, `Eyes_Yellow`, `Eyes_YellowGlow`
@@ -993,27 +1081,32 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Sensmageddon (3365152973) (4): `SMG_OculusBlue`, `SMG_OculusBrown`, `SMG_OculusGreen`, `SMG_OculusHazel`
 - Cain's Gene Pack (3819866589) (2): `Clockwork_GearEyes`, `Echoborn_SealedEyes`
 - Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsEyesight`
+- Clockwork Folk Xenotype (3819827499) (1): `Clockwork_GearEyes`
 - Star Wars Xenotypes (2915192253) (1): `guy762_Head_gand`
 - [DF] Gold Xenotype (3438437353) (1): `Gene_goldHead`
 - FIP - RobCo (3563825876) (1): `RobCo_Gene_SynthBody`
+- Reese's Dirtmole Glowup (3587761388) (1): `RDMO_Head_Squinted`
+- 【β】Ikquan Race (3633519200) (1): `HeadIkquan`
 - Gloria A Las Plagas (3708476081) (1): `CCDevelopment_LasPlagas_Mandibula_Head_Gene`
 - Rim's Destiny: Exo (3771229424) (1): `RD_Exo_Eyes`
 
-## Exclusion `Wings` (136 genes, 22 mods)
+## Exclusion `Wings` (125 genes, 24 mods)
 
-- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
 - Alpha Genes (2891845502) (13): `AG_BatWings`, `AG_BumbledroneWings`, `AG_DemonWings`, `AG_DrainerWings`, `AG_DrakonoriWings`, `AG_FeatheredWings`, `AG_GasBags`, `AG_MothWings`, `AG_NoWings`, `AG_PegasusWings`, `AG_RainbowWings`, `AG_SingleWing`, `AG_WaspWings`
 - Fairycore - Spirit Wings (3812515333) (20): `FG_Wings_Beetle`, `FG_Wings_Birdwing`, `FG_Wings_BlueMorpho`, `FG_Wings_Cicada`, `FG_Wings_CommonBlue`, `FG_Wings_Damselfly`, `FG_Wings_Dragonfly`, `FG_Wings_Firefly`, `FG_Wings_Glasswing`, `FG_Wings_Grasshopper`, `FG_Wings_Lacewing`, `FG_Wings_LunaMoth`, `FG_Wings_Monarch`, `FG_Wings_Moth`, `FG_Wings_PaperKite`, `FG_Wings_Peacock`, `FG_Wings_PrayingMantis`, `FG_Wings_RedAdmiral`, `FG_Wings_Swallowtail`, `FG_Wings_Wasp`
+- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
 - Big and Small - Genes & More (2920751126) (12): `BS_AncientDemonWings`, `BS_AngelWings`, `BS_AngelWings_Mid`, `BS_DemonAngelwings`, `BS_GoldenGorgonWings`, `BS_GracefulAngelwings`, `BS_HolyAngelwings`, `BS_LargeDemonWings`, `BS_MajesticBird`, `BS_MajesticBird_Mid`, `BS_MenacingAngelwings`, `BS_SmallDemonWings`
 - [LTS]Xenotech (2877887281) (4): `LTS_FeatheryHipWings`, `LTS_FeatheryHipWingsLong`, `LTS_HipWings`, `LTS_MothWings`
 - [SH]Gene Expand (3558760095) (4): `SHGE_AngelWings`, `SHGE_LittleDevilWings`, `SHGE_MembranousWings`, `SHGE_TwinWings`
 - Obsidia Expansion - Mothoids Xenotype (2885653060) (4): `OE_WingsAmalgam`, `OE_WingsAtlant`, `OE_WingsMoth`, `OE_WingsPrime`
+- Fairy Xenotype (3826913422) (2): `VDarkFairyWings`, `VFairyWings`
 - Anthrosonae (2902258418) (3): `ATK_AnthrocheeFacialStripes`, `ATK_AnthrofoxFacialStripes`, `ATK_AnthrogriffBackbone`
 - Meteorifics Cosmetic Gene Pack (2903706128) (3): `MTR_Angel_Wings`, `MTR_Demon_Wings`, `MTR_Lumid_Wings`
 - Outland - Genetics (2910172297) (1): `Outland_Wings_None`
 - Rimsenal Xenotype Pack - Harana (3228637524) (1): `Gene_Hwing`
 - Vanilla Quests Expanded - Ancients (3618306875) (2): `VQEA_Levitation`, `VQEA_MatterPhasing`
 - Seraphim Xenotype Reborn (3773065414) (1): `GS_WingsC`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_Glidewings`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxWings`
 - ReSplice: Charmweavers (3131996691) (1): `RS_Wing_Batlike`
 - Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) (3226197882) (1): `LDragon_Wings`
@@ -1024,7 +1117,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Random Genetics Genes Expanded (3745658327) (1): `HJAG_Wings`
 - Avian Genes (3769643744) (1): `Drifter_AvianWings`
 
-## Exclusion `Tail` (119 genes, 21 mods)
+## Exclusion `Tail` (122 genes, 23 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (2): `Tail_Furry`, `Tail_Smooth`
 - Erin's Cosmetic Genes (3658223466) (13): `ERN_Tail_Axolotl`, `ERN_Tail_AxolotlFloofy`, `ERN_Tail_Bunny`, `ERN_Tail_Ferret`, `ERN_Tail_Goat`, `ERN_Tail_Horse`, `ERN_Tail_Lizard`, `ERN_Tail_Mouse`, `ERN_Tail_Orca`, `ERN_Tail_Raccoon`, `ERN_Tail_RedPanda`, `ERN_Tail_Skunk`, `ERN_Tail_Squirrel`
@@ -1038,9 +1131,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - NewRatkinPlus (1578693166) (1): `RK_Gene_ThinTail`
 - Carnarodian, the two Mustelids Xenotypes and Factions (3104049393) (2): `LyunicaTail`, `SobolelyudTail`
 - Foxian League (3639227864) (2): `FL_FoxTail`, `FL_NineFoxTail`
+- 고라니 귀와 꼬리 (Gorani Ears and Tail) (3716953000) (1): `Tail_Gorani`
 - Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsTail`
 - Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) (3226197882) (1): `LDragon_Tail`
 - Bamp Xenotype (3297545550) (1): `Tail_Bamp`
+- Femboy Xenotypes (3456372943) (1): `FEMB_RandomTailsFemboy`
 - GeneAndFactions (3546863281) (1): `GF_SharkTail`
 - Awakened Apes (3646217940) (1): `MonkeyTail_Skin`
 - Bill Doors' Frostnova Expanded Unofficial by Haqimi (3656575228) (1): `BDFNE_Gene_EarAndTail`
@@ -1055,7 +1150,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Seren, from Stardust [Biotech Fork] (3726565301) (19): `OL_HairAegean`, `OL_HairAlbino`, `OL_HairAmaranth`, `OL_HairBerry`, `OL_HairBlush`, `OL_HairEggplant`, `OL_HairIndigo`, `OL_HairLapis`, `OL_HairLavender`, `OL_HairLilac`, `OL_HairMauve`, `OL_HairNavy`, `OL_HairPeriwinkle`, `OL_HairPlum`, `OL_HairPowder`, `OL_HairRose`, `OL_HairSky`, `OL_HairWine`, `OL_HairWisteria`
 - [AV] Kosmian Xenotype (3774474578) (1): `AV_Chromalog`
 
-## Exclusion `BeardStyle` (100 genes, 34 mods)
+## Exclusion `BeardStyle` (101 genes, 35 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Beard_Always`, `Beard_BushyOnly`, `Beard_NoBeardOnly`, `Furskin`
 - Yanzhiko Xenotype Collection (3580656240) (24): `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`
@@ -1090,19 +1185,41 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Obsidia Expansion - Tailborne Xenotype (3511930980) (1): `OE_RatscourgeHead`
 - Cybranian - Oryx Xenotype (3527163129) (1): `Hair_Oryx`
 - FIP - WestTek (3592202407) (1): `WestTek_Gene_Plantskin`
+- 【β】Ikquan Race (3633519200) (1): `HeadIkquan`
 - Kemirman (3793645542) (1): `Kemir_CapybaraFur`
 
-## Exclusion `Wing` (98 genes, 17 mods)
+## Exclusion `SkinColorOverride` (97 genes, 11 mods)
 
-- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
+- Vanilla RimWorld (Core and Biotech, game folder) (12): `Skin_Blue`, `Skin_DeepRed`, `Skin_DeepYellow`, `Skin_Green`, `Skin_InkBlack`, `Skin_LightGray`, `Skin_Orange`, `Skin_PaleRed`, `Skin_PaleYellow`, `Skin_Purple`, `Skin_SheerWhite`, `Skin_SlateGray`
+- Inclusive Skin Tone Genes (3554881228) (29): `Skin_Melanin10G`, `Skin_Melanin11G`, `Skin_Melanin12G`, `Skin_Melanin13G`, `Skin_Melanin14G`, `Skin_Melanin15G`, `Skin_Melanin16G`, `Skin_Melanin17G`, `Skin_Melanin18G`, `Skin_Melanin19G`, `Skin_Melanin1G`, `Skin_Melanin20G`, `Skin_Melanin21G`, `Skin_Melanin22G`, `Skin_Melanin23G`, `Skin_Melanin24G`, `Skin_Melanin25G`, `Skin_Melanin26G`, `Skin_Melanin27G`, `Skin_Melanin28G`, `Skin_Melanin29G`, `Skin_Melanin2G`, `Skin_Melanin3G`, `Skin_Melanin4G`, `Skin_Melanin5G`, `Skin_Melanin6G`, `Skin_Melanin7G`, `Skin_Melanin8G`, `Skin_Melanin9G`
+- Paws Of Interest [ Xenotype Mod ] (3764120996) (22): `PoI_ActivatedCarbon_Skin`, `PoI_AnthraciteBlack_Skin`, `PoI_BahamaBlue_Skin`, `PoI_Brown_Skin`, `PoI_Bubble_Skin`, `PoI_Buckskin_Skin`, `PoI_Chiara_Skin`, `PoI_ComfortViolet _Skin`, `PoI_Coral_Skin`, `PoI_DarkBlue_Skin`, `PoI_FurWhite_Skin`, `PoI_LightBlue_Skin`, `PoI_Lime_Skin`, `PoI_LittleGirlPink_Skin`, `PoI_Popcorn_Skin`, `PoI_Sea_Skin`, `PoI_SimpleCream_Skin`, `PoI_SoftPink_Skin`, `PoI_SubtlePurple_Skin`, `PoI_TawnyLion_Skin`, `PoI_Trout_Skin`, `PoI_UpliftingOrange_Skin`
+- Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
+- Vanilla Skin Tone Genes (3165888554) (9): `VSTG_Skin_1`, `VSTG_Skin_2`, `VSTG_Skin_3`, `VSTG_Skin_4`, `VSTG_Skin_5`, `VSTG_Skin_6`, `VSTG_Skin_7`, `VSTG_Skin_8`, `VSTG_Skin_9`
+- Viltrumites in Rimworld (3708277667) (4): `Skin_ThraxanHybridBlack`, `Skin_ThraxanHybridTan`, `Skin_ThraxanViolet`, `Skin_UnopanOrange`
+- Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
+- DuelMonsterRimWorld (3050289249) (1): `Skin_DMRW_VampireRed`
+- The Profaned (3202008037) (1): `BotchJob_RottingFleshBasic`
+- Star Wars KotOR Factions (3379096669) (1): `guy762_gene_sion`
+- [AV] Kosmian Xenotype (3774474578) (1): `AV_Chromalog`
+
+## Exclusion `SerenHairColor` (95 genes, 2 mods)
+
+- [Alien/Race] Seren, from Stardust (2704627783) (19): `OL_HairAegean`, `OL_HairAlbino`, `OL_HairAmaranth`, `OL_HairBerry`, `OL_HairBlush`, `OL_HairEggplant`, `OL_HairIndigo`, `OL_HairLapis`, `OL_HairLavender`, `OL_HairLilac`, `OL_HairMauve`, `OL_HairNavy`, `OL_HairPeriwinkle`, `OL_HairPlum`, `OL_HairPowder`, `OL_HairRose`, `OL_HairSky`, `OL_HairWine`, `OL_HairWisteria`
+- Seren, from Stardust [Biotech Fork] (3726565301) (19): `OL_HairAegean`, `OL_HairAlbino`, `OL_HairAmaranth`, `OL_HairBerry`, `OL_HairBlush`, `OL_HairEggplant`, `OL_HairIndigo`, `OL_HairLapis`, `OL_HairLavender`, `OL_HairLilac`, `OL_HairMauve`, `OL_HairNavy`, `OL_HairPeriwinkle`, `OL_HairPlum`, `OL_HairPowder`, `OL_HairRose`, `OL_HairSky`, `OL_HairWine`, `OL_HairWisteria`
+
+## Exclusion `Wing` (87 genes, 19 mods)
+
 - Alpha Genes (2891845502) (13): `AG_BatWings`, `AG_BumbledroneWings`, `AG_DemonWings`, `AG_DrainerWings`, `AG_DrakonoriWings`, `AG_FeatheredWings`, `AG_GasBags`, `AG_MothWings`, `AG_NoWings`, `AG_PegasusWings`, `AG_RainbowWings`, `AG_SingleWing`, `AG_WaspWings`
+- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
 - Big and Small - Genes & More (2920751126) (12): `BS_AncientDemonWings`, `BS_AngelWings`, `BS_AngelWings_Mid`, `BS_DemonAngelwings`, `BS_GoldenGorgonWings`, `BS_GracefulAngelwings`, `BS_HolyAngelwings`, `BS_LargeDemonWings`, `BS_MajesticBird`, `BS_MajesticBird_Mid`, `BS_MenacingAngelwings`, `BS_SmallDemonWings`
 - Papou Xenotype: Emotional Birds (Continued) (3571039438) (5): `papagoWing0`, `papagoWing1`, `papagoWing2`, `papagoWing3`, `papagoWing4`
 - Obsidia Expansion - Mothoids Xenotype (2885653060) (4): `OE_WingsAmalgam`, `OE_WingsAtlant`, `OE_WingsMoth`, `OE_WingsPrime`
+- Fairy Xenotype (3826913422) (2): `VDarkFairyWings`, `VFairyWings`
 - Anthrosonae (2902258418) (3): `ATK_AnthrocheeFacialStripes`, `ATK_AnthrofoxFacialStripes`, `ATK_AnthrogriffBackbone`
 - Lapelli Race - Biotech (2892301088) (1): `Lapelli_Wing`
 - Vanilla Quests Expanded - Ancients (3618306875) (2): `VQEA_Levitation`, `VQEA_MatterPhasing`
 - Seraphim Xenotype Reborn (3773065414) (1): `GS_WingsC`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_Glidewings`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxWings`
 - ReSplice: Charmweavers (3131996691) (1): `RS_Wing_Batlike`
 - Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) (3226197882) (1): `LDragon_Wings`
@@ -1112,12 +1229,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Avian Genes (3769643744) (1): `Drifter_AvianWings`
 - local:rjw-genes (local:rjw-genes) (1): `rjw_genes_succubus_wings`
 
-## Exclusion `SerenHairColor` (95 genes, 2 mods)
-
-- [Alien/Race] Seren, from Stardust (2704627783) (19): `OL_HairAegean`, `OL_HairAlbino`, `OL_HairAmaranth`, `OL_HairBerry`, `OL_HairBlush`, `OL_HairEggplant`, `OL_HairIndigo`, `OL_HairLapis`, `OL_HairLavender`, `OL_HairLilac`, `OL_HairMauve`, `OL_HairNavy`, `OL_HairPeriwinkle`, `OL_HairPlum`, `OL_HairPowder`, `OL_HairRose`, `OL_HairSky`, `OL_HairWine`, `OL_HairWisteria`
-- Seren, from Stardust [Biotech Fork] (3726565301) (19): `OL_HairAegean`, `OL_HairAlbino`, `OL_HairAmaranth`, `OL_HairBerry`, `OL_HairBlush`, `OL_HairEggplant`, `OL_HairIndigo`, `OL_HairLapis`, `OL_HairLavender`, `OL_HairLilac`, `OL_HairMauve`, `OL_HairNavy`, `OL_HairPeriwinkle`, `OL_HairPlum`, `OL_HairPowder`, `OL_HairRose`, `OL_HairSky`, `OL_HairWine`, `OL_HairWisteria`
-
-## Exclusion `HairStyle` (81 genes, 32 mods)
+## Exclusion `HairStyle` (83 genes, 34 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Furskin`, `Hair_BaldOnly`, `Hair_LongOnly`, `Hair_ShortOnly`
 - Yanzhiko Xenotype Collection (3580656240) (24): `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`
@@ -1134,6 +1246,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Crream's Yetis (3529805799) (2): `BlueYetiskin`, `PinkYetiskin`
 - FIP - RobCo (3563825876) (2): `RobCo_Gene_SynthBody`, `RobCo_Gene_ThinkTankCore`
 - Papou Xenotype: Emotional Birds (Continued) (3571039438) (2): `papagoBody1`, `papagoBody2`
+- Biotech - Avali (2893711709) (1): `Featherskin`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxFur`
 - Roo's HD Dreadlock Hairstyles (2902544033) (1): `Hair_DreadlocksOnly`
 - Star Wars Xenotypes (2915192253) (1): `guy762_Furskin_shortfur`
@@ -1149,10 +1262,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Bagi Faction 1.6 (3527337546) (1): `Hair_SuccuBagi`
 - ME(b) - Turians (3572135997) (1): `Turian_Head`
 - FIP - WestTek (3592202407) (1): `WestTek_Gene_Plantskin`
+- 【β】Ikquan Race (3633519200) (1): `HeadIkquan`
 - Kemirman (3793645542) (1): `Kemir_CapybaraFur`
 - local:rjw-animal-gene-inheritance (local:rjw-animal-gene-inheritance) (1): `AGI_Thin_Fur`
 
-## Exclusion `Bodies` (76 genes, 14 mods)
+## Exclusion `Bodies` (78 genes, 16 mods)
 
 - Alpha Genes (2891845502) (11): `AG_CancerousBody`, `AG_DrakonoriBody`, `AG_ForsakenBody`, `AG_GauntBody`, `AG_NereidBody`, `AG_RockyBody`, `AG_ScalyBody`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlimeBody`, `AG_SlugBody`
 - WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
@@ -1163,58 +1277,15 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Reese's Anomaly Genes (3434828984) (2): `ReeseGenes_BodyLeathery`, `ReeseGenes_BodyTormented`
 - Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
 - Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_BarkSkin`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallBod`
+- Vanilla Races Expanded - Waster (2983471725) (1): `VRE_GauntBody`
 - Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_PerfectBody`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
 - Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 - HelixLabor Syndicate (3502230756) (1): `callousedflesh`
 - Resident Rim (3732795691) (1): `RE_ZombieSkin`
 
-## Exclusion `SkinColorOverride` (68 genes, 10 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (12): `Skin_Blue`, `Skin_DeepRed`, `Skin_DeepYellow`, `Skin_Green`, `Skin_InkBlack`, `Skin_LightGray`, `Skin_Orange`, `Skin_PaleRed`, `Skin_PaleYellow`, `Skin_Purple`, `Skin_SheerWhite`, `Skin_SlateGray`
-- Paws Of Interest [ Xenotype Mod ] (3764120996) (22): `PoI_ActivatedCarbon_Skin`, `PoI_AnthraciteBlack_Skin`, `PoI_BahamaBlue_Skin`, `PoI_Brown_Skin`, `PoI_Bubble_Skin`, `PoI_Buckskin_Skin`, `PoI_Chiara_Skin`, `PoI_ComfortViolet _Skin`, `PoI_Coral_Skin`, `PoI_DarkBlue_Skin`, `PoI_FurWhite_Skin`, `PoI_LightBlue_Skin`, `PoI_Lime_Skin`, `PoI_LittleGirlPink_Skin`, `PoI_Popcorn_Skin`, `PoI_Sea_Skin`, `PoI_SimpleCream_Skin`, `PoI_SoftPink_Skin`, `PoI_SubtlePurple_Skin`, `PoI_TawnyLion_Skin`, `PoI_Trout_Skin`, `PoI_UpliftingOrange_Skin`
-- Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
-- Vanilla Skin Tone Genes (3165888554) (9): `VSTG_Skin_1`, `VSTG_Skin_2`, `VSTG_Skin_3`, `VSTG_Skin_4`, `VSTG_Skin_5`, `VSTG_Skin_6`, `VSTG_Skin_7`, `VSTG_Skin_8`, `VSTG_Skin_9`
-- Viltrumites in Rimworld (3708277667) (4): `Skin_ThraxanHybridBlack`, `Skin_ThraxanHybridTan`, `Skin_ThraxanViolet`, `Skin_UnopanOrange`
-- Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
-- DuelMonsterRimWorld (3050289249) (1): `Skin_DMRW_VampireRed`
-- The Profaned (3202008037) (1): `BotchJob_RottingFleshBasic`
-- Star Wars KotOR Factions (3379096669) (1): `guy762_gene_sion`
-- [AV] Kosmian Xenotype (3774474578) (1): `AV_Chromalog`
-
-## Exclusion `Blood` (66 genes, 13 mods)
-
-- Outland - Genetics (2910172297) (15): `Outland_Blood_Black`, `Outland_Blood_Blue`, `Outland_Blood_Brown`, `Outland_Blood_Cyan`, `Outland_Blood_Gray`, `Outland_Blood_Green`, `Outland_Blood_LightBlue`, `Outland_Blood_Lime`, `Outland_Blood_Magenta`, `Outland_Blood_Orange`, `Outland_Blood_Pink`, `Outland_Blood_Purple`, `Outland_Blood_Red`, `Outland_Blood_White`, `Outland_Blood_Yellow`
-- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
-- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
-- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
-- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
-- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
-- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
-- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
-- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_BloodSpore`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
-- Rim's Destiny: Exo (3771229424) (1): `RD_RadiolariaBlood`
-
-## Exclusion `BloodType` (66 genes, 13 mods)
-
-- Outland - Genetics (2910172297) (15): `Outland_Blood_Black`, `Outland_Blood_Blue`, `Outland_Blood_Brown`, `Outland_Blood_Cyan`, `Outland_Blood_Gray`, `Outland_Blood_Green`, `Outland_Blood_LightBlue`, `Outland_Blood_Lime`, `Outland_Blood_Magenta`, `Outland_Blood_Orange`, `Outland_Blood_Pink`, `Outland_Blood_Purple`, `Outland_Blood_Red`, `Outland_Blood_White`, `Outland_Blood_Yellow`
-- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
-- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
-- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
-- Seren, from Stardust [Biotech Fork] (3726565301) (1): `OL_SerenBlood`
-- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
-- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
-- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
-- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_BloodSpore`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
-- Rim's Destiny: Exo (3771229424) (1): `RD_RadiolariaBlood`
-
-## Exclusion `BodySize` (66 genes, 14 mods)
+## Exclusion `BodySize` (67 genes, 15 mods)
 
 - Outland - Genetics (2910172297) (5): `Outland_BodyScale_Large`, `Outland_BodyScale_Massive`, `Outland_BodyScale_Small`, `Outland_BodyScale_Squat`, `Outland_BodyScale_Tiny`
 - Big and Small - Muriden (3597814862) (4): `Muriden_Frame`, `Muriden_FrameLarge`, `Muriden_FrameLithe`, `Muriden_FrameTitan`
@@ -1230,25 +1301,19 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - RWoM Custom Class Pack - Epic Battle Fantasy (2803755648) (1): `EBF_SmolCat`
 - MakaiTech - Xenotype (3268577147) (1): `Makai_AdeltiaFrame`
 - 圣蜣螂种族 (3740297753) (1): `Scarab_DiligentWorkerGene`
+- The Drow - Biotech Edition (Continued) (3755554485) (1): `Drow_Gene_Short`
 
 ## Exclusion `SerenSkinColor` (65 genes, 2 mods)
 
 - [Alien/Race] Seren, from Stardust (2704627783) (13): `OL_SkinAlbino`, `OL_SkinCobalt`, `OL_SkinIndigo`, `OL_SkinMajenta`, `OL_SkinNebula`, `OL_SkinOrchid`, `OL_SkinPlanetary`, `OL_SkinPlum`, `OL_SkinRouge`, `OL_SkinRoyal`, `OL_SkinTeal`, `OL_SkinTwilight`, `OL_SkinViolet`
 - Seren, from Stardust [Biotech Fork] (3726565301) (13): `OL_SkinAlbino`, `OL_SkinCobalt`, `OL_SkinIndigo`, `OL_SkinMagenta`, `OL_SkinNebula`, `OL_SkinOrchid`, `OL_SkinPlanetary`, `OL_SkinPlum`, `OL_SkinRouge`, `OL_SkinRoyal`, `OL_SkinTeal`, `OL_SkinTwilight`, `OL_SkinViolet`
 
-## Exclusion `EBSG_FertilityByAge` (61 genes, 5 mods)
-
-- Expanded Biotech Style Genes - All in One (3020821838) (14): `EBSG_AlwaysFertile`, `EBSG_AlwaysVeryFertile`, `EBSG_FertilityExtension`, `EBSG_FertilityExtensionExtreme`, `EBSG_FertilityExtensionHyper`, `EBSG_FertilityExtensionMajor`, `EBSG_FertilityExtensionMinor`, `EBSG_FertilityExtensionSuper`, `EBSG_FertilityShortening`, `EBSG_FertilityShorteningExtreme`, `EBSG_FertilityShorteningHyper`, `EBSG_FertilityShorteningMajor`, `EBSG_FertilityShorteningMinor`, `EBSG_FertilityShorteningSuper`
-- EBSG - Expanded Reproduction Genes (3115293263) (14): `EBSG_AlwaysFertile`, `EBSG_AlwaysVeryFertile`, `EBSG_FertilityExtension`, `EBSG_FertilityExtensionExtreme`, `EBSG_FertilityExtensionHyper`, `EBSG_FertilityExtensionMajor`, `EBSG_FertilityExtensionMinor`, `EBSG_FertilityExtensionSuper`, `EBSG_FertilityShortening`, `EBSG_FertilityShorteningExtreme`, `EBSG_FertilityShorteningHyper`, `EBSG_FertilityShorteningMajor`, `EBSG_FertilityShorteningMinor`, `EBSG_FertilityShorteningSuper`
-- Superhero Genes - Base (2980061828) (1): `SuperHeroBase`
-- Always Super Duper Reproductive (3208869388) (1): `AlwaysSuperDuperReproductive`
-- Random Genetics Genes Expanded (3745658327) (1): `HJA_FertilityAge`
-
-## Exclusion `ShootingAccuracy` (59 genes, 22 mods)
+## Exclusion `ShootingAccuracy` (65 genes, 24 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (2): `Nearsighted`, `ViolenceDisabled`
 - More Biotech Style Genes - All in One (2985153870) (7): `Farsighted`, `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`, `SlightlyFarsighted`, `SlightlyNearsighted`, `VeryFarsighted`, `VeryNearsighted`
 - Alpha Genes (2891845502) (6): `AG_BioluminescentEyes`, `AG_ChameleonVision`, `AG_FeraliskEyes`, `AG_NearBlindness`, `AG_ThirdEye`, `AG_VFEI_SegmentedEyes`
+- More Vision Genes (3000191942) (5): `Farsighted`, `SlightlyFarsighted`, `SlightlyNearsighted`, `VeryFarsighted`, `VeryNearsighted`
 - [OA]Ratkin Gene Expand (3300291918) (2): `OAGene_MildNearsightedness`, `OAGene_NormalEyesight`
 - Biotech Expansion - Mammalia (2878084431) (1): `BTEMa_Farsighted`
 - Rimsenal Xenotype Pack - Askbarn (2918812858) (1): `RSLongshot`
@@ -1262,6 +1327,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Miho, the celestial fox (2816826107) (1): `Gene_Miho_AdvancedAuditory`
 - Cyanobot's Genes (2889844371) (1): `CYB_Blind`
 - EBSG - Capacity Genes (Sight, Hearing, etc) (3006401355) (1): `EBSG_Blind`
+- Det's Xenotypes - Venators (3140248688) (1): `DV_Farsighted`
 - Simple Extended Gene (3324409235) (1): `SEG_Hyperopia`
 - Totzi Xenotype Race (3409222988) (1): `TZ_HighVision`
 - Cybranian - Oryx Xenotype (3527163129) (1): `Oryx_Farsightedness`
@@ -1269,7 +1335,15 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Random Genetics Genes Expanded (3745658327) (1): `HJ_Violence`
 - MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinPupilDefect`
 
-## Exclusion `Body` (58 genes, 14 mods)
+## Exclusion `EBSG_FertilityByAge` (61 genes, 5 mods)
+
+- Expanded Biotech Style Genes - All in One (3020821838) (14): `EBSG_AlwaysFertile`, `EBSG_AlwaysVeryFertile`, `EBSG_FertilityExtension`, `EBSG_FertilityExtensionExtreme`, `EBSG_FertilityExtensionHyper`, `EBSG_FertilityExtensionMajor`, `EBSG_FertilityExtensionMinor`, `EBSG_FertilityExtensionSuper`, `EBSG_FertilityShortening`, `EBSG_FertilityShorteningExtreme`, `EBSG_FertilityShorteningHyper`, `EBSG_FertilityShorteningMajor`, `EBSG_FertilityShorteningMinor`, `EBSG_FertilityShorteningSuper`
+- EBSG - Expanded Reproduction Genes (3115293263) (14): `EBSG_AlwaysFertile`, `EBSG_AlwaysVeryFertile`, `EBSG_FertilityExtension`, `EBSG_FertilityExtensionExtreme`, `EBSG_FertilityExtensionHyper`, `EBSG_FertilityExtensionMajor`, `EBSG_FertilityExtensionMinor`, `EBSG_FertilityExtensionSuper`, `EBSG_FertilityShortening`, `EBSG_FertilityShorteningExtreme`, `EBSG_FertilityShorteningHyper`, `EBSG_FertilityShorteningMajor`, `EBSG_FertilityShorteningMinor`, `EBSG_FertilityShorteningSuper`
+- Superhero Genes - Base (2980061828) (1): `SuperHeroBase`
+- Always Super Duper Reproductive (3208869388) (1): `AlwaysSuperDuperReproductive`
+- Random Genetics Genes Expanded (3745658327) (1): `HJA_FertilityAge`
+
+## Exclusion `Body` (60 genes, 16 mods)
 
 - Alpha Genes (2891845502) (11): `AG_CancerousBody`, `AG_DrakonoriBody`, `AG_ForsakenBody`, `AG_GauntBody`, `AG_NereidBody`, `AG_RockyBody`, `AG_ScalyBody`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlimeBody`, `AG_SlugBody`
 - Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
@@ -1280,11 +1354,43 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Reese's Anomaly Genes (3434828984) (2): `ReeseGenes_BodyLeathery`, `ReeseGenes_BodyTormented`
 - Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
 - Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_BarkSkin`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallBod`
+- Vanilla Races Expanded - Waster (2983471725) (1): `VRE_GauntBody`
 - Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_PerfectBody`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
 - Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 - HelixLabor Syndicate (3502230756) (1): `callousedflesh`
 - Resident Rim (3732795691) (1): `RE_ZombieSkin`
+
+## Exclusion `Skin` (60 genes, 12 mods)
+
+- [LFS] Genes Expanded - Skin Types (3545921603) (8): `GEST_Bark_Skin_Type`, `GEST_Crystalline_Skin_Type`, `GEST_Feathered_Skin_Type`, `GEST_Insectoid_Skin_Type`, `GEST_Rockey_Skin_Type`, `GEST_Sandstone_Skin_Type`, `GEST_Scale_Skin_Type`, `GEST_Slime_Skin_Type`
+- Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
+- [S16] Beautiful Body Variants (3556936541) (10): `S16_FBV_Abs_A`, `S16_FBV_Abs_B`, `S16_FBV_Abs_C`, `S16_FBV_Standard_A`, `S16_FBV_Standard_A_Weight`, `S16_FBV_Standard_A_Weight_More`, `S16_FBV_Standard_B`, `S16_FBV_Standard_B_Weight`, `S16_FBV_Standard_C`, `S16_FBV_Standard_C_Weight`
+- BoneReapers ReMarrowed (3516603515) (5): `pphhyy_ApokryphosBody`, `pphhyy_ArchonBody`, `pphhyy_PhalangiteBody`, `pphhyy_SepelireBody`, `pphhyy_ThetesBody`
+- Outland - Genetics (2910172297) (2): `Outland_ChitinousSkin`, `Outland_ChitinousSkinTinted`
+- [AP] Lupine Xenotype (2991428888) (3): `AP_Lupine_Black_Body`, `AP_Lupine_Glister_Body`, `AP_Lupine_White_Body`
+- Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
+- Vanilla Races Expanded - Saurid (2880990495) (1): `VRESaurids_ScaleSkin`
+- Biotech - Avali (2893711709) (1): `Featherskin`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallBod`
+- Very scuffed 1.5 Sergals (3469468302) (1): `Fluffskin`
+- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskySkinPattern`
+
+## Exclusion `AG_Bodies` (57 genes, 12 mods)
+
+- Alpha Genes (2891845502) (11): `AG_CancerousBody`, `AG_DrakonoriBody`, `AG_ForsakenBody`, `AG_GauntBody`, `AG_NereidBody`, `AG_RockyBody`, `AG_ScalyBody`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlimeBody`, `AG_SlugBody`
+- WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
+- Rim-Hivers! - Biotech (3378615596) (4): `RH_HiverDroneCaste`, `RH_HiverPrinceCaste`, `RH_HiverRoyalCaste`, `RH_HiverSoldierCaste`
+- Big and Small - Simply Robots (3360323573) (2): `BS_CommandoBody`, `BS_SimpleRobotBody`
+- Reese's Anomaly Genes (3434828984) (2): `ReeseGenes_BodyLeathery`, `ReeseGenes_BodyTormented`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_BarkSkin`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallBod`
+- Vanilla Races Expanded - Waster (2983471725) (1): `VRE_GauntBody`
+- Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_PerfectBody`
+- Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
+- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
+- HelixLabor Syndicate (3502230756) (1): `callousedflesh`
 
 ## Exclusion `BodyType` (56 genes, 16 mods)
 
@@ -1304,19 +1410,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Mona The Moon Bear (1.6 fork) (3248186952) (1): `Mona`
 - Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 - 圣蜣螂种族 (3740297753) (1): `Scarab_DiligentWorkerGene`
-
-## Exclusion `AG_Bodies` (55 genes, 10 mods)
-
-- Alpha Genes (2891845502) (11): `AG_CancerousBody`, `AG_DrakonoriBody`, `AG_ForsakenBody`, `AG_GauntBody`, `AG_NereidBody`, `AG_RockyBody`, `AG_ScalyBody`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlimeBody`, `AG_SlugBody`
-- WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
-- Rim-Hivers! - Biotech (3378615596) (4): `RH_HiverDroneCaste`, `RH_HiverPrinceCaste`, `RH_HiverRoyalCaste`, `RH_HiverSoldierCaste`
-- Big and Small - Simply Robots (3360323573) (2): `BS_CommandoBody`, `BS_SimpleRobotBody`
-- Reese's Anomaly Genes (3434828984) (2): `ReeseGenes_BodyLeathery`, `ReeseGenes_BodyTormented`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_BarkSkin`
-- Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_PerfectBody`
-- Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
-- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
-- HelixLabor Syndicate (3502230756) (1): `callousedflesh`
 
 ## Exclusion `Leather` (54 genes, 8 mods)
 
@@ -1393,6 +1486,17 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Expanded Need Genes (3322392001) (11): `EBSG_ExtremeGloominess`, `EBSG_ExtremeJoviality`, `EBSG_Gloominess`, `EBSG_HyperJoviality`, `EBSG_Joviality`, `EBSG_MajorGloominess`, `EBSG_MajorJoviality`, `EBSG_MinorGloominess`, `EBSG_MinorJoviality`, `EBSG_SuperGloominess`, `EBSG_SuperJoviality`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Recreation`
 
+## Exclusion `Bleeding` (44 genes, 8 mods)
+
+- EBSG - Bleeding Genes (3015076392) (8): `EBSG_BloodClotting`, `EBSG_ExtremeBloodClotting`, `EBSG_ExtremeHemophilia`, `EBSG_Hemophilia`, `EBSG_MajorBloodClotting`, `EBSG_MajorHemophilia`, `EBSG_MinorBloodClotting`, `EBSG_MinorHemophilia`
+- Expanded Biotech Style Genes - All in One (3020821838) (8): `EBSG_BloodClotting`, `EBSG_ExtremeBloodClotting`, `EBSG_ExtremeHemophilia`, `EBSG_Hemophilia`, `EBSG_MajorBloodClotting`, `EBSG_MajorHemophilia`, `EBSG_MinorBloodClotting`, `EBSG_MinorHemophilia`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_MecaBodyParts_Heart`, `WVC_ResurgentCells_Blood`
+- Superhero Genes - Base (2980061828) (1): `SHG_Psionist_SoldierImmortal`
+- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
+- Random Genetics Genes Expanded (3745658327) (2): `HJA_Bleeding`, `HJA_BleedingNeg`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_Hemophiliac`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
+
 ## Exclusion `EBSG_Ear` (44 genes, 2 mods)
 
 - Expanded Biotech Style Genes - All in One (3020821838) (11): `EBSG_MissingEar`, `EBSG_MissingEars`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier1Part_External`, `EBSG_RandomTier1Part_Paired`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier2Part_External`, `EBSG_RandomTier2Part_Paired`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_RandomTier3Part_External`, `EBSG_RandomTier3Part_Paired`
@@ -1403,6 +1507,26 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Expanded Biotech Style Genes - All in One (3020821838) (11): `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier1Part_External`, `EBSG_RandomTier1Part_Paired`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier2Part_External`, `EBSG_RandomTier2Part_Paired`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_RandomTier3Part_External`, `EBSG_RandomTier3Part_Paired`
 - EBSG - Health Genes (3115303988) (11): `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier1Part_External`, `EBSG_RandomTier1Part_Paired`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier2Part_External`, `EBSG_RandomTier2Part_Paired`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_RandomTier3Part_External`, `EBSG_RandomTier3Part_Paired`
 
+## Exclusion `Gender` (44 genes, 17 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (4): `WVC_FemaleOnly`, `WVC_GenderMorph`, `WVC_MaleOnly`, `WVC_Monogender_Disabled`
+- [LTS]Xenotech (2877887281) (2): `LTS_FemaleOnly`, `LTS_MaleOnly`
+- Alpha Genes (2891845502) (2): `AG_Female`, `AG_Male`
+- Outland - Genetics (2910172297) (2): `Outland_AllFemale`, `Outland_AllMale`
+- Posthuman Drift Bossaps Xenotype (3521815829) (4): `XylGender_AlwaysFemale`, `XylGender_AlwaysMale`, `XylGender_UsuallyFemale`, `XylGender_UsuallyMale`
+- RaddusX's Demons (3531834757) (4): `RaddusX_Demons_Incubus_Demon_Form_Gene`, `RaddusX_Demons_Incubus_Human_Form_Gene`, `RaddusX_Demons_Succubus_Demon_Form_Gene`, `RaddusX_Demons_Succubus_Human_Form_Gene`
+- Rim-Hivers! - Biotech (3378615596) (3): `RH_Female`, `RH_Male`, `RH_None`
+- local:rjw-genes (local:rjw-genes) (3): `rjw_genes_female_only`, `rjw_genes_gender_fluid`, `rjw_genes_male_only`
+- Gender Genes (3367533244) (2): `FemaleOnly`, `MaleOnly`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_Female`
+- Erin's Corvyia (3154954530) (1): `ERN_AllFemale`
+- Femboy Xenotypes (3456372943) (1): `FEMB_FemboyMale`
+- HarbingerKin - Phytokin (3522734130) (1): `Myt_Male`
+- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_MaleOnly`
+- Foxian League (3639227864) (1): `FL_Female`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gender`
+- Paws Of Interest [ Xenotype Mod ] (3764120996) (1): `PoI_FemaleOnly`
+
 ## Exclusion `SerenSensors` (44 genes, 4 mods)
 
 - [Alien/Race] Seren, from Stardust (2704627783) (8): `SerenSensors_Back`, `SerenSensors_Branched`, `SerenSensors_Curled`, `SerenSensors_Curved`, `SerenSensors_Double`, `SerenSensors_Drop`, `SerenSensors_Spike`, `SerenSensors_Tall`
@@ -1410,32 +1534,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Roo's Faun Xenotype (3547220635) (2): `RBSF_DeerHorns`, `RBSF_SerenAntlers`
 - Roo's Satyr Xenotype (3548322381) (2): `RBSF_GoatHorns`, `RBSF_SerenGoatHorns`
 
-## Exclusion `Bleeding` (43 genes, 7 mods)
-
-- EBSG - Bleeding Genes (3015076392) (8): `EBSG_BloodClotting`, `EBSG_ExtremeBloodClotting`, `EBSG_ExtremeHemophilia`, `EBSG_Hemophilia`, `EBSG_MajorBloodClotting`, `EBSG_MajorHemophilia`, `EBSG_MinorBloodClotting`, `EBSG_MinorHemophilia`
-- Expanded Biotech Style Genes - All in One (3020821838) (8): `EBSG_BloodClotting`, `EBSG_ExtremeBloodClotting`, `EBSG_ExtremeHemophilia`, `EBSG_Hemophilia`, `EBSG_MajorBloodClotting`, `EBSG_MajorHemophilia`, `EBSG_MinorBloodClotting`, `EBSG_MinorHemophilia`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_MecaBodyParts_Heart`, `WVC_ResurgentCells_Blood`
-- Superhero Genes - Base (2980061828) (1): `SHG_Psionist_SoldierImmortal`
-- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
-- Random Genetics Genes Expanded (3745658327) (2): `HJA_Bleeding`, `HJA_BleedingNeg`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
-
 ## Exclusion `GenitalType` (43 genes, 2 mods)
 
 - local:rjw-extra-xenotype-patches (local:rjw-extra-xenotype-patches) (27): `ROBTRG_Anthro_Bear_genitalia`, `ROBTRG_Anthro_Canine_genitalia`, `ROBTRG_Anthro_Cat_genitalia`, `ROBTRG_Anthro_Cow_genitalia`, `ROBTRG_Anthro_Deer_genitalia`, `ROBTRG_Anthro_Drake_genitalia`, `ROBTRG_Anthro_Goat_genitalia`, `ROBTRG_Anthro_Griff_genitalia`, `ROBTRG_Anthro_Horse_genitalia`, `ROBTRG_Anthro_Hyena_genitalia`, `ROBTRG_Anthro_Mustelid_genitalia`, `ROBTRG_Anthro_Rabbit_genitalia`, `ROBTRG_Anthro_Raccoon_genitalia`, `ROBTRG_Anthro_Shark_genitalia`, `ROBTRG_Anthro_Wah_genitalia`, `ROBTRG_Dioktri_genitalia`, `ROBTRG_Elf_genitalia`, `ROBTRG_Golem_genitalia`, `ROBTRG_Hozen_genitalia`, `ROBTRG_Loxodon_genitalia`, `ROBTRG_Orc_genitalia`, `ROBTRG_ReptileBody`, `ROBTRG_Rodent_genitalia`, `ROBTRG_Slug_genitalia`, `ROBTRG_Tree_genitalia`, `ROBTRG_Undead_genitalia`, `ROBTRG_marine_genitalia`
 - local:rjw-genes (local:rjw-genes) (16): `rjw_genes_Needle_genitalia`, `rjw_genes_Orc_genitalia`, `rjw_genes_Pig_genitalia`, `rjw_genes_canine_genitalia`, `rjw_genes_cloacal_genitalia`, `rjw_genes_crocodilian_genitalia`, `rjw_genes_demonicT_genitalia`, `rjw_genes_demonic_genitalia`, `rjw_genes_dragon_genitalia`, `rjw_genes_equine_genitalia`, `rjw_genes_feline_genitalia`, `rjw_genes_human_genitalia`, `rjw_genes_racoon_genitalia`, `rjw_genes_reptilian_genitalia`, `rjw_genes_rodent_genitalia`, `rjw_genes_slime_genitalia`
-
-## Exclusion `Skin` (42 genes, 9 mods)
-
-- Anthrosonae (2902258418) (15): `ATK_AnthrobearFur`, `ATK_AnthrocatFur`, `ATK_AnthrocowFur`, `ATK_AnthrodeerFur`, `ATK_AnthrodrakeSkin`, `ATK_AnthrofoxFur`, `ATK_AnthrogoatFur`, `ATK_AnthrogriffFur`, `ATK_AnthrohorseFur`, `ATK_AnthrohyenaFur`, `ATK_AnthropandaFur`, `ATK_AnthrorabbitFur`, `ATK_AnthrosharkSkin`, `ATK_AnthrowahFur`, `ATK_AnthrowolfFur`
-- [S16] Beautiful Body Variants (3556936541) (10): `S16_FBV_Abs_A`, `S16_FBV_Abs_B`, `S16_FBV_Abs_C`, `S16_FBV_Standard_A`, `S16_FBV_Standard_A_Weight`, `S16_FBV_Standard_A_Weight_More`, `S16_FBV_Standard_B`, `S16_FBV_Standard_B_Weight`, `S16_FBV_Standard_C`, `S16_FBV_Standard_C_Weight`
-- BoneReapers ReMarrowed (3516603515) (5): `pphhyy_ApokryphosBody`, `pphhyy_ArchonBody`, `pphhyy_PhalangiteBody`, `pphhyy_SepelireBody`, `pphhyy_ThetesBody`
-- Outland - Genetics (2910172297) (2): `Outland_ChitinousSkin`, `Outland_ChitinousSkinTinted`
-- [AP] Lupine Xenotype (2991428888) (3): `AP_Lupine_Black_Body`, `AP_Lupine_Glister_Body`, `AP_Lupine_White_Body`
-- Mantled Beasts (3739973453) (1): `OCARINA_MantledBeastsFur`
-- Vanilla Races Expanded - Saurid (2880990495) (1): `VRESaurids_ScaleSkin`
-- Very scuffed 1.5 Sergals (3469468302) (1): `Fluffskin`
-- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskySkinPattern`
 
 ## Exclusion `BloodRecovery` (41 genes, 3 mods)
 
@@ -1465,36 +1567,21 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Natural Gifts (3291202419) (1): `PsychicTemple`
 - FIP - RobCo (3563825876) (1): `RobCo_Gene_Biosphere`
 
-## Exclusion `Beauty` (40 genes, 10 mods)
+## Exclusion `Jaw` (39 genes, 13 mods)
 
-- Vanilla RimWorld (Core and Biotech, game folder) (4): `Beauty_Beautiful`, `Beauty_Pretty`, `Beauty_Ugly`, `Beauty_VeryUgly`
-- More Biotech Style Genes - All in One (2985153870) (6): `Beauty_ExtremelyBeautiful`, `Beauty_ExtremelyUgly`, `Beauty_SuperBeautiful`, `Beauty_SuperUgly`, `Beauty_UnbelievablyBeautiful`, `Beauty_UnbelievablyUgly`
-- More Beauty Genes (3005531604) (6): `Beauty_ExtremelyBeautiful`, `Beauty_ExtremelyUgly`, `Beauty_SuperBeautiful`, `Beauty_SuperUgly`, `Beauty_UnbelievablyBeautiful`, `Beauty_UnbelievablyUgly`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Hivemind_Beauty`, `WVC_MecaUpgrades_PerfectShape`
-- Random Genetics Genes Expanded (3745658327) (3): `HJ_Beauty`, `HJ_BeautyNeg`, `HJ_BeautyPos`
-- More Storylike Traits - Body and Mind 1.6 (3811291787) (3): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`, `Storylike_Gene_UnforgettableFace`
-- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (3): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`, `Storylike_Gene_UnforgettableFace`
-- The Profaned (3202008037) (2): `BotchJob_RottingFlesh`, `BotchJob_SkeletalBody`
-- [SH]Gene Expand (3558760095) (1): `SHGE_CrumpledSkin`
-- Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxFur`
-
-## Exclusion `Gender` (39 genes, 15 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (4): `WVC_FemaleOnly`, `WVC_GenderMorph`, `WVC_MaleOnly`, `WVC_Monogender_Disabled`
-- [LTS]Xenotech (2877887281) (2): `LTS_FemaleOnly`, `LTS_MaleOnly`
-- Alpha Genes (2891845502) (2): `AG_Female`, `AG_Male`
-- Outland - Genetics (2910172297) (2): `Outland_AllFemale`, `Outland_AllMale`
-- RaddusX's Demons (3531834757) (4): `RaddusX_Demons_Incubus_Demon_Form_Gene`, `RaddusX_Demons_Incubus_Human_Form_Gene`, `RaddusX_Demons_Succubus_Demon_Form_Gene`, `RaddusX_Demons_Succubus_Human_Form_Gene`
-- Rim-Hivers! - Biotech (3378615596) (3): `RH_Female`, `RH_Male`, `RH_None`
-- local:rjw-genes (local:rjw-genes) (3): `rjw_genes_female_only`, `rjw_genes_gender_fluid`, `rjw_genes_male_only`
-- Gender Genes (3367533244) (2): `FemaleOnly`, `MaleOnly`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_Female`
-- Erin's Corvyia (3154954530) (1): `ERN_AllFemale`
-- HarbingerKin - Phytokin (3522734130) (1): `Myt_Male`
-- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_MaleOnly`
-- Foxian League (3639227864) (1): `FL_Female`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gender`
-- Paws Of Interest [ Xenotype Mod ] (3764120996) (1): `PoI_FemaleOnly`
+- Vanilla RimWorld (Core and Biotech, game folder) (3): `Head_Gaunt`, `Jaw_Baseline`, `Jaw_Heavy`
+- WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
+- Star Wars Xenotypes (2915192253) (2): `Head_Bone`, `Head_Devolved`
+- Big and Small - Simply Robots (3360323573) (2): `BS_CommandoHead`, `BS_TVHead`
+- Skeletal Efflorescence (3685431818) (2): `Eo3_AnomalyFace_Head`, `Eo3_TinyFace_Head`
+- Hiisi Xenotype (3816069605) (1): `Hiisi_Nose`
+- Cain's Gene Pack (3819866589) (1): `Hiisi_Nose`
+- Big and Small - Genes & More (2920751126) (1): `BS_WerewolfSnoot`
+- Oni Xenotype (3311134271) (1): `OX_Oni_Head`
+- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
+- Obsidia Expansion - Tailborne Xenotype (3511930980) (1): `OE_RatscourgeHead`
+- Reese's Dirtmole Glowup (3587761388) (1): `RDMO_Head_Squinted`
+- 【β】Ikquan Race (3633519200) (1): `HeadIkquan`
 
 ## Exclusion `Painful` (39 genes, 4 mods)
 
@@ -1502,6 +1589,18 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Expanded Pain Genes (3014397853) (12): `EBSG_ConstantPain`, `EBSG_ExtremeConstantPain`, `EBSG_ExtremeFeeble`, `EBSG_ExtremelyStout`, `EBSG_Feeble`, `EBSG_MajorConstantPain`, `EBSG_MinorConstantPain`, `EBSG_Stout`, `EBSG_SuperFeeble`, `EBSG_SuperStout`, `EBSG_VeryFeeble`, `EBSG_VeryStout`
 - Superhero Genes - Base (2980061828) (1): `SHG_Psionist_Fearless`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Painful`
+
+## Exclusion `Aging` (38 genes, 9 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (6): `WVC_Energyshifter_SlowAging`, `WVC_FleshmassAging`, `WVC_ForeverYoung`, `WVC_NaturalFastAging`, `WVC_NaturalSlowAging`, `WVC_StasisAging`
+- Jimothy's Genes! (3371751009) (10): `JIMJAM_ArchiteLifespan`, `JIMJAM_ExtremelyHighLifespan`, `JIMJAM_HighLifespan`, `JIMJAM_LowLifespan`, `JIMJAM_MajorArchiteLifespan`, `JIMJAM_MinorArchiteLifespan`, `JIMJAM_SlightlyHighLifespan`, `JIMJAM_SlightlyLowLifespan`, `JIMJAM_VeryHighLifespan`, `JIMJAM_VeryLowLifespan`
+- Alpha Genes (2891845502) (3): `AG_ExtraordinaryLifespan`, `AG_FasterAging`, `AG_SlowerAging`
+- Random Genetics Genes Expanded (3745658327) (4): `HJAG_Aging`, `HJ_PigAging`, `HJ_PigAgingNeg`, `HJ_PigAgingPos`
+- Vanilla Races Expanded - Pigskin (3164798809) (3): `VRE_FastAging`, `VRE_RapidAging`, `VRE_SlowAging`
+- [HB] Corracall Xenotype (2961223853) (1): `HBLongerLifespan`
+- Rim-Gnoblins (3018569666) (1): `Age_RapidDevelopment`
+- Foxian League (3639227864) (1): `FL_SlowAging`
+- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_GrowsQuickly`
 
 ## Exclusion `EBSG_AnimalSlayer` (38 genes, 3 mods)
 
@@ -1533,16 +1632,29 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Slayer Genes (3237587949) (9): `EBSG_AbysmalMechanoidSlayer`, `EBSG_BadMechanoidSlayer`, `EBSG_ExtremelyBadMechanoidSlayer`, `EBSG_ExtremelyGoodMechanoidSlayer`, `EBSG_GoodMechanoidSlayer`, `EBSG_SomewhatGoodMechanoidSlayer`, `EBSG_UnbelievablyGoodMechanoidSlayer`, `EBSG_VeryBadMechanoidSlayer`, `EBSG_VeryGoodMechanoidSlayer`
 - Random Genetics Genes Expanded (3745658327) (2): `HJA_MechSlaying`, `HJA_RandomSlaying`
 
-## Exclusion `Aging` (37 genes, 8 mods)
+## Exclusion `Headbone` (38 genes, 12 mods)
 
-- WVC - Xenotypes and Genes (2886992038) (6): `WVC_Energyshifter_SlowAging`, `WVC_FleshmassAging`, `WVC_ForeverYoung`, `WVC_NaturalFastAging`, `WVC_NaturalSlowAging`, `WVC_StasisAging`
-- Jimothy's Genes! (3371751009) (10): `JIMJAM_ArchiteLifespan`, `JIMJAM_ExtremelyHighLifespan`, `JIMJAM_HighLifespan`, `JIMJAM_LowLifespan`, `JIMJAM_MajorArchiteLifespan`, `JIMJAM_MinorArchiteLifespan`, `JIMJAM_SlightlyHighLifespan`, `JIMJAM_SlightlyLowLifespan`, `JIMJAM_VeryHighLifespan`, `JIMJAM_VeryLowLifespan`
-- Alpha Genes (2891845502) (3): `AG_ExtraordinaryLifespan`, `AG_FasterAging`, `AG_SlowerAging`
-- Random Genetics Genes Expanded (3745658327) (4): `HJAG_Aging`, `HJ_PigAging`, `HJ_PigAgingNeg`, `HJ_PigAgingPos`
-- Vanilla Races Expanded - Pigskin (3164798809) (3): `VRE_FastAging`, `VRE_RapidAging`, `VRE_SlowAging`
-- Rim-Gnoblins (3018569666) (1): `Age_RapidDevelopment`
-- Foxian League (3639227864) (1): `FL_SlowAging`
-- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_GrowsQuickly`
+- Vanilla RimWorld (Core and Biotech, game folder) (3): `Headbone_CenterHorn`, `Headbone_Human`, `Headbone_MiniHorns`
+- Anthrosonae (2902258418) (9): `ATK_AnthrocowHeadbone`, `ATK_AnthrocowHeadbone_Long`, `ATK_AnthrodeerHeadbone`, `ATK_AnthrodeerHeadbone_Short`, `ATK_AnthrodrakeHeadbone`, `ATK_AnthrodrakeHeadbone_Spiraled`, `ATK_AnthrogoatHeadbone`, `ATK_AnthrogoatHeadbone_Short`, `ATK_AnthrogoatHeadbone_Spiraled`
+- K's Snarelanterns (3328218292) (7): `K_SnarelanternEscaFemale_Blue`, `K_SnarelanternEscaFemale_Cyan`, `K_SnarelanternEscaFemale_Green`, `K_SnarelanternEscaFemale_Magenta`, `K_SnarelanternEscaFemale_Orange`, `K_SnarelanternEscaFemale_Red`, `K_SnarelanternEscaFemale_Yellow`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Mecha_RedFormerSpikesDouble`, `WVC_Mecha_YellowFormerAntennaDouble`
+- RimKimetsu - Demon Slayer Rimworld Mod (3641720143) (3): `AA_DemonHorn_Curved`, `AA_DemonHorn_Devil`, `AA_DemonHorn_Swept`
+- MakaiTech - Xenotype (3268577147) (2): `Makai_AdeltiaHorns`, `Makai_DemonianHorns`
+- Random Genetics Framework (3281684320) (2): `TEST_HALI_RandomHorns`, `TEST_HALI_RandomHornsMaybe`
+- Skeletal Efflorescence (3685431818) (2): `Eo3_BoneCrown`, `Eo3_BoneCrown_Spine`
+- Tonttu Xenotype (3819828414) (1): `Tonttu_RedCap`
+- Cain's Gene Pack (3819866589) (1): `Tonttu_RedCap`
+- Femboy Xenotypes (3456372943) (1): `FEMB_RandomHornFemboy`
+- Posthuman Drift Bossaps Xenotype (3521815829) (1): `XylLargeHorns`
+
+## Exclusion `Armor` (37 genes, 6 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
+- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
+- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_BulletproofSkin`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
 
 ## Exclusion `EBSG_Brawler` (37 genes, 3 mods)
 
@@ -1597,14 +1709,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Expanded Sleep Genes (3014991903) (12): `EBSG_ExtremelyFastSleeper`, `EBSG_ExtremelySlowSleeper`, `EBSG_FastSleeper`, `EBSG_HyperFastSleeper`, `EBSG_HyperSlowSleeper`, `EBSG_SlightlyFastSleeper`, `EBSG_SlightlySlowSleeper`, `EBSG_SlowSleeper`, `EBSG_SuperFastSleeper`, `EBSG_SuperSlowSleeper`, `EBSG_VeryFastSleeper`, `EBSG_VerySlowSleeper`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Sleeping`
 
-## Exclusion `Armor` (36 genes, 5 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
-- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
-- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
-
 ## Exclusion `MBSG_NakedSpeeds` (36 genes, 3 mods)
 
 - More Biotech Style Genes - All in One (2985153870) (11): `MBSG_ClothedSpeed`, `MBSG_DecentClothedSpeed`, `MBSG_DecentNakedSpeed`, `MBSG_ExtremeClothedSpeed`, `MBSG_ExtremeNakedSpeed`, `MBSG_FastClothedSpeed`, `MBSG_FastNakedSpeed`, `MBSG_NotableClothedSpeed`, `MBSG_NotableNakedSpeed`, `MBSG_SuperClothedSpeed`, `MBSG_SuperNakedSpeed`
@@ -1616,6 +1720,26 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Vanilla RimWorld (Core and Biotech, game folder) (9): `Skin_Melanin1`, `Skin_Melanin2`, `Skin_Melanin3`, `Skin_Melanin4`, `Skin_Melanin5`, `Skin_Melanin6`, `Skin_Melanin7`, `Skin_Melanin8`, `Skin_Melanin9`
 - Seren, from Stardust [Biotech Fork] (3726565301) (13): `OL_SkinAlbino`, `OL_SkinCobalt`, `OL_SkinIndigo`, `OL_SkinMagenta`, `OL_SkinNebula`, `OL_SkinOrchid`, `OL_SkinPlanetary`, `OL_SkinPlum`, `OL_SkinRouge`, `OL_SkinRoyal`, `OL_SkinTeal`, `OL_SkinTwilight`, `OL_SkinViolet`
 - [AV] Kosmian Xenotype (3774474578) (1): `AV_Chromalog`
+
+## Exclusion `Aggressive` (35 genes, 17 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (3): `Aggression_Aggressive`, `Aggression_HyperAggressive`, `ViolenceDisabled`
+- Superhero Genes - Base (2980061828) (3): `SHG_Berserker`, `SHG_Predator`, `SHG_Prey`
+- More Biotech Style Genes - All in One (2985153870) (3): `MBSG_Aggression_MildlyAggressive`, `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Emotionless`, `WVC_EmotionlessUnshakable`
+- More Violence Genes (2999686177) (3): `MBSG_Aggression_MildlyAggressive`, `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
+- Rimsenal Xenotype Pack - Harana (3228637524) (1): `Aggression_PassivelyAggressive`
+- Det's Xenotypes - Stoneborn (2888722722) (1): `DV_Aggression_Irascible`
+- Biotech - Avali (2893711709) (1): `Temperamental`
+- Vanilla Races Expanded - Archon (3067715093) (1): `VRE_Aggression_ExtremelyAggressive`
+- Medieval Overhaul: House Van Illa (3327601396) (1): `Addie_IllanPride`
+- Det's Xenotypes - Half-foot (3530817307) (1): `DV_Aggression_Hotheaded`
+- Monkey Xenotypes (3566230987) (1): `DV_Aggression_Hotheaded`
+- Awakened Apes (3646217940) (1): `DV_Aggression_Hotheaded`
+- Random Genetics Genes Expanded (3745658327) (1): `HJ_Violence`
+- MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinAggression`
+- More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Berserker`
+- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Berserker`
 
 ## Exclusion `Flesh` (35 genes, 9 mods)
 
@@ -1634,35 +1758,43 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Outland - Genetics (2910172297) (17): `Outland_ShortFlight`, `Outland_Wings_Angel`, `Outland_Wings_Bird`, `Outland_Wings_Devil`, `Outland_Wings_FallenAngel`, `Outland_Wings_Fey`, `Outland_Wings_FlareBlue`, `Outland_Wings_FlareGreen`, `Outland_Wings_FlareRed`, `Outland_Wings_GlassyBlue`, `Outland_Wings_Imp`, `Outland_Wings_Insect`, `Outland_Wings_Plain`, `Outland_Wings_Pointed`, `Outland_Wings_Roundel`, `Outland_Wings_Striped`, `Outland_Wings_Wyvern`
 - BoneReapers ReMarrowed (3516603515) (1): `pphhyy_BoneReaperFlight`
 
-## Exclusion `Jaw` (35 genes, 10 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (3): `Head_Gaunt`, `Jaw_Baseline`, `Jaw_Heavy`
-- WVC - Xenotypes and Genes (2886992038) (10): `WVC_FleshmassSkin`, `WVC_GauntSkin`, `WVC_GhoulSkin`, `WVC_NodeSkin`, `WVC_PatchSkin`, `WVC_RuneSkin`, `WVC_ShapeshiftSkin`, `WVC_StoneSkin`, `WVC_SyntSkin`, `WVC_TransparentSkin`
-- Star Wars Xenotypes (2915192253) (2): `Head_Bone`, `Head_Devolved`
-- Big and Small - Simply Robots (3360323573) (2): `BS_CommandoHead`, `BS_TVHead`
-- Skeletal Efflorescence (3685431818) (2): `Eo3_AnomalyFace_Head`, `Eo3_TinyFace_Head`
-- Cain's Gene Pack (3819866589) (1): `Hiisi_Nose`
-- Big and Small - Genes & More (2920751126) (1): `BS_WerewolfSnoot`
-- Oni Xenotype (3311134271) (1): `OX_Oni_Head`
-- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
-- Obsidia Expansion - Tailborne Xenotype (3511930980) (1): `OE_RatscourgeHead`
-
 ## Exclusion `SerenMarkings` (35 genes, 2 mods)
 
 - [Alien/Race] Seren, from Stardust (2704627783) (7): `SerenMarkings_Big`, `SerenMarkings_Brows`, `SerenMarkings_Cheeks`, `SerenMarkings_Freckles`, `SerenMarkings_Small`, `SerenMarkings_Target`, `SerenMarkings_Tristar`
 - Seren, from Stardust [Biotech Fork] (3726565301) (7): `SerenMarkings_Big`, `SerenMarkings_Brows`, `SerenMarkings_Cheeks`, `SerenMarkings_Freckles`, `SerenMarkings_Small`, `SerenMarkings_Target`, `SerenMarkings_Tristar`
 
-## Exclusion `Headbone` (34 genes, 9 mods)
+## Exclusion `Beauty` (34 genes, 9 mods)
 
-- Vanilla RimWorld (Core and Biotech, game folder) (3): `Headbone_CenterHorn`, `Headbone_Human`, `Headbone_MiniHorns`
-- Anthrosonae (2902258418) (9): `ATK_AnthrocowHeadbone`, `ATK_AnthrocowHeadbone_Long`, `ATK_AnthrodeerHeadbone`, `ATK_AnthrodeerHeadbone_Short`, `ATK_AnthrodrakeHeadbone`, `ATK_AnthrodrakeHeadbone_Spiraled`, `ATK_AnthrogoatHeadbone`, `ATK_AnthrogoatHeadbone_Short`, `ATK_AnthrogoatHeadbone_Spiraled`
-- K's Snarelanterns (3328218292) (7): `K_SnarelanternEscaFemale_Blue`, `K_SnarelanternEscaFemale_Cyan`, `K_SnarelanternEscaFemale_Green`, `K_SnarelanternEscaFemale_Magenta`, `K_SnarelanternEscaFemale_Orange`, `K_SnarelanternEscaFemale_Red`, `K_SnarelanternEscaFemale_Yellow`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Mecha_RedFormerSpikesDouble`, `WVC_Mecha_YellowFormerAntennaDouble`
-- RimKimetsu - Demon Slayer Rimworld Mod (3641720143) (3): `AA_DemonHorn_Curved`, `AA_DemonHorn_Devil`, `AA_DemonHorn_Swept`
-- MakaiTech - Xenotype (3268577147) (2): `Makai_AdeltiaHorns`, `Makai_DemonianHorns`
-- Random Genetics Framework (3281684320) (2): `TEST_HALI_RandomHorns`, `TEST_HALI_RandomHornsMaybe`
-- Skeletal Efflorescence (3685431818) (2): `Eo3_BoneCrown`, `Eo3_BoneCrown_Spine`
-- Cain's Gene Pack (3819866589) (1): `Tonttu_RedCap`
+- Vanilla RimWorld (Core and Biotech, game folder) (4): `Beauty_Beautiful`, `Beauty_Pretty`, `Beauty_Ugly`, `Beauty_VeryUgly`
+- More Biotech Style Genes - All in One (2985153870) (6): `Beauty_ExtremelyBeautiful`, `Beauty_ExtremelyUgly`, `Beauty_SuperBeautiful`, `Beauty_SuperUgly`, `Beauty_UnbelievablyBeautiful`, `Beauty_UnbelievablyUgly`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Hivemind_Beauty`, `WVC_MecaUpgrades_PerfectShape`
+- Random Genetics Genes Expanded (3745658327) (3): `HJ_Beauty`, `HJ_BeautyNeg`, `HJ_BeautyPos`
+- More Storylike Traits - Body and Mind 1.6 (3811291787) (3): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`, `Storylike_Gene_UnforgettableFace`
+- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (3): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`, `Storylike_Gene_UnforgettableFace`
+- The Profaned (3202008037) (2): `BotchJob_RottingFlesh`, `BotchJob_SkeletalBody`
+- [SH]Gene Expand (3558760095) (1): `SHGE_CrumpledSkin`
+- Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxFur`
+
+## Exclusion `Head` (34 genes, 9 mods)
+
+- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
+- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
+- Jaguar and Snow Leopard Xenotypes (3297800460) (2): `CYB_Head_Onca`, `CYB_Head_Uncia`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallHead`
+- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
+- Sergal Genes (3639784628) (1): `Drifter_SergalHead`
+- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_Head`
+- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskyHead`
+- Avian Xenotype - Eagle (3808135566) (1): `Drifter_Avian_Eagle_Fur`
+
+## Exclusion `AG_Armour` (33 genes, 6 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
+- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
+- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_BulletproofSkin`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
 
 ## Exclusion `AG_Meat` (33 genes, 8 mods)
 
@@ -1675,23 +1807,14 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 -  Yet another neko xenotype - Nekotech Xenotype (3736684475) (1): `Neko_Meat`
 - Random Genetics Genes Expanded (3745658327) (1): `HJAG_MeatAmount`
 
-## Exclusion `Aggressive` (33 genes, 15 mods)
+## Exclusion `Armour` (33 genes, 6 mods)
 
-- Vanilla RimWorld (Core and Biotech, game folder) (3): `Aggression_Aggressive`, `Aggression_HyperAggressive`, `ViolenceDisabled`
-- Superhero Genes - Base (2980061828) (3): `SHG_Berserker`, `SHG_Predator`, `SHG_Prey`
-- More Biotech Style Genes - All in One (2985153870) (3): `MBSG_Aggression_MildlyAggressive`, `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Emotionless`, `WVC_EmotionlessUnshakable`
-- More Violence Genes (2999686177) (3): `MBSG_Aggression_MildlyAggressive`, `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
-- Rimsenal Xenotype Pack - Harana (3228637524) (1): `Aggression_PassivelyAggressive`
-- Det's Xenotypes - Stoneborn (2888722722) (1): `DV_Aggression_Irascible`
-- Medieval Overhaul: House Van Illa (3327601396) (1): `Addie_IllanPride`
-- Det's Xenotypes - Half-foot (3530817307) (1): `DV_Aggression_Hotheaded`
-- Monkey Xenotypes (3566230987) (1): `DV_Aggression_Hotheaded`
-- Awakened Apes (3646217940) (1): `DV_Aggression_Hotheaded`
-- Random Genetics Genes Expanded (3745658327) (1): `HJ_Violence`
-- MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinAggression`
-- More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Berserker`
-- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Berserker`
+- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
+- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
+- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_BulletproofSkin`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
 
 ## Exclusion `EBSG_BiosculptingSpeed` (33 genes, 3 mods)
 
@@ -1717,17 +1840,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Expanded Need Genes (3322392001) (8): `EBSG_ExtremeMurderous`, `EBSG_MajorMurderous`, `EBSG_MinorMurderous`, `EBSG_Murderous`, `EBSG_Placated`, `EBSG_SomewhatPlacated`, `EBSG_SuperMurderous`, `EBSG_VeryPlacated`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Killthirst`
 
-## Exclusion `Head` (33 genes, 8 mods)
-
-- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
-- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
-- Jaguar and Snow Leopard Xenotypes (3297800460) (2): `CYB_Head_Onca`, `CYB_Head_Uncia`
-- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
-- Sergal Genes (3639784628) (1): `Drifter_SergalHead`
-- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_Head`
-- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskyHead`
-- Avian Xenotype - Eagle (3808135566) (1): `Drifter_Avian_Eagle_Fur`
-
 ## Exclusion `Meat` (33 genes, 8 mods)
 
 - Alpha Genes (2891845502) (9): `AG_AerofleetFlesh`, `AG_ChocolateFlesh`, `AG_JellyFlesh`, `AG_MagicMushroomFlesh`, `AG_OcularFlesh`, `AG_PlantFlesh`, `AG_RoyalJellyFlesh`, `AG_TwistedFlesh`, `AG_WasteFlesh`
@@ -1739,33 +1851,16 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 -  Yet another neko xenotype - Nekotech Xenotype (3736684475) (1): `Neko_Meat`
 - Random Genetics Genes Expanded (3745658327) (1): `HJAG_MeatAmount`
 
-## Exclusion `AG_Armour` (32 genes, 5 mods)
+## Exclusion `AG_Aging` (32 genes, 8 mods)
 
-- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
-- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
-- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
-
-## Exclusion `AG_BloodType` (32 genes, 9 mods)
-
-- Alpha Genes (2891845502) (10): `AG_AcidicBlood`, `AG_ChemfuelBlood`, `AG_CryoBlood`, `AG_FirefoamBlood`, `AG_ForsakenBlood`, `AG_InsectBlood`, `AG_PebbleBlood`, `AG_SlimeBlood`, `AG_TarBlood`, `AG_WaterBlood`
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MecaBodyParts_Heart`
-- Cyanobot's Genes (2889844371) (2): `CYB_Blood_Black`, `CYB_Blood_Lilac`
-- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
-- Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
-- Rim-Hivers! - Biotech (3378615596) (1): `RH_InsectoidBlood`
-- Reese's Anomaly Genes (3434828984) (1): `ReeseGenes_DarkBlood`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_BloodType`
-
-## Exclusion `Armour` (32 genes, 5 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (7): `WVC_ArmoredSkin_Fortress`, `WVC_ArmoredSkin_Plasteel`, `WVC_ArmoredSkin_Steel`, `WVC_ArmoredSkin_Stone`, `WVC_ClothedArmor`, `WVC_Energyshifter_ArmoredSkin`, `WVC_UnClothedArmor`
-- Alpha Genes (2891845502) (6): `AG_ArmourMajor`, `AG_ArmourMedium`, `AG_ArmourMinor`, `AG_FrailSkin`, `AG_FungalSkin`, `AG_ReactiveArmour`
-- Big and Small - Genes & More (2920751126) (4): `BS_NaturalArmor`, `BS_NaturalArmor_Great`, `BS_PsychicWarrior`, `BS_ToughSkin`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_PlasteelSkin`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Armor`
+- WVC - Xenotypes and Genes (2886992038) (6): `WVC_Energyshifter_SlowAging`, `WVC_FleshmassAging`, `WVC_ForeverYoung`, `WVC_NaturalFastAging`, `WVC_NaturalSlowAging`, `WVC_StasisAging`
+- Jimothy's Genes! (3371751009) (10): `JIMJAM_ArchiteLifespan`, `JIMJAM_ExtremelyHighLifespan`, `JIMJAM_HighLifespan`, `JIMJAM_LowLifespan`, `JIMJAM_MajorArchiteLifespan`, `JIMJAM_MinorArchiteLifespan`, `JIMJAM_SlightlyHighLifespan`, `JIMJAM_SlightlyLowLifespan`, `JIMJAM_VeryHighLifespan`, `JIMJAM_VeryLowLifespan`
+- Alpha Genes (2891845502) (3): `AG_ExtraordinaryLifespan`, `AG_FasterAging`, `AG_SlowerAging`
+- [HB] Corracall Xenotype (2961223853) (1): `HBLongerLifespan`
+- Rim-Gnoblins (3018569666) (1): `Age_RapidDevelopment`
+- Foxian League (3639227864) (1): `FL_SlowAging`
+- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_GrowsQuickly`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Aging`
 
 ## Exclusion `EBSG_Brain` (32 genes, 2 mods)
 
@@ -1786,17 +1881,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Obsidia Expansion - Slimes Xenotype (3331598962) (32): `OE_SlimesCore_Adaptive`, `OE_SlimesCore_Amalgam_Colossus`, `OE_SlimesCore_Amalgam_Nightcrawler`, `OE_SlimesCore_Amalgam_Sentinel`, `OE_SlimesCore_Assistant`, `OE_SlimesCore_Builder`, `OE_SlimesCore_Butcher`, `OE_SlimesCore_Clarity`, `OE_SlimesCore_Cook`, `OE_SlimesCore_Dealer`, `OE_SlimesCore_Farmer`, `OE_SlimesCore_Flexibility`, `OE_SlimesCore_Gardener`, `OE_SlimesCore_Gunner`, `OE_SlimesCore_Hunter`, `OE_SlimesCore_Insight`, `OE_SlimesCore_Knight`, `OE_SlimesCore_Mayor`, `OE_SlimesCore_Miner`, `OE_SlimesCore_Monk`, `OE_SlimesCore_Nurse`, `OE_SlimesCore_Random`, `OE_SlimesCore_Researcher`, `OE_SlimesCore_Rogue`, `OE_SlimesCore_Runner`, `OE_SlimesCore_Scavenger`, `OE_SlimesCore_Sheriff`, `OE_SlimesCore_Sniper`, `OE_SlimesCore_Surgeon`, `OE_SlimesCore_Trickster`, `OE_SlimesCore_Warrior`, `OE_SlimesCore_Worker`
 
-## Exclusion `AG_Aging` (31 genes, 7 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (6): `WVC_Energyshifter_SlowAging`, `WVC_FleshmassAging`, `WVC_ForeverYoung`, `WVC_NaturalFastAging`, `WVC_NaturalSlowAging`, `WVC_StasisAging`
-- Jimothy's Genes! (3371751009) (10): `JIMJAM_ArchiteLifespan`, `JIMJAM_ExtremelyHighLifespan`, `JIMJAM_HighLifespan`, `JIMJAM_LowLifespan`, `JIMJAM_MajorArchiteLifespan`, `JIMJAM_MinorArchiteLifespan`, `JIMJAM_SlightlyHighLifespan`, `JIMJAM_SlightlyLowLifespan`, `JIMJAM_VeryHighLifespan`, `JIMJAM_VeryLowLifespan`
-- Alpha Genes (2891845502) (3): `AG_ExtraordinaryLifespan`, `AG_FasterAging`, `AG_SlowerAging`
-- Rim-Gnoblins (3018569666) (1): `Age_RapidDevelopment`
-- Foxian League (3639227864) (1): `FL_SlowAging`
-- Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_GrowsQuickly`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Aging`
-
-## Exclusion `AG_BodySize` (29 genes, 11 mods)
+## Exclusion `AG_BodySize` (30 genes, 12 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (4): `WVC_BodySize_Average`, `WVC_BodySize_ChildlikeSmall`, `WVC_BodySize_Large`, `WVC_BodySize_Small`
 - Alpha Genes (2891845502) (3): `AG_LargerBodySize`, `AG_Shambler_Armoured`, `AG_SmallerBodySize`
@@ -1805,10 +1890,34 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Obsidia Expansion - Tailborne Xenotype (3511930980) (2): `OE_MousariBody`, `OE_RatscourgeBody`
 - RWoM Custom Class Pack - Epic Battle Fantasy (2803755648) (1): `EBF_SmolCat`
 - Det's Xenotypes - Stoneborn (2888722722) (1): `DV_SmallBuild`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_Giant`
 - Rim-Gnoblins (3018569666) (1): `Size_ExtremeDwarfism`
 - Det's Xenotypes - Half-foot (3530817307) (1): `DV_ExtrasmallBuild`
 - Goliann Xenotype (3541961078) (1): `GS_Size_Bulky`
 - 圣蜣螂种族 (3740297753) (1): `Scarab_DiligentWorkerGene`
+
+## Exclusion `AG_Gender` (29 genes, 12 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (4): `WVC_FemaleOnly`, `WVC_GenderMorph`, `WVC_MaleOnly`, `WVC_Monogender_Disabled`
+- Alpha Genes (2891845502) (2): `AG_Female`, `AG_Male`
+- Outland - Genetics (2910172297) (2): `Outland_AllFemale`, `Outland_AllMale`
+- Rim-Hivers! - Biotech (3378615596) (3): `RH_Female`, `RH_Male`, `RH_None`
+- local:rjw-genes (local:rjw-genes) (3): `rjw_genes_female_only`, `rjw_genes_gender_fluid`, `rjw_genes_male_only`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_Female`
+- Erin's Corvyia (3154954530) (1): `ERN_AllFemale`
+- Femboy Xenotypes (3456372943) (1): `FEMB_FemboyMale`
+- HarbingerKin - Phytokin (3522734130) (1): `Myt_Male`
+- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_MaleOnly`
+- Foxian League (3639227864) (1): `FL_Female`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gender`
+
+## Exclusion `AG_Heads` (29 genes, 5 mods)
+
+- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
+- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallHead`
+- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
+- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskyHead`
 
 ## Exclusion `ArachnidEyeColor` (29 genes, 2 mods)
 
@@ -1897,27 +2006,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Avian Genes (3769643744) (1): `Drifter_Oviparous`
 - local:rjw-genes (local:rjw-genes) (1): `rjw_genes_ovipositor_genitalia`
 
-## Exclusion `AG_Gender` (28 genes, 11 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (4): `WVC_FemaleOnly`, `WVC_GenderMorph`, `WVC_MaleOnly`, `WVC_Monogender_Disabled`
-- Alpha Genes (2891845502) (2): `AG_Female`, `AG_Male`
-- Outland - Genetics (2910172297) (2): `Outland_AllFemale`, `Outland_AllMale`
-- Rim-Hivers! - Biotech (3378615596) (3): `RH_Female`, `RH_Male`, `RH_None`
-- local:rjw-genes (local:rjw-genes) (3): `rjw_genes_female_only`, `rjw_genes_gender_fluid`, `rjw_genes_male_only`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_Female`
-- Erin's Corvyia (3154954530) (1): `ERN_AllFemale`
-- HarbingerKin - Phytokin (3522734130) (1): `Myt_Male`
-- RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (1): `Why_MaleOnly`
-- Foxian League (3639227864) (1): `FL_Female`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gender`
-
-## Exclusion `AG_Heads` (28 genes, 4 mods)
-
-- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
-- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
-- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
-- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskyHead`
-
 ## Exclusion `Antenna` (28 genes, 4 mods)
 
 - Outland - Genetics (2910172297) (7): `Outland_Antenna_Feather`, `Outland_Antenna_Fluted`, `Outland_Antenna_Jointed`, `Outland_Antenna_Leaf`, `Outland_Antenna_Owl`, `Outland_Antenna_Segmented`, `Outland_Antenna_Socketed`
@@ -1930,17 +2018,12 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Expanded Biotech Style Genes - All in One (3020821838) (7): `EBSG_DamagedStomach`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier1Part_Internal`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier2Part_Internal`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_RandomTier3Part_Internal`
 - EBSG - Health Genes (3115303988) (7): `EBSG_DamagedStomach`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier1Part_Internal`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier2Part_Internal`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_RandomTier3Part_Internal`
 
-## Exclusion `FireDamage` (28 genes, 9 mods)
+## Exclusion `Heads` (28 genes, 4 mods)
 
-- Vanilla RimWorld (Core and Biotech, game folder) (2): `FireResistant`, `FireWeakness`
-- More Biotech Style Genes - All in One (2985153870) (4): `MBSG_FireImmune`, `MBSG_FireResilient`, `MBSG_FireWeaknessMajor`, `MBSG_FireWeaknessMinor`
-- Superhero Genes - Base (2980061828) (2): `SHG_Archetypes_Pyromancer`, `SHG_SuperPyrophobia`
-- More Fire Resistance Genes (3000564841) (4): `MBSG_FireImmune`, `MBSG_FireResilient`, `MBSG_FireWeaknessMajor`, `MBSG_FireWeaknessMinor`
-- Random Genetics Genes Expanded (3745658327) (3): `HJ_Fire`, `HJ_FireNeg`, `HJ_FirePos`
-- Alpha Genes (2891845502) (1): `AG_HeatImmunity`
-- Outland - Genetics (2910172297) (1): `Outland_FireImmune`
-- Big and Small - Genes & More (2920751126) (2): `BS_HeatGenerator`, `FireImmunity`
-- The Profaned (3202008037) (1): `BotchJob_UndeadHeatWeakness`
+- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
+- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
+- [HB] Corracall Xenotype (2961223853) (1): `HBCorracallHead`
+- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 
 ## Exclusion `MonocularEyeColor` (28 genes, 1 mods)
 
@@ -1956,17 +2039,22 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Expanded Biotech Style Genes - All in One (3020821838) (9): `EBSG_HemogenGain`, `EBSG_HemogenGainExtreme`, `EBSG_HemogenGainHyper`, `EBSG_HemogenGainLoss`, `EBSG_HemogenGainLossMajor`, `EBSG_HemogenGainLossMinor`, `EBSG_HemogenGainMajor`, `EBSG_HemogenGainMinor`, `EBSG_HemogenGainSuper`
 - EBSG - Expanded Hemogenic Genes (3019888741) (9): `EBSG_HemogenGain`, `EBSG_HemogenGainExtreme`, `EBSG_HemogenGainHyper`, `EBSG_HemogenGainLoss`, `EBSG_HemogenGainLossMajor`, `EBSG_HemogenGainLossMinor`, `EBSG_HemogenGainMajor`, `EBSG_HemogenGainMinor`, `EBSG_HemogenGainSuper`
 
-## Exclusion `Heads` (27 genes, 3 mods)
-
-- Alpha Genes (2891845502) (12): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_FeraliskEyes`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_Skin_Gold`, `AG_Skin_TrueBlack`, `AG_SlugFace`, `AG_VeryGauntHead`
-- Zoroark - Xenotype (3047455758) (2): `BZoroarkHeadGene`, `WZoroarkHeadGene`
-- Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
-
 ## Exclusion `HeadType` (27 genes, 3 mods)
 
 - Yanzhiko Xenotype Collection (3580656240) (24): `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`
 - Jaguar and Snow Leopard Xenotypes (3297800460) (2): `CYB_Head_Onca`, `CYB_Head_Uncia`
 - Spite the Sky: Fer'Liebor Xenotype (3646000311) (1): `Fer_Liebor_Head`
+
+## Exclusion `WoundHealingRate` (27 genes, 8 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (3): `WoundHealing_Fast`, `WoundHealing_Slow`, `WoundHealing_SuperFast`
+- Superhero Genes - Base (2980061828) (6): `AntisuperHealing`, `SHG_AntisuperHealing1`, `SHG_AntisuperHealing2`, `SHG_AntisuperHealing3`, `SHG_AntisuperHealing4`, `SHG_NoNaturalHealing`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Dustogenic_WoundHealing`, `WVC_RandomWoundHealing`
+- Random Genetics Genes Expanded (3745658327) (3): `HJ_Healing`, `HJ_HealingNeg`, `HJ_HealingPos`
+- Alpha Genes (2891845502) (1): `AG_VFEI_VentricularSleeve`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_FungalRegeneration`
+- Simple Extended Gene (3324409235) (1): `SEG_WoundHealing`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Woundless`
 
 ## Exclusion `Melanin` (26 genes, 1 mods)
 
@@ -1994,6 +2082,18 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Expanded Biotech Style Genes - All in One (3020821838) (6): `EBSG_BiggerStomach`, `EBSG_CavernousStomach`, `EBSG_ContractedStomach`, `EBSG_ExpandedStomach`, `EBSG_NarrowStomach`, `EBSG_SmallerStomach`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_StomachSize`
 
+## Exclusion `FireDamage` (25 genes, 9 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (2): `FireResistant`, `FireWeakness`
+- More Biotech Style Genes - All in One (2985153870) (4): `MBSG_FireImmune`, `MBSG_FireResilient`, `MBSG_FireWeaknessMajor`, `MBSG_FireWeaknessMinor`
+- Superhero Genes - Base (2980061828) (2): `SHG_Archetypes_Pyromancer`, `SHG_SuperPyrophobia`
+- Random Genetics Genes Expanded (3745658327) (3): `HJ_Fire`, `HJ_FireNeg`, `HJ_FirePos`
+- Alpha Genes (2891845502) (1): `AG_HeatImmunity`
+- Outland - Genetics (2910172297) (1): `Outland_FireImmune`
+- Big and Small - Genes & More (2920751126) (2): `BS_HeatGenerator`, `FireImmunity`
+- The Profaned (3202008037) (1): `BotchJob_UndeadHeatWeakness`
+- Beliar Xenotype (3237072670) (1): `BX_BasaltSkin`
+
 ## Exclusion `MinTemperature` (25 genes, 8 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (3): `MinTemp_LargeDecrease`, `MinTemp_SmallDecrease`, `MinTemp_SmallIncrease`
@@ -2004,16 +2104,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - The Profaned (3202008037) (1): `BotchJob_UnnaturalColdResistance`
 - Medieval Overhaul: House Van Illa (3327601396) (1): `Addie_GhostlyIce`
 - Cybranian - Oryx Xenotype (3527163129) (1): `Temp_NoSweatGlands`
-
-## Exclusion `WoundHealingRate` (25 genes, 7 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (3): `WoundHealing_Fast`, `WoundHealing_Slow`, `WoundHealing_SuperFast`
-- Superhero Genes - Base (2980061828) (6): `AntisuperHealing`, `SHG_AntisuperHealing1`, `SHG_AntisuperHealing2`, `SHG_AntisuperHealing3`, `SHG_AntisuperHealing4`, `SHG_NoNaturalHealing`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Dustogenic_WoundHealing`, `WVC_RandomWoundHealing`
-- Random Genetics Genes Expanded (3745658327) (3): `HJ_Healing`, `HJ_HealingNeg`, `HJ_HealingPos`
-- Alpha Genes (2891845502) (1): `AG_VFEI_VentricularSleeve`
-- Simple Extended Gene (3324409235) (1): `SEG_WoundHealing`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Woundless`
 
 ## Exclusion `Bleach_Schrift` (24 genes, 1 mods)
 
@@ -2030,9 +2120,24 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Superhero Genes - Base (2980061828) (1): `SHG_Psionist_Fearless`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Wimp`
 
+## Exclusion `AG_Gestation` (23 genes, 5 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (6): `WVC_DryadQueen`, `WVC_Dustogenic_ImmaculateConception`, `WVC_Hivemind_Gestator`, `WVC_StartGestation`, `WVC_StorageGestator`, `WVC_XenotypeGestator`
+- Alpha Genes (2891845502) (2): `AG_FastGestation`, `AG_SlowGestation`
+- Outland - Genetics (2910172297) (2): `Outland_AcceleratedPregnancy`, `Outland_DeceleratedPregnancy`
+- Vanilla Races Expanded - Archon (3067715093) (2): `VRE_LongPregnancy`, `VRE_ShortPregnancy`
+- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gestation`
+
 ## Exclusion `Bleach_ReiryokuTier` (23 genes, 1 mods)
 
 - Bleach Mod (3635653759) (23): `Bleach_Gene_Quincy_Reiryoku_Awakening`, `Bleach_Gene_Quincy_Reiryoku_Elite`, `Bleach_Gene_Quincy_Reiryoku_Schutzstaffel`, `Bleach_Gene_Quincy_Reiryoku_Soldat`, `Bleach_Gene_Quincy_Reiryoku_Sternritter`, `Bleach_Gene_Quincy_Reiryoku_Sternritter_Elite`, `Bleach_Gene_Quincy_Reiryoku_Survivor`, `Bleach_Gene_Reiryoku_Adjuchas`, `Bleach_Gene_Reiryoku_Average`, `Bleach_Gene_Reiryoku_Captain_Class1`, `Bleach_Gene_Reiryoku_Captain_Class2`, `Bleach_Gene_Reiryoku_Captain_Class3`, `Bleach_Gene_Reiryoku_Espada`, `Bleach_Gene_Reiryoku_Espada_Low`, `Bleach_Gene_Reiryoku_Espada_Mid`, `Bleach_Gene_Reiryoku_Faint`, `Bleach_Gene_Reiryoku_Fraccion`, `Bleach_Gene_Reiryoku_Gillian`, `Bleach_Gene_Reiryoku_High`, `Bleach_Gene_Reiryoku_Hollow`, `Bleach_Gene_Reiryoku_Immense`, `Bleach_Gene_Reiryoku_Privaron`, `Bleach_Gene_Reiryoku_VastoLorde`
+
+## Exclusion `Curiosity` (23 genes, 4 mods)
+
+- Vanilla Races Expanded - Genie (2901424072) (12): `VRE_Curiosity_Animals`, `VRE_Curiosity_Artistic`, `VRE_Curiosity_Construction`, `VRE_Curiosity_Cooking`, `VRE_Curiosity_Crafting`, `VRE_Curiosity_Intellectual`, `VRE_Curiosity_Medicine`, `VRE_Curiosity_Melee`, `VRE_Curiosity_Mining`, `VRE_Curiosity_Plants`, `VRE_Curiosity_Shooting`, `VRE_Curiosity_Social`
+- Vanilla Races Expanded - Fungoid (3042690053) (4): `VRE_ExtremeSkillLoss`, `VRE_MinorSkillLoss`, `VRE_NoSkillLoss`, `VRE_SevereSkillLoss`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MechaAI_Base`
+- local:rjw-genes (local:rjw-genes) (1): `VRE_Curiosity_Sex`
 
 ## Exclusion `Pain` (23 genes, 9 mods)
 
@@ -2059,6 +2164,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Jimothy's Genes! (3371751009) (1): `JInv_HumanGene`
 - Random Genetics Genes Expanded (3745658327) (1): `HJAG_Tusks`
 
+## Exclusion `VRE_Curiosity` (23 genes, 4 mods)
+
+- Vanilla Races Expanded - Genie (2901424072) (12): `VRE_Curiosity_Animals`, `VRE_Curiosity_Artistic`, `VRE_Curiosity_Construction`, `VRE_Curiosity_Cooking`, `VRE_Curiosity_Crafting`, `VRE_Curiosity_Intellectual`, `VRE_Curiosity_Medicine`, `VRE_Curiosity_Melee`, `VRE_Curiosity_Mining`, `VRE_Curiosity_Plants`, `VRE_Curiosity_Shooting`, `VRE_Curiosity_Social`
+- Vanilla Races Expanded - Fungoid (3042690053) (4): `VRE_ExtremeSkillLoss`, `VRE_MinorSkillLoss`, `VRE_NoSkillLoss`, `VRE_SevereSkillLoss`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MechaAI_Base`
+- local:rjw-genes (local:rjw-genes) (1): `VRE_Curiosity_Sex`
+
 ## Exclusion `Aura` (22 genes, 1 mods)
 
 - Outland - Genetics (2910172297) (11): `Outland_Aura_AirAspect`, `Outland_Aura_DarkAspect`, `Outland_Aura_DeathAspect`, `Outland_Aura_EarthAspect`, `Outland_Aura_FireAspect`, `Outland_Aura_Gambit`, `Outland_Aura_LifeAspect`, `Outland_Aura_LightAspect`, `Outland_Aura_Royal`, `Outland_Aura_Smelly`, `Outland_Aura_WaterAspect`
@@ -2083,6 +2195,20 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinFertile`
 - [AV] Kosmian Xenotype (3774474578) (1): `AV_MolluscoidNecrophage`
 
+## Exclusion `Learning` (22 genes, 11 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (2): `Learning_Fast`, `Learning_Slow`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Hivemind_Learning`, `WVC_RandomLearning`
+- Random Genetics Genes Expanded (3745658327) (3): `HJ_Learning`, `HJ_LearningNeg`, `HJ_LearningPos`
+- Superhero Genes - Base (2980061828) (1): `SHG_SameTrickPony`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_NoStudy`
+- [OA]Ratkin Gene Expand (3300291918) (1): `OAGene_UnrestrictedLearning`
+- More Storylike Traits - Body and Mind 1.6 (3811291787) (2): `Storylike_Gene_ThickSkulled`, `Storylike_Gene_TotalRecall`
+- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (2): `Storylike_Gene_ThickSkulled`, `Storylike_Gene_TotalRecall`
+- Totzi Xenotype Race (3409222988) (1): `TZ_SuperBrain`
+- FIP - WestTek (3592202407) (1): `WestTek_NoStudy`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Genius`
+
 ## Exclusion `MaxTemperature` (22 genes, 6 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (3): `MaxTemp_LargeIncrease`, `MaxTemp_SmallDecrease`, `MaxTemp_SmallIncrease`
@@ -2097,12 +2223,19 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Superhero Genes - Base (2980061828) (7): `SHG_SuperStrength1`, `SHG_SuperStrength2`, `SHG_SuperStrength3`, `SHG_SuperStrength4`, `SHG_SuperStrength5`, `SuperStrength`, `UnsuperStrength`
 - Superhero Genes - Villains and Stereotypes (3088653906) (4): `SHG_RandomMundaneSuper`, `SHG_RandomRadiomancer`, `SHG_RandomSoldierSuper`, `SHG_RandomSummonerSuper`
 
-## Exclusion `AG_Gestation` (21 genes, 4 mods)
+## Exclusion `Toughness` (22 genes, 11 mods)
 
-- WVC - Xenotypes and Genes (2886992038) (6): `WVC_DryadQueen`, `WVC_Dustogenic_ImmaculateConception`, `WVC_Hivemind_Gestator`, `WVC_StartGestation`, `WVC_StorageGestator`, `WVC_XenotypeGestator`
-- Alpha Genes (2891845502) (2): `AG_FastGestation`, `AG_SlowGestation`
-- Outland - Genetics (2910172297) (2): `Outland_AcceleratedPregnancy`, `Outland_DeceleratedPregnancy`
-- Random Genetics Genes Expanded (3745658327) (1): `HJAG_Gestation`
+- Vanilla RimWorld (Core and Biotech, game folder) (2): `Delicate`, `Robust`
+- [SH]Gene Expand (3558760095) (2): `SHGE_Vajra`, `SHGE_Vulnerable`
+- Big and Small - Genes & More (2920751126) (3): `BS_DvergrConstitution`, `BS_TinyTough`, `BS_VeryDelicate`
+- Random Genetics Genes Expanded (3745658327) (3): `HJ_Toughness`, `HJ_ToughnessNeg`, `HJ_ToughnessPos`
+- WVC - Xenotypes and Genes (2886992038) (1): `WVC_Scarifier_Scarshield`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_FungalArmor`
+- Big and Small - Muriden (3597814862) (1): `Muriden_SmallToughness`
+- Simple Extended Gene (3324409235) (1): `SEG_Apotheosis`
+- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Bulwark`
+- More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Obese`
+- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Obese`
 
 ## Exclusion `AG_WeatherCausers` (21 genes, 2 mods)
 
@@ -2127,6 +2260,18 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - WVC - Xenotypes and Genes (2886992038) (1): `WVC_RandomHands`
 - Kijin Race 3.0 (2884551646) (1): `Kijin_HandsOfDarkMidas`
 - Posthuman Drift Warcat Xenotype (3521815010) (1): `XylRetractableClaws`
+
+## Exclusion `KillThirst` (21 genes, 9 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (2): `KillThirst`, `ViolenceDisabled`
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Emotionless`, `WVC_EmotionlessUnshakable`
+- Superhero Genes - Base (2980061828) (2): `SHG_AdrenalineJunkie`, `SHG_Flaw_Bloodthirsty`
+- More Biotech Style Genes - All in One (2985153870) (2): `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
+- More Violence Genes (2999686177) (2): `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
+- Random Genetics Genes Expanded (3745658327) (2): `HJ_KillOrChill`, `HJ_Violence`
+- Beliar Xenotype (3237072670) (1): `BX_HomicidalUrges`
+- Star Wars KotOR Factions (3379096669) (1): `guy762_gene_hanharr`
+- Hunterphage Xenotype (Continued) (3542200033) (1): `Gene_Hunterphage_NaturalKiller`
 
 ## Exclusion `MeleeDamage` (21 genes, 10 mods)
 
@@ -2161,34 +2306,17 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Foxian League (3639227864) (1): `FL_GeneticPurity`
 - local:rjw-genes (local:rjw-genes) (1): `rjw_genes_ovipositor_genitalia`
 
+## Exclusion `AG_Fertility` (20 genes, 4 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (5): `WVC_DryadQueen`, `WVC_Hivemind_Gestator`, `WVC_StartGestation`, `WVC_StorageGestator`, `WVC_XenotypeGestator`
+- Alpha Genes (2891845502) (2): `AG_FastGestation`, `AG_SlowGestation`
+- Outland - Genetics (2910172297) (2): `Outland_AcceleratedPregnancy`, `Outland_DeceleratedPregnancy`
+- Vanilla Races Expanded - Archon (3067715093) (2): `VRE_LongPregnancy`, `VRE_ShortPregnancy`
+
 ## Exclusion `EBSG_Spine` (20 genes, 2 mods)
 
 - Expanded Biotech Style Genes - All in One (3020821838) (5): `EBSG_DamagedSpine`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_SlightlyDamagedSpine`
 - EBSG - Health Genes (3115303988) (5): `EBSG_DamagedSpine`, `EBSG_RandomTier1Part_Chaotic`, `EBSG_RandomTier2Part_Chaotic`, `EBSG_RandomTier3Part_Chaotic`, `EBSG_SlightlyDamagedSpine`
-
-## Exclusion `KillThirst` (20 genes, 8 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (2): `KillThirst`, `ViolenceDisabled`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Emotionless`, `WVC_EmotionlessUnshakable`
-- Superhero Genes - Base (2980061828) (2): `SHG_AdrenalineJunkie`, `SHG_Flaw_Bloodthirsty`
-- More Biotech Style Genes - All in One (2985153870) (2): `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
-- More Violence Genes (2999686177) (2): `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
-- Random Genetics Genes Expanded (3745658327) (2): `HJ_KillOrChill`, `HJ_Violence`
-- Star Wars KotOR Factions (3379096669) (1): `guy762_gene_hanharr`
-- Hunterphage Xenotype (Continued) (3542200033) (1): `Gene_Hunterphage_NaturalKiller`
-
-## Exclusion `Learning` (20 genes, 10 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (2): `Learning_Fast`, `Learning_Slow`
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_Hivemind_Learning`, `WVC_RandomLearning`
-- Random Genetics Genes Expanded (3745658327) (3): `HJ_Learning`, `HJ_LearningNeg`, `HJ_LearningPos`
-- Superhero Genes - Base (2980061828) (1): `SHG_SameTrickPony`
-- [OA]Ratkin Gene Expand (3300291918) (1): `OAGene_UnrestrictedLearning`
-- More Storylike Traits - Body and Mind 1.6 (3811291787) (2): `Storylike_Gene_ThickSkulled`, `Storylike_Gene_TotalRecall`
-- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (2): `Storylike_Gene_ThickSkulled`, `Storylike_Gene_TotalRecall`
-- Totzi Xenotype Race (3409222988) (1): `TZ_SuperBrain`
-- FIP - WestTek (3592202407) (1): `WestTek_NoStudy`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Genius`
 
 ## Exclusion `RandomHealing` (20 genes, 2 mods)
 
@@ -2200,19 +2328,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Superhero Genes - Base (2980061828) (6): `SHG_SuperSpeed1`, `SHG_SuperSpeed2`, `SHG_SuperSpeed3`, `SHG_SuperSpeed4`, `SuperSpeed`, `UnsuperSpeed`
 - Superhero Genes - Villains and Stereotypes (3088653906) (4): `SHG_RandomMundaneSuper`, `SHG_RandomRadiomancer`, `SHG_RandomSoldierSuper`, `SHG_RandomSummonerSuper`
 
-## Exclusion `Toughness` (20 genes, 10 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (2): `Delicate`, `Robust`
-- [SH]Gene Expand (3558760095) (2): `SHGE_Vajra`, `SHGE_Vulnerable`
-- Big and Small - Genes & More (2920751126) (3): `BS_DvergrConstitution`, `BS_TinyTough`, `BS_VeryDelicate`
-- Random Genetics Genes Expanded (3745658327) (3): `HJ_Toughness`, `HJ_ToughnessNeg`, `HJ_ToughnessPos`
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_Scarifier_Scarshield`
-- Big and Small - Muriden (3597814862) (1): `Muriden_SmallToughness`
-- Simple Extended Gene (3324409235) (1): `SEG_Apotheosis`
-- Vanilla Quests Expanded - Ancients (3618306875) (1): `VQEA_Bulwark`
-- More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Obese`
-- local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Obese`
-
 ## Exclusion `WVC_HybridStomach` (20 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (10): `WVC_HealingStomach`, `WVC_MechaPowerSource_Stable`, `WVC_MechaPowerSource_Tox`, `WVC_MechaPowerSource_Unstable`, `WVC_RestStomach`, `WVC_ResurgentCells_Stomach`, `WVC_Scarifier_ArchiteScarstomach`, `WVC_Scarifier_Scarstomach`, `WVC_SleepyStomach`, `WVC_StoneStomach`
@@ -2223,12 +2338,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Expanded Biotech Style Genes - All in One (3020821838) (4): `EBSG_AcidImmune`, `EBSG_AcidResistance`, `EBSG_AcidVulnerable`, `EBSG_AcidWeakness`
 - Superhero Genes - Base (2980061828) (1): `SHG_Archetypes_Caustimancer`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_AcidDamage`
-
-## Exclusion `AG_Fertility` (18 genes, 3 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (5): `WVC_DryadQueen`, `WVC_Hivemind_Gestator`, `WVC_StartGestation`, `WVC_StorageGestator`, `WVC_XenotypeGestator`
-- Alpha Genes (2891845502) (2): `AG_FastGestation`, `AG_SlowGestation`
-- Outland - Genetics (2910172297) (2): `Outland_AcceleratedPregnancy`, `Outland_DeceleratedPregnancy`
 
 ## Exclusion `FrostbiteDamage` (18 genes, 3 mods)
 
@@ -2316,6 +2425,14 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Expanded Dependency Genes (3137774673) (4): `EBSG_RawFoodDependency`, `EBSG_RawFoodReliance`, `EBSG_VegetarianDependency`, `EBSG_VegetarianReliance`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_FoodDependency`
 
+## Exclusion `Mood` (17 genes, 5 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (4): `Mood_Depressive`, `Mood_Optimist`, `Mood_Pessimist`, `Mood_Sanguine`
+- WVC - Xenotypes and Genes (2886992038) (4): `WVC_EmotionReset`, `WVC_Emotionless`, `WVC_EmotionlessUnshakable`, `WVC_Hivemind_Mood`
+- Alpha Genes (2891845502) (1): `AG_Mood_Unfeeling`
+- Random Genetics Genes Expanded (3745658327) (2): `HJ_MoodNeg`, `HJ_MoodPos`
+- Posthuman Drift Dvergr Xenotype (3521816382) (1): `XylMelancholy`
+
 ## Exclusion `Tusk` (17 genes, 4 mods)
 
 - Alpha Genes (2891845502) (7): `AG_BeeMandibles`, `AG_BeetleMandibles`, `AG_FaceTentacles`, `AG_NoTusks`, `AG_PincerMandibles`, `AG_Tusks`, `AG_VFEI_InsectoidMandibles`
@@ -2389,13 +2506,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `EBSG_RemoteShield` (16 genes, 1 mods)
 
 - Expanded Biotech Style Genes - All in One (3020821838) (8): `EBSG_BadRemoteShield`, `EBSG_ExtremeRemoteShield`, `EBSG_HyperRemoteShield`, `EBSG_MajorRemoteShield`, `EBSG_MinorRemoteShield`, `EBSG_RemoteShield`, `EBSG_SuperRemoteShield`, `EBSG_TerribleRemoteShield`
-
-## Exclusion `Mood` (16 genes, 4 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (4): `Mood_Depressive`, `Mood_Optimist`, `Mood_Pessimist`, `Mood_Sanguine`
-- WVC - Xenotypes and Genes (2886992038) (4): `WVC_EmotionReset`, `WVC_Emotionless`, `WVC_EmotionlessUnshakable`, `WVC_Hivemind_Mood`
-- Alpha Genes (2891845502) (1): `AG_Mood_Unfeeling`
-- Random Genetics Genes Expanded (3745658327) (2): `HJ_MoodNeg`, `HJ_MoodPos`
 
 ## Exclusion `MoveSpeed` (16 genes, 8 mods)
 
@@ -2480,6 +2590,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Superhero Genes - Base (2980061828) (7): `SHG_Blindsight`, `SHG_GhostlyPresence`, `SHG_HALK`, `SHG_Naturalist`, `SHG_SuperPsychicPotential`, `SHG_Technophile`, `SHG_UncontrollableMindReading`
 
+## Exclusion `SkillGenes` (14 genes, 2 mods)
+
+- Vanilla Races Expanded - Fungoid (3042690053) (4): `VRE_ExtremeSkillLoss`, `VRE_MinorSkillLoss`, `VRE_NoSkillLoss`, `VRE_SevereSkillLoss`
+- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Learning_Scarifier`, `WVC_Learning_SlowNoSkillDecay`, `WVC_MechaAI_Base`
+
 ## Exclusion `SuperHealings` (14 genes, 1 mods)
 
 - Superhero Genes - Base (2980061828) (7): `SHG_DoubleHearted`, `SHG_SuperHealing1`, `SHG_SuperHealing2`, `SHG_SuperHealing3`, `SHG_SuperHealing4`, `SuperHealing`, `UnsuperHealing`
@@ -2487,6 +2602,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `SuperSpeeds` (14 genes, 1 mods)
 
 - Superhero Genes - Base (2980061828) (7): `SHG_Prey`, `SHG_SuperSpeed1`, `SHG_SuperSpeed2`, `SHG_SuperSpeed3`, `SHG_SuperSpeed4`, `SuperSpeed`, `UnsuperSpeed`
+
+## Exclusion `VRE_SkillGenes` (14 genes, 2 mods)
+
+- Vanilla Races Expanded - Fungoid (3042690053) (4): `VRE_ExtremeSkillLoss`, `VRE_MinorSkillLoss`, `VRE_NoSkillLoss`, `VRE_SevereSkillLoss`
+- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Learning_Scarifier`, `WVC_Learning_SlowNoSkillDecay`, `WVC_MechaAI_Base`
 
 ## Exclusion `WVC_MechaAI_Firmware` (14 genes, 1 mods)
 
@@ -2603,6 +2723,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - EBSG - Capacity Genes (Sight, Hearing, etc) (3006401355) (4): `EBSG_GoodSmell`, `EBSG_GreatSmell`, `EBSG_HalfSmell`, `EBSG_NoSmell`
 - Random Genetics Genes Expanded (3745658327) (1): `HJA_Smelling`
 
+## Exclusion `Tiny` (13 genes, 4 mods)
+
+- Big and Small - Genes & More (2920751126) (5): `BS_AriettyFrame`, `BS_RabbitFrame`, `Dwarfism`, `GnomeFrame`, `Small`
+- Big and Small - Simple Size Genes (3328662155) (5): `BS_AriettyFrame`, `BS_RabbitFrame`, `Dwarfism`, `GnomeFrame`, `Small`
+- Fairy Xenotype (3826913422) (1): `Fairy_Frame`
+- MakaiTech - Xenotype (3268577147) (1): `Makai_FairinFrame`
+
 ## Exclusion `Vomit` (13 genes, 2 mods)
 
 - Alpha Genes (2891845502) (6): `AG_BloodVomit`, `AG_ChemfuelVomit`, `AG_PukeBile`, `AG_PukeCryo`, `AG_PukeWater`, `AG_RatVomit`
@@ -2701,6 +2828,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Big and Small - Genes & More (2920751126) (2): `Gigantism`, `Large`
 - Big and Small - Simple Size Genes (3328662155) (2): `Gigantism`, `Large`
 
+## Exclusion `FurPatternAccent` (12 genes, 1 mods)
+
+- Cheech Xenotype (3723106445) (12): `GeneDef_Cheech_FurPatternAccent_Jaguar`, `GeneDef_Cheech_FurPatternAccent_Leopard`, `GeneDef_Cheech_FurPatternAccent_LeopardCrisp`, `GeneDef_Cheech_FurPatternAccent_Mottled`, `GeneDef_Cheech_FurPatternAccent_Patches`, `GeneDef_Cheech_FurPatternAccent_Spots`, `GeneDef_Cheech_FurPatternAccent_StripesSharp`, `GeneDef_Cheech_FurPatternAccent_StripesSpots`, `GeneDef_Cheech_FurPatternAccent_StripesSpotsBold`, `GeneDef_Cheech_FurPatternAccent_StripesSquiggles`, `GeneDef_Cheech_FurPatternAccent_StripesV`, `GeneDef_Cheech_FurPatternAccent_SwirlsSpots`
+
 ## Exclusion `halo` (12 genes, 1 mods)
 
 - Biotech Cosmetic Kit - Horns Halos and More (2985847757) (12): `MM_CrookedHalo`, `MM_CrookedHaloSilver`, `MM_GreatHalo`, `MM_GreatHaloSilver`, `MM_GreatSplitHalo`, `MM_GreatSplitHaloSilver`, `MM_Halo`, `MM_HaloSilver`, `MM_RandomHalo`, `MM_RandomHaloSilver`, `MM_SplitHalo`, `MM_SplitHaloSilver`
@@ -2749,11 +2880,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `SuperIntelligences` (12 genes, 1 mods)
 
 - Superhero Genes - Base (2980061828) (6): `SHG_MadGenius`, `SHG_SuperIntelligence1`, `SHG_SuperIntelligence2`, `SHG_SuperIntelligence3`, `SuperIntelligence`, `UnsuperIntelligence`
-
-## Exclusion `SuperTemp` (12 genes, 2 mods)
-
-- More Biotech Style Genes - All in One (2985153870) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
-- Climate Preference Genes (2980961512) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
 
 ## Exclusion `WVC_Ageless` (12 genes, 1 mods)
 
@@ -2822,11 +2948,12 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Lifespan Expectancy Genes (3364691662) (5): `ExtremeLifespanExtension`, `LongerLifespan`, `LongestLifespan`, `ShortLifespan`, `ShortestLifespan`
 - Ratkin Xenotype Forked (3509837826) (1): `ShortLived`
 
-## Exclusion `Tiny` (11 genes, 3 mods)
+## Exclusion `MBSG_Digestion` (11 genes, 4 mods)
 
-- Big and Small - Genes & More (2920751126) (5): `BS_AriettyFrame`, `BS_RabbitFrame`, `Dwarfism`, `GnomeFrame`, `Small`
-- Big and Small - Simple Size Genes (3328662155) (5): `BS_AriettyFrame`, `BS_RabbitFrame`, `Dwarfism`, `GnomeFrame`, `Small`
-- MakaiTech - Xenotype (3268577147) (1): `Makai_FairinFrame`
+- More Biotech Style Genes - All in One (2985153870) (3): `MBSG_FaultyDigestion`, `MBSG_FrailDigestion`, `MBSG_SturdyDigestion`
+- More Digestion Genes (3000266456) (3): `MBSG_FaultyDigestion`, `MBSG_FrailDigestion`, `MBSG_SturdyDigestion`
+- Integrated Genes (2884115974) (1): `Turn_Gene_FrailDigestion`
+- Jimothy's Genes! (3371751009) (1): `JIMJAM_NoDigestion`
 
 ## Exclusion `WVC_Ageless_FastSlowAging` (11 genes, 1 mods)
 
@@ -2835,6 +2962,12 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `AbilityMechlink` (10 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (5): `WVC_ArchiteMechlink`, `WVC_Dustogenic_Blesslink`, `WVC_NaturalMechlink`, `WVC_SwarmConnection_Golems`, `WVC_VoidMechlink`
+
+## Exclusion `AG_LungRot` (10 genes, 3 mods)
+
+- Alpha Genes (2891845502) (2): `AG_LungRotImmunity`, `AG_LungRotStrength`
+- Vanilla Races Expanded - Fungoid (3042690053) (2): `VRE_PartialAntirotLungs`, `VRE_TotalAntirotLungs`
+- Random Genetics Genes Expanded (3745658327) (2): `HJAG_LungRot`, `HJAG_LungRot2`
 
 ## Exclusion `AG_Spikes` (10 genes, 1 mods)
 
@@ -2961,6 +3094,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Alpha Genes (2891845502) (3): `AG_BandwidthDecrease`, `AG_BandwidthIncrease`, `AG_BandwidthIncreaseMajor`
 - Random Genetics Genes Expanded (3745658327) (2): `HJAG_Bandwidth`, `HJAG_MechStuff`
 
+## Exclusion `AG_Bleeding` (8 genes, 4 mods)
+
+- WVC - Xenotypes and Genes (2886992038) (2): `WVC_MecaBodyParts_Heart`, `WVC_ResurgentCells_Blood`
+- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_Hemophiliac`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
+
 ## Exclusion `AG_CarryingCapacity` (8 genes, 3 mods)
 
 - Alpha Genes (2891845502) (3): `AG_Digitigrade`, `AG_FrailBack`, `AG_PackMule`
@@ -3050,11 +3190,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Lilin Wool Genes (3696210405) (8): `KNV_woolgene_creamy`, `KNV_woolgene_darkgrey`, `KNV_woolgene_desertsand`, `KNV_woolgene_lightgrey`, `KNV_woolgene_palebrown`, `KNV_woolgene_pinkbrown`, `KNV_woolgene_red`, `KNV_woolgene_white`
 
-## Exclusion `MBSG_Digestion` (8 genes, 3 mods)
+## Exclusion `Libido` (8 genes, 5 mods)
 
-- More Biotech Style Genes - All in One (2985153870) (3): `MBSG_FaultyDigestion`, `MBSG_FrailDigestion`, `MBSG_SturdyDigestion`
-- Integrated Genes (2884115974) (1): `Turn_Gene_FrailDigestion`
-- Jimothy's Genes! (3371751009) (1): `JIMJAM_NoDigestion`
+- Vanilla RimWorld (Core and Biotech, game folder) (2): `Libido_High`, `Libido_Low`
+- Outland - Genetics (2910172297) (1): `Outland_Breedable`
+- Always Super Duper Reproductive (3208869388) (1): `AlwaysSuperDuperReproductive`
+- Femboy Xenotypes (3456372943) (1): `FEMB_randomLibido`
+- Random Genetics Genes Expanded (3745658327) (1): `HJ_Libido`
 
 ## Exclusion `Milk` (8 genes, 2 mods)
 
@@ -3064,6 +3206,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `SuperClotting` (8 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (4): `WVC_Dustogenic_Clotting`, `WVC_MecaBodyParts_Heart`, `WVC_ResurgentCells_Clotting`, `WVC_Scarifier_Clotting`
+
+## Exclusion `SuperTemp` (8 genes, 1 mods)
+
+- More Biotech Style Genes - All in One (2985153870) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
 
 ## Exclusion `VRE_Morphs` (8 genes, 1 mods)
 
@@ -3090,12 +3236,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Random Genetics Genes Expanded (3745658327) (3): `HJ_Ambrosia`, `HJ_AmbrosiaNeg`, `HJ_AmbrosiaPos`
 - Expanded Biotech Style Genes - All in One (3020821838) (1): `EBSG_AmbrosiaReliance`
 - EBSG - Expanded Dependency Genes (3137774673) (1): `EBSG_AmbrosiaReliance`
-
-## Exclusion `AG_Bleeding` (7 genes, 3 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (2): `WVC_MecaBodyParts_Heart`, `WVC_ResurgentCells_Blood`
-- Spirits (3472437470) (1): `REDS_EctoplasmBlood`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_SapBlood`
 
 ## Exclusion `AG_Misc` (7 genes, 2 mods)
 
@@ -3143,13 +3283,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `JIMJAM_ChildAging` (7 genes, 1 mods)
 
 - Jimothy's Genes! (3371751009) (7): `JIMJAM_ExtremelyFastAging_Child`, `JIMJAM_FastAging_Child`, `JIMJAM_SlightlyFastAging_Child`, `JIMJAM_SlightlySlowAging_Child`, `JIMJAM_SlowAging_Child`, `JIMJAM_VeryFastAging_Child`, `JIMJAM_VerySlowAging_Child`
-
-## Exclusion `Libido` (7 genes, 4 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (2): `Libido_High`, `Libido_Low`
-- Outland - Genetics (2910172297) (1): `Outland_Breedable`
-- Always Super Duper Reproductive (3208869388) (1): `AlwaysSuperDuperReproductive`
-- Random Genetics Genes Expanded (3745658327) (1): `HJ_Libido`
 
 ## Exclusion `LiveMunitionsCategory` (7 genes, 1 mods)
 
@@ -3207,11 +3340,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Alpha Genes (2891845502) (2): `AG_DecreasedMechRepair`, `AG_IncreasedMechRepair`
 - Random Genetics Genes Expanded (3745658327) (2): `HJAG_FixSpeed`, `HJAG_MechStuff`
-
-## Exclusion `AG_LungRot` (6 genes, 2 mods)
-
-- Alpha Genes (2891845502) (2): `AG_LungRotImmunity`, `AG_LungRotStrength`
-- Random Genetics Genes Expanded (3745658327) (2): `HJAG_LungRot`, `HJAG_LungRot2`
 
 ## Exclusion `AG_ShoulderCritters` (6 genes, 1 mods)
 
@@ -3591,9 +3719,17 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Outland - Genetics (2910172297) (3): `Outland_EarnedAscension`, `Outland_EasyEarnedAscension`, `Outland_HardEarnedAscension`
 
+## Exclusion `HeadPatternAccent` (6 genes, 1 mods)
+
+- Cheech Xenotype (3723106445) (6): `GeneDef_Cheech_HeadPatternAccent_Cheetah`, `GeneDef_Cheech_HeadPatternAccent_Dashes`, `GeneDef_Cheech_HeadPatternAccent_Jaguar`, `GeneDef_Cheech_HeadPatternAccent_LeopardCrisp`, `GeneDef_Cheech_HeadPatternAccent_Squiggles`, `GeneDef_Cheech_HeadPatternAccent_StripesV`
+
 ## Exclusion `HealingSpecialization` (6 genes, 1 mods)
 
 - Superhero Genes - Base (2980061828) (3): `SHG_DoubleHearted`, `SHG_Pools_HealAllies`, `UnsuperHealing`
+
+## Exclusion `HVT_Senses` (6 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (3): `HVT_ImperceptiveGene`, `HVT_KeenSensesGene`, `HVT_PowerfulSensesGene`
 
 ## Exclusion `Hygiene` (6 genes, 1 mods)
 
@@ -3651,10 +3787,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Superhero Genes - Villains and Stereotypes (3088653906) (2): `SHG_RandomHemomancer`, `SHG_RandomHemomancerXenotype`
 - Superhero Genes - Base (2980061828) (1): `SHG_Hemomancer_Warrior`
 
-## Exclusion `SkillGenes` (6 genes, 1 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Learning_Scarifier`, `WVC_Learning_SlowNoSkillDecay`, `WVC_MechaAI_Base`
-
 ## Exclusion `SpeedSpecialization` (6 genes, 1 mods)
 
 - Superhero Genes - Base (2980061828) (3): `SHG_Pools_WindStep`, `SHG_Prey`, `UnsuperSpeed`
@@ -3672,13 +3804,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Superhero Genes - Base (2980061828) (3): `SHG_SuperPerception1`, `SuperPerception`, `UnsuperPerception`
 
+## Exclusion `TF_EyeColor` (6 genes, 1 mods)
+
+- Toad Folk - Xenotype (3733348634) (6): `TF_ToadEyes`, `TF_ToadEyesAmber`, `TF_ToadEyesBlack`, `TF_ToadEyesGreen`, `TF_ToadEyesRed`, `TF_ToadEyesYellow`
+
 ## Exclusion `Thirst` (6 genes, 1 mods)
 
 - DBHGenes (2909218834) (6): `NoThirst`, `ThirstHigh`, `ThirstIncrediblyHigh`, `ThirstLow`, `ThirstNormal`, `ThirstVeryHigh`
-
-## Exclusion `VRE_SkillGenes` (6 genes, 1 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Learning_Scarifier`, `WVC_Learning_SlowNoSkillDecay`, `WVC_MechaAI_Base`
 
 ## Exclusion `VRE_TreeAffinity` (6 genes, 3 mods)
 
@@ -3826,6 +3958,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Alpha Genes (2891845502) (2): `AG_AcidFangs`, `AG_VenomFangs`
 - Random Genetics Genes Expanded (3745658327) (1): `HJAG_Fangs`
+
+## Exclusion `FrostyFur` (5 genes, 1 mods)
+
+- FrostyDragonRace (BIOTECH) (3747969399) (5): `Frosty_BlackFur`, `Frosty_BlueFur`, `Frosty_GreenFur`, `Frosty_RedFur`, `Frosty_WhiteFur`
 
 ## Exclusion `guy762_Lifespan` (5 genes, 1 mods)
 
@@ -4142,6 +4278,38 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - [SH]Gene Expand (3558760095) (2): `SHGE_RecklessHunter`, `SHGE_SilentHunter`
 
+## Exclusion `HVT_Charisma` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_AsocialGene`, `HVT_WinsomeGene`
+
+## Exclusion `HVT_Chatting` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_AsocialGene`, `HVT_ConversationalistGene`
+
+## Exclusion `HVT_Childcare` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_CaretakerGene`, `HVT_MisopedistGene`
+
+## Exclusion `HVT_IdeoImpact` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_AdherentGene`, `HVT_UnquestioningAdherentGene`
+
+## Exclusion `HVT_Inspiration1` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_DaydreamerGene`, `HVT_StaidGene`
+
+## Exclusion `HVT_Inspiration2` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_RevellerGene`, `HVT_StaidGene`
+
+## Exclusion `HVT_Proselytization` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_AsocialGene`, `HVT_ProclaimerGene`
+
+## Exclusion `HVT_Strength` (4 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (2): `HVT_HerculeanGene`, `HVT_MightyGene`
+
 ## Exclusion `Inhumanized` (4 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (2): `WVC_Inhumanized`, `WVC_Rehumanized`
@@ -4182,6 +4350,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `Medical` (4 genes, 1 mods)
 
 - [SH]Gene Expand (3558760095) (2): `SHGE_Quack`, `SHGE_TreatmentProficient`
+
+## Exclusion `MeleeAttackSpeed` (4 genes, 2 mods)
+
+- Vanilla Races Expanded - Archon (3067715093) (2): `VRE_FastMeleeHitter`, `VRE_SlowMeleeHitter`
+- Big and Small - Muriden (3597814862) (1): `Sciurus_Alacrity`
 
 ## Exclusion `Mining` (4 genes, 1 mods)
 
@@ -4276,6 +4449,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `PsyLink` (4 genes, 1 mods)
 
 - [SH]Gene Expand (3558760095) (2): `SHGE_PsyLinkMaster`, `SHGE_PsyLinkMuggle`
+
+## Exclusion `RangedAttackSpeed` (4 genes, 2 mods)
+
+- Vanilla Races Expanded - Archon (3067715093) (2): `VRE_FastShooter`, `VRE_SlowShooter`
+- Big and Small - Muriden (3597814862) (1): `Sciurus_Alacrity`
 
 ## Exclusion `REDS_SpiritSummon` (4 genes, 1 mods)
 
@@ -4653,11 +4831,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Photosynthesis Gene (2898371988) (3): `Photosynthesis`, `Photosynthesis_Extreme`, `Photosynthesis_Weak`
 
-## Exclusion `Curiosity` (3 genes, 2 mods)
-
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MechaAI_Base`
-- local:rjw-genes (local:rjw-genes) (1): `VRE_Curiosity_Sex`
-
 ## Exclusion `CustomGene` (3 genes, 1 mods)
 
 - TheCynic - Adaptive Expression (3496854623) (3): `Omni-Adaptive`, `Omni-Adaptive Lite`, `Omni-Adaptive1`
@@ -4669,6 +4842,12 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `CYB_Tabby` (3 genes, 1 mods)
 
 - Cyanobot's Genes (2889844371) (3): `CYB_ColorTabby`, `CYB_SolidColor`, `CYB_TigerTabby`
+
+## Exclusion `Digestion` (3 genes, 3 mods)
+
+- Posthuman Drift Warcat Xenotype (3521815010) (1): `XylCarnivoreStomach`
+- Posthuman Drift Bossaps Xenotype (3521815829) (1): `XylHerbivoreStomach`
+- Posthuman Drift Dvergr Xenotype (3521816382) (1): `XylFungusEater`
 
 ## Exclusion `DiseaseFree` (3 genes, 2 mods)
 
@@ -4716,6 +4895,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Big and Small - Framework (2925432336) (2): `Body_FemaleOnly`, `Body_MaleOnly`
 - Foxian League (3639227864) (1): `FL_Female`
 
+## Exclusion `FurPatternFill` (3 genes, 1 mods)
+
+- Cheech Xenotype (3723106445) (3): `GeneDef_Cheech_FurPatternFill_Mottled`, `GeneDef_Cheech_FurPatternFill_Patches`, `GeneDef_Cheech_FurPatternFill_Tux`
+
 ## Exclusion `GS_Wings` (3 genes, 2 mods)
 
 - Seraphim Xenotype Reborn (3773065414) (1): `GS_WingsC`
@@ -4742,9 +4925,19 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Cyanobot's Genes (2889844371) (3): `CYB_EasilyBored`, `CYB_NeverBored`, `CYB_RarelyBored`
 
+## Exclusion `MeditationSpeed` (3 genes, 1 mods)
+
+- Vanilla Races Expanded - Archon (3067715093) (3): `VRE_ExtremeMeditation`, `VRE_SlowMeditation`, `VRE_SwiftMeditation`
+
 ## Exclusion `MeleeDodge` (3 genes, 1 mods)
 
 - Vanilla Races Expanded - Lycanthrope (3114453100) (3): `VRE_DodgeDisabled`, `VRE_ImprovedDodge`, `VRE_SuperiorDodge`
+
+## Exclusion `NightOwl` (3 genes, 3 mods)
+
+- Cyanobot's Genes (2889844371) (1): `CYB_Cathemeral`
+- Jimothy's Genes! (3371751009) (1): `JIMTraitGene_NightOwl`
+- Milira Xenotypes - Moon Kitsune (3830884619) (1): `Jimlira_NightOwl`
 
 ## Exclusion `NoArmor` (3 genes, 1 mods)
 
@@ -4770,6 +4963,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 ## Exclusion `Pollen` (3 genes, 1 mods)
 
 - Obsidia Expansion - Mothoids Xenotype (2885653060) (3): `OE_Pollen`, `OE_PollenAtlant`, `OE_PollenPrime`
+
+## Exclusion `PsychicEntropy` (3 genes, 1 mods)
+
+- Vanilla Races Expanded - Archon (3067715093) (3): `VRE_ExtremeEntropyCapacity`, `VRE_HighEntropyCapacity`, `VRE_WeakEntropyCapacity`
 
 ## Exclusion `QuickSleeper` (3 genes, 1 mods)
 
@@ -4825,10 +5022,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 - Star Wars Xenotypes (2915192253) (2): `guy762_AbilityGene_forcesight`, `guy762_AbilityGene_forcesight_TFS`
 - Integrated Genes (2884115974) (1): `Turn_Gene_Blindness`
 
-## Exclusion `VRE_Curiosity` (3 genes, 2 mods)
+## Exclusion `ViolenceDisabled` (3 genes, 2 mods)
 
-- WVC - Xenotypes and Genes (2886992038) (1): `WVC_MechaAI_Base`
-- local:rjw-genes (local:rjw-genes) (1): `VRE_Curiosity_Sex`
+- Hauts' Added Traits (3422847391) (1): `HVT_RRGene`
+- Highborn Xenotype (3380776687) (1): `HBX_Fencer`
 
 ## Exclusion `WN_ChakraLevel` (3 genes, 1 mods)
 
@@ -5124,6 +5321,10 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Genes+ – Rebalanced and Continued (3554395043) (2): `Hibernation_SeasonHibernationSummer`, `Hibernation_SeasonHibernationWinter`
 
+## Exclusion `HVT_MoralGuidance` (2 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (1): `HVT_GuruGene`
+
 ## Exclusion `Jaw spikes` (2 genes, 1 mods)
 
 - Biotech Cosmetic Kit - Horns Halos and More (2985847757) (2): `MM_JawSpikesFleshy`, `MM_JawSpikesKeratin`
@@ -5180,10 +5381,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Mashed's Ashlands (3109835541) (2): `Mashed_Ashlands_AshResistance_Perfect`, `MorrowRim_Gene_AshMoodResistance`
 
-## Exclusion `MeleeAttackSpeed` (2 genes, 1 mods)
-
-- Big and Small - Muriden (3597814862) (1): `Sciurus_Alacrity`
-
 ## Exclusion `Milkable` (2 genes, 1 mods)
 
 - [LTS]Xenotech (2877887281) (2): `LTS_Milkable`, `LTS_MilkableChemfuel`
@@ -5224,11 +5421,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - Biotech Cosmetic Kit - Horns Halos and More (2985847757) (2): `MM_NoseRidgeF`, `MM_NoseRidgeK`
 
-## Exclusion `NightOwl` (2 genes, 2 mods)
-
-- Cyanobot's Genes (2889844371) (1): `CYB_Cathemeral`
-- Jimothy's Genes! (3371751009) (1): `JIMTraitGene_NightOwl`
-
 ## Exclusion `OAGene_PermanentInjury` (2 genes, 1 mods)
 
 - [OA]Ratkin Gene Expand (3300291918) (1): `OAGene_ScarConstitution`
@@ -5265,10 +5457,6 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - More Genes (2878539467) (1): `Pyromaniac`
 - Jimothy's Genes! (3371751009) (1): `JIMTraitGene_Pyromaniac`
-
-## Exclusion `RangedAttackSpeed` (2 genes, 1 mods)
-
-- Big and Small - Muriden (3597814862) (1): `Sciurus_Alacrity`
 
 ## Exclusion `Resolve` (2 genes, 1 mods)
 
@@ -5506,7 +5694,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 - More Genes (2878539467) (2): `FastGrowthRate`, `VeryFastGrowthRate`
 
-## Exclusions with one gene (106)
+## Exclusions with one gene (118)
 
 | Exclusion | Gene | Mod |
 |---|---|---|
@@ -5524,6 +5712,8 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `BS_BodySwap` | `BS_MimicBody` | Big and Small - Genes & More |
 | `BS_MysticWarrior` | `BS_PsychicWarrior` | Big and Small - Genes & More |
 | `Cannibal` | `JIMTraitGene_Cannibal` | Jimothy's Genes! |
+| `Claw` | `HBCorracallClaws` | [HB] Corracall Xenotype |
+| `Claws` | `HBCorracallClaws` | [HB] Corracall Xenotype |
 | `Concussive_Resistance` | `BS_Concussive_Resistance` | Big and Small - Genes & More |
 | `CreatureGeneType` | `Plants_PlantMetabolism` | Genes+ – Rebalanced and Continued |
 | `CreepyBreathing` | `JIMTraitGene_CreepyBreathing` | Jimothy's Genes! |
@@ -5531,12 +5721,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `CYB_Nearsighted` | `CYB_Blind` | Cyanobot's Genes |
 | `CYB_Neversleep` | `CYB_Cathemeral` | Cyanobot's Genes |
 | `DeadNotDead` | `RI_ZombieCore_Aspect_DeadButNotDead` | 边缘仙路-镇邪诛鬼 RimImmortal-Exorcism[1.6] |
-| `Digestion` | `XylCarnivoreStomach` | Posthuman Drift Warcat Xenotype |
 | `DistanceVision` | `HJ_DistanceVision` | Random Genetics Genes Expanded |
 | `DistanceVisionClose` | `HJ_DistanceVisionClose` | Random Genetics Genes Expanded |
 | `DistanceVisionFar` | `HJ_DistanceVisionFar` | Random Genetics Genes Expanded |
 | `Disturbing` | `JIMTraitGene_Disturbing` | Jimothy's Genes! |
+| `Eye` | `HBCorracallHead` | [HB] Corracall Xenotype |
 | `Eyebrows` | `BS_FuzzyBrows` | Big and Small - Genes & More |
+| `Eyes` | `HBCorracallHead` | [HB] Corracall Xenotype |
 | `Face` | `XylFacialStripes` | Posthuman Drift Warcat Xenotype |
 | `Feathers` | `ANG_Feathers` | Animal Genes |
 | `Filfth` | `FL_Immaculate` | Foxian League |
@@ -5549,6 +5740,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `FL_ReservedExclusion` | `FL_Reserved` | Foxian League |
 | `Force` | `guy762_gene_sion` | Star Wars KotOR Factions |
 | `GE_Biology` | `GE_EvolutionGene` | Gene Evolution |
+| `GeneEyeColor` | `HBCorracallHead` | [HB] Corracall Xenotype |
 | `GF_bodypackage` | `GF_SharkTail` | GeneAndFactions |
 | `GF_headpackage` | `GF_CatEar` | GeneAndFactions |
 | `great curly horns` | `MMHorns_NubbyKA` | Biotech Cosmetic Kit - Horns Halos and More |
@@ -5556,10 +5748,13 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `GS_WingsA` | `GS_WingsB` | Nephilim Xenotype Reborn |
 | `GS_WingsB` | `GS_WingsB` | Nephilim Xenotype Reborn |
 | `guy762_ExclusionTag_KindnessGene` | `guy762_gene_hanharr` | Star Wars KotOR Factions |
+| `HeadPatternFill` | `GeneDef_Cheech_HeadPatternFill_Mottled` | Cheech Xenotype |
 | `HeadShape` | `RobCo_Gene_ThinkTankCore` | FIP - RobCo |
 | `IncomingDamageFactor` | `MUGB_Gene_GoblinDenseBones` | MUGB Goblin |
 | `InsectorSize` | `VQEA_Enormous` | Vanilla Quests Expanded - Ancients |
 | `IntellectualAptitude` | `IntellectualDisabled` | One with Death |
+| `JIMSCLUDE_NightOwl` | `Jimlira_NightOwl` | Milira Xenotypes - Moon Kitsune |
+| `JIMSCLUDE_Schedule` | `Jimlira_NightOwl` | Milira Xenotypes - Moon Kitsune |
 | `JIMSCLUDE_VoidFascination` | `JIMTraitGene_VoidFascination` | Jimothy's Genes! |
 | `Joyous` | `JIMTraitGene_Joyous` | Jimothy's Genes! |
 | `KraltechAffinity` | `KraltechGene_MechAffinity` | Kraltech Industries (1.7) (unofficial) |
@@ -5569,8 +5764,11 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `KraltechTargeting` | `KraltechGene_TargetingCortex` | Kraltech Industries (1.7) (unofficial) |
 | `KraltechThermal` | `KraltechGene_ThermalSkin` | Kraltech Industries (1.7) (unofficial) |
 | `LahlitBloodColor` | `BlackBlood` | No Longer Human-Consortium Faction Pack |
+| `Learning_Fast` | `Milira_Knowledgeable` | Milira Race Gene Patch |
+| `Learning_Slow` | `Milira_Knowledgeable` | Milira Race Gene Patch |
 | `LearningSpeed` | `IntellectualDisabled` | One with Death |
 | `Masochist` | `JIMTraitGene_Masochist` | Jimothy's Genes! |
+| `MelancholyAndEvenTemper` | `XylMelancholy` | Posthuman Drift Dvergr Xenotype |
 | `Nimble` | `JIMTraitGene_Nimble` | Jimothy's Genes! |
 | `No_Ovum` | `JIMJAM_NoOvumGene` | Jimothy's Genes! |
 | `No_ViltCompEyes` | `JInv_HumanGene` | Jimothy's Genes! |
@@ -5579,6 +5777,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Nudity` | `JIMTraitGene_Nudist` | Jimothy's Genes! |
 | `Occultist` | `JIMTraitGene_Occultist` | Jimothy's Genes! |
 | `Outland_AllFemale` | `ERN_AllFemale` | Erin's Corvyia |
+| `Outland_Heads` | `HBCorracallHead` | [HB] Corracall Xenotype |
 | `PsychicBonding` | `VU_LethalLover` | Big and Small - Genes & More |
 | `RBM_Heat` | `RBM_EstrousCycle` | Roo's Minotaur Xenotype |
 | `RE_Bodies` | `RE_ZombieSkin` | Resident Rim |
@@ -5588,6 +5787,7 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `RVH_SmartHydrationStorage` | `RVH_SmartHydrationStorage` | Invincible Viltrumites Unleashed! |
 | `RVH_UniversalHydration` | `RVH_UniversalHydration` | Invincible Viltrumites Unleashed! |
 | `SAB_Aptitudes` | `SAB_Necrolyte` | FRBE Addon - Gnolls |
+| `Scale` | `HBCorracallBod` | [HB] Corracall Xenotype |
 | `ScarabSubspecies` | `Scarab_DiligentWorkerGene` | 圣蜣螂种族 |
 | `SEX_Lactation` | `SEX_AlwaysLactating` | Lactation Expansion |
 | `SharkTailVariant` | `Thiren_SharkTail` | RimZone Zero: Ellen Joe |
@@ -5607,8 +5807,8 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 | `Undergrounder` | `JIMTraitGene_Undergrounder` | Jimothy's Genes! |
 | `Vampire` | `UV_BloodServant` | Umbra Vitae |
 | `Venom` | `RG_ToxGlands` | Rim-Gnoblins |
-| `ViolenceDisabled` | `HBX_Fencer` | Highborn Xenotype |
 | `VRE_SuperiorDarkVision` | `VRE_SuperiorDarkVision` | Vanilla Races Expanded - Lycanthrope |
+| `VREH_WeaponAptitude` | `VREHT_WeaponAptitude_Randomizer` | Vanilla Races Expanded - Hussar |
 | `Wimp` | `JIMTraitGene_Wimp` | Jimothy's Genes! |
 | `WVC_Gene_Sacrificer` | `WVC_Sacrificer` | WVC - Xenotypes and Genes |
 | `WVC_RomanceChance_D` | `WVC_RomanceChanceNeutralized` | WVC - Xenotypes and Genes |
@@ -5619,43 +5819,47 @@ Tags carried by two genes or more, biggest first, then the tags with a single ge
 
 # Categories of the gene editor
 
-The `displayCategory` of each gene. 343 categories.
+The `displayCategory` of each gene. 366 categories.
 
 | Categories | Genes | Mods |
 |---|---|---|
-| `Miscellaneous` | 826 | 146 |
-| `Cosmetic` | 326 | 62 |
-| `Archite` | 299 | 63 |
-| `Violence` | 282 | 40 |
-| `Healing` | 269 | 29 |
-| `Reproduction` | 260 | 34 |
+| `Miscellaneous` | 887 | 170 |
+| `Cosmetic` | 352 | 72 |
+| `Archite` | 312 | 68 |
+| `Violence` | 291 | 44 |
+| `Healing` | 285 | 34 |
+| `Reproduction` | 268 | 36 |
 | `EBSG_Productivity` | 252 | 2 |
-| `Ability` | 239 | 60 |
+| `Ability` | 246 | 65 |
 | `EBSG_Slayer` | 228 | 2 |
-| `GEB_Blood_Color` | 228 | 1 |
-| `Cosmetic_Skin` | 198 | 8 |
-| `Hemogen` | 189 | 15 |
-| `Beauty` | 164 | 14 |
+| `Hemogen` | 207 | 17 |
+| `Beauty` | 160 | 14 |
 | `EBSG_Passions` | 156 | 2 |
+| `GEB_Blood_Color` | 152 | 1 |
 | `GEH_hair_Color` | 152 | 1 |
+| `AG_Genes_Common` | 150 | 1 |
+| `AG_Genes_Legendary` | 150 | 1 |
+| `AG_Genes_Mythic` | 150 | 1 |
+| `AG_Genes_Rare` | 150 | 1 |
 | `GES_Skin_Color` | 150 | 1 |
 | `SuperGenes` | 142 | 1 |
+| `Psychic` | 137 | 18 |
+| `ResistanceAndWeakness` | 134 | 41 |
 | `EBSG_NeedRateChange` | 132 | 2 |
-| `ResistanceAndWeakness` | 131 | 37 |
-| `Psychic` | 129 | 16 |
 | `WVC_Cosmetic` | 122 | 1 |
 | `EBSG_Mechanitor` | 118 | 1 |
+| `Mood` | 115 | 24 |
 | `Outland_Eyes` | 108 | 1 |
-| `Mood` | 106 | 19 |
+| `Pain` | 107 | 17 |
 | `TWC_YZCategory` | 102 | 1 |
 | `EBSG_BodyParts` | 100 | 2 |
-| `Pain` | 100 | 15 |
 | `EyeGenes3_Eyes` | 99 | 1 |
 | `Mammalian` | 96 | 1 |
 | `BTE_Insectoid` | 86 | 1 |
 | `MM_Horns` | 85 | 2 |
 | `guy762_SWparts_Category` | 84 | 3 |
 | `EBSG_Dependency` | 80 | 2 |
+| `Cosmetic_Skin` | 78 | 9 |
 | `AG_Cosmetic_Horns` | 77 | 3 |
 | `EBSG_Food` | 76 | 2 |
 | `ERN_CosmeticGenes` | 76 | 1 |
@@ -5664,13 +5868,14 @@ The `displayCategory` of each gene. 343 categories.
 | `WVC_Chimera` | 71 | 1 |
 | `EBSG_Lifespan` | 70 | 3 |
 | `AG_AnomalyCategory` | 68 | 1 |
+| `Movement` | 68 | 17 |
 | `Outland_Ears` | 68 | 1 |
 | `SZSpecial` | 68 | 1 |
-| `Movement` | 67 | 16 |
 | `SuperPowersArchetypes` | 64 | 1 |
 | `Sleep` | 61 | 12 |
 | `Cosmetic_Body` | 59 | 15 |
 | `ATK_Cosmetic_Anthrosonae` | 58 | 1 |
+| `HautsTraits` | 58 | 1 |
 | `SHGE_PawnWorkStat` | 58 | 1 |
 | `SuperPowersSummoning` | 58 | 1 |
 | `MammalianCosmetic` | 53 | 1 |
@@ -5692,27 +5897,27 @@ The `displayCategory` of each gene. 343 categories.
 | `WVC_Fleshmass` | 44 | 1 |
 | `WVC_HiveMind` | 44 | 1 |
 | `WVC_Reimplanters` | 44 | 1 |
-| `Temperature` | 43 | 9 |
 | `DuplicateGenes` | 42 | 1 |
 | `PolymericGenes` | 42 | 1 |
 | `SuperPowersOffensive` | 42 | 1 |
 | `SupplementaryGenes` | 42 | 1 |
 | `GeneTraits` | 41 | 1 |
 | `Bleach_Quincy` | 40 | 1 |
+| `Temperature` | 40 | 9 |
 | `AG_SpecialEffectsCategory` | 38 | 1 |
 | `GEH_Horns` | 38 | 1 |
 | `Blood_Color` | 36 | 1 |
 | `EBSG_Biomes` | 36 | 2 |
 | `Overlimit_Talents` | 36 | 1 |
-| `GEW_Wings` | 34 | 1 |
 | `Outland_Wings` | 34 | 1 |
 | `WVC_Overrider` | 34 | 1 |
+| `AG_Genes` | 32 | 1 |
 | `EBSG_CarryCapacity` | 32 | 2 |
 | `SuperPowersRadiomancyDecay` | 32 | 2 |
 | `SuperPowersRadiomancyEmission` | 32 | 2 |
 | `SuperPowersRadiomancyFusion` | 32 | 2 |
+| `Body_Size` | 31 | 4 |
 | `AG_Mechanitor` | 30 | 1 |
-| `Body_Size` | 30 | 3 |
 | `Outland_Blood` | 30 | 1 |
 | `SuperFlaws` | 30 | 2 |
 | `SuperPowersRadiomancyFission` | 30 | 2 |
@@ -5734,6 +5939,7 @@ The `displayCategory` of each gene. 343 categories.
 | `AG_Wings` | 26 | 1 |
 | `MM_Demonic` | 25 | 2 |
 | `BTEMy_Glintscale` | 24 | 1 |
+| `HautsAATraits` | 24 | 1 |
 | `JJK_CursedTechniques` | 24 | 1 |
 | `RJW_Unleashed_Traits` | 24 | 1 |
 | `WVC_Scarifier` | 24 | 1 |
@@ -5751,6 +5957,7 @@ The `displayCategory` of each gene. 343 categories.
 | `WVC_Gauranlen` | 22 | 1 |
 | `Bladder` | 21 | 2 |
 | `Goldens` | 21 | 1 |
+| `HBCorracallGenes` | 21 | 1 |
 | `WVC_ResurgentCells` | 21 | 1 |
 | `AG_BloodType` | 20 | 1 |
 | `AG_Cosmetic_Bodies` | 20 | 1 |
@@ -5762,17 +5969,21 @@ The `displayCategory` of each gene. 343 categories.
 | `SuperPowersHemoThief` | 20 | 1 |
 | `SuperPowersHemoWarrior` | 20 | 1 |
 | `Aptitudes` | 19 | 6 |
+| `Cosmetic_Hair` | 19 | 2 |
 | `MoreGeneMiscellaneous` | 19 | 1 |
 | `AG_Cosmetic_Heads` | 18 | 1 |
+| `AnthroGene_AnthroGeneCategory` | 18 | 1 |
 | `Bagi` | 18 | 1 |
-| `Cosmetic_Hair` | 18 | 1 |
 | `DBHGenes` | 18 | 1 |
+| `GeneCategoryDef_Cheech_FurPatternAccent` | 18 | 1 |
+| `GEW_Wings` | 18 | 1 |
 | `SuperPowersResize` | 18 | 1 |
 | `AG_FoodConsumption` | 17 | 2 |
 | `JBL_Bloodlines` | 17 | 1 |
 | `MebUtility` | 17 | 4 |
 | `AG_LeatherType` | 16 | 1 |
 | `AG_MeatType` | 16 | 1 |
+| `GEST_Skin_type` | 16 | 1 |
 | `GS_GraceTouched` | 16 | 2 |
 | `JIMJAM_METABOLISM` | 16 | 1 |
 | `WVC_RandomGenes` | 16 | 1 |
@@ -5793,6 +6004,7 @@ The `displayCategory` of each gene. 343 categories.
 | `FL_foxian_genes_set` | 13 | 1 |
 | `RV2_Vore` | 13 | 1 |
 | `SoulDarkLv_MonsterMagic` | 13 | 1 |
+| `VRE_Curiosity` | 13 | 2 |
 | `WVC_Duplicator` | 13 | 1 |
 | `ACI_Bloodline` | 12 | 1 |
 | `AG_Metallic` | 12 | 1 |
@@ -5804,16 +6016,19 @@ The `displayCategory` of each gene. 343 categories.
 | `OCARINA_Cosmetic_MantledBeasts` | 12 | 1 |
 | `SuperPowersPassive` | 12 | 1 |
 | `VQEA_ArchiteAptitudes` | 12 | 1 |
+| `VRE_SkillLoss` | 12 | 1 |
 | `BS_Production` | 11 | 2 |
 | `Overlimit_Genes` | 11 | 1 |
 | `Qi` | 11 | 1 |
 | `rjw_genes_fertilin` | 11 | 1 |
+| `VREW_Mutations` | 11 | 1 |
 | `AG_Armour` | 10 | 1 |
 | `CYB_Social` | 10 | 1 |
 | `GEHD_Heads` | 10 | 1 |
 | `GS_Rabbit` | 10 | 1 |
 | `HALI_RandomGeneticsCat` | 10 | 1 |
 | `JIMCat_Lifespan` | 10 | 1 |
+| `JMK_MoonGenes` | 10 | 1 |
 | `Lifespan` | 10 | 2 |
 | `Outland_BodyScale` | 10 | 1 |
 | `Outland_XenotypeAscension` | 10 | 1 |
@@ -5829,6 +6044,7 @@ The `displayCategory` of each gene. 343 categories.
 | `SoulDarkLv_SoulColor` | 9 | 1 |
 | `AG_Presence` | 8 | 1 |
 | `AncientGenes` | 8 | 1 |
+| `Avali` | 8 | 1 |
 | `Bleach_Arrancar` | 8 | 1 |
 | `Body_Size_Multiplier` | 8 | 2 |
 | `BTE_Universal` | 8 | 1 |
@@ -5858,12 +6074,15 @@ The `displayCategory` of each gene. 343 categories.
 | `DMRW_HairExtension` | 6 | 1 |
 | `Drugs` | 6 | 4 |
 | `Fibricorn` | 6 | 1 |
+| `Frosty_Gene` | 6 | 1 |
 | `GARDEVOIRIN` | 6 | 1 |
 | `guy762_BodySize_Category` | 6 | 1 |
 | `LiveMunitionsCategory` | 6 | 1 |
 | `Mashed_Ashlands_AshResistanceAndWeakness` | 6 | 1 |
+| `Milira_GeneCategory` | 6 | 2 |
 | `Muriden_InnateAttacks` | 6 | 1 |
 | `SenseOrgans` | 6 | 1 |
+| `Zearot_Category` | 6 | 1 |
 | `BS_Armour` | 5 | 1 |
 | `BS_Diet` | 5 | 1 |
 | `BS_NalDisable` | 5 | 1 |
@@ -5893,6 +6112,7 @@ The `displayCategory` of each gene. 343 categories.
 | `CYB_Fur` | 4 | 1 |
 | `CYB_Recreation` | 4 | 1 |
 | `Gelatoid` | 4 | 1 |
+| `GeneCategoryDef_Cheech_FurPatternFill` | 4 | 1 |
 | `HKTK_Gene` | 4 | 1 |
 | `Living` | 4 | 1 |
 | `LoS_Snake_Vis` | 4 | 2 |
@@ -5913,6 +6133,7 @@ The `displayCategory` of each gene. 343 categories.
 | `Mycoling` | 3 | 1 |
 | `PsychicArts` | 3 | 1 |
 | `SAB_Misc` | 3 | 1 |
+| `SeaHorseBold` | 3 | 1 |
 | `SoulDarkLv_EchoSoul` | 3 | 1 |
 | `SoulDarkLv_SoulKind` | 3 | 1 |
 | `TH_GeneCategory_Organ` | 3 | 1 |
@@ -5952,7 +6173,7 @@ The `displayCategory` of each gene. 343 categories.
 | `VU_Unliving` | 2 | 1 |
 | `WVC_Aptitudes` | 2 | 1 |
 
-## Categories `Miscellaneous` (826 genes, 146 mods)
+## Categories `Miscellaneous` (887 genes, 170 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (20): `CaveDweller`, `DarkVision`, `ElongatedFingers`, `Furskin`, `Hair_Grayless`, `Hands_Human`, `Hands_Pig`, `Inbred`, `Instability_Major`, `Instability_Mild`, `Learning_Fast`, `Learning_Slow`, `Nearsighted`, `Nose_Pig`, `PollutionRush`, `RobustDigestion`, `StrongStomach`, `Tail_Furry`, `Tail_Smooth`, `Unstoppable`
 - Outland - Genetics (2910172297) (26): `Outland_AcceleratedAgeing`, `Outland_AcceleratedMaturation`, `Outland_AllFemale`, `Outland_AllMale`, `Outland_BumFluff`, `Outland_CalmingPheromones`, `Outland_ChitinousSkin`, `Outland_ChitinousSkinTinted`, `Outland_CompositeEyes`, `Outland_DarklightAffinity`, `Outland_DeceleratedMaturation`, `Outland_DestinyMarks`, `Outland_Empathic`, `Outland_Evasive`, `Outland_FamiliarScent`, `Outland_FeyAgeing`, `Outland_Furbody`, `Outland_InsectBody`, `Outland_KindEyes`, `Outland_RidgedSkin`, `Outland_ScaleSkin`, `Outland_Scalebody`, `Outland_Submissive`, `Outland_ThickSkin`, `Outland_UnusualSpeech`, `Outland_YouthfulAgeing`
@@ -5982,9 +6203,11 @@ The `displayCategory` of each gene. 343 categories.
 - local:rimholstaur (local:rimholstaur) (4): `S_Digitigrade`, `S_Fluff_Cow`, `S_Herd_Minded`, `S_Submissive`
 - Integrated Genes (2884115974) (7): `Turn_Gene_Blindness`, `Turn_Gene_FrailDigestion`, `Turn_Gene_MotivationHigh`, `Turn_Gene_MotivationLow`, `Turn_Gene_NaturalLeader`, `Turn_Gene_Speechless`, `Turn_Gene_VariablePhenotype`
 - Totzi Xenotype Race (3409222988) (7): `TZ_EatFast`, `TZ_FastGrow`, `TZ_HighVision`, `TZ_HungerStress`, `TZ_RapidHeartBeat`, `TZ_SuperBrain`, `TZ_UniqueNode`
+- Femboy Xenotypes (3456372943) (7): `FEMB_FemboyGenes`, `FEMB_FemboyMale`, `FEMB_FurboyGenes`, `FEMB_NoBeardFurskin`, `FEMB_SoftboyGenes`, `FEMB_ToxboyGenes`, `FEMB_randomLibido`
 - Papou Xenotype: Emotional Birds (Continued) (3571039438) (7): `papagoBody1`, `papagoBody2`, `papagoWing0`, `papagoWing1`, `papagoWing2`, `papagoWing3`, `papagoWing4`
 - NewRatkinPlus (1578693166) (3): `RK_Gene_PoorEyesight`, `RK_Gene_SmallBody`, `RK_Gene_ThinTail`
 - Cyanobot's Genes (2889844371) (6): `CYB_Blind`, `CYB_BodySize_Large`, `CYB_BodySize_Small`, `CYB_Greedy`, `CYB_ProdigiousGrowth`, `CYB_Undergrounder`
+- Vanilla Races Expanded - Hussar (2893586390) (6): `VREH_Arrogant`, `VREH_BulletproofSkin`, `VREH_Dutiful`, `VREH_Giant`, `VREH_Glidewings`, `VREH_Toughness`
 - Rimsenal Xenotype Pack - Askbarn (2918812858) (3): `RSBornWarrior`, `RSLightningReflexes`, `RSLongshot`
 - [AP] Lupine Xenotype (2991428888) (6): `AP_Lupine_BlackFurSkin`, `AP_Lupine_Black_Body`, `AP_Lupine_GlisterFurSkin`, `AP_Lupine_Glister_Body`, `AP_Lupine_WhiteFurSkin`, `AP_Lupine_White_Body`
 - Carnarodian, the two Mustelids Xenotypes and Factions (3104049393) (6): `LnS_AlcoholBoost`, `LnS_EnhanceLiver`, `LnS_Face`, `LnS_RuseBrain`, `LyunicaTail`, `SobolelyudTail`
@@ -5993,6 +6216,8 @@ The `displayCategory` of each gene. 343 categories.
 - Faction - Elves (3726293423) (6): `EfficientMetabolism`, `FastAim`, `Heightenedsenses`, `HunterSenses`, `LongLifespan`, `Memory_Longlasting`
 - Rim's Destiny: Exo (3771229424) (6): `RD_DER_Gene`, `RD_ExoArmGene`, `RD_ExoHead`, `RD_ExoLegGene`, `RD_Exo_Eyes`, `RD_RadiolariaBlood`
 - Big and Small - Centaurs Expanded (3795221508) (3): `DZ_CentaurAnimalNose`, `DZ_CentaurNose`, `DZ_ThrumboAdultMorph`
+- Tonttu Xenotype (3819828414) (3): `Tonttu_Hearthkeeper`, `Tonttu_PorridgePact`, `Tonttu_UnseenWork`
+- More Vision Genes (3000191942) (5): `Farsighted`, `SlightlyFarsighted`, `SlightlyNearsighted`, `VeryFarsighted`, `VeryNearsighted`
 - Orostonian, the Frontiers Xenotypes and Factions (3147447844) (5): `CoytlianTail`, `CrotalidTail`, `OrostonianFace`, `OsorirenTail`, `TurrinoTail`
 - The Profaned (3202008037) (5): `BotchJob_Cursebearer`, `BotchJob_DecomposingBody`, `BotchJob_RottingFlesh`, `BotchJob_SkeletalBody`, `BotchJob_UndeadPsysiology`
 - Rim-Hivers! - Biotech (3378615596) (5): `RH_Agile`, `RH_ChitinSkin`, `RH_Dexterous`, `RH_Eusocial`, `RH_InsectoidBlood`
@@ -6002,6 +6227,7 @@ The `displayCategory` of each gene. 343 categories.
 - Lapelli Race - Biotech (2892301088) (2): `Lapelli_Wing`, `Lapelli_skin`
 - Nomads' Land (2905854321) (2): `NP_Nomadic`, `NP_Sedentary`
 - Big and Small - Genes & More (2920751126) (4): `BS_FuzzyBrows`, `BS_TrollBeard`, `BS_TrollNose`, `BS_TrollNoseAlways`
+- Just Another Xenotype Mod (2979167335) (4): `Head_Raccoon`, `Nocturnal`, `Tail_Raccoon`, `Whiskers`
 - Rim-Gnoblins (3018569666) (4): `Age_RapidDevelopment`, `RG_GoblinNose`, `RG_ToxGlands`, `Size_ExtremeDwarfism`
 - Expanded Biotech Style Genes - All in One (3020821838) (2): `EBSG_EloquentSpeaker`, `EBSG_Mute`
 - Det's Xenotypes - Boglegs (3146564944) (4): `DV_FatStorage`, `DV_IntimidatingPresence`, `DV_Materialistic`, `DV_Silvertongued`
@@ -6018,10 +6244,14 @@ The `displayCategory` of each gene. 343 categories.
 - [Alien/Race] Seren, from Stardust (2704627783) (1): `OL_DarkVision`
 - Hellsing ARMS Ultimate (2834801420) (3): `HSAU_Gene_SanctusSensitivity_Mild`, `HSAU_Gene_SanctusSensitivity_Moderate`, `HSAU_Gene_SanctusSensitivity_Severe`
 - Vanilla Races Expanded - Saurid (2880990495) (3): `VRESaurids_ColdBlooded`, `VRESaurids_Pheromones`, `VRESaurids_ScaleSkin`
+- Vanilla Races Expanded - Waster (2983471725) (3): `VRE_GauntBody`, `VRE_Instability_Progressive`, `VRE_ToxAbsorption`
+- More Digestion Genes (3000266456) (3): `MBSG_FaultyDigestion`, `MBSG_FrailDigestion`, `MBSG_SturdyDigestion`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (3): `VRE_CanineNose`, `VRE_PackMentality`, `VRE_SuperiorDarkVision`
+- Det's Xenotypes - Avaloi (3199692643) (3): `DV_Coral_Antlers`, `DV_Coral_Beards`, `DV_PsychicInebriation`
 - Bamp Xenotype (3297545550) (3): `AdvancedStrongStomach`, `Bamp_Hair`, `Tail_Bamp`
 - Medieval Overhaul: House Van Illa (3327601396) (3): `Addie_AwakenedSimulacrumGene`, `Addie_SimulacrumCommandGene`, `Addie_SimulacrumGene`
 - Tower of Rimworld (3335952183) (3): `ToR_Jealous`, `ToR_ShinsuConstitution`, `ToR_Wimp`
+- Posthuman Drift Trog Xenotype (3526993498) (3): `XylBioRejection`, `XylGeneticAtavism`, `XylInsectPheromones`
 - Roo's Minotaur Xenotype (3548423129) (3): `RBM_Herculean`, `RBM_RuminantStomach`, `RBM_UnguligradeLegs`
 - Geist Xenotype (3564732214) (3): `GS_Melee_Affinity`, `GS_Mute`, `GS_Warrior`
 - RimScent (3645569466) (3): `RimScent_Gene_Anosmic`, `RimScent_Gene_Dysosmic`, `RimScent_Gene_KeenNose`
@@ -6036,6 +6266,7 @@ The `displayCategory` of each gene. 343 categories.
 - Erin's Auronya (2908837535) (1): `ERN_AuronyaBehaviour`
 - EBSG - Capacity Genes (Sight, Hearing, etc) (3006401355) (2): `EBSG_EloquentSpeaker`, `EBSG_Mute`
 - Erin's Fenrisúlfr (3020079359) (1): `ERN_FenrisulfrBehaviour`
+- Det's Xenotypes - Venators (3140248688) (2): `DV_Farsighted`, `DV_HunterInstincts`
 - Vanilla Races Expanded - Pigskin (3164798809) (2): `VRE_Brave`, `VRE_Coward`
 - Cane Aternitigno, The war dogs of battlefield Xenotypes and Faction (3165847953) (2): `CG_Face`, `CG_StressBoost`
 - Nutrition Capacity Genes (3233242374) (2): `NNG_Glutton`, `NNG_SecondStomach`
@@ -6045,6 +6276,7 @@ The `displayCategory` of each gene. 343 categories.
 - Epona Dynastic Rise (3514746737) (2): `Gene_EponaHorse`, `Gene_EponaHorseFeedable`
 - Atlyss Races / Core (3521335460) (2): `AR_Nose_Byrdle`, `AR_Nose_Chang`
 - Posthuman Drift Warcat Xenotype (3521815010) (2): `XylCarnivoreStomach`, `XylMeatDependence`
+- Posthuman Drift Dvergr Xenotype (3521816382) (2): `XylFungusEater`, `XylIndustrious`
 - Ashcat Xenotype (3522775404) (1): `AC_Feral`
 - Crream's Yetis (3529805799) (2): `BlueYetiskin`, `PinkYetiskin`
 - Unfortunate Xenotypes - Minua (3566190392) (2): `QuickMaturityDFIFD`, `ShortLivedDFIFD`
@@ -6054,22 +6286,30 @@ The `displayCategory` of each gene. 343 categories.
 - Molong Xenotype (3789407175) (2): `GS_BigNose`, `GS_Philosopher_King`
 - Biotech Monke Xenotype (Continued) (3797310379) (1): `Monke_Furskin`
 - Palim - P.S. Series (3797374488) (2): `Palim_AssemblyChassis`, `Palim_ProductChassis`
+- Hiisi Xenotype (3816069605) (1): `Hiisi_BrewBlooded`
+- Backwardborn Xenotype (3819826833) (1): `Backwardborn_ReversedLife`
+- Clockwork Folk Xenotype (3819827499) (1): `Clockwork_Heart`
 - Geasbound Xenotype (3819827851) (1): `Geasbound_Geas`
 - Murim Cultivation (3820282209) (2): `MC_DemonicBone`, `MC_HeavenlySun`
+- Fairy Xenotype (3826913422) (1): `Fairy_Evade`
 - local:amor-tentaculum (local:amor-tentaculum) (2): `tentaclebabyneed`, `tentaclebabyneedM`
 - The Poop Mod (1728184416) (1): `TurboPooping`
 - Chromatic Sensitivity (2856889316) (1): `Taggerung_Chromatic_Sensitivity`
+- Biotech Nyaron (2881513314) (1): `Nyaron`
 - Identity (2882253079) (1): `Furskin`
 - FAE-Facial Animations Expanded (2890697696) (1): `Nose_ShortSnout`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxFur`
+- Vanilla Races Expanded - Genie (2901424072) (1): `VRE_ElongatedHead`
 - Star Wars Xenotypes (2915192253) (1): `GS_Primitive`
 - Vanilla Races Expanded - Sanguophage (2963116383) (1): `VRE_BatNose`
 - Regeneration Gene (2974299689) (1): `GeneRegeneration`
 - Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions (2974761367) (1): `Ama_Face`
+- Vanilla Races Expanded - Archon (3067715093) (1): `VRE_Leatherskin`
 - ReSplice: Charmweavers (3131996691) (1): `RS_Wing_Batlike`
 - Erin's Corvyia (3154954530) (1): `ERN_AllFemale`
 - SlashBlade (3209949611) (1): `Gene_SlashBlade_ForestTherapy`
 - Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) (3226197882) (1): `LDragon_Tail`
+- Beliar Xenotype (3237072670) (1): `BX_ExplosiveDemise`
 - FRBE Addon - Gnolls (3241073642) (1): `SAB_HyenaSkin`
 - Fantasy Goblins - Japanish Tweaks (3242088098) (1): `ES_GoblinsTraits`
 - Nice Facial Animation (3302079637) (1): `Furskin`
@@ -6079,6 +6319,7 @@ The `displayCategory` of each gene. 343 categories.
 - Nice Facial Animation [ALT] (3383871379) (1): `Furskin`
 - Helltaker Xenotypes (3395078682) (1): `SHX_Transhumanist`
 - Animal Genes (3510541507) (1): `ANG_Feathers`
+- Posthuman Drift Bossaps Xenotype (3521815829) (1): `XylHerbivoreStomach`
 - Corpse Children 1.6 (3525305141) (1): `CorpseChildren_CorpseChildGene`
 - Goliann Xenotype (3541961078) (1): `GS_Size_Bulky`
 - Non-archite archite genes (3543773387) (1): `ArchiteMetabolism_architeless`
@@ -6089,6 +6330,9 @@ The `displayCategory` of each gene. 343 categories.
 - Umbra Vitae (3637393262) (1): `UmbraVitae_Bloodline`
 - RimKimetsu - Demon Slayer Rimworld Mod (3641720143) (1): `BlueSpiderLilyCureGene`
 - RimZone Zero: Ellen Joe (3657773966) (1): `Thiren_SharkTail`
+- Varan Xenotype (3698105907) (1): `CorpseEating`
+- Cheech Xenotype (3723106445) (1): `GeneDef_Cheech_Pheromones`
+- Toad Folk - Xenotype (3733348634) (1): `TF_ToxicHide`
 - Rapid Maturity (3745082614) (1): `Rapidmaturity`
 - Hellhounds (3749549167) (1): `PartialFurskin`
 - No Longer Human-Consortium Faction Pack (3777379164) (1): `Stripes`
@@ -6097,11 +6341,12 @@ The `displayCategory` of each gene. 343 categories.
 - RimContractors (3797500815) (1): `SO_SilvaranSecondWindGene`
 - rattun1's Humanlike Snakespears Xenotype (3798595552) (1): `RimRat_Gene_Snakespearbody`
 - FoodTypeExtension (3801625745) (1): `FTEX_HumanOmnivore`
-- local:rjw-animal-gene-inheritance (local:rjw-animal-gene-inheritance) (1): `AGI_Thin_Fur`
+- VRE Highmate Catfolk Patch (3807566972) (1): `DZ_HighmateCatfolkHead`
 - local:rjw-elt-patches (local:rjw-elt-patches) (1): `ElToro_CosmeticFurskin`
+- local:rjw-animal-gene-inheritance (local:rjw-animal-gene-inheritance) (1): `AGI_Thin_Fur`
 - local:rjw-genes (local:rjw-genes) (1): `rjw_genes_succubus_wings`
 
-## Categories `Cosmetic` (326 genes, 62 mods)
+## Categories `Cosmetic` (352 genes, 72 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (25): `Beard_Always`, `Beard_BushyOnly`, `Beard_NoBeardOnly`, `Brow_Heavy`, `Ears_Cat`, `Ears_Floppy`, `Ears_Human`, `Ears_Pig`, `Ears_Pointed`, `Eyes_Gray`, `Eyes_Red`, `FacialRidges`, `Hair_BaldOnly`, `Hair_LongOnly`, `Hair_ShortOnly`, `Head_Gaunt`, `Headbone_CenterHorn`, `Headbone_Human`, `Headbone_MiniHorns`, `Jaw_Baseline`, `Jaw_Heavy`, `Nose_Human`, `VoicePig`, `VoiceRoar`, `Voice_Human`
 - Seren, from Stardust [Biotech Fork] (3726565301) (15): `OL_SerenBlood`, `OL_SerenEars`, `SerenBodyMask_01`, `SerenBodyMask_02`, `SerenBodyMask_03`, `SerenBodyMask_04`, `SerenBodyMask_05`, `SerenBodyMask_06`, `SerenMarkings_Big`, `SerenMarkings_Brows`, `SerenMarkings_Cheeks`, `SerenMarkings_Freckles`, `SerenMarkings_Small`, `SerenMarkings_Target`, `SerenMarkings_Tristar`
@@ -6118,6 +6363,7 @@ The `displayCategory` of each gene. 343 categories.
 - Erin's Rhy'aeth (3707527452) (4): `ERN_RhyaethEars`, `ERN_RhyaethFaceFrills`, `ERN_RhyaethFaceHorns`, `ERN_RhyaethFaceWhiskers`
 - Reese's Anomaly Genes (3434828984) (7): `ReeseGenes_BodyLeathery`, `ReeseGenes_BodyTormented`, `ReeseGenes_HairCultist`, `ReeseGenes_HeadLeathery`, `ReeseGenes_HeadScholar`, `ReeseGenes_HeadTimeless`, `ReeseGenes_HeadTormented`
 - Mauray (3663680564) (7): `FelineVoice`, `Mauray_EarsC`, `Mauray_EarsF`, `Mauray_EarsH`, `Mauray_EarsP`, `Mauray_EarsT`, `Mauray_EarsW`
+- Toad Folk - Xenotype (3733348634) (7): `TF_ToadEyes`, `TF_ToadEyesAmber`, `TF_ToadEyesBlack`, `TF_ToadEyesGreen`, `TF_ToadEyesRed`, `TF_ToadEyesYellow`, `TF_ToadHead`
 - Dr. Arch13's ArchoWonderium - The Xen Empire (3407013231) (6): `FenEar`, `FerEar`, `FridEar`, `LogEar`, `RacEar`, `XenEar`
 - 圣蜣螂种族 (3740297753) (6): `ScarabEyes_Black`, `ScarabSaintGene`, `Scarab_Antenna_Sense`, `Scarab_Biomass_Digestion`, `Scarab_Carapace_Growth`, `Scarab_CustomHair`
 - Kimchianz Xenotype (Beta) (3752498193) (6): `KCA_Body_Cabbianz`, `KCA_Body_Kimchianz`, `KCA_Cabbianz_Weakness`, `KCA_Hair_Cabbianz`, `KCA_Hair_Kimchianz`, `KCA_Hair_WhiteKimchianz`
@@ -6128,7 +6374,10 @@ The `displayCategory` of each gene. 343 categories.
 - MakaiTech - Xenotype (3268577147) (4): `Makai_AdeltiaFrame`, `Makai_AdeltiaHorns`, `Makai_DemonianHorns`, `Makai_FairinFrame`
 - Rim-Hivers! - Biotech (3378615596) (4): `RH_HiverDroneCaste`, `RH_HiverPrinceCaste`, `RH_HiverRoyalCaste`, `RH_HiverSoldierCaste`
 - Obsidia Expansion - Tailborne Xenotype (3511930980) (4): `OE_MousariBody`, `OE_RatscourgeBody`, `OE_RatscourgeHead`, `OE_TailborneWhiskers`
+- 고라니 귀와 꼬리 (Gorani Ears and Tail) (3716953000) (2): `Ears_Gorani`, `Tail_Gorani`
+- Clockwork Folk Xenotype (3819827499) (2): `Clockwork_GearEyes`, `Clockwork_WindUpKey`
 - Geasbound Xenotype (3819827851) (2): `Geasbound_Freckles`, `Geasbound_WoadMarks`
+- Femboy Xenotypes (3456372943) (3): `FEMB_RandomEarsFemboy`, `FEMB_RandomHornFemboy`, `FEMB_RandomTailsFemboy`
 - RimKimetsu - Demon Slayer Rimworld Mod (3641720143) (3): `AA_DemonHorn_Curved`, `AA_DemonHorn_Devil`, `AA_DemonHorn_Swept`
 - Rim's Destiny: Exo (3771229424) (3): `RD_ExoCrest`, `RD_ExoHorn`, `RD_ExoPlates`
 - NewRatkinPlus (1578693166) (1): `RK_Gene_LargeEars`
@@ -6143,13 +6392,17 @@ The `displayCategory` of each gene. 343 categories.
 - Awakened Apes (3646217940) (2): `MonkeyTail_Skin`, `VoiceApe`
 - 햄스터 귀와 꼬리 (Hamster Ears and Tail) (3718267131) (2): `Ears_Hamster`, `Tail_Hamster`
 - Vanillafied Vivi (3739051552) (2): `VVV_CosmeticAntennae`, `VVV_CosmeticWings`
+- Tonttu Xenotype (3819828414) (1): `Tonttu_RedCap`
+- Tuonela Xenotype (3819828750) (1): `Tuonela_MarkOfTuoni`
 - RWoM Custom Class Pack - Epic Battle Fantasy (2803755648) (1): `EBF_CrackedHead`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigiFoxEars`
 - Roo's HD Dreadlock Hairstyles (2902544033) (1): `Hair_DreadlocksOnly`
 - Lamias, Sirens, Snakemen, and other Serpents-like beings (2908225858) (1): `BS_GorgonHair`
 - Vanilla Races Expanded - Sanguophage (2963116383) (1): `VRE_SanguineHair`
 - Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_HighmateHair`
+- Hair Colored Skin Gene (2999949806) (1): `Skin_Hair_Colored`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_ChestFur`
+- Det's Xenotypes - Venators (3140248688) (1): `DV_FacePlating`
 - Vanilla Races Expanded - Pigskin (3164798809) (1): `VRE_MouthTusks`
 - Mona The Moon Bear (1.6 fork) (3248186952) (1): `Mona_Moon`
 - Starei's Florian Xenotype (3310020641) (1): `ST_GreenBlood`
@@ -6162,11 +6415,13 @@ The `displayCategory` of each gene. 343 categories.
 - Roo's Faun Xenotype (3547220635) (1): `RBSF_DeerHead`
 - Roo's Minotaur Xenotype (3548423129) (1): `RBM_BovineHead`
 - Monkey Xenotypes (3566230987) (1): `VoiceGorilla`
+- 【β】Ikquan Race (3633519200) (1): `IkquanDorsal`
+- Cheech Xenotype (3723106445) (1): `GeneDef_Cheech_Head`
 - [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskyHead`
 - Body Hair Framework (3823805934) (1): `BHF_NoBodyHair`
 - local:amor-tentaculum (local:amor-tentaculum) (1): `TStrip`
 
-## Categories `Archite` (299 genes, 63 mods)
+## Categories `Archite` (312 genes, 68 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (7): `Ageless`, `ArchiteMetabolism`, `Deathless`, `DiseaseFree`, `PerfectImmunity`, `TotalHealing`, `XenogermReimplanter`
 - WVC - Xenotypes and Genes (2886992038) (17): `WVC_ArchiteFleetConnected`, `WVC_Backup`, `WVC_Chimera_Devourer`, `WVC_DeadStomach`, `WVC_DeathRefusal`, `WVC_Dustogenic_Reincarnation`, `WVC_Incrementer`, `WVC_Invisibility`, `WVC_MechaAI_MechanitorNetwork`, `WVC_MechaHidden_ArchiteForge`, `WVC_MechaPowerSource_Vanometric`, `WVC_NeverDead`, `WVC_Obsession`, `WVC_RepairSkin`, `WVC_Shapeshift_Deathless`, `WVC_StasisStomach`, `WVC_Undead`
@@ -6185,6 +6440,8 @@ The `displayCategory` of each gene. 343 categories.
 - [AV] Kosmian Xenotype (3774474578) (6): `AV_Chromalog`, `AV_HypothermiaResistant`, `AV_MolluscoidNecrophage`, `AV_PsyBarrier`, `AV_PsyonicDash`, `AV_PsyoniclyAscended`
 - Vanilla Races Expanded - Phytokin (2927323805) (5): `VRE_AnimaAffinity`, `VRE_GauranlenAffinity`, `VRE_Photosynthesis`, `VRE_PoluxAffinity`, `VRE_SaplingBirth`
 - Awakened Apes (3646217940) (5): `BonoboSpecies`, `ChimpSpecies`, `GorillaSpecies`, `MonkeySpecies`, `OrangutanSpecies`
+- Biotech Robust Gene Expansion (3006722250) (2): `R_GodlikeRobust`, `R_HeroicRobust`
+- Vanilla Races Expanded - Fungoid (3042690053) (2): `VRE_GeneInfector`, `VRE_MindCoalescence`
 - [OA]Ratkin Gene Expand (3300291918) (2): `OAGene_MeleeIntouchable`, `OAGene_UltraDenseMuscles`
 - Simple Extended Gene (3324409235) (4): `SEG_Apotheosis`, `SEG_Harmonic`, `SEG_Mighty`, `SEG_WoundHealing`
 - MSS Tweaks and Fun (3379574408) (2): `MSSFP_GeneIntegrator`, `MSS_VoidsEmbrace`
@@ -6192,6 +6449,7 @@ The `displayCategory` of each gene. 343 categories.
 - Hunterphage Xenotype (Continued) (3542200033) (4): `Gene_Hunterphage_BladeHeart`, `Gene_Hunterphage_DarkConstitution`, `Gene_Hunterphage_HyperHealing`, `Gene_Hunterphage_ShadowWalker`
 - Genes+ – Rebalanced and Continued (3554395043) (4): `DisableJoy`, `DisableMood`, `Leather_Plasteel`, `MaxNutrition_BottomlessStomach`
 -  Yet another neko xenotype - Nekotech Xenotype (3736684475) (4): `Nekotech_Beautiful`, `Nekotech_Hack`, `Nekotech_Mechband`, `Nekotech_Mind`
+- Vanilla Races Expanded - Archon (3067715093) (3): `VRE_InnatePsylink`, `VRE_LeapjumpLegs`, `VRE_Transcendent`
 - ReSplice: Charmweavers (3131996691) (3): `RS_Matrianic`, `RS_MultiPregnancy`, `RS_TemperatureInsensitive`
 - Outland - Genetics (2910172297) (1): `Outland_Resurrect`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (2): `VRE_GermlineReimplanter`, `VRE_MoveSpeed_ExtremelyQuick`
@@ -6210,6 +6468,7 @@ The `displayCategory` of each gene. 343 categories.
 - Casualties: Rimknown (3807092899) (1): `CR_LastStand`
 - More Genes (2878539467) (1): `Resurrect`
 - Integrated Genes (2884115974) (1): `Turn_Gene_ArchotechAttunement`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_ChemicalDependency_Luciferium`
 - Dr. Arch13's ArchoWonderium - DigiFox (tm) (2900653856) (1): `DigitalOrganicHybrid`
 - Live Munitions (2913371740) (1): `LiveMunitionsBigBomb`
 - Star Wars Xenotypes (2915192253) (1): `BS_Fast_TotalHealing`
@@ -6230,9 +6489,10 @@ The `displayCategory` of each gene. 343 categories.
 - The Gilded Spiral - Spiralborn Xenotype (3684159046) (1): `Addie_KintsugiSkinGene`
 - Skeletal Efflorescence (3685431818) (1): `Eo3_Healing`
 - Bizarre Bloodlines (3719429625) (1): `Bizarre_Gene_PillarBiology`
+- The Drow - Biotech Edition (Continued) (3755554485) (1): `Drow_Arcane_Affinity`
 - local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_Ageless`
 
-## Categories `Violence` (282 genes, 40 mods)
+## Categories `Violence` (291 genes, 44 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (8): `Aggression_Aggressive`, `Aggression_DeadCalm`, `Aggression_HyperAggressive`, `KillThirst`, `KindInstinct`, `MeleeDamage_Strong`, `MeleeDamage_Weak`, `ViolenceDisabled`
 - Expanded Biotech Style Genes - All in One (3020821838) (32): `EBSG_CarefulShooter`, `EBSG_CautiousBrawler`, `EBSG_ExtremeMurderous`, `EBSG_ExtremeRecklessBrawler`, `EBSG_ExtremeTwitchyShooter`, `EBSG_ExtremelyCarefulShooter`, `EBSG_ExtremelyCautiousBrawler`, `EBSG_HyperCarefulShooter`, `EBSG_HyperCautiousBrawler`, `EBSG_HyperRecklessBrawler`, `EBSG_HyperTwitchyShooter`, `EBSG_MajorMurderous`, `EBSG_MinorMurderous`, `EBSG_Murderous`, `EBSG_Placated`, `EBSG_RecklessBrawler`, `EBSG_SomewhatCarefulShooter`, `EBSG_SomewhatCautiousBrawler`, `EBSG_SomewhatPlacated`, `EBSG_SomewhatRecklessBrawler`, `EBSG_SomewhatTwitchyShooter`, `EBSG_SuperCarefulShooter`, `EBSG_SuperCautiousBrawler`, `EBSG_SuperMurderous`, `EBSG_SuperRecklessBrawler`, `EBSG_SuperTwitchyShooter`, `EBSG_TwitchyShooter`, `EBSG_VeryCarefulShooter`, `EBSG_VeryCautiousBrawler`, `EBSG_VeryPlacated`, `EBSG_VeryRecklessBrawler`, `EBSG_VeryTwitchyShooter`
@@ -6246,6 +6506,7 @@ The `displayCategory` of each gene. 343 categories.
 - [OA]Ratkin Gene Expand (3300291918) (3): `OAGene_DenseMuscles`, `OAGene_SurvivalInstinct`, `OAGene_WeaknessMuscles`
 - Cyanobot's Genes (2889844371) (5): `CYB_Claws`, `CYB_Clumsy`, `CYB_Fangs`, `CYB_ToughSkin`, `CYB_ViolenceAverse`
 - More Biotech Style Genes - All in One (2985153870) (2): `MBSG_ViolenceDislike`, `MBSG_ViolenceHatred`
+- Vanilla Races Expanded - Archon (3067715093) (4): `VRE_FastMeleeHitter`, `VRE_FastShooter`, `VRE_SlowMeleeHitter`, `VRE_SlowShooter`
 - Awakened Apes (3646217940) (4): `ApeVolatility`, `Gene_Psychopath`, `Gene_VeryNeurotic`, `PrimateStrength`
 - [LTS]Xenotech (2877887281) (1): `LTS_HarshDemeanour`
 - NewRatkinPlus (1578693166) (1): `RK_Gene_Nimble`
@@ -6255,9 +6516,12 @@ The `displayCategory` of each gene. 343 categories.
 - Rimsenal Xenotype Pack - Harana (3228637524) (1): `AgileStriker`
 - Medieval Overhaul: House Van Illa (3327601396) (2): `Addie_AncientGrace`, `Addie_IllanPride`
 - Simple Weapon Aptitudes for VRE - Hussars (3403049681) (2): `SEX_MeleeWeaponAptitude`, `SEX_RangedWeaponAptitude`
+- Posthuman Drift Bossaps Xenotype (3521815829) (2): `XylLargeHorns`, `XylSeeingRed`
 - Umbra Vitae (3637393262) (2): `VampireClaws_Toggle`, `VampireFeral_Claws`
+- Hiisi Xenotype (3816069605) (1): `Hiisi_GunCrazy`
 - Cain's Gene Pack (3819866589) (1): `Hiisi_GunCrazy`
 - Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_Harmless`
+- Beliar Xenotype (3237072670) (1): `BX_HomicidalUrges`
 - Jaguar and Snow Leopard Xenotypes (3297800460) (1): `JAR_FelineClaws`
 - Just About: Lions And Tigers (Continued) (3320873214) (1): `JAR_FelineClaws`
 - Rim-Fogmen Continued! (1.6) (Biotech) (3324678049) (1): `RH_FogSickness`
@@ -6275,7 +6539,7 @@ The `displayCategory` of each gene. 343 categories.
 - More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Berserker`
 - local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Berserker`
 
-## Categories `Healing` (269 genes, 29 mods)
+## Categories `Healing` (285 genes, 34 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (7): `Immunity_Strong`, `Immunity_SuperStrong`, `Immunity_Weak`, `Superclotting`, `WoundHealing_Fast`, `WoundHealing_Slow`, `WoundHealing_SuperFast`
 - Alpha Genes (2891845502) (30): `AG_AcidImmunity`, `AG_AcidWeakness`, `AG_AdaptiveBiology`, `AG_Clean`, `AG_Deaf`, `AG_ExtraLeather`, `AG_ExtraordinaryLifespan`, `AG_FasterAging`, `AG_Filthy`, `AG_FireObsession`, `AG_FrailBack`, `AG_FrostbiteResistance`, `AG_FrostbiteVulnerability`, `AG_GeneInfectionImmunity`, `AG_HardBones`, `AG_LimbRegeneration`, `AG_LowLeather`, `AG_LungRotImmunity`, `AG_LungRotStrength`, `AG_NoLeather`, `AG_NoMeat`, `AG_PackMule`, `AG_PassiveRegenerator`, `AG_RegenerationMinor`, `AG_SlowerAging`, `AG_Stinky`, `AG_UnstableMutationCatastrophic`, `AG_UnstableMutationMajor`, `AG_UnstableRegeneration`, `AG_WaterRegeneration`
@@ -6283,6 +6547,7 @@ The `displayCategory` of each gene. 343 categories.
 - EBSG - Bleeding Genes (3015076392) (18): `EBSG_BloodClotting`, `EBSG_ExtremeBloodClotting`, `EBSG_ExtremeHemophilia`, `EBSG_ExtremelyFastBloodRecovery`, `EBSG_FastBloodRecovery`, `EBSG_Hemophilia`, `EBSG_HyperFastBloodRecovery`, `EBSG_MajorBloodClotting`, `EBSG_MajorHemophilia`, `EBSG_MinorBloodClotting`, `EBSG_MinorHemophilia`, `EBSG_NoBloodRecovery`, `EBSG_SlightlyFastBloodRecovery`, `EBSG_SlightlySlowBloodRecovery`, `EBSG_SlowBloodRecovery`, `EBSG_SuperFastBloodRecovery`, `EBSG_VeryFastBloodRecovery`, `EBSG_VerySlowBloodRecovery`
 - WVC - Xenotypes and Genes (2886992038) (20): `WVC_AgeDebuff_Social`, `WVC_BleedStopper`, `WVC_DeadlyGeneticInstability`, `WVC_Dustogenic_Ageless`, `WVC_Dustogenic_Clotting`, `WVC_ExtremeGeneticInstability`, `WVC_ForeverYoung`, `WVC_GeneticStability`, `WVC_MajorGeneticInstability`, `WVC_MecaBodyParts_Heart`, `WVC_MechaAI_SoftwareDisableTalking`, `WVC_MildGeneticInstability`, `WVC_NaturalAgeless`, `WVC_NaturalBlindness`, `WVC_NaturalDisease_DiseaseFree`, `WVC_NaturalFastAging`, `WVC_NaturalFastGrowing`, `WVC_NaturalImmunity_PerfectImmunity`, `WVC_NaturalSlowAging`, `WVC_StasisAging`
 - EBSG - Health Genes (3115303988) (8): `EBSG_BiosculptingSpeed`, `EBSG_BiosculptingSpeedExtreme`, `EBSG_BiosculptingSpeedHyper`, `EBSG_BiosculptingSpeedMajor`, `EBSG_BiosculptingSpeedMinor`, `EBSG_BiosculptingSpeedSuper`, `EBSG_SlowBiosculpting`, `EBSG_SlowBiosculptingMinor`
+- Vanilla Races Expanded - Fungoid (3042690053) (5): `VRE_FungalFlesh`, `VRE_FungalRegeneration`, `VRE_PartialAntirotLungs`, `VRE_RotBlood`, `VRE_TotalAntirotLungs`
 - Vanilla Races Expanded - Pigskin (3164798809) (10): `VRE_EverGrowing`, `VRE_ExtraMeat`, `VRE_FastAging`, `VRE_Gluttonous`, `VRE_LowMeat`, `VRE_OrganRegeneration`, `VRE_PigSkin`, `VRE_PorkFlesh`, `VRE_RapidAging`, `VRE_SlowAging`
 - [SH]Gene Expand (3558760095) (3): `SHGE_ExtremeSpeedRegeneration`, `SHGE_SelfRegeneration`, `SHGE_SuperRegeneration`
 - RIMWAAAGH — Orks of RimWorld [1.6] — WIP (3577775737) (6): `Why_BloodSpore`, `Why_FungalFlesh`, `Why_Gene_OrkFace`, `Why_Gene_Small`, `Why_Gene_SnotlingFace`, `Why_MaleOnly`
@@ -6290,6 +6555,7 @@ The `displayCategory` of each gene. 343 categories.
 - Gojis-Misc-Genes (3775114861) (2): `Goji_MechaniteProne`, `Goji_PathogenHost`
 - RWoM Custom Class Pack - Epic Battle Fantasy (2803755648) (3): `EBF_BossGene`, `EBF_DeathExplosion`, `EBF_PowerAura`
 - Photosynthesis Gene (2898371988) (3): `Photosynthesis`, `Photosynthesis_Extreme`, `Photosynthesis_Weak`
+- Vanilla Races Expanded - Genie (2901424072) (3): `VRE_BlueBlood`, `VRE_Hemophiliac`, `VRE_Slow_Diseases`
 - Big and Small - Genes & More (2920751126) (3): `BS_SlowBleeding`, `VU_NoBlood`, `VU_Unliving`
 - Jimothy's Genes! (3371751009) (3): `JIMJAM_ArchiteImmunity`, `JIMJAM_MajorArchiteImmunity`, `JIMJAM_MinorArchiteImmunity`
 - HarbingerKin - Phytokin (3522734130) (3): `Myt_DreadLeather`, `Myt_Male`, `Myt_TwistedFlesh`
@@ -6298,16 +6564,19 @@ The `displayCategory` of each gene. 343 categories.
 - Geist Xenotype (3564732214) (2): `GS_EMP_Weakness`, `GS_Electroreception`
 - Seraphim Xenotype Reborn (3773065414) (1): `GS_Alien_Blood_Grace`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_SpeechInability`
+- Beliar Xenotype (3237072670) (1): `BX_Gorefeast`
 - ↁ Elves (Continued) (3272603920) (1): `DevDesigner_Ageless`
 - Grimdark Recycling2 (3363054797) (1): `HT_PsychoSoul`
 - Pesky's Bulwark Xenotype (3521016438) (1): `Hollow_Bones`
 - Genes+ – Rebalanced and Continued (3554395043) (1): `ScarTreatment`
 - Evolutionary Gene (3615049891) (1): `EvolutionaryGene`
 -  Yet another neko xenotype - Nekotech Xenotype (3736684475) (1): `Neko_Meat`
+- Gexies expies (3738658775) (1): `YellowBlood`
+- Gexies milkies (3775745938) (1): `YellowBlood`
 - Kraltech Industries (1.7) (unofficial) (3820851894) (1): `KraltechGene_NanoRegen`
 - local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_TentacleBond`
 
-## Categories `Reproduction` (260 genes, 34 mods)
+## Categories `Reproduction` (268 genes, 36 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Fertile`, `Libido_High`, `Libido_Low`, `Sterile`
 - Expanded Biotech Style Genes - All in One (3020821838) (23): `EBSG_AlwaysFertile`, `EBSG_AlwaysVeryFertile`, `EBSG_FertilityExtension`, `EBSG_FertilityExtensionExtreme`, `EBSG_FertilityExtensionHyper`, `EBSG_FertilityExtensionMajor`, `EBSG_FertilityExtensionMinor`, `EBSG_FertilityExtensionSuper`, `EBSG_FertilityShortening`, `EBSG_FertilityShorteningExtreme`, `EBSG_FertilityShorteningHyper`, `EBSG_FertilityShorteningMajor`, `EBSG_FertilityShorteningMinor`, `EBSG_FertilityShorteningSuper`, `EBSG_GestationSpeed`, `EBSG_GestationSpeedExtreme`, `EBSG_GestationSpeedHyper`, `EBSG_GestationSpeedMajor`, `EBSG_GestationSpeedMinor`, `EBSG_GestationSpeedSuper`, `EBSG_SlowGestation`, `EBSG_SlowGestationMajor`, `EBSG_SlowGestationMinor`
@@ -6321,9 +6590,11 @@ The `displayCategory` of each gene. 343 categories.
 - local:rjw-genes (local:rjw-genes) (8): `rjw_genes_bisexual`, `rjw_genes_blocked_masturbation`, `rjw_genes_homosexual`, `rjw_genes_hypersexual`, `rjw_genes_littered_births`, `rjw_genes_masochist`, `rjw_genes_pregnancy_overwrite`, `rjw_genes_rapist`
 - Alpha Genes (2891845502) (3): `AG_EggLaying`, `AG_FastGestation`, `AG_SlowGestation`
 - Better Gene Inheritance (3046776238) (5): `BGI_BinaryInheritance`, `BGI_DominantGenes`, `BGI_PrimaryGenes`, `BGI_RecessiveGenes`, `BGI_SecondaryGenes`
+- Posthuman Drift Bossaps Xenotype (3521815829) (5): `XylGender_AlwaysFemale`, `XylGender_AlwaysMale`, `XylGender_UsuallyFemale`, `XylGender_UsuallyMale`, `XylHyperlactation`
 - Cyanobot's Genes (2889844371) (4): `CYB_Caste_Abundant`, `CYB_Caste_Common`, `CYB_Caste_Rare`, `CYB_Caste_Uncommon`
 - Vanilla Races Expanded - Highmate (2995385834) (4): `VRE_DominantGenome`, `VRE_Flirty`, `VRE_LovinDependency`, `VRE_RecessiveGenome`
 - Mixed Breeding Genes (3526898259) (4): `MBG_Female_Barrenness`, `MBG_Female_Impregnation`, `MBG_Male_Hollowness`, `MBG_Male_Pregnancy`
+- Vanilla Races Expanded - Archon (3067715093) (3): `VRE_EarlyMaturity`, `VRE_LongPregnancy`, `VRE_ShortPregnancy`
 - Rim-Hivers! - Biotech (3378615596) (3): `RH_Female`, `RH_Male`, `RH_None`
 - Always Super Duper Reproductive (3208869388) (1): `AlwaysSuperDuperReproductive`
 - RimTwins (Continued) (3408216965) (1): `MultipleBirths`
@@ -6349,7 +6620,7 @@ The `displayCategory` of each gene. 343 categories.
 - EBSG - Productivity Genes (3019623882) (63): `EBSG_Burrowing`, `EBSG_BurrowingExtreme`, `EBSG_BurrowingHyper`, `EBSG_BurrowingIncapable`, `EBSG_BurrowingMajor`, `EBSG_BurrowingMinor`, `EBSG_BurrowingSuper`, `EBSG_Caring`, `EBSG_CaringExtreme`, `EBSG_CaringHyper`, `EBSG_CaringIncapable`, `EBSG_CaringMajor`, `EBSG_CaringMinor`, `EBSG_CaringSuper`, `EBSG_Construction`, `EBSG_ConstructionExtreme`, `EBSG_ConstructionHyper`, `EBSG_ConstructionIncapable`, `EBSG_ConstructionMajor`, `EBSG_ConstructionMinor`, `EBSG_ConstructionSuper`, `EBSG_Curiosity`, `EBSG_CuriosityExtreme`, `EBSG_CuriosityHyper`, `EBSG_CuriosityIncapable`, `EBSG_CuriosityMajor`, `EBSG_CuriosityMinor`, `EBSG_CuriositySuper`, `EBSG_Foraging`, `EBSG_ForagingExtreme`, `EBSG_ForagingHyper`, `EBSG_ForagingIncapable`, `EBSG_ForagingMajor`, `EBSG_ForagingMinor`, `EBSG_ForagingSuper`, `EBSG_Hacking`, `EBSG_HackingExtreme`, `EBSG_HackingHyper`, `EBSG_HackingIncapable`, `EBSG_HackingMajor`, `EBSG_HackingMinor`, `EBSG_HackingSuper`, `EBSG_Herding`, `EBSG_HerdingExtreme`, `EBSG_HerdingHyper`, `EBSG_HerdingIncapable`, `EBSG_HerdingMajor`, `EBSG_HerdingMinor`, `EBSG_HerdingSuper`, `EBSG_Hunting`, `EBSG_HuntingExtreme`, `EBSG_HuntingHyper`, `EBSG_HuntingIncapable`, `EBSG_HuntingMajor`, `EBSG_HuntingMinor`, `EBSG_HuntingSuper`, `EBSG_Piloting`, `EBSG_PilotingExtreme`, `EBSG_PilotingHyper`, `EBSG_PilotingIncapable`, `EBSG_PilotingMajor`, `EBSG_PilotingMinor`, `EBSG_PilotingSuper`
 - Expanded Biotech Style Genes - All in One (3020821838) (63): `EBSG_Burrowing`, `EBSG_BurrowingExtreme`, `EBSG_BurrowingHyper`, `EBSG_BurrowingIncapable`, `EBSG_BurrowingMajor`, `EBSG_BurrowingMinor`, `EBSG_BurrowingSuper`, `EBSG_Caring`, `EBSG_CaringExtreme`, `EBSG_CaringHyper`, `EBSG_CaringIncapable`, `EBSG_CaringMajor`, `EBSG_CaringMinor`, `EBSG_CaringSuper`, `EBSG_Construction`, `EBSG_ConstructionExtreme`, `EBSG_ConstructionHyper`, `EBSG_ConstructionIncapable`, `EBSG_ConstructionMajor`, `EBSG_ConstructionMinor`, `EBSG_ConstructionSuper`, `EBSG_Curiosity`, `EBSG_CuriosityExtreme`, `EBSG_CuriosityHyper`, `EBSG_CuriosityIncapable`, `EBSG_CuriosityMajor`, `EBSG_CuriosityMinor`, `EBSG_CuriositySuper`, `EBSG_Foraging`, `EBSG_ForagingExtreme`, `EBSG_ForagingHyper`, `EBSG_ForagingIncapable`, `EBSG_ForagingMajor`, `EBSG_ForagingMinor`, `EBSG_ForagingSuper`, `EBSG_Hacking`, `EBSG_HackingExtreme`, `EBSG_HackingHyper`, `EBSG_HackingIncapable`, `EBSG_HackingMajor`, `EBSG_HackingMinor`, `EBSG_HackingSuper`, `EBSG_Herding`, `EBSG_HerdingExtreme`, `EBSG_HerdingHyper`, `EBSG_HerdingIncapable`, `EBSG_HerdingMajor`, `EBSG_HerdingMinor`, `EBSG_HerdingSuper`, `EBSG_Hunting`, `EBSG_HuntingExtreme`, `EBSG_HuntingHyper`, `EBSG_HuntingIncapable`, `EBSG_HuntingMajor`, `EBSG_HuntingMinor`, `EBSG_HuntingSuper`, `EBSG_Piloting`, `EBSG_PilotingExtreme`, `EBSG_PilotingHyper`, `EBSG_PilotingIncapable`, `EBSG_PilotingMajor`, `EBSG_PilotingMinor`, `EBSG_PilotingSuper`
 
-## Categories `Ability` (239 genes, 60 mods)
+## Categories `Ability` (246 genes, 65 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `AcidSpray`, `AnimalWarcall`, `FireSpew`, `FoamSpray`
 - Alpha Genes (2891845502) (25): `AG_AcidicDetonation`, `AG_BansheeScream`, `AG_Detonation`, `AG_DevourBrains`, `AG_FreezingBreath`, `AG_GeneSyphon`, `AG_GreaterAcidicVomit`, `AG_GreaterFireSpew`, `AG_InsanityBlast`, `AG_InsectRally`, `AG_InsectStinger`, `AG_InsectStingerEndogenes`, `AG_Invisibility`, `AG_NightlingAffinity`, `AG_NoxiousBreath`, `AG_ParasiticStinger`, `AG_ParasiticStingerEndogenes`, `AG_PetrifyingGaze`, `AG_PsychicAbsorption`, `AG_SelfSkip`, `AG_Spinnerets`, `AG_SterilizingBreath`, `AG_UnstableMind`, `AG_UnstableMutation`, `AG_Zap`
@@ -6374,6 +6645,7 @@ The `displayCategory` of each gene. 343 categories.
 - Erin's Corvyia (3154954530) (2): `ERN_ChaoticCall`, `ERN_Shortflight`
 - Rimsenal Xenotype Pack - Harana (3228637524) (1): `Gene_ShortJump`
 - Obsidia Expansion - Slimes Xenotype (3331598962) (2): `OE_SlimeBounce`, `OE_SlimeBouncePrime`
+- Femboy Xenotypes (3456372943) (2): `FEMB_GeneEmergencySprint`, `FEMB_MercurySpray`
 - More Big and Small Yokai (3493387526) (2): `AMY_YukiColdSnap`, `AMY_YukiMist`
 - Epona Dynastic Rise (3514746737) (2): `Epona_add`, `Epona_healing`
 - Pesky's Bulwark Xenotype (3521016438) (2): `Bulwark_Wings`, `Bulwarks_Blessing`
@@ -6384,10 +6656,12 @@ The `displayCategory` of each gene. 343 categories.
 - Erin's Rhy'aeth (3707527452) (1): `ERN_RhyaethWings`
 - Gojis-Misc-Genes (3775114861) (1): `Goji_GauranlenDescendant`
 - Big and Small - Catfolk (3802375059) (1): `DZ_FeralFelineSprint`
+- Tuonela Xenotype (3819828750) (1): `Tuonela_DeathSpeaker`
 - The Poop Mod (1728184416) (1): `ShitSpray`
 - Save Our Ship 2 (1909914131) (1): `SoS2_Cocoon`
 - Det's Xenotypes - Stoneborn (2888722722) (1): `DV_Stonecall`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_WarHowl`
+- Det's Xenotypes - Venators (3140248688) (1): `DV_ParalyzingFangs`
 - Change Size Gene (3146527503) (1): `CS_ChangeSize`
 - Det's Xenotypes - Boglegs (3146564944) (1): `DV_MuckSpit`
 - Cane Aternitigno, The war dogs of battlefield Xenotypes and Faction (3165847953) (1): `CG_Somnium`
@@ -6400,7 +6674,9 @@ The `displayCategory` of each gene. 343 categories.
 - 出于沙漠之花 (3494511060) (1): `SP-restoration`
 - BoneReapers ReMarrowed (3516603515) (1): `pphhyy_BoneReaperFlight`
 - Posthuman Drift Warcat Xenotype (3521815010) (1): `XylFeralRage`
+- Posthuman Drift Nixie Xenotype (3521815475) (1): `XylPsyBeckon`
 - Cat Hiss (3523843973) (1): `CH_HissGene`
+- Posthuman Drift Trog Xenotype (3526993498) (1): `XylToxicBurst`
 - Cybranian - Oryx Xenotype (3527163129) (1): `OryxWings`
 - Roo's Satyr Xenotype (3548322381) (1): `RBSF_Virtuoso`
 - Geist Xenotype (3564732214) (1): `GS_Cloak_Glands`
@@ -6417,28 +6693,14 @@ The `displayCategory` of each gene. 343 categories.
 - Expanded Biotech Style Genes - All in One (3020821838) (57): `EBSG_AbysmalAnimalSlayer`, `EBSG_AbysmalEntitySlayer`, `EBSG_AbysmalHumanlikeSlayer`, `EBSG_AbysmalInsectSlayer`, `EBSG_AbysmalMechanoidSlayer`, `EBSG_AbysmalSlayer`, `EBSG_BadAnimalSlayer`, `EBSG_BadEntitySlayer`, `EBSG_BadHumanlikeSlayer`, `EBSG_BadInsectSlayer`, `EBSG_BadMechanoidSlayer`, `EBSG_BadSlayer`, `EBSG_ExtremelyBadAnimalSlayer`, `EBSG_ExtremelyBadEntitySlayer`, `EBSG_ExtremelyBadHumanlikeSlayer`, `EBSG_ExtremelyBadInsectSlayer`, `EBSG_ExtremelyBadMechanoidSlayer`, `EBSG_ExtremelyBadSlayer`, `EBSG_ExtremelyGoodAnimalSlayer`, `EBSG_ExtremelyGoodEntitySlayer`, `EBSG_ExtremelyGoodHumanlikeSlayer`, `EBSG_ExtremelyGoodInsectSlayer`, `EBSG_ExtremelyGoodMechanoidSlayer`, `EBSG_ExtremelyGoodSlayer`, `EBSG_GoodAnimalSlayer`, `EBSG_GoodEntitySlayer`, `EBSG_GoodHumanlikeSlayer`, `EBSG_GoodInsectSlayer`, `EBSG_GoodMechanoidSlayer`, `EBSG_GoodSlayer`, `EBSG_SomewhatBadSlayer`, `EBSG_SomewhatGoodAnimalSlayer`, `EBSG_SomewhatGoodEntitySlayer`, `EBSG_SomewhatGoodHumanlikeSlayer`, `EBSG_SomewhatGoodInsectSlayer`, `EBSG_SomewhatGoodMechanoidSlayer`, `EBSG_SomewhatGoodSlayer`, `EBSG_SuperBadSlayer`, `EBSG_SuperGoodSlayer`, `EBSG_UnbelievablyGoodAnimalSlayer`, `EBSG_UnbelievablyGoodEntitySlayer`, `EBSG_UnbelievablyGoodHumanlikeSlayer`, `EBSG_UnbelievablyGoodInsectSlayer`, `EBSG_UnbelievablyGoodMechanoidSlayer`, `EBSG_UnbelievablyGoodSlayer`, `EBSG_VeryBadAnimalSlayer`, `EBSG_VeryBadEntitySlayer`, `EBSG_VeryBadHumanlikeSlayer`, `EBSG_VeryBadInsectSlayer`, `EBSG_VeryBadMechanoidSlayer`, `EBSG_VeryBadSlayer`, `EBSG_VeryGoodAnimalSlayer`, `EBSG_VeryGoodEntitySlayer`, `EBSG_VeryGoodHumanlikeSlayer`, `EBSG_VeryGoodInsectSlayer`, `EBSG_VeryGoodMechanoidSlayer`, `EBSG_VeryGoodSlayer`
 - EBSG - Slayer Genes (3237587949) (57): `EBSG_AbysmalAnimalSlayer`, `EBSG_AbysmalEntitySlayer`, `EBSG_AbysmalHumanlikeSlayer`, `EBSG_AbysmalInsectSlayer`, `EBSG_AbysmalMechanoidSlayer`, `EBSG_AbysmalSlayer`, `EBSG_BadAnimalSlayer`, `EBSG_BadEntitySlayer`, `EBSG_BadHumanlikeSlayer`, `EBSG_BadInsectSlayer`, `EBSG_BadMechanoidSlayer`, `EBSG_BadSlayer`, `EBSG_ExtremelyBadAnimalSlayer`, `EBSG_ExtremelyBadEntitySlayer`, `EBSG_ExtremelyBadHumanlikeSlayer`, `EBSG_ExtremelyBadInsectSlayer`, `EBSG_ExtremelyBadMechanoidSlayer`, `EBSG_ExtremelyBadSlayer`, `EBSG_ExtremelyGoodAnimalSlayer`, `EBSG_ExtremelyGoodEntitySlayer`, `EBSG_ExtremelyGoodHumanlikeSlayer`, `EBSG_ExtremelyGoodInsectSlayer`, `EBSG_ExtremelyGoodMechanoidSlayer`, `EBSG_ExtremelyGoodSlayer`, `EBSG_GoodAnimalSlayer`, `EBSG_GoodEntitySlayer`, `EBSG_GoodHumanlikeSlayer`, `EBSG_GoodInsectSlayer`, `EBSG_GoodMechanoidSlayer`, `EBSG_GoodSlayer`, `EBSG_SomewhatBadSlayer`, `EBSG_SomewhatGoodAnimalSlayer`, `EBSG_SomewhatGoodEntitySlayer`, `EBSG_SomewhatGoodHumanlikeSlayer`, `EBSG_SomewhatGoodInsectSlayer`, `EBSG_SomewhatGoodMechanoidSlayer`, `EBSG_SomewhatGoodSlayer`, `EBSG_SuperBadSlayer`, `EBSG_SuperGoodSlayer`, `EBSG_UnbelievablyGoodAnimalSlayer`, `EBSG_UnbelievablyGoodEntitySlayer`, `EBSG_UnbelievablyGoodHumanlikeSlayer`, `EBSG_UnbelievablyGoodInsectSlayer`, `EBSG_UnbelievablyGoodMechanoidSlayer`, `EBSG_UnbelievablyGoodSlayer`, `EBSG_VeryBadAnimalSlayer`, `EBSG_VeryBadEntitySlayer`, `EBSG_VeryBadHumanlikeSlayer`, `EBSG_VeryBadInsectSlayer`, `EBSG_VeryBadMechanoidSlayer`, `EBSG_VeryBadSlayer`, `EBSG_VeryGoodAnimalSlayer`, `EBSG_VeryGoodEntitySlayer`, `EBSG_VeryGoodHumanlikeSlayer`, `EBSG_VeryGoodInsectSlayer`, `EBSG_VeryGoodMechanoidSlayer`, `EBSG_VeryGoodSlayer`
 
-## Categories `GEB_Blood_Color` (228 genes, 1 mods)
-
-- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
-
-## Categories `Cosmetic_Skin` (198 genes, 8 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (21): `Skin_Blue`, `Skin_DeepRed`, `Skin_DeepYellow`, `Skin_Green`, `Skin_InkBlack`, `Skin_LightGray`, `Skin_Melanin1`, `Skin_Melanin2`, `Skin_Melanin3`, `Skin_Melanin4`, `Skin_Melanin5`, `Skin_Melanin6`, `Skin_Melanin7`, `Skin_Melanin8`, `Skin_Melanin9`, `Skin_Orange`, `Skin_PaleRed`, `Skin_PaleYellow`, `Skin_Purple`, `Skin_SheerWhite`, `Skin_SlateGray`
-- [LFS] Genes Expanded - Skin Colors (3214172563) (75): `GES_Skin_Almond`, `GES_Skin_Amethyst`, `GES_Skin_BananaSplit`, `GES_Skin_BeesWax`, `GES_Skin_Black`, `GES_Skin_BlueMarlin`, `GES_Skin_BlueSuede`, `GES_Skin_Bluegill`, `GES_Skin_Brown`, `GES_Skin_Bubblegum`, `GES_Skin_Burgundy`, `GES_Skin_BurntOrange`, `GES_Skin_Chesnut`, `GES_Skin_Chocolate`, `GES_Skin_Clay`, `GES_Skin_Cobalt`, `GES_Skin_CoolAzul`, `GES_Skin_CoolMint`, `GES_Skin_Copper`, `GES_Skin_Cranberry`, `GES_Skin_DeepSea`, `GES_Skin_Denim`, `GES_Skin_DesertCamo`, `GES_Skin_DesertSand`, `GES_Skin_Evergreen`, `GES_Skin_Fern`, `GES_Skin_FireRed`, `GES_Skin_ForgedSteel`, `GES_Skin_Fuchsia`, `GES_Skin_GhostGrey`, `GES_Skin_GoldFish`, `GES_Skin_Grape`, `GES_Skin_Guacamole`, `GES_Skin_Gulfstream`, `GES_Skin_IronOre`, `GES_Skin_IslandLagoon`, `GES_Skin_Jade`, `GES_Skin_Kiwi`, `GES_Skin_Lilac`, `GES_Skin_MarsRed`, `GES_Skin_MauiSurf`, `GES_Skin_Merlot`, `GES_Skin_MidasGold`, `GES_Skin_OakLeaf`, `GES_Skin_Olive`, `GES_Skin_Orchid`, `GES_Skin_PaleLavender`, `GES_Skin_PeaSoup`, `GES_Skin_Plum`, `GES_Skin_Purple`, `GES_Skin_PurpleHeart`, `GES_Skin_Rainforest`, `GES_Skin_Raspberry`, `GES_Skin_Rattan`, `GES_Skin_Redfish`, `GES_Skin_RegalBlue`, `GES_Skin_Rose`, `GES_Skin_Sage`, `GES_Skin_SilverShiner`, `GES_Skin_SilverSmoke`, `GES_Skin_SmokeScreen`, `GES_Skin_StormCloud`, `GES_Skin_SummerSky`, `GES_Skin_Sunset`, `GES_Skin_Tangerine`, `GES_Skin_Taupe`, `GES_Skin_TaxiCab`, `GES_Skin_Teak`, `GES_Skin_Teal`, `GES_Skin_TidalPool`, `GES_Skin_TinCan`, `GES_Skin_Violet`, `GES_Skin_White`, `GES_Skin_WildBlueberry`, `GES_Skin_Yellowfin`
-- FIP - RobCo (3563825876) (10): `RobCo_Gene_BiogelBlack`, `RobCo_Gene_BiogelBlue`, `RobCo_Gene_BiogelCyan`, `RobCo_Gene_BiogelGreen`, `RobCo_Gene_BiogelOrange`, `RobCo_Gene_BiogelPink`, `RobCo_Gene_BiogelPurple`, `RobCo_Gene_BiogelRed`, `RobCo_Gene_BiogelWhite`, `RobCo_Gene_BiogelYellow`
-- Vanilla Skin Tone Genes (3165888554) (9): `VSTG_Skin_1`, `VSTG_Skin_2`, `VSTG_Skin_3`, `VSTG_Skin_4`, `VSTG_Skin_5`, `VSTG_Skin_6`, `VSTG_Skin_7`, `VSTG_Skin_8`, `VSTG_Skin_9`
-- Skinprint (3815708054) (5): `SP_BeautyMoles`, `SP_Birthmark`, `SP_Freckles`, `SP_Piebald`, `SP_Vitiligo`
-- DuelMonsterRimWorld (3050289249) (1): `Skin_DMRW_VampireRed`
-- The Profaned (3202008037) (1): `BotchJob_RottingFleshBasic`
-- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskySkinPattern`
-
-## Categories `Hemogen` (189 genes, 15 mods)
+## Categories `Hemogen` (207 genes, 17 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (7): `Bloodfeeder`, `Coagulate`, `Deathrest`, `HemogenDrain`, `Hemogenic`, `LongjumpLegs`, `PiercingSpine`
 - WVC - Xenotypes and Genes (2886992038) (22): `WVC_Animalfeeder`, `WVC_BloodHarvester`, `WVC_Bloodcells`, `WVC_Bloodeater`, `WVC_BloodyGrowths`, `WVC_Corpsefeeder`, `WVC_Deathrest_FastRest`, `WVC_Deathrest_Healing`, `WVC_Deathrest_HemogenGain`, `WVC_Deathrest_Immunization`, `WVC_EternalHunger`, `WVC_Hemofeeder`, `WVC_HemogenGain`, `WVC_HemogenPsylink`, `WVC_HemogenScarless`, `WVC_HemogenicMetabolism`, `WVC_ImplanterFang`, `WVC_ImplanterFangs`, `WVC_Mechfeeder`, `WVC_Psyfeeder`, `WVC_VoidHunger`, `WVC_WoundHealing_Hemogen`
 - Expanded Biotech Style Genes - All in One (3020821838) (19): `EBSG_AbysmalDeathrestSpeed`, `EBSG_ExtremelyFastDeathrestSpeed`, `EBSG_FastDeathrestSpeed`, `EBSG_HemogenGain`, `EBSG_HemogenGainExtreme`, `EBSG_HemogenGainHyper`, `EBSG_HemogenGainLoss`, `EBSG_HemogenGainLossMajor`, `EBSG_HemogenGainLossMinor`, `EBSG_HemogenGainMajor`, `EBSG_HemogenGainMinor`, `EBSG_HemogenGainSuper`, `EBSG_SlightlyFastDeathrestSpeed`, `EBSG_SlightlySlowDeathrestSpeed`, `EBSG_SlowDeathrestSpeed`, `EBSG_SuperFastDeathrestSpeed`, `EBSG_UnbelievablyFastDeathrestSpeed`, `EBSG_VeryFastDeathrestSpeed`, `EBSG_VerySlowDeathrestSpeed`
 - More Biotech Style Genes - All in One (2985153870) (16): `HemogenDrainExtreme`, `HemogenDrainHyper`, `HemogenDrainMajor`, `HemogenDrainMinor`, `HemogenDrainNotable`, `HemogenDrainSomewhatMinor`, `HemogenDrainVeryMinor`, `HemogenRecovery`, `HemogenRecoveryExtreme`, `HemogenRecoveryExtremelyMinor`, `HemogenRecoveryHyper`, `HemogenRecoveryMajor`, `HemogenRecoveryMinor`, `HemogenRecoveryNotable`, `HemogenRecoverySomewhatMinor`, `HemogenRecoveryVeryMinor`
 - Meta's Genelines - Vampires (3553355702) (27): `VampAbilities_Amaranth`, `VampAbilities_BloodRain`, `VampAbilities_Bloodblade`, `VampAbilities_BloodySpears`, `VampAbilities_BringToUnlife`, `VampAbilities_BurningBlood`, `VampAbilities_Communion`, `VampAbilities_DarkStep`, `VampAbilities_DarkTwin`, `VampAbilities_Deathnap`, `VampAbilities_DeathrestFast`, `VampAbilities_DeathrestRegen`, `VampAbilities_DeathrestSlow`, `VampAbilities_DeathrestVeryFast`, `VampAbilities_DeathrestVerySlow`, `VampAbilities_Exsanguinate`, `VampAbilities_GiantForm`, `VampAbilities_Hemoshield`, `VampAbilities_InducePlague`, `VampAbilities_Leech`, `VampAbilities_MistForm`, `VampAbilities_RatSwarm`, `VampAbilities_Temperance`, `VampAbilities_TrueNature`, `VampAbilities_Vargulf`, `VampAbilities_WolfPack`, `VampAbility_IronBlood`
+- More Hemogenic Genes (2997929736) (16): `HemogenDrainExtreme`, `HemogenDrainHyper`, `HemogenDrainMajor`, `HemogenDrainMinor`, `HemogenDrainNotable`, `HemogenDrainSomewhatMinor`, `HemogenDrainVeryMinor`, `HemogenRecovery`, `HemogenRecoveryExtreme`, `HemogenRecoveryExtremelyMinor`, `HemogenRecoveryHyper`, `HemogenRecoveryMajor`, `HemogenRecoveryMinor`, `HemogenRecoveryNotable`, `HemogenRecoverySomewhatMinor`, `HemogenRecoveryVeryMinor`
 - Spirits (3472437470) (7): `REDS_CloudedDream`, `REDS_EctoplasmBlood`, `REDS_Ectoplasm_Gene`, `REDS_Elysian_Gene`, `REDS_Lost_Gene`, `REDS_Revenant_Gene`, `REDS_SpiritSummon`
 - EBSG - Expanded Hemogenic Genes (3019888741) (9): `EBSG_HemogenGain`, `EBSG_HemogenGainExtreme`, `EBSG_HemogenGainHyper`, `EBSG_HemogenGainLoss`, `EBSG_HemogenGainLossMajor`, `EBSG_HemogenGainLossMinor`, `EBSG_HemogenGainMajor`, `EBSG_HemogenGainMinor`, `EBSG_HemogenGainSuper`
 - Vanilla Races Expanded - Sanguophage (2963116383) (5): `VRE_AnimalFeeder`, `VRE_CorpseFeeder`, `VRE_ExtremeHemogenDrain`, `VRE_LowHemogenDrain`, `VRE_SanguoFeeder`
@@ -6447,22 +6709,23 @@ The `displayCategory` of each gene. 343 categories.
 - True Sanguophages : Vampires (3509500808) (3): `GeneBloodMagic`, `GeneVitae`, `HemogenDrain`
 - Big and Small - Genes & More (2920751126) (2): `VU_GreaterHemogenDrain`, `VU_SuccubusBloodFeeder`
 - ReSplice: Charmweavers (3131996691) (2): `RS_LoveFeed`, `RS_Lovehexer`
+- Beliar Xenotype (3237072670) (2): `BX_Bloodbath`, `BX_InfernalHeart`
 - [OA]Ratkin Gene Expand (3300291918) (1): `OAGene_SpecificHemogen`
 - Blood Bag (3656879671) (2): `Drinkable`, `Quick_Refill`
 
-## Categories `Beauty` (164 genes, 14 mods)
+## Categories `Beauty` (160 genes, 14 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Beauty_Beautiful`, `Beauty_Pretty`, `Beauty_Ugly`, `Beauty_VeryUgly`
 - Expanded Biotech Style Genes - All in One (3020821838) (40): `EBSG_Boorish`, `EBSG_Convincing`, `EBSG_Crass`, `EBSG_Enchanting`, `EBSG_ExtremeBoorish`, `EBSG_ExtremeUnconvincing`, `EBSG_ExtremeUnimposing`, `EBSG_ExtremelyConvincing`, `EBSG_ExtremelySuave`, `EBSG_ExtremelyTerrifying`, `EBSG_HyperBoorish`, `EBSG_HyperConvincing`, `EBSG_HyperSuave`, `EBSG_HyperTerrifying`, `EBSG_HyperUnconvincing`, `EBSG_HyperUnimposing`, `EBSG_Preacher`, `EBSG_SomewhatBoorish`, `EBSG_SomewhatConvincing`, `EBSG_SomewhatSuave`, `EBSG_SomewhatTerrifying`, `EBSG_SomewhatUnconvincing`, `EBSG_SomewhatUnimposing`, `EBSG_Suave`, `EBSG_SuperBoorish`, `EBSG_SuperConvincing`, `EBSG_SuperSuave`, `EBSG_SuperTerrifying`, `EBSG_SuperUnconvincing`, `EBSG_SuperUnimposing`, `EBSG_Terrifying`, `EBSG_Unconvincing`, `EBSG_Unimposing`, `EBSG_Unpreachy`, `EBSG_VeryBoorish`, `EBSG_VeryConvincing`, `EBSG_VerySuave`, `EBSG_VeryTerrifying`, `EBSG_VeryUnconvincing`, `EBSG_VeryUnimposing`
 - EBSG - Expanded Social Genes (3020795248) (40): `EBSG_Boorish`, `EBSG_Convincing`, `EBSG_Crass`, `EBSG_Enchanting`, `EBSG_ExtremeBoorish`, `EBSG_ExtremeUnconvincing`, `EBSG_ExtremeUnimposing`, `EBSG_ExtremelyConvincing`, `EBSG_ExtremelySuave`, `EBSG_ExtremelyTerrifying`, `EBSG_HyperBoorish`, `EBSG_HyperConvincing`, `EBSG_HyperSuave`, `EBSG_HyperTerrifying`, `EBSG_HyperUnconvincing`, `EBSG_HyperUnimposing`, `EBSG_Preacher`, `EBSG_SomewhatBoorish`, `EBSG_SomewhatConvincing`, `EBSG_SomewhatSuave`, `EBSG_SomewhatTerrifying`, `EBSG_SomewhatUnconvincing`, `EBSG_SomewhatUnimposing`, `EBSG_Suave`, `EBSG_SuperBoorish`, `EBSG_SuperConvincing`, `EBSG_SuperSuave`, `EBSG_SuperTerrifying`, `EBSG_SuperUnconvincing`, `EBSG_SuperUnimposing`, `EBSG_Terrifying`, `EBSG_Unconvincing`, `EBSG_Unimposing`, `EBSG_Unpreachy`, `EBSG_VeryBoorish`, `EBSG_VeryConvincing`, `EBSG_VerySuave`, `EBSG_VeryTerrifying`, `EBSG_VeryUnconvincing`, `EBSG_VeryUnimposing`
 - More Biotech Style Genes - All in One (2985153870) (6): `Beauty_ExtremelyBeautiful`, `Beauty_ExtremelyUgly`, `Beauty_SuperBeautiful`, `Beauty_SuperUgly`, `Beauty_UnbelievablyBeautiful`, `Beauty_UnbelievablyUgly`
-- More Beauty Genes (3005531604) (6): `Beauty_ExtremelyBeautiful`, `Beauty_ExtremelyUgly`, `Beauty_SuperBeautiful`, `Beauty_SuperUgly`, `Beauty_UnbelievablyBeautiful`, `Beauty_UnbelievablyUgly`
 - Seraphim Xenotype Reborn (3773065414) (3): `GS_AngelRacismGene`, `GS_DemonRacismGene`, `GS_Visuals`
 - WVC - Xenotypes and Genes (2886992038) (3): `WVC_Furskin_AttractiveFur`, `WVC_Furskin_FluffyFur`, `WVC_MecaUpgrades_PerfectShape`
 - Big and Small - Genes & More (2920751126) (3): `BS_AlienApperanceStandards`, `BS_AlienApperanceStandards_Lesser`, `VU_Pallor`
 - NewRatkinPlus (1578693166) (1): `RK_Gene_CuteFace`
 - Integrated Genes (2884115974) (2): `Turn_Gene_HighBeautyStandard`, `Turn_Gene_LowBeautyStandard`
 - Alpha Genes (2891845502) (1): `AG_Teratophilia`
+- Beliar Xenotype (3237072670) (2): `BX_AngelRacismGene`, `BX_DemonRacismGene`
 - RutraNickers' Patches (3464716875) (1): `RN_BeautySuppresion`
 - More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_UnforgettableFace`
 - local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_UnforgettableFace`
@@ -6472,9 +6735,29 @@ The `displayCategory` of each gene. 343 categories.
 - Expanded Biotech Style Genes - All in One (3020821838) (39): `EBSG_Interest_Animals`, `EBSG_Interest_Artistic`, `EBSG_Interest_Construction`, `EBSG_Interest_Cooking`, `EBSG_Interest_Crafting`, `EBSG_Interest_Intellectual`, `EBSG_Interest_Medicine`, `EBSG_Interest_Melee`, `EBSG_Interest_Mining`, `EBSG_Interest_Plants`, `EBSG_Interest_Random`, `EBSG_Interest_Shooting`, `EBSG_Interest_Social`, `EBSG_NoPassion_Animals`, `EBSG_NoPassion_Artistic`, `EBSG_NoPassion_Construction`, `EBSG_NoPassion_Cooking`, `EBSG_NoPassion_Crafting`, `EBSG_NoPassion_Intellectual`, `EBSG_NoPassion_Medicine`, `EBSG_NoPassion_Melee`, `EBSG_NoPassion_Mining`, `EBSG_NoPassion_Plants`, `EBSG_NoPassion_Random`, `EBSG_NoPassion_Shooting`, `EBSG_NoPassion_Social`, `EBSG_Passion_Animals`, `EBSG_Passion_Artistic`, `EBSG_Passion_Construction`, `EBSG_Passion_Cooking`, `EBSG_Passion_Crafting`, `EBSG_Passion_Intellectual`, `EBSG_Passion_Medicine`, `EBSG_Passion_Melee`, `EBSG_Passion_Mining`, `EBSG_Passion_Plants`, `EBSG_Passion_Random`, `EBSG_Passion_Shooting`, `EBSG_Passion_Social`
 - EBSG - Passion Genes (3137775020) (39): `EBSG_Interest_Animals`, `EBSG_Interest_Artistic`, `EBSG_Interest_Construction`, `EBSG_Interest_Cooking`, `EBSG_Interest_Crafting`, `EBSG_Interest_Intellectual`, `EBSG_Interest_Medicine`, `EBSG_Interest_Melee`, `EBSG_Interest_Mining`, `EBSG_Interest_Plants`, `EBSG_Interest_Random`, `EBSG_Interest_Shooting`, `EBSG_Interest_Social`, `EBSG_NoPassion_Animals`, `EBSG_NoPassion_Artistic`, `EBSG_NoPassion_Construction`, `EBSG_NoPassion_Cooking`, `EBSG_NoPassion_Crafting`, `EBSG_NoPassion_Intellectual`, `EBSG_NoPassion_Medicine`, `EBSG_NoPassion_Melee`, `EBSG_NoPassion_Mining`, `EBSG_NoPassion_Plants`, `EBSG_NoPassion_Random`, `EBSG_NoPassion_Shooting`, `EBSG_NoPassion_Social`, `EBSG_Passion_Animals`, `EBSG_Passion_Artistic`, `EBSG_Passion_Construction`, `EBSG_Passion_Cooking`, `EBSG_Passion_Crafting`, `EBSG_Passion_Intellectual`, `EBSG_Passion_Medicine`, `EBSG_Passion_Melee`, `EBSG_Passion_Mining`, `EBSG_Passion_Plants`, `EBSG_Passion_Random`, `EBSG_Passion_Shooting`, `EBSG_Passion_Social`
 
+## Categories `GEB_Blood_Color` (152 genes, 1 mods)
+
+- [LFS] Genes Expanded - Blood (3231022032) (76): `GEB_Blood_Almond`, `GEB_Blood_Amethyst`, `GEB_Blood_BananaSplit`, `GEB_Blood_BeesWax`, `GEB_Blood_Black`, `GEB_Blood_BlueMarlin`, `GEB_Blood_BlueSuede`, `GEB_Blood_Bluegill`, `GEB_Blood_Blurple`, `GEB_Blood_Brown`, `GEB_Blood_Bubblegum`, `GEB_Blood_Burgundy`, `GEB_Blood_BurntOrange`, `GEB_Blood_Chesnut`, `GEB_Blood_Chocolate`, `GEB_Blood_Clay`, `GEB_Blood_Cobalt`, `GEB_Blood_CoolAzul`, `GEB_Blood_CoolMint`, `GEB_Blood_Copper`, `GEB_Blood_Cranberry`, `GEB_Blood_DeepSea`, `GEB_Blood_Denim`, `GEB_Blood_DesertCamo`, `GEB_Blood_DesertSand`, `GEB_Blood_Evergreen`, `GEB_Blood_Fern`, `GEB_Blood_FireRed`, `GEB_Blood_ForgedSteel`, `GEB_Blood_Fuchsia`, `GEB_Blood_GhostGrey`, `GEB_Blood_GoldFish`, `GEB_Blood_Grape`, `GEB_Blood_Guacamole`, `GEB_Blood_Gulfstream`, `GEB_Blood_IronOre`, `GEB_Blood_IslandLagoon`, `GEB_Blood_Jade`, `GEB_Blood_Kiwi`, `GEB_Blood_Lilac`, `GEB_Blood_MarsRed`, `GEB_Blood_MauiSurf`, `GEB_Blood_Merlot`, `GEB_Blood_MidasGold`, `GEB_Blood_OakLeaf`, `GEB_Blood_Olive`, `GEB_Blood_Orchid`, `GEB_Blood_PaleLavender`, `GEB_Blood_PeaSoup`, `GEB_Blood_Plum`, `GEB_Blood_Purple`, `GEB_Blood_PurpleHeart`, `GEB_Blood_Rainforest`, `GEB_Blood_Raspberry`, `GEB_Blood_Rattan`, `GEB_Blood_Redfish`, `GEB_Blood_RegalBlue`, `GEB_Blood_Rose`, `GEB_Blood_Sage`, `GEB_Blood_SilverShiner`, `GEB_Blood_SilverSmoke`, `GEB_Blood_SmokeScreen`, `GEB_Blood_StormCloud`, `GEB_Blood_SummerSky`, `GEB_Blood_Sunset`, `GEB_Blood_Tangerine`, `GEB_Blood_Taupe`, `GEB_Blood_TaxiCab`, `GEB_Blood_Teak`, `GEB_Blood_Teal`, `GEB_Blood_TidalPool`, `GEB_Blood_TinCan`, `GEB_Blood_Violet`, `GEB_Blood_White`, `GEB_Blood_WildBlueberry`, `GEB_Blood_Yellowfin`
+
 ## Categories `GEH_hair_Color` (152 genes, 1 mods)
 
 - [LFS] Genes Expanded - Hair (3221946756) (76): `GEH_Hair_Almond`, `GEH_Hair_Amethyst`, `GEH_Hair_BananaSplit`, `GEH_Hair_BeesWax`, `GEH_Hair_Black`, `GEH_Hair_BlueMarlin`, `GEH_Hair_BlueSuede`, `GEH_Hair_Bluegill`, `GEH_Hair_Blurple`, `GEH_Hair_Brown`, `GEH_Hair_Bubblegum`, `GEH_Hair_Burgundy`, `GEH_Hair_BurntOrange`, `GEH_Hair_Chesnut`, `GEH_Hair_Chocolate`, `GEH_Hair_Clay`, `GEH_Hair_Cobalt`, `GEH_Hair_CoolAzul`, `GEH_Hair_CoolMint`, `GEH_Hair_Copper`, `GEH_Hair_Cranberry`, `GEH_Hair_DeepSea`, `GEH_Hair_Denim`, `GEH_Hair_DesertCamo`, `GEH_Hair_DesertSand`, `GEH_Hair_Evergreen`, `GEH_Hair_Fern`, `GEH_Hair_FireRed`, `GEH_Hair_ForgedSteel`, `GEH_Hair_Fuchsia`, `GEH_Hair_GhostGrey`, `GEH_Hair_GoldFish`, `GEH_Hair_Grape`, `GEH_Hair_Guacamole`, `GEH_Hair_Gulfstream`, `GEH_Hair_IronOre`, `GEH_Hair_IslandLagoon`, `GEH_Hair_Jade`, `GEH_Hair_Kiwi`, `GEH_Hair_Lilac`, `GEH_Hair_MarsRed`, `GEH_Hair_MauiSurf`, `GEH_Hair_Merlot`, `GEH_Hair_MidasGold`, `GEH_Hair_OakLeaf`, `GEH_Hair_Olive`, `GEH_Hair_Orchid`, `GEH_Hair_PaleLavender`, `GEH_Hair_PeaSoup`, `GEH_Hair_Plum`, `GEH_Hair_Purple`, `GEH_Hair_PurpleHeart`, `GEH_Hair_Rainforest`, `GEH_Hair_Raspberry`, `GEH_Hair_Rattan`, `GEH_Hair_Redfish`, `GEH_Hair_RegalBlue`, `GEH_Hair_Rose`, `GEH_Hair_Sage`, `GEH_Hair_SilverShiner`, `GEH_Hair_SilverSmoke`, `GEH_Hair_SmokeScreen`, `GEH_Hair_StormCloud`, `GEH_Hair_SummerSky`, `GEH_Hair_Sunset`, `GEH_Hair_Tangerine`, `GEH_Hair_Taupe`, `GEH_Hair_TaxiCab`, `GEH_Hair_Teak`, `GEH_Hair_Teal`, `GEH_Hair_TidalPool`, `GEH_Hair_TinCan`, `GEH_Hair_Violet`, `GEH_Hair_White`, `GEH_Hair_WildBlueberry`, `GEH_Hair_Yellowfin`
+
+## Categories `AG_Genes_Common` (150 genes, 1 mods)
+
+- Absolute Genome — Полная генетика (3823783460) (150): `AG_Gene_AggressionLow`, `AG_Gene_AgingRateFast`, `AG_Gene_AgingRateSlow`, `AG_Gene_AnimalGatheringSpeedHigh`, `AG_Gene_AntibodyMemory`, `AG_Gene_AutoimmuneReaction`, `AG_Gene_Baldness`, `AG_Gene_BloodVolumeHigh`, `AG_Gene_BodyHairDense`, `AG_Gene_BodyHairThick`, `AG_Gene_BodySizeLarge`, `AG_Gene_BodySizeSmall`, `AG_Gene_BrightLightSensitivity`, `AG_Gene_BruiseResistance`, `AG_Gene_CarryCapacityHigh`, `AG_Gene_CarryCapacityLow`, `AG_Gene_CarryCapacityVeryHigh`, `AG_Gene_CleaningSpeedHigh`, `AG_Gene_ClottingSpeed`, `AG_Gene_ColdDamageResistantMinor`, `AG_Gene_ColorPerceptionEnhanced`, `AG_Gene_ConstructionSpeedHigh`, `AG_Gene_CookingSpeedHigh`, `AG_Gene_DenseBoneTissue`, `AG_Gene_DenseBuild`, `AG_Gene_DiseaseProgressionSlow`, `AG_Gene_EarsPointed`, `AG_Gene_ElasticLigaments_2`, `AG_Gene_EyeColorGold`, `AG_Gene_EyeColorViolet`, `AG_Gene_EyesHeterochromia`, `AG_Gene_FallDamageResistant`, `AG_Gene_FarSighted`, `AG_Gene_FastMetabolism_2`, `AG_Gene_FearResponseDull`, `AG_Gene_FertilityHigh`, `AG_Gene_FertilityLow`, `AG_Gene_FireDamageResistantMinor`, `AG_Gene_FlammabilityLow`, `AG_Gene_FluImmunity`, `AG_Gene_FractureResistance`, `AG_Gene_FragileBones`, `AG_Gene_FungalResistance`, `AG_Gene_HairColorRed`, `AG_Gene_HairColorWhite`, `AG_Gene_HairDensityHigh`, `AG_Gene_HairGrowthFast`, `AG_Gene_HairGrowthSlow`, `AG_Gene_HairLossEarly`, `AG_Gene_HairTextureCurly`, `AG_Gene_HearingAcute`, `AG_Gene_HeartReinforced`, `AG_Gene_HeatOverloadFast`, `AG_Gene_HeatOverloadSlow`, `AG_Gene_HeavySkeleton`, `AG_Gene_HemoglobinHigh`, `AG_Gene_Hemophilia`, `AG_Gene_HypothermiaSlow`, `AG_Gene_ImmunityGainFast`, `AG_Gene_ImmunityGainSlow`, `AG_Gene_ImmunityGainVeryFast`, `AG_Gene_IncreasedBloodLoss`, `AG_Gene_InfectionResistanceMild`, `AG_Gene_KidneyDuplicated`, `AG_Gene_LifespanLong`, `AG_Gene_LightBuild`, `AG_Gene_LiverReinforced`, `AG_Gene_LoadedSpeed`, `AG_Gene_LowLightAdaptation`, `AG_Gene_LungCapacityHigh`, `AG_Gene_ManipulationHigh`, `AG_Gene_MaxTemperatureMinorDecrease`, `AG_Gene_MaxTemperatureMinorIncrease`, `AG_Gene_MedicalSpeedHigh`, `AG_Gene_MelaninHigh`, `AG_Gene_MelaninLow`, `AG_Gene_MentalBreakThresholdHigh`, `AG_Gene_MentalBreakThresholdLow`, `AG_Gene_MinTemperatureMinorDecrease`, `AG_Gene_MinTemperatureMinorIncrease`, `AG_Gene_MiningSpeedHigh`, `AG_Gene_MoodBonusLarge`, `AG_Gene_MoodBonusSmall`, `AG_Gene_MoodPenaltyLarge`, `AG_Gene_MoodPenaltySmall`, `AG_Gene_MoveSpeedFast`, `AG_Gene_MoveSpeedMinorFast`, `AG_Gene_MoveSpeedMinorSlow`, `AG_Gene_MoveSpeedVeryFast`, `AG_Gene_NearSighted`, `AG_Gene_NightVisionMild`, `AG_Gene_NightVisionStrong`, `AG_Gene_NutrientAbsorptionHigh`, `AG_Gene_OrganDegenerationSlow`, `AG_Gene_PainMoodResistant`, `AG_Gene_PainSensitivityHigh`, `AG_Gene_PainSensitivityLow`, `AG_Gene_PainSensitivityVeryLow`, `AG_Gene_PainShockThresholdHigh`, `AG_Gene_PainShockThresholdLow`, `AG_Gene_ParasiteResistance`, `AG_Gene_PeripheralVisionWide`, `AG_Gene_PlantWorkSpeedHigh`, `AG_Gene_PlateletHigh`, `AG_Gene_PsychicNoiseResistant`, `AG_Gene_PsychicSensitivityHigh`, `AG_Gene_PsychicSensitivityMinorHigh`, `AG_Gene_PsychicSensitivityMinorLow`, `AG_Gene_RawFoodTolerance`, `AG_Gene_ReducedBloodLoss`, `AG_Gene_RegenerationFast`, `AG_Gene_RegenerationSlow`, `AG_Gene_ReinforcedJoints`, `AG_Gene_ReinforcedSkinLayers`, `AG_Gene_RestDeepSleepHigh`, `AG_Gene_RestEffectivenessHigh`, `AG_Gene_RestEffectivenessLow`, `AG_Gene_RestNeedHigh`, `AG_Gene_RestNeedLow`, `AG_Gene_RestNeedVeryLow`, `AG_Gene_ScarReduction`, `AG_Gene_SensitiveSkin`, `AG_Gene_SkinColorBronze`, `AG_Gene_SkinColorDark`, `AG_Gene_SkinColorPale`, `AG_Gene_SkinRegenerationFast`, `AG_Gene_SkinSheddingFast`, `AG_Gene_SlowMetabolism`, `AG_Gene_SmellAcute`, `AG_Gene_SmithingSpeedHigh`, `AG_Gene_SocialNeedLow`, `AG_Gene_SoftSkin`, `AG_Gene_StomachAcidHigh`, `AG_Gene_StomachAcidLow`, `AG_Gene_StressResistant`, `AG_Gene_ThickDermis`, `AG_Gene_ThickNails`, `AG_Gene_ThickVesselWalls`, `AG_Gene_ThickenedSkull`, `AG_Gene_TouchSensitive`, `AG_Gene_ToxinFilterMild`, `AG_Gene_TwinChanceHigh`, `AG_Gene_TwinChanceLow`, `AG_Gene_UVResistantSkin`, `AG_Gene_UnburdenedSpeed`, `AG_Gene_VisualProcessingFast`, `AG_Gene_VoicePitchLow`, `AG_Gene_WaterRetentionHigh`, `AG_Gene_WorkSpeedGeneralHigh`, `AG_Gene_WorkSpeedGeneralLow`
+
+## Categories `AG_Genes_Legendary` (150 genes, 1 mods)
+
+- Absolute Genome — Полная генетика (3823783460) (150): `AG_Gene_AbsoluteDeathlessness`, `AG_Gene_AbsorbCapabilities`, `AG_Gene_AcidDamageAbsoluteImmunity`, `AG_Gene_AdaptiveArmorAbsolute`, `AG_Gene_AimSpeedAbsolute`, `AG_Gene_AmbushImmunity`, `AG_Gene_AnimalDominionAbsolute`, `AG_Gene_ArmorIgnoreAbsolute`, `AG_Gene_ArmorPenetrationImmunity`, `AG_Gene_ArmorShredding`, `AG_Gene_BloodRegenerationAbsolute`, `AG_Gene_BluntDamageAbsoluteImmunity`, `AG_Gene_BodyCrystalline`, `AG_Gene_BodyEnergyForm`, `AG_Gene_BodyFungalNetwork`, `AG_Gene_BodyLiquid`, `AG_Gene_BodyMetallic`, `AG_Gene_BodyOrganicHybrid`, `AG_Gene_BodyPlantBased`, `AG_Gene_BondAuraAbsolute`, `AG_Gene_BulletDamageAbsoluteImmunity`, `AG_Gene_CaptureImmunity`, `AG_Gene_CarryCapacityAbsolute`, `AG_Gene_CellularPerfection`, `AG_Gene_ChemicalAbsoluteImmunity`, `AG_Gene_CloseQuartersMaster`, `AG_Gene_ColdAbsoluteImmunityTotal`, `AG_Gene_CombatAwarenessAbsolute`, `AG_Gene_CombatSpeedAbsolute`, `AG_Gene_ConsciousnessAbsolute`, `AG_Gene_ConsciousnessAfterDeath`, `AG_Gene_ConstructionInstant`, `AG_Gene_CriticalStrikeAbsolute`, `AG_Gene_CuttingDamageAbsoluteImmunity`, `AG_Gene_DamageCap`, `AG_Gene_DamageTakenAbsoluteReduction`, `AG_Gene_DeathAura`, `AG_Gene_DecayAura`, `AG_Gene_DestructionImmunity`, `AG_Gene_DiseaseAbsoluteImmunity`, `AG_Gene_DodgeChanceAbsolute`, `AG_Gene_DualFormCombat`, `AG_Gene_DualFormPeaceful`, `AG_Gene_EMPDamageAbsoluteImmunity`, `AG_Gene_EmotionControlAbsolute`, `AG_Gene_EnemyDebuffAura`, `AG_Gene_EnergyFromAnything`, `AG_Gene_EnergyFromCombat`, `AG_Gene_EnergyFromDamage`, `AG_Gene_EnergyFromHeat`, `AG_Gene_EnergyFromRadiation`, `AG_Gene_EnergyFromSunlight`, `AG_Gene_EnergyShieldPersonal`, `AG_Gene_EnvironmentAbsoluteAdaptation`, `AG_Gene_EternalYouth`, `AG_Gene_ExplosionDamageAbsoluteImmunity`, `AG_Gene_FallDamageAbsoluteImmunityTotal`, `AG_Gene_FearAuraAbsolute`, `AG_Gene_FireAbsoluteImmunity`, `AG_Gene_FlameDamageAbsoluteImmunityTotal`, `AG_Gene_FoodAbsoluteImmunity`, `AG_Gene_GravityField`, `AG_Gene_HearingAbsoluteTotal`, `AG_Gene_ImmunityToDismemberment`, `AG_Gene_IndestructibleTissue`, `AG_Gene_InfiniteStamina`, `AG_Gene_InfiniteVitality`, `AG_Gene_InspirationPermanent`, `AG_Gene_InstantHealing`, `AG_Gene_IntellectLimitless`, `AG_Gene_KillScaling`, `AG_Gene_LeadershipAbsolute`, `AG_Gene_LearningAbsolute`, `AG_Gene_LifeAura`, `AG_Gene_LifeSenseAbsolute`, `AG_Gene_LocalRewind`, `AG_Gene_LoyaltyAbsolute`, `AG_Gene_MatterAnalysis`, `AG_Gene_MatterDisassembly`, `AG_Gene_MeleeDamageAbsolute`, `AG_Gene_MeleeHitChanceAbsolute`, `AG_Gene_MeleeSiegeCapability`, `AG_Gene_MeleeSpeedAbsolute`, `AG_Gene_MemoryAbsolutePerfect`, `AG_Gene_MentalAbsoluteImmunity`, `AG_Gene_MetabolismAbsoluteEfficiency`, `AG_Gene_MindControlResistance`, `AG_Gene_MoodAuraAbsolute`, `AG_Gene_MultiTargetStrike`, `AG_Gene_NaturalArmorAbsolute`, `AG_Gene_NearDeathSurvival`, `AG_Gene_NeuralNetworkParallel`, `AG_Gene_NutrientSynthesis`, `AG_Gene_OmniscientSense`, `AG_Gene_OneHitKillChance`, `AG_Gene_PainAbsoluteImmunity`, `AG_Gene_PhaseThroughSolid`, `AG_Gene_PiercingDamageAbsoluteImmunity`, `AG_Gene_PlantGrowthAura`, `AG_Gene_PrecisionAbsolute`, `AG_Gene_PredictionCombatAbsolute`, `AG_Gene_PresenceInspiring`, `AG_Gene_ProductionDouble`, `AG_Gene_ProjectileInterception`, `AG_Gene_PsychicAbsoluteImmunity`, `AG_Gene_PsychicDamageAbsoluteImmunity`, `AG_Gene_PsychicEmissionAbsolute`, `AG_Gene_PsychicSensitivityAbsolute`, `AG_Gene_RadiationAbsoluteImmunity`, `AG_Gene_RangedDamageAbsolute`, `AG_Gene_RangedFireRateAbsolute`, `AG_Gene_RebirthFromCell`, `AG_Gene_RegenOnDamage`, `AG_Gene_RegenerationAbsolute`, `AG_Gene_RegenerationAura`, `AG_Gene_RepairAbsolute`, `AG_Gene_ResearchSpeedAbsolute`, `AG_Gene_ResourceMultiplication`, `AG_Gene_ResourceSenseAbsolute`, `AG_Gene_ResurrectionOnce`, `AG_Gene_SenseTimeFlow`, `AG_Gene_ShapeshiftingPartial`, `AG_Gene_ShootingAccuracyAbsolute`, `AG_Gene_SizeAbsolute`, `AG_Gene_SizeMicroscopic`, `AG_Gene_SkillMasteryInstant`, `AG_Gene_SleepAbsoluteImmunity`, `AG_Gene_SocialInfluenceAbsolute`, `AG_Gene_SonicDamageAbsoluteImmunity`, `AG_Gene_SoulAnchored`, `AG_Gene_StatusEffectImmunity`, `AG_Gene_StunAbsoluteImmunity`, `AG_Gene_TeachingAbsolute`, `AG_Gene_TeleportShort`, `AG_Gene_TemperatureAbsoluteImmunity`, `AG_Gene_TemperatureControl`, `AG_Gene_TerrainImmunity`, `AG_Gene_TerrainManipulation`, `AG_Gene_TimeDilationField`, `AG_Gene_TimeStopShort`, `AG_Gene_ToxinAbsoluteImmunity`, `AG_Gene_TrackingAbsolute`, `AG_Gene_TradeAbsolute`, `AG_Gene_VacuumAbsoluteImmunity`, `AG_Gene_VisionAbsoluteTotal`, `AG_Gene_WaterAbsoluteImmunity`, `AG_Gene_WeaknessPerception`, `AG_Gene_WeatherControl`, `AG_Gene_WeatherImmunity`, `AG_Gene_WorkSpeedAbsolute`
+
+## Categories `AG_Genes_Mythic` (150 genes, 1 mods)
+
+- Absolute Genome — Полная генетика (3823783460) (150): `AG_Gene_AcidDamageImmunity`, `AG_Gene_AcidImmunity`, `AG_Gene_AcidProofSkin`, `AG_Gene_AcidSpit`, `AG_Gene_AdaptiveImmunityInstant`, `AG_Gene_AdrenalinePermanent`, `AG_Gene_AgingRateMinimal`, `AG_Gene_AimSpeedExtreme`, `AG_Gene_AppearanceMonstrous`, `AG_Gene_ArmorNaturalExtreme`, `AG_Gene_ArmorPenetrationExtreme`, `AG_Gene_BeautyTranscendent`, `AG_Gene_BiologicalImmortality`, `AG_Gene_BleedingOnHit`, `AG_Gene_BloodAnaerobic`, `AG_Gene_BloodLossImmunity`, `AG_Gene_BluntDamageImmunity`, `AG_Gene_BodySizeColossal`, `AG_Gene_BodySizeTiny`, `AG_Gene_BoneArmorFull`, `AG_Gene_BoneBlades`, `AG_Gene_BoneUnbreakable`, `AG_Gene_BrainSecondary`, `AG_Gene_BulletDamageImmunity`, `AG_Gene_CannibalEfficiency`, `AG_Gene_CarapaceLayered`, `AG_Gene_CellularRepairPerfect`, `AG_Gene_ClawsRetractableMajor`, `AG_Gene_ClottingInstant`, `AG_Gene_ColdAbsoluteImmunity`, `AG_Gene_CommandVoiceAbsolute`, `AG_Gene_ConsciousnessExtreme`, `AG_Gene_CriticalStrikeGenetic`, `AG_Gene_CuttingDamageImmunity`, `AG_Gene_DamageTakenCombat`, `AG_Gene_DeathCheating`, `AG_Gene_DeathlessCondition`, `AG_Gene_DiseaseImmunityAbsolute`, `AG_Gene_DodgeChanceExtreme`, `AG_Gene_DragonScales`, `AG_Gene_DyingFrenzy`, `AG_Gene_EMPImmunity`, `AG_Gene_EcholocationPerfect`, `AG_Gene_ElectricDischargeTouch`, `AG_Gene_ElectricImmunity`, `AG_Gene_EmpathicSense`, `AG_Gene_EndlessEndurance`, `AG_Gene_EnergyStorageBiological`, `AG_Gene_ExplosionDamageImmunity`, `AG_Gene_ExplosiveMuscleFibers`, `AG_Gene_FallDamageAbsoluteImmunity`, `AG_Gene_FangsVenomousMajor`, `AG_Gene_FireBreathWeak`, `AG_Gene_FireImmunityTotal`, `AG_Gene_FlameDamageAbsoluteImmunity`, `AG_Gene_FlameProofHide`, `AG_Gene_FocusAbsolute`, `AG_Gene_FoodConversionExtreme`, `AG_Gene_FrostBreath`, `AG_Gene_FullBodyRegeneration`, `AG_Gene_GrappleLimbs`, `AG_Gene_HearingAbsolute`, `AG_Gene_HeatAbsoluteImmunity`, `AG_Gene_Hematophagy`, `AG_Gene_HemoglobinReserve`, `AG_Gene_HornsKeratin`, `AG_Gene_ImpactAbsorption`, `AG_Gene_InspiringPresence`, `AG_Gene_JointsReinforced`, `AG_Gene_KidneyFiltrationExtreme`, `AG_Gene_LeadershipAura`, `AG_Gene_LearningInstant`, `AG_Gene_LimbRegrowthFast`, `AG_Gene_LiverAbsolute`, `AG_Gene_LungEfficiencyExtreme`, `AG_Gene_MatterConversionInternal`, `AG_Gene_MeleeDamageExtreme`, `AG_Gene_MeleeHitChanceExtreme`, `AG_Gene_MeleeSpeedExtreme`, `AG_Gene_MemoryPerfectAbsolute`, `AG_Gene_MentalStabilityPerfect`, `AG_Gene_MentalTraumaImmunity`, `AG_Gene_MetabolicEfficiencyExtreme`, `AG_Gene_MetabolicFurnace`, `AG_Gene_MetallicInfusion`, `AG_Gene_MoodEuphoricGenetic`, `AG_Gene_MultitaskingPerfect`, `AG_Gene_MuscleControlPerfect`, `AG_Gene_MusculatureDense`, `AG_Gene_MyofibrilDensityExtreme`, `AG_Gene_NaturalWeaponryKeratin`, `AG_Gene_NegotiationAbsolute`, `AG_Gene_NerveAgentImmunity`, `AG_Gene_NeuralOverclock`, `AG_Gene_NutritionZero`, `AG_Gene_Omnisense`, `AG_Gene_OrganArmorInternal`, `AG_Gene_OrganRedundancyComplete`, `AG_Gene_OrganRegenerationFast`, `AG_Gene_PainImmunity`, `AG_Gene_PainToPower`, `AG_Gene_PerceptionAccelerated`, `AG_Gene_PhotosynthesisActive`, `AG_Gene_PiercingDamageImmunity`, `AG_Gene_PoisonousBarbs`, `AG_Gene_PressureImmunity`, `AG_Gene_PsychicDamageImmunity`, `AG_Gene_PsychicResistanceAbsolute`, `AG_Gene_RadiationImmunity`, `AG_Gene_RadiotrophicMetabolism`, `AG_Gene_RangedDamageMajor`, `AG_Gene_RangedFireRateMajor`, `AG_Gene_ReflectiveScales`, `AG_Gene_RegenerationInstant`, `AG_Gene_RegenerativeSleep`, `AG_Gene_ScarDissolution`, `AG_Gene_SenseElectric`, `AG_Gene_SenseVibrationGround`, `AG_Gene_ShellRetractable`, `AG_Gene_ShootingAccuracyExtreme`, `AG_Gene_SightElectromagnetic`, `AG_Gene_SkeletonReinforcedTitanium`, `AG_Gene_SkinColorShifting`, `AG_Gene_SkinHardeningReactive`, `AG_Gene_SocialBondNetwork`, `AG_Gene_SocialDominance`, `AG_Gene_SonicDamageImmunity`, `AG_Gene_SonicRoar`, `AG_Gene_SpineQuills`, `AG_Gene_SpleenBloodReservoir`, `AG_Gene_StarvationImmunity`, `AG_Gene_StomachNuclear`, `AG_Gene_StunImmunity`, `AG_Gene_TailAttackMajor`, `AG_Gene_TameInstinctAbsolute`, `AG_Gene_TargetingPrecisionExtreme`, `AG_Gene_TeachingAbilityExtreme`, `AG_Gene_ThermalInsulationAbsolute`, `AG_Gene_ThermogenicMetabolism`, `AG_Gene_ToxinProcessingOrgan`, `AG_Gene_TripleHeart`, `AG_Gene_VacuumImmunity`, `AG_Gene_VenomInjectionExtreme`, `AG_Gene_VisionAbsolute`, `AG_Gene_VisionInfraredAbsolute`, `AG_Gene_VisionPanoramic`, `AG_Gene_VitalityOverflow`, `AG_Gene_WebShooting`, `AG_Gene_WingStructure`, `AG_Gene_WoundClosureRapid`
+
+## Categories `AG_Genes_Rare` (150 genes, 1 mods)
+
+- Absolute Genome — Полная генетика (3823783460) (150): `AG_Gene_AcidDamageResistant`, `AG_Gene_AddictionResistanceHigh`, `AG_Gene_AdditionalJointMobility`, `AG_Gene_AdrenalSustained`, `AG_Gene_AdrenalineSurge`, `AG_Gene_AgeDegradationImmunity`, `AG_Gene_AgelessAfterMaturity`, `AG_Gene_AggressionMajor`, `AG_Gene_AgingRateVerySlow`, `AG_Gene_AimSpeedMajor`, `AG_Gene_AmphibiousSkin`, `AG_Gene_AntibodySurge`, `AG_Gene_AntifreezeProteins`, `AG_Gene_AppearanceUncanny`, `AG_Gene_ArmorPenetrationNatural`, `AG_Gene_ArmoredSkin`, `AG_Gene_AuxiliaryLung`, `AG_Gene_BarometricSense`, `AG_Gene_BeautyVeryHigh`, `AG_Gene_BileLiver`, `AG_Gene_BioluminescentSkin`, `AG_Gene_BloodOxygenHyper`, `AG_Gene_BodySizeVeryLarge`, `AG_Gene_BodySizeVerySmall`, `AG_Gene_BombDamageResistantMinor`, `AG_Gene_BoneSpurs`, `AG_Gene_BoredomImmunity`, `AG_Gene_BrainBloodFlowHigh`, `AG_Gene_BulletDamageResistant`, `AG_Gene_CelluloseDigestion`, `AG_Gene_ChemoreceptionAdvanced`, `AG_Gene_ChitinPlates`, `AG_Gene_ColdImmunity`, `AG_Gene_ColorVisionExpanded`, `AG_Gene_CombatAwareness`, `AG_Gene_CombatCalmness`, `AG_Gene_CombatReflexes`, `AG_Gene_CorrosiveBlood`, `AG_Gene_CounterCurrentHeatExchange`, `AG_Gene_CrowdingTolerance`, `AG_Gene_CuttingDamageResistant`, `AG_Gene_DarknessTolerance`, `AG_Gene_DaylightGenetic`, `AG_Gene_DenseMusculature`, `AG_Gene_DiseaseImmunityTotal`, `AG_Gene_DodgeChanceMajor`, `AG_Gene_DominanceAura`, `AG_Gene_EMPResistance`, `AG_Gene_ElectricSense`, `AG_Gene_EmotionSuppressionPartial`, `AG_Gene_EmotionSuppressionTotal`, `AG_Gene_EyeMobilityEnhanced`, `AG_Gene_FallDamageImmunity`, `AG_Gene_FastExtended`, `AG_Gene_FastTwitchFibers`, `AG_Gene_FatStorageMajor`, `AG_Gene_FireproofSkin`, `AG_Gene_FlameDamageResistantMajor`, `AG_Gene_FlexibleSpine`, `AG_Gene_FocusExtended`, `AG_Gene_GoreTolerance`, `AG_Gene_HeatImmunity`, `AG_Gene_HibernationCapability`, `AG_Gene_HollowBones`, `AG_Gene_Hypermyotrophy`, `AG_Gene_ImmunityGainHyper`, `AG_Gene_InfectionImmunity`, `AG_Gene_InfrasonicHearing`, `AG_Gene_InfrasoundVoice`, `AG_Gene_InsulatingBlubber`, `AG_Gene_InternalArmorPlating`, `AG_Gene_InternalBleedingImmunity`, `AG_Gene_KeratinFangs`, `AG_Gene_LifespanVeryLong`, `AG_Gene_LimbRegrowthSlow`, `AG_Gene_LossResilience`, `AG_Gene_LowNutritionNeed`, `AG_Gene_MagneticNavigation`, `AG_Gene_MaxTemperatureMajorIncrease`, `AG_Gene_MeleeDamageMajor`, `AG_Gene_MeleeHitChanceMajor`, `AG_Gene_MentalStabilityAbsolute`, `AG_Gene_MetabolicOrgan`, `AG_Gene_MinTemperatureMajorDecrease`, `AG_Gene_MoodStableMajor`, `AG_Gene_MyelinThick`, `AG_Gene_NeuralDensityHigh`, `AG_Gene_NeuralDensityVeryHigh`, `AG_Gene_NeuroplasticityHigh`, `AG_Gene_NightOwlGenetic`, `AG_Gene_NightVisionTotal`, `AG_Gene_OsteodermRows`, `AG_Gene_PainInsensitivity`, `AG_Gene_PainMoodBonus`, `AG_Gene_PheromoneAttraction`, `AG_Gene_PheromoneRepellent`, `AG_Gene_PhotographicMemory`, `AG_Gene_PiercingDamageResistant`, `AG_Gene_PlateletHyper`, `AG_Gene_PrisonResistance`, `AG_Gene_ProprioceptionEnhanced`, `AG_Gene_ProteinEfficiencyHigh`, `AG_Gene_PsychicDamageResistant`, `AG_Gene_RadiantHeatTolerance`, `AG_Gene_RadiationResistance`, `AG_Gene_RawDietExclusive`, `AG_Gene_RegenerationVeryFast`, `AG_Gene_ReinforcedRibcage`, `AG_Gene_ReinforcedSkullPlating`, `AG_Gene_RestNeedVeryLowExtreme`, `AG_Gene_RetractableClaws`, `AG_Gene_ScaleGrowth`, `AG_Gene_Scarless`, `AG_Gene_SecondaryHeart`, `AG_Gene_ShootingAccuracyMajor`, `AG_Gene_SkillLearningMajor`, `AG_Gene_SkillRetentionPerfect`, `AG_Gene_SleepwalkingImmunity`, `AG_Gene_SlowTwitchFibers`, `AG_Gene_SolitudeTolerance`, `AG_Gene_SoundLocalization`, `AG_Gene_SpineBracing`, `AG_Gene_SpleenEnhanced`, `AG_Gene_SpoiledFoodTolerance`, `AG_Gene_StomachReinforced`, `AG_Gene_StressRecoveryFast`, `AG_Gene_TactileEnhanced`, `AG_Gene_TailPrehensile`, `AG_Gene_TargetFocus`, `AG_Gene_TelescopicVision`, `AG_Gene_TelomereRestoration`, `AG_Gene_TendonReinforcement`, `AG_Gene_ThermalVision`, `AG_Gene_ThymusHyperactive`, `AG_Gene_TissueReconstruction`, `AG_Gene_ToxicEnvironmentTotal`, `AG_Gene_ToxinDigestion`, `AG_Gene_ToxinImmunityTotal`, `AG_Gene_TraumaImmunity`, `AG_Gene_TripledKidney`, `AG_Gene_UnihemisphericSleep`, `AG_Gene_VacuumAdaptation`, `AG_Gene_VenomGlands`, `AG_Gene_VestibularEnhanced`, `AG_Gene_VibrationSense`, `AG_Gene_VisualProcessingHyper`, `AG_Gene_VoiceResonant`, `AG_Gene_WaterBreathing`, `AG_Gene_WeakPointRecognition`, `AG_Gene_WillpowerEnhanced`
 
 ## Categories `GES_Skin_Color` (150 genes, 1 mods)
 
@@ -6484,12 +6767,28 @@ The `displayCategory` of each gene. 343 categories.
 
 - Superhero Genes - Base (2980061828) (71): `AntisuperDurability`, `AntisuperHealing`, `AntisuperIntelligence`, `AntisuperPerception`, `AntisuperPersuasion`, `AntisuperPrecision`, `AntisuperSpeed`, `AntisuperStrength`, `SHG_AntisuperDurability1`, `SHG_AntisuperDurability2`, `SHG_AntisuperHealing1`, `SHG_AntisuperHealing2`, `SHG_AntisuperHealing3`, `SHG_AntisuperHealing4`, `SHG_AntisuperIntelligence1`, `SHG_AntisuperIntelligence2`, `SHG_AntisuperPerception1`, `SHG_AntisuperPersuasion1`, `SHG_AntisuperPersuasion2`, `SHG_AntisuperPersuasion3`, `SHG_AntisuperPrecision1`, `SHG_AntisuperPrecision2`, `SHG_AntisuperPrecision3`, `SHG_AntisuperSpeed1`, `SHG_AntisuperSpeed2`, `SHG_AntisuperStrength1`, `SHG_AntisuperStrength2`, `SHG_SuperDurability1`, `SHG_SuperDurability2`, `SHG_SuperDurability3`, `SHG_SuperHealing1`, `SHG_SuperHealing2`, `SHG_SuperHealing3`, `SHG_SuperHealing4`, `SHG_SuperIntelligence1`, `SHG_SuperIntelligence2`, `SHG_SuperIntelligence3`, `SHG_SuperPerception1`, `SHG_SuperPersuasion1`, `SHG_SuperPersuasion2`, `SHG_SuperPersuasion3`, `SHG_SuperPrecision1`, `SHG_SuperPrecision2`, `SHG_SuperPrecision3`, `SHG_SuperSpeed1`, `SHG_SuperSpeed2`, `SHG_SuperSpeed3`, `SHG_SuperSpeed4`, `SHG_SuperStrength1`, `SHG_SuperStrength2`, `SHG_SuperStrength3`, `SHG_SuperStrength4`, `SHG_SuperStrength5`, `SuperDurability`, `SuperGluttony`, `SuperHealing`, `SuperHeroBase`, `SuperIntelligence`, `SuperPerception`, `SuperPersuasion`, `SuperPrecision`, `SuperSpeed`, `SuperStrength`, `UnsuperDurability`, `UnsuperHealing`, `UnsuperIntelligence`, `UnsuperPerception`, `UnsuperPersuasion`, `UnsuperPrecision`, `UnsuperSpeed`, `UnsuperStrength`
 
-## Categories `EBSG_NeedRateChange` (132 genes, 2 mods)
+## Categories `Psychic` (137 genes, 18 mods)
 
-- Expanded Biotech Style Genes - All in One (3020821838) (33): `EBSG_Aesthetism`, `EBSG_Asceticism`, `EBSG_ExtremeAesthetism`, `EBSG_ExtremeAsceticism`, `EBSG_ExtremeGloominess`, `EBSG_ExtremeHedonism`, `EBSG_ExtremeJoviality`, `EBSG_ExtremePhilisthinism`, `EBSG_Gloominess`, `EBSG_Hedonism`, `EBSG_HyperAsceticism`, `EBSG_HyperJoviality`, `EBSG_HyperPhilisthinism`, `EBSG_Joviality`, `EBSG_MajorAesthetism`, `EBSG_MajorAsceticism`, `EBSG_MajorGloominess`, `EBSG_MajorHedonism`, `EBSG_MajorJoviality`, `EBSG_MajorPhilisthinism`, `EBSG_MinorAesthetism`, `EBSG_MinorAsceticism`, `EBSG_MinorGloominess`, `EBSG_MinorHedonism`, `EBSG_MinorJoviality`, `EBSG_MinorPhilisthinism`, `EBSG_Philisthinism`, `EBSG_SuperAesthetism`, `EBSG_SuperAsceticism`, `EBSG_SuperGloominess`, `EBSG_SuperHedonism`, `EBSG_SuperJoviality`, `EBSG_SuperPhilisthinism`
-- EBSG - Expanded Need Genes (3322392001) (33): `EBSG_Aesthetism`, `EBSG_Asceticism`, `EBSG_ExtremeAesthetism`, `EBSG_ExtremeAsceticism`, `EBSG_ExtremeGloominess`, `EBSG_ExtremeHedonism`, `EBSG_ExtremeJoviality`, `EBSG_ExtremePhilisthinism`, `EBSG_Gloominess`, `EBSG_Hedonism`, `EBSG_HyperAsceticism`, `EBSG_HyperJoviality`, `EBSG_HyperPhilisthinism`, `EBSG_Joviality`, `EBSG_MajorAesthetism`, `EBSG_MajorAsceticism`, `EBSG_MajorGloominess`, `EBSG_MajorHedonism`, `EBSG_MajorJoviality`, `EBSG_MajorPhilisthinism`, `EBSG_MinorAesthetism`, `EBSG_MinorAsceticism`, `EBSG_MinorGloominess`, `EBSG_MinorHedonism`, `EBSG_MinorJoviality`, `EBSG_MinorPhilisthinism`, `EBSG_Philisthinism`, `EBSG_SuperAesthetism`, `EBSG_SuperAsceticism`, `EBSG_SuperGloominess`, `EBSG_SuperHedonism`, `EBSG_SuperJoviality`, `EBSG_SuperPhilisthinism`
+- Vanilla RimWorld (Core and Biotech, game folder) (5): `PsychicAbility_Deaf`, `PsychicAbility_Dull`, `PsychicAbility_Enhanced`, `PsychicAbility_Extreme`, `PsychicBonding`
+- Expanded Biotech Style Genes - All in One (3020821838) (28): `EBSG_BadEntropyMax`, `EBSG_BadEntropyRecovery`, `EBSG_BadMeditationFocus`, `EBSG_EntropyMax`, `EBSG_EntropyRecovery`, `EBSG_ExtremeEntropyMax`, `EBSG_ExtremeEntropyRecovery`, `EBSG_ExtremeMeditationFocus`, `EBSG_HyperEntropyMax`, `EBSG_HyperEntropyRecovery`, `EBSG_HyperMeditationFocus`, `EBSG_InnatePsychicAmplifier`, `EBSG_InnatePsychicHarmonizer`, `EBSG_InnatePsychicInsulation`, `EBSG_InnatePsychicReader`, `EBSG_MajorEntropyMax`, `EBSG_MajorEntropyRecovery`, `EBSG_MajorMeditationFocus`, `EBSG_MeditationFocus`, `EBSG_MinorEntropyMax`, `EBSG_MinorEntropyRecovery`, `EBSG_MinorMeditationFocus`, `EBSG_SuperEntropyMax`, `EBSG_SuperEntropyRecovery`, `EBSG_SuperMeditationFocus`, `EBSG_TerribleEntropyMax`, `EBSG_TerribleEntropyRecovery`, `EBSG_TerribleMeditationFocus`
+- WVC - Xenotypes and Genes (2886992038) (17): `WVC_ArchiteTelepathy`, `WVC_DebuffNoUV_ExtremePsychicSensitivity`, `WVC_DebuffNoUV_StrongPsychicSensitivity`, `WVC_DebuffUV_ExtremePsychicSensitivity`, `WVC_DebuffUV_StrongPsychicSensitivity`, `WVC_GolemSensetivity_Enchanced`, `WVC_GolemSensetivity_Extreme`, `WVC_MechBandwidth_Enchanced`, `WVC_MechBandwidth_Extreme`, `WVC_MechSensetivity_Enchanced`, `WVC_MechSensetivity_Extreme`, `WVC_MechSensetivity_Low`, `WVC_NaturalTelepathy`, `WVC_NoUVSensitivity_Psychic`, `WVC_PsychicHarem`, `WVC_UVSensitivity_Psychic`, `WVC_Wings_Levitation`
+- Alpha Genes (2891845502) (4): `AG_InnatePsylink`, `AG_PsychicInsanity`, `AG_PsychicRemapping`, `AG_PsychicSight`
+- Integrated Genes (2884115974) (6): `Turn_Gene_FastNeuralHeat`, `Turn_Gene_LatentPsychic`, `Turn_Gene_MeditationNeed`, `Turn_Gene_SlowNeuralHeat`, `Turn_Gene_VeryFastNeuralHeat`, `Turn_Gene_VerySlowNeuralHeat`
+- Vanilla Races Expanded - Archon (3067715093) (6): `VRE_ExtremeEntropyCapacity`, `VRE_ExtremeMeditation`, `VRE_HighEntropyCapacity`, `VRE_SlowMeditation`, `VRE_SwiftMeditation`, `VRE_WeakEntropyCapacity`
+- [SH]Gene Expand (3558760095) (2): `SHGE_PsyLinkMaster`, `SHGE_PsyLinkMuggle`
+- Gojis-Misc-Genes (3775114861) (2): `Goji_Clairvoyance`, `Goji_LatentPsychic`
+- Big and Small - Genes & More (2920751126) (3): `BS_Glamour`, `BS_PsychicWarrior`, `VU_LethalLover`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_Telepathy`
+- Medieval Overhaul: House Van Illa (3327601396) (2): `Addie_AncientAttunement`, `Addie_FrozenAttunement`
+- Cyanobot's Genes (2889844371) (1): `CYB_Psyphon`
+- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_ProgressiveAttunement`
+- MakaiTech - Xenotype (3268577147) (1): `Makai_PsylinkGene`
+- Addie's Frost Fey (3697314995) (1): `Addie_FrozenAttunement`
+- Bizarre Bloodlines (3719429625) (1): `Bizarre_Gene_GreenBabyBody`
+- Kraltech Industries (1.7) (unofficial) (3820851894) (1): `KraltechGene_MechAffinity`
+- local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_PsylinkGene`
 
-## Categories `ResistanceAndWeakness` (131 genes, 37 mods)
+## Categories `ResistanceAndWeakness` (134 genes, 41 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (9): `FireResistant`, `FireTerror`, `FireWeakness`, `ToxResist_Partial`, `ToxResist_Total`, `ToxicEnvironmentResistance_Partial`, `ToxicEnvironmentResistance_Total`, `UVSensitivity_Intense`, `UVSensitivity_Mild`
 - EBSG - Expanded Resistance Genes (3005456521) (8): `EBSG_AcidImmune`, `EBSG_AcidResistance`, `EBSG_AcidVulnerable`, `EBSG_AcidWeakness`, `EBSG_FrostbiteImmune`, `EBSG_FrostbiteResistance`, `EBSG_FrostbiteVulnerable`, `EBSG_FrostbiteWeakness`
@@ -6498,7 +6797,6 @@ The `displayCategory` of each gene. 343 categories.
 - More Biotech Style Genes - All in One (2985153870) (4): `MBSG_FireImmune`, `MBSG_FireResilient`, `MBSG_FireWeaknessMajor`, `MBSG_FireWeaknessMinor`
 - Mashed's Bloodmoon (3523186663) (3): `Mashed_Bloodmoon_LycanthropyResistance_Fragile`, `Mashed_Bloodmoon_LycanthropyResistance_Partial`, `Mashed_Bloodmoon_LycanthropyResistance_Total`
 - Cyanobot's Genes (2889844371) (4): `CYB_DampAdaptation`, `CYB_Darkling`, `CYB_LightSensitivity_Mild`, `CYB_LightSensitivity_Severe`
-- More Fire Resistance Genes (3000564841) (4): `MBSG_FireImmune`, `MBSG_FireResilient`, `MBSG_FireWeaknessMajor`, `MBSG_FireWeaknessMinor`
 - Allergies (3356338154) (2): `P42_AllergyGene_Immunity`, `P42_AllergyGene_Steel`
 - Intimacy - Friends n' Lovers (3498422643) (2): `SEX_Affectionate`, `SEX_Solitary`
 - [SH]Gene Expand (3558760095) (2): `SHGE_StunReduction`, `SHGE_VacuumImmunity`
@@ -6509,44 +6807,35 @@ The `displayCategory` of each gene. 343 categories.
 - Outland - Genetics (2910172297) (1): `Outland_FireImmune`
 - Star Wars Xenotypes (2915192253) (2): `BS_Diet_Carnivore`, `BS_Diet_Herbivore`
 - Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions (2974761367) (2): `AMA_OffencetoFlames`, `AMA_PainTolerance`
+- Vanilla Races Expanded - Fungoid (3042690053) (1): `VRE_FungalArmor`
 - [1.5]RimArchive(修复版) (3487033168) (2): `DamageReduction`, `DamageReduction_IncomingDamageFactor`
 - Roo's Faun Xenotype (3547220635) (2): `RBSF_Mechanophobia`, `RBSF_Myotonia`
 - More Storylike Traits - Body and Mind 1.6 (3811291787) (2): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`
+- Clockwork Folk Xenotype (3819827499) (1): `Clockwork_EmpVulnerable`
 - Cain's Gene Pack (3819866589) (1): `Clockwork_EmpVulnerable`
 - local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (2): `Storylike_Gene_CrystalSkin`, `Storylike_Gene_StoneSkin`
 - The Poop Mod (1728184416) (1): `PoopLoverGene`
 - MorrowRim (2443089362) (1): `MorrowRim_AshResistance`
 - Big and Small - Genes & More (2920751126) (1): `FireImmunity`
 - Waste Insect (3186084287) (1): `TA_Gene_InsectCrustacean`
+- Beliar Xenotype (3237072670) (1): `BX_BasaltSkin`
 - Obsidia Expansion - Axotl Xenotype (3304340573) (1): `OE_ToxResist_Axotl`
 - Oni Xenotype (3311134271) (1): `OX_FireTerror`
 - Medieval Overhaul: House Van Illa (3327601396) (1): `Addie_GhostlyIce`
 - Posthuman Drift Warcat Xenotype (3521815010) (1): `XylFastReflexes`
+- Posthuman Drift Nixie Xenotype (3521815475) (1): `XylScaleskin`
 - Non-archite archite genes (3543773387) (1): `VacuumResistance_Total_architeless`
 - Foxian League (3639227864) (1): `FL_ToxicVulnerability`
 - Bizarre Bloodlines (3719429625) (1): `Bizarre_Gene_SolarVulnerability`
 - 圣蜣螂种族 (3740297753) (1): `Scarab_ExoskeletonDamageCap`
 - MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinToxicResistance`
 - Glowstone 2 (3775171637) (1): `GS2_ApparelResist`
+- Khutor - Fruit, Moonshine & Jam (3826850112) (1): `Khutor_NettleProof`
 
-## Categories `Psychic` (129 genes, 16 mods)
+## Categories `EBSG_NeedRateChange` (132 genes, 2 mods)
 
-- Vanilla RimWorld (Core and Biotech, game folder) (5): `PsychicAbility_Deaf`, `PsychicAbility_Dull`, `PsychicAbility_Enhanced`, `PsychicAbility_Extreme`, `PsychicBonding`
-- Expanded Biotech Style Genes - All in One (3020821838) (28): `EBSG_BadEntropyMax`, `EBSG_BadEntropyRecovery`, `EBSG_BadMeditationFocus`, `EBSG_EntropyMax`, `EBSG_EntropyRecovery`, `EBSG_ExtremeEntropyMax`, `EBSG_ExtremeEntropyRecovery`, `EBSG_ExtremeMeditationFocus`, `EBSG_HyperEntropyMax`, `EBSG_HyperEntropyRecovery`, `EBSG_HyperMeditationFocus`, `EBSG_InnatePsychicAmplifier`, `EBSG_InnatePsychicHarmonizer`, `EBSG_InnatePsychicInsulation`, `EBSG_InnatePsychicReader`, `EBSG_MajorEntropyMax`, `EBSG_MajorEntropyRecovery`, `EBSG_MajorMeditationFocus`, `EBSG_MeditationFocus`, `EBSG_MinorEntropyMax`, `EBSG_MinorEntropyRecovery`, `EBSG_MinorMeditationFocus`, `EBSG_SuperEntropyMax`, `EBSG_SuperEntropyRecovery`, `EBSG_SuperMeditationFocus`, `EBSG_TerribleEntropyMax`, `EBSG_TerribleEntropyRecovery`, `EBSG_TerribleMeditationFocus`
-- WVC - Xenotypes and Genes (2886992038) (17): `WVC_ArchiteTelepathy`, `WVC_DebuffNoUV_ExtremePsychicSensitivity`, `WVC_DebuffNoUV_StrongPsychicSensitivity`, `WVC_DebuffUV_ExtremePsychicSensitivity`, `WVC_DebuffUV_StrongPsychicSensitivity`, `WVC_GolemSensetivity_Enchanced`, `WVC_GolemSensetivity_Extreme`, `WVC_MechBandwidth_Enchanced`, `WVC_MechBandwidth_Extreme`, `WVC_MechSensetivity_Enchanced`, `WVC_MechSensetivity_Extreme`, `WVC_MechSensetivity_Low`, `WVC_NaturalTelepathy`, `WVC_NoUVSensitivity_Psychic`, `WVC_PsychicHarem`, `WVC_UVSensitivity_Psychic`, `WVC_Wings_Levitation`
-- Alpha Genes (2891845502) (4): `AG_InnatePsylink`, `AG_PsychicInsanity`, `AG_PsychicRemapping`, `AG_PsychicSight`
-- Integrated Genes (2884115974) (6): `Turn_Gene_FastNeuralHeat`, `Turn_Gene_LatentPsychic`, `Turn_Gene_MeditationNeed`, `Turn_Gene_SlowNeuralHeat`, `Turn_Gene_VeryFastNeuralHeat`, `Turn_Gene_VerySlowNeuralHeat`
-- [SH]Gene Expand (3558760095) (2): `SHGE_PsyLinkMaster`, `SHGE_PsyLinkMuggle`
-- Gojis-Misc-Genes (3775114861) (2): `Goji_Clairvoyance`, `Goji_LatentPsychic`
-- Big and Small - Genes & More (2920751126) (3): `BS_Glamour`, `BS_PsychicWarrior`, `VU_LethalLover`
-- Medieval Overhaul: House Van Illa (3327601396) (2): `Addie_AncientAttunement`, `Addie_FrozenAttunement`
-- Cyanobot's Genes (2889844371) (1): `CYB_Psyphon`
-- Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_ProgressiveAttunement`
-- MakaiTech - Xenotype (3268577147) (1): `Makai_PsylinkGene`
-- Addie's Frost Fey (3697314995) (1): `Addie_FrozenAttunement`
-- Bizarre Bloodlines (3719429625) (1): `Bizarre_Gene_GreenBabyBody`
-- Kraltech Industries (1.7) (unofficial) (3820851894) (1): `KraltechGene_MechAffinity`
-- local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_PsylinkGene`
+- Expanded Biotech Style Genes - All in One (3020821838) (33): `EBSG_Aesthetism`, `EBSG_Asceticism`, `EBSG_ExtremeAesthetism`, `EBSG_ExtremeAsceticism`, `EBSG_ExtremeGloominess`, `EBSG_ExtremeHedonism`, `EBSG_ExtremeJoviality`, `EBSG_ExtremePhilisthinism`, `EBSG_Gloominess`, `EBSG_Hedonism`, `EBSG_HyperAsceticism`, `EBSG_HyperJoviality`, `EBSG_HyperPhilisthinism`, `EBSG_Joviality`, `EBSG_MajorAesthetism`, `EBSG_MajorAsceticism`, `EBSG_MajorGloominess`, `EBSG_MajorHedonism`, `EBSG_MajorJoviality`, `EBSG_MajorPhilisthinism`, `EBSG_MinorAesthetism`, `EBSG_MinorAsceticism`, `EBSG_MinorGloominess`, `EBSG_MinorHedonism`, `EBSG_MinorJoviality`, `EBSG_MinorPhilisthinism`, `EBSG_Philisthinism`, `EBSG_SuperAesthetism`, `EBSG_SuperAsceticism`, `EBSG_SuperGloominess`, `EBSG_SuperHedonism`, `EBSG_SuperJoviality`, `EBSG_SuperPhilisthinism`
+- EBSG - Expanded Need Genes (3322392001) (33): `EBSG_Aesthetism`, `EBSG_Asceticism`, `EBSG_ExtremeAesthetism`, `EBSG_ExtremeAsceticism`, `EBSG_ExtremeGloominess`, `EBSG_ExtremeHedonism`, `EBSG_ExtremeJoviality`, `EBSG_ExtremePhilisthinism`, `EBSG_Gloominess`, `EBSG_Hedonism`, `EBSG_HyperAsceticism`, `EBSG_HyperJoviality`, `EBSG_HyperPhilisthinism`, `EBSG_Joviality`, `EBSG_MajorAesthetism`, `EBSG_MajorAsceticism`, `EBSG_MajorGloominess`, `EBSG_MajorHedonism`, `EBSG_MajorJoviality`, `EBSG_MajorPhilisthinism`, `EBSG_MinorAesthetism`, `EBSG_MinorAsceticism`, `EBSG_MinorGloominess`, `EBSG_MinorHedonism`, `EBSG_MinorJoviality`, `EBSG_MinorPhilisthinism`, `EBSG_Philisthinism`, `EBSG_SuperAesthetism`, `EBSG_SuperAsceticism`, `EBSG_SuperGloominess`, `EBSG_SuperHedonism`, `EBSG_SuperJoviality`, `EBSG_SuperPhilisthinism`
 
 ## Categories `WVC_Cosmetic` (122 genes, 1 mods)
 
@@ -6556,48 +6845,45 @@ The `displayCategory` of each gene. 343 categories.
 
 - Expanded Biotech Style Genes - All in One (3020821838) (59): `EBSG_BadEncodingSpeed`, `EBSG_BadMechControl`, `EBSG_BadMechForming`, `EBSG_BadMechRepair`, `EBSG_BadMechWorkSpeed`, `EBSG_BadRemoteRepair`, `EBSG_BadRemoteShield`, `EBSG_EncodingSpeed`, `EBSG_ExtremeEncodingSpeed`, `EBSG_ExtremeMechControl`, `EBSG_ExtremeMechForming`, `EBSG_ExtremeMechRepair`, `EBSG_ExtremeMechWorkSpeed`, `EBSG_ExtremeRemoteRepair`, `EBSG_ExtremeRemoteShield`, `EBSG_HyperEncodingSpeed`, `EBSG_HyperMechControl`, `EBSG_HyperMechForming`, `EBSG_HyperMechRepair`, `EBSG_HyperMechWorkSpeed`, `EBSG_HyperRemoteRepair`, `EBSG_HyperRemoteShield`, `EBSG_InnateMechlink`, `EBSG_InnateRemoteRepair`, `EBSG_InnateRemoteShield`, `EBSG_MajorEncodingSpeed`, `EBSG_MajorMechControl`, `EBSG_MajorMechForming`, `EBSG_MajorMechRepair`, `EBSG_MajorMechWorkSpeed`, `EBSG_MajorRemoteRepair`, `EBSG_MajorRemoteShield`, `EBSG_MechControl`, `EBSG_MechForming`, `EBSG_MechRepair`, `EBSG_MechWorkSpeed`, `EBSG_MinorEncodingSpeed`, `EBSG_MinorMechControl`, `EBSG_MinorMechForming`, `EBSG_MinorMechRepair`, `EBSG_MinorMechWorkSpeed`, `EBSG_MinorRemoteRepair`, `EBSG_MinorRemoteShield`, `EBSG_RemoteRepair`, `EBSG_RemoteShield`, `EBSG_SuperEncodingSpeed`, `EBSG_SuperMechControl`, `EBSG_SuperMechForming`, `EBSG_SuperMechRepair`, `EBSG_SuperMechWorkSpeed`, `EBSG_SuperRemoteRepair`, `EBSG_SuperRemoteShield`, `EBSG_TerribleEncodingSpeed`, `EBSG_TerribleMechControl`, `EBSG_TerribleMechForming`, `EBSG_TerribleMechRepair`, `EBSG_TerribleMechWorkSpeed`, `EBSG_TerribleRemoteRepair`, `EBSG_TerribleRemoteShield`
 
-## Categories `Outland_Eyes` (108 genes, 1 mods)
-
-- Outland - Genetics (2910172297) (54): `Outland_ArachnidEyes_Blue`, `Outland_ArachnidEyes_Brown`, `Outland_ArachnidEyes_Cyan`, `Outland_ArachnidEyes_Gray`, `Outland_ArachnidEyes_Green`, `Outland_ArachnidEyes_LightBlue`, `Outland_ArachnidEyes_Lime`, `Outland_ArachnidEyes_Magenta`, `Outland_ArachnidEyes_Orange`, `Outland_ArachnidEyes_Pink`, `Outland_ArachnidEyes_Purple`, `Outland_ArachnidEyes_Red`, `Outland_ArachnidEyes_White`, `Outland_ArachnidEyes_Yellow`, `Outland_CompositeEyes_Blue`, `Outland_CompositeEyes_Brown`, `Outland_CompositeEyes_Cyan`, `Outland_CompositeEyes_Gray`, `Outland_CompositeEyes_Green`, `Outland_CompositeEyes_LightBlue`, `Outland_CompositeEyes_Lime`, `Outland_CompositeEyes_Magenta`, `Outland_CompositeEyes_Orange`, `Outland_CompositeEyes_Pink`, `Outland_CompositeEyes_Purple`, `Outland_CompositeEyes_Red`, `Outland_CompositeEyes_White`, `Outland_CompositeEyes_Yellow`, `Outland_Eye_Blue`, `Outland_Eye_Brown`, `Outland_Eye_Cyan`, `Outland_Eye_Green`, `Outland_Eye_LightBlue`, `Outland_Eye_Lime`, `Outland_Eye_Magenta`, `Outland_Eye_Orange`, `Outland_Eye_Pink`, `Outland_Eye_Purple`, `Outland_Eye_White`, `Outland_Eye_Yellow`, `Outland_MonocularEye_Blue`, `Outland_MonocularEye_Brown`, `Outland_MonocularEye_Cyan`, `Outland_MonocularEye_Gray`, `Outland_MonocularEye_Green`, `Outland_MonocularEye_LightBlue`, `Outland_MonocularEye_Lime`, `Outland_MonocularEye_Magenta`, `Outland_MonocularEye_Orange`, `Outland_MonocularEye_Pink`, `Outland_MonocularEye_Purple`, `Outland_MonocularEye_Red`, `Outland_MonocularEye_White`, `Outland_MonocularEye_Yellow`
-
-## Categories `Mood` (106 genes, 19 mods)
+## Categories `Mood` (115 genes, 24 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Mood_Depressive`, `Mood_Optimist`, `Mood_Pessimist`, `Mood_Sanguine`
 - Expanded Biotech Style Genes - All in One (3020821838) (22): `EBSG_ExtremeOptimism`, `EBSG_ExtremePessimism`, `EBSG_ExtremeStubborn`, `EBSG_ExtremelyNervous`, `EBSG_HyperNervous`, `EBSG_HyperStubborn`, `EBSG_MajorOptimism`, `EBSG_MajorPessimism`, `EBSG_MinorOptimism`, `EBSG_MinorPessimism`, `EBSG_Nervous`, `EBSG_Optimism`, `EBSG_Pessimism`, `EBSG_SomewhatNervous`, `EBSG_SomewhatStubborn`, `EBSG_Stubborn`, `EBSG_SuperNervous`, `EBSG_SuperOptimism`, `EBSG_SuperPessimism`, `EBSG_SuperStubborn`, `EBSG_VeryNervous`, `EBSG_VeryStubborn`
 - EBSG - Expanded Need Genes (3322392001) (10): `EBSG_ExtremeOptimism`, `EBSG_ExtremePessimism`, `EBSG_MajorOptimism`, `EBSG_MajorPessimism`, `EBSG_MinorOptimism`, `EBSG_MinorPessimism`, `EBSG_Optimism`, `EBSG_Pessimism`, `EBSG_SuperOptimism`, `EBSG_SuperPessimism`
 - EBSG - Mental Fortitude Genes (3020671525) (12): `EBSG_ExtremeStubborn`, `EBSG_ExtremelyNervous`, `EBSG_HyperNervous`, `EBSG_HyperStubborn`, `EBSG_Nervous`, `EBSG_SomewhatNervous`, `EBSG_SomewhatStubborn`, `EBSG_Stubborn`, `EBSG_SuperNervous`, `EBSG_SuperStubborn`, `EBSG_VeryNervous`, `EBSG_VeryStubborn`
 - WVC - Xenotypes and Genes (2886992038) (3): `WVC_EmotionReset`, `WVC_Emotionless`, `WVC_EmotionlessUnshakable`
+- Tuonela Xenotype (3819828750) (2): `Tuonela_AtPeace`, `Tuonela_Somber`
 - Cain's Gene Pack (3819866589) (2): `Tuonela_AtPeace`, `Tuonela_Somber`
 - Integrated Genes (2884115974) (2): `Turn_Gene_Bliss`, `Turn_Gene_TraitGrandeur`
 - Cyanobot's Genes (2889844371) (2): `CYB_Stoic`, `CYB_Unstable`
 - Obsidia Expansion - Tailborne Xenotype (3511930980) (2): `OE_TailborneCleanbred`, `OE_TailborneFilthborn`
+- Posthuman Drift Dvergr Xenotype (3521816382) (2): `XylMelancholy`, `XylStoic`
 - Vanilla Races Expanded - Phytokin (2927323805) (1): `VRE_GreenThumb`
 - Vanilla Races Expanded - Highmate (2995385834) (1): `VRE_Distressed`
+- Vanilla Races Expanded - Archon (3067715093) (1): `VRE_Maniac`
 - Mashed's Ashlands (3109835541) (1): `Mashed_Ashlands_AshStormLover`
 - Vanilla Races Expanded - Lycanthrope (3114453100) (1): `VRE_Territorial`
 - Obsidia Expansion - Axotl Xenotype (3304340573) (1): `OE_AxotlGourmand`
 - Obsidia Expansion - Slimes Xenotype (3331598962) (1): `OE_SlimesCannibal`
 - Posthuman Drift Warcat Xenotype (3521815010) (1): `XylMoody`
+- Posthuman Drift Nixie Xenotype (3521815475) (1): `XylAquatic`
+- Posthuman Drift Bossaps Xenotype (3521815829) (1): `XylHerdInstinct`
 - Goliann Xenotype (3541961078) (1): `GS_Solitary`
 - More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_WorkMachine`
 - local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_WorkMachine`
 
-## Categories `TWC_YZCategory` (102 genes, 1 mods)
+## Categories `Outland_Eyes` (108 genes, 1 mods)
 
-- Yanzhiko Xenotype Collection (3580656240) (102): `TWC_YZBody_BZoroark`, `TWC_YZBody_Braixen`, `TWC_YZBody_Cheetah`, `TWC_YZBody_Delphox`, `TWC_YZBody_Eevee`, `TWC_YZBody_Espeon`, `TWC_YZBody_Flareon`, `TWC_YZBody_Fressalfar`, `TWC_YZBody_Gardevoir`, `TWC_YZBody_Glaceon`, `TWC_YZBody_Icephox`, `TWC_YZBody_Jaguar`, `TWC_YZBody_Jolteon`, `TWC_YZBody_Kisalfar`, `TWC_YZBody_Leafeon`, `TWC_YZBody_Leo`, `TWC_YZBody_Lombax`, `TWC_YZBody_Meowstic`, `TWC_YZBody_Panther`, `TWC_YZBody_Sylveon`, `TWC_YZBody_Tigris`, `TWC_YZBody_Umbreon`, `TWC_YZBody_Vaporeon`, `TWC_YZBody_Vulpoid`, `TWC_YZBody_WZoroark`, `TWC_YZBowsGene`, `TWC_YZCrystalHeartGene`, `TWC_YZEars_BZoroark`, `TWC_YZEars_Braixen`, `TWC_YZEars_Cheetah`, `TWC_YZEars_Delphox`, `TWC_YZEars_Eevee`, `TWC_YZEars_Espeon`, `TWC_YZEars_Flareon`, `TWC_YZEars_Fressalfar`, `TWC_YZEars_Glaceon`, `TWC_YZEars_Icephox`, `TWC_YZEars_Jaguar`, `TWC_YZEars_Jolteon`, `TWC_YZEars_Kisalfar`, `TWC_YZEars_Leafeon`, `TWC_YZEars_Leo`, `TWC_YZEars_Lombax`, `TWC_YZEars_Meowstic`, `TWC_YZEars_Panther`, `TWC_YZEars_Sylveon`, `TWC_YZEars_Tigris`, `TWC_YZEars_Umbreon`, `TWC_YZEars_Vaporeon`, `TWC_YZEars_Vulpoid`, `TWC_YZEars_WZoroark`, `TWC_YZFireObsession`, `TWC_YZGeneCore`, `TWC_YZGeneSmall`, `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vaporeon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`, `TWC_YZTail_Braixen`, `TWC_YZTail_Cheetah`, `TWC_YZTail_Delphox`, `TWC_YZTail_Eevee`, `TWC_YZTail_Espeon`, `TWC_YZTail_Flareon`, `TWC_YZTail_Fressalfar`, `TWC_YZTail_Glaceon`, `TWC_YZTail_Icephox`, `TWC_YZTail_Jaguar`, `TWC_YZTail_Jolteon`, `TWC_YZTail_Kisalfar`, `TWC_YZTail_Leafeon`, `TWC_YZTail_Leo`, `TWC_YZTail_Lombax`, `TWC_YZTail_Meowstic`, `TWC_YZTail_Panther`, `TWC_YZTail_Sylveon`, `TWC_YZTail_Tigris`, `TWC_YZTail_Umbreon`, `TWC_YZTail_Vaporeon`, `TWC_YZTail_Vulpoid`, `TWC_YZTetraCoils`
+- Outland - Genetics (2910172297) (54): `Outland_ArachnidEyes_Blue`, `Outland_ArachnidEyes_Brown`, `Outland_ArachnidEyes_Cyan`, `Outland_ArachnidEyes_Gray`, `Outland_ArachnidEyes_Green`, `Outland_ArachnidEyes_LightBlue`, `Outland_ArachnidEyes_Lime`, `Outland_ArachnidEyes_Magenta`, `Outland_ArachnidEyes_Orange`, `Outland_ArachnidEyes_Pink`, `Outland_ArachnidEyes_Purple`, `Outland_ArachnidEyes_Red`, `Outland_ArachnidEyes_White`, `Outland_ArachnidEyes_Yellow`, `Outland_CompositeEyes_Blue`, `Outland_CompositeEyes_Brown`, `Outland_CompositeEyes_Cyan`, `Outland_CompositeEyes_Gray`, `Outland_CompositeEyes_Green`, `Outland_CompositeEyes_LightBlue`, `Outland_CompositeEyes_Lime`, `Outland_CompositeEyes_Magenta`, `Outland_CompositeEyes_Orange`, `Outland_CompositeEyes_Pink`, `Outland_CompositeEyes_Purple`, `Outland_CompositeEyes_Red`, `Outland_CompositeEyes_White`, `Outland_CompositeEyes_Yellow`, `Outland_Eye_Blue`, `Outland_Eye_Brown`, `Outland_Eye_Cyan`, `Outland_Eye_Green`, `Outland_Eye_LightBlue`, `Outland_Eye_Lime`, `Outland_Eye_Magenta`, `Outland_Eye_Orange`, `Outland_Eye_Pink`, `Outland_Eye_Purple`, `Outland_Eye_White`, `Outland_Eye_Yellow`, `Outland_MonocularEye_Blue`, `Outland_MonocularEye_Brown`, `Outland_MonocularEye_Cyan`, `Outland_MonocularEye_Gray`, `Outland_MonocularEye_Green`, `Outland_MonocularEye_LightBlue`, `Outland_MonocularEye_Lime`, `Outland_MonocularEye_Magenta`, `Outland_MonocularEye_Orange`, `Outland_MonocularEye_Pink`, `Outland_MonocularEye_Purple`, `Outland_MonocularEye_Red`, `Outland_MonocularEye_White`, `Outland_MonocularEye_Yellow`
 
-## Categories `EBSG_BodyParts` (100 genes, 2 mods)
-
-- Expanded Biotech Style Genes - All in One (3020821838) (25): `EBSG_DamagedArm`, `EBSG_DamagedBrain`, `EBSG_DamagedHeart`, `EBSG_DamagedKidney`, `EBSG_DamagedLeg`, `EBSG_DamagedLiver`, `EBSG_DamagedLung`, `EBSG_DamagedSpine`, `EBSG_DamagedStomach`, `EBSG_MissingAndDamagedArm`, `EBSG_MissingAndDamagedKidney`, `EBSG_MissingAndDamagedLeg`, `EBSG_MissingAndDamagedLung`, `EBSG_MissingArm`, `EBSG_MissingEar`, `EBSG_MissingEars`, `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_MissingKidney`, `EBSG_MissingLeg`, `EBSG_MissingLung`, `EBSG_SlightlyDamagedBrain`, `EBSG_SlightlyDamagedHeart`, `EBSG_SlightlyDamagedLiver`, `EBSG_SlightlyDamagedSpine`
-- EBSG - Health Genes (3115303988) (25): `EBSG_DamagedArm`, `EBSG_DamagedBrain`, `EBSG_DamagedHeart`, `EBSG_DamagedKidney`, `EBSG_DamagedLeg`, `EBSG_DamagedLiver`, `EBSG_DamagedLung`, `EBSG_DamagedSpine`, `EBSG_DamagedStomach`, `EBSG_MissingAndDamagedArm`, `EBSG_MissingAndDamagedKidney`, `EBSG_MissingAndDamagedLeg`, `EBSG_MissingAndDamagedLung`, `EBSG_MissingArm`, `EBSG_MissingEar`, `EBSG_MissingEars`, `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_MissingKidney`, `EBSG_MissingLeg`, `EBSG_MissingLung`, `EBSG_SlightlyDamagedBrain`, `EBSG_SlightlyDamagedHeart`, `EBSG_SlightlyDamagedLiver`, `EBSG_SlightlyDamagedSpine`
-
-## Categories `Pain` (100 genes, 15 mods)
+## Categories `Pain` (107 genes, 17 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (4): `Delicate`, `Pain_Extra`, `Pain_Reduced`, `Robust`
 - Expanded Biotech Style Genes - All in One (3020821838) (20): `EBSG_ConstantPain`, `EBSG_ExtremeConstantPain`, `EBSG_ExtremeFeeble`, `EBSG_ExtremeNumbness`, `EBSG_ExtremelyStout`, `EBSG_Feeble`, `EBSG_HyperNumbness`, `EBSG_MajorConstantPain`, `EBSG_MajorNumbness`, `EBSG_Masochist`, `EBSG_MinorConstantPain`, `EBSG_MinorNumbness`, `EBSG_Numbness`, `EBSG_Stout`, `EBSG_SuperFeeble`, `EBSG_SuperNumbness`, `EBSG_SuperStout`, `EBSG_VeryFeeble`, `EBSG_VeryStout`, `EBSG_Wimp`
 - EBSG - Expanded Pain Genes (3014397853) (20): `EBSG_ConstantPain`, `EBSG_ExtremeConstantPain`, `EBSG_ExtremeFeeble`, `EBSG_ExtremeNumbness`, `EBSG_ExtremelyStout`, `EBSG_Feeble`, `EBSG_HyperNumbness`, `EBSG_MajorConstantPain`, `EBSG_MajorNumbness`, `EBSG_Masochist`, `EBSG_MinorConstantPain`, `EBSG_MinorNumbness`, `EBSG_Numbness`, `EBSG_Stout`, `EBSG_SuperFeeble`, `EBSG_SuperNumbness`, `EBSG_SuperStout`, `EBSG_VeryFeeble`, `EBSG_VeryStout`, `EBSG_Wimp`
 - [OA]Ratkin Gene Expand (3300291918) (5): `OAGene_FragileOrgans`, `OAGene_FrailBone`, `OAGene_HardBone`, `OAGene_HardBoneShell`, `OAGene_ScarConstitution`
 - Big and Small - Genes & More (2920751126) (9): `BS_AcidResistanceMid`, `BS_AcidResistanceTotal`, `BS_AcidWeakness`, `BS_BulletVulnerability`, `BS_Concussive_Resistance`, `BS_DrunkenPower`, `BS_DvergrConstitution`, `BS_TinyTough`, `BS_VeryDelicate`
+- Biotech Robust Gene Expansion (3006722250) (3): `R_GlassBoned`, `R_ImperfectOstgen`, `R_WeakHeroicRobust`
 - [SH]Gene Expand (3558760095) (2): `SHGE_Vajra`, `SHGE_Vulnerable`
 - NewRatkinPlus (1578693166) (1): `RK_Gene_FragilePain`
 - Distraction's Genes (3545870587) (2): `DG_PainThresholdHigh`, `DG_PainThresholdVeryHigh`
@@ -6607,7 +6893,17 @@ The `displayCategory` of each gene. 343 categories.
 - The Profaned (3202008037) (1): `BotchJob_UndeadPainlessness`
 - Medieval Overhaul: House Van Illa (3327601396) (1): `Addie_SimPainless`
 - RutraNickers' Patches (3464716875) (1): `RN_MasochistGene`
+- Posthuman Drift Bossaps Xenotype (3521815829) (1): `XylPainReversal`
 - MUGB Goblin (3768425355) (1): `MUGB_Gene_GoblinDenseBones`
+
+## Categories `TWC_YZCategory` (102 genes, 1 mods)
+
+- Yanzhiko Xenotype Collection (3580656240) (102): `TWC_YZBody_BZoroark`, `TWC_YZBody_Braixen`, `TWC_YZBody_Cheetah`, `TWC_YZBody_Delphox`, `TWC_YZBody_Eevee`, `TWC_YZBody_Espeon`, `TWC_YZBody_Flareon`, `TWC_YZBody_Fressalfar`, `TWC_YZBody_Gardevoir`, `TWC_YZBody_Glaceon`, `TWC_YZBody_Icephox`, `TWC_YZBody_Jaguar`, `TWC_YZBody_Jolteon`, `TWC_YZBody_Kisalfar`, `TWC_YZBody_Leafeon`, `TWC_YZBody_Leo`, `TWC_YZBody_Lombax`, `TWC_YZBody_Meowstic`, `TWC_YZBody_Panther`, `TWC_YZBody_Sylveon`, `TWC_YZBody_Tigris`, `TWC_YZBody_Umbreon`, `TWC_YZBody_Vaporeon`, `TWC_YZBody_Vulpoid`, `TWC_YZBody_WZoroark`, `TWC_YZBowsGene`, `TWC_YZCrystalHeartGene`, `TWC_YZEars_BZoroark`, `TWC_YZEars_Braixen`, `TWC_YZEars_Cheetah`, `TWC_YZEars_Delphox`, `TWC_YZEars_Eevee`, `TWC_YZEars_Espeon`, `TWC_YZEars_Flareon`, `TWC_YZEars_Fressalfar`, `TWC_YZEars_Glaceon`, `TWC_YZEars_Icephox`, `TWC_YZEars_Jaguar`, `TWC_YZEars_Jolteon`, `TWC_YZEars_Kisalfar`, `TWC_YZEars_Leafeon`, `TWC_YZEars_Leo`, `TWC_YZEars_Lombax`, `TWC_YZEars_Meowstic`, `TWC_YZEars_Panther`, `TWC_YZEars_Sylveon`, `TWC_YZEars_Tigris`, `TWC_YZEars_Umbreon`, `TWC_YZEars_Vaporeon`, `TWC_YZEars_Vulpoid`, `TWC_YZEars_WZoroark`, `TWC_YZFireObsession`, `TWC_YZGeneCore`, `TWC_YZGeneSmall`, `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vaporeon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`, `TWC_YZTail_Braixen`, `TWC_YZTail_Cheetah`, `TWC_YZTail_Delphox`, `TWC_YZTail_Eevee`, `TWC_YZTail_Espeon`, `TWC_YZTail_Flareon`, `TWC_YZTail_Fressalfar`, `TWC_YZTail_Glaceon`, `TWC_YZTail_Icephox`, `TWC_YZTail_Jaguar`, `TWC_YZTail_Jolteon`, `TWC_YZTail_Kisalfar`, `TWC_YZTail_Leafeon`, `TWC_YZTail_Leo`, `TWC_YZTail_Lombax`, `TWC_YZTail_Meowstic`, `TWC_YZTail_Panther`, `TWC_YZTail_Sylveon`, `TWC_YZTail_Tigris`, `TWC_YZTail_Umbreon`, `TWC_YZTail_Vaporeon`, `TWC_YZTail_Vulpoid`, `TWC_YZTetraCoils`
+
+## Categories `EBSG_BodyParts` (100 genes, 2 mods)
+
+- Expanded Biotech Style Genes - All in One (3020821838) (25): `EBSG_DamagedArm`, `EBSG_DamagedBrain`, `EBSG_DamagedHeart`, `EBSG_DamagedKidney`, `EBSG_DamagedLeg`, `EBSG_DamagedLiver`, `EBSG_DamagedLung`, `EBSG_DamagedSpine`, `EBSG_DamagedStomach`, `EBSG_MissingAndDamagedArm`, `EBSG_MissingAndDamagedKidney`, `EBSG_MissingAndDamagedLeg`, `EBSG_MissingAndDamagedLung`, `EBSG_MissingArm`, `EBSG_MissingEar`, `EBSG_MissingEars`, `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_MissingKidney`, `EBSG_MissingLeg`, `EBSG_MissingLung`, `EBSG_SlightlyDamagedBrain`, `EBSG_SlightlyDamagedHeart`, `EBSG_SlightlyDamagedLiver`, `EBSG_SlightlyDamagedSpine`
+- EBSG - Health Genes (3115303988) (25): `EBSG_DamagedArm`, `EBSG_DamagedBrain`, `EBSG_DamagedHeart`, `EBSG_DamagedKidney`, `EBSG_DamagedLeg`, `EBSG_DamagedLiver`, `EBSG_DamagedLung`, `EBSG_DamagedSpine`, `EBSG_DamagedStomach`, `EBSG_MissingAndDamagedArm`, `EBSG_MissingAndDamagedKidney`, `EBSG_MissingAndDamagedLeg`, `EBSG_MissingAndDamagedLung`, `EBSG_MissingArm`, `EBSG_MissingEar`, `EBSG_MissingEars`, `EBSG_MissingEye`, `EBSG_MissingEyes`, `EBSG_MissingKidney`, `EBSG_MissingLeg`, `EBSG_MissingLung`, `EBSG_SlightlyDamagedBrain`, `EBSG_SlightlyDamagedHeart`, `EBSG_SlightlyDamagedLiver`, `EBSG_SlightlyDamagedSpine`
 
 ## Categories `EyeGenes3_Eyes` (99 genes, 1 mods)
 
@@ -6636,6 +6932,18 @@ The `displayCategory` of each gene. 343 categories.
 
 - Expanded Biotech Style Genes - All in One (3020821838) (20): `EBSG_AlcoholReliance`, `EBSG_AmbrosiaReliance`, `EBSG_AnimalProductDependency`, `EBSG_AnimalProductReliance`, `EBSG_ChocolateDependency`, `EBSG_ChocolateReliance`, `EBSG_GoJuiceReliance`, `EBSG_HumanMeatDependency`, `EBSG_HumanMeatReliance`, `EBSG_MeatDependency`, `EBSG_MeatReliance`, `EBSG_PsychiteReliance`, `EBSG_RawEggDependency`, `EBSG_RawEggReliance`, `EBSG_RawFoodDependency`, `EBSG_RawFoodReliance`, `EBSG_SmokeleafReliance`, `EBSG_VegetarianDependency`, `EBSG_VegetarianReliance`, `EBSG_WakeUpReliance`
 - EBSG - Expanded Dependency Genes (3137774673) (20): `EBSG_AlcoholReliance`, `EBSG_AmbrosiaReliance`, `EBSG_AnimalProductDependency`, `EBSG_AnimalProductReliance`, `EBSG_ChocolateDependency`, `EBSG_ChocolateReliance`, `EBSG_GoJuiceReliance`, `EBSG_HumanMeatDependency`, `EBSG_HumanMeatReliance`, `EBSG_MeatDependency`, `EBSG_MeatReliance`, `EBSG_PsychiteReliance`, `EBSG_RawEggDependency`, `EBSG_RawEggReliance`, `EBSG_RawFoodDependency`, `EBSG_RawFoodReliance`, `EBSG_SmokeleafReliance`, `EBSG_VegetarianDependency`, `EBSG_VegetarianReliance`, `EBSG_WakeUpReliance`
+
+## Categories `Cosmetic_Skin` (78 genes, 9 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (21): `Skin_Blue`, `Skin_DeepRed`, `Skin_DeepYellow`, `Skin_Green`, `Skin_InkBlack`, `Skin_LightGray`, `Skin_Melanin1`, `Skin_Melanin2`, `Skin_Melanin3`, `Skin_Melanin4`, `Skin_Melanin5`, `Skin_Melanin6`, `Skin_Melanin7`, `Skin_Melanin8`, `Skin_Melanin9`, `Skin_Orange`, `Skin_PaleRed`, `Skin_PaleYellow`, `Skin_Purple`, `Skin_SheerWhite`, `Skin_SlateGray`
+- Inclusive Skin Tone Genes (3554881228) (29): `Skin_Melanin10G`, `Skin_Melanin11G`, `Skin_Melanin12G`, `Skin_Melanin13G`, `Skin_Melanin14G`, `Skin_Melanin15G`, `Skin_Melanin16G`, `Skin_Melanin17G`, `Skin_Melanin18G`, `Skin_Melanin19G`, `Skin_Melanin1G`, `Skin_Melanin20G`, `Skin_Melanin21G`, `Skin_Melanin22G`, `Skin_Melanin23G`, `Skin_Melanin24G`, `Skin_Melanin25G`, `Skin_Melanin26G`, `Skin_Melanin27G`, `Skin_Melanin28G`, `Skin_Melanin29G`, `Skin_Melanin2G`, `Skin_Melanin3G`, `Skin_Melanin4G`, `Skin_Melanin5G`, `Skin_Melanin6G`, `Skin_Melanin7G`, `Skin_Melanin8G`, `Skin_Melanin9G`
+- FIP - RobCo (3563825876) (10): `RobCo_Gene_BiogelBlack`, `RobCo_Gene_BiogelBlue`, `RobCo_Gene_BiogelCyan`, `RobCo_Gene_BiogelGreen`, `RobCo_Gene_BiogelOrange`, `RobCo_Gene_BiogelPink`, `RobCo_Gene_BiogelPurple`, `RobCo_Gene_BiogelRed`, `RobCo_Gene_BiogelWhite`, `RobCo_Gene_BiogelYellow`
+- Vanilla Skin Tone Genes (3165888554) (9): `VSTG_Skin_1`, `VSTG_Skin_2`, `VSTG_Skin_3`, `VSTG_Skin_4`, `VSTG_Skin_5`, `VSTG_Skin_6`, `VSTG_Skin_7`, `VSTG_Skin_8`, `VSTG_Skin_9`
+- Skinprint (3815708054) (5): `SP_BeautyMoles`, `SP_Birthmark`, `SP_Freckles`, `SP_Piebald`, `SP_Vitiligo`
+- DuelMonsterRimWorld (3050289249) (1): `Skin_DMRW_VampireRed`
+- The Profaned (3202008037) (1): `BotchJob_RottingFleshBasic`
+- Cheech Xenotype (3723106445) (1): `GeneDef_Cheech_Fur_Tufted`
+- [AV] Kosmian Xenotype (3774474578) (1): `AV_NightskySkinPattern`
 
 ## Categories `AG_Cosmetic_Horns` (77 genes, 3 mods)
 
@@ -6674,15 +6982,7 @@ The `displayCategory` of each gene. 343 categories.
 
 - Alpha Genes (2891845502) (34): `AG_DeadlifeProducer`, `AG_FleshBulb`, `AG_FleshSack`, `AG_FleshSpitter`, `AG_GreaterFleshWhip`, `AG_GreaterToughspikes`, `AG_GreyPocketPlane`, `AG_MeatBurst`, `AG_PseudoDeadlife`, `AG_Shambler_Acidic`, `AG_Shambler_Armoured`, `AG_Shambler_DeadlifeBelcher`, `AG_Shambler_Delicate`, `AG_Shambler_Exploding`, `AG_Shambler_HighMelee`, `AG_Shambler_LightningFast`, `AG_Shambler_LowMelee`, `AG_Shambler_Photosynthetic`, `AG_Shambler_Plagued`, `AG_Shambler_Polluter`, `AG_Shambler_Spiked`, `AG_Shambler_Stinker`, `AG_Shambler_Timeless`, `AG_Shambler_Tinderskin`, `AG_Shambler_Tough`, `AG_Shambler_Toxic`, `AG_Shambler_UVSensitive`, `AG_Shambler_VenomFangs`, `AG_Shambler_VeryGaunt`, `AG_TentacleHorns`, `AG_TwistedFlesh`, `AG_TwitchingFingerspike`, `AG_TwitchingToughspikes`, `AG_TwitchingTrispikes`
 
-## Categories `Outland_Ears` (68 genes, 1 mods)
-
-- Outland - Genetics (2910172297) (34): `Outland_Antenna_Feather`, `Outland_Antenna_Fluted`, `Outland_Antenna_Jointed`, `Outland_Antenna_Leaf`, `Outland_Antenna_Owl`, `Outland_Antenna_Segmented`, `Outland_Antenna_Socketed`, `Outland_Ears_Akhkharu`, `Outland_Ears_BigEars`, `Outland_Ears_Bun`, `Outland_Ears_Curved`, `Outland_Ears_Doe`, `Outland_Ears_Fey`, `Outland_Ears_FlatPointed`, `Outland_Ears_Fleef`, `Outland_Ears_Flick`, `Outland_Ears_Flufftop`, `Outland_Ears_Foxie`, `Outland_Ears_Furred`, `Outland_Ears_Goblinoid`, `Outland_Ears_Jackal`, `Outland_Ears_Large`, `Outland_Ears_Nyoom`, `Outland_Ears_Ratty`, `Outland_Ears_Rounded`, `Outland_Ears_Serrated`, `Outland_Ears_Swish`, `Outland_Ears_Teddy`, `Outland_Ears_Ventral`, `Outland_Ears_Vigilant`, `Outland_Ears_Webbed`, `Outland_Ears_Wild`, `Outland_Ears_Woosh`, `Outland_ElvenEars`
-
-## Categories `SZSpecial` (68 genes, 1 mods)
-
-- Character Editor (1874644848) (18): `SZBodySize_05`, `SZBodySize_06`, `SZBodySize_07`, `SZBodySize_08`, `SZBodySize_09`, `SZBodySize_10`, `SZBodySize_11`, `SZBodySize_12`, `SZBodySize_13`, `SZBodySize_14`, `SZBodySize_15`, `SZBodySize_16`, `SZBodySize_17`, `SZBodySize_18`, `SZBodySize_19`, `SZBodySize_20`, `SZBodySize_30`, `SZBodySize_40`
-
-## Categories `Movement` (67 genes, 16 mods)
+## Categories `Movement` (68 genes, 17 mods)
 
 - Vanilla RimWorld (Core and Biotech, game folder) (5): `MoveSpeed_Quick`, `MoveSpeed_Slow`, `MoveSpeed_VeryQuick`, `NakedSpeed`, `WebbedPhalanges`
 - More Biotech Style Genes - All in One (2985153870) (11): `MBSG_ClothedSpeed`, `MBSG_DecentClothedSpeed`, `MBSG_DecentNakedSpeed`, `MBSG_ExtremeClothedSpeed`, `MBSG_ExtremeNakedSpeed`, `MBSG_FastClothedSpeed`, `MBSG_FastNakedSpeed`, `MBSG_NotableClothedSpeed`, `MBSG_NotableNakedSpeed`, `MBSG_SuperClothedSpeed`, `MBSG_SuperNakedSpeed`
@@ -6692,14 +6992,23 @@ The `displayCategory` of each gene. 343 categories.
 - [OA]Ratkin Gene Expand (3300291918) (1): `OAGene_AgilityAction`
 - [SH]Gene Expand (3558760095) (1): `SHGE_Sluggish`
 - Miho, the celestial fox (2816826107) (1): `Gene_Miho_Naked`
+- Vanilla Races Expanded - Hussar (2893586390) (1): `VREH_Unconstrained`
 - Big and Small - Genes & More (2920751126) (1): `VeryNakedSpeed`
 - Distraction's Genes (3545870587) (1): `DG_WebbedFingers`
 - Extra Genes (3548491602) (1): `EG_Streaker`
 - Meta's Genelines - Vampires (3553355702) (1): `VampAbility_WaterWeakness`
 - Geist Xenotype (3564732214) (1): `GS_Nimble`
 - More Storylike Traits - Body and Mind 1.6 (3811291787) (1): `Storylike_Gene_Uncoordinated`
-- local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_MoveSpeed_VerySlow`
 - local:StorylikeBodyAndMind (local:StorylikeBodyAndMind) (1): `Storylike_Gene_Uncoordinated`
+- local:Rimworld-Tentacle-Lord (local:Rimworld-Tentacle-Lord) (1): `TL_MoveSpeed_VerySlow`
+
+## Categories `Outland_Ears` (68 genes, 1 mods)
+
+- Outland - Genetics (2910172297) (34): `Outland_Antenna_Feather`, `Outland_Antenna_Fluted`, `Outland_Antenna_Jointed`, `Outland_Antenna_Leaf`, `Outland_Antenna_Owl`, `Outland_Antenna_Segmented`, `Outland_Antenna_Socketed`, `Outland_Ears_Akhkharu`, `Outland_Ears_BigEars`, `Outland_Ears_Bun`, `Outland_Ears_Curved`, `Outland_Ears_Doe`, `Outland_Ears_Fey`, `Outland_Ears_FlatPointed`, `Outland_Ears_Fleef`, `Outland_Ears_Flick`, `Outland_Ears_Flufftop`, `Outland_Ears_Foxie`, `Outland_Ears_Furred`, `Outland_Ears_Goblinoid`, `Outland_Ears_Jackal`, `Outland_Ears_Large`, `Outland_Ears_Nyoom`, `Outland_Ears_Ratty`, `Outland_Ears_Rounded`, `Outland_Ears_Serrated`, `Outland_Ears_Swish`, `Outland_Ears_Teddy`, `Outland_Ears_Ventral`, `Outland_Ears_Vigilant`, `Outland_Ears_Webbed`, `Outland_Ears_Wild`, `Outland_Ears_Woosh`, `Outland_ElvenEars`
+
+## Categories `SZSpecial` (68 genes, 1 mods)
+
+- Character Editor (1874644848) (18): `SZBodySize_05`, `SZBodySize_06`, `SZBodySize_07`, `SZBodySize_08`, `SZBodySize_09`, `SZBodySize_10`, `SZBodySize_11`, `SZBodySize_12`, `SZBodySize_13`, `SZBodySize_14`, `SZBodySize_15`, `SZBodySize_16`, `SZBodySize_17`, `SZBodySize_18`, `SZBodySize_19`, `SZBodySize_20`, `SZBodySize_30`, `SZBodySize_40`
 
 ## Categories `SuperPowersArchetypes` (64 genes, 1 mods)
 
@@ -6741,6 +7050,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `ATK_Cosmetic_Anthrosonae` (58 genes, 1 mods)
 
 - Anthrosonae (2902258418) (58): `ATK_AnthrobearEars`, `ATK_AnthrobearFur`, `ATK_AnthrobearTail`, `ATK_AnthrocatEars`, `ATK_AnthrocatFur`, `ATK_AnthrocatTail`, `ATK_AnthrocheeFacialStripes`, `ATK_AnthrocowEars`, `ATK_AnthrocowFur`, `ATK_AnthrocowHeadbone`, `ATK_AnthrocowHeadbone_Long`, `ATK_AnthrocowTail`, `ATK_AnthrodeerEars`, `ATK_AnthrodeerFur`, `ATK_AnthrodeerHeadbone`, `ATK_AnthrodeerHeadbone_Short`, `ATK_AnthrodeerTail`, `ATK_AnthrodrakeEars`, `ATK_AnthrodrakeHeadbone`, `ATK_AnthrodrakeHeadbone_Spiraled`, `ATK_AnthrodrakeSkin`, `ATK_AnthrodrakeTail`, `ATK_AnthrofoxEars`, `ATK_AnthrofoxFacialStripes`, `ATK_AnthrofoxFur`, `ATK_AnthrofoxTail`, `ATK_AnthrogoatEars`, `ATK_AnthrogoatEars_Droopy`, `ATK_AnthrogoatFur`, `ATK_AnthrogoatHeadbone`, `ATK_AnthrogoatHeadbone_Short`, `ATK_AnthrogoatHeadbone_Spiraled`, `ATK_AnthrogoatTail`, `ATK_AnthrogriffBackbone`, `ATK_AnthrogriffEars`, `ATK_AnthrogriffFur`, `ATK_AnthrogriffTail`, `ATK_AnthrohorseEars`, `ATK_AnthrohorseFur`, `ATK_AnthrohorseTail`, `ATK_AnthrohyenaEars`, `ATK_AnthrohyenaFur`, `ATK_AnthrohyenaTail`, `ATK_AnthropandaEars`, `ATK_AnthropandaFur`, `ATK_AnthropandaTail`, `ATK_AnthrorabbitEars`, `ATK_AnthrorabbitFur`, `ATK_AnthrorabbitTail`, `ATK_AnthrosharkEars`, `ATK_AnthrosharkSkin`, `ATK_AnthrosharkTail`, `ATK_AnthrowahEars`, `ATK_AnthrowahFur`, `ATK_AnthrowahTail`, `ATK_AnthrowolfEars`, `ATK_AnthrowolfFur`, `ATK_AnthrowolfTail`
+
+## Categories `HautsTraits` (58 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (29): `HVT_AdherentGene`, `HVT_AllegiantGene`, `HVT_AsocialGene`, `HVT_CaretakerGene`, `HVT_ConformistGene`, `HVT_ConversationalistGene`, `HVT_DaydreamerGene`, `HVT_DrudgeGene`, `HVT_EnvironmentalistGene`, `HVT_GraverGene`, `HVT_GuruGene`, `HVT_HerculeanGene`, `HVT_HumbleGene`, `HVT_ImperceptiveGene`, `HVT_KeenSensesGene`, `HVT_MarinerGene`, `HVT_MechaphobeGene`, `HVT_MightyGene`, `HVT_MisopedistGene`, `HVT_PowerfulSensesGene`, `HVT_ProclaimerGene`, `HVT_RRGene`, `HVT_RevellerGene`, `HVT_SkulkerGene`, `HVT_StaidGene`, `HVT_TempestophileGene`, `HVT_UnquestioningAdherentGene`, `HVT_ViciousGene`, `HVT_WinsomeGene`
 
 ## Categories `SHGE_PawnWorkStat` (58 genes, 1 mods)
 
@@ -6831,18 +7144,6 @@ The `displayCategory` of each gene. 343 categories.
 
 - WVC - Xenotypes and Genes (2886992038) (22): `WVC_EndogermReimplanter`, `WVC_Hands_Angel`, `WVC_HybridImplanter`, `WVC_MergeImplanter`, `WVC_NaturalReimplanter`, `WVC_NaturalReimplanter_RiseFromTheDead`, `WVC_PostImplanterBrainwash`, `WVC_PostImplanterInstantRegrow`, `WVC_PostImplanter_Convert`, `WVC_ReimplanterArchite_Endogenes`, `WVC_ReimplanterArchite_RiseEndogenes`, `WVC_ReimplanterArchite_RiseXenogenes`, `WVC_ReimplanterArchite_Xenogenes`, `WVC_ReimplanterNatural_Endogenes`, `WVC_ReimplanterNatural_RiseEndogenes`, `WVC_ReimplanterNatural_RiseXenogenes`, `WVC_ReimplanterNatural_Xenogenes`, `WVC_ReimplanterThrallMaker`, `WVC_Reimplanter_HiveMaker`, `WVC_Reimplanter_RiseFromTheDead`, `WVC_Replacer`, `WVC_StorageImplanter`
 
-## Categories `Temperature` (43 genes, 9 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (6): `MaxTemp_LargeIncrease`, `MaxTemp_SmallDecrease`, `MaxTemp_SmallIncrease`, `MinTemp_LargeDecrease`, `MinTemp_SmallDecrease`, `MinTemp_SmallIncrease`
-- Alpha Genes (2891845502) (6): `AG_ColdRadiating`, `AG_ColdSlowness`, `AG_ColdSpeed`, `AG_HeatRadiating`, `AG_HeatSlowness`, `AG_HeatSpeed`
-- More Biotech Style Genes - All in One (2985153870) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
-- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Furskin_WarmFur`, `WVC_MinMaxTemp_Archite`, `WVC_MinMaxTemp_Natural`
-- Climate Preference Genes (2980961512) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
-- [OA]Ratkin Gene Expand (3300291918) (2): `OAGene_ColdSleepy`, `OAGene_HeatSleepy`
-- Gojis-Misc-Genes (3775114861) (1): `Goji_Hibernation`
-- Cybranian - Oryx Xenotype (3527163129) (1): `Temp_NoSweatGlands`
-- Kraltech Industries (1.7) (unofficial) (3820851894) (1): `KraltechGene_ThermalSkin`
-
 ## Categories `DuplicateGenes` (42 genes, 1 mods)
 
 - Biotech Gene Variety (2883277260) (42): `ADFR10Gene`, `ADFR20Gene`, `ADFR30Gene`, `ADFX10Gene`, `ADFX20Gene`, `ADFX30Gene`, `AIMH1Gene`, `AIMH2Gene`, `AIMH4Gene`, `AIMX1Gene`, `AIMX2Gene`, `AIMX4Gene`, `GLRN10Gene`, `GLRN20Gene`, `GLRN40Gene`, `GLRX10Gene`, `GLRX20Gene`, `GLRX40Gene`, `MLDG1Gene`, `MLDG2Gene`, `MLDG4Gene`, `MLDX1Gene`, `MLDX2Gene`, `MLDX4Gene`, `MLIT1Gene`, `MLIT2Gene`, `MLIT4Gene`, `MLIX1Gene`, `MLIX2Gene`, `MLIX4Gene`, `SLIC10Gene`, `SLIC20Gene`, `SLIC40Gene`, `SLIX10Gene`, `SLIX20Gene`, `SLIX40Gene`, `TDPR10Gene`, `TDPR20Gene`, `TDPR40Gene`, `TDPX10Gene`, `TDPX20Gene`, `TDPX40Gene`
@@ -6867,6 +7168,18 @@ The `displayCategory` of each gene. 343 categories.
 
 - Bleach Mod (3635653759) (40): `Bleach_Gene_GintoMastery`, `Bleach_Gene_Hirenkyaku`, `Bleach_Gene_Hirenkyaku_Expert`, `Bleach_Gene_Hirenkyaku_Master`, `Bleach_Gene_Quincy_MixedBlood`, `Bleach_Gene_Quincy_PureBlood`, `Bleach_Gene_Quincy_Reiryoku_Awakening`, `Bleach_Gene_Quincy_Reiryoku_Elite`, `Bleach_Gene_Quincy_Reiryoku_Schutzstaffel`, `Bleach_Gene_Quincy_Reiryoku_Soldat`, `Bleach_Gene_Quincy_Reiryoku_Sternritter`, `Bleach_Gene_Quincy_Reiryoku_Sternritter_Elite`, `Bleach_Gene_Quincy_Reiryoku_Survivor`, `Bleach_Gene_SanreiGlove`, `Bleach_Gene_Schrift`, `Bleach_Gene_Schrift_A`, `Bleach_Gene_Schrift_B`, `Bleach_Gene_Schrift_C`, `Bleach_Gene_Schrift_D`, `Bleach_Gene_Schrift_E`, `Bleach_Gene_Schrift_F`, `Bleach_Gene_Schrift_G`, `Bleach_Gene_Schrift_H`, `Bleach_Gene_Schrift_I`, `Bleach_Gene_Schrift_J`, `Bleach_Gene_Schrift_L`, `Bleach_Gene_Schrift_M`, `Bleach_Gene_Schrift_O`, `Bleach_Gene_Schrift_P`, `Bleach_Gene_Schrift_Q`, `Bleach_Gene_Schrift_R`, `Bleach_Gene_Schrift_S`, `Bleach_Gene_Schrift_T`, `Bleach_Gene_Schrift_U`, `Bleach_Gene_Schrift_V`, `Bleach_Gene_Schrift_W`, `Bleach_Gene_Schrift_X`, `Bleach_Gene_Schrift_Y`, `Bleach_Gene_Schrift_Z`, `Bleach_Gene_Vollstandig`
 
+## Categories `Temperature` (40 genes, 9 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (6): `MaxTemp_LargeIncrease`, `MaxTemp_SmallDecrease`, `MaxTemp_SmallIncrease`, `MinTemp_LargeDecrease`, `MinTemp_SmallDecrease`, `MinTemp_SmallIncrease`
+- Alpha Genes (2891845502) (6): `AG_ColdRadiating`, `AG_ColdSlowness`, `AG_ColdSpeed`, `AG_HeatRadiating`, `AG_HeatSlowness`, `AG_HeatSpeed`
+- More Biotech Style Genes - All in One (2985153870) (4): `ClimatePreference_Cold`, `ClimatePreference_Hot`, `ClimatePreference_SuperCold`, `ClimatePreference_SuperHot`
+- WVC - Xenotypes and Genes (2886992038) (3): `WVC_Furskin_WarmFur`, `WVC_MinMaxTemp_Archite`, `WVC_MinMaxTemp_Natural`
+- [OA]Ratkin Gene Expand (3300291918) (2): `OAGene_ColdSleepy`, `OAGene_HeatSleepy`
+- Gojis-Misc-Genes (3775114861) (1): `Goji_Hibernation`
+- Biotech: Reptilian Humanoids Mod (2885147370) (1): `WinterHibernation`
+- Cybranian - Oryx Xenotype (3527163129) (1): `Temp_NoSweatGlands`
+- Kraltech Industries (1.7) (unofficial) (3820851894) (1): `KraltechGene_ThermalSkin`
+
 ## Categories `AG_SpecialEffectsCategory` (38 genes, 1 mods)
 
 - Alpha Genes (2891845502) (19): `AG_AcidRainMaker`, `AG_BlueGelProduction`, `AG_BoomNodules`, `AG_DryThunderstormMaker`, `AG_Fogger`, `AG_FoggyRainMaker`, `AG_ForsakenNightMaker`, `AG_InsectJellyProduction`, `AG_Polluter`, `AG_RainMaker`, `AG_RainyThunderstormMaker`, `AG_RedFogger`, `AG_RotStinkProducer`, `AG_RoyalJellyProduction`, `AG_SmokeProducer`, `AG_SnowMaker`, `AG_TetraCoils`, `AG_ToxGasProducer`, `AG_VolcanicAshMaker`
@@ -6888,10 +7201,6 @@ The `displayCategory` of each gene. 343 categories.
 
 - 超限 / Overlimit (3806748125) (36): `Overlimit_Talent_Animals_1`, `Overlimit_Talent_Animals_2`, `Overlimit_Talent_Animals_3`, `Overlimit_Talent_Artistic_1`, `Overlimit_Talent_Artistic_2`, `Overlimit_Talent_Artistic_3`, `Overlimit_Talent_Construction_1`, `Overlimit_Talent_Construction_2`, `Overlimit_Talent_Construction_3`, `Overlimit_Talent_Cooking_1`, `Overlimit_Talent_Cooking_2`, `Overlimit_Talent_Cooking_3`, `Overlimit_Talent_Crafting_1`, `Overlimit_Talent_Crafting_2`, `Overlimit_Talent_Crafting_3`, `Overlimit_Talent_Intellectual_1`, `Overlimit_Talent_Intellectual_2`, `Overlimit_Talent_Intellectual_3`, `Overlimit_Talent_Medicine_1`, `Overlimit_Talent_Medicine_2`, `Overlimit_Talent_Medicine_3`, `Overlimit_Talent_Melee_1`, `Overlimit_Talent_Melee_2`, `Overlimit_Talent_Melee_3`, `Overlimit_Talent_Mining_1`, `Overlimit_Talent_Mining_2`, `Overlimit_Talent_Mining_3`, `Overlimit_Talent_Plants_1`, `Overlimit_Talent_Plants_2`, `Overlimit_Talent_Plants_3`, `Overlimit_Talent_Shooting_1`, `Overlimit_Talent_Shooting_2`, `Overlimit_Talent_Shooting_3`, `Overlimit_Talent_Social_1`, `Overlimit_Talent_Social_2`, `Overlimit_Talent_Social_3`
 
-## Categories `GEW_Wings` (34 genes, 1 mods)
-
-- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
-
 ## Categories `Outland_Wings` (34 genes, 1 mods)
 
 - Outland - Genetics (2910172297) (17): `Outland_Wings_Angel`, `Outland_Wings_Bird`, `Outland_Wings_Devil`, `Outland_Wings_FallenAngel`, `Outland_Wings_Fey`, `Outland_Wings_FlareBlue`, `Outland_Wings_FlareGreen`, `Outland_Wings_FlareRed`, `Outland_Wings_GlassyBlue`, `Outland_Wings_Imp`, `Outland_Wings_Insect`, `Outland_Wings_None`, `Outland_Wings_Plain`, `Outland_Wings_Pointed`, `Outland_Wings_Roundel`, `Outland_Wings_Striped`, `Outland_Wings_Wyvern`
@@ -6899,6 +7208,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `WVC_Overrider` (34 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (17): `WVC_Ageless_Overrider`, `WVC_Aging_Overrider`, `WVC_Health_Overrider`, `WVC_Hivemind_Overrider`, `WVC_Implanter_Overrider`, `WVC_Learning_Overrider`, `WVC_NoLearning_Overrider`, `WVC_OverallAdaptation_Overrider`, `WVC_Overrider`, `WVC_Pain_Overrider`, `WVC_PerfectImmunity_Overrider`, `WVC_Scars_Overrider`, `WVC_Solar_Overrider`, `WVC_Stomach_Overrider`, `WVC_Tough_Overrider`, `WVC_Wimp_Overrider`, `WVC_WoundHealing_Overrider`
+
+## Categories `AG_Genes` (32 genes, 1 mods)
+
+- Absolute Genome — Полная генетика (3823783460) (32): `AG_Gene_ArcticWolf`, `AG_Gene_BeautifulSkin`, `AG_Gene_CCR5Delta32`, `AG_Gene_ColdBlooded`, `AG_Gene_DeepSleep`, `AG_Gene_DesertWanderer`, `AG_Gene_DiseaseImmunity`, `AG_Gene_ElasticLigaments`, `AG_Gene_EmptyStomach`, `AG_Gene_FastMetabolism`, `AG_Gene_FireResistant`, `AG_Gene_FrailBuild`, `AG_Gene_Hyperactivity`, `AG_Gene_IronStomach`, `AG_Gene_LearningGenius`, `AG_Gene_MucosalImmunity`, `AG_Gene_NimbleFingers`, `AG_Gene_Optimist`, `AG_Gene_Pessimist`, `AG_Gene_QuickRegeneration`, `AG_Gene_STDResistanceBacterial`, `AG_Gene_STDResistanceViral`, `AG_Gene_STDSusceptibility`, `AG_Gene_SharpSenses`, `AG_Gene_SlowThinker`, `AG_Gene_StoneSkin`, `AG_Gene_Streamlined`, `AG_Gene_StrongBones`, `AG_Gene_SturdyBuild`, `AG_Gene_SuperStrength`, `AG_Gene_Thermoregulation`, `AG_Gene_ThickSkin`
 
 ## Categories `EBSG_CarryCapacity` (32 genes, 2 mods)
 
@@ -6920,15 +7233,16 @@ The `displayCategory` of each gene. 343 categories.
 - Superhero Genes - Base (2980061828) (8): `SHG_Radiomancer_Bioreactor`, `SHG_Radiomancer_CondenseRadiation`, `SHG_Radiomancer_EnergizedNeurons`, `SHG_Radiomancer_EnergyArmor`, `SHG_Radiomancer_InfusedMuscles`, `SHG_Radiomancer_SolarRecharging`, `SHG_Radiomancer_SolarRegeneration`, `SHG_Radiomancer_UndyingSun`
 - SHG - Just the Radiomancer (3176420903) (8): `SHG_Radiomancer_Bioreactor`, `SHG_Radiomancer_CondenseRadiation`, `SHG_Radiomancer_EnergizedNeurons`, `SHG_Radiomancer_EnergyArmor`, `SHG_Radiomancer_InfusedMuscles`, `SHG_Radiomancer_SolarRecharging`, `SHG_Radiomancer_SolarRegeneration`, `SHG_Radiomancer_UndyingSun`
 
-## Categories `AG_Mechanitor` (30 genes, 1 mods)
-
-- Alpha Genes (2891845502) (15): `AG_BandwidthDecrease`, `AG_BandwidthIncrease`, `AG_BandwidthIncreaseMajor`, `AG_BandwidthLoop`, `AG_DecreasedCommandRange`, `AG_DecreasedMechRepair`, `AG_ExpertMechRepair`, `AG_IncreasedCommandRange`, `AG_IncreasedMechRepair`, `AG_InnateMechlink`, `AG_MechConversion`, `AG_SummonTempBandwidth`, `AlphaGenes_Animal_SummonCentipede`, `AlphaGenes_Animal_SummonMilitor`, `AlphaGenes_Animal_SummonTesseron`
-
-## Categories `Body_Size` (30 genes, 3 mods)
+## Categories `Body_Size` (31 genes, 4 mods)
 
 - Big and Small - Genes & More (2920751126) (13): `BS_AnomalousForm`, `BS_AriettyFrame`, `BS_EndlessGrowth`, `BS_LargeFrame`, `BS_RabbitFrame`, `BS_SmallFrame`, `DwarfFrame`, `GnomeFrame`, `GreatOgreFrame`, `HalfColossusFrame`, `HalfJotunFrame`, `JotunFrame`, `OgreFrame`
 - Big and Small - Simple Size Genes (3328662155) (11): `BS_AriettyFrame`, `BS_EndlessGrowth`, `BS_LargeFrame`, `BS_RabbitFrame`, `BS_SmallFrame`, `DwarfFrame`, `GnomeFrame`, `GreatOgreFrame`, `HalfJotunFrame`, `JotunFrame`, `OgreFrame`
 - Body Size Genes (2887397385) (6): `BodySizeBig`, `BodySizeBigger`, `BodySizeBiggest`, `BodySizeSmall`, `BodySizeSmaller`, `BodySizeSmallest`
+- The Drow - Biotech Edition (Continued) (3755554485) (1): `Drow_Gene_Short`
+
+## Categories `AG_Mechanitor` (30 genes, 1 mods)
+
+- Alpha Genes (2891845502) (15): `AG_BandwidthDecrease`, `AG_BandwidthIncrease`, `AG_BandwidthIncreaseMajor`, `AG_BandwidthLoop`, `AG_DecreasedCommandRange`, `AG_DecreasedMechRepair`, `AG_ExpertMechRepair`, `AG_IncreasedCommandRange`, `AG_IncreasedMechRepair`, `AG_InnateMechlink`, `AG_MechConversion`, `AG_SummonTempBandwidth`, `AlphaGenes_Animal_SummonCentipede`, `AlphaGenes_Animal_SummonMilitor`, `AlphaGenes_Animal_SummonTesseron`
 
 ## Categories `Outland_Blood` (30 genes, 1 mods)
 
@@ -7018,6 +7332,10 @@ The `displayCategory` of each gene. 343 categories.
 
 - Biotech Expansion - Mythic (2883216840) (12): `BTEMy_AdamantScales`, `BTEMy_AdamantScalesNoGraphic`, `BTEMy_AurumDetonation`, `BTEMy_AurumThirst`, `BTEMy_AvariceInstinct`, `BTEMy_BlazingClaws`, `BTEMy_DraconicHead`, `BTEMy_DraconicHorns`, `BTEMy_DraconicNose`, `BTEMy_DraconicTail`, `BTEMy_DraconicWings`, `BTEMy_DraconicWingsNoAurum`
 
+## Categories `HautsAATraits` (24 genes, 1 mods)
+
+- Hauts' Added Traits (3422847391) (12): `HVT_AAugurGene`, `HVT_AChanshiGene`, `HVT_ADelugeGene`, `HVT_AEruditeGene`, `HVT_AIncarnateGene`, `HVT_ALuminaryGene`, `HVT_AMantraistGene`, `HVT_APerennialGene`, `HVT_ASageGene`, `HVT_ASiphonerGene`, `HVT_ATitanGene`, `HVT_AUndyingGene`
+
 ## Categories `JJK_CursedTechniques` (24 genes, 1 mods)
 
 - Jujutsu Kaisen (3658634704) (24): `JJK_Gene_AntigravitySystem`, `JJK_Gene_BlazingCourage`, `JJK_Gene_DagonBody`, `JJK_Gene_DisasterForests`, `JJK_Gene_DisasterTides`, `JJK_Gene_EarthHands`, `JJK_Gene_ExplosiveFlesh`, `JJK_Gene_FingerClaws`, `JJK_Gene_GWarstaff`, `JJK_Gene_GiantFists`, `JJK_Gene_GojoClanBlood`, `JJK_Gene_HanamiBody`, `JJK_Gene_HeartCatch`, `JJK_Gene_InumakiClanBlood`, `JJK_Gene_JunpeiPoison`, `JJK_Gene_KamoClanBlood`, `JJK_Gene_ParalyzingGaze`, `JJK_Gene_PrayerSong`, `JJK_Gene_ScorpionHair`, `JJK_Gene_SoundAmplification`, `JJK_Gene_SugarManipulation`, `JJK_Gene_ToolManipulation`, `JJK_Gene_WoundStabilization`, `JJK_Gene_ZeninClanBlood`
@@ -7088,6 +7406,10 @@ The `displayCategory` of each gene. 343 categories.
 
 - [DF] Gold Xenotype (3438437353) (21): `Gene_goldBeardless`, `Gene_goldBlood`, `Gene_goldColorSkin`, `Gene_goldFertility`, `Gene_goldFinger`, `Gene_goldGod`, `Gene_goldGold`, `Gene_goldHair`, `Gene_goldHead`, `Gene_goldHighLibidio`, `Gene_goldPregnancy`, `Gene_goldPsycaster`, `Gene_goldSkin`, `Gene_goldSocial`, `Gene_goldSpeed`, `Gene_goldStandard`, `Gene_goldStrength`, `Gene_goldTemperature`, `Gene_goldTough`, `Gene_goldToxic`, `Gene_goldWholeOfBody`
 
+## Categories `HBCorracallGenes` (21 genes, 1 mods)
+
+- [HB] Corracall Xenotype (2961223853) (21): `HBAfternoonShadowSkin`, `HBAnimalBodied`, `HBBirdbathSkin`, `HBCorracallBod`, `HBCorracallClaws`, `HBCorracallEars`, `HBCorracallHead`, `HBCorracallHorns`, `HBGenePoolSkin`, `HBHoarder`, `HBLavenderSkin`, `HBLongerLifespan`, `HBNighttimeSkin`, `HBNudeSpeed`, `HBPetalSkin`, `HBPoorFertility`, `HBRoseSkin`, `HBSleepySkin`, `HBSparkleVoice`, `HBUnpleasantPerson`, `HBVintageSkin`
+
 ## Categories `WVC_ResurgentCells` (21 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (12): `WVC_ResurgentCells`, `WVC_ResurgentCellsGain`, `WVC_ResurgentCells_Ageless`, `WVC_ResurgentCells_Blood`, `WVC_ResurgentCells_Clotting`, `WVC_ResurgentCells_GeneticStability`, `WVC_ResurgentCells_Skeleton`, `WVC_ResurgentCells_Sleep`, `WVC_ResurgentCells_Stomach`, `WVC_ResurgentCells_TotalHealing`, `WVC_ResurgentDisease_DiseaseFree`, `WVC_ResurgentImmunity_PerfectImmunity`
@@ -7137,6 +7459,11 @@ The `displayCategory` of each gene. 343 categories.
 - NewRatkinPlus (1578693166) (1): `RK_Gene_GoodGardening`
 - One with Death (3448902635) (1): `IntellectualDisabled`
 
+## Categories `Cosmetic_Hair` (19 genes, 2 mods)
+
+- Vanilla RimWorld (Core and Biotech, game folder) (18): `Hair_Blonde`, `Hair_BrightRed`, `Hair_DarkBlack`, `Hair_DarkBrown`, `Hair_DarkReddish`, `Hair_DarkSaturatedReddish`, `Hair_Gray`, `Hair_InkBlack`, `Hair_LightBlue`, `Hair_LightGreen`, `Hair_LightOrange`, `Hair_LightPurple`, `Hair_LightTeal`, `Hair_MidBlack`, `Hair_Pink`, `Hair_ReddishBrown`, `Hair_SandyBlonde`, `Hair_SnowWhite`
+- Femboy Xenotypes (3456372943) (1): `FEMB_RandomPastelHair`
+
 ## Categories `MoreGeneMiscellaneous` (19 genes, 1 mods)
 
 - More Genes (2878539467) (19): `Aggression_Bloodlust`, `Cannibal`, `FastLearner`, `Gourmand`, `GreatMemory`, `HealthTough`, `LargeStomach`, `Masochist`, `NightOwl`, `Nimble`, `Nudist`, `Psychopath`, `Pyromaniac`, `QuickSleeper`, `SlowLearner`, `SmallStomach`, `TooSmart`, `TorturedArtist`, `Undergrounder`
@@ -7145,17 +7472,25 @@ The `displayCategory` of each gene. 343 categories.
 
 - Alpha Genes (2891845502) (9): `AG_AerofleetHead`, `AG_CancerousFace`, `AG_DrakonoriHead`, `AG_ForsakenHead`, `AG_FoxFace`, `AG_NereidHead`, `AG_RockSpurs`, `AG_SlugFace`, `AG_VeryGauntHead`
 
+## Categories `AnthroGene_AnthroGeneCategory` (18 genes, 1 mods)
+
+- AnthroGenes (2938388220) (18): `AnthroGene_FurryBody`, `AnthroGene_Head_Amphibian`, `AnthroGene_Head_Avali`, `AnthroGene_Head_Avian`, `AnthroGene_Head_Bat`, `AnthroGene_Head_Bunny`, `AnthroGene_Head_Canid`, `AnthroGene_Head_Feline`, `AnthroGene_Head_Fish`, `AnthroGene_Head_Horse`, `AnthroGene_Head_Insect`, `AnthroGene_Head_Musteloid`, `AnthroGene_Head_Protogen`, `AnthroGene_Head_Saurus`, `AnthroGene_Head_Sergal`, `AnthroGene_Head_Skull`, `AnthroGene_Head_Synth`, `AnthroGene_Head_Ungulate`
+
 ## Categories `Bagi` (18 genes, 1 mods)
 
 - Bagi Faction 1.6 (3527337546) (18): `Crest`, `birdBody`, `birdCheek`, `birdWing`, `horseLegs`, `horseTail`, `jellyfishBody`, `jellyfishCore`, `jellyfishHead`, `jellyfishWomb`, `snakeFang`, `snakeTail`, `spiderEyes`, `spiderLegs`, `succujellyBody`, `succujellyCore`, `succujellyHead`, `succujellyWomb`
 
-## Categories `Cosmetic_Hair` (18 genes, 1 mods)
-
-- Vanilla RimWorld (Core and Biotech, game folder) (18): `Hair_Blonde`, `Hair_BrightRed`, `Hair_DarkBlack`, `Hair_DarkBrown`, `Hair_DarkReddish`, `Hair_DarkSaturatedReddish`, `Hair_Gray`, `Hair_InkBlack`, `Hair_LightBlue`, `Hair_LightGreen`, `Hair_LightOrange`, `Hair_LightPurple`, `Hair_LightTeal`, `Hair_MidBlack`, `Hair_Pink`, `Hair_ReddishBrown`, `Hair_SandyBlonde`, `Hair_SnowWhite`
-
 ## Categories `DBHGenes` (18 genes, 1 mods)
 
 - DBHGenes (2909218834) (18): `BladderHigh`, `BladderIncrediblyHigh`, `BladderLow`, `BladderNormal`, `BladderVeryHigh`, `HygieneHigh`, `HygieneIncrediblyHigh`, `HygieneLow`, `HygieneNormal`, `HygieneVeryHigh`, `NoBladder`, `NoHygiene`, `NoThirst`, `ThirstHigh`, `ThirstIncrediblyHigh`, `ThirstLow`, `ThirstNormal`, `ThirstVeryHigh`
+
+## Categories `GeneCategoryDef_Cheech_FurPatternAccent` (18 genes, 1 mods)
+
+- Cheech Xenotype (3723106445) (18): `GeneDef_Cheech_FurPatternAccent_Jaguar`, `GeneDef_Cheech_FurPatternAccent_Leopard`, `GeneDef_Cheech_FurPatternAccent_LeopardCrisp`, `GeneDef_Cheech_FurPatternAccent_Mottled`, `GeneDef_Cheech_FurPatternAccent_Patches`, `GeneDef_Cheech_FurPatternAccent_Spots`, `GeneDef_Cheech_FurPatternAccent_StripesSharp`, `GeneDef_Cheech_FurPatternAccent_StripesSpots`, `GeneDef_Cheech_FurPatternAccent_StripesSpotsBold`, `GeneDef_Cheech_FurPatternAccent_StripesSquiggles`, `GeneDef_Cheech_FurPatternAccent_StripesV`, `GeneDef_Cheech_FurPatternAccent_SwirlsSpots`, `GeneDef_Cheech_HeadPatternAccent_Cheetah`, `GeneDef_Cheech_HeadPatternAccent_Dashes`, `GeneDef_Cheech_HeadPatternAccent_Jaguar`, `GeneDef_Cheech_HeadPatternAccent_LeopardCrisp`, `GeneDef_Cheech_HeadPatternAccent_Squiggles`, `GeneDef_Cheech_HeadPatternAccent_StripesV`
+
+## Categories `GEW_Wings` (18 genes, 1 mods)
+
+- [LFS] Genes Expanded - Wings (3208605060) (9): `GEW_Angel_Wings`, `GEW_Boney_Wings`, `GEW_DarkAngel_Wings`, `GEW_Demon_Wings`, `GEW_Fairy_Wings`, `GEW_Genetic_Wings`, `GEW_Insectoid_Wings`, `GEW_Moth_Wings`, `GEW_Slime_Wings`
 
 ## Categories `SuperPowersResize` (18 genes, 1 mods)
 
@@ -7184,6 +7519,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `AG_MeatType` (16 genes, 1 mods)
 
 - Alpha Genes (2891845502) (8): `AG_AerofleetFlesh`, `AG_ChocolateFlesh`, `AG_JellyFlesh`, `AG_MagicMushroomFlesh`, `AG_OcularFlesh`, `AG_PlantFlesh`, `AG_RoyalJellyFlesh`, `AG_WasteFlesh`
+
+## Categories `GEST_Skin_type` (16 genes, 1 mods)
+
+- [LFS] Genes Expanded - Skin Types (3545921603) (8): `GEST_Bark_Skin_Type`, `GEST_Crystalline_Skin_Type`, `GEST_Feathered_Skin_Type`, `GEST_Insectoid_Skin_Type`, `GEST_Rockey_Skin_Type`, `GEST_Sandstone_Skin_Type`, `GEST_Scale_Skin_Type`, `GEST_Slime_Skin_Type`
 
 ## Categories `GS_GraceTouched` (16 genes, 2 mods)
 
@@ -7266,6 +7605,11 @@ The `displayCategory` of each gene. 343 categories.
 
 - rim!tale (3714568121) (13): `Magic_Barrier`, `Magic_Bone`, `Magic_Chaos`, `Magic_Crystal`, `Magic_Electric`, `Magic_Fire`, `Magic_Gravity`, `Magic_Heal`, `Magic_Ice`, `Magic_Random`, `Magic_Shadow`, `Magic_Strings`, `Magic_Water`
 
+## Categories `VRE_Curiosity` (13 genes, 2 mods)
+
+- Vanilla Races Expanded - Genie (2901424072) (12): `VRE_Curiosity_Animals`, `VRE_Curiosity_Artistic`, `VRE_Curiosity_Construction`, `VRE_Curiosity_Cooking`, `VRE_Curiosity_Crafting`, `VRE_Curiosity_Intellectual`, `VRE_Curiosity_Medicine`, `VRE_Curiosity_Melee`, `VRE_Curiosity_Mining`, `VRE_Curiosity_Plants`, `VRE_Curiosity_Shooting`, `VRE_Curiosity_Social`
+- local:rjw-genes (local:rjw-genes) (1): `VRE_Curiosity_Sex`
+
 ## Categories `WVC_Duplicator` (13 genes, 1 mods)
 
 - WVC - Xenotypes and Genes (2886992038) (7): `WVC_Duplicator_Bandwidth`, `WVC_Duplicator_DeathChain`, `WVC_Duplicator_LowOutChance`, `WVC_Duplicator_PsychicSensitivity`, `WVC_Duplicator_Psylink`, `WVC_Duplicator_SkillsSync`, `WVC_Duplicator_ZeroOutChance`
@@ -7312,6 +7656,10 @@ The `displayCategory` of each gene. 343 categories.
 
 - Vanilla Quests Expanded - Ancients (3618306875) (12): `VQEA_MasterfulAnimals`, `VQEA_MasterfulArtistic`, `VQEA_MasterfulConstruction`, `VQEA_MasterfulCooking`, `VQEA_MasterfulCrafting`, `VQEA_MasterfulIntellectual`, `VQEA_MasterfulMedical`, `VQEA_MasterfulMelee`, `VQEA_MasterfulMining`, `VQEA_MasterfulPlants`, `VQEA_MasterfulShooting`, `VQEA_MasterfulSocial`
 
+## Categories `VRE_SkillLoss` (12 genes, 1 mods)
+
+- Vanilla Races Expanded - Fungoid (3042690053) (6): `VRE_ExtremeSkillLoss`, `VRE_MinorSkillLoss`, `VRE_NoSkillLoss`, `VRE_NoStudy`, `VRE_SevereSkillLoss`, `VRE_SkillDegradation`
+
 ## Categories `BS_Production` (11 genes, 2 mods)
 
 - Lilin Wool Genes (3696210405) (8): `KNV_woolgene_creamy`, `KNV_woolgene_darkgrey`, `KNV_woolgene_desertsand`, `KNV_woolgene_lightgrey`, `KNV_woolgene_palebrown`, `KNV_woolgene_pinkbrown`, `KNV_woolgene_red`, `KNV_woolgene_white`
@@ -7328,6 +7676,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `rjw_genes_fertilin` (11 genes, 1 mods)
 
 - local:rjw-genes (local:rjw-genes) (11): `rjw_genes_cockeater`, `rjw_genes_cum_eater`, `rjw_genes_drainer`, `rjw_genes_fertilin_absorber`, `rjw_genes_lifeforce`, `rjw_genes_lifeforce_drain`, `rjw_genes_lifeforce_empath`, `rjw_genes_naked_prowess`, `rjw_genes_paralysingkiss`, `rjw_genes_pussyhealing`, `rjw_genes_seduce`
+
+## Categories `VREW_Mutations` (11 genes, 1 mods)
+
+- Vanilla Races Expanded - Waster (2983471725) (11): `VREW_PollutionAccuracy`, `VREW_PollutionCognition`, `VREW_PollutionFertility`, `VREW_PollutionHappiness`, `VREW_PollutionNumbness`, `VREW_PollutionProductivity`, `VREW_PollutionPsySensitivity`, `VREW_PollutionRage`, `VREW_PollutionRegeneration`, `VREW_PollutionRush`, `VREW_PollutionSustenance`
 
 ## Categories `AG_Armour` (10 genes, 1 mods)
 
@@ -7352,6 +7704,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `JIMCat_Lifespan` (10 genes, 1 mods)
 
 - Jimothy's Genes! (3371751009) (10): `JIMJAM_ArchiteLifespan`, `JIMJAM_ExtremelyHighLifespan`, `JIMJAM_HighLifespan`, `JIMJAM_LowLifespan`, `JIMJAM_MajorArchiteLifespan`, `JIMJAM_MinorArchiteLifespan`, `JIMJAM_SlightlyHighLifespan`, `JIMJAM_SlightlyLowLifespan`, `JIMJAM_VeryHighLifespan`, `JIMJAM_VeryLowLifespan`
+
+## Categories `JMK_MoonGenes` (10 genes, 1 mods)
+
+- Milira Xenotypes - Moon Kitsune (3830884619) (10): `JMK_LunarAbilityGene`, `JMK_LunarSoulGene1`, `JMK_MoonGene1`, `JMK_MoonGene2`, `JMK_MoonGene3`, `JMK_MoonGene4`, `JMK_MoonGene5`, `JMK_StarSoulGene1`, `JMK_StarSoulGene2`, `JMK_TrigGene1`
 
 ## Categories `Lifespan` (10 genes, 2 mods)
 
@@ -7415,6 +7771,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `AncientGenes` (8 genes, 1 mods)
 
 - Ancient Genes (3284073514) (8): `CentralModification`, `GenesisImitation`, `HormonalCoordination`, `LazarusReplication`, `MetabolicInvigoration`, `PrimalImmunization`, `ProgenitorRetention`, `PsychologicalRecondition`
+
+## Categories `Avali` (8 genes, 1 mods)
+
+- Biotech - Avali (2893711709) (8): `EmpoweredRush`, `Featherskin`, `KeenHearing`, `MaxTemp_SuperIncrease`, `MinTemp_SuperDecrease`, `StreamlinedMetabolism`, `Tail_Avali`, `Temperamental`
 
 ## Categories `Bleach_Arrancar` (8 genes, 1 mods)
 
@@ -7541,6 +7901,10 @@ The `displayCategory` of each gene. 343 categories.
 
 - United weird Unimals (2902436977) (6): `FC_Body`, `FC_Ears`, `FC_Eyes`, `FC_Photosynthesis`, `FC_Tail`, `FC_Voice`
 
+## Categories `Frosty_Gene` (6 genes, 1 mods)
+
+- FrostyDragonRace (BIOTECH) (3747969399) (6): `Frosty_BlackFur`, `Frosty_BlueFur`, `Frosty_GreenFur`, `Frosty_RedFur`, `Frosty_Traits`, `Frosty_WhiteFur`
+
 ## Categories `GARDEVOIRIN` (6 genes, 1 mods)
 
 - Gardevoirs evolution (3668080626) (6): `Galladebody`, `Gardevoirbody`, `Gardevoirpowergene`, `Kirliabody`, `MegaGardevoirbody`, `Raltsbody`
@@ -7557,6 +7921,11 @@ The `displayCategory` of each gene. 343 categories.
 
 - Mashed's Ashlands (3109835541) (6): `Mashed_Ashlands_AshResistance_Fragile`, `Mashed_Ashlands_AshResistance_Frail`, `Mashed_Ashlands_AshResistance_Magnet`, `Mashed_Ashlands_AshResistance_Partial`, `Mashed_Ashlands_AshResistance_Total`, `MorrowRim_Gene_AshMoodResistance`
 
+## Categories `Milira_GeneCategory` (6 genes, 2 mods)
+
+- Milira Race Gene Patch (3257000248) (5): `Milira_Ablutomania`, `Milira_Knowledgeable`, `Milira_Leisurely`, `Milira_Mechining`, `Milira_ProNegotiator`
+- Milira Xenotypes - Moon Kitsune (3830884619) (1): `Jimlira_NightOwl`
+
 ## Categories `Muriden_InnateAttacks` (6 genes, 1 mods)
 
 - Big and Small - Muriden (3597814862) (3): `Muriden_Bite`, `Muriden_Claws`, `Muriden_PorcupineQuills`
@@ -7564,6 +7933,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `SenseOrgans` (6 genes, 1 mods)
 
 - Genes+ – Rebalanced and Continued (3554395043) (6): `SenseOrgans_AdvancedHearing`, `SenseOrgans_AdvancedSight`, `SenseOrgans_AdvancedTalking`, `SenseOrgans_Blindness`, `SenseOrgans_Deafness`, `SenseOrgans_Silence`
+
+## Categories `Zearot_Category` (6 genes, 1 mods)
+
+- [LFS] Night Shade Mercenaries (2909372626) (6): `Body_Zearot`, `Hair_Zearot`, `Headbone_Large_NS`, `Headbone_Medium_NS`, `Headbone_SmallHorns_NS`, `Skin_Color_Zearot`
 
 ## Categories `BS_Armour` (5 genes, 1 mods)
 
@@ -7681,6 +8054,10 @@ The `displayCategory` of each gene. 343 categories.
 
 - United weird Unimals (2902436977) (4): `Gel_Acid`, `Gel_Body`, `Gel_Core`, `Gel_Hair_Only`
 
+## Categories `GeneCategoryDef_Cheech_FurPatternFill` (4 genes, 1 mods)
+
+- Cheech Xenotype (3723106445) (4): `GeneDef_Cheech_FurPatternFill_Mottled`, `GeneDef_Cheech_FurPatternFill_Patches`, `GeneDef_Cheech_FurPatternFill_Tux`, `GeneDef_Cheech_HeadPatternFill_Mottled`
+
 ## Categories `HKTK_Gene` (4 genes, 1 mods)
 
 - TouhouKyusakuStyle (3769625965) (2): `HKTK_GengetsuWings_Gene`, `HKTK_KurumiWings_Gene`
@@ -7762,6 +8139,10 @@ The `displayCategory` of each gene. 343 categories.
 ## Categories `SAB_Misc` (3 genes, 1 mods)
 
 - FRBE Addon - Sionnari (3243761451) (3): `SAB_ArtachTemplate`, `SAB_FinealanTemplate`, `SAB_FioranTemplate`
+
+## Categories `SeaHorseBold` (3 genes, 1 mods)
+
+- Biotech seahorsebold  (3582748630) (3): `SeaboldHead`, `SeaboldTail`, `SeahorseFins`
 
 ## Categories `SoulDarkLv_EchoSoul` (3 genes, 1 mods)
 
@@ -7915,7 +8296,7 @@ The `displayCategory` of each gene. 343 categories.
 
 - WVC - Xenotypes and Genes (2886992038) (1): `WVC_Aptitudes_GreatEqualizer`
 
-## Categoriess with one gene (15)
+## Categoriess with one gene (17)
 
 | Categories | Gene | Mod |
 |---|---|---|
@@ -7932,6 +8313,8 @@ The `displayCategory` of each gene. 343 categories.
 | `LahlitBlood` | `BlackBlood` | No Longer Human-Consortium Faction Pack |
 | `PoI_ExtraGenes` | `PoI_FemaleOnly` | Paws Of Interest [ Xenotype Mod ] |
 | `SAB_Aptitudes` | `SAB_Necrolyte` | FRBE Addon - Gnolls |
+| `Skin` | `Skin_Tough` | Biotech: Reptilian Humanoids Mod |
+| `Social` | `CollectiveYipping` | Biotech: Reptilian Humanoids Mod |
 | `TH_GeneCategory_Race` | `TH_GirlHuman` | TouhouRimworld.test |
-| `VRE_Curiosity` | `VRE_Curiosity_Sex` | local:rjw-genes |
+| `VREH_WeaponAptitudes` | `VREHT_WeaponAptitude_Randomizer` | Vanilla Races Expanded - Hussar |
 

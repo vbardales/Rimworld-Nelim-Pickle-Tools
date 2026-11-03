@@ -1,17 +1,17 @@
 # Cosmetic genes: every one on disk
 
-Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over the Workshop and the local Mods folder (9706 folders read) for the mods, XML comments stripped, 1.6 or unversioned folders only, `ParentName` resolved inside each mod. **3293 distinct gene names in 257 sources (vanilla + mods).** A gene is listed as cosmetic when it (or its parent) sets a skin colour, a hair colour, a hair or beard tag filter, a head type, a body type, a `renderNodeProperties` (something drawn: ears, tails, horns, marks, wings), or a display category that contains "Cosmetic". The vanilla genes come from the game folder, not from the scan (Data/Core and Data/Biotech, `GeneDefs`): the 1.6 install and the 1.7.4976 install hold the same 72 cosmetic genes. A gene found is not a gene loaded: the mod must be in the mod list, and some genes also carry stats (a drawn gene may be a body part with an effect). This is names from the XML, not photographs: the photographed ones are in Genes d'apparence, Looks and Colours. A gene name may be found in two kinds (a horn that also sets a skin colour).
+Scan of 2026-11-04: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over the Workshop and the local Mods folder (9824 folders read) for the mods, XML comments stripped, 1.6 or unversioned folders only, `ParentName` resolved inside each mod. **3537 distinct gene names in 301 sources (vanilla + mods).** A gene is listed as cosmetic when it (or its parent) sets a skin colour, a hair colour, a hair or beard tag filter, a head type, a body type, a `renderNodeProperties` (something drawn: ears, tails, horns, marks, wings), or a display category that contains "Cosmetic". The vanilla genes come from the game folder, not from the scan (Data/Core and Data/Biotech, `GeneDefs`): the 1.6 install and the 1.7.4976 install hold the same 72 cosmetic genes. A gene found is not a gene loaded: the mod must be in the mod list, and some genes also carry stats (a drawn gene may be a body part with an effect). This is names from the XML, not photographs: the photographed ones are in Genes d'apparence, Looks and Colours. A gene name may be found in two kinds (a horn that also sets a skin colour).
 
 | Kind | Genes (name x mod) |
 |---|---|
-| hair style | 143 |
-| beard | 151 |
-| skin colour | 827 |
-| head shape | 314 |
-| drawn (ears, tails, horns, marks, wings...) | 1650 |
-| body | 81 |
-| other cosmetic category | 161 |
-| hair colour | 490 |
+| hair style | 148 |
+| beard | 158 |
+| skin colour | 917 |
+| head shape | 362 |
+| drawn (ears, tails, horns, marks, wings...) | 1760 |
+| body | 86 |
+| other cosmetic category | 166 |
+| hair colour | 505 |
 
 | Mod | Workshop id | Cosmetic genes |
 |---|---|---|
@@ -32,6 +32,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Big and Small - Genes & More | 2920751126 | 54 |
 | [Alien/Race] Seren, from Stardust | 2704627783 | 49 |
 | Yanzhiko Xenotype Collection | 3580656240 | 49 |
+| Cheech Xenotype | 3723106445 | 46 |
 | Meteorifics Cosmetic Gene Pack | 2903706128 | 43 |
 | Erin's Cosmetic Genes | 3658223466 | 38 |
 | [LTS]Xenotech | 2877887281 | 37 |
@@ -40,10 +41,12 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Biotech Expansion - Mammalia | 2878084431 | 31 |
 | FIP - WestTek | 3592202407 | 31 |
 | Inclusive Skin Tones 1.6 | 3551840130 | 29 |
+| Inclusive Skin Tone Genes | 3554881228 | 29 |
 | No Longer Human-Consortium Faction Pack | 3777379164 | 29 |
 | Bagi Faction 1.6 | 3527337546 | 28 |
 | Obsidia Expansion - Mothoids Xenotype | 2885653060 | 24 |
 | Dr. Arch13's ArchoWonderium - The Xen Empire | 3407013231 | 24 |
+| AnthroGenes | 2938388220 | 23 |
 | DuelMonsterRimWorld | 3050289249 | 23 |
 | Cain's Gene Pack | 3819866589 | 23 |
 | Fairycore - Spirit Wings | 3812515333 | 21 |
@@ -61,6 +64,8 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Biotech Expansion - Insectoid | 3219625470 | 17 |
 | Erin's Rhy'aeth | 3707527452 | 16 |
 | Faction - Elves | 3726293423 | 15 |
+| [HB] Corracall Xenotype | 2961223853 | 13 |
+| Det's Xenotypes - Avaloi | 3199692643 | 13 |
 | Obsidia Expansion - Slimes Xenotype | 3331598962 | 13 |
 | FIP - RobCo | 3563825876 | 13 |
 | Obsidia Expansion - Axotl Xenotype | 3304340573 | 12 |
@@ -71,6 +76,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Epona Dynastic Rise | 3514746737 | 11 |
 | Blanks. | 3668680336 | 11 |
 | Oca's Anthrosonae | 3720732132 | 11 |
+| Fantasy Goblins Updated | 2011680079 | 10 |
 | Tribal Fungi Biome | 2182438464 | 10 |
 | Zoroark - Xenotype | 3047455758 | 10 |
 | Carnarodian, the two Mustelids Xenotypes and Factions | 3104049393 | 10 |
@@ -83,6 +89,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | [SH]Gene Expand | 3558760095 | 10 |
 | Spite the Sky: Fer'Liebor Xenotype | 3646000311 | 10 |
 | 边缘仙路-镇邪诛鬼 RimImmortal-Exorcism[1.6] | 3663824172 | 10 |
+| Toad Folk - Xenotype | 3733348634 | 10 |
 | [AP] Lupine Xenotype | 2991428888 | 9 |
 | Vanilla Skin Tone Genes | 3165888554 | 9 |
 | [LFS] Genes Expanded - Wings | 3208605060 | 9 |
@@ -92,16 +99,20 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Everybody's Different | 3750132342 | 9 |
 | Miho, the celestial fox | 2816826107 | 8 |
 | Dr. Arch13's ArchoWonderium - DigiFox (tm) | 2900653856 | 8 |
+| Vanilla Races Expanded - Fungoid | 3042690053 | 8 |
 | Rimsenal Xenotype Pack - Harana | 3228637524 | 8 |
+| Helltaker Cosmetic Genes (Gray Horns) | 3314993047 | 8 |
 | Helltaker Cosmetic Genes (Skin Horns) | 3314993192 | 8 |
 | Just About: Lions And Tigers (Continued) | 3320873214 | 8 |
 | ME(b) - Krogan | 3524888108 | 8 |
+| [LFS] Genes Expanded - Skin Types | 3545921603 | 8 |
 | Lilin Wool Genes | 3696210405 | 8 |
 | 鼠族（无外星人框架）/ Ratkin Without HAR | 3826752382 | 8 |
 | Various Eyes Genes | 2880903154 | 7 |
 | Identity | 2882253079 | 7 |
 | Far Easterner, Ama the Three Raijus of the Far East Xenotypes and Factions | 2974761367 | 7 |
 | ReSplice: Charmweavers | 3131996691 | 7 |
+| Det's Xenotypes - Venators | 3140248688 | 7 |
 | Det's Xenotypes - Boglegs | 3146564944 | 7 |
 | Starei's Florian Xenotype | 3310020641 | 7 |
 | K's Snarelanterns | 3328218292 | 7 |
@@ -112,6 +123,8 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Molong Xenotype | 3789407175 | 7 |
 | local:rimholstaur | local:rimholstaur | 7 |
 | Lantern Hunters | 2866414675 | 6 |
+| Biotech: Reptilian Humanoids Mod | 2885147370 | 6 |
+| [LFS] Night Shade Mercenaries | 2909372626 | 6 |
 | Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) | 3226197882 | 6 |
 | Tower of Rimworld | 3335952183 | 6 |
 | Big and Small - Simply Robots | 3360323573 | 6 |
@@ -122,6 +135,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Hawk's Gryphons | 3684749881 | 6 |
 | Addie's Frost Fey | 3697314995 | 6 |
 | Mantled Beasts | 3739973453 | 6 |
+| FrostyDragonRace (BIOTECH) | 3747969399 | 6 |
 | Kimchianz Xenotype (Beta) | 3752498193 | 6 |
 | Seraphim Xenotype Reborn | 3773065414 | 6 |
 | Biotech Monke Xenotype (Continued) | 3797310379 | 6 |
@@ -134,6 +148,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Vanilla Races Expanded - Pigskin | 3164798809 | 5 |
 | Cane Aternitigno, The war dogs of battlefield Xenotypes and Faction | 3165847953 | 5 |
 | Rimframe: Vatgrown Hate | 3431220821 | 5 |
+| Femboy Xenotypes | 3456372943 | 5 |
 | No Longer Human-Warhives Faction Pack | 3462391280 | 5 |
 | Roo's Satyr Xenotype | 3548322381 | 5 |
 | Roo's Minotaur Xenotype | 3548423129 | 5 |
@@ -145,11 +160,14 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | NewRatkinPlus | 1578693166 | 4 |
 | Vanilla Races Expanded - Saurid | 2880990495 | 4 |
 | Nose Sponge Plus+ | 2881450798 | 4 |
+| Skin Genes | 2889538539 | 4 |
 | Wild Factions - Damar | 2889581499 | 4 |
 | Wild Factions - UXC | 2889924604 | 4 |
 | Lapelli Race - Biotech | 2892301088 | 4 |
 | BodyTypeMatters | 2916028877 | 4 |
+| Rim-Shek - Biotech | 2974298719 | 4 |
 | Roxborn | 3048382292 | 4 |
+| Vanilla Races Expanded - Archon | 3067715093 | 4 |
 | Vanilla Races Expanded - Lycanthrope | 3114453100 | 4 |
 | Thrumboian Race | 3257981328 | 4 |
 | MakaiTech - Xenotype | 3268577147 | 4 |
@@ -185,24 +203,34 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Rimzone: Sons and Daughters of Helghan | 3492260324 | 3 |
 | 出于沙漠之花 | 3494511060 | 3 |
 | Ashcat Xenotype | 3522775404 | 3 |
+| Posthuman Drift Trog Xenotype | 3526993498 | 3 |
 | Hyenid Xenotype | 3543131848 | 3 |
+| Biotech seahorsebold  | 3582748630 | 3 |
 | Big and Small - Muriden | 3597814862 | 3 |
+| 【β】Ikquan Race | 3633519200 | 3 |
 | Foxian League | 3639227864 | 3 |
 | RimKimetsu - Demon Slayer Rimworld Mod | 3641720143 | 3 |
 | Rimspite Gitz: Loonclans | 3735204214 | 3 |
 | MUGB Goblin | 3768425355 | 3 |
+| Gexies milkies | 3775745938 | 3 |
 | Big and Small - Catfolk | 3802375059 | 3 |
 | Anthrosonae Mongoose | 3802945828 | 3 |
+| Hiisi Xenotype | 3816069605 | 3 |
+| Clockwork Folk Xenotype | 3819827499 | 3 |
+| Biotech Nyaron | 2881513314 | 2 |
 | Neco Arc Genes | 2953392432 | 2 |
 | Vanilla Races Expanded - Sanguophage | 2963116383 | 2 |
 | Nekomata Tail Genes | 2976801620 | 2 |
 | World of Naruto | 3025338958 | 2 |
 | Duztamva's Misc | 3231645315 | 2 |
+| Beliar Xenotype | 3237072670 | 2 |
 | Selective Retexture Based on Gene | 3377855600 | 2 |
 | Very scuffed 1.5 Sergals | 3469468302 | 2 |
 | Spirits | 3472437470 | 2 |
 | Doctor Mcninja Mod | 3511408960 | 2 |
 | Posthuman Drift Warcat Xenotype | 3521815010 | 2 |
+| Posthuman Drift Nixie Xenotype | 3521815475 | 2 |
+| Posthuman Drift Bossaps Xenotype | 3521815829 | 2 |
 | Crream's Yetis | 3529805799 | 2 |
 | Novabeast xenotype | 3532520652 | 2 |
 | Goliann Xenotype | 3541961078 | 2 |
@@ -210,24 +238,38 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Umamusume: Rim Derby | 3552197538 | 2 |
 | Geist Xenotype | 3564732214 | 2 |
 | RIMWAAAGH — Orks of RimWorld [1.6] — WIP | 3577775737 | 2 |
+| Reese's Dirtmole Glowup | 3587761388 | 2 |
 | Badger Xenotype | 3618642160 | 2 |
 | Erin's Auraeyl | 3653150966 | 2 |
 | Jujutsu Kaisen | 3658634704 | 2 |
 | Skeletal Efflorescence | 3685431818 | 2 |
 | NyanDark 40k - Space Maids | 3697034827 | 2 |
+| Varan Xenotype | 3698105907 | 2 |
 | Gloria A Las Plagas | 3708476081 | 2 |
+| 고라니 귀와 꼬리 (Gorani Ears and Tail) | 3716953000 | 2 |
 | 햄스터 귀와 꼬리 (Hamster Ears and Tail) | 3718267131 | 2 |
+| Gexies expies | 3738658775 | 2 |
 | Vanillafied Vivi | 3739051552 | 2 |
 | TouhouKyusakuStyle | 3769625965 | 2 |
+| Backwardborn Xenotype | 3819826833 | 2 |
+| Tonttu Xenotype | 3819828414 | 2 |
+| Tuonela Xenotype | 3819828750 | 2 |
+| Milira Xenotypes - Moon Kitsune | 3830884619 | 2 |
 | local:rjw-genes | local:rjw-genes | 2 |
 | HousekeeperAssistanceCat | 1541620640 | 1 |
 | Zeta Reticulans [Player/Hostile Factions] | 2241841840 | 1 |
 | Biotech Expansion - Core | 2884018485 | 1 |
 | Det's Xenotypes - Stoneborn | 2888722722 | 1 |
 | Oni of the Rim | 2891432261 | 1 |
+| Revia Race - Biotech | 2893157989 | 1 |
+| Biotech - Avali | 2893711709 | 1 |
+| Vanilla Races Expanded - Genie | 2901424072 | 1 |
 | Roo's HD Dreadlock Hairstyles | 2902544033 | 1 |
 | Erin's Auronya | 2908837535 | 1 |
+| Just Another Xenotype Mod | 2979167335 | 1 |
+| Vanilla Races Expanded - Waster | 2983471725 | 1 |
 | More Biotech Style Genes - All in One | 2985153870 | 1 |
+| Hair Colored Skin Gene | 2999949806 | 1 |
 | Erin's Fenrisúlfr | 3020079359 | 1 |
 | Nemi - magic rabbit | 3130332603 | 1 |
 | CrusaderWhale | 3171384758 | 1 |
@@ -250,6 +292,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | make a zundamochi  +ankomochi | 3508333672 | 1 |
 | Animal Genes | 3510541507 | 1 |
 | Pesky's Bulwark Xenotype | 3521016438 | 1 |
+| Posthuman Drift Dvergr Xenotype | 3521816382 | 1 |
 | Det's Xenotypes - Half-foot | 3530817307 | 1 |
 | Nimi's Nightmare | 3549623851 | 1 |
 | Akaname | 3564157675 | 1 |
@@ -263,6 +306,7 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | Bizarre Bloodlines | 3719429625 | 1 |
 | Resident Rim | 3732795691 | 1 |
 |  Yet another neko xenotype - Nekotech Xenotype | 3736684475 | 1 |
+| The Drow - Biotech Edition (Continued) | 3755554485 | 1 |
 | Project Moon - Sweepers | 3761992483 | 1 |
 | Avian Genes | 3769643744 | 1 |
 | Kemirman | 3793645542 | 1 |
@@ -441,6 +485,15 @@ Workshop id 3580656240.
 - head shape (25): `TWC_YZHead_BZoroark`, `TWC_YZHead_Braixen`, `TWC_YZHead_Cheetah`, `TWC_YZHead_Delphox`, `TWC_YZHead_Eevee`, `TWC_YZHead_Espeon`, `TWC_YZHead_Flareon`, `TWC_YZHead_Fressalfar`, `TWC_YZHead_Gardevoir`, `TWC_YZHead_Glaceon`, `TWC_YZHead_Icephox`, `TWC_YZHead_Jaguar`, `TWC_YZHead_Jolteon`, `TWC_YZHead_Kisalfar`, `TWC_YZHead_Leafeon`, `TWC_YZHead_Leo`, `TWC_YZHead_Lombax`, `TWC_YZHead_Meowstic`, `TWC_YZHead_Panther`, `TWC_YZHead_Sylveon`, `TWC_YZHead_Tigris`, `TWC_YZHead_Umbreon`, `TWC_YZHead_Vaporeon`, `TWC_YZHead_Vulpoid`, `TWC_YZHead_WZoroark`
 - body (17): `TWC_YZBody_Braixen`, `TWC_YZBody_Cheetah`, `TWC_YZBody_Delphox`, `TWC_YZBody_Eevee`, `TWC_YZBody_Espeon`, `TWC_YZBody_Flareon`, `TWC_YZBody_Gardevoir`, `TWC_YZBody_Glaceon`, `TWC_YZBody_Icephox`, `TWC_YZBody_Jolteon`, `TWC_YZBody_Leafeon`, `TWC_YZBody_Lombax`, `TWC_YZBody_Meowstic`, `TWC_YZBody_Sylveon`, `TWC_YZBody_Umbreon`, `TWC_YZBody_Vaporeon`, `TWC_YZBody_Vulpoid`
 
+## Cheech Xenotype (46)
+
+Workshop id 3723106445.
+
+- skin colour (14): `GeneDef_Cheech_Skin_BattleCat`, `GeneDef_Cheech_Skin_BlackPanther`, `GeneDef_Cheech_Skin_Calico`, `GeneDef_Cheech_Skin_Cheetah`, `GeneDef_Cheech_Skin_Garfield`, `GeneDef_Cheech_Skin_Jaguar`, `GeneDef_Cheech_Skin_Lion`, `GeneDef_Cheech_Skin_Lynx`, `GeneDef_Cheech_Skin_NyanCat`, `GeneDef_Cheech_Skin_Ocelot`, `GeneDef_Cheech_Skin_PinkPanther`, `GeneDef_Cheech_Skin_Random`, `GeneDef_Cheech_Skin_SnowLeopard`, `GeneDef_Cheech_Skin_Tiger`
+- head shape (1): `GeneDef_Cheech_Head`
+- body (4): `GeneDef_Cheech_Tail_Bob_Tip`, `GeneDef_Cheech_Tail_Cheechy_Tip`, `GeneDef_Cheech_Tail_Long_Tip`, `GeneDef_Cheech_Tail_Stripes`
+- drawn (ears, tails, horns, marks, wings...) (31): `GeneDef_Cheech_Ears_Average_GreyFill_Stripes`, `GeneDef_Cheech_Ears_Large_NoFill_Solid`, `GeneDef_Cheech_Ears_Large_PinkFill_Solid`, `GeneDef_Cheech_Ears_Large_PinkFill_Spots`, `GeneDef_Cheech_FurPatternAccent_Jaguar`, `GeneDef_Cheech_FurPatternAccent_Leopard`, `GeneDef_Cheech_FurPatternAccent_LeopardCrisp`, `GeneDef_Cheech_FurPatternAccent_Mottled`, `GeneDef_Cheech_FurPatternAccent_Patches`, `GeneDef_Cheech_FurPatternAccent_Spots`, `GeneDef_Cheech_FurPatternAccent_StripesSharp`, `GeneDef_Cheech_FurPatternAccent_StripesSpots`, `GeneDef_Cheech_FurPatternAccent_StripesSpotsBold`, `GeneDef_Cheech_FurPatternAccent_StripesSquiggles`, `GeneDef_Cheech_FurPatternAccent_StripesV`, `GeneDef_Cheech_FurPatternAccent_SwirlsSpots`, `GeneDef_Cheech_FurPatternFill_Mottled`, `GeneDef_Cheech_FurPatternFill_Patches`, `GeneDef_Cheech_FurPatternFill_Tux`, `GeneDef_Cheech_Fur_Tufted`, `GeneDef_Cheech_HeadPatternAccent_Cheetah`, `GeneDef_Cheech_HeadPatternAccent_Dashes`, `GeneDef_Cheech_HeadPatternAccent_Jaguar`, `GeneDef_Cheech_HeadPatternAccent_LeopardCrisp`, `GeneDef_Cheech_HeadPatternAccent_Squiggles`, `GeneDef_Cheech_HeadPatternAccent_StripesV`, `GeneDef_Cheech_HeadPatternFill_Mottled`, `GeneDef_Cheech_Tail_Bob_Tip`, `GeneDef_Cheech_Tail_Cheechy_Tip`, `GeneDef_Cheech_Tail_Long_Tip`, `GeneDef_Cheech_Tail_Stripes`
+
 ## Meteorifics Cosmetic Gene Pack (43)
 
 Workshop id 2903706128.
@@ -506,6 +559,12 @@ Workshop id 3551840130.
 
 - skin colour (29): `Skin_Melanin1`, `Skin_Melanin10`, `Skin_Melanin11`, `Skin_Melanin12`, `Skin_Melanin13`, `Skin_Melanin14`, `Skin_Melanin15`, `Skin_Melanin16`, `Skin_Melanin17`, `Skin_Melanin18`, `Skin_Melanin19`, `Skin_Melanin2`, `Skin_Melanin20`, `Skin_Melanin21`, `Skin_Melanin22`, `Skin_Melanin23`, `Skin_Melanin24`, `Skin_Melanin25`, `Skin_Melanin26`, `Skin_Melanin27`, `Skin_Melanin28`, `Skin_Melanin29`, `Skin_Melanin3`, `Skin_Melanin4`, `Skin_Melanin5`, `Skin_Melanin6`, `Skin_Melanin7`, `Skin_Melanin8`, `Skin_Melanin9`
 
+## Inclusive Skin Tone Genes (29)
+
+Workshop id 3554881228.
+
+- skin colour (29): `Skin_Melanin10G`, `Skin_Melanin11G`, `Skin_Melanin12G`, `Skin_Melanin13G`, `Skin_Melanin14G`, `Skin_Melanin15G`, `Skin_Melanin16G`, `Skin_Melanin17G`, `Skin_Melanin18G`, `Skin_Melanin19G`, `Skin_Melanin1G`, `Skin_Melanin20G`, `Skin_Melanin21G`, `Skin_Melanin22G`, `Skin_Melanin23G`, `Skin_Melanin24G`, `Skin_Melanin25G`, `Skin_Melanin26G`, `Skin_Melanin27G`, `Skin_Melanin28G`, `Skin_Melanin29G`, `Skin_Melanin2G`, `Skin_Melanin3G`, `Skin_Melanin4G`, `Skin_Melanin5G`, `Skin_Melanin6G`, `Skin_Melanin7G`, `Skin_Melanin8G`, `Skin_Melanin9G`
+
 ## No Longer Human-Consortium Faction Pack (29)
 
 Workshop id 3777379164.
@@ -539,6 +598,13 @@ Workshop id 3407013231.
 - beard (6): `FenFur`, `FerFur`, `FridFur`, `LogFur`, `RacFur`, `XenFur`
 - head shape (6): `FenFur`, `FerFur`, `FridFur`, `LogFur`, `RacFur`, `XenFur`
 - drawn (ears, tails, horns, marks, wings...) (24): `FenEar`, `FenFur`, `FenHead`, `FenTail`, `FerEar`, `FerFur`, `FerHead`, `FerTail`, `FridEar`, `FridFur`, `FridHead`, `FridTail`, `LogEar`, `LogFur`, `LogHead`, `LogTail`, `RacEar`, `RacFur`, `RacHead`, `RacTail`, `XenEar`, `XenFur`, `XenHead`, `XenTail`
+
+## AnthroGenes (23)
+
+Workshop id 2938388220.
+
+- head shape (20): `AnthroGene_Head_Amphibian`, `AnthroGene_Head_Avali`, `AnthroGene_Head_Avian`, `AnthroGene_Head_Bat`, `AnthroGene_Head_Bunny`, `AnthroGene_Head_Canid`, `AnthroGene_Head_Feline`, `AnthroGene_Head_Fish`, `AnthroGene_Head_Horse`, `AnthroGene_Head_Insect`, `AnthroGene_Head_Musteloid`, `AnthroGene_Head_Protogen`, `AnthroGene_Head_Saurus`, `AnthroGene_Head_Sergal`, `AnthroGene_Head_Skull`, `AnthroGene_Head_Synth`, `AnthroGene_Head_Ungulate`, `AnthroGene_Head_Vulpine`, `FuroGene_Head_Ferret`, `OttGene_Head_Otter`
+- drawn (ears, tails, horns, marks, wings...) (3): `AnthroGene_FurryBody`, `FuroGene_Tail_Furo`, `OttGene_Tail_Rudder`
 
 ## DuelMonsterRimWorld (23)
 
@@ -676,6 +742,24 @@ Workshop id 3726293423.
 - head shape (1): `Jaw_Thin`
 - drawn (ears, tails, horns, marks, wings...) (7): `Ears_HighSharp`, `Ears_LowSharp`, `Ears_MidSharp`, `Eyes_BlueEye`, `Eyes_GreenEye`, `Eyes_PurpleEye`, `Eyes_YellowEye`
 
+## [HB] Corracall Xenotype (13)
+
+Workshop id 2961223853.
+
+- skin colour (9): `HBAfternoonShadowSkin`, `HBBirdbathSkin`, `HBGenePoolSkin`, `HBLavenderSkin`, `HBNighttimeSkin`, `HBPetalSkin`, `HBRoseSkin`, `HBSleepySkin`, `HBVintageSkin`
+- beard (2): `HBCorracallBod`, `HBCorracallHead`
+- head shape (1): `HBCorracallHead`
+- drawn (ears, tails, horns, marks, wings...) (3): `HBCorracallBod`, `HBCorracallEars`, `HBCorracallHorns`
+
+## Det's Xenotypes - Avaloi (13)
+
+Workshop id 3199692643.
+
+- skin colour (5): `Skin_SoftBlue`, `Skin_SoftGreen`, `Skin_SoftPink`, `Skin_SoftRed`, `Skin_SoftYellow`
+- hair colour (5): `Hair_PaleBlue`, `Hair_PaleGreen`, `Hair_PaleMagenta`, `Hair_PaleOrange`, `Hair_PalePurple`
+- head shape (1): `DV_Head_Avaloi`
+- drawn (ears, tails, horns, marks, wings...) (2): `DV_Coral_Antlers`, `DV_Coral_Beards`
+
 ## Obsidia Expansion - Slimes Xenotype (13)
 
 Workshop id 3331598962.
@@ -752,6 +836,16 @@ Workshop id 3720732132.
 - skin colour (3): `OCARINA_AnthroboghoundFur`, `OCARINA_AnthroraccFur`, `OCARINA_AnthroskunkFur`
 - head shape (3): `OCARINA_AnthroboghoundFur`, `OCARINA_AnthroraccFur`, `OCARINA_AnthroskunkFur`
 - drawn (ears, tails, horns, marks, wings...) (8): `OCARINA_AnthroboghoundEars`, `OCARINA_AnthroboghoundEarsFloppy`, `OCARINA_AnthroboghoundEarsInvert`, `OCARINA_AnthroboghoundTail`, `OCARINA_AnthroraccEars`, `OCARINA_AnthroraccTail`, `OCARINA_AnthroskunkEars`, `OCARINA_AnthroskunkTail`
+
+## Fantasy Goblins Updated (10)
+
+Workshop id 2011680079.
+
+- skin colour (3): `Skin_Goblin_Green`, `Skin_Goblin_Green_Dark`, `Skin_Goblin_Green_Light`
+- hair style (1): `Hair_Fantasy_Goblin`
+- head shape (1): `Fantasy_Goblin_Heads`
+- body (1): `Body_Fantasy_Goblin`
+- drawn (ears, tails, horns, marks, wings...) (4): `Ears_Fantasy_Goblin_Crumpled`, `Ears_Fantasy_Goblin_Hanging`, `Ears_Fantasy_Goblin_Jutting`, `Ears_Fantasy_Goblin_Normal`
 
 ## Tribal Fungi Biome (10)
 
@@ -857,6 +951,14 @@ Workshop id 3663824172.
 - body (2): `RI_Gene_ZombieStandard`, `RI_Gene_ZombieThin`
 - drawn (ears, tails, horns, marks, wings...) (3): `RI_Gene_BoneHorns`, `RI_Gene_BoneTail`, `RI_Gene_ZombieRedEyes`
 
+## Toad Folk - Xenotype (10)
+
+Workshop id 3733348634.
+
+- skin colour (3): `TF_Skin_MossyBrown`, `TF_Skin_OliveGreen`, `TF_Skin_ToadGreen`
+- head shape (1): `TF_ToadHead`
+- drawn (ears, tails, horns, marks, wings...) (6): `TF_ToadEyes`, `TF_ToadEyesAmber`, `TF_ToadEyesBlack`, `TF_ToadEyesGreen`, `TF_ToadEyesRed`, `TF_ToadEyesYellow`
+
 ## [AP] Lupine Xenotype (9)
 
 Workshop id 2991428888.
@@ -927,6 +1029,13 @@ Workshop id 2900653856.
 - head shape (1): `DigiFoxFur`
 - drawn (ears, tails, horns, marks, wings...) (6): `DigiFluff`, `DigiFoxEars`, `DigiFoxEyes`, `DigiFoxFur`, `DigiFoxTail`, `DigiFoxWings`
 
+## Vanilla Races Expanded - Fungoid (8)
+
+Workshop id 3042690053.
+
+- hair colour (7): `VRE_Fungoid_Hair_DarkTan`, `VRE_Fungoid_Hair_MistyMoss`, `VRE_Fungoid_Hair_RoseTaupe`, `VRE_Fungoid_Hair_Salmon`, `VRE_Fungoid_Hair_SwampGreen`, `VRE_Fungoid_Hair_Tumbleweed`, `VRE_Fungoid_Hair_Wenge`
+- hair style (1): `VRE_FungalCrest`
+
 ## Rimsenal Xenotype Pack - Harana (8)
 
 Workshop id 3228637524.
@@ -935,6 +1044,12 @@ Workshop id 3228637524.
 - hair colour (1): `Gene_Hair_Heather_Indigo`
 - head shape (2): `Narrow_Normal_Head`, `Narrow_Pointy_Head`
 - drawn (ears, tails, horns, marks, wings...) (4): `CrowTail`, `Gene_Hwing`, `Race_Gene_FeatherE`, `Tired_Eyes`
+
+## Helltaker Cosmetic Genes (Gray Horns) (8)
+
+Workshop id 3314993047.
+
+- drawn (ears, tails, horns, marks, wings...) (8): `LMHornsAbyssGR`, `LMHornsGoatGR`, `LMHornsJudgmentGR`, `LMHornsKrampusGR`, `LMHornsQueenGR`, `LMHornsRegularGR`, `LMHornsSadisticGR`, `LMHornsTinyGR`
 
 ## Helltaker Cosmetic Genes (Skin Horns) (8)
 
@@ -958,6 +1073,12 @@ Workshop id 3524888108.
 - beard (1): `Krogan_Head`
 - head shape (1): `Krogan_Head`
 - drawn (ears, tails, horns, marks, wings...) (7): `Krogan_Crest`, `Krogan_Crest_Blue`, `Krogan_Crest_Dark`, `Krogan_Crest_Grey`, `Krogan_Crest_Red`, `Krogan_Crest_White`, `Krogan_Crest_Yellow`
+
+## [LFS] Genes Expanded - Skin Types (8)
+
+Workshop id 3545921603.
+
+- drawn (ears, tails, horns, marks, wings...) (8): `GEST_Bark_Skin_Type`, `GEST_Crystalline_Skin_Type`, `GEST_Feathered_Skin_Type`, `GEST_Insectoid_Skin_Type`, `GEST_Rockey_Skin_Type`, `GEST_Sandstone_Skin_Type`, `GEST_Scale_Skin_Type`, `GEST_Slime_Skin_Type`
 
 ## Lilin Wool Genes (8)
 
@@ -1005,6 +1126,13 @@ Workshop id 3131996691.
 
 - skin colour (1): `RS_Skin_PaleGreen`
 - drawn (ears, tails, horns, marks, wings...) (6): `RS_Eyes_Pink`, `RS_Headbone_LargeHorns`, `RS_Headbone_MediumHorns`, `RS_Headbone_RamHorns`, `RS_Tail_Spiked`, `RS_Wing_Batlike`
+
+## Det's Xenotypes - Venators (7)
+
+Workshop id 3140248688.
+
+- skin colour (5): `Skin_BlueGray`, `Skin_BrownGray`, `Skin_PurpleGray`, `Skin_RedGray`, `Skin_YellowGray`
+- drawn (ears, tails, horns, marks, wings...) (2): `DV_Ears_Downturned`, `DV_FacePlating`
 
 ## Det's Xenotypes - Boglegs (7)
 
@@ -1080,6 +1208,21 @@ Workshop id local:rimholstaur.
 Workshop id 2866414675.
 
 - hair colour (6): `Hair_Blue_LH`, `Hair_Cyan_LH`, `Hair_Green_LH`, `Hair_Pink_LH`, `Hair_Purple_LH`, `Hair_Red_LH`
+
+## Biotech: Reptilian Humanoids Mod (6)
+
+Workshop id 2885147370.
+
+- head shape (3): `DesRepHeadBase`, `KoboldHeadBase`, `LizardHeadBase`
+- drawn (ears, tails, horns, marks, wings...) (3): `Rep_Pointy_Three_Ears`, `Rep_Pointy_Two_Ears`, `Tail_Lizard`
+
+## [LFS] Night Shade Mercenaries (6)
+
+Workshop id 2909372626.
+
+- skin colour (1): `Skin_Color_Zearot`
+- hair colour (1): `Hair_Zearot`
+- drawn (ears, tails, horns, marks, wings...) (4): `Body_Zearot`, `Headbone_Large_NS`, `Headbone_Medium_NS`, `Headbone_SmallHorns_NS`
 
 ## Dr. Arch13's ArchoWonderium - Legendary Dragon (tm) (6)
 
@@ -1161,6 +1304,15 @@ Workshop id 3739973453.
 - head shape (1): `OCARINA_MantledBeastsFur`
 - drawn (ears, tails, horns, marks, wings...) (3): `OCARINA_MantledBeastsEars`, `OCARINA_MantledBeastsFur`, `OCARINA_MantledBeastsTail`
 - other cosmetic category (2): `OCARINA_MantledBeastsEyesight`, `OCARINA_MantledBeastsPaws`
+
+## FrostyDragonRace (BIOTECH) (6)
+
+Workshop id 3747969399.
+
+- skin colour (5): `Frosty_BlackFur`, `Frosty_BlueFur`, `Frosty_GreenFur`, `Frosty_RedFur`, `Frosty_WhiteFur`
+- beard (1): `Frosty_Traits`
+- head shape (5): `Frosty_BlackFur`, `Frosty_BlueFur`, `Frosty_GreenFur`, `Frosty_RedFur`, `Frosty_WhiteFur`
+- drawn (ears, tails, horns, marks, wings...) (5): `Frosty_BlackFur`, `Frosty_BlueFur`, `Frosty_GreenFur`, `Frosty_RedFur`, `Frosty_WhiteFur`
 
 ## Kimchianz Xenotype (Beta) (6)
 
@@ -1262,6 +1414,13 @@ Workshop id 3431220821.
 - head shape (1): `G_Clonerot`
 - drawn (ears, tails, horns, marks, wings...) (3): `Eyes_GRed`, `Eyes_Gorange`, `Eyes_Gyellow`
 
+## Femboy Xenotypes (5)
+
+Workshop id 3456372943.
+
+- drawn (ears, tails, horns, marks, wings...) (1): `FEMB_NoBeardFurskin`
+- other cosmetic category (4): `FEMB_RandomEarsFemboy`, `FEMB_RandomHornFemboy`, `FEMB_RandomPastelHair`, `FEMB_RandomTailsFemboy`
+
 ## No Longer Human-Warhives Faction Pack (5)
 
 Workshop id 3462391280.
@@ -1341,6 +1500,12 @@ Workshop id 2881450798.
 - hair style (1): `Male_noHair`
 - drawn (ears, tails, horns, marks, wings...) (3): `NoseSponge`, `balance_tail`, `fluffy_tail`
 
+## Skin Genes (4)
+
+Workshop id 2889538539.
+
+- skin colour (4): `DarkSpectreSkin_Chestnut`, `DarkSpectreSkin_Peach`, `DarkSpectreSkin_Sunrise`, `DarkSpectreSkin_Umber`
+
 ## Wild Factions - Damar (4)
 
 Workshop id 2889581499.
@@ -1368,6 +1533,13 @@ Workshop id 2916028877.
 
 - body (4): `Body_Fat_Germ`, `Body_Hulk_Germ`, `Body_Standard_Germ`, `Body_Thin_Germ`
 
+## Rim-Shek - Biotech (4)
+
+Workshop id 2974298719.
+
+- skin colour (3): `Skin_Dorado`, `Skin_LightViolet`, `Skin_Mauve`
+- drawn (ears, tails, horns, marks, wings...) (1): `Headbone_ShekHorns`
+
 ## Roxborn (4)
 
 Workshop id 3048382292.
@@ -1375,6 +1547,14 @@ Workshop id 3048382292.
 - skin colour (1): `RB_Roxskin`
 - hair colour (2): `RB_Hair_RoxDarkGrey`, `RB_Hair_RoxLightGrey`
 - hair style (1): `RB_Hair_RoxOnly`
+
+## Vanilla Races Expanded - Archon (4)
+
+Workshop id 3067715093.
+
+- hair style (1): `VRE_DreadHair`
+- head shape (1): `VRE_Leatherskin`
+- drawn (ears, tails, horns, marks, wings...) (3): `VRE_FacialSpots`, `VRE_Leatherskin`, `VRE_SerratedEars`
 
 ## Vanilla Races Expanded - Lycanthrope (4)
 
@@ -1630,6 +1810,13 @@ Workshop id 3522775404.
 
 - drawn (ears, tails, horns, marks, wings...) (3): `AC_Ears`, `AC_Eyes`, `AC_TrippleTail`
 
+## Posthuman Drift Trog Xenotype (3)
+
+Workshop id 3526993498.
+
+- skin colour (2): `XylSkin_DarkGreen`, `XylSkin_Olive`
+- head shape (1): `XylHead_Trog`
+
 ## Hyenid Xenotype (3)
 
 Workshop id 3543131848.
@@ -1638,11 +1825,28 @@ Workshop id 3543131848.
 - head shape (1): `fullHyenid`
 - drawn (ears, tails, horns, marks, wings...) (3): `fullHyenid`, `hyenidEars`, `hyneidTail`
 
+## Biotech seahorsebold  (3)
+
+Workshop id 3582748630.
+
+- head shape (1): `SeaboldHead`
+- drawn (ears, tails, horns, marks, wings...) (2): `SeaboldTail`, `SeahorseFins`
+
 ## Big and Small - Muriden (3)
 
 Workshop id 3597814862.
 
 - drawn (ears, tails, horns, marks, wings...) (3): `Tail_Castoran`, `Tail_Muriden`, `Tail_Sciurus`
+
+## 【β】Ikquan Race (3)
+
+Workshop id 3633519200.
+
+- skin colour (3): `HeadIkquan`, `IkquanDorsal`, `TailIkquan`
+- hair style (1): `HeadIkquan`
+- beard (1): `HeadIkquan`
+- head shape (1): `HeadIkquan`
+- drawn (ears, tails, horns, marks, wings...) (2): `IkquanDorsal`, `TailIkquan`
 
 ## Foxian League (3)
 
@@ -1672,6 +1876,13 @@ Workshop id 3768425355.
 - drawn (ears, tails, horns, marks, wings...) (2): `MUGB_Gene_GoblinCore`, `MUGB_Gene_HobgoblinFrame`
 - other cosmetic category (1): `MUGB_Gene_CrossEyed`
 
+## Gexies milkies (3)
+
+Workshop id 3775745938.
+
+- head shape (1): `Head_Milky`
+- drawn (ears, tails, horns, marks, wings...) (2): `Milky_Fin`, `Milky_Tail`
+
 ## Big and Small - Catfolk (3)
 
 Workshop id 3802375059.
@@ -1685,6 +1896,28 @@ Workshop id 3802945828.
 - skin colour (1): `LythC_AnthromongooseFur`
 - head shape (1): `LythC_AnthromongooseFur`
 - drawn (ears, tails, horns, marks, wings...) (2): `LythC_AnthromongooseEars`, `LythC_AnthromongooseTail`
+
+## Hiisi Xenotype (3)
+
+Workshop id 3816069605.
+
+- skin colour (1): `Hiisi_Skin_Moss`
+- head shape (1): `Hiisi_Nose`
+- drawn (ears, tails, horns, marks, wings...) (1): `Hiisi_Ears`
+
+## Clockwork Folk Xenotype (3)
+
+Workshop id 3819827499.
+
+- skin colour (1): `Clockwork_Skin_Brass`
+- drawn (ears, tails, horns, marks, wings...) (2): `Clockwork_GearEyes`, `Clockwork_WindUpKey`
+
+## Biotech Nyaron (2)
+
+Workshop id 2881513314.
+
+- hair style (1): `Hair_Nyaron`
+- head shape (1): `Nyaron`
 
 ## Neco Arc Genes (2)
 
@@ -1716,6 +1949,13 @@ Workshop id 3025338958.
 Workshop id 3231645315.
 
 - hair colour (2): `MarketHair_DarkBlue`, `MarketHair_RedOrange`
+
+## Beliar Xenotype (2)
+
+Workshop id 3237072670.
+
+- head shape (1): `BX_ProfaneHead`
+- drawn (ears, tails, horns, marks, wings...) (1): `BX_ProfaneHorns`
 
 ## Selective Retexture Based on Gene (2)
 
@@ -1752,6 +1992,19 @@ Workshop id 3511408960.
 Workshop id 3521815010.
 
 - drawn (ears, tails, horns, marks, wings...) (2): `XylEyes_Yellow`, `XylFacialStripes`
+
+## Posthuman Drift Nixie Xenotype (2)
+
+Workshop id 3521815475.
+
+- head shape (1): `XylScaleskin`
+- drawn (ears, tails, horns, marks, wings...) (2): `XylEars_Fin`, `XylScaleskin`
+
+## Posthuman Drift Bossaps Xenotype (2)
+
+Workshop id 3521815829.
+
+- drawn (ears, tails, horns, marks, wings...) (2): `XylEars_Cow`, `XylLargeHorns`
 
 ## Crream's Yetis (2)
 
@@ -1800,6 +2053,13 @@ Workshop id 3577775737.
 
 - head shape (2): `Why_Gene_OrkFace`, `Why_Gene_SnotlingFace`
 
+## Reese's Dirtmole Glowup (2)
+
+Workshop id 3587761388.
+
+- beard (1): `RDMO_Beard_Whiskers`
+- head shape (1): `RDMO_Head_Squinted`
+
 ## Badger Xenotype (2)
 
 Workshop id 3618642160.
@@ -1836,6 +2096,13 @@ Workshop id 3697034827.
 - hair colour (1): `BEWH_PrimarchSpecificGeneSpaceMaids`
 - drawn (ears, tails, horns, marks, wings...) (1): `BEWH_ChapterSpaceMaidsCatEars`
 
+## Varan Xenotype (2)
+
+Workshop id 3698105907.
+
+- head shape (1): `LizardHead`
+- drawn (ears, tails, horns, marks, wings...) (1): `LizardTail`
+
 ## Gloria A Las Plagas (2)
 
 Workshop id 3708476081.
@@ -1844,11 +2111,24 @@ Workshop id 3708476081.
 - beard (2): `CCDevelopment_LasPlagas_Guadana_Head_Gene`, `CCDevelopment_LasPlagas_Mandibula_Head_Gene`
 - head shape (2): `CCDevelopment_LasPlagas_Guadana_Head_Gene`, `CCDevelopment_LasPlagas_Mandibula_Head_Gene`
 
+## 고라니 귀와 꼬리 (Gorani Ears and Tail) (2)
+
+Workshop id 3716953000.
+
+- drawn (ears, tails, horns, marks, wings...) (2): `Ears_Gorani`, `Tail_Gorani`
+
 ## 햄스터 귀와 꼬리 (Hamster Ears and Tail) (2)
 
 Workshop id 3718267131.
 
 - drawn (ears, tails, horns, marks, wings...) (2): `Ears_Hamster`, `Tail_Hamster`
+
+## Gexies expies (2)
+
+Workshop id 3738658775.
+
+- head shape (1): `Head_Expie`
+- drawn (ears, tails, horns, marks, wings...) (1): `Expie_Tail`
 
 ## Vanillafied Vivi (2)
 
@@ -1861,6 +2141,34 @@ Workshop id 3739051552.
 Workshop id 3769625965.
 
 - drawn (ears, tails, horns, marks, wings...) (2): `HKTK_GengetsuWings_Gene`, `HKTK_KurumiWings_Gene`
+
+## Backwardborn Xenotype (2)
+
+Workshop id 3819826833.
+
+- hair colour (1): `Backwardborn_Hair_Silver`
+- drawn (ears, tails, horns, marks, wings...) (1): `Backwardborn_Eyes_Sandglass`
+
+## Tonttu Xenotype (2)
+
+Workshop id 3819828414.
+
+- hair colour (1): `Tonttu_Beard`
+- beard (1): `Tonttu_Beard`
+- drawn (ears, tails, horns, marks, wings...) (1): `Tonttu_RedCap`
+
+## Tuonela Xenotype (2)
+
+Workshop id 3819828750.
+
+- skin colour (1): `Tuonela_Skin_Ashen`
+- drawn (ears, tails, horns, marks, wings...) (1): `Tuonela_MarkOfTuoni`
+
+## Milira Xenotypes - Moon Kitsune (2)
+
+Workshop id 3830884619.
+
+- drawn (ears, tails, horns, marks, wings...) (2): `JMK_EarGene`, `JMK_TailGene`
 
 ## local:rjw-genes (2)
 
@@ -1899,6 +2207,25 @@ Workshop id 2891432261.
 
 - drawn (ears, tails, horns, marks, wings...) (1): `OotR_Oni_LifelessEyes`
 
+## Revia Race - Biotech (1)
+
+Workshop id 2893157989.
+
+- drawn (ears, tails, horns, marks, wings...) (1): `ReviaEars`
+
+## Biotech - Avali (1)
+
+Workshop id 2893711709.
+
+- beard (1): `Featherskin`
+- head shape (1): `Featherskin`
+
+## Vanilla Races Expanded - Genie (1)
+
+Workshop id 2901424072.
+
+- head shape (1): `VRE_ElongatedHead`
+
 ## Roo's HD Dreadlock Hairstyles (1)
 
 Workshop id 2902544033.
@@ -1911,12 +2238,30 @@ Workshop id 2908837535.
 
 - head shape (1): `ERN_AuronyaHead`
 
+## Just Another Xenotype Mod (1)
+
+Workshop id 2979167335.
+
+- head shape (1): `Head_Raccoon`
+
+## Vanilla Races Expanded - Waster (1)
+
+Workshop id 2983471725.
+
+- drawn (ears, tails, horns, marks, wings...) (1): `VRE_GauntBody`
+
 ## More Biotech Style Genes - All in One (1)
 
 Workshop id 2985153870.
 
 - hair style (1): `MBSG_Hairless`
 - beard (1): `MBSG_Hairless`
+
+## Hair Colored Skin Gene (1)
+
+Workshop id 2999949806.
+
+- other cosmetic category (1): `Skin_Hair_Colored`
 
 ## Erin's Fenrisúlfr (1)
 
@@ -2064,6 +2409,12 @@ Workshop id 3521016438.
 
 - drawn (ears, tails, horns, marks, wings...) (1): `Bulwark_Wings`
 
+## Posthuman Drift Dvergr Xenotype (1)
+
+Workshop id 3521816382.
+
+- drawn (ears, tails, horns, marks, wings...) (1): `XylEars_SmallPointed`
+
 ## Det's Xenotypes - Half-foot (1)
 
 Workshop id 3530817307.
@@ -2143,6 +2494,12 @@ Workshop id 3732795691.
 Workshop id 3736684475.
 
 - hair colour (1): `Nekotech_BlueHair`
+
+## The Drow - Biotech Edition (Continued) (1)
+
+Workshop id 3755554485.
+
+- skin colour (1): `Drow_Gene_Skin_Drow`
 
 ## Project Moon - Sweepers (1)
 
