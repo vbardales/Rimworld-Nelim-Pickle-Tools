@@ -304,7 +304,10 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 if (string.Equals(m.Name, name, StringComparison.OrdinalIgnoreCase)) { owner = o; member = m; return true; }
             }
-            foreach (MemberInfo m in o.GetType().GetMembers(AnyMember).Where(m => m is FieldInfo || (m is PropertyInfo p && p.GetIndexParameters().Length == 0 && p.CanRead)))
+            // GetMembers hides the private fields of base classes: the settings object GetSettings<T>() keeps in Mod.modSettings is read directly; a mod's own static settings field is read at the root.
+            var children = new List<MemberInfo>(o.GetType().GetMembers(depth == 0 ? AnyMember | BindingFlags.Static : AnyMember).Where(m => m is FieldInfo || (m is PropertyInfo p && p.GetIndexParameters().Length == 0 && p.CanRead)));
+            if (o is Mod) { FieldInfo stored = typeof(Mod).GetField("modSettings", AnyMember); if (stored != null) children.Add(stored); }
+            foreach (MemberInfo m in children)
             {
                 Type t = m is FieldInfo f ? f.FieldType : ((PropertyInfo)m).PropertyType;
                 if (t.IsPrimitive || t == typeof(string) || t.IsEnum || t.Namespace?.StartsWith("UnityEngine") == true || typeof(Mod).IsAssignableFrom(t) == false && t.Namespace?.StartsWith("System") == true && !typeof(System.Collections.IDictionary).IsAssignableFrom(t)) continue;
@@ -324,7 +327,7 @@ namespace Nelim.PickleTools.ColonistRace
         private static string Members(object root)
         {
             var names = new List<string>();
-            foreach (MemberInfo m in root.GetType().GetMembers(AnyMember).Where(m => m is FieldInfo || m is PropertyInfo))
+            foreach (MemberInfo m in root.GetType().GetMembers(AnyMember | BindingFlags.Static).Where(m => m is FieldInfo || m is PropertyInfo))
                 names.Add(m.DeclaringType.Name + "." + m.Name);
             return string.Join(", ", names);
         }
