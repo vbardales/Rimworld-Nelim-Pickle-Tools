@@ -60,11 +60,12 @@ namespace Nelim.PickleTools.ColonistRace
         /// Fails when the game's own message queue (<c>Log.Messages</c>, the last 1000 messages the in-game debug log keeps) holds an error: config
         /// errors, XML errors, exceptions raised while the defs and the save loaded. Put it first in the scenario, after the save is loaded. The
         /// failure quotes the first three and says how many there are. A queue that already overflowed may have dropped the oldest.
+        /// The game's "did not load any content" message is ignored: it names every code-only mod (no Defs, no content folder), ours included.
         /// </summary>
         [Then("Nelim's Pickle Tools: no error was logged while the game loaded")]
         public void NoErrorWhileLoading(PickleContext ctx)
         {
-            List<string> errors = Log.Messages.Where(m => m.type == LogMessageType.Error).Select(m => m.text).ToList();
+            List<string> errors = Log.Messages.Where(m => m.type == LogMessageType.Error && !m.text.Contains("did not load any content")).Select(m => m.text).ToList();
             ctx.Assert(errors.Count == 0, $"{errors.Count} error(s) in the game's message queue ({Log.Messages.Count()} messages kept): "
                 + string.Join(" | ", errors.Take(3).Select(e => e.Length > 200 ? e.Substring(0, 200) : e)));
         }
