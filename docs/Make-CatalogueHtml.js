@@ -79,7 +79,15 @@ if (byBlock[2]) { byKind.beardcolour = byBlock[2].filter(f => / Couleurs de barb
 for (const [k, re] of Object.entries({ fpMouth: /Bouches/, fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
 let sheetText = {}; try { sheetText = JSON.parse(fs.readFileSync(path.join(looksDir, 'sheets.json'), 'utf8')); } catch (e) { /* no manifest: the sheets stay images */ }
 const sheetCells = f => { const c = sheetText[f]; return c ? (Array.isArray(c) ? c : [c]) : null; };
-const sheet = f => sheetCells(f) ? `<div class="sheet"><div class="shname"><a href="../img/looks/${encodeURI(f)}" target="_blank">${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</a></div><div class="tl">` + sheetCells(f).map(c => `<figure>${c.tile ? `<img loading="lazy" src="../img/looks/tiles/${encodeURI(c.tile)}" alt="${esc(c.text)}">` : '<div class="nophoto"></div>'}<figcaption>${c.hex ? `<i class="sw" style="background:#${c.hex}"></i>` : ''}${esc(c.text)}</figcaption></figure>`).join('') + '</div></div>' : `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
+// Skin marks (owner, 2026-11-03): the Seren marking genes sit on the look gene sheet; Peau shows them too, as a sheet of their own cut from the same tiles (the full sheet stays under Genes d'apparence).
+const markSource = {};
+{
+  const marks = [];
+  let src = null;
+  for (const f of byKind.lookgene || []) for (const c of sheetCells(f) || []) if (/^SerenMarkings_/.test(c.text || '')) { marks.push(c); src = src || f; }
+  if (marks.length) { const v = src.replace(/^(\d{4}) .* - (.* - \d+\.jpg)$/, '$1 Marques de peau Seren - $2'); sheetText[v] = marks; markSource[v] = src; byKind.skinmark = [v]; }
+}
+const sheet = f => sheetCells(f) ? `<div class="sheet"><div class="shname"><a href="../img/looks/${encodeURI(markSource[f] || f)}" target="_blank">${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</a></div><div class="tl">` + sheetCells(f).map(c => `<figure>${c.tile ? `<img loading="lazy" src="../img/looks/tiles/${encodeURI(c.tile)}" alt="${esc(c.text)}">` : '<div class="nophoto"></div>'}<figcaption>${c.hex ? `<i class="sw" style="background:#${c.hex}"></i>` : ''}${esc(c.text)}</figcaption></figure>`).join('') + '</div></div>' : `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
   gallery += `<h3>${k}</h3><div class="sheets">` + files.map(sheet).join('') + '</div>';
@@ -102,7 +110,7 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 // (the sections of the .md pages) that belong to it. `place` says where each section of each page goes; what it does not place stays in the Documentation group.
 // [category, [[sub-category, [photograph kinds]], ...]]
 const categories = [
-  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo', 'fpTattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
+  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo', 'fpTattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']], ['Marques de peau Seren (genes)', ['skinmark']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
   ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['fpMouth', 'serenmouth']], ['Peaux du visage', ['fpSkin']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
   ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes des yeux', ['fpEye', 'sereneyeball']], ['Paupieres', ['fpLid', 'fpLidOption', 'serenlid']], ['Sourcils', ['fpBrow', 'serenbrow']]]],
