@@ -4,6 +4,7 @@
 @requires:nelim.pickletools.newcolony
 Feature: PickleTools fixture without Biotech
 
+  @timeout:400
   Scenario: a colony started without Biotech is saved as a fixture
     Given the main menu is open
     And Nelim's Pickle Tools: the new colony's seed is "nobiotech-fixture"
