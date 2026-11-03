@@ -118,7 +118,7 @@ namespace Nelim.PickleTools.ColonistRace
             Mod handle = PageOf(pack);
             ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
             if (IsMsf(handle)) { MsfFileHolds(ctx, pack, option, expected); return; }
-            string path = (string)typeof(LoadedModManager).GetMethod("GetSettingsFilename", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, new object[] { handle.Content.FolderName, handle.GetType().Name });
+            string path = SettingsPath(handle);
             ctx.Require(path != null && File.Exists(path), $"no settings file for {pack.Name} at '{path}'");
             XElement el = XDocument.Load(path).Descendants().FirstOrDefault(e => string.Equals(e.Name.LocalName, option, StringComparison.OrdinalIgnoreCase));
             ctx.Require(el != null, $"{path} holds no element '{option}'; its elements: " + string.Join(", ", XDocument.Load(path).Descendants().Select(e => e.Name.LocalName)));
@@ -131,8 +131,13 @@ namespace Nelim.PickleTools.ColonistRace
         private const string AbsentSuffix = ".pickle-sandbox-absent";
         private static readonly List<Mod> Sandboxed = new List<Mod>();
 
-        private static string SettingsPath(Mod handle) =>
-            (string)typeof(LoadedModManager).GetMethod("GetSettingsFilename", BindingFlags.Public | BindingFlags.Static)?.Invoke(null, new object[] { handle.Content.FolderName, handle.GetType().Name });
+        // GetSettingsFilename is not public in every game version: look at non-public statics too, else build the name the game builds.
+        private static string SettingsPath(Mod handle)
+        {
+            MethodInfo method = typeof(LoadedModManager).GetMethod("GetSettingsFilename", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static, null, new[] { typeof(string), typeof(string) }, null);
+            if (method != null) return (string)method.Invoke(null, new object[] { handle.Content.FolderName, handle.GetType().Name });
+            return Path.Combine(GenFilePaths.ConfigFolderPath, GenText.SanitizeFilename($"Mod_{handle.Content.FolderName}_{handle.GetType().Name}.xml"));
+        }
 
         // Forgets the settings object so the next GetSettings reads the file again (the default instance when there is none), as a restart does.
         private static void Reload(Mod handle)
