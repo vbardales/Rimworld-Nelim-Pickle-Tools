@@ -39,3 +39,6 @@ Tests/Pickle/Parked/
 
 # Local copy of a third-party mod (Seren 3726565301 with a patched LoadFolders.xml), not ours to redistribute.
 .local/
+
+# Saves copied for the removal check (Tests/Pickle/README.md).
+Tests/Pickle/Mod/Pickle/Fixtures/removal-check.rws

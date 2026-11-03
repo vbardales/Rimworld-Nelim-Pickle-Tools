@@ -18,3 +18,7 @@ pass that also stages `PickleTools/<Tool>/Mod` would load every step of that too
 "Ambiguous step" (seen in the first play of the hover steps, 2026-09-25). So each single-tool map ends with
 `nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod`, an empty shell with the same packageId that takes the
 bundle's place. The aggregate maps overlay the generated payload instead and need nothing.
+
+## Removal check
+
+`removal-check.feature` plays a saved game with a mod removed, for any mod: the mod under test cannot host that pass itself (it depends on the removed mod). Pass 1 (mod present): the mod's own test saves the game and copies it to the run folder (`the saved game {name} is copied to the run folder`, SaveSteps; the hand-over to a mod is lost with the container). Between passes copy `<run>/<name>.rws` to `Tests/Pickle/Mod/Pickle/Fixtures/removal-check.rws` (not versioned). Pass 2: file `-Mod PickleTools -Filter removal-check` with a copy of `wsl-deps.removal-check.map` that lists the mods the save still needs and not the removed one. Pass 3 (mod re-added) is the mod's own load test of the same save. Not played yet: whether Pickle loads a save naming a missing mod is unverified.

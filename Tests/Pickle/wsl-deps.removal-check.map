@@ -1,0 +1,1 @@
+# Base map of the removal check (removal-check.feature): stages nothing but the bundle under test. Copy it, add the mods the saved game still needs (the removed mod and its own dependants stay out), pass the copy to -DepMap.
