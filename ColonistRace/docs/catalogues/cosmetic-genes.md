@@ -1,20 +1,21 @@
 # Cosmetic genes: every one on disk
 
-Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over the Workshop and the local Mods folder (9706 folders read), XML comments stripped, 1.6 or unversioned folders only, `ParentName` resolved inside each mod. **3231 distinct gene names in 256 mods.** A gene is listed as cosmetic when it (or its parent) sets a skin colour, a hair colour, a hair or beard tag filter, a head type, a body type, a `renderNodeProperties` (something drawn: ears, tails, horns, marks, wings), or a display category that contains "Cosmetic". The vanilla genes of Biotech are not in the Workshop folder and are not listed here. A gene found is not a gene loaded: the mod must be in the mod list, and some genes also carry stats (a drawn gene may be a body part with an effect). This is names from the XML, not photographs: the photographed ones are in Genes d'apparence, Looks and Colours. A gene name may be found in two kinds (a horn that also sets a skin colour).
+Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over the Workshop and the local Mods folder (9706 folders read) for the mods, XML comments stripped, 1.6 or unversioned folders only, `ParentName` resolved inside each mod. **3293 distinct gene names in 257 sources (vanilla + mods).** A gene is listed as cosmetic when it (or its parent) sets a skin colour, a hair colour, a hair or beard tag filter, a head type, a body type, a `renderNodeProperties` (something drawn: ears, tails, horns, marks, wings), or a display category that contains "Cosmetic". The vanilla genes come from the game folder, not from the scan (Data/Core and Data/Biotech, `GeneDefs`): the 1.6 install and the 1.7.4976 install hold the same 72 cosmetic genes. A gene found is not a gene loaded: the mod must be in the mod list, and some genes also carry stats (a drawn gene may be a body part with an effect). This is names from the XML, not photographs: the photographed ones are in Genes d'apparence, Looks and Colours. A gene name may be found in two kinds (a horn that also sets a skin colour).
 
 | Kind | Genes (name x mod) |
 |---|---|
-| skin colour | 1265 |
-| hair colour | 747 |
-| hair style | 172 |
-| beard | 172 |
-| head shape | 402 |
-| body | 80 |
-| drawn (ears, tails, horns, marks, wings...) | 2310 |
-| other cosmetic category | 210 |
+| hair style | 175 |
+| beard | 176 |
+| skin colour | 1286 |
+| head shape | 405 |
+| drawn (ears, tails, horns, marks, wings...) | 2324 |
+| body | 84 |
+| other cosmetic category | 217 |
+| hair colour | 765 |
 
 | Mod | Workshop id | Cosmetic genes |
 |---|---|---|
+| Vanilla RimWorld (Core and Biotech, read from the game folder) | game (1.6 and 1.7 identical) | 72 |
 | Outland - Genetics | 2910172297 | 283 |
 | No Longer Human-Core | 3777374986 | 262 |
 | Biotech Cosmetic Kit - Horns Halos and More | 2985847757 | 176 |
@@ -271,6 +272,19 @@ Scan of 2026-11-03: `scripts/Search-Workshop.sh -p "<GeneDef[ >]" -i *.xml` over
 | local:amor-tentaculum | local:amor-tentaculum | 1 |
 | local:rjw-elt-patches | local:rjw-elt-patches | 1 |
 | local:StorylikeBodyAndMind | local:StorylikeBodyAndMind | 1 |
+
+## Vanilla RimWorld (Core and Biotech, read from the game folder) (72)
+
+Workshop id game (1.6 and 1.7 identical).
+
+- hair style (3): `Hair_BaldOnly`, `Hair_LongOnly`, `Hair_ShortOnly`
+- beard (4): `Beard_Always`, `Beard_BushyOnly`, `Beard_NoBeardOnly`, `Furskin`
+- skin colour (21): `Skin_Blue`, `Skin_DeepRed`, `Skin_DeepYellow`, `Skin_Green`, `Skin_InkBlack`, `Skin_LightGray`, `Skin_Melanin1`, `Skin_Melanin2`, `Skin_Melanin3`, `Skin_Melanin4`, `Skin_Melanin5`, `Skin_Melanin6`, `Skin_Melanin7`, `Skin_Melanin8`, `Skin_Melanin9`, `Skin_Orange`, `Skin_PaleRed`, `Skin_PaleYellow`, `Skin_Purple`, `Skin_SheerWhite`, `Skin_SlateGray`
+- head shape (3): `Furskin`, `Head_Gaunt`, `Jaw_Heavy`
+- drawn (ears, tails, horns, marks, wings...) (14): `Brow_Heavy`, `Ears_Cat`, `Ears_Floppy`, `Ears_Pig`, `Ears_Pointed`, `Eyes_Gray`, `Eyes_Red`, `FacialRidges`, `Furskin`, `Headbone_CenterHorn`, `Headbone_MiniHorns`, `Nose_Pig`, `Tail_Furry`, `Tail_Smooth`
+- body (4): `Body_Fat`, `Body_Hulk`, `Body_Standard`, `Body_Thin`
+- other cosmetic category (7): `Ears_Human`, `Headbone_Human`, `Jaw_Baseline`, `Nose_Human`, `VoicePig`, `VoiceRoar`, `Voice_Human`
+- hair colour (18): `Hair_Blonde`, `Hair_BrightRed`, `Hair_DarkBlack`, `Hair_DarkBrown`, `Hair_DarkReddish`, `Hair_DarkSaturatedReddish`, `Hair_Gray`, `Hair_InkBlack`, `Hair_LightBlue`, `Hair_LightGreen`, `Hair_LightOrange`, `Hair_LightPurple`, `Hair_LightTeal`, `Hair_MidBlack`, `Hair_Pink`, `Hair_ReddishBrown`, `Hair_SandyBlonde`, `Hair_SnowWhite`
 
 ## Outland - Genetics (283)
 
