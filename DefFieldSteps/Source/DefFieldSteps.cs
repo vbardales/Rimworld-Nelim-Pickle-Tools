@@ -271,6 +271,25 @@ namespace Nelim.PickleTools.DefFields
             ctx.Assert(match, $"{def.GetType().Name} '{defName}' comes from '{pack?.PackageIdPlayerFacing}', expected {packageId}");
         }
 
+        /// <summary>
+        /// Asserts the def carries a mod extension of that type (its full name, such as <c>RimScentReworked.ModExtension_Scent</c>) and that a public
+        /// field or property of it, read by the same dotted walk as <c>def ... field ... is</c>, reads as the expected text (a def by its defName).
+        /// Read by reflection on the type's full name, so this tool does not reference the mod. The path has no list index, which is why
+        /// <c>modExtensions</c> cannot be walked by the plain step. Written 2026-11-03 for RimScentExtendedEverydayLifeExpansion. Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} has the extension {string} with field {string} {string}")]
+        public void ExtensionFieldIs(PickleContext ctx, string defName, string typeName, string extensionType, string fieldPath, string expected)
+        {
+            Def def = Find(ctx, defName, typeName);
+            DefModExtension extension = def.modExtensions?.FirstOrDefault(e => e != null && e.GetType().FullName == extensionType);
+            ctx.Require(extension != null, $"{def.GetType().Name} '{defName}' carries no {extensionType}; its extensions: "
+                + string.Join(", ", (def.modExtensions ?? new List<DefModExtension>()).Select(e => e?.GetType().FullName ?? "(null)")));
+            string actual = Text(Walk(ctx, extension, fieldPath));
+            ctx.Assert(
+                string.Equals(actual, expected, StringComparison.OrdinalIgnoreCase),
+                $"{extensionType} on {def.GetType().Name} '{defName}' field '{fieldPath}' should be '{expected}'; actual '{actual}'");
+        }
+
         /// <summary>Asserts the PawnKindDef carries exactly one Better Crossbreeding extension (a patch that adds a second one would fail the game's own read). Compiled, not played.</summary>
         [Then("Nelim's Pickle Tools: the pawn kind {string} carries one Better Crossbreeding extension")]
         public void KindCarriesOneCrossbreedingExtension(PickleContext ctx, string kindName)
