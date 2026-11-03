@@ -27,7 +27,7 @@ Step texts: `"<pawn>" beard is "<defName>"`, colour: `"<pawn>" hair colour is rg
 | Biotech | (10) BeardFurskinKnots, BeardFurskinMegabraid, BeardFurskinMonkey, BeardFurskinMoustache, BeardFurskinScruffy, BeardFurskinSenile, BeardFurskinSideChops, BeardFurskinSideTufts, BeardFurskinStrongChops, FurskinCurlyMoustache |
 | Core | (31) Anchor, BeardCurly, Boxed, Braided, Bushy, BushyStyled, Circle, Classy, Curtain, Ducktail, Fork, French, Full, Goatee, Lincoln, LongDutch, Machete, Moustache, MuttonChops, NoBeard, Norse, OldDutch, Seer, SideWhiskers, SoulPatch, StacheAndChops, Stubble, TriBraid, Urist, VanDyke, Wizard |
 
-## Head types (37)
+## Head types (47)
 
 
 Step texts: `"<pawn>" head type is "<defName>"`
@@ -38,6 +38,7 @@ Step texts: `"<pawn>" head type is "<defName>"`
 | Anomaly | (10) CultEscapee, DarkScholar_Female (Female), DarkScholar_Male (Male), Ghoul_Heavy, Ghoul_Narrow, Ghoul_Normal, Ghoul_Wide, Leathery_Female (Female), Leathery_Male (Male), TimelessOne |
 | Biotech | (13) Female_HeavyJawNormal (Female), Furskin_Average1, Furskin_Average2, Furskin_Average3, Furskin_Gaunt, Furskin_Heavy1, Furskin_Heavy2, Furskin_Heavy3, Furskin_Narrow1, Furskin_Narrow2, Furskin_Narrow3, Gaunt, Male_HeavyJawNormal (Male) |
 | Core | (14) Female_AverageNormal (Female), Female_AveragePointy (Female), Female_AverageWide (Female), Female_NarrowNormal (Female), Female_NarrowPointy (Female), Female_NarrowWide (Female), Male_AverageNormal (Male), Male_AveragePointy (Male), Male_AverageWide (Male), Male_NarrowNormal (Male), Male_NarrowPointy (Male), Male_NarrowWide (Male), Skull, Stump |
+| [LFS] Genes Expanded - Heads | (10) GEHD_Amphibian_Female (Female), GEHD_Amphibian_Male (Male), GEHD_Insectoid_Female (Female), GEHD_Insectoid_Male (Male), GEHD_Rockey_Female (Female), GEHD_Rockey_Male (Male), GEHD_Scale_Female (Female), GEHD_Scale_Male (Male), GEHD_Slime_Female (Female), GEHD_Slime_Male (Male) |
 
 ## Face tattoos (160)
 

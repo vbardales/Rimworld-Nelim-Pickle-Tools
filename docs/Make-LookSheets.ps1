@@ -42,7 +42,7 @@ $files = @{}
 $manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head)' } })
+$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head|gehd-heads)' } })
 $matchedDirs | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
@@ -164,7 +164,10 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
 $looks = 'looks.md'
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
-Run-Job 'head' 'head' (Read-Section $looks '^## Head types') $faceHead $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
+$headRows = Read-Section $looks '^## Head types'
+Run-Job 'head' 'head' @($headRows | Where-Object { $_.mod -notmatch 'Genes Expanded - Heads' }) $faceHead $false $false
+# Genes Expanded - Heads (feature pickletools-gehd-head-gallery, 2026-11-04): shot at zoom 2 like the Facial Animation heads, so the same head crop.
+Run-Job 'head' 'head' @($headRows | Where-Object { $_.mod -match 'Genes Expanded - Heads' }) (New-Object System.Drawing.Rectangle 855, 72, 210, 210) $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 
 # Facial Animation head shapes (feature pickletools-fa-head-gallery, shots fahead-<defName>, a bald Nelim in underwear, zoom 2): the names are those of the feature, the head sits at (890..1030, 100..255) of a 1920 x 1080 capture.
 $faHeadCrop = New-Object System.Drawing.Rectangle 855, 72, 210, 210
