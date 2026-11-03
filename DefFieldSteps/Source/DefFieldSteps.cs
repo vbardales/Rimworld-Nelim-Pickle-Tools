@@ -256,6 +256,48 @@ namespace Nelim.PickleTools.DefFields
             ctx.Assert(GenDefDatabase.GetDefSilentFail(type, defName, false) == null, $"a {type.Name} named '{defName}' is loaded, and it should not be");
         }
 
+        /// <summary>
+        /// Asserts the def of that type and name was loaded from the mod (its packageId, with or without the player-facing suffix, case-insensitive). Pickle's own
+        /// "defined by mod" step refuses a name two def types share (every animal); the type in this step says which. Written 2026-11-03 from
+        /// DalmatiansRenew's step for RedWolvesRenew. Compiled, not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} comes from the mod {string}")]
+        public void DefComesFromMod(PickleContext ctx, string defName, string typeName, string packageId)
+        {
+            Def def = Find(ctx, defName, typeName);
+            ModContentPack pack = def.modContentPack;
+            bool match = pack != null && (string.Equals(pack.PackageId, packageId, StringComparison.OrdinalIgnoreCase)
+                || string.Equals(pack.PackageIdPlayerFacing, packageId, StringComparison.OrdinalIgnoreCase));
+            ctx.Assert(match, $"{def.GetType().Name} '{defName}' comes from '{pack?.PackageIdPlayerFacing}', expected {packageId}");
+        }
+
+        /// <summary>Asserts the PawnKindDef carries exactly one Better Crossbreeding extension (a patch that adds a second one would fail the game's own read). Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: the pawn kind {string} carries one Better Crossbreeding extension")]
+        public void KindCarriesOneCrossbreedingExtension(PickleContext ctx, string kindName)
+        {
+            var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(kindName);
+            ctx.Require(kind != null, $"no PawnKindDef named '{kindName}'");
+            int count = kind.modExtensions?.Count(e => e != null && e.GetType().FullName == CrossbreedingExtension) ?? 0;
+            ctx.Assert(count == 1, $"'{kindName}' carries {count} {CrossbreedingExtension}");
+        }
+
+        /// <summary>The negative twin of <c>a ... mother answers a ... father with ...</c>: no extension, or none with an outcome for that father kind. Compiled, not played.</summary>
+        [Then("Nelim's Pickle Tools: a {string} mother has no answer for a {string} father")]
+        public void MotherHasNoAnswer(PickleContext ctx, string motherKind, string fatherKind)
+        {
+            var kind = DefDatabase<PawnKindDef>.GetNamedSilentFail(motherKind);
+            ctx.Require(kind != null, $"no PawnKindDef named '{motherKind}'");
+            DefModExtension extension = kind.modExtensions?.FirstOrDefault(e => e != null && e.GetType().FullName == CrossbreedingExtension);
+            if (extension == null) return;
+            var outcomes = extension.GetType().GetField("outcomes")?.GetValue(extension) as System.Collections.IEnumerable;
+            ctx.Require(outcomes != null, $"{CrossbreedingExtension} has no readable 'outcomes' list: has the mod changed?");
+            foreach (object outcome in outcomes)
+            {
+                var father = outcome.GetType().GetField("kindDef")?.GetValue(outcome) as PawnKindDef;
+                ctx.Assert(father?.defName != fatherKind, $"a '{motherKind}' mother has an outcome for a '{fatherKind}' father, which this pass does not expect");
+            }
+        }
+
         /// <summary>Asserts an ideoligion style category gives a thing the style: its <c>thingDefStyles</c> holds the pair (thing, style). Written 2026-10-29 for PropsAsStyle. Compiled, not played.</summary>
         [Then("Nelim's Pickle Tools: the style category {string} gives the thing {string} the style {string}")]
         public void CategoryGivesStyle(PickleContext ctx, string categoryName, string thingName, string styleName)
