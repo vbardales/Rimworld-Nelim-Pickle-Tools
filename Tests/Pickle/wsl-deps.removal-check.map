@@ -1,1 +1,5 @@
-# Base map of the removal check (removal-check.feature): stages nothing but the bundle under test. Copy it, add the mods the saved game still needs (the removed mod and its own dependants stay out), pass the copy to -DepMap.
+# Base map of the removal check (removal-check.feature). Copy it, add the mods the saved game still needs (the removed mod and its dependants stay out), pass the copy to -DepMap.
+nelim.pickletools.colonistrace   path:PickleTools/ColonistRace/Mod
+nelim.pickletools.loadaudit      path:PickleTools/LoadAudit/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod

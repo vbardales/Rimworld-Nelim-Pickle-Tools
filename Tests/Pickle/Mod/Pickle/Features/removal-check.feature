@@ -4,6 +4,8 @@
 # removed mod (a pass map that does not stage it, plus the mods the save still needs) and reads the log. See Tests/Pickle/README.md "Removal check".
 #
 #   Submit-PickleRun.ps1 -Mod PickleTools -DepMap <map without the removed mod> -Filter removal-check
+@requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.loadaudit
 Feature: a saved game loads with a mod removed
 
   Background:
