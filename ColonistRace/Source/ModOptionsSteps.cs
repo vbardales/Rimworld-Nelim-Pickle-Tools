@@ -148,7 +148,10 @@ namespace Nelim.PickleTools.ColonistRace
             if (current == null) throw new InvalidOperationException($"{handle.Content.Name} has no settings object; it declares no settings");
             Type type = current.GetType();
             field.SetValue(handle, null);
-            typeof(Mod).GetMethod("GetSettings", AnyMember | BindingFlags.Public).MakeGenericMethod(type).Invoke(handle, null);
+            object fresh = typeof(Mod).GetMethod("GetSettings", AnyMember | BindingFlags.Public).MakeGenericMethod(type).Invoke(handle, null);
+            // A mod keeps the object GetSettings returned in its own field (RimScent Extended: static Settings): point it at the new one, else the page edits an orphan and WriteSettings saves defaults.
+            foreach (FieldInfo own in handle.GetType().GetFields(AnyMember | BindingFlags.Static | BindingFlags.FlattenHierarchy).Where(x => x.FieldType.IsAssignableFrom(type)))
+                if (ReferenceEquals(own.GetValue(own.IsStatic ? null : handle), current)) own.SetValue(own.IsStatic ? null : handle, fresh);
         }
 
         private static void RestoreFile(string path)
