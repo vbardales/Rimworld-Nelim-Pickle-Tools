@@ -1,0 +1,17 @@
+# Isolation of the invisible LTS trousers (NSB request 2026-11-04): B = AB Visible Pants alone. Face-less feature (no Facial Animation in the map).
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.lts-pants-b.map -Filter '::lts-pants-b:' -EvidenceDir Tests/Pickle/Inbox/lts-pants-b-1
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.coatsteps path:PickleTools/CoatSteps/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+Malistaticy.UnderWhere 1870010563
+wdi.realistic.bodies 3527486510
+limetreesnake.raiments 3751997843
+ab.vplrf 2986402536
