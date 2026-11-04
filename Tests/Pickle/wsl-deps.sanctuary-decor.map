@@ -1,0 +1,10 @@
+# Embellishing the Sanctuary fixture (2026-11-04, NSB plan): the PickleTools tools and the Backlot (its framing steps), base game and DLC only.
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.sanctuary-decor.map -Filter '::sanctuary-decor-before'
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+nelim.sanctuarybacklot path:SanctuaryBacklot/Mod
