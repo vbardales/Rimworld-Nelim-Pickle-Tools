@@ -74,7 +74,7 @@ const PRE = [
   `And ${P}the temperature of the map is 20 degrees`, `And ${P}I let 10 ticks pass`, `And ${P}I frame the area centred on (177, 121) at root size 6.5`,
 ];
 const NELIM = [`And ${P}"Nelim" stands at (176, 120) facing South`, `And ${P}"Nelim" face kit is "neutral"`, `And ${P}"Nelim" facial expression is "normal"`, `And ${P}"Nelim" face is held neutral`];
-const FACE = '(176, 119) at zoom 3', BODY = '(176, 120) at zoom 2', CHUNK = 20;
+const FACE = '(176, 119) at zoom 3', BODY = '(176, 120) at zoom 2', CHUNK = 6;
 const wear = defs.filter(d => !isHatDef(d)).map(d => d.dn), hats = defs.filter(isHatDef).map(d => d.dn);
 let n = 0, out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n'
   + `Feature: ${mod.name}, one photograph per garment on Nelim (gallery of the look catalogues)\n\n`;
