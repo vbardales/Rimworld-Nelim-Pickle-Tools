@@ -23,6 +23,8 @@ nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 # Not staged: TailorMade (not needed), Apparel Paper Pattern (not required: AB lists it in loadAfter only), THIGAPPE (does the same fitting as Venus, dropped), Reel's textures (owner: not added), Kas.GeneralCollection (optional, Workshop id 3789119336).
 tiagocc0.FemaleBodyVariants 3798082132
 tiagocc0.FemaleApparelVariants 3799726535
+# UnderWhere (underwear base of the catalogue try-ons) before WDI, as in wsl-deps.sanctuary-looks.map (NSB daily map lacks it, ticket 3a0f 2026-11-04: no apparel UnderWhere_Panties).
+Malistaticy.UnderWhere 1870010563
 wdi.realistic.bodies 3527486510
 ab.vplrf 2986402536
 nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
