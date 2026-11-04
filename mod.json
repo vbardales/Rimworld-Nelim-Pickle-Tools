@@ -1,0 +1,504 @@
+{
+  "schema": 1,
+  "test": {
+    "profiles": {
+      "minimal": {
+        "requires": [],
+        "depMap": "Tests/Pickle/wsl-deps.aggregate-minimal.map"
+      },
+      "no-biotech": {
+        "requires": [],
+        "depMap": "Tests/Pickle/wsl-deps.aggregate-no-biotech.map"
+      },
+      "faceparts": {
+        "requires": [
+          {
+            "packageId": "tiagocc0.FemaleBodyVariants",
+            "workshopId": "3798082132"
+          },
+          {
+            "packageId": "tiagocc0.FemaleApparelVariants",
+            "workshopId": "3799726535"
+          },
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          },
+          {
+            "packageId": "wdi.realistic.bodies",
+            "workshopId": "3527486510"
+          },
+          {
+            "packageId": "ab.vplrf",
+            "workshopId": "2986402536"
+          },
+          {
+            "packageId": "nelim.venustouch.waistlines",
+            "path": "VenusTouchWaistlines/Mod"
+          },
+          {
+            "packageId": "Nals.FacialAnimation",
+            "workshopId": "1635901197"
+          },
+          {
+            "packageId": "nals.facialanimationexperimentals",
+            "workshopId": "2581693737"
+          },
+          {
+            "packageId": "VanillaExpanded.VTEXE.FacialAnims",
+            "workshopId": "2816938779"
+          },
+          {
+            "packageId": "Newton.AKNExtras.FacialAnimations",
+            "workshopId": "2889716301"
+          },
+          {
+            "packageId": "lucius.eyegenes3",
+            "workshopId": "3745223213"
+          },
+          {
+            "packageId": "vk.addeyes.EX",
+            "workshopId": "3694711465"
+          },
+          {
+            "packageId": "sd.fa.movingvanillaeyes",
+            "workshopId": "3753978140"
+          },
+          {
+            "packageId": "SleepyFrieren.beautygenefa",
+            "workshopId": "3685072616"
+          },
+          {
+            "packageId": "ria.cuterkidsforfacialanimation",
+            "workshopId": "3807706870"
+          },
+          {
+            "packageId": "Moshii.NLFA.InitFix",
+            "workshopId": "3609895011"
+          },
+          {
+            "packageId": "ccj.nlfaloadfix",
+            "workshopId": "3721489042"
+          },
+          {
+            "packageId": "lordfelix.HatHairControl",
+            "workshopId": "3760821540"
+          },
+          {
+            "packageId": "ray1203.SimpleCameraSetting",
+            "workshopId": "3232415388"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.faceparts.map"
+      },
+      "vanilla-heads": {
+        "requires": [
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.vanilla-heads.map"
+      },
+      "gehd-heads": {
+        "requires": [
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          },
+          {
+            "packageId": "LazyFridayStudio.GenesExpandedHeads",
+            "workshopId": "3549061328"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.gehd-heads.map"
+      },
+      "clothes-lts": {
+        "requires": [
+          {
+            "packageId": "tiagocc0.FemaleBodyVariants",
+            "workshopId": "3798082132"
+          },
+          {
+            "packageId": "tiagocc0.FemaleApparelVariants",
+            "workshopId": "3799726535"
+          },
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          },
+          {
+            "packageId": "wdi.realistic.bodies",
+            "workshopId": "3527486510"
+          },
+          {
+            "packageId": "ab.vplrf",
+            "workshopId": "2986402536"
+          },
+          {
+            "packageId": "nelim.venustouch.waistlines",
+            "path": "VenusTouchWaistlines/Mod"
+          },
+          {
+            "packageId": "Nals.FacialAnimation",
+            "workshopId": "1635901197"
+          },
+          {
+            "packageId": "nals.facialanimationexperimentals",
+            "workshopId": "2581693737"
+          },
+          {
+            "packageId": "VanillaExpanded.VTEXE.FacialAnims",
+            "workshopId": "2816938779"
+          },
+          {
+            "packageId": "Newton.AKNExtras.FacialAnimations",
+            "workshopId": "2889716301"
+          },
+          {
+            "packageId": "lucius.eyegenes3",
+            "workshopId": "3745223213"
+          },
+          {
+            "packageId": "astryl.FacialAnimationPerformancePatch",
+            "workshopId": "3790129900"
+          },
+          {
+            "packageId": "vk.addeyes.EX",
+            "workshopId": "3694711465"
+          },
+          {
+            "packageId": "sd.fa.movingvanillaeyes",
+            "workshopId": "3753978140"
+          },
+          {
+            "packageId": "SleepyFrieren.beautygenefa",
+            "workshopId": "3685072616"
+          },
+          {
+            "packageId": "ria.cuterkidsforfacialanimation",
+            "workshopId": "3807706870"
+          },
+          {
+            "packageId": "Moshii.NLFA.InitFix",
+            "workshopId": "3609895011"
+          },
+          {
+            "packageId": "ccj.nlfaloadfix",
+            "workshopId": "3721489042"
+          },
+          {
+            "packageId": "Shenanigans.TribalTattoos",
+            "workshopId": "2782262247"
+          },
+          {
+            "packageId": "Qux.Tattoos",
+            "workshopId": "2569243583"
+          },
+          {
+            "packageId": "Rooboid.RooTattoo",
+            "workshopId": "2555588467"
+          },
+          {
+            "packageId": "rooboid.hdhair.continued",
+            "workshopId": "3559870636"
+          },
+          {
+            "packageId": "VanillaExpanded.VHE",
+            "workshopId": "1888705256"
+          },
+          {
+            "packageId": "lordfelix.HatHairControl",
+            "workshopId": "3760821540"
+          },
+          {
+            "packageId": "Dress.Cinderella",
+            "workshopId": "3627646170"
+          },
+          {
+            "packageId": "homebrew.fairycoreapparel2",
+            "workshopId": "3812924898"
+          },
+          {
+            "packageId": "KRJS.JoseonCostume1",
+            "workshopId": "3043633660"
+          },
+          {
+            "packageId": "LovelyDovey.Sex.WithEuterpe",
+            "workshopId": "3498422643"
+          },
+          {
+            "packageId": "divineDerivative.Romance",
+            "workshopId": "2877731755"
+          },
+          {
+            "packageId": "rim.job.world",
+            "path": "local:rjw"
+          },
+          {
+            "packageId": "vegapnk.rjw.genes",
+            "path": "local:rjw-genes"
+          },
+          {
+            "packageId": "archersaiter.rjw.traits",
+            "path": "local:rjw-traits"
+          },
+          {
+            "packageId": "LazyFridayStudio.GenesExpandedSkin",
+            "workshopId": "3214172563"
+          },
+          {
+            "packageId": "OskarPotocki.VanillaFactionsExpanded.Core",
+            "workshopId": "2023507013"
+          },
+          {
+            "packageId": "VanillaExpanded.VAPPE",
+            "workshopId": "1814987817"
+          },
+          {
+            "packageId": "Mlie.FashionRIMsta",
+            "workshopId": "3592569869"
+          },
+          {
+            "packageId": "ponpeco.KidsClothes",
+            "workshopId": "3237739433"
+          },
+          {
+            "packageId": "ponpeco.PonpecoAccessories",
+            "workshopId": "3298397484"
+          },
+          {
+            "packageId": "limetreesnake.raiments",
+            "workshopId": "3751997843"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.clothes-lts.map"
+      },
+      "clothes-lisawork": {
+        "requires": [
+          {
+            "packageId": "tiagocc0.FemaleBodyVariants",
+            "workshopId": "3798082132"
+          },
+          {
+            "packageId": "tiagocc0.FemaleApparelVariants",
+            "workshopId": "3799726535"
+          },
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          },
+          {
+            "packageId": "wdi.realistic.bodies",
+            "workshopId": "3527486510"
+          },
+          {
+            "packageId": "ab.vplrf",
+            "workshopId": "2986402536"
+          },
+          {
+            "packageId": "nelim.venustouch.waistlines",
+            "path": "VenusTouchWaistlines/Mod"
+          },
+          {
+            "packageId": "OskarPotocki.VanillaFactionsExpanded.Core",
+            "workshopId": "2023507013"
+          },
+          {
+            "packageId": "VanillaExpanded.VAPPE",
+            "workshopId": "1814987817"
+          },
+          {
+            "packageId": "ponpeco.PonpecoAccessories",
+            "workshopId": "3298397484"
+          },
+          {
+            "packageId": "Hysteria82.MousekinWorkApparel",
+            "workshopId": "3709891968"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.clothes-lisawork.map"
+      },
+      "clothes-boots": {
+        "requires": [
+          {
+            "packageId": "tiagocc0.FemaleBodyVariants",
+            "workshopId": "3798082132"
+          },
+          {
+            "packageId": "tiagocc0.FemaleApparelVariants",
+            "workshopId": "3799726535"
+          },
+          {
+            "packageId": "Malistaticy.UnderWhere",
+            "workshopId": "1870010563"
+          },
+          {
+            "packageId": "wdi.realistic.bodies",
+            "workshopId": "3527486510"
+          },
+          {
+            "packageId": "ab.vplrf",
+            "workshopId": "2986402536"
+          },
+          {
+            "packageId": "nelim.venustouch.waistlines",
+            "path": "VenusTouchWaistlines/Mod"
+          },
+          {
+            "packageId": "Nals.FacialAnimation",
+            "workshopId": "1635901197"
+          },
+          {
+            "packageId": "nals.facialanimationexperimentals",
+            "workshopId": "2581693737"
+          },
+          {
+            "packageId": "VanillaExpanded.VTEXE.FacialAnims",
+            "workshopId": "2816938779"
+          },
+          {
+            "packageId": "Newton.AKNExtras.FacialAnimations",
+            "workshopId": "2889716301"
+          },
+          {
+            "packageId": "lucius.eyegenes3",
+            "workshopId": "3745223213"
+          },
+          {
+            "packageId": "astryl.FacialAnimationPerformancePatch",
+            "workshopId": "3790129900"
+          },
+          {
+            "packageId": "vk.addeyes.EX",
+            "workshopId": "3694711465"
+          },
+          {
+            "packageId": "sd.fa.movingvanillaeyes",
+            "workshopId": "3753978140"
+          },
+          {
+            "packageId": "SleepyFrieren.beautygenefa",
+            "workshopId": "3685072616"
+          },
+          {
+            "packageId": "ria.cuterkidsforfacialanimation",
+            "workshopId": "3807706870"
+          },
+          {
+            "packageId": "Moshii.NLFA.InitFix",
+            "workshopId": "3609895011"
+          },
+          {
+            "packageId": "ccj.nlfaloadfix",
+            "workshopId": "3721489042"
+          },
+          {
+            "packageId": "Shenanigans.TribalTattoos",
+            "workshopId": "2782262247"
+          },
+          {
+            "packageId": "Qux.Tattoos",
+            "workshopId": "2569243583"
+          },
+          {
+            "packageId": "Rooboid.RooTattoo",
+            "workshopId": "2555588467"
+          },
+          {
+            "packageId": "rooboid.hdhair.continued",
+            "workshopId": "3559870636"
+          },
+          {
+            "packageId": "VanillaExpanded.VHE",
+            "workshopId": "1888705256"
+          },
+          {
+            "packageId": "lordfelix.HatHairControl",
+            "workshopId": "3760821540"
+          },
+          {
+            "packageId": "Dress.Cinderella",
+            "workshopId": "3627646170"
+          },
+          {
+            "packageId": "homebrew.fairycoreapparel2",
+            "workshopId": "3812924898"
+          },
+          {
+            "packageId": "KRJS.JoseonCostume1",
+            "workshopId": "3043633660"
+          },
+          {
+            "packageId": "LovelyDovey.Sex.WithEuterpe",
+            "workshopId": "3498422643"
+          },
+          {
+            "packageId": "divineDerivative.Romance",
+            "workshopId": "2877731755"
+          },
+          {
+            "packageId": "rim.job.world",
+            "path": "local:rjw"
+          },
+          {
+            "packageId": "vegapnk.rjw.genes",
+            "path": "local:rjw-genes"
+          },
+          {
+            "packageId": "archersaiter.rjw.traits",
+            "path": "local:rjw-traits"
+          },
+          {
+            "packageId": "LazyFridayStudio.GenesExpandedSkin",
+            "workshopId": "3214172563"
+          },
+          {
+            "packageId": "OskarPotocki.VanillaFactionsExpanded.Core",
+            "workshopId": "2023507013"
+          },
+          {
+            "packageId": "VanillaExpanded.VAPPE",
+            "workshopId": "1814987817"
+          },
+          {
+            "packageId": "Mlie.FashionRIMsta",
+            "workshopId": "3592569869"
+          },
+          {
+            "packageId": "ponpeco.KidsClothes",
+            "workshopId": "3237739433"
+          },
+          {
+            "packageId": "ponpeco.PonpecoAccessories",
+            "workshopId": "3298397484"
+          },
+          {
+            "packageId": "Techmago.BootsnStuff",
+            "workshopId": "1488970545"
+          }
+        ],
+        "depMap": "Tests/Pickle/wsl-deps.clothes-boots.map"
+      }
+    },
+    "defaultProfile": "minimal"
+  },
+  "defs": {
+    "defines": [],
+    "relies": [
+      "ThingDef",
+      "HeadTypeDef",
+      "HairDef",
+      "BeardDef",
+      "TattooDef",
+      "GeneDef",
+      "FacialAnimation.HeadTypeDef",
+      "FacialAnimation.MouthTypeDef",
+      "FacialAnimation.BrowTypeDef",
+      "FacialAnimation.LidTypeDef",
+      "FacialAnimation.EyeballTypeDef",
+      "FacialAnimation.SkinTypeDef",
+      "FacialAnimation.FaceAnimationDef"
+    ]
+  }
+}
