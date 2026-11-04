@@ -98,3 +98,7 @@ scenarios('hats', hats, [`${P}"Nelim" hairstyle is "Long"`], FACE,
 const file = path.join(__dirname, '..', 'Tests/Pickle/Mod/Pickle/Features/pickletools-clothes-' + key + '-gallery.feature');
 fs.writeFileSync(file, out);
 console.log(`${mod.name}: ${n} scenarios, ${wear.length} garments, ${hats.length} hats; first: ${defs.slice(0, 8).map(d => d.dn).join(', ')}`);
+// Pre-check (2026-11-04, after ticket 3a0f): every def the feature cites must exist in the mods of the map it runs with.
+const check = require('child_process').spawnSync('node', [path.join(__dirname, 'Check-FeatureDefs.js'), '--map', 'clothes-' + key, '--feature', file], { encoding: 'utf8' });
+console.log(check.stdout.trim());
+if (check.status !== 0) { console.error('PRE-CHECK FAILED: do not file this ticket until the map holds the missing mods.'); process.exit(1); }
