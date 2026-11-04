@@ -61,3 +61,23 @@ Step text: `I dress "<pawn>" in "<defName>"` (Pickle) and the dyed-garment step 
 | Boots and Stuff | Middle (6) | Apparel_Marine_Boots[Feet], Apparel_boots[Feet], Apparel_fancy_heels[Feet], Apparel_military_Boots[Feet], Apparel_sandals[Feet], Apparel_shoes[Feet] |
 | Boots and Stuff | OnSkin (7) | Apparel_Marine_Gloves[Hands], Apparel_Socks[Feet], Apparel_feetwraps[Feet], Apparel_handwraps[Hands], Apparel_medic_gloves[Hands], Apparel_thick_gloves[Hands], Apparel_work_gloves[Hands] |
 | Boots and Stuff | Shell (1) | Apparel_ring[Hands] |
+
+## Notes on [LTS] Raiments (2026-11-04, read from the Defs of the mod)
+
+Layer, stuff categories the garment can be made of, colour source. "generated colour" = the def carries a `colorGenerator` (colour drawn at creation); no `CompProperties_Colorable` was found on any of these, so no in-game recolouring comp is declared (the step "wears X dyed rgb" sets a colour on the item whatever the def says). Insulation is not set on the def (inherited from its parent, not read). Seen on the photographs (Nelim Female, underwear base, stack of the NSB daily map): the pants-only pieces `LTS_Dresspants`, `LTS_Shorts`, `LTS_Sweatpants` do not show (the underwear stays visible), `LTS_Skirt` and the dresses do; cause under test (ticket dd05, isolation of AB Visible Pants and Venus).
+
+| Def | Layer | Stuff | Colour | Insulation cold / heat |
+|---|---|---|---|---|
+| `LTS_SummerSundress` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_StraightDress` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_LacedDress` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_Tunika` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_TartanPlaid` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_Skirt` | OnSkin | Fabric, Leathery | generated colour | - / - |
+| `LTS_Hoodie` | Shell | Fabric | generated colour | - / - |
+| `LTS_Poncho` | Shell | Fabric, Leathery | generated colour | - / - |
+| `LTS_Scarf` | Overhead | Fabric | no | - / - |
+| `LTS_CourierCoat` | Shell | Fabric, Leathery | generated colour | - / - |
+| `LTS_MilitaryParka` | Shell | Fabric | generated colour | - / - |
+| `LTS_Dresspants` | OnSkin | Fabric | generated colour | - / - |
+| `LTS_Shorts` | OnSkin | Fabric, Leathery | generated colour | - / - |
