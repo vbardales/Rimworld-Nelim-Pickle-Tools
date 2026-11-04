@@ -47,22 +47,30 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
             held = value;
             // The mood thoughts that depend on the temperature are cached and refreshed on ticks; the scene runs paused, so drop them now.
-            foreach (Pawn p in PawnsFinder.AllMaps_FreeColonists.ToList())
+            // Cosmetic refresh: nothing in it may fail the step, the temperature is already held at this point (a mod's thought that throws while it is rebuilt,
+            // fa-head-gallery-1, 2026-10-30; the colonist list itself or a pawn label throwing in SanctuaryBacklot ticket 2840, 2026-11-04, "Exception has been thrown
+            // by the target of an invocation" right after the log line above). The whole refresh sits in one try, and the exception is logged in full.
+            try
             {
-                // Cosmetic refresh: a mod's thought that throws while it is rebuilt (an ArgumentOutOfRangeException from the thoughts of a pawn, fa-head-gallery-1, 2026-10-30)
-                // must not fail the step, the temperature is already held at this point.
-                try
+                foreach (Pawn p in PawnsFinder.AllMaps_FreeColonists.ToList())
                 {
-                    object situational = p.needs?.mood?.thoughts?.situational;
-                    if (situational == null) continue;
-                    situational.GetType().GetMethod("Notify_SituationalThoughtsDirty", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.Invoke(situational, null);
-                    var cache = situational.GetType().GetField("cachedThoughts", BindingFlags.Instance | BindingFlags.NonPublic);
-                    (cache?.GetValue(situational) as System.Collections.IList)?.Clear();
+                    try
+                    {
+                        object situational = p.needs?.mood?.thoughts?.situational;
+                        if (situational == null) continue;
+                        situational.GetType().GetMethod("Notify_SituationalThoughtsDirty", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic)?.Invoke(situational, null);
+                        var cache = situational.GetType().GetField("cachedThoughts", BindingFlags.Instance | BindingFlags.NonPublic);
+                        (cache?.GetValue(situational) as System.Collections.IList)?.Clear();
+                    }
+                    catch (Exception e)
+                    {
+                        Log.Warning("[temperature] the situational thoughts of a colonist could not be refreshed: " + (e.InnerException ?? e));
+                    }
                 }
-                catch (Exception e)
-                {
-                    Log.Warning("[temperature] the situational thoughts of " + p.LabelShort + " could not be refreshed: " + (e.InnerException ?? e).GetType().Name + ": " + (e.InnerException ?? e).Message);
-                }
+            }
+            catch (Exception e)
+            {
+                Log.Warning("[temperature] the situational thoughts could not be refreshed: " + (e.InnerException ?? e));
             }
         }
 
