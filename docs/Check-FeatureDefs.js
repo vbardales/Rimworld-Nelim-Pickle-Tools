@@ -124,4 +124,14 @@ if (missingDefs.length) {
   console.log('DEFS NOT FOUND IN THE MODS OF THE MAP (' + missingDefs.length + '): the map probably lacks a mod, or the name is wrong');
   for (const k of missingDefs) console.log('  ' + k + '   (' + [...cited.get(k)].slice(0, 3).join(', ') + ')');
 } else console.log('all ' + cited.size + ' cited def names exist in the mods of the map');
+
+// 5. The seeds of the pass (Tests/Pickle/config/<map name>/Mod_<folder>_<Class>.xml): each must name a mod staged by the map (a Workshop id, or local-<packageId> for a path: mod);
+// the launcher refuses the run otherwise (ticket 3b11, 2026-11-04: seed Mod_3753978140_MovingVanillaEyesMod.xml in a map without Moving Vanilla Eyes).
+{
+  const name = path.basename(mapPath).replace(/^wsl-deps./, "").replace(/.map$/, "");
+  const dir = path.join(path.dirname(mapPath), "config", name);
+  const staged = new Set(mods.map(m => (m.isPath ? "local-" + m.pkg : m.ref)));
+  const orphans = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => /^Mod_/.test(f)).filter(f => { const folder = f.replace(/^Mod_/, "").replace(/_[^_]*$/, ""); return !staged.has(folder); }) : [];
+  if (orphans.length) { bad++; console.log("SEEDS THAT NAME NO STAGED MOD (" + orphans.length + ", config/" + name + "): " + orphans.join(", ")); }
+}
 process.exit(bad ? 1 : 0);
