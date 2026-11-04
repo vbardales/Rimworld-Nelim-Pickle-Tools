@@ -32,43 +32,43 @@ Feature: Lower-body garments of Lisa's Work and [LTS] Raiments on the Hulk and F
     When Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LisaWork_ApparelPantsAndBelt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPantsAndBelt"
+    And I take a screenshot "bodygarment-hulk-LisaWork_ApparelPantsAndBelt"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LisaWork_ApparelCoveralls"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelCoveralls"
+    And I take a screenshot "bodygarment-hulk-LisaWork_ApparelCoveralls"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LisaWork_ApparelPoliceSkirt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPoliceSkirt"
+    And I take a screenshot "bodygarment-hulk-LisaWork_ApparelPoliceSkirt"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LisaWork_ApparelBankerPants"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelBankerPants"
+    And I take a screenshot "bodygarment-hulk-LisaWork_ApparelBankerPants"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LTS_Skirt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Skirt"
+    And I take a screenshot "bodygarment-hulk-LTS_Skirt"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LTS_Dresspants"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Dresspants"
+    And I take a screenshot "bodygarment-hulk-LTS_Dresspants"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LTS_Shorts"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Shorts"
+    And I take a screenshot "bodygarment-hulk-LTS_Shorts"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LTS_StraightDress"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_StraightDress"
+    And I take a screenshot "bodygarment-hulk-LTS_StraightDress"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LTS_Tunika"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Tunika"
+    And I take a screenshot "bodygarment-hulk-LTS_Tunika"
     And Nelim's Pickle Tools: "Jiro" is undressed
     And Nelim's Pickle Tools: "Jiro" wears "LisaWork_ApparelPioneerDress"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPioneerDress"
+    And I take a screenshot "bodygarment-hulk-LisaWork_ApparelPioneerDress"
 
   Scenario: clothes-bodies-fat-1: ten garments on Vesper (Fat)
     Given the save "Nelims-tribe" is loaded
@@ -99,40 +99,40 @@ Feature: Lower-body garments of Lisa's Work and [LTS] Raiments on the Hulk and F
     When Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LisaWork_ApparelPantsAndBelt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPantsAndBelt"
+    And I take a screenshot "bodygarment-fat-LisaWork_ApparelPantsAndBelt"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LisaWork_ApparelCoveralls"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelCoveralls"
+    And I take a screenshot "bodygarment-fat-LisaWork_ApparelCoveralls"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LisaWork_ApparelPoliceSkirt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPoliceSkirt"
+    And I take a screenshot "bodygarment-fat-LisaWork_ApparelPoliceSkirt"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LisaWork_ApparelBankerPants"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelBankerPants"
+    And I take a screenshot "bodygarment-fat-LisaWork_ApparelBankerPants"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LTS_Skirt"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Skirt"
+    And I take a screenshot "bodygarment-fat-LTS_Skirt"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LTS_Dresspants"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Dresspants"
+    And I take a screenshot "bodygarment-fat-LTS_Dresspants"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LTS_Shorts"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Shorts"
+    And I take a screenshot "bodygarment-fat-LTS_Shorts"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LTS_StraightDress"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_StraightDress"
+    And I take a screenshot "bodygarment-fat-LTS_StraightDress"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LTS_Tunika"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LTS_Tunika"
+    And I take a screenshot "bodygarment-fat-LTS_Tunika"
     And Nelim's Pickle Tools: "Vesper" is undressed
     And Nelim's Pickle Tools: "Vesper" wears "LisaWork_ApparelPioneerDress"
     And Nelim's Pickle Tools: I let 5 frames pass
-    And I take a screenshot "garment-LisaWork_ApparelPioneerDress"
+    And I take a screenshot "bodygarment-fat-LisaWork_ApparelPioneerDress"
