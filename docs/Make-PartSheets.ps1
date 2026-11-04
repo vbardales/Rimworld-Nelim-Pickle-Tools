@@ -9,7 +9,7 @@ $root = Split-Path $PSScriptRoot -Parent
 $out = Join-Path $root 'ColonistRace/docs/img/looks'   # no subfolders (owner, 2026-10-28): numbered like the look sheets, block 28
 New-Item -ItemType Directory -Force $out | Out-Null
 $files = @{}
-foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6', 'Tests/Pickle/Inbox/face-eyeballs-1', 'Tests/Pickle/Inbox/face-eyeballs-2', 'Tests/Pickle/Inbox/uw-fa-head-1', 'Tests/Pickle/Inbox/uw-fa-head-2', 'Tests/Pickle/Inbox/uw-fa-head-3', 'Tests/Pickle/Evidence/look-gallery-facetattoo-bald') {
+foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23', 'evidence/face-parts-gallery-45', 'Tests/Pickle/Inbox/face-redo', 'Tests/Pickle/Inbox/face-redo-2', 'Tests/Pickle/Inbox/face-redo-5', 'Tests/Pickle/Inbox/face-redo-6', 'Tests/Pickle/Inbox/face-eyeballs-1', 'Tests/Pickle/Inbox/face-eyeballs-2', 'Tests/Pickle/Inbox/face-eyeballs-3', 'Tests/Pickle/Inbox/uw-fa-head-1', 'Tests/Pickle/Inbox/uw-fa-head-2', 'Tests/Pickle/Inbox/uw-fa-head-3', 'Tests/Pickle/Evidence/look-gallery-facetattoo-bald') {
     $s = Join-Path $root "$d/screenshots"
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $k = ($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', ''); $files[$k] = $_.FullName; if ($k -like 'fahead-*') { $files['head-' + $k.Substring(7)] = $_.FullName } } }   # Evidence keeps minified 1280 x 720 JPEG; the Facial Animation head gallery (fahead-<def>) feeds the head shape sheet
 }
