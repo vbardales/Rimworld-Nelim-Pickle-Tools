@@ -1,7 +1,7 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.camerazoom
-Feature: The seven eyeballs of Facial Animation, one photograph per value (rebuild of the Eyeballs sheet)
+Feature: The ten eyeballs of Facial Animation, one photograph per value (rebuild of the Eyeballs sheet)
 
   Scenario: face-eyeballs-gallery: seven eyeballs
     Given the save "Nelims-tribe" is loaded
@@ -36,3 +36,12 @@ Feature: The seven eyeballs of Facial Animation, one photograph per value (rebui
     And Nelim's Pickle Tools: "Nelim" eyeballs are "EyeWide"
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "eyeball-EyeWide"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "Courageous"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "eyeball-Courageous"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "Empathetic"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "eyeball-Empathetic"
+    And Nelim's Pickle Tools: "Nelim" eyeballs are "Swift"
+    And Nelim's Pickle Tools: I let 5 frames pass
+    And I take a screenshot "eyeball-Swift"
