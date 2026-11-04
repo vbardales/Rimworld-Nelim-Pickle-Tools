@@ -112,13 +112,20 @@ const missingDefs = [...cited.keys()].filter(k => !have.has(k));
 if (invCheck) {
   // Picker's index (scripts/inv-check.mjs, 1.6 and 1.7, ~9.7k mods): Type/defName on stdin, JSON out. A cross-check of the direct reading. The index holds no mod of the local
   // Mods folder (rjw...): when the map has some, only the direct reading judges (they are listed as "local, read directly").
-  const r = cp.spawnSync('node', [invCheck, mapPath, '--game', opt('game') || '1.6'], { input: [...cited.keys()].join(String.fromCharCode(10)), encoding: 'utf8' });
+  // --deep (Picker, 2026-11-04): also follows the references of each cited def (apparel layers, hediffs, genes, thing categories...). `# skip-refs: <packageId>` lines of the map mute what a deliberately excluded mod would provide.
+  // Not verified (Picker's limits): texture and sound files, defs created by patches, a reference to a def that exists nowhere (typo).
+  const skip = fs.readFileSync(mapPath, "utf8").split(String.fromCharCode(10)).map(l => (l.match(/^#\s*skip-refs:\s*(\S+)/) || [])[1]).filter(Boolean);
+  const args = [invCheck, mapPath, '--game', opt('game') || '1.6', '--deep'];
+  for (const s of skip) args.push('--exclude', s);
+  const r = cp.spawnSync('node', args, { input: [...cited.keys()].join(String.fromCharCode(10)), encoding: 'utf8' });
   try {
     const j = JSON.parse(r.stdout);
     const local = mods.filter(m => !m.isPath && isNaN(Number(m.ref))).map(m => m.ref);
     const unknown = (j.modsNotInventoried || []).filter(x => !local.includes(x));
     console.log('inventory: ok ' + j.ok + ', missing ' + (j.missing || []).length + (unknown.length ? ', NOT INVENTORIED ' + unknown.join(',') : '') + (local.length ? ' (local mods read directly: ' + local.join(',') + ')' : ''));
-    if (unknown.length || ((j.missing || []).length && !local.length)) process.exitCode = 1;
+    const refs = j.missingRefs || [];
+    if (refs.length) { console.log('MISSING REFERENCES of cited defs (' + refs.length + '): the map probably lacks a mod (or add `# skip-refs: <packageId>` to the map if the exclusion is wanted)'); for (const x of refs.slice(0, 40)) console.log('  ' + x.def + ' -> ' + x.ref + '   provided by ' + ((x.providers || []).join(', ') || '?')); }
+    if (unknown.length || ((j.missing || []).length && !local.length) || (refs.length && !local.length)) process.exitCode = 1;
   } catch (e) { console.error('inv-check gave no JSON: ' + (r.stderr || r.stdout).slice(0, 200)); process.exit(1); }
 }
 const missingReq = featureTags.filter(p => !active.has(p.toLowerCase()));
