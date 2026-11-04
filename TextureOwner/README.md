@@ -7,6 +7,8 @@ named in a step: the mod is a parameter, so any retexture can use them.
 | --- | --- |
 | `Nelim's Pickle Tools: the texture {string} is answered by the mod {string}` | passes when the **last** running mod that ships the path is the one whose packageId is given |
 | `Nelim's Pickle Tools: the texture {string} is shipped by at least {int} running mod(s)` | passes when at least that many running mods ship the path |
+| `Nelim's Pickle Tools: the texture {string} loads from the game's base resources` | passes when `Resources.Load<Texture2D>("Textures/" + path)` returns a texture (the vanilla art, whatever the running mods answer); fails with a sentence when it returns null (2026-11-04, Biotech Bodies, not played) |
+| `Nelim's Pickle Tools: the texture {string} from the base resources is not the one a running mod answers` | passes when the base resource differs by reference from `ContentFinder<Texture2D>.Get(path)` and a running mod ships the path, i.e. a mod hides the vanilla art here (2026-11-04, not played) |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
