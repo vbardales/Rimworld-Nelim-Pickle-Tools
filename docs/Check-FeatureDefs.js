@@ -110,9 +110,16 @@ for (const d of ['Core', 'Royalty', 'Ideology', 'Biotech', 'Anomaly', 'Odyssey']
 // 4. The verdict.
 const missingDefs = [...cited.keys()].filter(k => !have.has(k));
 if (invCheck) {
-  // Picker's inventory: Type/defName on stdin, JSON out; trusted for the verdict when given.
-  const r = cp.spawnSync('node', [invCheck, mapPath, '--game', '1.6'], { input: [...cited.keys()].join('\n'), encoding: 'utf8' });
-  try { const j = JSON.parse(r.stdout); console.log('inventory: ok ' + j.ok + ', missing ' + (j.missing || []).length + (j.modsNotInventoried && j.modsNotInventoried.length ? ', not inventoried ' + j.modsNotInventoried.join(',') : '')); if ((j.missing || []).length || (j.modsNotInventoried || []).length) process.exitCode = 1; } catch (e) { console.error('inv-check gave no JSON: ' + (r.stderr || r.stdout).slice(0, 200)); process.exit(1); }
+  // Picker's index (scripts/inv-check.mjs, 1.6 and 1.7, ~9.7k mods): Type/defName on stdin, JSON out. A cross-check of the direct reading. The index holds no mod of the local
+  // Mods folder (rjw...): when the map has some, only the direct reading judges (they are listed as "local, read directly").
+  const r = cp.spawnSync('node', [invCheck, mapPath, '--game', opt('game') || '1.6'], { input: [...cited.keys()].join(String.fromCharCode(10)), encoding: 'utf8' });
+  try {
+    const j = JSON.parse(r.stdout);
+    const local = mods.filter(m => !m.isPath && isNaN(Number(m.ref))).map(m => m.ref);
+    const unknown = (j.modsNotInventoried || []).filter(x => !local.includes(x));
+    console.log('inventory: ok ' + j.ok + ', missing ' + (j.missing || []).length + (unknown.length ? ', NOT INVENTORIED ' + unknown.join(',') : '') + (local.length ? ' (local mods read directly: ' + local.join(',') + ')' : ''));
+    if (unknown.length || ((j.missing || []).length && !local.length)) process.exitCode = 1;
+  } catch (e) { console.error('inv-check gave no JSON: ' + (r.stderr || r.stdout).slice(0, 200)); process.exit(1); }
 }
 const missingReq = featureTags.filter(p => !active.has(p.toLowerCase()));
 let bad = 0;
@@ -134,4 +141,4 @@ if (missingDefs.length) {
   const orphans = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => /^Mod_/.test(f)).filter(f => { const folder = f.replace(/^Mod_/, "").replace(/_[^_]*$/, ""); return !staged.has(folder); }) : [];
   if (orphans.length) { bad++; console.log("SEEDS THAT NAME NO STAGED MOD (" + orphans.length + ", config/" + name + "): " + orphans.join(", ")); }
 }
-process.exit(bad ? 1 : 0);
+process.exit(bad || process.exitCode ? 1 : 0);
