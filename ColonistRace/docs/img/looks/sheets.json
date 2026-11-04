@@ -2670,6 +2670,58 @@
                                           "hex":  ""
                                       }
                                   ],
+    "0304 Tetes - LFS Genes Expanded Heads - 1.jpg":  [
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Amphibian_Female.jpg",
+                                                              "text":  "GEHD_Amphibian_Female",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Amphibian_Male.jpg",
+                                                              "text":  "GEHD_Amphibian_Male",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Insectoid_Female.jpg",
+                                                              "text":  "GEHD_Insectoid_Female",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Insectoid_Male.jpg",
+                                                              "text":  "GEHD_Insectoid_Male",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Rockey_Female.jpg",
+                                                              "text":  "GEHD_Rockey_Female",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Rockey_Male.jpg",
+                                                              "text":  "GEHD_Rockey_Male",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Scale_Female.jpg",
+                                                              "text":  "GEHD_Scale_Female",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Scale_Male.jpg",
+                                                              "text":  "GEHD_Scale_Male",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Slime_Female.jpg",
+                                                              "text":  "GEHD_Slime_Female",
+                                                              "hex":  ""
+                                                          },
+                                                          {
+                                                              "tile":  "0300-head-GEHD_Slime_Male.jpg",
+                                                              "text":  "GEHD_Slime_Male",
+                                                              "hex":  ""
+                                                          }
+                                                      ],
     "2801 Tetes Facial Animation - Facial Animation - 1.jpg":  [
                                                                    {
                                                                        "tile":  "2800-fahead-FurCoveredGaunt.jpg",
@@ -7208,6 +7260,461 @@
                                                  "hex":  ""
                                              }
                                          ],
+    "2310 Vetements - LTS Raiments - 1.jpg":  [
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Bodysuit.jpg",
+                                                      "text":  "LTS_Bodysuit",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_ClockworkAttire.jpg",
+                                                      "text":  "LTS_ClockworkAttire",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Dresspants.jpg",
+                                                      "text":  "LTS_Dresspants",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_DuneCloth.jpg",
+                                                      "text":  "LTS_DuneCloth",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_FuturisticPants.jpg",
+                                                      "text":  "LTS_FuturisticPants",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_FuturisticTop.jpg",
+                                                      "text":  "LTS_FuturisticTop",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Jumpsuit.jpg",
+                                                      "text":  "LTS_Jumpsuit",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_LacedDress.jpg",
+                                                      "text":  "LTS_LacedDress",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_RegalCloth.jpg",
+                                                      "text":  "LTS_RegalCloth",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Shorts.jpg",
+                                                      "text":  "LTS_Shorts",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Skirt.jpg",
+                                                      "text":  "LTS_Skirt",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_StraightDress.jpg",
+                                                      "text":  "LTS_StraightDress",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_SummerSundress.jpg",
+                                                      "text":  "LTS_SummerSundress",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Sweatpants.jpg",
+                                                      "text":  "LTS_Sweatpants",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_TartanPlaid.jpg",
+                                                      "text":  "LTS_TartanPlaid",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_TribalWear.jpg",
+                                                      "text":  "LTS_TribalWear",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Tunika.jpg",
+                                                      "text":  "LTS_Tunika",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_HalfGasMask.jpg",
+                                                      "text":  "LTS_HalfGasMask",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Scarf.jpg",
+                                                      "text":  "LTS_Scarf",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_CourierCoat.jpg",
+                                                      "text":  "LTS_CourierCoat",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Hoodie.jpg",
+                                                      "text":  "LTS_Hoodie",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_MilitaryParka.jpg",
+                                                      "text":  "LTS_MilitaryParka",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_Poncho.jpg",
+                                                      "text":  "LTS_Poncho",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_BearCape.jpg",
+                                                      "text":  "LTS_BearCape",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_MedievalCape.jpg",
+                                                      "text":  "LTS_MedievalCape",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_ButlerArmor.jpg",
+                                                      "text":  "LTS_ButlerArmor",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_LeatherArmor.jpg",
+                                                      "text":  "LTS_LeatherArmor",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_LightPolymerArmor.jpg",
+                                                      "text":  "LTS_LightPolymerArmor",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_MaidArmor.jpg",
+                                                      "text":  "LTS_MaidArmor",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_MedievalArmor.jpg",
+                                                      "text":  "LTS_MedievalArmor",
+                                                      "hex":  ""
+                                                  }
+                                              ],
+    "2311 Vetements - LTS Raiments - 2.jpg":  [
+                                                  {
+                                                      "tile":  "2300-garment-LTS_TribalHeavyArmor.jpg",
+                                                      "text":  "LTS_TribalHeavyArmor",
+                                                      "hex":  ""
+                                                  },
+                                                  {
+                                                      "tile":  "2300-garment-LTS_TribalLightArmor.jpg",
+                                                      "text":  "LTS_TribalLightArmor",
+                                                      "hex":  ""
+                                                  }
+                                              ],
+    "2312 Vetements - Lisas Work Apparel - 1.jpg":  [
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBankerTie.jpg",
+                                                            "text":  "LisaWork_ApparelBankerTie",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBowTie.jpg",
+                                                            "text":  "LisaWork_ApparelBowTie",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelChefNeckerchief.jpg",
+                                                            "text":  "LisaWork_ApparelChefNeckerchief",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPoliceWhistle.jpg",
+                                                            "text":  "LisaWork_ApparelPoliceWhistle",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPriestStoleDyeable.jpg",
+                                                            "text":  "LisaWork_ApparelPriestStoleDyeable",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPriestStole.jpg",
+                                                            "text":  "LisaWork_ApparelPriestStole",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelStethoscope.jpg",
+                                                            "text":  "LisaWork_ApparelStethoscope",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelApronButcher.jpg",
+                                                            "text":  "LisaWork_ApparelApronButcher",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelApronSurgeon.jpg",
+                                                            "text":  "LisaWork_ApparelApronSurgeon",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBankerVest.jpg",
+                                                            "text":  "LisaWork_ApparelBankerVest",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelButlerCoat.jpg",
+                                                            "text":  "LisaWork_ApparelButlerCoat",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelChefCoat.jpg",
+                                                            "text":  "LisaWork_ApparelChefCoat",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelLeatherVest.jpg",
+                                                            "text":  "LisaWork_ApparelLeatherVest",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPoliceShirt.jpg",
+                                                            "text":  "LisaWork_ApparelPoliceShirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSafariShirt.jpg",
+                                                            "text":  "LisaWork_ApparelSafariShirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSchoolUniformFemaleChild.jpg",
+                                                            "text":  "LisaWork_ApparelSchoolUniformFemaleChild",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBankerPants.jpg",
+                                                            "text":  "LisaWork_ApparelBankerPants",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBarMaid.jpg",
+                                                            "text":  "LisaWork_ApparelBarMaid",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBellyDancerFemale.jpg",
+                                                            "text":  "LisaWork_ApparelBellyDancerFemale",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelCollaredShirt.jpg",
+                                                            "text":  "LisaWork_ApparelCollaredShirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelCoveralls.jpg",
+                                                            "text":  "LisaWork_ApparelCoveralls",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelLederhosen.jpg",
+                                                            "text":  "LisaWork_ApparelLederhosen",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelMaid.jpg",
+                                                            "text":  "LisaWork_ApparelMaid",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelNurse.jpg",
+                                                            "text":  "LisaWork_ApparelNurse",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPantsAndBelt.jpg",
+                                                            "text":  "LisaWork_ApparelPantsAndBelt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPioneerDress.jpg",
+                                                            "text":  "LisaWork_ApparelPioneerDress",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPlaidShirt.jpg",
+                                                            "text":  "LisaWork_ApparelPlaidShirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPolicePants.jpg",
+                                                            "text":  "LisaWork_ApparelPolicePants",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelPoliceSkirt.jpg",
+                                                            "text":  "LisaWork_ApparelPoliceSkirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSafariPants.jpg",
+                                                            "text":  "LisaWork_ApparelSafariPants",
+                                                            "hex":  ""
+                                                        }
+                                                    ],
+    "2313 Vetements - Lisas Work Apparel - 2.jpg":  [
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelScrubs.jpg",
+                                                            "text":  "LisaWork_ApparelScrubs",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelServantGirlDressChild.jpg",
+                                                            "text":  "LisaWork_ApparelServantGirlDressChild",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelShirtAndTie.jpg",
+                                                            "text":  "LisaWork_ApparelShirtAndTie",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelShirtButtoned.jpg",
+                                                            "text":  "LisaWork_ApparelShirtButtoned",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSkirt.jpg",
+                                                            "text":  "LisaWork_ApparelSkirt",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSlaveRagsChild.jpg",
+                                                            "text":  "LisaWork_ApparelSlaveRagsChild",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelSlaveRags.jpg",
+                                                            "text":  "LisaWork_ApparelSlaveRags",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelWorkerOveralls.jpg",
+                                                            "text":  "LisaWork_ApparelWorkerOveralls",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelAviatorCoat.jpg",
+                                                            "text":  "LisaWork_ApparelAviatorCoat",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelBankerJacket.jpg",
+                                                            "text":  "LisaWork_ApparelBankerJacket",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelLabCoat.jpg",
+                                                            "text":  "LisaWork_ApparelLabCoat",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelNunHabit.jpg",
+                                                            "text":  "LisaWork_ApparelNunHabit",
+                                                            "hex":  ""
+                                                        },
+                                                        {
+                                                            "tile":  "2300-garment-LisaWork_ApparelScholarRobes.jpg",
+                                                            "text":  "LisaWork_ApparelScholarRobes",
+                                                            "hex":  ""
+                                                        }
+                                                    ],
+    "2314 Vetements - Boots and Stuff - 1.jpg":  [
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_Marine_Boots.jpg",
+                                                         "text":  "Apparel_Marine_Boots",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_boots.jpg",
+                                                         "text":  "Apparel_boots",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_fancy_heels.jpg",
+                                                         "text":  "Apparel_fancy_heels",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_military_Boots.jpg",
+                                                         "text":  "Apparel_military_Boots",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_sandals.jpg",
+                                                         "text":  "Apparel_sandals",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_shoes.jpg",
+                                                         "text":  "Apparel_shoes",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_Marine_Gloves.jpg",
+                                                         "text":  "Apparel_Marine_Gloves",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_Socks.jpg",
+                                                         "text":  "Apparel_Socks",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_feetwraps.jpg",
+                                                         "text":  "Apparel_feetwraps",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_handwraps.jpg",
+                                                         "text":  "Apparel_handwraps",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_medic_gloves.jpg",
+                                                         "text":  "Apparel_medic_gloves",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_thick_gloves.jpg",
+                                                         "text":  "Apparel_thick_gloves",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_work_gloves.jpg",
+                                                         "text":  "Apparel_work_gloves",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "2300-garment-Apparel_ring.jpg",
+                                                         "text":  "Apparel_ring",
+                                                         "hex":  ""
+                                                     }
+                                                 ],
     "2401 Chapeaux - Anomaly - 1.jpg":  [
                                             {
                                                 "tile":  "2400-hat-Apparel_CeremonialCultistMask.jpg",
@@ -7644,6 +8151,165 @@
                                                 "hex":  ""
                                             }
                                         ],
+    "2409 Chapeaux - LTS Raiments - 1.jpg":  [
+                                                 {
+                                                     "tile":  "2400-hat-LTS_CourierHat.jpg",
+                                                     "text":  "LTS_CourierHat",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_LightPolymerHelmet.jpg",
+                                                     "text":  "LTS_LightPolymerHelmet",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_MaidHelmet.jpg",
+                                                     "text":  "LTS_MaidHelmet",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_MedievalArmorHelmet.jpg",
+                                                     "text":  "LTS_MedievalArmorHelmet",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_Shawl.jpg",
+                                                     "text":  "LTS_Shawl",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_TribalHeadband.jpg",
+                                                     "text":  "LTS_TribalHeadband",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_TribalHeavyMask.jpg",
+                                                     "text":  "LTS_TribalHeavyMask",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_TribalLightHelmet.jpg",
+                                                     "text":  "LTS_TribalLightHelmet",
+                                                     "hex":  ""
+                                                 },
+                                                 {
+                                                     "tile":  "2400-hat-LTS_WideBrimmedHat.jpg",
+                                                     "text":  "LTS_WideBrimmedHat",
+                                                     "hex":  ""
+                                                 }
+                                             ],
+    "2410 Chapeaux - Lisas Work Apparel - 1.jpg":  [
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelAviatorSunGlasses.jpg",
+                                                           "text":  "LisaWork_ApparelAviatorSunGlasses",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelHornRimmedGlasses.jpg",
+                                                           "text":  "LisaWork_ApparelHornRimmedGlasses",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelNerdGlasses.jpg",
+                                                           "text":  "LisaWork_ApparelNerdGlasses",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelBellyDancerCirclet.jpg",
+                                                           "text":  "LisaWork_ApparelBellyDancerCirclet",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelBellyDancerCircletandVeil.jpg",
+                                                           "text":  "LisaWork_ApparelBellyDancerCircletandVeil",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelCap.jpg",
+                                                           "text":  "LisaWork_ApparelCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelChefHat.jpg",
+                                                           "text":  "LisaWork_ApparelChefHat",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelDoctorHeadMirror.jpg",
+                                                           "text":  "LisaWork_ApparelDoctorHeadMirror",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelFlightHelmet.jpg",
+                                                           "text":  "LisaWork_ApparelFlightHelmet",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelHardHat.jpg",
+                                                           "text":  "LisaWork_ApparelHardHat",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelHeadBandana.jpg",
+                                                           "text":  "LisaWork_ApparelHeadBandana",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelMaidCap.jpg",
+                                                           "text":  "LisaWork_ApparelMaidCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelMiningHelmet.jpg",
+                                                           "text":  "LisaWork_ApparelMiningHelmet",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelMopCap.jpg",
+                                                           "text":  "LisaWork_ApparelMopCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelNunVeil.jpg",
+                                                           "text":  "LisaWork_ApparelNunVeil",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelNurseCap.jpg",
+                                                           "text":  "LisaWork_ApparelNurseCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelPoliceCap.jpg",
+                                                           "text":  "LisaWork_ApparelPoliceCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelSafariHat.jpg",
+                                                           "text":  "LisaWork_ApparelSafariHat",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelScholarCap.jpg",
+                                                           "text":  "LisaWork_ApparelScholarCap",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelStrawHat.jpg",
+                                                           "text":  "LisaWork_ApparelStrawHat",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelSurgicalMask.jpg",
+                                                           "text":  "LisaWork_ApparelSurgicalMask",
+                                                           "hex":  ""
+                                                       },
+                                                       {
+                                                           "tile":  "2400-hat-LisaWork_ApparelWieldingMask.jpg",
+                                                           "text":  "LisaWork_ApparelWieldingMask",
+                                                           "hex":  ""
+                                                       }
+                                                   ],
     "0204 Couleurs de barbe - Core - 1.jpg":  [
                                                   {
                                                       "tile":  "0200-beardcolour-Blonde.jpg",
