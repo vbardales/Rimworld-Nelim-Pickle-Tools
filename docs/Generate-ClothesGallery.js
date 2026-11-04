@@ -9,7 +9,7 @@ const fs = require('fs'), path = require('path');
 const W = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/';
 const MODS = {
   lts: { id: '3751997843', name: '[LTS] Raiments', first: ['LTS_SummerSundress', 'LTS_StraightDress', 'LTS_Skirt', 'LTS_Shorts', 'LTS_Dresspants'] },
-  lisawork: { id: '3709891968', name: "Lisa's Work Apparel", first: ['LisaWork_ApparelCollaredShirt', 'LisaWork_ApparelApronSurgeon', 'LisaWork_ApparelLabCoat', 'LisaWork_ApparelStethoscope'], firstLabels: /plaid shirt|shirt buttoned|pants and belt|^skirt$/i },
+  lisawork: { slim: true, id: '3709891968', name: "Lisa's Work Apparel", first: ['LisaWork_ApparelCollaredShirt', 'LisaWork_ApparelApronSurgeon', 'LisaWork_ApparelLabCoat', 'LisaWork_ApparelStethoscope'], firstLabels: /plaid shirt|shirt buttoned|pants and belt|^skirt$/i },
   boots: { id: '1488970545', name: 'Boots and Stuff', first: ['Apparel_sandals', 'Apparel_shoes'] },
 };
 const key = process.argv[2];
@@ -73,7 +73,8 @@ const PRE = [
   `And ${P}the item and name labels are hidden`, `And ${P}the tooltips are hidden`, `And ${P}the colonist bar is hidden`, `And ${P}the learning helper is hidden`,
   `And ${P}the temperature of the map is 20 degrees`, `And ${P}I let 10 ticks pass`, `And ${P}I frame the area centred on (177, 121) at root size 6.5`,
 ];
-const NELIM = [`And ${P}"Nelim" stands at (176, 120) facing South`, `And ${P}"Nelim" face kit is "neutral"`, `And ${P}"Nelim" facial expression is "normal"`, `And ${P}"Nelim" face is held neutral`];
+// slim (Lisa's Work: 1325 textures, 1.3 GB decoded, the full daily map got the game killed with exit 137 even at 6 garments per scenario): the map holds no Facial Animation, so no face step.
+const NELIM = [`And ${P}"Nelim" stands at (176, 120) facing South`].concat(mod.slim ? [] : [`And ${P}"Nelim" face kit is "neutral"`, `And ${P}"Nelim" facial expression is "normal"`, `And ${P}"Nelim" face is held neutral`]);
 const FACE = '(176, 119) at zoom 3', BODY = '(176, 120) at zoom 2', CHUNK = 6;
 const wear = defs.filter(d => !isHatDef(d)).map(d => d.dn), hats = defs.filter(isHatDef).map(d => d.dn);
 let n = 0, out = '@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.colonistrace\n@requires:nelim.pickletools.camerazoom\n'

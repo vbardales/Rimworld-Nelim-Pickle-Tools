@@ -14,9 +14,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -66,9 +63,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -118,9 +112,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -170,9 +161,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -222,9 +210,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -274,9 +259,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -326,9 +308,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -378,9 +357,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: I frame the cell (176, 120) at zoom 2
     When Nelim's Pickle Tools: "Nelim" is undressed
     And Nelim's Pickle Tools: "Nelim" wears "UnderWhere_Panties"
@@ -400,9 +376,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "LisaWork_ApparelAviatorSunGlasses"
@@ -459,9 +432,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "LisaWork_ApparelFlightHelmet"
@@ -518,9 +488,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "LisaWork_ApparelMopCap"
@@ -577,9 +544,6 @@ Feature: Lisa's Work Apparel, one photograph per garment on Nelim (gallery of th
     And Nelim's Pickle Tools: I let 10 ticks pass
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
     And Nelim's Pickle Tools: "Nelim" stands at (176, 120) facing South
-    And Nelim's Pickle Tools: "Nelim" face kit is "neutral"
-    And Nelim's Pickle Tools: "Nelim" facial expression is "normal"
-    And Nelim's Pickle Tools: "Nelim" face is held neutral
     And Nelim's Pickle Tools: "Nelim" hairstyle is "Long"
     And Nelim's Pickle Tools: I frame the cell (176, 119) at zoom 3
     When Nelim's Pickle Tools: "Nelim" wears "LisaWork_ApparelStrawHat"
