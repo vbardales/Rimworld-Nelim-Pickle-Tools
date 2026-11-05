@@ -147,6 +147,10 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: the power connection of the building "Loudspeaker" at (206, 114) is remade
     And Nelim's Pickle Tools: the power connection of the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is remade
     And Nelim's Pickle Tools: the power connection of the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is remade
+    # the original vitals monitors beside the infirmary beds reached the new hidden conduits by a visible wire (c71f, 6176): log them, then cut their connection (they stay unpowered, as in the original)
+    And Nelim's Pickle Tools: the power links of the area from (197, 48) to (206, 55) are logged
+    And Nelim's Pickle Tools: the power connections of the area from (197, 48) to (206, 55) are cut
+    And Nelim's Pickle Tools: the power links of the area from (197, 48) to (206, 55) are logged
     And Nelim's Pickle Tools: the building "LightBall" at (205, 119) is on a power net with a power source
     And Nelim's Pickle Tools: the building "LightBall" at (205, 119) is connected with no visible wire
     And Nelim's Pickle Tools: the building "Loudspeaker" at (209, 120) is on a power net with a power source

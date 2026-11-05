@@ -132,6 +132,31 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Cuts the power connection of every powered or transmitting building of a rectangle (they stay where they are, unpowered, with no wire
+        /// drawn): for the original things of a room that a new power net would otherwise reach by a visible wire (the vitals monitors beside the
+        /// beds of the infirmary took the new hidden conduits as parents). Logs what it cut ([power-cut]). Written 2026-11-05 for the Sanctuary.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the power connections of the area from \\({int}, {int}\\) to \\({int}, {int}\\) are cut")]
+        public void CutPowerConnections(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            var seen = new HashSet<Thing>();
+            foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
+            {
+                if (!c.InBounds(map)) continue;
+                foreach (Thing t in c.GetThingList(map).ToList())
+                {
+                    if (!(t is ThingWithComps twc) || !seen.Add(t)) continue;
+                    CompPower comp = twc.GetComp<CompPower>();
+                    if (comp == null || comp.connectParent == null) continue;
+                    Thing parent = comp.connectParent.parent;
+                    PowerConnectionMaker.DisconnectFromPowerNet(comp);
+                    Log.Message($"[power-cut] {t.def.defName} at ({t.Position.x}, {t.Position.z}) cut from {parent.def.defName} at ({parent.Position.x}, {parent.Position.z})");
+                }
+            }
+        }
+
+        /// <summary>
         /// Logs the power links of every powered or transmitting building of a rectangle ([power-link]): for each, its def, its cell, the thing its
         /// connection parent is and the distance to it (the game draws a wire line between a thing and its connection parent when they do not
         /// touch), and the net it sits on. To find what a visible wire connects. Never fails. Written 2026-11-05 for the Sanctuary infirmary.
