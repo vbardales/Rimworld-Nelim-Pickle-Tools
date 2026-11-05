@@ -10,6 +10,7 @@ Feature: Sanctuary modded decor: after
     Given the save "Nelims-tribe-decor" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: a decor that finds no cell is skipped and logged
     # entrance: the torii (3x1, a door) across the path into the cloister, a komainu either side, the ablution pavilion off the walking line
     And Nelim's Pickle Tools: I place the decor "Yuran_OldTorie" near (176, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_one" near (173, 131)
@@ -128,6 +129,7 @@ Feature: Sanctuary modded decor: after
     Given the save "Nelims-tribe-decor" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: a decor that finds no cell is skipped and logged
     # entrance: the torii (3x1, a door) across the path into the cloister, a komainu either side, the ablution pavilion off the walking line
     And Nelim's Pickle Tools: I place the decor "Yuran_OldTorie" near (176, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_one" near (173, 131)

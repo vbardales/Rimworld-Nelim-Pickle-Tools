@@ -28,6 +28,14 @@ namespace Nelim.PickleTools.StageDecor
         // on the current map.
         private static readonly List<Thing> Placed = new List<Thing>();
         private static readonly List<OldFloor> Floors = new List<OldFloor>();
+        private static bool SkipUnplaced;
+
+        /// <summary>From here on, a 'near' placement that finds no cell is skipped and logged ([decor-skipped]) instead of failing the scenario, so one stubborn object does not cost the other places their shots. For the scenario only: it is set again by each scenario that wants it.</summary>
+        [Given("Nelim's Pickle Tools: a decor that finds no cell is skipped and logged")]
+        public void SkipWhatFindsNoCell(PickleContext ctx)
+        {
+            SkipUnplaced = true;
+        }
 
         /// <summary>
         /// Places a thing of the def at a cell, made of its default stuff, and remembers it for removal. Fails naming the cell if it is
@@ -100,6 +108,12 @@ namespace Nelim.PickleTools.StageDecor
                 }
             }
 
+            if (SkipUnplaced)
+            {
+                Log.Warning($"[decor-skipped] plant {def.defName} asked ({x}, {z}): no free dry cell within 4 cells");
+                return;
+            }
+
             ctx.Require(false, $"no free dry cell within 4 cells of ({x}, {z}) for the plant {def.defName}");
         }
 
@@ -140,6 +154,12 @@ namespace Nelim.PickleTools.StageDecor
                         }
                     }
                 }
+            }
+
+            if (SkipUnplaced)
+            {
+                Log.Warning($"[decor-skipped] {thingDefName} asked ({x}, {z}): no cell within 4 cells takes it (size {def.size.x}x{def.size.z})");
+                return;
             }
 
             ctx.Require(false, $"no cell within 4 cells of ({x}, {z}) takes the {thingDefName} (size {def.size.x}x{def.size.z}, rotations tried: {string.Join(", ", rotations.Select(r => r.ToStringHuman()))})");

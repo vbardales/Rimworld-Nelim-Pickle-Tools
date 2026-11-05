@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-521 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+522 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -636,6 +636,7 @@ Package `nelim.pickletools.stagedecor`. Not in the bundle: a companion staged by
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: a decor that finds no cell is skipped and logged` (Given) | From here on, a 'near' placement that finds no cell is skipped and logged ([decor-skipped]) instead of failing the scenario, so one stubborn object does not cost the other places their shots. For the scenario only: it is set again by each scenario that wants it. |
 | `Nelim's Pickle Tools: I place the decor {string} at \({int}, {int}\)` (Given) | Places a thing of the def at a cell, made of its default stuff, and remembers it for removal. Fails naming the cell if it is off the map or already holds a pawn or a building (the game would otherwise wipe what stood there). **Parameters:** `thingDefName` (string): a ThingDef name of the loaded game; `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: I place the decor {string} near \({int}, {int}\)` (Given) | Places a building near a cell, the way the game's own placing rules allow it: the nearest cell (rings of up to 4 cells, row by row) where `GenConstruct.CanPlaceBlueprintAt` accepts the def with one of the rotations (north, east, south, west, in that order) is taken, so a wall attachment finds its wall, a door its opening, a big thing... **Parameters:** `thingDefName` (string): a ThingDef name of the loaded game; `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
 | `Nelim's Pickle Tools: I place the decor {string} near \({int}, {int}\) facing {word}` (Given) | The same with a given facing (north, east, south or west): only that rotation is tried. **Parameters:** `thingDefName` (string): a ThingDef name of the loaded game; `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge; `facing` (word). |
