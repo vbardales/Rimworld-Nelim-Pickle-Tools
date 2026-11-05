@@ -322,14 +322,24 @@ namespace Nelim.PickleTools.ColonistRace
             Redraw(pawn);
         }
 
+        /// <summary>The pawn lists of the game may be read on the main thread only; a step of a Background can start elsewhere (SanctuaryBacklot ticket 5a9f, 2026-11-05: "Accessing map pawns off main thread"). The wait resumes on the main thread.</summary>
+        private static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
+        {
+            if (!UnityData.IsInMainThread)
+            {
+                await ctx.WaitUntil(() => UnityData.IsInMainThread, 30f);
+            }
+        }
+
         /// <summary>
         /// Puts a colonist on a cell of the current map, stops its job and its walking, and keeps it where it stands: the pawn stays
         /// put as long as the game is paused (Pickle's own <c>game speed is paused</c>) and as long as nothing gives it a job. Fails if the
         /// cell is off the map or not standable.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} stands at \\({int}, {int}\\)")]
-        public void StandsAt(PickleContext ctx, string nickname, int x, int z)
+        public async System.Threading.Tasks.Task StandsAt(PickleContext ctx, string nickname, int x, int z)
         {
+            await OnMainThread(ctx);
             Place(ctx, nickname, x, z, null);
         }
 
@@ -337,7 +347,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// <param name="nickname">the colonist's nickname</param>
         /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} stands at \\({int}, {int}\\) facing {word}")]
-        public void StandsAtFacing(PickleContext ctx, string nickname, int x, int z, string direction)
+        public async System.Threading.Tasks.Task StandsAtFacing(PickleContext ctx, string nickname, int x, int z, string direction)
         {
             Rot4 facing;
             switch (direction.ToLowerInvariant())
@@ -358,6 +368,7 @@ namespace Nelim.PickleTools.ColonistRace
                     throw new ArgumentException($"unknown direction '{direction}'; supported: North, East, South, West");
             }
 
+            await OnMainThread(ctx);
             Place(ctx, nickname, x, z, facing);
         }
 
@@ -366,8 +377,9 @@ namespace Nelim.PickleTools.ColonistRace
         /// cell, stops it and keeps it there while the game is paused. Same checks and read-back as the colonist step.
         /// </summary>
         [Given("Nelim's Pickle Tools: the animal {string} stands at \\({int}, {int}\\)")]
-        public void AnimalStandsAt(PickleContext ctx, string name, int x, int z)
+        public async System.Threading.Tasks.Task AnimalStandsAt(PickleContext ctx, string name, int x, int z)
         {
+            await OnMainThread(ctx);
             Place(ctx, name, x, z, null, true);
         }
 
@@ -375,8 +387,9 @@ namespace Nelim.PickleTools.ColonistRace
         /// <param name="name">the short name of the animal (for example a <c>coat-N</c> name)</param>
         /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: the animal {string} stands at \\({int}, {int}\\) facing {word}")]
-        public void AnimalStandsAtFacing(PickleContext ctx, string name, int x, int z, string direction)
+        public async System.Threading.Tasks.Task AnimalStandsAtFacing(PickleContext ctx, string name, int x, int z, string direction)
         {
+            await OnMainThread(ctx);
             Place(ctx, name, x, z, Direction(direction), true);
         }
 
@@ -389,9 +402,10 @@ namespace Nelim.PickleTools.ColonistRace
         /// <param name="name">the short name of the animal</param>
         /// <param name="direction"><c>North</c>, <c>East</c>, <c>South</c> or <c>West</c>; any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: the animal {string} lies at \\({int}, {int}\\) facing {word}")]
-        public void AnimalLiesAtFacing(PickleContext ctx, string name, int x, int z, string direction)
+        public async System.Threading.Tasks.Task AnimalLiesAtFacing(PickleContext ctx, string name, int x, int z, string direction)
         {
             Rot4 facing = Direction(direction);
+            await OnMainThread(ctx);
             Place(ctx, name, x, z, facing, true);
             Pawn pawn = AnyPawn(ctx, name);
             JobDef jobDef = DefDatabase<JobDef>.GetNamedSilentFail("LayDown");
