@@ -69,6 +69,8 @@ Feature: Sanctuary modded decor: after
 
     And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is on a power net with a power source
     And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is on a power net with a power source
+    And Nelim's Pickle Tools: the power links of the area from (194, 54) to (206, 58) are logged
+    And Nelim's Pickle Tools: the power links of the area from (200, 112) to (212, 126) are logged
     And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
     And Nelim's Pickle Tools: the area from (197, 50) to (197, 50) is emptied
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (199, 52)

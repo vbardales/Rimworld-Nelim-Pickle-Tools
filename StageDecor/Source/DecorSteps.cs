@@ -95,6 +95,31 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Assert(net.hasPowerSource, $"the {defName} at ({x}, {z}) is on a net of {net.powerComps.Count} consumers and {net.transmitters.Count} transmitters, with no power source");
         }
 
+        /// <summary>
+        /// Logs the power links of every powered or transmitting building of a rectangle ([power-link]): for each, its def, its cell, the thing its
+        /// connection parent is and the distance to it (the game draws a wire line between a thing and its connection parent when they do not
+        /// touch), and the net it sits on. To find what a visible wire connects. Never fails. Written 2026-11-05 for the Sanctuary infirmary.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the power links of the area from \\({int}, {int}\\) to \\({int}, {int}\\) are logged")]
+        public void LogPowerLinks(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            var seen = new HashSet<Thing>();
+            foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
+            {
+                if (!c.InBounds(map)) continue;
+                foreach (Thing t in c.GetThingList(map).ToList())
+                {
+                    if (!(t is ThingWithComps twc) || !seen.Add(t)) continue;
+                    CompPower comp = twc.GetComp<CompPower>();
+                    if (comp == null) continue;
+                    Thing parent = comp.connectParent?.parent;
+                    string line = parent == null ? "no connection parent" : $"parent {parent.def.defName} at ({parent.Position.x}, {parent.Position.z}), {(parent.Position - t.Position).LengthHorizontal:F1} cells away";
+                    Log.Message($"[power-link] {t.def.defName} at ({t.Position.x}, {t.Position.z}) size {t.def.size.x}x{t.def.size.z}: {line}; net {(comp.PowerNet == null ? "none" : comp.PowerNet.transmitters.Count + " transmitters, source " + comp.PowerNet.hasPowerSource)}");
+                }
+            }
+        }
+
 
         /// <summary>The same with a given facing (north, east, south or west): only that rotation is tried.</summary>
         [Given("Nelim's Pickle Tools: I place the decor {string} near \\({int}, {int}\\) facing {word}")]
