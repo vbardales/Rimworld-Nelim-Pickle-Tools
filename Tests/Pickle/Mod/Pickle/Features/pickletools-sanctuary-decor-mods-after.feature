@@ -50,9 +50,12 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (207, 126)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (203, 123)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (208, 123)
-    # infirmary (pawns): a vitals monitor at each bed head (unpowered, no wire), two pots in the middle of the room, a landscape on the wall
+    # infirmary (pawns): two wall vitals monitors on the north wall, switched on without a wire; one vanometric cell on the other side of that wall (in the pediatrics room, against the back of the wall); two pots in the middle of the room, a landscape on the wall
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 53)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 50)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
+    And Nelim's Pickle Tools: I place the decor "VanometricPowerCell" near (204, 58)
     And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
     And Nelim's Pickle Tools: the area from (197, 50) to (197, 50) is emptied
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (199, 52)
