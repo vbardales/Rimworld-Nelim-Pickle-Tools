@@ -149,6 +149,29 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Require(pawn.apparel != null, nickname + " has no apparel tracker, even after the framework's EnsureInitApparelTrackers (is a mod that lets animals wear apparel loaded?)");
         }
 
+        /// <summary>
+        /// Takes every garment off a spawned animal found by nickname and redraws it: the bare shot, or the start of an outfit that must begin from nothing
+        /// (an animal may wear something in the save). The garments are destroyed (not dropped on its cell, not stowed: an animal has no inventory to give them back
+        /// to); the save on disk is not touched. An animal with no apparel tracker has nothing to remove and is left alone. Asked for by Sanctuary Backlot
+        /// (Shogun), 2026-11-05. Compiled, not played.
+        /// </summary>
+        [Given(Prefix + "the animal {string} is undressed")]
+        public void AnimalUndressed(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            if (pawn.apparel != null)
+            {
+                foreach (Apparel garment in pawn.apparel.WornApparel.ToList())
+                {
+                    pawn.apparel.Remove(garment);
+                    garment.Destroy();
+                }
+            }
+
+            pawn.Drawer?.renderer?.SetAllGraphicsDirty();
+            ctx.Assert(pawn.apparel == null || !pawn.apparel.WornApparel.Any(), nickname + " should wear nothing; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
+        }
+
         /// <summary>Puts a new apparel (by defName, made of its default stuff, undyed) on a spawned animal found by nickname, adult or young. Fails when the animal, the def or the apparel tracker is missing, or the game refuses the garment for that body.</summary>
         [Given(Prefix + "the animal {string} is dressed in {string}")]
         public void AnimalDressed(PickleContext ctx, string nickname, string apparelDefName) => Dress(ctx, nickname, apparelDefName, null);
