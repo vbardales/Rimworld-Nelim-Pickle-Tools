@@ -24,7 +24,7 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_B" near (194, 119)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_B" near (198, 119)
     # hut: tatami floor, the table and stools replaced by a low Korean table and cushions, andon lamp, incense burner, moon jar, a painting on the wall
-    And Nelim's Pickle Tools: I lay the floor "RLE_TatamiSingle" from (135, 69) to (145, 77)
+    And Nelim's Pickle Tools: I lay the floor "RLE_TatamiSeamless" from (135, 69) to (145, 77)
     And Nelim's Pickle Tools: the area from (137, 72) to (141, 73) is emptied
     And Nelim's Pickle Tools: I place the decor "milple_Table1x2c" near (139, 72)
     And Nelim's Pickle Tools: I place the decor "milple_CStoolS" near (138, 71)
@@ -103,6 +103,9 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 239)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 241)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 233)
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (174, 126) is lit
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (178, 126) is lit
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (182, 126) is lit
     And Nelim's Sanctuary: the buildings of the sanctuary "infirmary" are repaired
     And I set the hour to 12
     And I set the weather to "Clear"
@@ -141,7 +144,7 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_B" near (194, 119)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_B" near (198, 119)
     # hut: tatami floor, the table and stools replaced by a low Korean table and cushions, andon lamp, incense burner, moon jar, a painting on the wall
-    And Nelim's Pickle Tools: I lay the floor "RLE_TatamiSingle" from (135, 69) to (145, 77)
+    And Nelim's Pickle Tools: I lay the floor "RLE_TatamiSeamless" from (135, 69) to (145, 77)
     And Nelim's Pickle Tools: the area from (137, 72) to (141, 73) is emptied
     And Nelim's Pickle Tools: I place the decor "milple_Table1x2c" near (139, 72)
     And Nelim's Pickle Tools: I place the decor "milple_CStoolS" near (138, 71)
@@ -220,6 +223,9 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 239)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 241)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 233)
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (174, 126) is lit
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (178, 126) is lit
+    And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (182, 126) is lit
     And Nelim's Sanctuary: the buildings of the sanctuary "infirmary" are repaired
     And I set the hour to 12
     And I set the weather to "Clear"

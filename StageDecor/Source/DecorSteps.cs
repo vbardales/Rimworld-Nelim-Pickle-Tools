@@ -155,6 +155,8 @@ namespace Nelim.PickleTools.StageDecor
                             Placed.Add(spawned);
                             CompRefuelable fuel = spawned.TryGetComp<CompRefuelable>();
                             fuel?.Refuel(fuel.Props.fuelCapacity);
+                            CompPowerTrader powerTrader = spawned.TryGetComp<CompPowerTrader>();
+                            if (powerTrader != null) powerTrader.PowerOn = true;
                             Log.Message($"[decor-placed] {def.defName} asked ({x}, {z}), put at ({cell.x}, {cell.z}) facing {rot}, {radius} cells away");
                             return;
                         }
