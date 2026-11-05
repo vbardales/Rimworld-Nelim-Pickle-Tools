@@ -46,10 +46,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Log.Message("[temperature] " + patched + " reads of the temperature are held at " + value + " degrees");
             }
             held = value;
-            // The mood thoughts that depend on the temperature are cached and refreshed on ticks; the scene runs paused, so drop them now.
-            // Cosmetic refresh: nothing in it may fail the step, the temperature is already held at this point (a mod's thought that throws while it is rebuilt,
+        }
+
+        // The mood thoughts that depend on the temperature are cached and refreshed on ticks; the scene runs paused, so drop them now.
+        // Cosmetic refresh: nothing in it may fail the step, the temperature is already held at this point (a mod's thought that throws while it is rebuilt,
             // fa-head-gallery-1, 2026-10-30; the colonist list itself or a pawn label throwing in SanctuaryBacklot ticket 2840, 2026-11-04, "Exception has been thrown
             // by the target of an invocation" right after the log line above). The whole refresh sits in one try, and the exception is logged in full.
+        private static void RefreshSituationalThoughts()
+        {
             try
             {
                 foreach (Pawn p in PawnsFinder.AllMaps_FreeColonists.ToList())
@@ -85,10 +89,18 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// framed. Needs Harmony.
         /// </summary>
         [Given(Prefix + "the temperature of the map is {float} degrees")]
-        public void SetTemperature(PickleContext ctx, float degrees)
+        public async System.Threading.Tasks.Task SetTemperature(PickleContext ctx, float degrees)
         {
             ctx.Require(Find.CurrentMap != null, "Load a map first");
             Hold(ctx, degrees);
+            // The pawn lists of the game may be read on the main thread only: a step of a Background can start elsewhere (SanctuaryBacklot tickets 496b and 17c2,
+            // 2026-11-05: "Accessing map pawns off main thread", reported by a later step). The wait resumes on the main thread.
+            if (!UnityData.IsInMainThread)
+            {
+                await ctx.WaitUntil(() => UnityData.IsInMainThread, 30f);
+            }
+
+            RefreshSituationalThoughts();
         }
 
         /// <summary>Asserts the temperature of the map reads this value to half a degree, by the game's own reading of the outdoors.</summary>
