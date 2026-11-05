@@ -136,6 +136,7 @@ namespace Nelim.PickleTools.ColonistRace
             sb.AppendLine("[render-nodes] " + nickname + " (" + pawn.story?.bodyType?.defName + ")");
             Dump(tree.rootNode, 0, sb);
             Log.Message(sb.ToString());
+            ctx.Attach("render-nodes", sb.ToString());
         }
 
         private static void Dump(PawnRenderNode node, int depth, System.Text.StringBuilder sb)
