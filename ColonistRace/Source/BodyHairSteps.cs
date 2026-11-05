@@ -120,6 +120,45 @@ namespace Nelim.PickleTools.ColonistRace
                 $"'{style}' is drawn in {drawn}, not in the hair colour {hair}");
         }
 
+        /// <summary>
+        /// Logs the render tree of the colonist ([render-nodes]): one line per node, indented by depth, with its label, its tag, its base
+        /// layer (<c>Props.baseLayer</c>) and, for an apparel node, the garment and its layer. To see why body hair is drawn over or under a
+        /// garment: the draw order is the base layer, the higher drawn last. Never fails. Written 2026-11-05 for the Sanctuary Backlot swim shot.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the render nodes of {string} are logged")]
+        public void LogRenderNodes(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
+            tree.EnsureInitialized(PawnRenderFlags.None);
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[render-nodes] " + nickname + " (" + pawn.story?.bodyType?.defName + ")");
+            Dump(tree.rootNode, 0, sb);
+            Log.Message(sb.ToString());
+        }
+
+        private static void Dump(PawnRenderNode node, int depth, System.Text.StringBuilder sb)
+        {
+            if (node == null)
+            {
+                return;
+            }
+
+            string apparel = node is PawnRenderNode_Apparel a && a.apparel != null
+                ? " apparel=" + a.apparel.def.defName + " layer=" + a.apparel.def.apparel.LastLayer?.defName + " drawOrder=" + a.apparel.def.apparel.LastLayer?.drawOrder
+                : string.Empty;
+            sb.AppendLine(new string(' ', depth * 2) + "- " + (node.Props?.debugLabel ?? node.GetType().Name) + " tag=" + node.Props?.tagDef?.defName +
+                          " baseLayer=" + node.Props?.baseLayer + apparel + " tex=" + node.Props?.texPath);
+            if (node.children != null)
+            {
+                foreach (PawnRenderNode child in node.children)
+                {
+                    Dump(child, depth + 1, sb);
+                }
+            }
+        }
+
         private static PawnRenderNode Find(PawnRenderNode node, string debugLabel)
         {
             if (node == null)
