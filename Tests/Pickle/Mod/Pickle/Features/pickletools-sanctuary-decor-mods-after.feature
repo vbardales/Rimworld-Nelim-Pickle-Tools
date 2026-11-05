@@ -50,12 +50,25 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (207, 126)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (203, 123)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (208, 123)
-    # infirmary (pawns): two wall vitals monitors on the north wall, switched on without a wire; one vanometric cell on the other side of that wall (in the pediatrics room, against the back of the wall); two pots in the middle of the room, a landscape on the wall
+    # infirmary (pawns): two wall vitals monitors on the north wall, on a real power net: a vanometric cell OUTSIDE the west wall (195, 56) and hidden conduits under the wall and the floor along z 56 (Virginie: "dehors, conduite cachée"); two pots in the middle, a landscape on the wall
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 53)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 50)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
-    And Nelim's Pickle Tools: I place the decor "VanometricPowerCell" near (204, 58)
+    And Nelim's Pickle Tools: I place the decor "VanometricPowerCell" exactly at (195, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (196, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (197, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (198, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (199, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (200, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (201, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (202, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (203, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (204, 56)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 56)
+
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is on a power net with a power source
     And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
     And Nelim's Pickle Tools: the area from (197, 50) to (197, 50) is emptied
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (199, 52)

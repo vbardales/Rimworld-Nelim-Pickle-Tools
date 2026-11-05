@@ -68,6 +68,33 @@ namespace Nelim.PickleTools.StageDecor
         {
             PlaceNear(ctx, thingDefName, x, z, null);
         }
+        /// <summary>
+        /// Places a building on exactly this cell, if the game's own rules accept it there with one of the rotations (north first); otherwise it is
+        /// skipped and logged when the scenario asked for that, and fails when it did not. For a chain of cells that must touch (a hidden conduit).
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} exactly at \\({int}, {int}\\)")]
+        public void PlaceDecorExactly(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            PlaceNear(ctx, thingDefName, x, z, null, 0);
+        }
+
+        /// <summary>
+        /// Asserts that the powered building of a def at a cell sits on a real power net that holds a power source (not only the forced
+        /// <c>PowerOn</c> flag): the net the game built when the things were spawned. The failure says what the net holds.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is on a power net with a power source")]
+        public void BuildingIsOnPoweredNet(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            Thing building = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} stands at ({x}, {z})");
+            CompPowerTrader power = building.TryGetComp<CompPowerTrader>();
+            ctx.Require(power != null, $"the {defName} at ({x}, {z}) has no power trader");
+            PowerNet net = power.PowerNet;
+            ctx.Assert(net != null, $"the {defName} at ({x}, {z}) is on no power net at all (nothing connects it)");
+            ctx.Assert(net.hasPowerSource, $"the {defName} at ({x}, {z}) is on a net of {net.powerComps.Count} consumers and {net.transmitters.Count} transmitters, with no power source");
+        }
+
 
         /// <summary>The same with a given facing (north, east, south or west): only that rotation is tried.</summary>
         [Given("Nelim's Pickle Tools: I place the decor {string} near \\({int}, {int}\\) facing {word}")]
@@ -117,7 +144,7 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(false, $"no free dry cell within 4 cells of ({x}, {z}) for the plant {def.defName}");
         }
 
-        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only)
+        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only, int limit = 4)
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
@@ -138,7 +165,7 @@ namespace Nelim.PickleTools.StageDecor
 
             Rot4[] rotations = only.HasValue ? new[] { only.Value } : new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West };
             ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
-            for (int radius = 0; radius <= 4; radius++)
+            for (int radius = 0; radius <= limit; radius++)
             {
                 for (int dz = -radius; dz <= radius; dz++)
                 {
