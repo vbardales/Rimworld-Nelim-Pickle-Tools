@@ -121,6 +121,12 @@ namespace Nelim.PickleTools.StageDecor
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            if (def == null && SkipUnplaced)
+            {
+                Log.Warning($"[decor-skipped] {thingDefName} asked ({x}, {z}): no such thing def in this game");
+                return;
+            }
+
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             var asked = new IntVec3(x, 0, z);
             ctx.Require(asked.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");

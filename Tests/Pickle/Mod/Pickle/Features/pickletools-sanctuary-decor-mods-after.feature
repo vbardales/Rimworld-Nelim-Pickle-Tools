@@ -16,6 +16,7 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_one" near (173, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_two" near (179, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_ClearSpringPavilion" near (183, 131)
+    And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (186, 131)
     # terrace: carved sandstone floor, two stone lanterns at the garden corners, two big pots in the open floor (none against a wall)
     And Nelim's Pickle Tools: I lay the floor "Yuran_flatstonefloorSandstone" from (193, 118) to (200, 124) painted "Structure_Cream"
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (200, 124)
@@ -33,7 +34,6 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "milple_VaseB" near (139, 72)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_EasternClassic" near (140, 77)
     # cloister: black wood floor, lanterns on the columns, an ema rack in the open floor at the end of the gallery, no pot
-    And Nelim's Pickle Tools: I lay the floor "Yuran_woodfloor" from (167, 126) to (192, 131)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (174, 126)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (178, 126)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (182, 126)
@@ -45,19 +45,18 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_Brazier_two" near (205, 121)
     And Nelim's Pickle Tools: I place the decor "Yuran_Brazier_two" near (208, 121)
     And Nelim's Pickle Tools: I place the decor "Yuran_TaikoDrum" near (208, 117)
-    And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (205, 115)
     And Nelim's Pickle Tools: I place the decor "YR_Bigthurible" near (208, 120)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (203, 123)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (208, 123)
     # infirmary (pawns): a vitals monitor at each bed head (unpowered, no wire), two pots in the middle of the room, a landscape on the wall
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (198, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (198, 51)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (201, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (201, 51)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (204, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (204, 51)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 53)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 50)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
+    And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
+    And Nelim's Pickle Tools: the area from (197, 50) to (197, 50) is emptied
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (199, 52)
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (204, 52)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_Landscape" near (200, 56)
     # pediatrics: the cribs become woven cribs, plush on the beds and the toy boxes, an animal painting on the wall
     And Nelim's Pickle Tools: the area from (200, 62) to (200, 62) is emptied
@@ -83,7 +82,6 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 93)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (155, 90)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (157, 90)
-    And Nelim's Pickle Tools: I place the decor "SiverTree" near (149, 108)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (148, 104)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (150, 106)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (152, 108)
@@ -98,13 +96,13 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (140, 126)
     And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeF" near (125, 124)
     And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeC" near (125, 122)
-    And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeH" near (127, 122)
+    And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeA" near (127, 122)
     # barn: a pen sign, bowls by the straw, two bamboo bundles on the east outside (no fence: the enclosure pieces would not stand along the existing fence)
     And Nelim's Pickle Tools: I place the decor "Yuran_PenMarker" near (186, 238)
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 236)
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 239)
-    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (206, 235)
-    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (206, 239)
+    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 241)
+    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 233)
     And Nelim's Sanctuary: the buildings of the sanctuary "infirmary" are repaired
     And I set the hour to 12
     And I set the weather to "Clear"
@@ -135,6 +133,7 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_one" near (173, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_komainu_two" near (179, 131)
     And Nelim's Pickle Tools: I place the decor "Yuran_ClearSpringPavilion" near (183, 131)
+    And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (186, 131)
     # terrace: carved sandstone floor, two stone lanterns at the garden corners, two big pots in the open floor (none against a wall)
     And Nelim's Pickle Tools: I lay the floor "Yuran_flatstonefloorSandstone" from (193, 118) to (200, 124) painted "Structure_Cream"
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (200, 124)
@@ -152,7 +151,6 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "milple_VaseB" near (139, 72)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_EasternClassic" near (140, 77)
     # cloister: black wood floor, lanterns on the columns, an ema rack in the open floor at the end of the gallery, no pot
-    And Nelim's Pickle Tools: I lay the floor "Yuran_woodfloor" from (167, 126) to (192, 131)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (174, 126)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (178, 126)
     And Nelim's Pickle Tools: I place the decor "milple_TorchWallLamp" near (182, 126)
@@ -164,19 +162,18 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "Yuran_Brazier_two" near (205, 121)
     And Nelim's Pickle Tools: I place the decor "Yuran_Brazier_two" near (208, 121)
     And Nelim's Pickle Tools: I place the decor "Yuran_TaikoDrum" near (208, 117)
-    And Nelim's Pickle Tools: I place the decor "Yuran_TempleBell" near (205, 115)
     And Nelim's Pickle Tools: I place the decor "YR_Bigthurible" near (208, 120)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (203, 123)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallDrape" near (208, 123)
     # infirmary (pawns): a vitals monitor at each bed head (unpowered, no wire), two pots in the middle of the room, a landscape on the wall
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (198, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (198, 51)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (201, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (201, 51)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (204, 55)
-    And Nelim's Pickle Tools: I place the decor "Wall_M_VitalsMonitor" near (204, 51)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 53)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 50)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
+    And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
+    And Nelim's Pickle Tools: the area from (197, 50) to (197, 50) is emptied
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (199, 52)
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (204, 52)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_Landscape" near (200, 56)
     # pediatrics: the cribs become woven cribs, plush on the beds and the toy boxes, an animal painting on the wall
     And Nelim's Pickle Tools: the area from (200, 62) to (200, 62) is emptied
@@ -202,7 +199,6 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 93)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (155, 90)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (157, 90)
-    And Nelim's Pickle Tools: I place the decor "SiverTree" near (149, 108)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (148, 104)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (150, 106)
     And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (152, 108)
@@ -217,13 +213,13 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (140, 126)
     And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeF" near (125, 124)
     And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeC" near (125, 122)
-    And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeH" near (127, 122)
+    And Nelim's Pickle Tools: I place the decor "MUS_Fishing_DecorativeA" near (127, 122)
     # barn: a pen sign, bowls by the straw, two bamboo bundles on the east outside (no fence: the enclosure pieces would not stand along the existing fence)
     And Nelim's Pickle Tools: I place the decor "Yuran_PenMarker" near (186, 238)
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 236)
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 239)
-    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (206, 235)
-    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (206, 239)
+    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 241)
+    And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 233)
     And Nelim's Sanctuary: the buildings of the sanctuary "infirmary" are repaired
     And I set the hour to 12
     And I set the weather to "Clear"
