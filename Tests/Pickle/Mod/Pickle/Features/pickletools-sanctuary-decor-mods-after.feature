@@ -71,24 +71,24 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "ED_Plushie" near (212, 61)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_Animal" near (207, 58)
     # statue and flower gardens: hydrangeas and lavender along the alley, two stone lanterns at its end, a silver tree at the back, camellias and orchids in the flower garden
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 98) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 96) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 94) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 97) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 95) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 93) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 97) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 95) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 93) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 98)
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 96)
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 94)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 97)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 95)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 93)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 97)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 95)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 93)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (155, 90)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (157, 90)
-    And Nelim's Pickle Tools: I place the decor "SiverTree" at (149, 108) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (148, 104) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (150, 106) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (152, 108) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (153, 104) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (155, 106) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (157, 108) fully grown
+    And Nelim's Pickle Tools: I place the decor "SiverTree" near (149, 108)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (148, 104)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (150, 106)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (152, 108)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (153, 104)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (155, 106)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (157, 108)
     # water garden: nothing in the water; a stone lantern and a stump on the south shore
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (172, 163)
     And Nelim's Pickle Tools: I place the decor "Yuran_Treestump" near (170, 161)
@@ -194,24 +194,24 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "ED_Plushie" near (212, 61)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_Animal" near (207, 58)
     # statue and flower gardens: hydrangeas and lavender along the alley, two stone lanterns at its end, a silver tree at the back, camellias and orchids in the flower garden
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 98) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 96) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (159, 94) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 97) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 95) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (160, 93) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 97) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 95) fully grown
-    And Nelim's Pickle Tools: I place the decor "SCLavender" at (157, 93) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 98)
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 96)
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" near (159, 94)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 97)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 95)
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" near (160, 93)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 97)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 95)
+    And Nelim's Pickle Tools: I place the decor "SCLavender" near (157, 93)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (155, 90)
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (157, 90)
-    And Nelim's Pickle Tools: I place the decor "SiverTree" at (149, 108) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (148, 104) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (150, 106) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" at (152, 108) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (153, 104) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (155, 106) fully grown
-    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" at (157, 108) fully grown
+    And Nelim's Pickle Tools: I place the decor "SiverTree" near (149, 108)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (148, 104)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (150, 106)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Camellia" near (152, 108)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (153, 104)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (155, 106)
+    And Nelim's Pickle Tools: I place the decor "Erin_Plant_Orchid" near (157, 108)
     # water garden: nothing in the water; a stone lantern and a stump on the south shore
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (172, 163)
     And Nelim's Pickle Tools: I place the decor "Yuran_Treestump" near (170, 161)

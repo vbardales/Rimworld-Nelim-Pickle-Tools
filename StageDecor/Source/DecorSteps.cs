@@ -78,6 +78,31 @@ namespace Nelim.PickleTools.StageDecor
             PlaceNear(ctx, thingDefName, x, z, rot);
         }
 
+        // A plant takes the nearest cell (rings of up to 4) with no building and no pawn on it, at full growth: a plant has no placing rules of its own, but a statue or a bench is not wiped.
+        private void PlacePlantNear(PickleContext ctx, Map map, ThingDef def, int x, int z)
+        {
+            for (int radius = 0; radius <= 4; radius++)
+            {
+                for (int dz = -radius; dz <= radius; dz++)
+                {
+                    for (int dx = -radius; dx <= radius; dx++)
+                    {
+                        if (System.Math.Max(System.Math.Abs(dx), System.Math.Abs(dz)) != radius) continue;
+                        var cell = new IntVec3(x + dx, 0, z + dz);
+                        if (!cell.InBounds(map) || !cell.Walkable(map) || cell.GetTerrain(map).IsWater) continue;
+                        if (cell.GetThingList(map).Any(t => t is Pawn || t is Building || t.def.category == ThingCategory.Item)) continue;
+                        var plant = (Plant)ThingMaker.MakeThing(def);
+                        plant.Growth = 1f;
+                        Placed.Add(GenSpawn.Spawn(plant, cell, map, WipeMode.Vanish));
+                        Log.Message($"[decor-placed] {def.defName} asked ({x}, {z}), put at ({cell.x}, {cell.z}), {radius} cells away");
+                        return;
+                    }
+                }
+            }
+
+            ctx.Require(false, $"no free dry cell within 4 cells of ({x}, {z}) for the plant {def.defName}");
+        }
+
         private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only)
         {
             Map map = CurrentMap(ctx);
@@ -85,6 +110,12 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             var asked = new IntVec3(x, 0, z);
             ctx.Require(asked.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            if (def.category == ThingCategory.Plant)
+            {
+                PlacePlantNear(ctx, map, def, x, z);
+                return;
+            }
+
             Rot4[] rotations = only.HasValue ? new[] { only.Value } : new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West };
             ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
             for (int radius = 0; radius <= 4; radius++)
