@@ -18,13 +18,21 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (194, 124)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" at (193, 121)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" at (200, 121)
-    # infirmary (pawns): two pots and two torches inside, no power cell or conduit (Virginie 2026-11-05); the stain at the south door removed
+    # infirmary (pawns): two pots inside, two torches against the walls (the two between the beds removed), no power cell or conduit; the bare patch at the south door gets the room floor
     And Nelim's Pickle Tools: the area from (201, 48) to (203, 48) is emptied
+    And Nelim's Pickle Tools: the area from (202, 55) to (202, 55) is emptied
+    And Nelim's Pickle Tools: the area from (202, 51) to (202, 51) is emptied
+    And Nelim's Pickle Tools: the floor of the cell (202, 47) is copied from the cell (202, 52)
+    And Nelim's Pickle Tools: the floor of the cell (201, 48) is copied from the cell (202, 52)
+    And Nelim's Pickle Tools: the floor of the cell (202, 48) is copied from the cell (202, 52)
+    And Nelim's Pickle Tools: the floor of the cell (203, 48) is copied from the cell (202, 52)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (197, 54)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (197, 50)
-    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (205, 54)
-    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (205, 50)
+    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (197, 52)
+    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (206, 52)
     # pediatrics: three cribs, two toy boxes, two pots, two torches
+    And Nelim's Pickle Tools: the area from (207, 63) to (207, 63) is emptied
+    And Nelim's Pickle Tools: the area from (207, 59) to (207, 59) is emptied
     And Nelim's Pickle Tools: I place the decor "Crib" at (200, 62)
     And Nelim's Pickle Tools: I place the decor "Crib" at (202, 62)
     And Nelim's Pickle Tools: I place the decor "Crib" at (204, 62)
@@ -32,8 +40,8 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "ToyBox" at (214, 62)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (200, 59)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (214, 59)
-    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (203, 59)
-    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (211, 59)
+    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (203, 58)
+    And Nelim's Pickle Tools: I place the decor "TorchLamp" at (213, 58)
     # ritual hall: two braziers either side of the axis, a drum by the harp
     And Nelim's Pickle Tools: I place the decor "Brazier" at (205, 121)
     And Nelim's Pickle Tools: I place the decor "Brazier" at (208, 121)
@@ -79,10 +87,16 @@ Feature: Sanctuary decor: after
     # light what needs it, then the same frames as the before shots
     And Nelim's Pickle Tools: the building "StandingLamp" at (193, 121) is powered
     And Nelim's Pickle Tools: the building "StandingLamp" at (200, 121) is powered
-    And Nelim's Pickle Tools: the decor "TorchLamp" at (205, 54) is lit
-    And Nelim's Pickle Tools: the decor "TorchLamp" at (205, 50) is lit
-    And Nelim's Pickle Tools: the decor "TorchLamp" at (203, 59) is lit
-    And Nelim's Pickle Tools: the decor "TorchLamp" at (211, 59) is lit
+    And Nelim's Pickle Tools: the decor "TorchLamp" at (197, 52) is lit
+    And Nelim's Pickle Tools: the decor "TorchLamp" at (206, 52) is lit
+    And Nelim's Pickle Tools: the decor "TorchLamp" at (203, 58) is lit
+    And Nelim's Pickle Tools: the decor "TorchLamp" at (213, 58) is lit
+    And Nelim's Sanctuary: the buildings of the sanctuary "infirmary" are repaired
+    And Nelim's Sanctuary: the buildings of the sanctuary "terrace" are repaired
+    And Nelim's Sanctuary: the buildings of the sanctuary "ritual-hall" are repaired
+    And Nelim's Sanctuary: the buildings of the sanctuary "hut" are repaired
+    And Nelim's Sanctuary: the buildings of the sanctuary "cloister" are repaired
+    And Nelim's Sanctuary: the buildings of the sanctuary "barn" are repaired
     And Nelim's Pickle Tools: the decor "TorchLamp" at (136, 73) is lit
     And Nelim's Pickle Tools: the decor "TorchLamp" at (144, 73) is lit
     And I set the hour to 12

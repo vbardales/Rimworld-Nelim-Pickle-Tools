@@ -411,6 +411,31 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Gives one cell the terrain and the paint of another cell (a patch of bare ground under a door that must match the room's
+        /// floor). Not remembered for removal: the change is meant to stay, as when a fixture is repaired before it is saved.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the floor of the cell \\({int}, {int}\\) is copied from the cell \\({int}, {int}\\)")]
+        public void CopyFloor(PickleContext ctx, int x, int z, int sx, int sz)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            var sample = new IntVec3(sx, 0, sz);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            ctx.Require(sample.InBounds(map), $"the cell ({sx}, {sz}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            TerrainDef terrain = map.terrainGrid.TerrainAt(sample);
+            ColorDef color = map.terrainGrid.ColorAt(sample);
+            map.terrainGrid.SetTerrain(cell, terrain);
+            if (color != null)
+            {
+                map.terrainGrid.SetTerrainColor(cell, color);
+            }
+
+            ctx.Assert(
+                map.terrainGrid.TerrainAt(cell) == terrain && map.terrainGrid.ColorAt(cell) == color,
+                $"the floor at ({x}, {z}) should be {terrain.defName} painted {color?.defName ?? "nothing"} like ({sx}, {sz}); the game reports {map.terrainGrid.TerrainAt(cell)?.defName} painted {map.terrainGrid.ColorAt(cell)?.defName ?? "nothing"}");
+        }
+
+        /// <summary>
         /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
         /// </summary>
         [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
