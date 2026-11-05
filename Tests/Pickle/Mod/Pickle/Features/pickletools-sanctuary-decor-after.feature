@@ -130,3 +130,4 @@ Feature: Sanctuary decor: after
     And Nelim's Sanctuary: I frame the sanctuary "barn"
     And I take a screenshot "after-barn"
     And Nelim's Pickle Tools: the game is saved as "Nelims-tribe-decor"
+    And Nelim's Pickle Tools: the saved game "Nelims-tribe-decor" is copied to the run folder
