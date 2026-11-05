@@ -50,6 +50,71 @@ namespace Nelim.PickleTools.StageDecor
 
 
         /// <summary>
+        /// Places a building near a cell, the way the game's own placing rules allow it: the nearest cell (rings of up to 4 cells, row by row) where
+        /// <c>GenConstruct.CanPlaceBlueprintAt</c> accepts the def with one of the rotations (north, east, south, west, in that order) is taken, so a
+        /// wall attachment finds its wall, a door its opening, a big thing its free footprint. Logs where it went ([decor-placed]) and fails, naming
+        /// the def and the cell, when no cell within 4 qualifies. Fuel burners are filled. Written 2026-11-05 for the modded decor of the Sanctuary.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} near \\({int}, {int}\\)")]
+        public void PlaceDecorNear(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            PlaceNear(ctx, thingDefName, x, z, null);
+        }
+
+        /// <summary>The same with a given facing (north, east, south or west): only that rotation is tried.</summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} near \\({int}, {int}\\) facing {word}")]
+        public void PlaceDecorNearFacing(PickleContext ctx, string thingDefName, int x, int z, string facing)
+        {
+            Rot4 rot;
+            switch (facing.ToLowerInvariant())
+            {
+                case "north": rot = Rot4.North; break;
+                case "east": rot = Rot4.East; break;
+                case "south": rot = Rot4.South; break;
+                case "west": rot = Rot4.West; break;
+                default: ctx.Require(false, $"facing must be north, east, south or west, not '{facing}'"); return;
+            }
+
+            PlaceNear(ctx, thingDefName, x, z, rot);
+        }
+
+        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
+            var asked = new IntVec3(x, 0, z);
+            ctx.Require(asked.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            Rot4[] rotations = only.HasValue ? new[] { only.Value } : new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West };
+            ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
+            for (int radius = 0; radius <= 4; radius++)
+            {
+                for (int dz = -radius; dz <= radius; dz++)
+                {
+                    for (int dx = -radius; dx <= radius; dx++)
+                    {
+                        if (System.Math.Max(System.Math.Abs(dx), System.Math.Abs(dz)) != radius) continue;
+                        var cell = new IntVec3(x + dx, 0, z + dz);
+                        if (!cell.InBounds(map)) continue;
+                        foreach (Rot4 rot in rotations)
+                        {
+                            if (!GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff).Accepted) continue;
+                            Thing thing = ThingMaker.MakeThing(def, stuff);
+                            Thing spawned = GenSpawn.Spawn(thing, cell, map, rot, WipeMode.Vanish);
+                            Placed.Add(spawned);
+                            CompRefuelable fuel = spawned.TryGetComp<CompRefuelable>();
+                            fuel?.Refuel(fuel.Props.fuelCapacity);
+                            Log.Message($"[decor-placed] {def.defName} asked ({x}, {z}), put at ({cell.x}, {cell.z}) facing {rot}, {radius} cells away");
+                            return;
+                        }
+                    }
+                }
+            }
+
+            ctx.Require(false, $"no cell within 4 cells of ({x}, {z}) takes the {thingDefName} (size {def.size.x}x{def.size.z}, rotations tried: {string.Join(", ", rotations.Select(r => r.ToStringHuman()))})");
+        }
+
+        /// <summary>
         /// Places a thing like "I place the decor" and gives it an ideoligion thing style (a <c>ThingStyleDef</c>, by defName) the way the game does
         /// when a style category applies: <c>Thing.SetStyleDef</c>. Fails when the style is unknown, or when the thing does not hold the style after
         /// the step. The style is not checked against a style category: any style can be forced, which is what a test of a style's graphic wants.
