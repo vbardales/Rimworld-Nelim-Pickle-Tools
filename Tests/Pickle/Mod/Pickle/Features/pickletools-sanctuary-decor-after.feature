@@ -55,13 +55,10 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (127, 129) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (141, 119) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (141, 129) fully grown
-    # water garden: six lotus among the lily pads
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (168, 172) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (170, 172) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (171, 171) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (165, 170) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (169, 170) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (166, 172) fully grown
+    # water garden: the pond is a smiley (its lily pads draw the face): nothing in the water; two willows and reeds on the south shore (Virginie 2026-11-05)
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeWillow" at (171, 162) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeWillow" at (165, 162) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (168, 163) fully grown
     # statue garden: a rose border along the alley, two birches at the back
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 98) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 97) fully grown
@@ -71,12 +68,7 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 93) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_TreeBirch" at (144, 109) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_TreeBirch" at (144, 104) fully grown
-    # cloister: a rose pot between each pair of columns, river side
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (175, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (177, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (179, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (181, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (183, 126)
+    # cloister: no pots (Virginie 2026-11-05: none along the walls or doors)
     # barn: left as it is (NSB 2026-11-05: the half soil, half straw split looked odd)
     # light what needs it, then the same frames as the before shots
     And Nelim's Pickle Tools: the building "StandingLamp" at (193, 121) is powered
@@ -160,13 +152,10 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (127, 129) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (141, 119) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (141, 129) fully grown
-    # water garden: six lotus among the lily pads
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (168, 172) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (170, 172) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (171, 171) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (165, 170) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (169, 170) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Lotus" at (166, 172) fully grown
+    # water garden: the pond is a smiley (its lily pads draw the face): nothing in the water; two willows and reeds on the south shore (Virginie 2026-11-05)
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeWillow" at (171, 162) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeWillow" at (165, 162) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_Reeds" at (168, 163) fully grown
     # statue garden: a rose border along the alley, two birches at the back
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 98) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 97) fully grown
@@ -176,12 +165,7 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "Plant_Rose" at (158, 93) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_TreeBirch" at (144, 109) fully grown
     And Nelim's Pickle Tools: I place the decor "Plant_TreeBirch" at (144, 104) fully grown
-    # cloister: a rose pot between each pair of columns, river side
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (175, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (177, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (179, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (181, 126)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (183, 126)
+    # cloister: no pots (Virginie 2026-11-05: none along the walls or doors)
     # barn: left as it is (NSB 2026-11-05: the half soil, half straw split looked odd)
     # light what needs it, then the same frames as the before shots
     And Nelim's Pickle Tools: the building "StandingLamp" at (193, 121) is powered
