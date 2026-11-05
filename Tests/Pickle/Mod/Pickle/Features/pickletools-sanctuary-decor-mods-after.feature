@@ -53,8 +53,6 @@ Feature: Sanctuary modded decor: after
     # infirmary (pawns): two wall vitals monitors on the north wall, on a real power net: a vanometric cell OUTSIDE the west wall (195, 56) and hidden conduits under the wall and the floor along z 56 (Virginie: "dehors, conduite cachée"); two pots in the middle, a landscape on the wall
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 53)
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (202, 50)
-    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
-    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
     And Nelim's Pickle Tools: I place the decor "VanometricPowerCell" exactly at (195, 56)
     And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (196, 56)
     And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (197, 56)
@@ -66,6 +64,8 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (203, 56)
     And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (204, 56)
     And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 56)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
+    And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
 
     And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is on a power net with a power source
     And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is on a power net with a power source
