@@ -11,9 +11,9 @@ Feature: Sanctuary decor: after
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     # terrace: warm sandstone, four pots at the corners, two lamps; the portrait centre (196-197, 121) stays free
-    When Nelim's Pickle Tools: I lay the floor "TileSandstone" from (193, 118) to (200, 124)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (193, 118)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (200, 118)
+    When Nelim's Pickle Tools: I lay the floor "TileSandstone" from (193, 118) to (200, 124) painted "Structure_OrangePastel"
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (193, 119)
+    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (200, 120)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (200, 124)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (194, 124)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" at (193, 121)
@@ -77,6 +77,7 @@ Feature: Sanctuary decor: after
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (181, 126)
     And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (183, 126)
     # barn: straw matting on the sleeping part (east extension)
+    And Nelim's Pickle Tools: I lay the floor "Soil" from (188, 230) to (198, 244)
     And Nelim's Pickle Tools: I lay the floor "StrawMatting" from (199, 230) to (204, 244)
     # light what needs it, then the same frames as the before shots
     And Nelim's Pickle Tools: the building "StandingLamp" at (193, 121) is powered
