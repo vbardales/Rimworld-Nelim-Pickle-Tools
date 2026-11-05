@@ -10,12 +10,8 @@ Feature: Sanctuary decor: after
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    # terrace: warm sandstone, four pots at the corners, two lamps; the portrait centre (196-197, 121) stays free
+    # terrace: warm cream tiles, two standing lamps; no flower pot (Virginie 2026-11-05: none by the doors, none along the walls); the portrait centre (196-197, 121) stays free
     When Nelim's Pickle Tools: I lay the floor "TileSandstone" from (193, 118) to (200, 124) painted "Structure_Cream"
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (193, 119)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (200, 120)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Rose" fully grown at (200, 124)
-    And Nelim's Pickle Tools: I place the decor "PlantPot" holding "Plant_Daylily" fully grown at (194, 124)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" at (193, 121)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" at (200, 121)
     # infirmary (pawns): two pots inside, two torches against the walls (the two between the beds removed), no power cell or conduit; the bare patch at the south door gets the room floor
