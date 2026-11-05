@@ -85,6 +85,41 @@ namespace Nelim.PickleTools.LoadAudit
         }
 
         /// <summary>
+        /// Asserts the game log holds a warning or an error whose one message names both texts (a positive check for a message the mod is
+        /// expected to provoke, for example a removed field of an incompatible mod and its def type). Level and message come from the
+        /// parsed log, so the two texts must be in the same entry. Written 2026-11-05 for Ancient Buildings (incompat pass). Not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the game log holds a warning or an error naming {string} and {string}")]
+        public void LogHoldsWarningNaming(PickleContext ctx, string first, string second)
+        {
+            string path = Application.consoleLogPath;
+            ctx.Require(!string.IsNullOrEmpty(path) && File.Exists(path), "the game log is not readable at '" + path + "'");
+            List<LogEntry> entries = LoadLog.Parse(ReadLines(path));
+            bool found = entries.Any(e => (e.Level == "ERROR" || e.Level == "WARN") &&
+                e.Message.IndexOf(first, StringComparison.OrdinalIgnoreCase) >= 0 &&
+                e.Message.IndexOf(second, StringComparison.OrdinalIgnoreCase) >= 0);
+            ctx.Assert(found, $"no warning or error of the game log ({entries.Count} entries, read from the start) names both '{first}' and '{second}'");
+        }
+
+        /// <summary>
+        /// The load check of the mod, plus: no warning or error of the game log names the watched text (a def of the game or of another mod
+        /// the mod refers to, for example a vanilla DLC def its recipes MayRequire), whoever logged it. For what the attribution of the plain
+        /// check cannot see: a mod with no assembly, a cross-reference line that names no def of the mod. Written 2026-11-05 for Ancient Buildings. Not played.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the load of the mod {string} is clean, and no warning or error names {string}")]
+        public void IsCleanAndNothingNames(PickleContext ctx, string packageId, string watched)
+        {
+            ctx.Assert(!string.IsNullOrWhiteSpace(watched), "the watched text must not be empty");
+            Check(ctx, packageId, null);
+            string path = Application.consoleLogPath;
+            List<LogEntry> entries = LoadLog.Parse(ReadLines(path));
+            List<LogEntry> hits = entries.Where(e => (e.Level == "ERROR" || e.Level == "WARN") &&
+                e.Message.IndexOf(watched, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            ctx.Assert(hits.Count == 0, $"{hits.Count} warning(s) or error(s) of the game log name '{watched}':\n" +
+                string.Join("\n", hits.Take(MaxLinesShown).Select(e => "  line " + e.Line + ": " + e.Level + " " + e.Message.Replace("\n", " ").Trim())));
+        }
+
+        /// <summary>
         /// Asserts the game log, read from its start to now, holds this text. For a message the mod is expected to log (a positive check),
         /// as opposed to <c>the load of the mod ... is clean</c>, which fails on messages that should not be there. Written 2026-10-11 from
         /// the same step in two mods (Funny Creatures Renew, Megabees Renew). Not played here.
