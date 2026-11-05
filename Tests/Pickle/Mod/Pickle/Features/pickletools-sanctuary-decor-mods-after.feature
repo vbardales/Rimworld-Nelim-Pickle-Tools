@@ -67,8 +67,6 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (203, 56)
     And Nelim's Pickle Tools: I place the decor "WMFF_WallMountedVitalsmonitor" near (205, 56)
 
-    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is on a power net with a power source
-    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is on a power net with a power source
     And Nelim's Pickle Tools: the power links of the area from (194, 54) to (206, 58) are logged
     And Nelim's Pickle Tools: the power links of the area from (200, 112) to (212, 126) are logged
     And Nelim's Pickle Tools: the area from (197, 54) to (197, 54) is emptied
@@ -121,6 +119,46 @@ Feature: Sanctuary modded decor: after
     And Nelim's Pickle Tools: I place the decor "ED_PetBowl" near (199, 239)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 241)
     And Nelim's Pickle Tools: I place the decor "bambooBundle" near (185, 233)
+    # ritual hall: Virginie keeps the original vanometric cell (211, 122) outside the east wall and its LightBall and loudspeakers, with NO visible wire: hidden conduits from the cell under the east wall to each powered item, then each item reconnects to the conduit under it
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (210, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (209, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (208, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (207, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (204, 122)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (209, 121)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (209, 120)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 121)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 120)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (205, 119)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (204, 123)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 121)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 120)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 119)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 118)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 117)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 116)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 115)
+    And Nelim's Pickle Tools: I place the decor "HiddenConduit" exactly at (206, 114)
+    And Nelim's Pickle Tools: the power connection of the building "LightBall" at (205, 119) is remade
+    And Nelim's Pickle Tools: the power connection of the building "Loudspeaker" at (209, 120) is remade
+    And Nelim's Pickle Tools: the power connection of the building "Loudspeaker" at (204, 123) is remade
+    And Nelim's Pickle Tools: the power connection of the building "Loudspeaker" at (206, 114) is remade
+    And Nelim's Pickle Tools: the power connection of the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is remade
+    And Nelim's Pickle Tools: the power connection of the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is remade
+    And Nelim's Pickle Tools: the building "LightBall" at (205, 119) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "LightBall" at (205, 119) is connected with no visible wire
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (209, 120) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (209, 120) is connected with no visible wire
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (204, 123) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (204, 123) is connected with no visible wire
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (206, 114) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "Loudspeaker" at (206, 114) is connected with no visible wire
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (203, 56) is connected with no visible wire
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is on a power net with a power source
+    And Nelim's Pickle Tools: the building "WMFF_WallMountedVitalsmonitor" at (205, 56) is connected with no visible wire
     And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (174, 126) is lit
     And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (178, 126) is lit
     And Nelim's Pickle Tools: the decor "milple_TorchWallLamp" at (182, 126) is lit

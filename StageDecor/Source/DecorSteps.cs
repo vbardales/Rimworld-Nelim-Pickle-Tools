@@ -88,11 +88,47 @@ namespace Nelim.PickleTools.StageDecor
             Map map = CurrentMap(ctx);
             Thing building = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
             ctx.Require(building != null, $"no {defName} stands at ({x}, {z})");
-            CompPowerTrader power = building.TryGetComp<CompPowerTrader>();
-            ctx.Require(power != null, $"the {defName} at ({x}, {z}) has no power trader");
+            CompPower power = building.TryGetComp<CompPower>();
+            ctx.Require(power != null, $"the {defName} at ({x}, {z}) has no power comp");
             PowerNet net = power.PowerNet;
             ctx.Assert(net != null, $"the {defName} at ({x}, {z}) is on no power net at all (nothing connects it)");
             ctx.Assert(net.hasPowerSource, $"the {defName} at ({x}, {z}) is on a net of {net.powerComps.Count} consumers and {net.transmitters.Count} transmitters, with no power source");
+        }
+
+        /// <summary>
+        /// Drops the connection of a powered or transmitting building and lets the game connect it again to the best transmitter around, so a
+        /// conduit laid after it is taken (a thing connects once, to what exists when it is spawned, and keeps that parent). Written 2026-11-05
+        /// for the ritual hall wires of the Sanctuary. Never fails when nothing connects (a later check says so).
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the power connection of the building {string} at \\({int}, {int}\\) is remade")]
+        public void RemakePowerConnection(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            Thing building = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} stands at ({x}, {z})");
+            CompPower comp = building.TryGetComp<CompPower>();
+            ctx.Require(comp != null, $"the {defName} at ({x}, {z}) has no power comp");
+            PowerConnectionMaker.DisconnectFromPowerNet(comp);
+            PowerConnectionMaker.TryConnectToAnyPowerNet(comp);
+            Log.Message($"[power-remade] {defName} at ({x}, {z}): parent now {(comp.connectParent == null ? "none" : comp.connectParent.parent.def.defName + " at (" + comp.connectParent.parent.Position.x + ", " + comp.connectParent.parent.Position.z + ")")}");
+        }
+
+        /// <summary>
+        /// Asserts that the building is connected to a part that touches it (the conduit under it, or next to it): the game draws a wire line only
+        /// between a thing and a parent that does not touch it. The failure names the parent and its cell.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is connected with no visible wire")]
+        public void BuildingHasNoVisibleWire(PickleContext ctx, string defName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            Thing building = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} stands at ({x}, {z})");
+            CompPower comp = building.TryGetComp<CompPower>();
+            ctx.Require(comp != null, $"the {defName} at ({x}, {z}) has no power comp");
+            Thing parent = comp.connectParent?.parent;
+            ctx.Assert(parent != null, $"the {defName} at ({x}, {z}) has no connection parent");
+            bool touches = building.OccupiedRect().ExpandedBy(1).Overlaps(parent.OccupiedRect());
+            ctx.Assert(touches, $"the {defName} at ({x}, {z}) is connected to {parent.def.defName} at ({parent.Position.x}, {parent.Position.z}), {(parent.Position - building.Position).LengthHorizontal:F1} cells away: a wire is drawn");
         }
 
         /// <summary>
