@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Test companion, never published: carries the saved Sanctuary after the base-game and DLC decor (Pickle/Fixtures/Nelims-tribe-decor.rws,
+  the export of the final decor run) so the modded decor variant starts from it. The .rws is not committed (32 MB): copy it here
+  from Tests/Pickle/Inbox/<decor run>/Nelims-tribe-decor.rws before staging.
+-->
+<ModMetaData>
+  <name>Nelim's Pickle Tools - decor base fixture</name>
+  <author>Nelim</author>
+  <packageId>nelim.pickletools.decorbase</packageId>
+  <supportedVersions>
+    <li>1.6</li>
+  </supportedVersions>
+  <description>Carries a saved game used as a Pickle fixture by the modded Sanctuary decor passes. Developer test companion; not for play.</description>
+  <modDependencies>
+    <li>
+      <packageId>rimworks.pickle</packageId>
+      <displayName>Pickle</displayName>
+      <steamWorkshopUrl>steam://url/CommunityFilePage/3791648678</steamWorkshopUrl>
+    </li>
+  </modDependencies>
+  <loadAfter>
+    <li>rimworks.pickle</li>
+  </loadAfter>
+</ModMetaData>

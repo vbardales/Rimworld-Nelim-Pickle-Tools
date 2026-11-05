@@ -411,6 +411,30 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Logs what a thing def is, to choose cells for it before it is placed ([decor-def]): its size, its category and passability, the
+        /// kind of building (an attachment sits on a wall), whether it burns fuel or needs power, and the mod that owns it. Fails naming
+        /// the def when the loaded game has none (the mod is not staged). Written 2026-11-05 for the modded decor of the Sanctuary.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the decor def {string} is described")]
+        public void DescribeDef(PickleContext ctx, string thingDefName)
+        {
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            if (def == null)
+            {
+                TerrainDef terrain = DefDatabase<TerrainDef>.GetNamedSilentFail(thingDefName);
+                ctx.Require(terrain != null, $"no thing def or terrain def '{thingDefName}' in this game: is its mod staged?");
+                Log.Message("[decor-def] " + terrain.defName + " is a TERRAIN (layer=" + terrain.layerable + " passability=" + terrain.passability + " mod=" + terrain.modContentPack?.PackageId + " texture=" + terrain.texturePath + ")");
+                return;
+            }
+
+            string comps = def.comps == null ? string.Empty : string.Join(",", def.comps.Select(c => c.compClass?.Name));
+            Log.Message("[decor-def] " + def.defName + " size=" + def.size.x + "x" + def.size.z + " category=" + def.category +
+                        " passability=" + def.passability + " rotatable=" + def.rotatable + " attachment=" + (def.building?.isAttachment ?? false) +
+                        " edifice=" + def.IsEdifice() + " placeWorkers=" + (def.placeWorkers == null ? string.Empty : string.Join(",", def.placeWorkers.Select(p => p.Name))) +
+                        " comps=" + comps + " mod=" + def.modContentPack?.PackageId + " graphic=" + def.graphicData?.texPath);
+        }
+
+        /// <summary>
         /// Gives one cell the terrain and the paint of another cell (a patch of bare ground under a door that must match the room's
         /// floor). Not remembered for removal: the change is meant to stay, as when a fixture is repaired before it is saved.
         /// </summary>
