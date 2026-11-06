@@ -334,6 +334,62 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied")]
         public void Empty(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1));
 
+        /// <summary>
+        /// Logs ([zone-bounds]) every zone of the map whose label contains a text: its kind, its cell count, the min and max x and z of its cells, and the
+        /// plants standing on it by def. Never fails on a missing zone (it logs that none matched), so a feature can look before it plants.
+        /// Written 2026-11-06 for the sanctuary (rice zones, dump zone). Compiled, not played.
+        /// </summary>
+        /// <param name="label">a text the zone's label contains, case insensitive, for instance <c>Zone agricole 19</c> or <c>Décharge</c></param>
+        [Given(Prefix + "the zones named {string} are logged")]
+        public void ZonesLogged(PickleContext ctx, string label)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var zones = map.zoneManager.AllZones.Where(z => z.label != null && z.label.IndexOf(label, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            if (zones.Count == 0) Log.Message("[zone-bounds] no zone of the map matches \"" + label + "\"; zones: " + string.Join(" | ", map.zoneManager.AllZones.Select(z => z.label)));
+            foreach (Zone zone in zones)
+            {
+                var cells = zone.Cells;
+                string plants = string.Join(", ", cells.SelectMany(c => c.GetThingList(map)).OfType<Plant>().GroupBy(p => p.def.defName).Select(g => g.Key + "=" + g.Count()));
+                string line = zone.label + " (" + zone.GetType().Name + "): " + cells.Count + " cells, x " + cells.Min(c => c.x) + ".." + cells.Max(c => c.x)
+                    + ", z " + cells.Min(c => c.z) + ".." + cells.Max(c => c.z) + "; plants: " + (plants.Length > 0 ? plants : "none");
+                Log.Message("[zone-bounds] " + line);
+                ctx.Attach("zone-bounds-" + zone.label, line);
+            }
+        }
+
+        /// <summary>
+        /// Sows a growing zone: puts a plant of a def, fully grown, on every cell of the zone that holds no plant and whose ground can carry a crop (fertility above 0,
+        /// no building), and sets the zone to sow that def. Fails when no zone matches or the def does not exist. Written 2026-11-06 for the sanctuary rice zones
+        /// (the save holds the zones but no rice). Compiled, not played.
+        /// </summary>
+        /// <param name="label">a text the zone's label contains, such as <c>Zone agricole 19</c></param>
+        /// <param name="plantDef">a plant def, such as <c>Plant_Rice</c></param>
+        [Given(Prefix + "the zones named {string} are sown with {string} fully grown")]
+        public void ZonesSown(PickleContext ctx, string label, string plantDef)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(plantDef);
+            ctx.Require(def != null && def.plant != null, "No plant def \"" + plantDef + "\"");
+            var zones = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(z => z.label != null && z.label.IndexOf(label, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            ctx.Require(zones.Count > 0, "No growing zone whose label contains \"" + label + "\"");
+            foreach (Zone_Growing zone in zones)
+            {
+                zone.SetPlantDefToGrow(def);
+                int sown = 0, skipped = 0;
+                foreach (IntVec3 cell in zone.Cells.ToList())
+                {
+                    if (cell.GetPlant(map) != null || cell.GetTerrain(map).fertility <= 0f || cell.GetEdifice(map) != null) { skipped++; continue; }
+                    Plant plant = (Plant)ThingMaker.MakeThing(def);
+                    plant.Growth = 1f;
+                    GenSpawn.Spawn(plant, cell, map);
+                    sown++;
+                }
+                Log.Message("[zone-sown] " + zone.label + ": " + sown + " " + plantDef + " fully grown, " + skipped + " cells skipped (plant, no soil or building)");
+            }
+        }
+
         /// <summary>The same as emptying the rectangle, but the things that hold a roof up (columns, pillars) stay, so the roof does not collapse.</summary>
         [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied, the roof holders kept")]
         public void EmptyKeepingRoofHolders(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1), true);
