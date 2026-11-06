@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorks.Pickle;
+using RimWorks.Pickle.Runtime;
 using UnityEngine;
 using Verse;
 
@@ -238,6 +239,43 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(ok is bool b && b, "The mod refused to play \"" + animationName + "\" on " + nickname + " (not valid for this race or head?)");
         }
 
+        private static readonly System.Collections.Generic.List<Action> heldExpressionHooks = new System.Collections.Generic.List<Action>();
+
+        /// <summary>
+        /// Plays the expression like <c>facial expression is</c> and then keeps it: on every rendered frame, even with the game paused, if the colonist's temporary
+        /// animation list is empty (the frames of the animation ran out because game ticks passed, a walk or a haul for instance) the same expression is played again.
+        /// The hold ends with the scenario. Several names joined by <c>+</c> as in <c>facial expression is</c>. Fails like that step, or when the controller has no
+        /// <c>forcedTemporaryAnimationList</c> to read. Written 2026-11-06 for CoKT (gallery faces that fell back to the mood face after a walk). NOT PLAYED when written.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="animationName">one FaceAnimationDef name, or several joined by <c>+</c></param>
+        [Given("Nelim's Pickle Tools: {string} facial expression {string} is held")]
+        public void HoldExpression(PickleContext ctx, string nickname, string animationName)
+        {
+            SetExpression(ctx, nickname, animationName);
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Type compType = FaType(ctx, "FacialAnimation.FacialAnimationControllerComp");
+            ThingComp face = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
+            FieldInfo temporary = FieldUp(compType, "forcedTemporaryAnimationList");
+            ctx.Require(temporary != null, "the facial animation controller has no forcedTemporaryAnimationList: Facial Animation changed, update this step");
+            MethodInfo play = compType.GetMethod("PlayTemporaryAnimation", Any);
+            string[] names = animationName.Split(new[] { '+' }, StringSplitOptions.RemoveEmptyEntries).Select(n => n.Trim()).ToArray();
+            int replays = 0;
+            Action hook = () =>
+            {
+                if (pawn == null || pawn.Destroyed || face == null) return;
+                if (temporary.GetValue(face) is IEnumerable list && list.Cast<object>().Any()) return;
+                try
+                {
+                    play.Invoke(face, new object[] { pawn, Find.TickManager.TicksGame, names });
+                    if (++replays <= 3) Log.Message("[face-held] " + nickname + ": " + animationName + " played again (its frames had run out), replay " + replays);
+                }
+                catch (Exception e) { Log.WarningOnce("[face-held] " + nickname + ": replay threw: " + (e.InnerException ?? e).Message, 7311 + nickname.GetHashCode()); }
+            };
+            heldExpressionHooks.Add(hook);
+            PickleDriver.Instance.AddFrameHook(hook);
+        }
+
         private static Harmony neutralHarmony;
         private static readonly System.Collections.Generic.HashSet<Pawn> heldNeutral = new System.Collections.Generic.HashSet<Pawn>();
         private static FieldInfo compPawn, compJobList, compParam, paramNeedReset, paramNeedFilter;
@@ -317,6 +355,8 @@ namespace Nelim.PickleTools.ColonistRace
         public void ReleaseNeutralFaces()
         {
             heldNeutral.Clear();
+            foreach (Action hook in heldExpressionHooks) PickleDriver.Instance?.RemoveFrameHook(hook);
+            heldExpressionHooks.Clear();
         }
 
         /// <summary>
