@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-545 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+546 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -23,6 +23,7 @@ Package `nelim.pickletools.camerazoom`. Not in the bundle: a companion staged by
 | `Nelim's Pickle Tools: the camera is centered on {string} at root size {float}` (When) | Centres the camera on a named pawn (colonist or animal) at a root size and reads it back, as the cell version does. |
 | `Nelim's Pickle Tools: the camera frames the head of {string} at root size {float}` (When) | Centres the camera on the head of a pawn (colonist or animal, by short name), about 0.6 cell north of its drawn position where a standing pawn's head is, at a root size, and reads it back. For a face to read in a capture: root size 2 to 3 (below 11 needs a camera mod such as SimpleCameraSetting, or ScreenshotStudio's own lifted limit). |
 | `Nelim's Pickle Tools: the camera frames the head of {string} and {string} at root size {float}` (When) | Like the head step, centred on the middle between the head of the first pawn and the second pawn, so that a colonist's face and the animal beside it are in the same picture. The two should stand within about two cells of each other at the root size asked for. |
+| `Nelim's Pickle Tools: {string} is in the camera view` (Then) | Asserts that a pawn (colonist or animal, by short name) is drawn inside the picture: its drawn position, projected through the game camera into GUI space (top-left origin, the space of the mouse and window steps), is within the screen and not under an open window. **Parameters:** `pawnName` (string). |
 | `Nelim's Pickle Tools: the framed cells fill at least {int} percent of the screen` (Then) | After a rectangle was framed, asserts from the camera as it IS now (the root size read back, not the one asked for) that the rectangle fills at least this percentage of the screen's height or of its width, whichever it fills more. The failure prints both shares. Fails if no rectangle was framed in this scenario. **Parameters:** `percent` (int): a percentage, a whole number. |
 | `Nelim's Pickle Tools: I frame the cell \({int}, {int}\) at zoom {float}` (When) | Centres the camera on one cell at the given root size (smaller is closer), then reads it back like the step that sets the size. |
 | `Nelim's Pickle Tools: the camera root size is {float}` (Then) | Asserts that the camera root size reads the value asked for, to 0.05. The failure prints the value read, which tells whether the game bounds the zoom (the size stops short and stays there) or the zoom had not finished. **Parameters:** `size` (float): a size, in cells (int) or in camera root size (float: smaller is closer). |

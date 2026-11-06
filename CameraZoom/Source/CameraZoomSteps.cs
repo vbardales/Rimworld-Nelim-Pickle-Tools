@@ -127,6 +127,24 @@ namespace Nelim.PickleTools.CameraZoom
             await CenterAt(ctx, (HeadPos(pawn) + other.DrawPos) / 2f, size);
         }
 
+        /// <summary>
+        /// Asserts that a pawn (colonist or animal, by short name) is drawn inside the picture: its drawn position, projected through the game camera into GUI space (top-left origin, the space
+        /// of the mouse and window steps), is within the screen and not under an open window. The failure prints the pawn's cell, the cells the camera sees, the GUI point and the first window
+        /// that covers it. Reads only. Written 2026-11-06 for ArchitectStudio (a capture showed neither Nelim nor Shogun). NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} is in the camera view")]
+        public void PawnInView(PickleContext ctx, string pawnName)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            UnityEngine.Vector3 sp = Find.Camera.WorldToScreenPoint(pawn.DrawPos);
+            UnityEngine.Vector2 gui = new UnityEngine.Vector2(sp.x * UI.screenWidth / UnityEngine.Screen.width, UI.screenHeight - sp.y * UI.screenHeight / UnityEngine.Screen.height);
+            CellRect view = Find.CameraDriver.CurrentViewRect;
+            string where = $"'{pawnName}' is on cell {pawn.Position}, drawn at GUI point ({gui.x:0}, {gui.y:0}); the camera sees cells ({view.minX}, {view.minZ}) to ({view.maxX}, {view.maxZ}) on a {UI.screenWidth} by {UI.screenHeight} screen";
+            ctx.Assert(sp.z > 0f && gui.x >= 0f && gui.x <= UI.screenWidth && gui.y >= 0f && gui.y <= UI.screenHeight, where + ": outside the picture");
+            Window cover = Find.WindowStack.Windows.FirstOrDefault(w => w.windowRect.Contains(gui));
+            ctx.Assert(cover == null, where + $": under the window {cover?.GetType().Name} at {cover?.windowRect}");
+        }
+
         private static Pawn FindPawn(PickleContext ctx, string pawnName)
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
