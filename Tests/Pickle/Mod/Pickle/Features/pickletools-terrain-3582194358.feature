@@ -65,3 +65,538 @@ Feature: Terrain catalogue 3582194358
     And I take a screenshot "terrain-3582194358-01"
     Then no errors were logged
 
+  Scenario: terrain-3582194358-02: floors 49 to 96
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "APrehistoric9-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien1-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien10-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien11-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien12-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien13-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien14-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien15-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Alien16-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien17-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien18-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien19-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien2-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien20-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien21-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien22-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Alien23-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien24-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien3-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien4-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien5-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien6-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien7-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien8-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Alien9-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian1-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian10-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian11-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian12-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian13-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian14-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian15-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian16-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian17-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian18-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian19-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian2-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian20-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian21-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian22-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian23-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian24-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian25-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian26-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian27-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian28-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian29-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian3-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-02"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-03: floors 97 to 144
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Egyptian30-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian31-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian32-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian33-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian34-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian4-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian5-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian6-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian7-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian8-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Egyptian9-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet1-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet10-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet11-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet12-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet13-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet14-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet15-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet16-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet17-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet18-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet19-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet2-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet20-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet21-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet22-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet23-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet24-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet25-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet26-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet27-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet28-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet29-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet3-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet30-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet31-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet32-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet33-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet34-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet35-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet4-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet5-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet6-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet7-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet8-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "HMCarpet9-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Iran1-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Iran10-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-03"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-04: floors 145 to 192
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Iran11-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran12-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran13-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran14-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran15-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran16-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran17-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran18-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Iran19-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran2-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran20-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran21-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran22-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran23-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran24-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran25-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Iran26-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran27-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran28-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran29-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran3-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran30-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran31-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran32-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Iran33-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran34-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran35-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran36-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran37-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran38-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran39-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran4-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Iran5-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Iran6-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Iran7-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Iran8-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Iran9-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval1-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval10-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval100-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval101-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval102-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval103-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval104-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval105-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval106-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval107-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval108-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-04"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-05: floors 193 to 240
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Medieval109-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval11-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval110-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval111-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval112-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval113-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval114-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval115-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval116-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval117-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval118-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval119-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval12-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval120-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval121-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval122-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval123-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval124-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval125-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval13-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval14-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval15-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval16-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval17-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval18-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval19-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval2-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval20-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval21-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval22-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval23-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval24-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval25-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval26-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval27-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval28-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval29-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval3-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval30-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval31-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval32-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval33-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval34-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval35-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval36-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval37-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval38-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval39-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-05"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-06: floors 241 to 288
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Medieval4-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval40-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval41-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval42-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval43-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval44-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval45-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval46-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval47-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval48-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval49-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval5-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval50-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval51-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval52-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval53-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval54-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval55-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval56-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval57-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval58-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval59-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval6-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval60-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval61-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval62-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval63-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval64-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval65-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval66-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval67-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval68-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Medieval69-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval7-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval70-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval71-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval72-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval73-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval74-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval75-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Medieval76-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval77-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval78-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval79-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval8-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval80-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval81-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Medieval82-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-06"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-07: floors 289 to 336
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Medieval83-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval84-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval85-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval86-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval87-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval88-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval89-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval9-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Medieval90-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval91-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval92-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval93-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval94-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval95-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval96-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval97-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Medieval98-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Medieval99-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature1-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature10-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature11-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature12-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature2-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature3-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature4-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature5-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature6-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature7-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature8-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "OneWithNature9-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet1-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet10-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet11-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet12-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet13-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet14-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet15-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet16-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet17-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet18-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet19-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet2-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet20-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet21-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet3-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet4-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet5-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet6-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-07"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-08: floors 337 to 384
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet7-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet8-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "PatchleatherCarpet9-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet1-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet10-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet11-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet12-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet13-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet14-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet15-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet16-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet17-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet2-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet3-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet4-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet5-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet6-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet7-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet8-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "PovertyCarpet9-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric1-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric10-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric11-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric12-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric13-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric14-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric15-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric16-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric17-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric18-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric19-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric2-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric20-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric21-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric22-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric23-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric24-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric25-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric26-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric27-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric28-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric29-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric3-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric30-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric31-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric32-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric33-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric34-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-08"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-09: floors 385 to 432
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric35-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric36-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric37-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric4-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric5-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric6-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric7-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric8-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Prehistoric9-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman1-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman10-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman11-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman12-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman13-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman14-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman15-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Roman16-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman17-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman18-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman19-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman2-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman20-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman21-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman22-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Roman23-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman24-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman25-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman26-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman27-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman28-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman29-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman3-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Roman30-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman31-" from (142, 150) to (143, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman32-" from (144, 150) to (145, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman33-" from (146, 150) to (147, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman34-" from (148, 150) to (149, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman35-" from (150, 150) to (151, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman36-" from (152, 150) to (153, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman37-" from (154, 150) to (155, 151)
+    And Nelim's Pickle Tools: I lay the floor "Roman38-" from (140, 148) to (141, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman39-" from (142, 148) to (143, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman4-" from (144, 148) to (145, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman40-" from (146, 148) to (147, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman41-" from (148, 148) to (149, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman42-" from (150, 148) to (151, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman5-" from (152, 148) to (153, 149)
+    And Nelim's Pickle Tools: I lay the floor "Roman6-" from (154, 148) to (155, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-09"
+    Then no errors were logged
+
+  Scenario: terrain-3582194358-10: floors 433 to 466
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (140, 148) to (155, 159) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Roman7-" from (140, 158) to (141, 159)
+    And Nelim's Pickle Tools: I lay the floor "Roman8-" from (142, 158) to (143, 159)
+    And Nelim's Pickle Tools: I lay the floor "Roman9-" from (144, 158) to (145, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various1-" from (146, 158) to (147, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various10-" from (148, 158) to (149, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various11-" from (150, 158) to (151, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various12-" from (152, 158) to (153, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various13-" from (154, 158) to (155, 159)
+    And Nelim's Pickle Tools: I lay the floor "Various14-" from (140, 156) to (141, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various15-" from (142, 156) to (143, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various16-" from (144, 156) to (145, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various17-" from (146, 156) to (147, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various18-" from (148, 156) to (149, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various19-" from (150, 156) to (151, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various2-" from (152, 156) to (153, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various20-" from (154, 156) to (155, 157)
+    And Nelim's Pickle Tools: I lay the floor "Various21-" from (140, 154) to (141, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various22-" from (142, 154) to (143, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various23-" from (144, 154) to (145, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various24-" from (146, 154) to (147, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various25-" from (148, 154) to (149, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various26-" from (150, 154) to (151, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various27-" from (152, 154) to (153, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various28-" from (154, 154) to (155, 155)
+    And Nelim's Pickle Tools: I lay the floor "Various29-" from (140, 152) to (141, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various3-" from (142, 152) to (143, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various30-" from (144, 152) to (145, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various31-" from (146, 152) to (147, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various4-" from (148, 152) to (149, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various5-" from (150, 152) to (151, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various6-" from (152, 152) to (153, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various7-" from (154, 152) to (155, 153)
+    And Nelim's Pickle Tools: I lay the floor "Various8-" from (140, 150) to (141, 151)
+    And Nelim's Pickle Tools: I lay the floor "Various9-" from (142, 150) to (143, 151)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (148, 154) at root size 8
+    And I take a screenshot "terrain-3582194358-10"
+    Then no errors were logged
+
