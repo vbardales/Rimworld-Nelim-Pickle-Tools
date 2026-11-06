@@ -441,6 +441,23 @@ namespace Nelim.PickleTools.ColonistRace
                 if (spot.IsValid && spot.InBounds(map) && spot.Standable(map)) interactionCell = spot;
             }
 
+            // A table played at from an adjacent chair or stool (chess table: no interaction cell): the game's JoyGiver_InteractBuildingSitAdjacent passes the seat's cell as
+            // target B and the seat as target C; with B invalid the driver throws IndexOutOfRange (CCCaD ticket d5ef, "Play_Chess" on "ChessTable", 2026-11-06).
+            Thing seat = null;
+            if (!interactionCell.IsValid && target is Building table && jobDef.driverClass != null && typeof(JobDriver_SitFacingBuilding).IsAssignableFrom(jobDef.driverClass))
+            {
+                foreach (IntVec3 c in GenAdj.CellsAdjacentCardinal(table).Where(c => c.InBounds(map) && !c.GetThingList(map).OfType<Pawn>().Any(p => p != pawn)).OrderBy(c => c.DistanceToSquared(pawn.Position)))
+                {
+                    Building chair = c.GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.building != null && b.def.building.isSittable);
+                    if (chair == null) continue;
+                    interactionCell = c;
+                    seat = chair;
+                    break;
+                }
+
+                ctx.Require(seat != null, $"{jobDef.defName} needs a chair or stool on a cell next to {target.LabelShort} at {target.Position} and none is there (place one first)");
+            }
+
             if (placeBeside)
             {
                 IntVec3 cell = interactionCell.IsValid ? interactionCell : GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
@@ -462,7 +479,8 @@ namespace Nelim.PickleTools.ColonistRace
             }
             else
             {
-                job = interactionCell.IsValid ? JobMaker.MakeJob(jobDef, target, interactionCell) : JobMaker.MakeJob(jobDef, target);
+                job = seat != null ? JobMaker.MakeJob(jobDef, target, interactionCell, seat)
+                    : interactionCell.IsValid ? JobMaker.MakeJob(jobDef, target, interactionCell) : JobMaker.MakeJob(jobDef, target);
             }
 
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
