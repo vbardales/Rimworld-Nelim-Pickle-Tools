@@ -206,7 +206,8 @@ namespace Nelim.PickleTools.CoatSteps
             Pawn animal = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && p.LabelShort == animalName);
             ctx.Require(animal != null, "no animal named " + animalName + " is on the map: spawn it first");
             int available = animal.kindDef.alternateGraphics?.Count ?? 0;
-            ctx.Require(coat >= -1 && coat < available, animal.LabelShort + " has " + available + " alternate coats (0 to " + (available - 1) + ", or -1 for the original), not " + coat);
+            int sameName = Find.CurrentMap.mapPawns.AllPawnsSpawned.Count(p => p.Name != null && p.LabelShort == animalName);
+            ctx.Require(coat >= -1 && coat < available, animal.LabelShort + " (kind " + animal.kindDef.defName + ", race " + animal.def.defName + ", at " + animal.Position + "; " + sameName + " pawn(s) on the map carry that name) has " + available + " alternate coats (0 to " + (available - 1) + ", or -1 for the original), not " + coat);
             int original = animal.thingIDNumber;
             for (int id = 5000000; id < 5000000 + 20000; id++)
             {

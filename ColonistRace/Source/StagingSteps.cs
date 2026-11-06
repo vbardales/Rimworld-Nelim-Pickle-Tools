@@ -432,9 +432,18 @@ namespace Nelim.PickleTools.ColonistRace
 
         private static void StartForced(PickleContext ctx, string nickname, Pawn pawn, Map map, JobDef jobDef, Thing target, bool placeBeside)
         {
+            // A building with an interaction cell (a chess table, an instrument): the colonist stands there and the game's own givers pass that cell as target B
+            // (JobDriver_SitFacingBuilding reserves it; with B invalid ReserveSittableOrSpot throws IndexOutOfRange: Harp, CCCaD ticket 5157, then Play_Chess, 2026-11-06).
+            IntVec3 interactionCell = IntVec3.Invalid;
+            if (target is Building withSpot && withSpot.def.hasInteractionCell)
+            {
+                IntVec3 spot = withSpot.InteractionCell;
+                if (spot.IsValid && spot.InBounds(map) && spot.Standable(map)) interactionCell = spot;
+            }
+
             if (placeBeside)
             {
-                IntVec3 cell = GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
+                IntVec3 cell = interactionCell.IsValid ? interactionCell : GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
                     .OrderBy(c => c.DistanceToSquared(pawn.Position)).FirstOrDefault();
                 ctx.Require(cell.IsValid, $"no standable free cell beside {target.LabelShort} at {target.Position}");
                 PlaceAt(pawn, map, cell, null);
@@ -453,11 +462,11 @@ namespace Nelim.PickleTools.ColonistRace
             }
             else
             {
-                job = JobMaker.MakeJob(jobDef, target);
+                job = interactionCell.IsValid ? JobMaker.MakeJob(jobDef, target, interactionCell) : JobMaker.MakeJob(jobDef, target);
             }
 
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
-            Log.Message($"[stage] {nickname} forced into {job.def.defName} on {target.LabelShort} at {target.Position}, job now {pawn.CurJob?.def.defName ?? "none"}");
+            Log.Message($"[stage] {nickname} forced into {job.def.defName} on {target.LabelShort} at {target.Position}{(interactionCell.IsValid ? ", target B the interaction cell " + interactionCell : "")}, job now {pawn.CurJob?.def.defName ?? "none"}");
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == job.def, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not {job.def.defName} (the job did not start: reserved, unreachable or refused for this target)");
         }
 
