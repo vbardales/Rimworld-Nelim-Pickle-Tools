@@ -1,5 +1,6 @@
 using System.Linq;
 using RimWorks.Pickle;
+using RimWorld;
 using Verse;
 
 namespace Nelim.PickleTools.ColonistRace
@@ -44,6 +45,24 @@ namespace Nelim.PickleTools.ColonistRace
             pawn.health.AddHediff(hediff, part);
             ctx.Assert(pawn.health.hediffSet.hediffs.Any(h => h.def == def && h.Part == part),
                 "pawn '" + nickname + "' does not hold the hediff '" + hediffName + "' on the " + partName + "; it holds " + HoldList(pawn));
+        }
+
+        /// <summary>
+        /// Makes a colonist start a social interaction with another pawn, as the game's own social tracker does (Pawn_InteractionsTracker.TryInteractWith): the InteractionDef by
+        /// defName (Chitchat, DeepTalk, a mod's own such as Chi_TraA_RuJiaChat), whose speech bubble is a mote drawn for about two seconds of GAME time: let a few ticks pass, do not pause
+        /// for good before the screenshot. Both pawns must be spawned, awake and within talking range (stand them side by side first); the game's own checks apply and the step fails
+        /// with the reason when it refuses. Written 2026-11-06 for APerfectMindInAPerfectBody. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} starts the interaction {string} with {string}")]
+        public void StartInteraction(PickleContext ctx, string initiatorName, string interactionName, string recipientName)
+        {
+            Pawn initiator = ColonistLookup.Require(initiatorName);
+            Pawn recipient = ColonistLookup.Require(recipientName);
+            InteractionDef def = DefDatabase<InteractionDef>.GetNamedSilentFail(interactionName);
+            ctx.Require(def != null, "no interaction '" + interactionName + "' (is the mod that defines it loaded in this pass?); the game has " + string.Join(", ", DefDatabase<InteractionDef>.AllDefs.Select(d => d.defName).Take(40)));
+            ctx.Require(initiator.interactions != null, "pawn '" + initiatorName + "' has no interaction tracker");
+            bool done = initiator.interactions.TryInteractWith(recipient, def);
+            ctx.Assert(done, "the game refused the interaction '" + interactionName + "' from '" + initiatorName + "' to '" + recipientName + "': not within talking range, asleep, or the def's worker said no (a mod's own conditions)");
         }
 
         /// <summary>Removes every hediff of that def from the colonist. Does nothing when it holds none. NOT PLAYED when written.</summary>
