@@ -202,6 +202,26 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Then(Prefix + "the animals named {string} are counted, {int} expected")]
         public void AnimalsCountedExpected(PickleContext ctx, string name, int expected) => CountNamed(ctx, name, expected);
 
+        /// <summary>
+        /// Logs (<c>[pawns-near]</c>) and attaches to the report (<c>pawns-near</c>) every pawn, colonist or animal, on the map within <paramref name="radius"/> cells (square) of the cell,
+        /// spawned or not: short name, kind, race, cell, drawn position, facing, current job, faction, and whether it is spawned. The things-near list leaves pawns out. Reads only.
+        /// Asked for by FrG, 2026-11-06 (an unplanned grey animal in the frame). Compiled, not played.
+        /// </summary>
+        [When(Prefix + "the pawns within {int} cells of \\({int}, {int}\\) are listed")]
+        public void PawnsNearListed(PickleContext ctx, int radius, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var found = map.mapPawns.AllPawns.Where(p => p.Spawned && Math.Abs(p.Position.x - x) <= radius && Math.Abs(p.Position.z - z) <= radius)
+                .OrderBy(p => p.Position.x).ThenBy(p => p.Position.z).ToList();
+            string report = found.Count + " pawn(s) within " + radius + " cells of (" + x + ", " + z + ")\n"
+                + string.Join("\n", found.Select(p => (p.Name?.ToStringShort ?? p.LabelShort) + ": kind " + (p.kindDef?.defName ?? "?") + ", race " + p.def.defName
+                    + ", cell (" + p.Position.x + ", " + p.Position.z + "), drawn (" + p.DrawPos.x.ToString("0.0") + ", " + p.DrawPos.z.ToString("0.0") + "), facing " + p.Rotation
+                    + ", job " + (p.CurJob?.def.defName ?? "none") + ", faction " + (p.Faction?.Name ?? "none") + ", id " + p.ThingID));
+            Log.Message("[pawns-near] " + report);
+            ctx.Attach("pawns-near", report);
+        }
+
         private static void CountNamed(PickleContext ctx, string name, int expected)
         {
             Map map = Find.CurrentMap;
