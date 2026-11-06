@@ -5,7 +5,8 @@
 // A name the game already defines (vanilla melanin, Biotech skins, vanilla hair) is skipped: the later mod overrides it and one gene would show under two names
 // (Inclusive Skin Tones redefines Skin_Melanin1 to 9).
 // One map per batch: Tests/Pickle/wsl-deps.colour-<batch>.map. Scenarios: colour-<batch>-<n>, 20 shots at most.
-// usage: node docs/Generate-ColourWorklist.js   (from the repository root)
+// usage: node docs/Generate-ColourWorklist.js [<batch> [<modId>=<name> ...]]   (from the repository root)
+//   no argument: every batch below; <batch> alone: that batch; <batch> and mods: a new batch given on the command line (the list below is only the batches already played).
 const fs = require('fs');
 const STEAM = 'C:/Program Files (x86)/Steam/steamapps';
 const DATA = STEAM + '/common/RimWorld/Data/';
@@ -84,7 +85,10 @@ const chunks = (list, per) => { const n = Math.ceil(list.length / Math.ceil(list
 const skinShot = g => [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "skingene-${g.name}"`];
 const hairShot = g => [`When ${PT}"Nelim" has the gene "${g.name}"`, `And ${PT}"Nelim" hair colour is taken from its genes`, `And ${PT}I let 5 frames pass`, `And I take a screenshot "hairgene-${g.name}"`];
 
-for (const { batch, mods } of BATCHES) {
+const args = process.argv.slice(2);
+const todo = args.length > 1 ? [{ batch: args[0], mods: args.slice(1).map(a => { const [id, ...n] = a.split('='); return { id, name: n.join('=') || id }; }) }] : BATCHES.filter(b => !args.length || b.batch === args[0]);
+if (!todo.length) throw new Error('unknown batch ' + args[0] + ': give its mods as <modId>=<name> arguments');
+for (const { batch, mods } of todo) {
   const skins = [], hairs = [];
   for (const m of mods) {
     const g = modGenes(m.id);
