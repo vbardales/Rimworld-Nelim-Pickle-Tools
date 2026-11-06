@@ -1,0 +1,3 @@
+nelim.pickletools.excludes   path:PickleTools/Excludes/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
