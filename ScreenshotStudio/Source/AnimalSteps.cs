@@ -150,6 +150,29 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         /// <summary>
+        /// Counts the animals of the current map whose short name is the one given (case ignored), spawned or not (a carried or stowed one counts), logs each
+        /// (<c>[animal-count]</c>: name, kind, cell or "not spawned", faction) and asserts there is exactly one. Run it after a spawn step to see a duplicate that
+        /// a save already carried (the keep-out step spares every animal of the name). Asked for by AnB, 2026-11-06. Compiled, not played.
+        /// </summary>
+        [Then(Prefix + "the animals named {string} are counted")]
+        public void AnimalsCounted(PickleContext ctx, string name) => CountNamed(ctx, name, 1);
+
+        /// <summary>The same with the number expected given (0 asserts that none is on the map).</summary>
+        [Then(Prefix + "the animals named {string} are counted, {int} expected")]
+        public void AnimalsCountedExpected(PickleContext ctx, string name, int expected) => CountNamed(ctx, name, expected);
+
+        private static void CountNamed(PickleContext ctx, string name, int expected)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var found = map.mapPawns.AllPawns.Where(p => p.RaceProps.Animal && string.Equals(p.Name?.ToStringShort ?? p.LabelShort, name, StringComparison.OrdinalIgnoreCase)).ToList();
+            string lines = string.Join("\n", found.Select(p => name + ": " + p.def.defName + ", " + (p.Spawned ? "cell (" + p.Position.x + ", " + p.Position.z + ")" : "not spawned") + ", faction " + (p.Faction?.Name ?? "none") + ", id " + p.ThingID));
+            Log.Message("[animal-count] " + found.Count + " animal(s) named " + name + (found.Count > 0 ? "\n" + lines : string.Empty));
+            ctx.Attach("animal-count", found.Count + " animal(s) named " + name + "\n" + lines);
+            ctx.Assert(found.Count == expected, found.Count + " animal(s) named '" + name + "' on the map, " + expected + " expected" + (found.Count > 0 ? ":\n" + lines : string.Empty));
+        }
+
+        /// <summary>
         /// Takes every garment off a spawned animal found by nickname and redraws it: the bare shot, or the start of an outfit that must begin from nothing
         /// (an animal may wear something in the save). The garments are destroyed (not dropped on its cell, not stowed: an animal has no inventory to give them back
         /// to); the save on disk is not touched. An animal with no apparel tracker has nothing to remove and is left alone. Asked for by Sanctuary Backlot
