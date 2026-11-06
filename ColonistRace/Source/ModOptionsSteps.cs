@@ -85,9 +85,65 @@ namespace Nelim.PickleTools.ColonistRace
             object owner; MemberInfo member;
             ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
             Type t = member is FieldInfo f ? f.FieldType : ((PropertyInfo)member).PropertyType;
-            object parsed = t == typeof(bool) ? (object)bool.Parse(value) : t == typeof(int) ? int.Parse(value) : t == typeof(float) ? float.Parse(value, System.Globalization.CultureInfo.InvariantCulture) : value;
+            object parsed = ParseValue(ctx, t, value, option);
             if (member is FieldInfo ff) ff.SetValue(owner, parsed); else ((PropertyInfo)member).SetValue(owner, parsed);
             handle.WriteSettings();
+        }
+
+        // bool, int, float, an enum (name, case ignored), else the text. Enum added 2026-11-06 for Biotech Bodies (globalBody Auto/Vanilla).
+        private static object ParseValue(PickleContext ctx, Type t, string value, string what)
+        {
+            if (t == typeof(bool)) return bool.Parse(value);
+            if (t == typeof(int)) return int.Parse(value);
+            if (t == typeof(float)) return float.Parse(value, System.Globalization.CultureInfo.InvariantCulture);
+            if (t.IsEnum)
+            {
+                ctx.Require(Enum.GetNames(t).Any(n => string.Equals(n, value, StringComparison.OrdinalIgnoreCase)), $"'{value}' is not a value of {t.Name} ({what}); values: " + string.Join(", ", Enum.GetNames(t)));
+                return Enum.Parse(t, value, true);
+            }
+
+            return value;
+        }
+
+        /// <summary>
+        /// Sets one entry of an option that is a dictionary with text keys (a <c>Dictionary&lt;string, T&gt;</c> field or property of the settings), the value parsed by T as for
+        /// a plain option (bool, int, float, enum, text); adds the key when absent. Then writes the mod's settings (what closing the window does). Compiled, not played;
+        /// asked for by BiB (raceBody keyed by race defName), 2026-11-06.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I set the entry {string} of the option {string} of the mod {string} to {string}")]
+        public void SetOptionEntry(PickleContext ctx, string key, string option, string packageId, string value)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            ctx.Require(!IsMsf(handle), $"{pack.Name} keeps its options in Mod Settings Framework: no dictionary options");
+            object owner; MemberInfo member;
+            ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
+            object dict = member is FieldInfo f ? f.GetValue(owner) : ((PropertyInfo)member).GetValue(owner);
+            ctx.Require(dict != null, $"'{option}' of {pack.Name} is null");
+            Type dictType = dict.GetType();
+            Type iface = dictType.GetInterfaces().Concat(new[] { dictType }).FirstOrDefault(i => i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IDictionary<,>));
+            ctx.Require(iface != null && iface.GetGenericArguments()[0] == typeof(string), $"'{option}' of {pack.Name} is a {dictType.Name}, not a dictionary with text keys");
+            object parsed = ParseValue(ctx, iface.GetGenericArguments()[1], value, option);
+            iface.GetProperty("Item").SetValue(dict, parsed, new object[] { key });
+            Log.Message($"[mod-options] {option}[{key}] of {pack.Name} set to {parsed}");
+            handle.WriteSettings();
+        }
+
+        [Then("Nelim's Pickle Tools: the entry {string} of the option {string} of the mod {string} is {string}")]
+        public void OptionEntryIs(PickleContext ctx, string key, string option, string packageId, string expected)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            object owner; MemberInfo member;
+            ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
+            object dict = member is FieldInfo f ? f.GetValue(owner) : ((PropertyInfo)member).GetValue(owner);
+            var entries = (dict as System.Collections.IDictionary);
+            ctx.Require(entries != null, $"'{option}' of {pack.Name} is not a dictionary");
+            ctx.Require(entries.Contains(key), $"'{option}' of {pack.Name} has no entry '{key}'; keys: " + string.Join(", ", entries.Keys.Cast<object>()));
+            string read = Convert.ToString(entries[key], System.Globalization.CultureInfo.InvariantCulture);
+            ctx.Assert(string.Equals(read, expected, StringComparison.OrdinalIgnoreCase), $"entry '{key}' of option '{option}' of {pack.Name} is '{read}', not '{expected}'");
         }
 
         [Then("Nelim's Pickle Tools: the option {string} of the mod {string} is {string}")]

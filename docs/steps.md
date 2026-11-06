@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-541 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+543 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -222,6 +222,8 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: I open the mod options page of the mod {string}` (When) | (no description yet) **Parameters:** `packageId` (string): the packageId of a mod, any case. |
 | `Nelim's Pickle Tools: I close the mod options window` (When) | (no description yet) |
 | `Nelim's Pickle Tools: I set the option {string} of the mod {string} to {string}` (When) | Sets the member to the text, parsed as bool, int, float or string by the member's type, then writes the mod's settings to disk (what closing the window does). **Parameters:** `option` (string); `packageId` (string): the packageId of a mod, any case; `value` (string): the value written, as text. |
+| `Nelim's Pickle Tools: I set the entry {string} of the option {string} of the mod {string} to {string}` (When) | Sets one entry of an option that is a dictionary with text keys (a `Dictionary<string, T>` field or property of the settings), the value parsed by T as for a plain option (bool, int, float, enum, text); adds the key when absent. Then writes the mod's settings (what closing the window does). **Parameters:** `key` (string): a translation key (language independent), not the translated text; `option` (string); `packageId` (string): the packageId of a mod, any case; `value` (string): the value written, as text. |
+| `Nelim's Pickle Tools: the entry {string} of the option {string} of the mod {string} is {string}` (Then) | (no description yet) **Parameters:** `key` (string): a translation key (language independent), not the translated text; `option` (string); `packageId` (string): the packageId of a mod, any case; `expected` (string): the expected text. |
 | `Nelim's Pickle Tools: the option {string} of the mod {string} is {string}` (Then) | (no description yet) **Parameters:** `option` (string); `packageId` (string): the packageId of a mod, any case; `expected` (string): the expected text. |
 | `Nelim's Pickle Tools: the settings file of the mod {string} holds {string} as {string}` (Then) | Reads the settings file on disk (Config/Mod_{id}_{handle class}.xml), the one a restart loads: the first element named like the option must hold the text. **Parameters:** `packageId` (string): the packageId of a mod, any case; `option` (string); `expected` (string): the expected text. |
 | `Nelim's Pickle Tools: the settings of the mod {string} are sandboxed at their defaults` (Given) | Backs up the settings file of the mod, deletes it and resets its settings to the defaults of its code; the file is restored after the scenario. **Parameters:** `packageId` (string): the packageId of a mod, any case. |
