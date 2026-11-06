@@ -99,6 +99,47 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(pawn.Position == best, who + " is at " + pawn.Position + " instead of " + best);
         }
 
+        /// <summary>
+        /// Keeps a spawned animal (short name) at least N cells from a pawn (colonist or animal, short name): when it is closer, it is moved to the free cell
+        /// (standable, no building, plant, tree, fence or pawn) nearest to where it stands that is N cells or more from that pawn by true distance (searched up to
+        /// N + 15 cells around the animal); when it is far enough, it stays. Fails when no cell fits. The move is once: a free animal walks again when the game runs.
+        /// Asked for by aSM (a baby asleep over Nelim), 2026-11-06. Compiled, not played.
+        /// </summary>
+        [Given(Prefix + "the animal {string} stands at least {int} cells from {string}")]
+        public void AnimalAtLeastFrom(PickleContext ctx, string nickname, int cells, string otherName)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            Func<string, Pawn> find = n => AreaOps.SpawnedPawns(map).FirstOrDefault(p => p.Name != null && string.Equals(p.Name.ToStringShort, n, StringComparison.OrdinalIgnoreCase));
+            Pawn animal = AreaOps.SpawnedPawns(map).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && string.Equals(p.Name.ToStringShort, nickname, StringComparison.OrdinalIgnoreCase));
+            Pawn other = find(otherName);
+            ctx.Require(animal != null, "No spawned animal named " + nickname);
+            ctx.Require(other != null, "No spawned pawn named " + otherName);
+            ctx.Require(cells >= 1 && cells <= 40, "cells run from 1 to 40");
+            float dist = animal.Position.DistanceTo(other.Position);
+            if (dist >= cells)
+            {
+                Log.Message("[animal-away] " + nickname + " is " + dist.ToString("0.0") + " cells from " + otherName + ", at least " + cells + ": left in place");
+                return;
+            }
+
+            int reach = cells + 15;
+            IntVec3 best = IntVec3.Invalid; float bestDist = float.MaxValue;
+            for (int dx = -reach; dx <= reach; dx++)
+                for (int dz = -reach; dz <= reach; dz++)
+                {
+                    var c = new IntVec3(animal.Position.x + dx, 0, animal.Position.z + dz);
+                    float d = dx * dx + dz * dz;
+                    if (d < bestDist && FreeCell(map, c) && c.DistanceTo(other.Position) >= cells && !AreaOps.SpawnedPawns(map).Any(p => p != animal && p.Position == c)) { best = c; bestDist = d; }
+                }
+
+            ctx.Require(best.IsValid, "No free cell " + cells + " cells or more from " + otherName + " within " + reach + " cells of " + nickname);
+            animal.Position = best;
+            animal.Notify_Teleported(true, true);
+            ctx.Assert(animal.Position.DistanceTo(other.Position) >= cells, nickname + " is still closer than " + cells + " cells to " + otherName);
+            Log.Message("[animal-away] " + nickname + " moved from " + dist.ToString("0.0") + " cells to " + animal.Position.DistanceTo(other.Position).ToString("0.0") + " cells from " + otherName + ", at (" + best.x + ", " + best.z + ")");
+        }
+
         /// <summary>Moves a spawned animal (by nickname) to the free cell nearest (x, z): standable, with no building, plant, tree, fence or pawn. Fails when none is within 15 cells.</summary>
         [Given(Prefix + "the animal {string} stands on the nearest free cell around \\({int}, {int}\\)")]
         public void AnimalOnNearestFree(PickleContext ctx, string nickname, int x, int z)

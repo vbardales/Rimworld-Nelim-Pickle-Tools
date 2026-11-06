@@ -451,6 +451,40 @@ namespace Nelim.PickleTools.ColonistRace
             CarryItems(ctx, name, count, defName);
         }
 
+        /// <summary>
+        /// Sets down what a pawn (colonist or animal, found by its short name) carries on the cell given (the nearest free cell if something blocks it) and leaves the
+        /// hands empty, so the pawn is drawn without the load and the thing stays on the ground in the shot. The thing is forbidden so no hauler takes it if the game
+        /// runs. Fails when the pawn carries nothing or the drop is refused. Asked for by aSM (hay over Nelim's face), 2026-11-06. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} puts down what it carries at \\({int}, {int}\\)")]
+        public void PutsDownCarriedAt(PickleContext ctx, string name, int x, int z)
+        {
+            Pawn pawn = AnyPawn(ctx, name);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(pawn.Map != null && cell.InBounds(pawn.Map), $"the cell ({x}, {z}) is outside the map");
+            PutDown(ctx, pawn, name, cell);
+        }
+
+        /// <summary>The same, on the cell the pawn stands on (the thing lands beside it if the cell is taken).</summary>
+        [Given("Nelim's Pickle Tools: {string} puts down what it carries")]
+        public void PutsDownCarried(PickleContext ctx, string name)
+        {
+            Pawn pawn = AnyPawn(ctx, name);
+            PutDown(ctx, pawn, name, pawn.Position);
+        }
+
+        private static void PutDown(PickleContext ctx, Pawn pawn, string name, IntVec3 cell)
+        {
+            ctx.Require(pawn.carryTracker != null && pawn.carryTracker.CarriedThing != null, $"{name} carries nothing");
+            string what = pawn.carryTracker.CarriedThing.LabelCap;
+            bool dropped = pawn.carryTracker.TryDropCarriedThing(cell, ThingPlaceMode.Near, out Thing result);
+            ctx.Assert(dropped && result != null && result.Spawned, $"{name} could not set down {what} near ({cell.x}, {cell.z})");
+            ctx.Assert(pawn.carryTracker.CarriedThing == null, $"{name} still carries something after the drop");
+            result.SetForbidden(true, false);
+            Log.Message($"[put-down] {name} set down {what} at ({result.Position.x}, {result.Position.z}), asked ({cell.x}, {cell.z}); hands empty");
+            Redraw(pawn);
+        }
+
         private static void CarryItems(PickleContext ctx, string name, int count, string defName)
         {
             Pawn pawn = AnyPawn(ctx, name);
