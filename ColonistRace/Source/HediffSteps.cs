@@ -26,6 +26,26 @@ namespace Nelim.PickleTools.ColonistRace
                 "pawn '" + nickname + "' does not hold the hediff '" + hediffName + "'; it holds " + HoldList(pawn));
         }
 
+        /// <summary>
+        /// Adds a hediff to ONE body part of the colonist (a wound: Cut, Scratch, Bruise, Burn...), found by its label ("left arm", "right hand", "neck", case insensitive) or by its def name.
+        /// A wound def (an injury) is given severity 2 unless a value is asked; the part must be one the pawn still has. Written 2026-11-06 for APerfectMindInAPerfectBody (a cut on a forearm).
+        /// NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} has the hediff {string} on the {string}")]
+        public void GiveHediffOnPart(PickleContext ctx, string nickname, string hediffName, string partName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            HediffDef def = DefDatabase<HediffDef>.GetNamedSilentFail(hediffName);
+            ctx.Require(def != null, "no hediff '" + hediffName + "' (is the mod that defines it loaded in this pass?)");
+            BodyPartRecord part = pawn.RaceProps.body.AllParts.FirstOrDefault(p => string.Equals(p.Label, partName, System.StringComparison.OrdinalIgnoreCase) || string.Equals(p.def.defName, partName, System.StringComparison.OrdinalIgnoreCase));
+            ctx.Require(part != null, "pawn '" + nickname + "' has no body part '" + partName + "'; it has " + string.Join(", ", pawn.RaceProps.body.AllParts.Select(p => p.Label).Distinct()));
+            Hediff hediff = HediffMaker.MakeHediff(def, pawn, part);
+            if (hediff is Hediff_Injury) hediff.Severity = 2f;
+            pawn.health.AddHediff(hediff, part);
+            ctx.Assert(pawn.health.hediffSet.hediffs.Any(h => h.def == def && h.Part == part),
+                "pawn '" + nickname + "' does not hold the hediff '" + hediffName + "' on the " + partName + "; it holds " + HoldList(pawn));
+        }
+
         /// <summary>Removes every hediff of that def from the colonist. Does nothing when it holds none. NOT PLAYED when written.</summary>
         [Given("Nelim's Pickle Tools: {string} loses the hediff {string}")]
         public void LoseHediff(PickleContext ctx, string nickname, string hediffName)

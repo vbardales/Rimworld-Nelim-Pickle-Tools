@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-543 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+544 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -164,6 +164,7 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: I let the hairstyle of {string} show its own colours` (When) | Sets the colonist's hair colour to white and redraws the pawn, so its hairstyle is drawn in its own colours. The colour is the pawn's for the rest of the scenario (the scenario's pawn is not saved unless the scenario saves). **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the hairstyle of {string} is drawn in its own colours` (Then) | Asserts that the colonist's hair colour reads white, to 0.01; the failure prints the colour and the hairstyle. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: {string} has the hediff {string}` (Given) | Adds a hediff to the colonist, on no body part, unless it already holds one of that def. Reads it back and fails with the hediffs the pawn holds if it is missing. NOT PLAYED when written. **Parameters:** `nickname` (string): the colonist's nickname; `hediffName` (string). |
+| `Nelim's Pickle Tools: {string} has the hediff {string} on the {string}` (Given) | Adds a hediff to ONE body part of the colonist (a wound: Cut, Scratch, Bruise, Burn...), found by its label ("left arm", "right hand", "neck", case insensitive) or by its def name. A wound def (an injury) is given severity 2 unless a value is asked; the part must be one the pawn still has. **Parameters:** `nickname` (string): the colonist's nickname; `hediffName` (string); `partName` (string). |
 | `Nelim's Pickle Tools: {string} loses the hediff {string}` (Given) | Removes every hediff of that def from the colonist. Does nothing when it holds none. NOT PLAYED when written. **Parameters:** `nickname` (string): the colonist's nickname; `hediffName` (string). |
 | `Nelim's Pickle Tools: {string} holds the hediff {string}` (Then) | Asserts a colonist holds a hediff of that def; the failure lists the hediffs it holds. NOT PLAYED when written. **Parameters:** `nickname` (string): the colonist's nickname; `hediffName` (string). |
 | `Nelim's Pickle Tools: the colonist {string} carries {int} {string}` (Given) | Puts N things of a def (by defName) in the colonist's inventory, made of the def's default stuff. Fails when the colonist or the def is unknown or the inventory refuses the count (the message says how many went in). Several stacks are made when the count exceeds the stack limit. **Parameters:** `nickname` (string): the colonist's nickname; `count` (int): a count, a whole number; `defName` (string): a def name of the loaded game (any case). |
