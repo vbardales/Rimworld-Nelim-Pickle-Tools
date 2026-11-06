@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-534 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+536 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -573,6 +573,8 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the roof is removed from the frame` (Given) | Removes the roofs of the frame (thick roofs stay). |
 | `Nelim's Pickle Tools: I let {int} frames pass` (When) | Waits this many rendered frames (the game keeps its pause): enough for a pawn just changed to be drawn again before a capture, at a fraction of the 90 frames a framing step waits. |
 | `Nelim's Pickle Tools: the painted zones are hidden` (Given) | Hides every painted zone of the map (growing zones, stockpiles) from the capture, as the game's own "hide" toggle of a zone does; put back after the scenario. The zones keep working. |
+| `Nelim's Pickle Tools: the cell \({int}, {int}\) is probed` (Given) | Logs ([cell-probe] and the attachment `cell-probe`) for one cell: the terrain and the one under it, the paint colour, Biotech pollution, snow depth, roof, fog, zone, and every thing on it (def, class, forbidden). Reads only; never fails except for a cell outside the map. **Parameters:** `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
+| `Nelim's Pickle Tools: the cells from \({int}, {int}\) to \({int}, {int}\) are probed` (Given) | The same for every cell of a rectangle, one line each (at most 400 cells). Compare a cell inside a patch with one outside. **Parameters:** `x0` (int): first corner, x; `z0` (int): first corner, z; `x1` (int): second corner, x; `z1` (int): second corner, z. |
 | `Nelim's Pickle Tools: the light of the map is logged` (Then) | (no description yet) |
 | `Nelim's Pickle Tools: the eclipse of the map is ended` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: the sun glow of the map is at least {float}` (Then) | (no description yet) **Parameters:** `minimum` (float): the smallest value accepted. |
