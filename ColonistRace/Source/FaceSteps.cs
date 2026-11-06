@@ -156,6 +156,92 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        private static readonly string[] FacePartKinds = { "Eyeball", "Lid", "Mouth", "Brow", "Head", "Skin" };
+
+        // The def a face part controller holds now (faceType), with the texture path(s) it draws from, read by reflection: the part defs of
+        // Facial Animation and of the mods that add some (BiB_Unagi_*) carry their textures in string fields, whose names this does not assume.
+        private static Def ReadPart(PickleContext ctx, Pawn pawn, string nickname, string kind, out string texPaths)
+        {
+            string canon = FacePartKinds.FirstOrDefault(k => string.Equals(k, kind, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(canon != null, "No face part \"" + kind + "\"; known: " + string.Join(", ", FacePartKinds));
+            Type compType = FaType(ctx, "FacialAnimation." + canon + "ControllerComp");
+            ThingComp comp = pawn.AllComps.FirstOrDefault(c => compType.IsInstanceOfType(c));
+            ctx.Require(comp != null, nickname + " has no " + canon.ToLowerInvariant() + " controller (a pawn without the facial animation head)");
+            Def def = FieldUp(compType, "faceType")?.GetValue(comp) as Def;
+            texPaths = "";
+            if (def == null) return null;
+            var found = new System.Collections.Generic.List<string>();
+            for (Type t = def.GetType(); t != null && t != typeof(Def) && t != typeof(object); t = t.BaseType)
+            {
+                foreach (FieldInfo f in t.GetFields(Any | BindingFlags.DeclaredOnly))
+                {
+                    if (f.IsStatic) continue;
+                    object v = f.GetValue(def);
+                    if (v is string s && s.Length > 0 && f.Name.IndexOf("tex", StringComparison.OrdinalIgnoreCase) >= 0) found.Add(s);
+                    else if (v is IEnumerable list && !(v is string) && f.Name.IndexOf("tex", StringComparison.OrdinalIgnoreCase) >= 0)
+                        foreach (object o in list) if (o is string s2 && s2.Length > 0) found.Add(s2);
+                }
+            }
+            texPaths = string.Join(";", found.Distinct());
+            return def;
+        }
+
+        /// <summary>
+        /// Writes to the game log (lines starting <c>[face-parts]</c>, one per part: kind, defName, texture path) the Facial Animation part defs a
+        /// colonist is drawn with now: Eyeball, Lid, Mouth, Brow, Head and Skin. The texture path is every string field of the def whose name
+        /// contains "tex". Never fails on a missing def; fails when the pawn has no Facial Animation controller. Written 2026-11-06 for BiotechBodies
+        /// (a gene must give part defs named BiB_Unagi_*). Compiled, not played.
+        /// </summary>
+        /// <param name="nickname">the colonist's nickname</param>
+        [Given("Nelim's Pickle Tools: the face parts of {string} are logged")]
+        public void LogFaceParts(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            var report = new System.Text.StringBuilder();
+            foreach (string kind in FacePartKinds)
+            {
+                Def def = ReadPart(ctx, pawn, nickname, kind, out string tex);
+                string line = nickname + ": " + kind + " | " + (def?.defName ?? "(none)") + " | texPath=" + (tex.Length > 0 ? tex : "(none found)");
+                Log.Message("[face-parts] " + line);
+                report.AppendLine(line);
+            }
+            ctx.Attach("face-parts", report.ToString());
+        }
+
+        /// <summary>Asserts a face part of a colonist (Eyeball, Lid, Mouth, Brow, Head or Skin) is this def; the failure prints the one it has. Compiled, not played.</summary>
+        /// <param name="part">Eyeball, Lid, Mouth, Brow, Head or Skin, any case</param>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="defName">the part def's name, such as BiB_Unagi_Eyeball</param>
+        [Then("Nelim's Pickle Tools: the face {word} type of {string} is {string}")]
+        public void FacePartIs(PickleContext ctx, string part, string nickname, string defName)
+        {
+            Def read = ReadPart(ctx, ColonistLookup.Require(nickname), nickname, part, out _);
+            ctx.Assert(read != null && read.defName == defName, nickname + "'s face " + part + " should be " + defName + "; it reads " + (read?.defName ?? "(none)"));
+        }
+
+        /// <summary>Asserts the defName of a face part of a colonist starts with a prefix (such as <c>BiB_Unagi_</c>); the failure prints the one it has. Compiled, not played.</summary>
+        /// <param name="part">Eyeball, Lid, Mouth, Brow, Head or Skin, any case</param>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="prefix">the start of the part def's name</param>
+        [Then("Nelim's Pickle Tools: the face {word} type of {string} starts with {string}")]
+        public void FacePartStartsWith(PickleContext ctx, string part, string nickname, string prefix)
+        {
+            Def read = ReadPart(ctx, ColonistLookup.Require(nickname), nickname, part, out _);
+            ctx.Assert(read != null && read.defName.StartsWith(prefix, StringComparison.Ordinal), nickname + "'s face " + part + " should start with " + prefix + "; it reads " + (read?.defName ?? "(none)"));
+        }
+
+        /// <summary>Asserts the texture path of a face part def of a colonist starts with a prefix (such as <c>BiB/Face/Unagi/</c>); the failure prints the paths found. Compiled, not played.</summary>
+        /// <param name="part">Eyeball, Lid, Mouth, Brow, Head or Skin, any case</param>
+        /// <param name="nickname">the colonist's nickname</param>
+        /// <param name="prefix">the start of the texture path, relative to Textures</param>
+        [Then("Nelim's Pickle Tools: the face {word} texture of {string} starts with {string}")]
+        public void FacePartTextureStartsWith(PickleContext ctx, string part, string nickname, string prefix)
+        {
+            Def read = ReadPart(ctx, ColonistLookup.Require(nickname), nickname, part, out string tex);
+            ctx.Assert(read != null && tex.Split(';').Any(p => p.StartsWith(prefix, StringComparison.Ordinal)),
+                nickname + "'s face " + part + " texture should start with " + prefix + "; def " + (read?.defName ?? "(none)") + " has " + (tex.Length > 0 ? tex : "(no texture string)"));
+        }
+
         private void SetPart(PickleContext ctx, string nickname, string part, string typeName)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
