@@ -45,7 +45,7 @@ nelim.pickletools.excludes   path:PickleTools/Excludes/Mod
 
 ## Status and proof
 
-Compiled, 0 warnings, **never played**. The probe is `Tests/Pickle/Mod/Pickle/Features/pickletools-excludes.feature`,
+Compiled, 0 warnings; **played green 2026-11-06 (ticket 46b3, azure, 1 passed + 1 skipped as expected)**. The probe is `Tests/Pickle/Mod/Pickle/Features/pickletools-excludes.feature`,
 pass map `Tests/Pickle/wsl-deps.excludes.map`. Two scenarios: `@excludes:rimworks.pickle` (always loaded, so the
 scenario must be SKIPPED: its only step would fail if it ran) and `@excludes:nelim.no.such.mod` (never loaded, so it
 must RUN and pass: the control, without which a tag that skips everything would look right). Read the report for
