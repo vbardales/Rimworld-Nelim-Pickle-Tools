@@ -383,6 +383,21 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public void ListThingsNear(PickleContext ctx, int radius, int x, int z) => AreaOps.ListThingsNear(ctx, x, z, radius);
 
         /// <summary>Despawns every artificial building within N cells of a cell, for this run only (what draws red focus lines on a selected anima tree). Does not fail when none is there.</summary>
+        /// <summary>
+        /// Takes every interaction bubble (the speech and icon bubbles pawns show over their heads for a chat, an insult, a hand shake: MoteBubble) off the map, for this run only, so a capture shows
+        /// none. A bubble lasts about two seconds of game time and a new one can start while the game ticks: run it last, right before the screenshot, with the game paused. Does not fail when none
+        /// is there (it logs how many it removed). Written 2026-11-06 for FoldingSkateboardRenew (a hand icon over Soren in a capture taken in presentation mode). NOT PLAYED when written.
+        /// </summary>
+        [Given(Prefix + "the interaction bubbles are cleared")]
+        public void ClearInteractionBubbles(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "no map is loaded: load a save first");
+            Map map = Find.CurrentMap;
+            List<Thing> bubbles = map.listerThings.AllThings.Where(t => t is MoteBubble).ToList();
+            foreach (Thing t in bubbles) t.Destroy(DestroyMode.Vanish);
+            Log.Message("[bubbles-cleared] " + bubbles.Count);
+        }
+
         [Given(Prefix + "the artificial buildings within {int} cells of \\({int}, {int}\\) are hidden")]
         public void HideArtificialBuildings(PickleContext ctx, int radius, int x, int z) => AreaOps.HideArtificialBuildings(ctx, x, z, radius);
 
