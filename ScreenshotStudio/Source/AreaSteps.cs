@@ -366,7 +366,15 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <param name="label">a text the zone's label contains, such as <c>Zone agricole 19</c></param>
         /// <param name="plantDef">a plant def, such as <c>Plant_Rice</c></param>
         [Given(Prefix + "the zones named {string} are sown with {string} fully grown")]
-        public void ZonesSown(PickleContext ctx, string label, string plantDef)
+        public void ZonesSown(PickleContext ctx, string label, string plantDef) => SowZones(ctx, label, plantDef, false);
+
+        /// <summary>Like sowing a zone, but first destroys every plant of the zone that is not a tree (wild grass, moss, a crop of another kind), so the zone ends as a field of the one crop. Compiled, not played.</summary>
+        /// <param name="label">a text the zone label contains</param>
+        /// <param name="plantDef">a plant def, such as <c>Plant_Rice</c></param>
+        [Given(Prefix + "the zones named {string} are resown with {string} fully grown")]
+        public void ZonesResown(PickleContext ctx, string label, string plantDef) => SowZones(ctx, label, plantDef, true);
+
+        private static void SowZones(PickleContext ctx, string label, string plantDef, bool clearFirst)
         {
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "No loaded map");
@@ -380,6 +388,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 int sown = 0, skipped = 0;
                 foreach (IntVec3 cell in zone.Cells.ToList())
                 {
+                    if (clearFirst)
+                        foreach (Plant old in cell.GetThingList(map).OfType<Plant>().Where(p => !p.def.plant.IsTree).ToList()) old.Destroy();
                     if (cell.GetPlant(map) != null || cell.GetTerrain(map).fertility <= 0f || cell.GetEdifice(map) != null) { skipped++; continue; }
                     Plant plant = (Plant)ThingMaker.MakeThing(def);
                     plant.Growth = 1f;
