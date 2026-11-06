@@ -400,6 +400,41 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
+        private static string JsonText(string s) => "\"" + (s ?? "").Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", " ").Replace("\n", " ").Replace("\t", " ") + "\"";
+
+        /// <summary>
+        /// Logs ([terrain-stats], one JSON object per line) what the game loaded for every terrain def of a mod, after patches and inheritance: defName, label, description,
+        /// tech level, cost list, beauty, work to build, cleanliness, fertility, affordances, path cost, passability, texture path, research prerequisites. For the capture catalogue
+        /// (the content sheet of the mod is only the fallback: patches change values). Never fails on a mod without terrains (logs that none matched).
+        /// Written 2026-11-06 for the terrain catalogue. Compiled, not played.
+        /// </summary>
+        /// <param name="packageId">the packageId of the mod (or its name), case insensitive</param>
+        [Given(Prefix + "the terrains of the mod {string} are logged")]
+        public void TerrainStatsLogged(PickleContext ctx, string packageId)
+        {
+            var defs = DefDatabase<TerrainDef>.AllDefs.Where(d => d.modContentPack != null
+                && (string.Equals(d.modContentPack.PackageId, packageId, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(d.modContentPack.PackageIdPlayerFacing, packageId, StringComparison.OrdinalIgnoreCase)
+                    || string.Equals(d.modContentPack.Name, packageId, StringComparison.OrdinalIgnoreCase))).OrderBy(d => d.defName).ToList();
+            if (defs.Count == 0) Log.Message("[terrain-stats] no terrain def of the mod \"" + packageId + "\"");
+            foreach (TerrainDef d in defs)
+            {
+                string cost = string.Join(",", (d.costList ?? new List<ThingDefCountClass>()).Select(c => c.thingDef.defName + "=" + c.count));
+                string aff = string.Join(",", (d.affordances ?? new List<TerrainAffordanceDef>()).Select(a => a.defName));
+                string research = string.Join(",", (d.researchPrerequisites ?? new List<ResearchProjectDef>()).Select(r => r.defName));
+                string json = "{\"defName\":" + JsonText(d.defName) + ",\"label\":" + JsonText(d.label) + ",\"description\":" + JsonText(d.description)
+                    + ",\"techLevel\":" + JsonText((d.researchPrerequisites == null || d.researchPrerequisites.Count == 0 ? TechLevel.Undefined : d.researchPrerequisites.Max(r => r.techLevel)).ToString()) + ",\"costList\":" + JsonText(cost)
+                    + ",\"beauty\":" + d.GetStatValueAbstract(StatDefOf.Beauty).ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + ",\"workToBuild\":" + d.GetStatValueAbstract(StatDefOf.WorkToBuild).ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + ",\"cleanliness\":" + d.GetStatValueAbstract(StatDefOf.Cleanliness).ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + ",\"fertility\":" + d.fertility.ToString(System.Globalization.CultureInfo.InvariantCulture)
+                    + ",\"pathCost\":" + d.pathCost + ",\"passability\":" + JsonText(d.passability.ToString())
+                    + ",\"affordances\":" + JsonText(aff) + ",\"texturePath\":" + JsonText(d.texturePath) + ",\"research\":" + JsonText(research) + "}";
+                Log.Message("[terrain-stats] " + json);
+            }
+            ctx.Attach("terrain-stats-" + packageId, defs.Count + " terrain defs logged");
+        }
+
         /// <summary>The same as emptying the rectangle, but the things that hold a roof up (columns, pillars) stay, so the roof does not collapse.</summary>
         [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied, the roof holders kept")]
         public void EmptyKeepingRoofHolders(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1), true);
