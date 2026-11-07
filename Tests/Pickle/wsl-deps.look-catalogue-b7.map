@@ -1,0 +1,9 @@
+# BATCH 7 (2026-11-07): hair and tattoo mods PiI proposed that looks.md does not list yet (Erin's Hairstyles - Redux read again, Tech Tattoos, RimImmortal Hairstyle). Same scenario as the other batches (feature pickletools-look-catalogue); a run that lists the defNames, then the look galleries photograph them.
+#   scripts/Run-PickleWsl.ps1 -Mod PickleTools -DepMap wsl-deps.look-catalogue-b7.map -Filter pickletools-look-catalogue   (filed through Submit-PickleRun.ps1 -DepMap look-catalogue-b7, never by hand)
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+Nals.FacialAnimation 1635901197
+Erin.Hairredux 2361911135
+Shenanigans.TechTattoos 2789726696
+RI.RimImmortals.Hairstyle 3265157569

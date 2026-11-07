@@ -438,7 +438,23 @@ namespace Nelim.PickleTools.ColonistRace
             if (target is Building withSpot && withSpot.def.hasInteractionCell)
             {
                 IntVec3 spot = withSpot.InteractionCell;
-                if (spot.IsValid && spot.InBounds(map) && spot.Standable(map)) interactionCell = spot;
+                // A spot that is in the map is passed as B even when it is not standable right now (a pawn or an item on it): an invalid B throws IndexOutOfRange in the
+                // driver (CCCaD ticket f1cf, Play_Horseshoes on HorseshoesPin, 2026-11-07), a busy B only makes the job fail with a reason.
+                if (spot.IsValid && spot.InBounds(map))
+                {
+                    interactionCell = spot;
+                    if (!spot.Standable(map)) Log.Warning($"[stage] interaction cell {spot} of {target.LabelShort} at {target.Position} is not standable ({string.Join(", ", spot.GetThingList(map).Select(t => t.def.defName))}); passed as target B anyway");
+                }
+            }
+
+            // A joy building with no interaction cell whose driver still wants a stand cell as target B (Play_Horseshoes on HorseshoesPin): the colonist stays where she stands
+            // (the scene places her on the throwing cell first) and that cell is B.
+            bool standsOnB = false;
+            if (!interactionCell.IsValid && target is Building && jobDef.joyKind != null && !(jobDef.driverClass != null && typeof(JobDriver_SitFacingBuilding).IsAssignableFrom(jobDef.driverClass))
+                && pawn.Spawned && pawn.Position.InBounds(map) && pawn.Position != target.Position && pawn.Position.Standable(map) && !target.OccupiedRect().Contains(pawn.Position))
+            {
+                interactionCell = pawn.Position;
+                standsOnB = true;
             }
 
             // A table played at from an adjacent chair or stool (chess table: no interaction cell): the game's JoyGiver_InteractBuildingSitAdjacent passes the seat's cell as
@@ -458,7 +474,7 @@ namespace Nelim.PickleTools.ColonistRace
                 ctx.Require(seat != null, $"{jobDef.defName} needs a chair or stool on a cell next to {target.LabelShort} at {target.Position} and none is there (place one first)");
             }
 
-            if (placeBeside)
+            if (placeBeside && !standsOnB)
             {
                 IntVec3 cell = interactionCell.IsValid ? interactionCell : GenAdj.CellsAdjacent8Way(target).Where(c => c.InBounds(map) && c.Standable(map) && !c.GetThingList(map).OfType<Pawn>().Any())
                     .OrderBy(c => c.DistanceToSquared(pawn.Position)).FirstOrDefault();
@@ -483,7 +499,13 @@ namespace Nelim.PickleTools.ColonistRace
                     : interactionCell.IsValid ? JobMaker.MakeJob(jobDef, target, interactionCell) : JobMaker.MakeJob(jobDef, target);
             }
 
-            pawn.jobs.StartJob(job, JobCondition.InterruptForced);
+            if (standsOnB) pawn.Rotation = Rot4.FromAngleFlat((target.DrawPos - pawn.Position.ToVector3Shifted()).AngleFlat());
+            try { pawn.jobs.StartJob(job, JobCondition.InterruptForced); }
+            catch (Exception e)
+            {
+                ctx.Require(false, $"starting {job.def.defName} on {target.LabelShort} at {target.Position} threw (target A {job.targetA}, B {job.targetB}, C {job.targetC}; colonist at {pawn.Position}; hasInteractionCell {(target.def.hasInteractionCell ? "yes" : "no")}): {e}");
+            }
+
             Log.Message($"[stage] {nickname} forced into {job.def.defName} on {target.LabelShort} at {target.Position}{(interactionCell.IsValid ? ", target B the interaction cell " + interactionCell : "")}, job now {pawn.CurJob?.def.defName ?? "none"}");
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == job.def, $"{nickname}'s job is {pawn.CurJob?.def.defName ?? "none"}, not {job.def.defName} (the job did not start: reserved, unreachable or refused for this target)");
         }

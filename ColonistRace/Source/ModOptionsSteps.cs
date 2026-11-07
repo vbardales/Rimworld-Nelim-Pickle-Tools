@@ -88,6 +88,19 @@ namespace Nelim.PickleTools.ColonistRace
             object parsed = ParseValue(ctx, t, value, option);
             if (member is FieldInfo ff) ff.SetValue(owner, parsed); else ((PropertyInfo)member).SetValue(owner, parsed);
             handle.WriteSettings();
+            LogWrite(handle, option, owner, member, parsed);
+        }
+
+        // Diagnostic (2026-11-07, BiB b7c4): which object got the value, whether it is the one WriteSettings saves (Mod.modSettings), and the file as it is on disk right after the write.
+        private static void LogWrite(Mod handle, string option, object owner, MemberInfo member, object parsed)
+        {
+            try
+            {
+                object saved = typeof(Mod).GetField("modSettings", AnyMember)?.GetValue(handle);
+                string path = SettingsPath(handle);
+                Log.Message($"[mod-options] set {option}={parsed} on {owner?.GetType().FullName}#{System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(owner)} ({member?.DeclaringType?.Name}.{member?.Name}); saved settings {saved?.GetType().FullName}#{(saved == null ? 0 : System.Runtime.CompilerServices.RuntimeHelpers.GetHashCode(saved))}; same={ReferenceEquals(owner, saved)}; file {path} after write:\n" + (File.Exists(path) ? File.ReadAllText(path) : "(absent)"));
+            }
+            catch (Exception e) { Log.Warning("[mod-options] write diagnostic failed: " + e.Message); }
         }
 
         // bool, int, float, an enum (name, case ignored), else the text. Enum added 2026-11-06 for Biotech Bodies (globalBody Auto/Vanilla).
@@ -128,6 +141,7 @@ namespace Nelim.PickleTools.ColonistRace
             iface.GetProperty("Item").SetValue(dict, parsed, new object[] { key });
             Log.Message($"[mod-options] {option}[{key}] of {pack.Name} set to {parsed}");
             handle.WriteSettings();
+            LogWrite(handle, option + "[" + key + "]", owner, member, parsed);
         }
 
         [Then("Nelim's Pickle Tools: the entry {string} of the option {string} of the mod {string} is {string}")]
@@ -177,8 +191,29 @@ namespace Nelim.PickleTools.ColonistRace
             string path = SettingsPath(handle);
             ctx.Require(path != null && File.Exists(path), $"no settings file for {pack.Name} at '{path}'");
             XElement el = XDocument.Load(path).Descendants().FirstOrDefault(e => string.Equals(e.Name.LocalName, option, StringComparison.OrdinalIgnoreCase));
-            ctx.Require(el != null, $"{path} holds no element '{option}'; its elements: " + string.Join(", ", XDocument.Load(path).Descendants().Select(e => e.Name.LocalName)));
+            if (el == null && DefaultIs(handle, option, expected))
+            {
+                Log.Message($"[mod-options] {path} holds no '{option}': Scribe skips a value equal to its code default, and the default is '{expected}'; accepted");
+                return;
+            }
+            ctx.Require(el != null, $"{path} holds no element '{option}'; its elements: " + string.Join(", ", XDocument.Load(path).Descendants().Select(e => e.Name.LocalName)) + "; content:\n" + File.ReadAllText(path));
             ctx.Assert(string.Equals(el.Value, expected, StringComparison.OrdinalIgnoreCase), $"{path}: '{option}' is '{el.Value}', not '{expected}'");
+        }
+
+        // Scribe_Values.Look writes nothing when the value equals its default: an absent element means "default". True when a fresh settings object of the mod's type holds the expected text for the option.
+        private static bool DefaultIs(Mod handle, string option, string expected)
+        {
+            try
+            {
+                object current = typeof(Mod).GetField("modSettings", AnyMember)?.GetValue(handle);
+                if (current == null) return false;
+                object fresh = Activator.CreateInstance(current.GetType(), true);
+                object owner; MemberInfo member;
+                if (!FindMember(fresh, option, out owner, out member) || member == null) return false;
+                object v = member is FieldInfo f ? f.GetValue(owner) : ((PropertyInfo)member).GetValue(owner);
+                return string.Equals(Convert.ToString(v, System.Globalization.CultureInfo.InvariantCulture), expected, StringComparison.OrdinalIgnoreCase);
+            }
+            catch { return false; }
         }
 
         // ---- Sandbox: the mod's settings file is backed up, removed and the settings reset to the code defaults; an [AfterScenario] puts the file back.

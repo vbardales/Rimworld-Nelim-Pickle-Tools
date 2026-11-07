@@ -40,6 +40,65 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(!map.gameConditionManager.ConditionIsActive(GameConditionDefOf.Eclipse), "The eclipse is still active");
         }
 
+        private static HarmonyLib.Harmony glowHarmony;
+        private static float? glowFloor;
+
+        // The glow grid keeps a cache: ask it to recompute through whichever refresh method this game version has.
+        private static void RefreshGlow(Map map)
+        {
+            if (map == null) return;
+            foreach (string n in new[] { "RecalculateAllGlow", "RecalculateAllGlowNow", "DirtyCache" })
+            {
+                System.Reflection.MethodInfo m = map.glowGrid.GetType().GetMethod(n, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic, null, System.Type.EmptyTypes, null);
+                if (m != null) { m.Invoke(map.glowGrid, null); break; }
+            }
+            map.mapDrawer.RegenerateEverythingNow();
+        }
+
+        private static void PostGlow(ref float __result)
+        {
+            if (glowFloor.HasValue && __result < glowFloor.Value) __result = glowFloor.Value;
+        }
+
+        /// <summary>
+        /// Lifts the light of every cell of the map to at least this glow (0 dark, 1 full day) until the scenario ends, so an indoor capture (a roofed hut at 13:00 or 20:00 comes
+        /// out dark green) is lit like a room with lamps. Raises the game glow, the ground glow and the visual glow the lighting overlay draws. Written 2026-11-07 at the request of AnN
+        /// (AnimalsNaturally galerie-17). COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [Given(Prefix + "the light of the map is lifted to at least {float}")]
+        public void LiftLight(PickleContext ctx, float floor)
+        {
+            ctx.Require(Find.CurrentMap != null, "No loaded map");
+            ctx.Require(floor >= 0f && floor <= 1f, "the glow runs from 0 to 1");
+            if (glowHarmony == null)
+            {
+                var h = new HarmonyLib.Harmony("nelim.pickletools.glowfloor");
+                int patched = 0;
+                foreach (string name in new[] { "GameGlowAt", "GroundGlowAt", "VisualGlowAt" })
+                {
+                    // Every overload of the name that returns a float (VisualGlowAt has several: a lookup by name alone is ambiguous, ticket eb32, AnN 2026-11-07).
+                    var overloads = typeof(GlowGrid).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly)
+                        .Where(x => x.Name == name && x.ReturnType == typeof(float) && !x.IsAbstract && !x.ContainsGenericParameters).ToList();
+                    if (overloads.Count == 0) { Log.Warning("[light] GlowGrid." + name + " not found or not a float: not lifted"); continue; }
+                    foreach (System.Reflection.MethodInfo m in overloads) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
+                }
+                if (patched == 0) { h.UnpatchAll(h.Id); ctx.Require(false, "no GlowGrid read could be patched: the game changed"); }
+                glowHarmony = h;
+                Log.Message("[light] " + patched + " reads of the glow are floored at " + floor);
+            }
+            glowFloor = floor;
+            RefreshGlow(Find.CurrentMap);
+            Find.CurrentMap.mapDrawer.RegenerateEverythingNow();
+        }
+
+        [AfterScenario]
+        public void ReleaseGlowFloor()
+        {
+            if (!glowFloor.HasValue) return;
+            glowFloor = null;
+            try { RefreshGlow(Find.CurrentMap); } catch { }
+        }
+
         [Then(Prefix + "the sun glow of the map is at least {float}")]
         public void SunGlowAtLeast(PickleContext ctx, float minimum)
         {

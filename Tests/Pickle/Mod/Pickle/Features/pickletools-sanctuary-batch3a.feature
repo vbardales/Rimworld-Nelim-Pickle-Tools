@@ -42,6 +42,7 @@ Feature: Sanctuary decor batch 3a
     And Nelim's Pickle Tools: the plants from (170, 104) to (200, 126) are fully grown
     And Nelim's Pickle Tools: the things within 9 cells of (181, 115) are listed
     And Nelim's Pickle Tools: the things within 5 cells of (178, 121) are listed
+    And Nelim's Pickle Tools: the things within 3 cells of (118, 117) are listed
     And Nelim's Pickle Tools: the animals are kept out of the area from (0, 0) to (249, 249)
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
