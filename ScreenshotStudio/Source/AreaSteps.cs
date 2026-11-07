@@ -406,7 +406,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// when <paramref name="plantDef"/> is the word <c>its own</c>, else the def given. Written 2026-11-07 for the Nelim logo of enclosure-south (NSB). Compiled, not played.
         /// </summary>
         [Given(Prefix + "the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) are cleaned and filled with {string} fully grown")]
-        public void ZonesInAreaFilled(PickleContext ctx, int x0, int z0, int x1, int z1, string plantDef)
+        public void ZonesInAreaFilled(PickleContext ctx, int x0, int z0, int x1, int z1, string plantDef) => FillZonesInArea(ctx, x0, z0, x1, z1, plantDef, false);
+
+        /// <summary>Like cleaning and filling, but also removes every wild plant of the zone cells: any non-tree plant that is not the zone's flower (grass, tall grass, bushes) and the tree saplings, then fills. Written 2026-11-07 for the dry grass tufts inside the Nelim logo zones (NSB). Compiled, not played.</summary>
+        [Given(Prefix + "the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) are cleared of wild plants and filled with {string} fully grown")]
+        public void ZonesInAreaWildCleared(PickleContext ctx, int x0, int z0, int x1, int z1, string plantDef) => FillZonesInArea(ctx, x0, z0, x1, z1, plantDef, true);
+
+        private static void FillZonesInArea(PickleContext ctx, int x0, int z0, int x1, int z1, string plantDef, bool wild)
         {
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "No loaded map");
@@ -421,7 +427,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 var filledCells = new List<string>();
                 foreach (IntVec3 cell in zone.Cells.ToList())
                 {
-                    foreach (Plant old in cell.GetThingList(map).OfType<Plant>().Where(p => !p.def.plant.IsTree && (p.Dying)).ToList()) { old.Destroy(); dead++; }
+                    foreach (Plant old in cell.GetThingList(map).OfType<Plant>().Where(p => (!p.def.plant.IsTree && (p.Dying || (wild && p.def != def))) || (wild && p.def.plant.IsTree && p.Growth < 0.5f)).ToList()) { old.Destroy(); dead++; }
                     if (cell.GetPlant(map) != null || cell.GetTerrain(map).fertility <= 0f || cell.GetEdifice(map) != null) { skipped++; continue; }
                     Plant plant = (Plant)ThingMaker.MakeThing(def);
                     plant.Growth = 1f;
