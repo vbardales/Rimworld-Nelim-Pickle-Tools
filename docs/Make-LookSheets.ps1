@@ -225,7 +225,9 @@ Build-Sheets 'body' 'all' $tiles $body $false
 $eye = New-Object System.Drawing.Rectangle 880, 550, 160, 160
 $genes = 'genes.md'
 Run-Job 'eyegene' 'eyegene' (Read-Section $genes '^## Eye colours') $eye $false $false
-Run-Job 'skingene' 'skingene' (Read-Section $genes '^## Skin colours') $body $false $false
+# Skin colour genes: head and shoulders at zoom 2 (Virginie, 2026-11-07; feature pickletools-skin-head-gallery, cell (176, 119)); the tiles of the genes not yet photographed again keep their old body crop
+$skinHead = New-Object System.Drawing.Rectangle 855, 72, 210, 210
+Run-Job 'skingene' 'skingene' (Read-Section $genes '^## Skin colours') $skinHead $false $false
 Run-Job 'hairgene' 'hairgene' (Read-Section $genes '^## Hair colours') $body $false $false
 Run-Job 'lookgene' 'lookgene' (Read-Section $genes '^## Look genes') $body $false $false
 
