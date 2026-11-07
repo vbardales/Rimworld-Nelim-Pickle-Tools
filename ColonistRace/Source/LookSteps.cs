@@ -453,7 +453,7 @@ namespace Nelim.PickleTools.ColonistRace
 
         /// <summary>
         /// Sets down what a pawn (colonist or animal, found by its short name) carries on the cell given (the nearest free cell if something blocks it) and leaves the
-        /// hands empty, so the pawn is drawn without the load and the thing stays on the ground in the shot. The thing is forbidden so no hauler takes it if the game
+        /// hands empty, so the pawn is drawn without the load and the thing stays on the ground in the shot. The thing is forbidden only while the game runs (paused shot: not forbidden, no red X icon) so no hauler takes it if the game
         /// runs. Fails when the pawn carries nothing or the drop is refused. Asked for by aSM (hay over Nelim's face), 2026-11-06. Compiled, not played.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} puts down what it carries at \\({int}, {int}\\)")]
@@ -480,7 +480,8 @@ namespace Nelim.PickleTools.ColonistRace
             bool dropped = pawn.carryTracker.TryDropCarriedThing(cell, ThingPlaceMode.Near, out Thing result);
             ctx.Assert(dropped && result != null && result.Spawned, $"{name} could not set down {what} near ({cell.x}, {cell.z})");
             ctx.Assert(pawn.carryTracker.CarriedThing == null, $"{name} still carries something after the drop");
-            result.SetForbidden(true, false);
+            // Forbidden only while the game runs (no hauler takes it); a paused studio shot shows no red X icon.
+            result.SetForbidden(Find.TickManager == null || !Find.TickManager.Paused, false);
             Log.Message($"[put-down] {name} set down {what} at ({result.Position.x}, {result.Position.z}), asked ({cell.x}, {cell.z}); hands empty");
             Redraw(pawn);
         }
