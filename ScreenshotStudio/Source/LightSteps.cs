@@ -55,6 +55,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
             map.mapDrawer.RegenerateEverythingNow();
         }
 
+        private static void PostGlowColor(ref UnityEngine.Color32 __result)
+        {
+            if (!glowFloor.HasValue) return;
+            byte f = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowFloor.Value * 255f), 0, 255);
+            __result = new UnityEngine.Color32((byte)System.Math.Max(__result.r, f), (byte)System.Math.Max(__result.g, f), (byte)System.Math.Max(__result.b, f), __result.a);
+        }
+
         private static void PostGlow(ref float __result)
         {
             if (glowFloor.HasValue && __result < glowFloor.Value) __result = glowFloor.Value;
@@ -74,13 +81,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
             {
                 var h = new HarmonyLib.Harmony("nelim.pickletools.glowfloor");
                 int patched = 0;
-                foreach (string name in new[] { "GameGlowAt", "GroundGlowAt", "VisualGlowAt" })
+                var all = typeof(GlowGrid).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly)
+                    .Where(x => !x.IsAbstract && !x.ContainsGenericParameters).ToList();
+                // The signatures are logged: the glow reads differ between game versions (a float glow, a Color32 the lighting overlay draws; ticket eb32, AnN 2026-11-07).
+                Log.Message("[light] GlowGrid methods: " + string.Join("; ", all.Select(x => x.ReturnType.Name + " " + x.Name + "(" + string.Join(", ", x.GetParameters().Select(p => p.ParameterType.Name)) + ")")));
+                foreach (System.Reflection.MethodInfo m in all.Where(x => x.Name.IndexOf("GlowAt", System.StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("Glow", System.StringComparison.OrdinalIgnoreCase) >= 0 && x.GetParameters().Length >= 1))
                 {
-                    // Every overload of the name that returns a float (VisualGlowAt has several: a lookup by name alone is ambiguous, ticket eb32, AnN 2026-11-07).
-                    var overloads = typeof(GlowGrid).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly)
-                        .Where(x => x.Name == name && x.ReturnType == typeof(float) && !x.IsAbstract && !x.ContainsGenericParameters).ToList();
-                    if (overloads.Count == 0) { Log.Warning("[light] GlowGrid." + name + " not found or not a float: not lifted"); continue; }
-                    foreach (System.Reflection.MethodInfo m in overloads) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
+                    if (m.ReturnType == typeof(float)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
+                    else if (m.ReturnType == typeof(UnityEngine.Color32)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlowColor))); patched++; }
                 }
                 if (patched == 0) { h.UnpatchAll(h.Id); ctx.Require(false, "no GlowGrid read could be patched: the game changed"); }
                 glowHarmony = h;
