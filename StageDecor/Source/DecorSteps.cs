@@ -820,6 +820,59 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Assert(left == 0, $"{left} things are still on the cells from ({x1}, {z1}) to ({x2}, {z2}) after clearing");
         }
 
+        /// <summary>
+        /// Turns every building of the def that stands in the rectangle to face north, east, south or west, on the same cells: the thing
+        /// is taken off the map and spawned again with the new rotation at the position that keeps its occupied rectangle (a two-cell bed
+        /// turned by half a turn would otherwise shift by one cell). Fails when none is found, so a wrong def or rectangle is not silent.
+        /// NOT PLAYED. Written 2026-11-07 for NSB (pediatrics beds: head against the north wall).
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the buildings {string} from \\({int}, {int}\\) to \\({int}, {int}\\) are turned to face {word}")]
+        public void TurnBuildings(PickleContext ctx, string thingDefName, int x1, int z1, int x2, int z2, string facing)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            ctx.Require(def != null, $"no thing def named '{thingDefName}'");
+            Rot4 rot;
+            switch (facing.ToLowerInvariant())
+            {
+                case "north": rot = Rot4.North; break;
+                case "east": rot = Rot4.East; break;
+                case "south": rot = Rot4.South; break;
+                case "west": rot = Rot4.West; break;
+                default: ctx.Require(false, $"facing must be north, east, south or west, not '{facing}'"); return;
+            }
+
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            var found = new HashSet<Building>();
+            foreach (IntVec3 c in rect)
+            {
+                if (!c.InBounds(map)) continue;
+                foreach (Thing t in c.GetThingList(map))
+                {
+                    if (t is Building b && b.def == def) found.Add(b);
+                }
+            }
+
+            ctx.Require(found.Count > 0, $"no building {thingDefName} from ({x1}, {z1}) to ({x2}, {z2})");
+            foreach (Building b in found.ToList())
+            {
+                CellRect old = b.OccupiedRect();
+                IntVec2 size = b.def.size;
+                IntVec3 target = IntVec3.Invalid;
+                foreach (IntVec3 cand in old)
+                {
+                    if (GenAdj.OccupiedRect(cand, rot, size) == old) { target = cand; break; }
+                }
+
+                ctx.Require(target.IsValid, $"{thingDefName} at ({b.Position.x}, {b.Position.z}) cannot be turned in place");
+                b.DeSpawn();
+                GenSpawn.Spawn(b, target, map, rot, WipeMode.Vanish);
+                Log.Message($"[decor-turned] {thingDefName} on ({old.minX},{old.minZ})-({old.maxX},{old.maxZ}), now at ({target.x}, {target.z}) facing {rot}");
+            }
+
+            Log.Message($"[decor-turned] {found.Count} {thingDefName} turned to face {rot}");
+        }
+
         /// <summary>Removes every thing the place step made and puts back every floor the lay step replaced, in one step.</summary>
         [When("Nelim's Pickle Tools: the decor is removed")]
         public void RemoveDecor(PickleContext ctx)
