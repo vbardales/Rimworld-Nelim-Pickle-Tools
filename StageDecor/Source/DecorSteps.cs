@@ -697,6 +697,21 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Logs ([terrain-at]) the terrain def, the paint, the fertility and the filth-free label of one cell, so a feature can find out what a patch of
+        /// ground is (an orange block, a path) before it copies or replaces it. Never fails on a cell inside the map. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the terrain of the cell \\({int}, {int}\\) is logged")]
+        public void LogTerrain(PickleContext ctx, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            TerrainDef terrain = map.terrainGrid.TerrainAt(cell);
+            TerrainDef under = map.terrainGrid.UnderTerrainAt(cell);
+            Log.Message($"[terrain-at] ({x}, {z}): {terrain?.defName} \"{terrain?.label}\" painted {map.terrainGrid.ColorAt(cell)?.defName ?? "nothing"}; under {under?.defName ?? "nothing"}; fertility {terrain?.fertility}; mod {terrain?.modContentPack?.PackageId}; zone {map.zoneManager.ZoneAt(cell)?.label ?? "none"}; roofed {cell.Roofed(map)}");
+        }
+
+        /// <summary>
         /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
         /// </summary>
         [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
