@@ -1,0 +1,9 @@
+# Capture queue (Audit 2026-11-07), type hair/beards: the three The Vanity Project mods (3129825640 Female Hair, 3393734237 Female Anime Hair, 3143138787 Beards), no hard dependency in their About.xml (GenderUnlockedHair is optional). Listing pass first, then the hair gallery. NOT PLAYED.
+#
+#   scripts/Submit-PickleRun.ps1 ... -DepMap wsl-deps.look-catalogue-vp.map -Filter '::<listing scenario>'
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+TheVanityProject.FemaleHair 3129825640
+TheVanityProject.FemaleAnimeHair 3393734237
+TheVanityProject.Beards 3143138787
