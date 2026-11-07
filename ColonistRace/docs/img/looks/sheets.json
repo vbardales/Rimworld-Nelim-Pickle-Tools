@@ -12093,5 +12093,203 @@
                                                     "text":  "SerenTriStar",
                                                     "hex":  ""
                                                 }
-                                            ]
+                                            ],
+    "3001 Bouches - Facial Animation core - 1.jpg":  [
+                                                         {
+                                                             "tile":  "3000-mouth-MouthEdnaLipsMale.jpg",
+                                                             "text":  "MouthEdnaLipsMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsBigMale.jpg",
+                                                             "text":  "MouthLipsBigMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsSimpleMale.jpg",
+                                                             "text":  "MouthLipsSimpleMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsSimpleSmileMale.jpg",
+                                                             "text":  "MouthLipsSimpleSmileMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsSmallSmileMale.jpg",
+                                                             "text":  "MouthLipsSmallSmileMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsSmirkMale.jpg",
+                                                             "text":  "MouthLipsSmirkMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsTinySmileMale.jpg",
+                                                             "text":  "MouthLipsTinySmileMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLipsWorriedMale.jpg",
+                                                             "text":  "MouthLipsWorriedMale",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthLittle.jpg",
+                                                             "text":  "MouthLittle",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthNone.jpg",
+                                                             "text":  "MouthNone",
+                                                             "hex":  ""
+                                                         },
+                                                         {
+                                                             "tile":  "3000-mouth-MouthSubtle.jpg",
+                                                             "text":  "MouthSubtle",
+                                                             "hex":  ""
+                                                         }
+                                                     ],
+    "3002 Bouches - NL Facial Animation Experimentals - 1.jpg":  [
+                                                                     {
+                                                                         "tile":  "3000-mouth-MouthNormal.jpg",
+                                                                         "text":  "MouthNormal",
+                                                                         "hex":  ""
+                                                                     }
+                                                                 ],
+    "3003 Bouches - Akeron Extras Facial Animations - 1.jpg":  [
+                                                                   {
+                                                                       "tile":  "3000-mouth-AKN_MouthCourageous.jpg",
+                                                                       "text":  "AKN_MouthCourageous",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  "3000-mouth-AKN_MouthEmpathetic.jpg",
+                                                                       "text":  "AKN_MouthEmpathetic",
+                                                                       "hex":  ""
+                                                                   },
+                                                                   {
+                                                                       "tile":  "3000-mouth-AKN_MouthSwift.jpg",
+                                                                       "text":  "AKN_MouthSwift",
+                                                                       "hex":  ""
+                                                                   }
+                                                               ],
+    "3004 Bouches - Vanilla Textures Expanded NL Facial Animation - 1.jpg":  [
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthCaveman.jpg",
+                                                                                     "text":  "MouthCaveman",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthCheekFrown.jpg",
+                                                                                     "text":  "MouthCheekFrown",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthClassicSmile.jpg",
+                                                                                     "text":  "MouthClassicSmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthEdnaLips.jpg",
+                                                                                     "text":  "MouthEdnaLips",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthFatCheeks.jpg",
+                                                                                     "text":  "MouthFatCheeks",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthHawk.jpg",
+                                                                                     "text":  "MouthHawk",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsBig.jpg",
+                                                                                     "text":  "MouthLipsBig",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsSimple.jpg",
+                                                                                     "text":  "MouthLipsSimple",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsSimpleSmile.jpg",
+                                                                                     "text":  "MouthLipsSimpleSmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsSmallSmile.jpg",
+                                                                                     "text":  "MouthLipsSmallSmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsSmirk.jpg",
+                                                                                     "text":  "MouthLipsSmirk",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsTinySmile.jpg",
+                                                                                     "text":  "MouthLipsTinySmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLipsWorried.jpg",
+                                                                                     "text":  "MouthLipsWorried",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLittleFrown.jpg",
+                                                                                     "text":  "MouthLittleFrown",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLittleGrin.jpg",
+                                                                                     "text":  "MouthLittleGrin",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthLittleSuperSmirk.jpg",
+                                                                                     "text":  "MouthLittleSuperSmirk",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthMrStreamer.jpg",
+                                                                                     "text":  "MouthMrStreamer",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthSad.jpg",
+                                                                                     "text":  "MouthSad",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthScowl.jpg",
+                                                                                     "text":  "MouthScowl",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthSimpleMouth.jpg",
+                                                                                     "text":  "MouthSimpleMouth",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthSmile.jpg",
+                                                                                     "text":  "MouthSmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthSmirkSmile.jpg",
+                                                                                     "text":  "MouthSmirkSmile",
+                                                                                     "hex":  ""
+                                                                                 },
+                                                                                 {
+                                                                                     "tile":  "3000-mouth-MouthSmug.jpg",
+                                                                                     "text":  "MouthSmug",
+                                                                                     "hex":  ""
+                                                                                 }
+                                                                             ]
 }

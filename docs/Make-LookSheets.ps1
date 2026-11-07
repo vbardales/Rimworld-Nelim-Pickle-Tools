@@ -19,7 +19,7 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; rhygene = 29; beardcolour = 2; seren = 7 }
+$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; rhygene = 29; mouth = 30; beardcolour = 2; seren = 7 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
@@ -31,7 +31,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
-    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation'; rhygene = 'Parties du corps Rhyaeth' }
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation'; rhygene = 'Parties du corps Rhyaeth'; mouth = 'Bouches' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
@@ -162,6 +162,8 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
 }
 
 $looks = 'looks.md'
+# Mouths (face-parts.md, owner 2026-11-07): one sheet per mod, tiles cut once from the old single sheet (Cut-MouthTiles.ps1) and read from the cache; a new photograph (shot mouth-<defName>) replaces a tile.
+Run-Job 'mouth' 'mouth' @(Read-Section 'face-parts.md' '^## Mouths' | ForEach-Object { $_.mod = ($_.mod -replace '^\(none, (.*)\)$', '$1'); $_ }) $face $false $false
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 $headRows = Read-Section $looks '^## Head types'

@@ -68,7 +68,7 @@ function render(md) {
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
-const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28, rhygene: 29 };
+const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28, rhygene: 29, mouth: 30 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
@@ -76,7 +76,7 @@ for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBl
 // The colour sheet of the beards (0204) has its own sub-category, with the step that sets the colour.
 if (byBlock[2]) { byKind.beardcolour = byBlock[2].filter(f => / Couleurs de barbe /.test(f)); byKind.beard = byBlock[2].filter(f => !/ Couleurs de barbe /.test(f)); }
 // The face part sheets (block 6, Make-PartSheets.ps1) are split by their label so that each goes with its own sub-category (the eyes, the eyelids and the brows are with the eyes, not with the face).
-for (const [k, re] of Object.entries({ fpMouth: /Bouches/, fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
+for (const [k, re] of Object.entries({ fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
 let sheetText = {}; try { sheetText = JSON.parse(fs.readFileSync(path.join(looksDir, 'sheets.json'), 'utf8')); } catch (e) { /* no manifest: the sheets stay images */ }
 const sheetCells = f => { const c = sheetText[f]; return c ? (Array.isArray(c) ? c : [c]) : null; };
 // Skin marks (owner, 2026-11-03): the Seren marking genes sit on the look gene sheet; Peau shows them too, as a sheet of their own cut from the same tiles (the full sheet stays under Genes d'apparence).
@@ -112,7 +112,7 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 const categories = [
   ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo', 'fpTattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']], ['Marques de peau Seren (genes)', ['skinmark']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
-  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['fpMouth', 'serenmouth']], ['Peaux du visage', ['fpSkin']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
+  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['mouth', 'serenmouth']], ['Peaux du visage', ['fpSkin']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
   ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes des yeux', ['fpEye', 'sereneyeball']], ['Paupieres', ['fpLid', 'fpLidOption', 'serenlid']], ['Sourcils', ['fpBrow', 'serenbrow']]]],
   ['Tete : oreilles, cornes, marques', [['Genes d\'apparence', ['lookgene']]]],
   ['Corps', [['Corpulences', ['body']]]],
@@ -135,7 +135,7 @@ const place = (file, h) => {
 };
 // Sheet numbers shown next to a table title and a sub-category title.
 const numsOf = kinds => [...new Set(kinds.flatMap(k => byKind[k] || []).map(f => f.slice(0, 4)))].sort();
-const sectionKinds2 = [[/^Mouths/, ['fpMouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Face tattoos/, ['facetattoo', 'fpTattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
+const sectionKinds2 = [[/^Mouths/, ['mouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Face tattoos/, ['facetattoo', 'fpTattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const numLabel = kinds => { const n = numsOf(kinds); return n.length ? ' : planche' + (n.length > 1 ? 's ' : ' ') + n.join(', ') : ''; };
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // Split every placed page at its "## " headings: [{sub, html}]; the first block of a page (before any "## ") goes with the page's first section.

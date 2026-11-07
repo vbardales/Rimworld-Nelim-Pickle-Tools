@@ -13,7 +13,7 @@ foreach ($d in 'evidence/face-parts-gallery-1', 'evidence/face-parts-gallery-23'
     $s = Join-Path $root "$d/screenshots"
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $k = ($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', ''); $files[$k] = $_.FullName; if ($k -like 'fahead-*') { $files['head-' + $k.Substring(7)] = $_.FullName } } }   # Evidence keeps minified 1280 x 720 JPEG; the Facial Animation head gallery (fahead-<def>) feeds the head shape sheet
 }
-$kinds = [ordered]@{ mouth = 'Mouths'; brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks' }
+$kinds = [ordered]@{ brow = 'Brows'; lid = 'Lids'; skin = 'Skins'; skinclose = 'Skin closeups';eyeball = 'Eyeballs'; facetattoo = 'Face tattoos'; head = 'Head shapes'; lidoption = 'Lid options'; emotion = 'Emotion marks' }
 # Sheet names (block 28 of Make-LookSheets.ps1's numbering): the number, then a French label.
 $sheetName = @{ mouth = '0601 Parties du visage - Bouches'; brow = '0602 Parties du visage - Sourcils'; lid = '0603 Parties du visage - Paupieres'; skin = '0604 Parties du visage - Peaux'; skinclose = '0605 Parties du visage - Peaux en gros plan'
     eyeball = '0606 Parties du visage - Yeux'; head = '0607 Parties du visage - Formes de tete'; facetattoo = '0609 Parties du visage - Tatouages visage'; lidoption = '0610 Parties du visage - Options de paupieres'; emotion = '0611 Parties du visage - Marques d emotion' }
