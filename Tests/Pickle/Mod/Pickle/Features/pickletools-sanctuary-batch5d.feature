@@ -41,7 +41,7 @@ Feature: Sanctuary decor batch 5d
     And Nelim's Pickle Tools: I lay the floor "RLE_SquareGoldTile" from (193, 106) to (200, 108)
     And Nelim's Pickle Tools: I lay the floor "RLE_HGSinpCarpetSynthread" from (196, 109) to (197, 117)
     And Nelim's Pickle Tools: I place the decor "milple_GrandThrone" exactly at (196, 107)
-    And Nelim's Pickle Tools: the buildings "milple_GrandThrone" from (193, 106) to (193, 106) are turned to face 200
+    And Nelim's Pickle Tools: the buildings "milple_GrandThrone" from (193, 106) to (200, 108) are turned to face north
     And Nelim's Pickle Tools: I place the decor "YR_BigDrape_sakura" near (196, 106)
     And Nelim's Pickle Tools: I place the decor "Yuran_Column_one" exactly at (193, 108)
     And Nelim's Pickle Tools: I place the decor "Yuran_Column_one" exactly at (200, 108)
