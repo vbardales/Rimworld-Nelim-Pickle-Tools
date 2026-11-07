@@ -1,0 +1,12 @@
+# Builds a colony saved with NO DLC (Royalty, Ideology, Biotech, Anomaly, Odyssey all inactive), for suites whose scenarios play without any DLC (test-colony was saved with the five and throws on load without Ideology/Biotech).
+#
+#   scripts/Submit-PickleRun.ps1 ... -DepMap wsl-deps.nodlc-fixture.map -Filter '::a colony started without any DLC' -Extra "-pickle-scenario-timeout=400"
+!ludeon.rimworld.royalty
+!ludeon.rimworld.ideology
+!ludeon.rimworld.biotech
+!ludeon.rimworld.anomaly
+!ludeon.rimworld.odyssey
+nelim.pickletools.newcolony   path:PickleTools/NewColony/Mod
+nelim.pickletools.savesteps   path:PickleTools/SaveSteps/Mod
+# The bundle committed under PickleTools/Mod is replaced by this shell, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
