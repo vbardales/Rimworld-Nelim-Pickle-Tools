@@ -277,6 +277,36 @@ namespace Nelim.PickleTools.ColonistRace
             PickleDriver.Instance.AddFrameHook(hook);
         }
 
+
+        /// <summary>
+        /// Puts a pawn (colonist or animal, by short name) in the bed of a def at a cell, asleep: the pawn is moved onto its sleeping slot of the bed
+        /// (the game's own <c>RestUtility.GetBedSleepingSlotPosFor</c>), LayDown is started on the bed with forced sleep, and the sleep is held until the
+        /// scenario ends as <c>is kept asleep</c> does (on every rendered frame, even paused, LayDown on the bed is put back if anything replaced it, the
+        /// rest need stays low). Fails when the pawn is unknown or not spawned, no bed of that def stands at the cell, or LayDown does not become the job.
+        /// Written 2026-11-07 for DustBunniesRenew (Nelim asleep in the RoyalBed of the sleeping-nook, ticket 8c67 failed on the cell not standable). NOT PLAYED.
+        /// </summary>
+        /// <param name="name">the short name of the pawn</param>
+        /// <param name="bedDefName">the def name of the bed (RoyalBed)</param>
+        [Given("Nelim's Pickle Tools: {string} lies asleep in the bed {string} at \\({int}, {int}\\)")]
+        public void LiesAsleepInBed(PickleContext ctx, string name, string bedDefName, int x, int z)
+        {
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            JobDef jobDef = RequireJob(ctx, "LayDown");
+            Building_Bed bed = pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).OfType<Building_Bed>().FirstOrDefault(b => b.def.defName == bedDefName);
+            ctx.Require(bed != null, $"no bed {bedDefName} stands at ({x}, {z}); there is " + string.Join(", ", pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).Select(t => t.def.defName)));
+            pawn.Position = RestUtility.GetBedSleepingSlotPosFor(pawn, bed);
+            pawn.Notify_Teleported(false, true);
+            Func<Job> layDown = () => { Job j = JobMaker.MakeJob(jobDef, bed); j.forceSleep = true; return j; };
+            StartJob(ctx, name, pawn, jobDef, layDown());
+            Action hook = () =>
+            {
+                if (pawn == null || !pawn.Spawned || pawn.Dead || pawn.jobs == null) return;
+                if (pawn.needs?.rest != null && pawn.needs.rest.CurLevel > 0.3f) pawn.needs.rest.CurLevel = 0.3f;
+                if (pawn.CurJob == null || pawn.CurJob.def != jobDef) pawn.jobs.StartJob(layDown(), JobCondition.InterruptForced);
+            };
+            SleepHooks.Add(hook);
+            PickleDriver.Instance.AddFrameHook(hook);
+        }
         [AfterScenario]
         public void ReleaseSleepHolds()
         {

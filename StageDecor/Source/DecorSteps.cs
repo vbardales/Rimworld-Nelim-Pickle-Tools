@@ -30,6 +30,9 @@ namespace Nelim.PickleTools.StageDecor
         private static readonly List<OldFloor> Floors = new List<OldFloor>();
         private static bool SkipUnplaced;
 
+        // Cells no building or item may be placed on (the Nelim logo flowers of the Sanctuary enclosure): set by the 'kept free of decor' step.
+        private static readonly HashSet<IntVec3> KeptFree = new HashSet<IntVec3>();
+
         /// <summary>From here on, a 'near' placement that finds no cell is skipped and logged ([decor-skipped]) instead of failing the scenario, so one stubborn object does not cost the other places their shots. For the scenario only: it is set again by each scenario that wants it.</summary>
         [Given("Nelim's Pickle Tools: a decor that finds no cell is skipped and logged")]
         public void SkipWhatFindsNoCell(PickleContext ctx)
@@ -49,6 +52,13 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             var cell = new IntVec3(x, 0, z);
             ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            if (def.category != ThingCategory.Plant && KeptFree.Contains(cell))
+            {
+                ctx.Require(SkipUnplaced, $"the cell ({x}, {z}) is kept free of decor, the {thingDefName} cannot stand on it");
+                Log.Warning($"[decor-skipped] {thingDefName} asked ({x}, {z}): the cell is kept free of decor");
+                return;
+            }
+
             Thing blocker = cell.GetThingList(map).FirstOrDefault(t => t is Pawn || t is Building);
             ctx.Require(blocker == null, $"the cell ({x}, {z}) already holds {blocker?.def.defName}");
 
@@ -230,7 +240,7 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(false, $"no free dry cell within 4 cells of ({x}, {z}) for the plant {def.defName}");
         }
 
-        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only, int limit = 4)
+        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only, int limit = 4, string stuffName = null)
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
@@ -251,6 +261,12 @@ namespace Nelim.PickleTools.StageDecor
 
             Rot4[] rotations = only.HasValue ? new[] { only.Value } : new[] { Rot4.North, Rot4.East, Rot4.South, Rot4.West };
             ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
+            if (stuffName != null)
+            {
+                stuff = DefDatabase<ThingDef>.GetNamedSilentFail(stuffName);
+                ctx.Require(def.MadeFromStuff && stuff != null, $"the {thingDefName} cannot be made of '{stuffName}' (not a stuff def of this game, or the thing takes no stuff)");
+            }
+
             for (int radius = 0; radius <= limit; radius++)
             {
                 for (int dz = -radius; dz <= radius; dz++)
@@ -259,7 +275,7 @@ namespace Nelim.PickleTools.StageDecor
                     {
                         if (System.Math.Max(System.Math.Abs(dx), System.Math.Abs(dz)) != radius) continue;
                         var cell = new IntVec3(x + dx, 0, z + dz);
-                        if (!cell.InBounds(map)) continue;
+                        if (!cell.InBounds(map) || KeptFree.Contains(cell)) continue;
                         foreach (Rot4 rot in rotations)
                         {
                             if (!GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff).Accepted) continue;
@@ -284,6 +300,97 @@ namespace Nelim.PickleTools.StageDecor
             }
 
             ctx.Require(false, $"no cell within 4 cells of ({x}, {z}) takes the {thingDefName} (size {def.size.x}x{def.size.z}, rotations tried: {string.Join(", ", rotations.Select(r => r.ToStringHuman()))})");
+        }
+
+        /// <summary>
+        /// Places a building on exactly this cell like "exactly at", made of a chosen stuff (a ThingDef name such as WoodLog or Steel) instead of the
+        /// default one: a wall or a door that must match the original. Written 2026-11-07 for NSB (prestige-hall north wall, WoodLog). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} made of {string} exactly at \\({int}, {int}\\)")]
+        public void PlaceDecorMadeOfExactly(PickleContext ctx, string thingDefName, string stuffName, int x, int z)
+        {
+            PlaceNear(ctx, thingDefName, x, z, null, 0, stuffName);
+        }
+
+        // The growing zones that have a cell in the rectangle (the same choice as the zone fill step of ScreenshotStudio).
+        private static List<Zone_Growing> GrowingZonesTouching(PickleContext ctx, Map map, int x1, int z1, int x2, int z2)
+        {
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            List<Zone_Growing> zones = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(zn => zn.Cells.Any(c => rect.Contains(c))).ToList();
+            ctx.Require(zones.Count > 0, $"no growing zone has a cell in the area from ({x1}, {z1}) to ({x2}, {z2})");
+            return zones;
+        }
+
+        /// <summary>
+        /// From here on no building or item is placed by the decor steps on a cell of a growing zone that touches the rectangle (the Nelim logo
+        /// flowers: a placement that would stand there is skipped and logged when the scenario skips what finds no cell, and fails when it does
+        /// not; a 'near' placement goes to the next free cell). Plants are still placed. For the scenario only. Fails when no growing zone touches
+        /// the rectangle. Written 2026-11-07 for NSB (owner rule: nothing stands on the logo flowers). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the cells of the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) are kept free of decor")]
+        public void KeepZonesFree(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            List<Zone_Growing> zones = GrowingZonesTouching(ctx, map, x1, z1, x2, z2);
+            foreach (Zone_Growing zone in zones)
+            {
+                foreach (IntVec3 c in zone.Cells) KeptFree.Add(c);
+            }
+
+            Log.Message($"[decor-guard] {KeptFree.Count} cells of {zones.Count} growing zones ({string.Join(", ", zones.Select(zn => zn.label))}) are kept free of decor");
+        }
+
+        /// <summary>
+        /// Takes every thing that is not a plant (buildings, items, filth, blueprints; not pawns, motes, projectiles nor natural rock) off the cells
+        /// of the growing zones that touch the rectangle, and remembers each for the removal step like the clear step. Plants stay. Logs what was
+        /// taken ([decor-zone-cleared]). Fails when no growing zone touches the rectangle. Written 2026-11-07 for NSB (enclosure-south logo
+        /// flowers). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the things that are not plants are removed from the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void ClearZonesOfNonPlants(PickleContext ctx, int x1, int z1, int x2, int z2) => ClearZonesOfNonPlantsWidened(ctx, x1, z1, x2, z2, 0);
+
+        /// <summary>
+        /// The same, on the cells of those zones AND every cell within N cells of one of them (square, Chebyshev), so what stands in a hole of the
+        /// shape or on its edge goes too; a multi-cell thing is taken whole when any of its cells is in the set. Fences, doors and gates, natural
+        /// rock walls, plants, pawns, motes stay. Written 2026-11-08 for NSB (batch 5g, nothing on or at the logo flowers). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the things that are not plants are removed from the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) widened by {int} cells")]
+        public void ClearZonesOfNonPlantsWidened(PickleContext ctx, int x1, int z1, int x2, int z2, int widen)
+        {
+            Map map = CurrentMap(ctx);
+            List<Zone_Growing> zones = GrowingZonesTouching(ctx, map, x1, z1, x2, z2);
+            var cells = new HashSet<IntVec3>();
+            foreach (Zone_Growing zone in zones)
+            {
+                foreach (IntVec3 c in zone.Cells)
+                {
+                    for (int dx = -widen; dx <= widen; dx++)
+                    {
+                        for (int dz = -widen; dz <= widen; dz++)
+                        {
+                            var n = new IntVec3(c.x + dx, 0, c.z + dz);
+                            if (n.InBounds(map)) cells.Add(n);
+                        }
+                    }
+                }
+            }
+
+            var taken = new List<string>();
+            for (int pass = 0; pass < 2; pass++)
+            {
+                foreach (IntVec3 c in cells)
+                {
+                    foreach (Thing t in c.GetThingList(map).ToList())
+                    {
+                        if (t is Pawn || t is Mote || t is Projectile || t is Skyfaller || t is Plant || t is Building_Door || t.def.mineable || (t.def.building != null && t.def.building.isFence)) continue;
+                        Cleared.Add(new Taken { Thing = t, Cell = t.Position, Rot = t.Rotation });
+                        taken.Add(t.def.defName + "@" + t.Position.x + "," + t.Position.z);
+                        t.DeSpawn();
+                    }
+                }
+            }
+
+            Log.Message($"[decor-zone-cleared] {taken.Count} non-plant things taken off {cells.Count} cells (the growing zones widened by {widen}): {string.Join(", ", taken)}");
         }
 
         /// <summary>
@@ -911,6 +1018,7 @@ namespace Nelim.PickleTools.StageDecor
         [AfterScenario]
         public void CleanUp(PickleContext ctx)
         {
+            KeptFree.Clear();
             Remove();
         }
 
