@@ -1,6 +1,6 @@
 # Batch 2b (NSB director's notes on batch 2, 2026-11-06): play area filled in, infirmary carpet and plant fixed. Chained: loads Nelims-tribe-decor-mods-d, saves Nelims-tribe-decor-mods-e in the run folder; validated fixtures untouched.
 # Play area: Little Playgrounds (owner choice 2026-11-06) replaces the vanilla ideas: oak fence round x86-100 z112-122 with the entrance east, swing, slide, seesaw, sandbox, spring fox, playhouse, hopscotch, benches, canopy, fountain; the two ED_Plushie "goblets" removed, mossy ring, toy boxes and plushes kept.
-# Infirmary: the dark carpet block replaced by a narrow cream runner (Carpet painted Structure_Cream, z 50-51 x 210-215), the missing potting plant in the north-west, one more painting. Not played when written.
+# Infirmary: the dark carpet block replaced by a narrow cream runner (CarpetBlue painted Structure_Cream, z 50-51 x 210-215), the missing potting plant in the north-west, one more painting. Not played when written.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 @requires:nelim.pickletools.savesteps
@@ -28,7 +28,7 @@ Feature: Sanctuary decor batch 2b
     And Nelim's Pickle Tools: the floor of the cell (213, 50) is copied from the cell (213, 52)
     And Nelim's Pickle Tools: the floor of the cell (214, 50) is copied from the cell (214, 52)
     And Nelim's Pickle Tools: the floor of the cell (215, 50) is copied from the cell (215, 52)
-    And Nelim's Pickle Tools: I lay the floor "Carpet" from (210, 50) to (215, 51) painted "Structure_Cream"
+    And Nelim's Pickle Tools: I lay the floor "CarpetBlue" from (210, 50) to (215, 51) painted "Structure_Cream"
     And Nelim's Pickle Tools: I place the decor "KCB_Potting_A" near (210, 54)
     And Nelim's Pickle Tools: I place the decor "DecorativePainting_Landscape" near (211, 56)
     # play area with Little Playgrounds (owner choice): goblets out, mossy ring, oak fence round with the entrance on the east, play equipment, benches and canopy, fountain, toy boxes and plushes kept
