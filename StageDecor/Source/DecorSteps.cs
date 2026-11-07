@@ -865,9 +865,10 @@ namespace Nelim.PickleTools.StageDecor
                 }
 
                 ctx.Require(target.IsValid, $"{thingDefName} at ({b.Position.x}, {b.Position.z}) cannot be turned in place");
+                Rot4 oldRot = b.Rotation;
                 b.DeSpawn();
                 GenSpawn.Spawn(b, target, map, rot, WipeMode.Vanish);
-                Log.Message($"[decor-turned] {thingDefName} on ({old.minX},{old.minZ})-({old.maxX},{old.maxZ}), now at ({target.x}, {target.z}) facing {rot}");
+                Log.Message($"[decor-turned] {thingDefName} was rot {oldRot} on ({old.minX},{old.minZ})-({old.maxX},{old.maxZ}), now at ({target.x}, {target.z}) facing {rot}");
             }
 
             Log.Message($"[decor-turned] {found.Count} {thingDefName} turned to face {rot}");
