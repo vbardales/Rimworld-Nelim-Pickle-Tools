@@ -64,7 +64,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [When(Prefix + "I frame the animal {string} at zoom {int}")]
         public async Task FrameAnimal(PickleContext ctx, string nickname, int size)
         {
-            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = FindAnimal(nickname);
             ctx.Require(pawn != null, "No spawned animal named " + nickname);
             Find.Selector.ClearSelection();
             Find.CameraDriver.JumpToCurrentMapLoc(pawn.Position);
@@ -144,7 +144,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the animal {string} stands on the nearest free cell around \\({int}, {int}\\)")]
         public void AnimalOnNearestFree(PickleContext ctx, string nickname, int x, int z)
         {
-            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = FindAnimal(nickname);
             StandOnNearestFree(ctx, pawn, "animal " + nickname, x, z);
         }
 
@@ -160,7 +160,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the animal {string} carries {int} {string} in its pack")]
         public void AnimalCarriesInPack(PickleContext ctx, string nickname, int count, string defName)
         {
-            var pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            var pawn = FindAnimal(nickname);
             ctx.Require(pawn != null, "No spawned animal named " + nickname);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
             ctx.Require(def != null, "No thing def named " + defName);
@@ -171,9 +171,28 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(pawn.inventory.innerContainer.TotalStackCountOfDef(def) >= count, nickname + " does not carry " + count + " " + defName + " after the step");
         }
 
+        // An animal is addressed by its short name, or by its thing id (LabradorRetriever59410: the def name and the number the save keeps, stable across loads of the same save),
+        // which separates two animals that share a name (a spawned "Shogun" beside the save's own Shogun; FoL, 2026-11-07). The id wins when it matches.
+        internal static Pawn FindAnimal(string key)
+        {
+            var animals = AreaOps.SpawnedPawns(Find.CurrentMap).Where(p => p.RaceProps.Animal).ToList();
+            return animals.FirstOrDefault(p => string.Equals(p.ThingID, key, StringComparison.OrdinalIgnoreCase))
+                ?? animals.FirstOrDefault(p => p.Name != null && p.Name.ToStringShort == key);
+        }
+
+        /// <summary>Takes an animal off the map (despawns it, not destroyed) by its short name or its thing id, so a name clash can be removed. Fails when none is spawned.</summary>
+        [Given(Prefix + "the animal {string} is despawned")]
+        public void DespawnAnimal(PickleContext ctx, string key)
+        {
+            Pawn pawn = FindAnimal(key);
+            ctx.Require(pawn != null, "No spawned animal named or numbered " + key + "; the animals are " + string.Join(", ", AreaOps.SpawnedPawns(Find.CurrentMap).Where(p => p.RaceProps.Animal).Select(p => p.ThingID + (p.Name != null ? " (" + p.Name.ToStringShort + ")" : ""))));
+            pawn.DeSpawn();
+            ctx.Assert(!pawn.Spawned, key + " is still spawned");
+        }
+
         private static Pawn AnimalNamed(PickleContext ctx, string nickname)
         {
-            Pawn pawn = AreaOps.SpawnedPawns(Find.CurrentMap).FirstOrDefault(p => p.RaceProps.Animal && p.Name != null && p.Name.ToStringShort == nickname);
+            Pawn pawn = FindAnimal(nickname);
             ctx.Require(pawn != null, "No spawned animal named " + nickname);
             return pawn;
         }

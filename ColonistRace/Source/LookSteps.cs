@@ -518,11 +518,13 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        // By thing id first (LabradorRetriever59410, kept by the save), then by short name: the id separates two pawns that share a name (FoL, 2026-11-07).
         private static Pawn AnyPawn(PickleContext ctx, string name)
         {
-            Pawn pawn = Find.Maps.SelectMany(m => m.mapPawns.AllPawnsSpawned)
-                .FirstOrDefault(p => p.Name != null && string.Equals(p.Name.ToStringShort, name, StringComparison.OrdinalIgnoreCase));
-            ctx.Require(pawn != null, $"no spawned pawn named '{name}' on any map");
+            var spawned = Find.Maps.SelectMany(m => m.mapPawns.AllPawnsSpawned).ToList();
+            Pawn pawn = spawned.FirstOrDefault(p => string.Equals(p.ThingID, name, StringComparison.OrdinalIgnoreCase))
+                ?? spawned.FirstOrDefault(p => p.Name != null && string.Equals(p.Name.ToStringShort, name, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(pawn != null, $"no spawned pawn named or numbered '{name}' on any map");
             return pawn;
         }
 
