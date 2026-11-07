@@ -394,6 +394,48 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Destroys the plants of a def (by defName, trees and bamboo included) standing on the cells of the growing zones that touch the rectangle
+        /// or within N cells of one of them (square), so a thicket that crowds a logo reads away from it. Logs how many and where
+        /// ([decor-plants-removed]). Fails when the def is unknown or no growing zone touches the rectangle. Written 2026-11-08 for NSB (owner: remove
+        /// bamboos around the Nelim logo). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the plants {string} are removed from the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) widened by {int} cells")]
+        public void RemovePlantsNearZones(PickleContext ctx, string plantDefName, int x1, int z1, int x2, int z2, int widen)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(plantDefName);
+            ctx.Require(def != null && def.plant != null, $"no plant def '{plantDefName}' in this game");
+            List<Zone_Growing> zones = GrowingZonesTouching(ctx, map, x1, z1, x2, z2);
+            var cells = new HashSet<IntVec3>();
+            foreach (Zone_Growing zone in zones)
+            {
+                foreach (IntVec3 c in zone.Cells)
+                {
+                    for (int dx = -widen; dx <= widen; dx++)
+                    {
+                        for (int dz = -widen; dz <= widen; dz++)
+                        {
+                            var n = new IntVec3(c.x + dx, 0, c.z + dz);
+                            if (n.InBounds(map)) cells.Add(n);
+                        }
+                    }
+                }
+            }
+
+            var removed = new List<string>();
+            foreach (IntVec3 c in cells)
+            {
+                foreach (Plant plant in c.GetThingList(map).OfType<Plant>().Where(pl => pl.def == def).ToList())
+                {
+                    removed.Add("(" + plant.Position.x + "," + plant.Position.z + ")");
+                    plant.Destroy();
+                }
+            }
+
+            Log.Message($"[decor-plants-removed] {removed.Count} {plantDefName} destroyed within {widen} cells of the growing zones: {string.Join(" ", removed)}");
+        }
+
+        /// <summary>
         /// Places a thing like "I place the decor" and gives it an ideoligion thing style (a <c>ThingStyleDef</c>, by defName) the way the game does
         /// when a style category applies: <c>Thing.SetStyleDef</c>. Fails when the style is unknown, or when the thing does not hold the style after
         /// the step. The style is not checked against a style category: any style can be forced, which is what a test of a style's graphic wants.
