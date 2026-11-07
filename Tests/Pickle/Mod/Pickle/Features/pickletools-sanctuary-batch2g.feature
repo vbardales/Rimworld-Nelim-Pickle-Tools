@@ -50,5 +50,7 @@ Feature: Sanctuary decor batch 2g
     And I take a screenshot "after-play-area-whole-j"
     And Nelim's Pickle Tools: I frame the area centred on (105, 116) at root size 6
     And I take a screenshot "after-play-area-benches-j"
+    # owner (2026-11-07, via NSB): the vanometric power cell at (205, 152-153), east edge of emerald-clearing, is removed from the fixture; the infirmary cell stays
+    And Nelim's Pickle Tools: the things "VanometricPowerCell" within 2 cells of (205, 152) are hidden when present
     And Nelim's Pickle Tools: the game is saved as "Nelims-tribe-decor-mods-j"
     And Nelim's Pickle Tools: the saved game "Nelims-tribe-decor-mods-j" is copied to the run folder
