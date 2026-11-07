@@ -42,7 +42,7 @@ $files = @{}
 $manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head|gehd-heads|clothes-|face-eyeballs)' } })
+$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head|gehd-heads|clothes-|face-eyeballs|skin-head|tattoomods-face)' } })
 $matchedDirs | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
