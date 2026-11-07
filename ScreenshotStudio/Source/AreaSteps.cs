@@ -400,6 +400,39 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
+        /// <summary>
+        /// For the growing zones that touch a rectangle: destroys the dead and dying plants of the zone (not trees), then puts a plant fully grown on every cell of the zone that holds
+        /// none and can carry a crop, and logs each cell filled (<c>[zone-filled]</c>, so a logo drawn by a zone shows what was missing). The plant is the one the zone is set to grow
+        /// when <paramref name="plantDef"/> is the word <c>its own</c>, else the def given. Written 2026-11-07 for the Nelim logo of enclosure-south (NSB). Compiled, not played.
+        /// </summary>
+        [Given(Prefix + "the growing zones in the area from \\({int}, {int}\\) to \\({int}, {int}\\) are cleaned and filled with {string} fully grown")]
+        public void ZonesInAreaFilled(PickleContext ctx, int x0, int z0, int x1, int z1, string plantDef)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var area = new MapArea(x0, z0, x1, z1);
+            var zones = map.zoneManager.AllZones.OfType<Zone_Growing>().Where(z => z.Cells.Any(c => c.x >= System.Math.Min(x0, x1) && c.x <= System.Math.Max(x0, x1) && c.z >= System.Math.Min(z0, z1) && c.z <= System.Math.Max(z0, z1))).ToList();
+            ctx.Require(zones.Count > 0, "No growing zone has a cell in the area from (" + x0 + ", " + z0 + ") to (" + x1 + ", " + z1 + "); the growing zones are " + string.Join(", ", map.zoneManager.AllZones.OfType<Zone_Growing>().Select(z => z.label)));
+            foreach (Zone_Growing zone in zones)
+            {
+                ThingDef def = string.Equals(plantDef, "its own", StringComparison.OrdinalIgnoreCase) ? zone.GetPlantDefToGrow() : DefDatabase<ThingDef>.GetNamedSilentFail(plantDef);
+                ctx.Require(def != null && def.plant != null, "No plant def \"" + plantDef + "\" for the zone " + zone.label);
+                int dead = 0, filled = 0, skipped = 0;
+                var filledCells = new List<string>();
+                foreach (IntVec3 cell in zone.Cells.ToList())
+                {
+                    foreach (Plant old in cell.GetThingList(map).OfType<Plant>().Where(p => !p.def.plant.IsTree && (p.Dying)).ToList()) { old.Destroy(); dead++; }
+                    if (cell.GetPlant(map) != null || cell.GetTerrain(map).fertility <= 0f || cell.GetEdifice(map) != null) { skipped++; continue; }
+                    Plant plant = (Plant)ThingMaker.MakeThing(def);
+                    plant.Growth = 1f;
+                    GenSpawn.Spawn(plant, cell, map);
+                    filled++;
+                    filledCells.Add("(" + cell.x + "," + cell.z + ")");
+                }
+                Log.Message("[zone-filled] " + zone.label + ": " + dead + " dead or dying plants removed, " + filled + " " + def.defName + " fully grown added, " + skipped + " cells skipped; cells filled: " + string.Join(" ", filledCells));
+            }
+        }
+
         private static string JsonText(string s) => "\"" + (s ?? "").Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", " ").Replace("\n", " ").Replace("\t", " ") + "\"";
 
         /// <summary>
