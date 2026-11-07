@@ -28,6 +28,11 @@ Feature: Sanctuary decor batch 5e
     And Nelim's Pickle Tools: I place the decor "Fence" exactly at (164, 223)
     And Nelim's Pickle Tools: I place the decor "Fence" exactly at (165, 223)
     And Nelim's Pickle Tools: I place the decor "FenceGate" exactly at (163, 223)
+    # four Braziers of the pen (listing after 4a, absent after 5b: removed by the 5b clears, not from 4a): restored
+    And Nelim's Pickle Tools: I place the decor "Brazier" exactly at (152, 231)
+    And Nelim's Pickle Tools: I place the decor "Brazier" exactly at (159, 226)
+    And Nelim's Pickle Tools: I place the decor "Brazier" exactly at (165, 221)
+    And Nelim's Pickle Tools: I place the decor "Brazier" exactly at (165, 230)
     And Nelim's Pickle Tools: the things within 12 cells of (158, 223) are listed
     And Nelim's Pickle Tools: the growing zones in the area from (130, 204) to (168, 223) are cleared of wild plants and filled with "its own" fully grown
     And Nelim's Pickle Tools: the animals are kept out of the area from (0, 0) to (249, 249)
