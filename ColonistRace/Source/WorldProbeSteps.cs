@@ -79,6 +79,18 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(fuel.Fuel >= fuel.Props.fuelCapacity - 0.01f, $"the {defName} at ({x}, {z}) holds {fuel.Fuel} fuel, not its capacity {fuel.Props.fuelCapacity}");
         }
 
+        /// <summary>Empties the fuel of the building of a def at a cell (<c>CompRefuelable</c>), so a torch or campfire goes out and its glow is recomputed. Fails when the building has no fuel comp.</summary>
+        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is put out")]
+        public void PutOut(PickleContext ctx, string defName, int x, int z)
+        {
+            ThingWithComps building = BuildingAt(ctx, defName, x, z);
+            CompRefuelable fuel = building.GetComp<CompRefuelable>();
+            ctx.Require(fuel != null, $"the {defName} has no fuel comp");
+            fuel.ConsumeFuel(fuel.Fuel);
+            building.GetComp<CompGlower>()?.UpdateLit(building.Map);
+            ctx.Assert(fuel.Fuel <= 0.01f, $"the {defName} at ({x}, {z}) still holds {fuel.Fuel} fuel");
+        }
+
         /// <summary>Switches a flickable building of a def at a cell on or off (<c>CompFlickable.SwitchIsOn</c>, <c>{word}</c> is on or off). Fails when it has no flick comp.</summary>
         [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is switched {word}")]
         public void Switched(PickleContext ctx, string defName, int x, int z, string state)
