@@ -31,9 +31,10 @@
     {
       "id": "items",
       "title": "Utility items",
-      "group": "Documentation",
+      "group": "Reference (scans)",
       "source": "PickleTools/ColonistRace/docs/catalogues/items.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 4
     },
     {
       "id": "faceparts",
@@ -45,44 +46,50 @@
     {
       "id": "faceanimations",
       "title": "Face animations",
-      "group": "Documentation",
+      "group": "Reference (scans)",
       "source": "PickleTools/ColonistRace/docs/catalogues/face-animations.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 3
     },
     {
       "id": "cosmeticgenes",
       "title": "Cosmetic genes (scan)",
-      "group": "Documentation",
+      "group": "Reference (scans)",
       "source": "PickleTools/ColonistRace/docs/catalogues/cosmetic-genes.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 1
     },
     {
       "id": "genesbyslot",
       "title": "Genes by slot and category",
-      "group": "Documentation",
+      "group": "Reference (scans)",
       "source": "PickleTools/ColonistRace/docs/catalogues/genes-by-slot.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 2
     },
     {
       "id": "modlooks",
       "title": "Mods: looks",
-      "group": "Documentation",
+      "group": "Contenu des mods",
       "source": "PickleTools/ColonistRace/docs/catalogues/mods-looks.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 1
     },
     {
       "id": "modgear",
       "title": "Mods: gear",
-      "group": "Documentation",
+      "group": "Contenu des mods",
       "source": "PickleTools/ColonistRace/docs/catalogues/mods-gear.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 2
     },
     {
       "id": "modworld",
       "title": "Mods: world",
-      "group": "Documentation",
+      "group": "Contenu des mods",
       "source": "PickleTools/ColonistRace/docs/catalogues/mods-world.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 3
     },
     {
       "id": "genes",
@@ -122,34 +129,38 @@
     {
       "id": "coverage",
       "title": "Coverage",
-      "group": "Documentation",
+      "group": "Etat du catalogue",
       "source": "PickleTools/ColonistRace/docs/catalogues/coverage.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 2
     },
     {
       "id": "gaps",
       "title": "Gaps",
-      "group": "Documentation",
+      "group": "Etat du catalogue",
       "source": "PickleTools/ColonistRace/docs/catalogues/gaps.md",
-      "imgBase": "PickleTools/ColonistRace/docs/catalogues"
+      "imgBase": "PickleTools/ColonistRace/docs/catalogues",
+      "order": 1
     },
     {
       "id": "sbe-masks",
       "title": "Seren body masks",
-      "group": "Mods",
+      "group": "Contenu des mods",
       "source": "SerenBiotechExtended/Docs/catalogue.md",
-      "imgBase": "SerenBiotechExtended/Docs/img"
+      "imgBase": "SerenBiotechExtended/Docs/img",
+      "order": 4
     },
     {
       "id": "rhyaeth",
       "title": "Rhy'aeth parts",
-      "group": "Mods",
+      "group": "Contenu des mods",
       "source": "PickleTools/ColonistRace/docs/catalogues/rhyaeth.md",
       "imgBase": "PickleTools/ColonistRace/docs/catalogues",
       "mod": {
         "name": "Erin's Rhy'aeth",
         "workshopId": "3707527452"
-      }
+      },
+      "order": 5
     }
   ]
 }

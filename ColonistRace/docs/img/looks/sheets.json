@@ -12291,5 +12291,430 @@
                                                                                      "text":  "MouthSmug",
                                                                                      "hex":  ""
                                                                                  }
-                                                                             ]
+                                                                             ],
+    "3101 Sourcils - NL Facial Animation Experimentals - 1.jpg":  [
+                                                                      {
+                                                                          "tile":  "3100-brow-BrowNormal.jpg",
+                                                                          "text":  "BrowNormal",
+                                                                          "hex":  ""
+                                                                      }
+                                                                  ],
+    "3102 Sourcils - Akeron Extras Facial Animations - 1.jpg":  [
+                                                                    {
+                                                                        "tile":  "3100-brow-AKN_BrowCourageous.jpg",
+                                                                        "text":  "AKN_BrowCourageous",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  "3100-brow-AKN_BrowEmpathetic.jpg",
+                                                                        "text":  "AKN_BrowEmpathetic",
+                                                                        "hex":  ""
+                                                                    },
+                                                                    {
+                                                                        "tile":  "3100-brow-AKN_BrowSwift.jpg",
+                                                                        "text":  "AKN_BrowSwift",
+                                                                        "hex":  ""
+                                                                    }
+                                                                ],
+    "3103 Sourcils - Vanilla Textures Expanded NL Facial Animation - 1.jpg":  [
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowEven.jpg",
+                                                                                      "text":  "BrowEven",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowFurryMonobrow.jpg",
+                                                                                      "text":  "BrowFurryMonobrow",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowFuzzy.jpg",
+                                                                                      "text":  "BrowFuzzy",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowNone.jpg",
+                                                                                      "text":  "BrowNone",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowRaised.jpg",
+                                                                                      "text":  "BrowRaised",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowSquare.jpg",
+                                                                                      "text":  "BrowSquare",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowStreamer.jpg",
+                                                                                      "text":  "BrowStreamer",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowThin.jpg",
+                                                                                      "text":  "BrowThin",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-BrowTriangle.jpg",
+                                                                                      "text":  "BrowTriangle",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-MonoBrow.jpg",
+                                                                                      "text":  "MonoBrow",
+                                                                                      "hex":  ""
+                                                                                  },
+                                                                                  {
+                                                                                      "tile":  "3100-brow-MonoScarredBrows.jpg",
+                                                                                      "text":  "MonoScarredBrows",
+                                                                                      "hex":  ""
+                                                                                  }
+                                                                              ],
+    "3201 Paupieres - Facial Animation core - 1.jpg":  [
+                                                           {
+                                                               "tile":  "3200-lid-BIGEYE.jpg",
+                                                               "text":  "BIGEYE",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidAlmond.jpg",
+                                                               "text":  "LidAlmond",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidCheerful.jpg",
+                                                               "text":  "LidCheerful",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidFlashy.jpg",
+                                                               "text":  "LidFlashy",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidFlirty.jpg",
+                                                               "text":  "LidFlirty",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidHardened.jpg",
+                                                               "text":  "LidHardened",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidNone.jpg",
+                                                               "text":  "LidNone",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidNormal.jpg",
+                                                               "text":  "LidNormal",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidPointy.jpg",
+                                                               "text":  "LidPointy",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidQuite.jpg",
+                                                               "text":  "LidQuite",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidShort.jpg",
+                                                               "text":  "LidShort",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidSimple.jpg",
+                                                               "text":  "LidSimple",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidSleepy.jpg",
+                                                               "text":  "LidSleepy",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidSquinting.jpg",
+                                                               "text":  "LidSquinting",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidStuffed.jpg",
+                                                               "text":  "LidStuffed",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidThick.jpg",
+                                                               "text":  "LidThick",
+                                                               "hex":  ""
+                                                           },
+                                                           {
+                                                               "tile":  "3200-lid-LidUnimpressed.jpg",
+                                                               "text":  "LidUnimpressed",
+                                                               "hex":  ""
+                                                           }
+                                                       ],
+    "3202 Paupieres - VK FacialAnimation add closed eyes - 1.jpg":  [
+                                                                        {
+                                                                            "tile":  "3200-lid-LidVK_ClosedEyes.jpg",
+                                                                            "text":  "LidVK_ClosedEyes",
+                                                                            "hex":  ""
+                                                                        },
+                                                                        {
+                                                                            "tile":  "3200-lid-LidVK_SmilingEyes.jpg",
+                                                                            "text":  "LidVK_SmilingEyes",
+                                                                            "hex":  ""
+                                                                        }
+                                                                    ],
+    "3203 Paupieres - Vanilla Textures Expanded NL Facial Animation - 1.jpg":  [
+                                                                                   {
+                                                                                       "tile":  "3200-lid-BionicBoth.jpg",
+                                                                                       "text":  "BionicBoth",
+                                                                                       "hex":  ""
+                                                                                   },
+                                                                                   {
+                                                                                       "tile":  "3200-lid-BionicLeft.jpg",
+                                                                                       "text":  "BionicLeft",
+                                                                                       "hex":  ""
+                                                                                   },
+                                                                                   {
+                                                                                       "tile":  "3200-lid-BionicRight.jpg",
+                                                                                       "text":  "BionicRight",
+                                                                                       "hex":  ""
+                                                                                   }
+                                                                               ],
+    "3204 Paupieres - Visual beauty for Facial Animation - 1.jpg":  [
+                                                                        {
+                                                                            "tile":  "3200-lid-Biotech_Eyes_Beauty.jpg",
+                                                                            "text":  "Biotech_Eyes_Beauty",
+                                                                            "hex":  ""
+                                                                        },
+                                                                        {
+                                                                            "tile":  "3200-lid-Biotech_Eyes_Beauty2.jpg",
+                                                                            "text":  "Biotech_Eyes_Beauty2",
+                                                                            "hex":  ""
+                                                                        }
+                                                                    ],
+    "3301 Peaux du visage - NL Facial Animation Experimentals - 1.jpg":  [
+                                                                             {
+                                                                                 "tile":  "3300-faceskin-SkinLeftChin.jpg",
+                                                                                 "text":  "SkinLeftChin",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  "3300-faceskin-SkinNormal.jpg",
+                                                                                 "text":  "SkinNormal",
+                                                                                 "hex":  ""
+                                                                             },
+                                                                             {
+                                                                                 "tile":  "3300-faceskin-SkinRightEye.jpg",
+                                                                                 "text":  "SkinRightEye",
+                                                                                 "hex":  ""
+                                                                             }
+                                                                         ],
+    "3302 Peaux du visage - Akeron Extras Facial Animations - 1.jpg":  [
+                                                                           {
+                                                                               "tile":  "3300-faceskin-AKN_SkinSnoot.jpg",
+                                                                               "text":  "AKN_SkinSnoot",
+                                                                               "hex":  ""
+                                                                           }
+                                                                       ],
+    "3303 Peaux du visage - Vanilla Textures Expanded NL Facial Animation - 1.jpg":  [
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinBandaid.jpg",
+                                                                                             "text":  "SkinBandaid",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinBruise.jpg",
+                                                                                             "text":  "SkinBruise",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinCheekbones.jpg",
+                                                                                             "text":  "SkinCheekbones",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinCheekScar.jpg",
+                                                                                             "text":  "SkinCheekScar",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinChinCleft.jpg",
+                                                                                             "text":  "SkinChinCleft",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinCrowsFeet.jpg",
+                                                                                             "text":  "SkinCrowsFeet",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinDecrepit.jpg",
+                                                                                             "text":  "SkinDecrepit",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinEyeshadow.jpg",
+                                                                                             "text":  "SkinEyeshadow",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinForeheadScar.jpg",
+                                                                                             "text":  "SkinForeheadScar",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinForheadWrinkles.jpg",
+                                                                                             "text":  "SkinForheadWrinkles",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinFreckles.jpg",
+                                                                                             "text":  "SkinFreckles",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinFreckles2.jpg",
+                                                                                             "text":  "SkinFreckles2",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinFreckles3.jpg",
+                                                                                             "text":  "SkinFreckles3",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinFrownLines.jpg",
+                                                                                             "text":  "SkinFrownLines",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinFurrows.jpg",
+                                                                                             "text":  "SkinFurrows",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinRosyCheeks.jpg",
+                                                                                             "text":  "SkinRosyCheeks",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinSmileLines.jpg",
+                                                                                             "text":  "SkinSmileLines",
+                                                                                             "hex":  ""
+                                                                                         },
+                                                                                         {
+                                                                                             "tile":  "3300-faceskin-SkinTiredEyes.jpg",
+                                                                                             "text":  "SkinTiredEyes",
+                                                                                             "hex":  ""
+                                                                                         }
+                                                                                     ],
+    "3501 Peaux du visage en gros plan - NL Facial Animation Experimentals - 1.jpg":  [
+                                                                                          {
+                                                                                              "tile":  "3500-skinclose-SkinLeftChin.jpg",
+                                                                                              "text":  "SkinLeftChin",
+                                                                                              "hex":  ""
+                                                                                          },
+                                                                                          {
+                                                                                              "tile":  "3500-skinclose-SkinRightEye.jpg",
+                                                                                              "text":  "SkinRightEye",
+                                                                                              "hex":  ""
+                                                                                          }
+                                                                                      ],
+    "3502 Peaux du visage en gros plan - Akeron Extras Facial Animations - 1.jpg":  [
+                                                                                        {
+                                                                                            "tile":  "3500-skinclose-AKN_SkinSnoot.jpg",
+                                                                                            "text":  "AKN_SkinSnoot",
+                                                                                            "hex":  ""
+                                                                                        }
+                                                                                    ],
+    "3503 Peaux du visage en gros plan - Vanilla Textures Expanded NL Facial Animation - 1.jpg":  [
+                                                                                                      {
+                                                                                                          "tile":  "3500-skinclose-SkinDecrepit.jpg",
+                                                                                                          "text":  "SkinDecrepit",
+                                                                                                          "hex":  ""
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "tile":  "3500-skinclose-SkinFreckles2.jpg",
+                                                                                                          "text":  "SkinFreckles2",
+                                                                                                          "hex":  ""
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "tile":  "3500-skinclose-SkinFreckles3.jpg",
+                                                                                                          "text":  "SkinFreckles3",
+                                                                                                          "hex":  ""
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "tile":  "3500-skinclose-SkinFurrows.jpg",
+                                                                                                          "text":  "SkinFurrows",
+                                                                                                          "hex":  ""
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "tile":  "3500-skinclose-SkinTiredEyes.jpg",
+                                                                                                          "text":  "SkinTiredEyes",
+                                                                                                          "hex":  ""
+                                                                                                      }
+                                                                                                  ],
+    "3401 Globes des yeux - Facial Animation core - 1.jpg":  [
+                                                                 {
+                                                                     "tile":  "3400-eyeball-BIGEYE.jpg",
+                                                                     "text":  "BIGEYE",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeBig.jpg",
+                                                                     "text":  "EyeBig",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeNone.jpg",
+                                                                     "text":  "EyeNone",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeNormal.jpg",
+                                                                     "text":  "EyeNormal",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeSmall.jpg",
+                                                                     "text":  "EyeSmall",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeThin.jpg",
+                                                                     "text":  "EyeThin",
+                                                                     "hex":  ""
+                                                                 },
+                                                                 {
+                                                                     "tile":  "3400-eyeball-EyeWide.jpg",
+                                                                     "text":  "EyeWide",
+                                                                     "hex":  ""
+                                                                 }
+                                                             ],
+    "3402 Globes des yeux - EyeGenes3 - 1.jpg":  [
+                                                     {
+                                                         "tile":  "3400-eyeball-Courageous.jpg",
+                                                         "text":  "Courageous",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "3400-eyeball-Empathetic.jpg",
+                                                         "text":  "Empathetic",
+                                                         "hex":  ""
+                                                     },
+                                                     {
+                                                         "tile":  "3400-eyeball-Swift.jpg",
+                                                         "text":  "Swift",
+                                                         "hex":  ""
+                                                     }
+                                                 ]
 }

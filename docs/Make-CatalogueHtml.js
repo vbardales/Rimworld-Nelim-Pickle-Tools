@@ -68,26 +68,24 @@ function render(md) {
 // Photograph sheets: img/looks/<NNNN> <label> - <mod> - <page>.jpg grouped by kind (its block), plus the part sheets, the animation sheets and the building tabs.
 const looksDir = path.join(docs, 'img', 'looks');
 // Sheets are named "<NNNN> <label> - <mod> - <page>.jpg": the first two digits are the kind's block (Make-LookSheets.ps1 kindBlock, the two tables agree), the last two the rank of the sheet in it.
-const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28, rhygene: 29, mouth: 30 };
+const kindBlock = { hair: 0, hairgene: 1, beard: 2, head: 3, facetattoo: 4, eyegene: 5, faceparts: 6, serenhead: 7, serenlid: 8, serenbrow: 9, sereneyeball: 10, serenmouth: 11, animations: 12, body: 13, skingene: 14, serenskin: 15, serenvteskin: 16, serenxeno: 17, bodymask: 18, lookgene: 19, bodytattoo: 20, ideocolour: 21, colour: 22, garment: 23, hat: 24, weapon: 25, weather: 26, animalapparel: 27, fahead: 28, rhygene: 29, mouth: 30, brow: 31, lid: 32, faceskin: 33, eyeball: 34, skinclose: 35 };
 const byBlock = {};
 for (const f of fs.readdirSync(looksDir).filter(f => /^[0-9]{4} .*.(jpg|png|gif)$/.test(f)).sort()) (byBlock[+f.slice(0, 2)] = byBlock[+f.slice(0, 2)] || []).push(f);
 const byKind = {};
 for (const [k, n] of Object.entries(kindBlock)) if (byBlock[n]) byKind[k] = byBlock[n];
 // The colour sheet of the beards (0204) has its own sub-category, with the step that sets the colour.
 if (byBlock[2]) { byKind.beardcolour = byBlock[2].filter(f => / Couleurs de barbe /.test(f)); byKind.beard = byBlock[2].filter(f => !/ Couleurs de barbe /.test(f)); }
-// The face part sheets (block 6, Make-PartSheets.ps1) are split by their label so that each goes with its own sub-category (the eyes, the eyelids and the brows are with the eyes, not with the face).
-for (const [k, re] of Object.entries({ fpBrow: /Sourcils/, fpLid: /Paupieres/, fpLidOption: /Options de paupieres/, fpSkin: /Peaux/, fpEye: / - Yeux/, fpHead: /Formes de tete/, fpTattoo: /Tatouages visage/, fpEmotion: /Marques d emotion/ })) byKind[k] = (byBlock[6] || []).filter(f => re.test(f));
+// The old single face part sheets (block 6) are gone: every face part is a tiled kind (mouth, brow, lid, faceskin, skinclose, eyeball), one sheet per mod, built by Make-LookSheets.ps1.
 let sheetText = {}; try { sheetText = JSON.parse(fs.readFileSync(path.join(looksDir, 'sheets.json'), 'utf8')); } catch (e) { /* no manifest: the sheets stay images */ }
 const sheetCells = f => { const c = sheetText[f]; return c ? (Array.isArray(c) ? c : [c]) : null; };
-// Skin marks (owner, 2026-11-03): the Seren marking genes sit on the look gene sheet; Peau shows them too, as a sheet of their own cut from the same tiles (the full sheet stays under Genes d'apparence).
-const markSource = {};
-{
-  const marks = [];
-  let src = null;
-  for (const f of byKind.lookgene || []) for (const c of sheetCells(f) || []) if (/^SerenMarkings_/.test(c.text || '')) { marks.push(c); src = src || f; }
-  if (marks.length) { const v = src.replace(/^(\d{4}) .* - (.* - \d+\.jpg)$/, '$1 Marques de peau Seren - $2'); sheetText[v] = marks; markSource[v] = src; byKind.skinmark = [v]; }
-}
-const sheet = f => sheetCells(f) ? `<div class="sheet"><div class="shname"><a href="../img/looks/${encodeURI(markSource[f] || f)}" target="_blank">${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</a></div><div class="tl">` + sheetCells(f).map(c => `<figure>${c.tile ? `<img loading="lazy" src="../img/looks/tiles/${encodeURI(c.tile)}" alt="${esc(c.text)}">` : '<div class="nophoto"></div>'}<figcaption>${c.hex ? `<i class="sw" style="background:#${c.hex}"></i>` : ''}${esc(c.text)}</figcaption></figure>`).join('') + '</div></div>' : `<a href="../img/looks/${encodeURI(f)}" target="_blank"><img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
+const markSource = {};   // (the skin marks sheet, cut from the look genes, was a duplicate of it: dropped 2026-11-07)
+// How a sheet's values are set (owner, 2026-11-07): a small icon says gene (the step gives the pawn a gene) or property (the step sets the value on the pawn directly).
+const geneBlocks = new Set([1, 5, 14, 18, 19, 29]);
+const icon = f => geneBlocks.has(+f.slice(0, 2)) ? '<span class="ic" title="Se regle avec un gene (has the gene)">\u{1F9EC}</span>' : '<span class="ic" title="Se regle directement sur le pawn (une etape dediee)">\u{1F3F7}\u{FE0F}</span>';
+// Sheets that exist once per direction (front, side, back) get a tab per direction.
+const viewDefs = [[/^\d{4} Tatouages visage profil /, 'Profil'], [/^\d{4} Tatouages visage /, 'Face'], [/^\d{4} Tatouages corps femme /, 'Femme'], [/^\d{4} Tatouages corps homme face /, 'Homme, face'], [/^\d{4} Tatouages corps homme dos /, 'Homme, dos'], [/^\d{4} Vetements animaux face /, 'Face'], [/^\d{4} Vetements animaux profil /, 'Profil']];
+const viewOf = f => { const h = viewDefs.find(([re]) => re.test(f)); return h ? h[1] : null; };
+const sheet = f => sheetCells(f) ? `<div class="sheet"><div class="shname">${icon(f)}<a href="../img/looks/${encodeURI(markSource[f] || f)}" target="_blank">${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</a></div><div class="tl">` + sheetCells(f).map(c => `<figure>${c.tile ? `<img loading="lazy" src="../img/looks/tiles/${encodeURI(c.tile)}" alt="${esc(c.text)}">` : '<div class="nophoto"></div>'}<figcaption>${c.hex ? `<i class="sw" style="background:#${c.hex}"></i>` : ''}${esc(c.text)}</figcaption></figure>`).join('') + '</div></div>' : `<a href="../img/looks/${encodeURI(f)}" target="_blank">${icon(f)}<img loading="lazy" src="../img/looks/${encodeURI(f)}" alt="${f}"><span>${path.basename(f).replace(/.(jpg|png|gif)$/, '')}</span></a>`;
 let gallery = '';
 for (const [k, files] of Object.entries(byKind))
   gallery += `<h3>${k}</h3><div class="sheets">` + files.map(sheet).join('') + '</div>';
@@ -95,7 +93,11 @@ for (const [k, files] of Object.entries(byKind))
 // The sheets of a kind go right under the heading of their section in the catalogue pages.
 const sheetsFor = kinds => {
   const files = kinds.flatMap(k => byKind[k] || []);
-  return files.length ? '<div class="sheets wide">' + files.map(sheet).join('') + '</div>' : '';
+  if (!files.length) return '';
+  const views = [...new Set(files.map(viewOf).filter(Boolean))];
+  if (views.length < 2) return '<div class="sheets wide">' + files.map(sheet).join('') + '</div>';
+  return '<div class="vt"><div class="vbar">' + views.map((v, i) => `<button type="button" data-v="${i}"${i ? '' : ' class="on"'}>${esc(v)}</button>`).join('') + '</div>' +
+    views.map((v, i) => `<div class="vpane" data-v="${i}"${i ? ' hidden' : ''}><div class="sheets wide">` + files.filter(f => viewOf(f) === v).map(sheet).join('') + '</div></div>').join('') + '</div>';
 };
 const sectionKinds = [[/^Photographs/, ['serenhead', 'serenlid', 'sereneyeball', 'serenbrow', 'serenmouth', 'serenskin', 'serenvteskin', 'serenxeno']], [/^Animal garments/, ['animalapparel']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head', 'fahead']], [/^Face tattoos/, ['facetattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']],
   [/^Garments/, ['garment', 'hat']], [/^Colours/, ['ideocolour', 'colour']], [/^Weapons/, ['weapon']],
@@ -110,10 +112,10 @@ const withSheets = h => h.replace(/(<h3 id="[^"]*">)([^<]*)(<\/h3>)/g, (m, a, te
 // (the sections of the .md pages) that belong to it. `place` says where each section of each page goes; what it does not place stays in the Documentation group.
 // [category, [[sub-category, [photograph kinds]], ...]]
 const categories = [
-  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo', 'fpTattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']], ['Marques de peau Seren (genes)', ['skinmark']]]],
+  ['Peau', [['Couleurs de peau (genes)', ['skingene']], ['Tatouages de visage', ['facetattoo']], ['Tatouages de corps', ['bodytattoo']], ['Masques corporels Seren', ['bodymask']]]],
   ['Cheveux', [['Couleurs de cheveux (genes)', ['hairgene']], ['Coiffures', ['hair']]]],
-  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'fpHead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['mouth', 'serenmouth']], ['Peaux du visage', ['fpSkin']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
-  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes des yeux', ['fpEye', 'sereneyeball']], ['Paupieres', ['fpLid', 'fpLidOption', 'serenlid']], ['Sourcils', ['fpBrow', 'serenbrow']]]],
+  ['Visage', [['Formes de tete (vanilla)', ['head']], ['Formes de tete (Facial Animation)', ['fahead', 'serenhead']], ['Barbes', ['beard']], ['Couleurs de barbe', ['beardcolour']], ['Bouches', ['mouth', 'serenmouth']], ['Peaux du visage', ['faceskin', 'skinclose']], ['Masques de visage Seren', ['serenskin', 'serenvteskin']]]],
+  ['Yeux', [['Couleurs des yeux (genes)', ['eyegene']], ['Globes des yeux', ['eyeball', 'sereneyeball']], ['Paupieres', ['lid', 'serenlid']], ['Sourcils', ['brow', 'serenbrow']]]],
   ['Tete : oreilles, cornes, marques', [['Genes d\'apparence', ['lookgene']]]],
   ['Corps', [['Corpulences', ['body']]]],
   ['Animations', [['Animations du visage', ['animations']], ['Taches (jobs)', []]]],
@@ -135,7 +137,7 @@ const place = (file, h) => {
 };
 // Sheet numbers shown next to a table title and a sub-category title.
 const numsOf = kinds => [...new Set(kinds.flatMap(k => byKind[k] || []).map(f => f.slice(0, 4)))].sort();
-const sectionKinds2 = [[/^Mouths/, ['mouth']], [/^Brows/, ['fpBrow']], [/^Lids/, ['fpLid', 'fpLidOption']], [/^Skins/, ['fpSkin']], [/^Eyeballs/, ['fpEye']], [/^Head shapes/, ['fpHead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Face tattoos/, ['facetattoo', 'fpTattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
+const sectionKinds2 = [[/^Mouths/, ['mouth']], [/^Brows/, ['brow']], [/^Lids/, ['lid']], [/^Skins/, ['faceskin', 'skinclose']], [/^Eyeballs/, ['eyeball']], [/^Head shapes/, ['fahead']], [/^Hairstyles/, ['hair']], [/^Beards/, ['beard']], [/^Head types/, ['head']], [/^Face tattoos/, ['facetattoo']], [/^Body tattoos/, ['bodytattoo']], [/^Body types/, ['body']], [/^Eye colours/, ['eyegene']], [/^Skin colours/, ['skingene']], [/^Hair colours/, ['hairgene']], [/^Look genes/, ['lookgene']], [/^Weather/, ['weather']]];
 const numLabel = kinds => { const n = numsOf(kinds); return n.length ? ' : planche' + (n.length > 1 ? 's ' : ' ') + n.join(', ') : ''; };
 const slug = s => s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 // Split every placed page at its "## " headings: [{sub, html}]; the first block of a page (before any "## ") goes with the page's first section.
@@ -191,9 +193,11 @@ const sections = [
     return `<section id="${pg.id}" hidden><h1>${pg.title}</h1><p class="src">${src}</p>${body}</section>`;
   }),
 ].join('\n');
+// The documentation groups, in this order (pages.json gives each page its group); a group the list does not know comes after.
+const groupOrder = tabs => { const known = ['Contenu des mods', 'Reference (scans)', 'Etat du catalogue', 'Documentation']; const all = new Set([...tabs.map(p => p.group), 'Etat du catalogue']); return [...known.filter(g => all.has(g)), ...[...all].filter(g => !known.includes(g))]; };
 const navHtml = categories.map(([c, subs]) => `<details><summary data-t="c-${slug(c)}">${esc(c)}</summary>` + subs.map(([s]) => `<a data-t="c-${slug(c)}" data-j="${catId(c, s)}">${esc(s)}</a>`).join('') + '</details>').join('') +
-  [...new Set(['Documentation', ...docTabs.map(p => p.group)])].map(g =>
-    `<h2 style="margin-top:14px">${esc(g)}</h2>` + docTabs.filter(p => p.group === g).map(p => `<a data-t="${p.id}">${esc(p.title)}</a>`).join('') + (g === 'Documentation' ? '<a data-t="photos">Photographies (toutes)</a>' : '')).join('');
+  groupOrder(docTabs).map(g =>
+    `<h2 style="margin-top:14px">${esc(g)}</h2>` + docTabs.filter(p => p.group === g).map(p => `<a data-t="${p.id}">${esc(p.title)}</a>`).join('') + (g === 'Etat du catalogue' ? '<a data-t="photos">Photographies (toutes)</a>' : '')).join('');
 const jumpMenu = '<select id="jump"><option value="">Aller a...</option>' + categories.map(([c, subs]) =>
   `<optgroup label="${esc(c)}">` + subs.map(([s]) => `<option value="${catId(c, s)}" data-t="c-${slug(c)}">${esc(s)}</option>`).join('') + '</optgroup>').join('') + '</select>';
 const firstSection = 'c-' + slug(categories[0][0]);
@@ -223,11 +227,11 @@ main img{max-width:100%}p>img,li>img{display:block;margin:8px 0}
 .sheets a{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px;text-decoration:none;color:var(--mut);font-size:12px}
 .sheet{grid-column:1/-1}.shname{font-size:12px;color:var(--mut);margin:6px 0}.tl{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}.tl figure{margin:0;font-size:11px;word-break:break-word}.tl img{width:100%;display:block;border-radius:4px}.nophoto{aspect-ratio:1;background:repeating-linear-gradient(45deg,var(--card),var(--card) 4px,var(--line) 4px,var(--line) 5px);border-radius:4px}.sw{display:inline-block;width:10px;height:10px;margin-right:4px;border:1px solid var(--line)}
 .sheets.wide{grid-template-columns:repeat(auto-fill,minmax(520px,1fr))}.sheets img{width:100%;display:block;border-radius:4px}
-tr.hide{display:none}
+tr.hide{display:none}.ic{margin-right:6px;font-size:13px}.vbar{display:flex;gap:6px;margin:8px 0}.vbar button{padding:5px 12px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--fg);font:inherit;cursor:pointer}.vbar button.on{background:var(--acc);color:#fff;border-color:var(--acc)}.vpane[hidden]{display:none}.legend{color:var(--mut);font-size:13px;margin:0 0 10px}
 @media(max-width:700px){body{display:block}nav{width:auto;height:auto;position:static;border:0;border-bottom:1px solid var(--line)}main{padding:16px}}
 </style></head><body>
 <nav><h2>Catalogues</h2>${navHtml}</nav>
-<main>${jumpMenu}<input id="q" type="search" placeholder="Filter rows (a defName, a mod...)">
+<main>${jumpMenu}<input id="q" type="search" placeholder="Filter rows (a defName, a mod...)"><p class="legend">\u{1F9EC} se regle avec un gene &nbsp;\u00B7&nbsp; \u{1F3F7}\u{FE0F} se regle directement sur le pawn</p>
 ${sections}
 <section id="photos" hidden><h1>Photographs</h1><p class="src">ColonistRace/docs/img</p>${gallery}</section>
 </main>
@@ -235,6 +239,7 @@ ${sections}
 const links=[...document.querySelectorAll('nav a,nav summary')],secs=[...document.querySelectorAll('main section')],q=document.getElementById('q');
 function show(id,j){links.forEach(a=>a.classList.toggle('on',a.dataset.t===id&&(!a.dataset.j||a.dataset.j===j)));secs.forEach(s=>s.hidden=s.id!==id);try{localStorage.setItem('cat-tab',id)}catch(e){}filter();if(j){const el=document.getElementById(j);if(el)el.scrollIntoView()}else window.scrollTo(0,0)}
 function filter(){const v=q.value.toLowerCase();document.querySelectorAll('main section:not([hidden]) tbody tr').forEach(r=>r.classList.toggle('hide',v&&!r.textContent.toLowerCase().includes(v)));document.querySelectorAll('main section:not([hidden]) details.names').forEach(d=>{if(v)d.open=!!d.querySelector('tbody tr:not(.hide)')})}
+document.addEventListener('click',e=>{const b=e.target.closest('.vbar button');if(!b)return;const t=b.closest('.vt');t.querySelectorAll('.vbar button').forEach(x=>x.classList.toggle('on',x===b));t.querySelectorAll('.vpane').forEach(p=>p.hidden=p.dataset.v!==b.dataset.v)});
 links.forEach(a=>a.onclick=()=>{location.hash=a.dataset.j||a.dataset.t;show(a.dataset.t,a.dataset.j)});q.oninput=filter;
 const jump=document.getElementById('jump');
 jump.onchange=()=>{const o=jump.options[jump.selectedIndex];if(!o.value)return;location.hash=o.value;show(o.dataset.t,o.value);jump.selectedIndex=0};

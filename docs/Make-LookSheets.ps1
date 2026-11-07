@@ -19,7 +19,7 @@ New-Item -ItemType Directory -Force $tileDir | Out-Null
 # No subfolders (owner, 2026-10-28). Numbers (owner, 2026-10-28): each kind owns a block of one hundred, in the order of the table below (hair 0000..0099, haircolour 0100..0199, beard 0200...);
 # a sheet is <block + its rank in the block>, from 1 (0001 .. 0099 for hair), tiles carry the block alone (looks/tiles/<block>-<key>.jpg). The kind is the part of the name before its first dash;
 # Make-CatalogueHtml.js groups by block, so the two tables must agree.
-$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; rhygene = 29; mouth = 30; beardcolour = 2; seren = 7 }
+$kindBlock = [ordered]@{ hair = 0; hairgene = 1; beard = 2; head = 3; facetattoo = 4; eyegene = 5; serenhead = 7; serenlid = 8; serenbrow = 9; sereneyeball = 10; serenmouth = 11; body = 13; skingene = 14; serenskin = 15; serenvteskin = 16; serenxeno = 17; bodymask = 18; lookgene = 19; bodytattoo = 20; ideocolour = 21; colour = 22; garment = 23; hat = 24; weapon = 25; weather = 26; animalapparel = 27; fahead = 28; rhygene = 29; mouth = 30; brow = 31; lid = 32; faceskin = 33; eyeball = 34; skinclose = 35; beardcolour = 2; seren = 7 }
 $sheetRank = @{}
 function Get-KindBlock($name) {
     $k = $name.Split('-')[0]
@@ -31,7 +31,7 @@ $kindLabel = @{ hair = 'Coiffures'; haircolour = 'Couleurs de cheveux'; beard = 
     bodytattoo = 'Tatouages corps femme'; 'bodytattoo-front' = 'Tatouages corps homme face'; 'bodytattoo-back' = 'Tatouages corps homme dos'; body = 'Corpulences'; bodymask = 'Masques corporels Seren'
     garment = 'Vetements'; hat = 'Chapeaux'; colour = 'Couleurs'; ideocolour = 'Couleurs Ideologie'; weapon = 'Armes'; eyegene = 'Genes yeux'; skingene = 'Genes peau'; hairgene = 'Genes cheveux'
     lookgene = 'Genes apparence Seren'; weather = 'Meteo'; 'animalapparel-front' = 'Vetements animaux face'; 'animalapparel-side' = 'Vetements animaux profil'
-    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation'; rhygene = 'Parties du corps Rhyaeth'; mouth = 'Bouches' }
+    serenhead = 'Seren formes de tete'; serenlid = 'Seren paupieres'; sereneyeball = 'Seren yeux'; serenbrow = 'Seren sourcils'; serenmouth = 'Seren bouches'; serenskin = 'Seren peaux'; serenvteskin = 'Seren peaux VTE'; serenxeno = 'Seren personnages'; beardcolour = 'Couleurs de barbe'; fahead = 'Tetes Facial Animation'; rhygene = 'Parties du corps Rhyaeth'; mouth = 'Bouches'; brow = 'Sourcils'; lid = 'Paupieres'; faceskin = 'Peaux du visage'; eyeball = 'Globes des yeux'; skinclose = 'Peaux du visage en gros plan' }
 function Get-TilePath($key) {
     $name = $key -replace '[^A-Za-z0-9._-]+', '_'
     Join-Path $tileDir (('{0:0000}' -f ((Get-KindBlock $name) * 100)) + '-' + $name + '.jpg')
@@ -42,7 +42,7 @@ $files = @{}
 $manifest = [ordered]@{}
 # Evidence today, Inbox from the move of the run folder (2026-10-18, Audit): both are read, the newest photograph of a value wins.
 $runRoots = @('Tests/Pickle/Evidence', 'Tests/Pickle/Inbox') | ForEach-Object { Join-Path $root $_ } | Where-Object { Test-Path $_ }
-$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head|gehd-heads|clothes-)' } })
+$matchedDirs = @($runRoots | ForEach-Object { Get-ChildItem $_ -Directory | Where-Object { $_.Name -match '^(look-gallery|gene-|ponpeco-gallery|roo-face|roo-front|roo-side|ftside|rhyaeth-gallery|colour-w|nude-tattoo|body-child|body-girl|beard-colour|seren-|vanilla-head-gallery|uw-vanilla-head|fa-head-gallery|uw-fa-head|gehd-heads|clothes-|face-eyeballs)' } })
 $matchedDirs | Sort-Object LastWriteTime | ForEach-Object {
     $s = Join-Path $_.FullName 'screenshots'
     if (Test-Path $s) { Get-ChildItem $s -File | Where-Object { $_.Name -match '^manual--.*--step0\.(png|jpg)$' } | ForEach-Object { $files[($_.Name -replace '^manual--', '' -replace '--step0\.(png|jpg)$', '' -replace '-fr-[0-9a-f]{8}$', '-front' -replace '-si-[0-9a-f]{8}$', '-side')] = $_.FullName } }
@@ -163,7 +163,15 @@ function Run-Job($kind, $prefix, $items, $crop, $swatchOnly, $byGroup) {
 
 $looks = 'looks.md'
 # Mouths (face-parts.md, owner 2026-11-07): one sheet per mod, tiles cut once from the old single sheet (Cut-MouthTiles.ps1) and read from the cache; a new photograph (shot mouth-<defName>) replaces a tile.
-Run-Job 'mouth' 'mouth' @(Read-Section 'face-parts.md' '^## Mouths' | ForEach-Object { $_.mod = ($_.mod -replace '^\(none, (.*)\)$', '$1'); $_ }) $face $false $false
+$partCrop = New-Object System.Drawing.Rectangle 868, 118, 184, 184   # the face part shots (shot <kind>-<defName>, Nelim at 20 degrees): the crop of the old face part sheets
+function Read-Parts($title) { @(Read-Section 'face-parts.md' $title | ForEach-Object { $_.mod = $(if ($_.mod -match '^\(none(, (.*))?\)$') { if ($Matches[2]) { $Matches[2] } else { 'Facial Animation core' } } else { $_.mod }); $_ }) }
+Run-Job 'mouth' 'mouth' (Read-Parts '^## Mouths') $partCrop $false $false
+# The other face parts (2026-11-07, same method): tiles cut once by Cut-PartTiles.ps1, one sheet per mod. The closeup sheet shows the eight skins with a visible mark.
+Run-Job 'brow' 'brow' (Read-Parts '^## Brows') $partCrop $false $false
+Run-Job 'lid' 'lid' (Read-Parts '^## Lids') $partCrop $false $false
+Run-Job 'faceskin' 'faceskin' (Read-Parts '^## Skins') $partCrop $false $false
+Run-Job 'skinclose' 'skinclose' @(Read-Parts '^## Skins' | Where-Object { $_.name -in 'AKN_SkinSnoot', 'SkinDecrepit', 'SkinFreckles2', 'SkinFreckles3', 'SkinFurrows', 'SkinLeftChin', 'SkinRightEye', 'SkinTiredEyes' }) $partCrop $false $false
+Run-Job 'eyeball' 'eyeball' (Read-Parts '^## Eyeballs') $partCrop $false $false
 Run-Job 'hair' 'hair' (Read-Section $looks '^## Hairstyles') $faceTight $false $false  # head and shoulders only (owner, 2026-10-28; tiles recut 25,0,150,150)
 Run-Job 'beard' 'beard' (Read-Section $looks '^## Beards') $face $false $false
 $headRows = Read-Section $looks '^## Head types'
