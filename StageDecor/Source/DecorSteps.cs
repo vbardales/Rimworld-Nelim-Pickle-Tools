@@ -831,8 +831,20 @@ namespace Nelim.PickleTools.StageDecor
                 }
             }
 
-            int left = rect.Cells.Sum(c => c.GetThingList(map).Count(t => !(t is Pawn) && !(t is Mote) && !(t is Projectile) && !(t is Skyfaller) && !Placed.Contains(t)));
-            ctx.Assert(left == 0, $"{left} things are still on the cells from ({x1}, {z1}) to ({x2}, {z2}) after clearing");
+            // A second pass: a thing can spawn another when it leaves (a filth, a chunk, a blueprint of a destroyed frame) or stand on a cell only after the first pass moved something
+            // (5d, 2026-11-07: "1 things are still on the cells from (193, 115) to (195, 115)"). Whatever is still there is named in the failure.
+            foreach (IntVec3 c in rect)
+            {
+                foreach (Thing t in c.GetThingList(map).ToList())
+                {
+                    if (t is Pawn || t is Mote || t is Projectile || t is Skyfaller || Placed.Contains(t)) continue;
+                    Cleared.Add(new Taken { Thing = t, Cell = t.Position, Rot = t.Rotation });
+                    t.DeSpawn();
+                }
+            }
+
+            var leftover = rect.Cells.SelectMany(c => c.GetThingList(map).Where(t => !(t is Pawn) && !(t is Mote) && !(t is Projectile) && !(t is Skyfaller) && !Placed.Contains(t)).Select(t => t.def.defName + "@" + t.Position.x + "," + t.Position.z + " (" + t.GetType().Name + (t.Spawned ? "" : ", not spawned") + ")")).ToList();
+            ctx.Assert(leftover.Count == 0, $"{leftover.Count} things are still on the cells from ({x1}, {z1}) to ({x2}, {z2}) after clearing: " + string.Join(", ", leftover));
         }
 
         /// <summary>
