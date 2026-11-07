@@ -4,6 +4,8 @@
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# Nals.FacialAnimation added 2026-11-07 after ticket baf1 (listing step: "Nals Facial Animation is not loaded")
+Nals.FacialAnimation 1635901197
 TheVanityProject.FemaleHair 3129825640
 TheVanityProject.FemaleAnimeHair 3393734237
 TheVanityProject.Beards 3143138787
