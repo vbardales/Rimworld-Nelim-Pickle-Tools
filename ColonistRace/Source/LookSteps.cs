@@ -694,7 +694,7 @@ namespace Nelim.PickleTools.ColonistRace
                 $"{nickname} should wear '{apparelDefName}'; it wears {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName))}");
         }
 
-        /// <summary>Gives a colonist a head (a <c>HeadTypeDef</c> name, e.g. Male_AverageNormal) and redraws it. The def must suit the colonist's gender.</summary>
+        /// <summary>Gives a colonist a head (a <c>HeadTypeDef</c> name, e.g. Male_AverageNormal) and redraws it. The def must suit the colonist's gender; a pawn of Gender.None (neutral) accepts any head type, since vanilla has no gender-free human head (NSB, 2026-11-07).</summary>
         [Given("Nelim's Pickle Tools: {string} head type is {string}")]
         public void SetHeadType(PickleContext ctx, string nickname, string headDefName)
         {
@@ -702,7 +702,7 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no head");
             HeadTypeDef def = Def<HeadTypeDef>(ctx, headDefName, "head type");
             ctx.Require(
-                def.gender == Gender.None || def.gender == pawn.gender,
+                def.gender == Gender.None || pawn.gender == Gender.None || def.gender == pawn.gender,
                 $"the head type '{headDefName}' is for {def.gender}; {nickname} is {pawn.gender}");
             pawn.story.headType = def;
             Redraw(pawn);

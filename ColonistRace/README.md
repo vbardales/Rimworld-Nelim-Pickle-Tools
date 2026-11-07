@@ -162,7 +162,7 @@ Not here: a head type or face shape, and a neutral pose.
 
 | Step | What it does |
 | --- | --- |
-| `Nelim's Pickle Tools: {string} head type is {string}` | A `HeadTypeDef` by name, refused if it is for the other gender |
+| `Nelim's Pickle Tools: {string} head type is {string}` | A `HeadTypeDef` by name, refused if it is for the other gender (a Gender.None pawn accepts any head type) |
 | `Nelim's Pickle Tools: the other colonists are out of frame` | Sends every colonist that no `stands at` step placed in this scenario to a standable cell near the far corner of the map, and puts each back after the scenario (for a studio's actors) |
 
 | `Nelim's Pickle Tools: {string} beard is {string}` | A `BeardDef` by name, or `none`; the failure lists the valid beards |
