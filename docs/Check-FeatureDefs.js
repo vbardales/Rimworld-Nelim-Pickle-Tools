@@ -53,7 +53,8 @@ if (!scenarios.length) { console.error('no scenario matches the filter'); proces
 const cited = new Map();   // "Type/defName" -> scenario titles
 for (const sc of scenarios) for (const line of sc.body.split('\n')) for (const [re, type, split] of CITES) {
   const m = line.match(re); if (!m) continue;
-  for (const name of (split ? split(m[1]) : [m[1]])) { if (SKIP.has(name)) continue; const k = type + '/' + name; if (!cited.has(k)) cited.set(k, new Set()); cited.get(k).add(sc.title.split(':')[0]); }
+  // a quoted argument may be a comma-joined list of def names (`I dress "X" in "Apparel_A,Apparel_B"`, `the things "A,B" ... are hidden`): each name is checked alone (Audit, 2026-11-07)
+  for (const name of (split ? split(m[1]) : [m[1]]).flatMap(n => n.split(',')).map(n => n.trim()).filter(Boolean)) { if (SKIP.has(name)) continue; const k = type + '/' + name; if (!cited.has(k)) cited.set(k, new Set()); cited.get(k).add(sc.title.split(':')[0]); }
 }
 
 // 3. The defs of the mods of the map.
