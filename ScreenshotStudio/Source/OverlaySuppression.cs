@@ -16,7 +16,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched, designatorLabelsPatched;
         private static bool? zonesShownBefore;
 
         public static bool Active { get; private set; }
@@ -26,6 +26,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static bool AlertsHidden { get; private set; }
         public static bool BracketsHidden { get; private set; }
         public static bool AreasHidden { get; private set; }
+        public static bool DesignatorLabelsHidden { get; private set; }
         public static bool StatusIconsKept { get; set; }
 
         public static void Begin()
@@ -124,6 +125,28 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         /// <summary>
+        /// Hides what a build designator attaches to the pointer: the cost label (icon and count, e.g. "40") drawn by <c>Designator.DrawMouseAttachments</c>
+        /// and its overrides. The ghost of the building stays. NOT PLAYED when written (2026-11-07, for EntityGazing gallery-22). Needs Harmony.
+        /// </summary>
+        public static void HideDesignatorLabels()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!designatorLabelsPatched)
+                {
+                    foreach (Type type in new[] { typeof(Designator), typeof(Designator_Place), typeof(Designator_Build) })
+                    {
+                        MethodInfo method = AccessTools.DeclaredMethod(type, "DrawMouseAttachments");
+                        if (method != null) harmony.Patch(method, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipDesignatorLabels)));
+                    }
+                    designatorLabelsPatched = true;
+                }
+                DesignatorLabelsHidden = true;
+            }
+        }
+
+        /// <summary>
         /// Hides the area and zone overlays: the zone paint (the game's own "show zones" toggle off, put back by <see cref="End"/>) and the areas
         /// (Home, allowed areas, roofs), whose drawing is requested every frame by <c>Area.MarkForDraw</c> and skipped here. Needs Harmony.
         /// </summary>
@@ -152,7 +175,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Find.CurrentMap?.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Zone);
             }
             zonesShownBefore = null;
-            AreasHidden = false;
+            AreasHidden = false; DesignatorLabelsHidden = false;
             Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false;
         }
 
@@ -177,5 +200,6 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static bool SkipAlerts() => !AlertsHidden;
         private static bool SkipBrackets() => !BracketsHidden;
         private static bool SkipAreas() => !AreasHidden;
+        private static bool SkipDesignatorLabels() => !DesignatorLabelsHidden;
     }
 }

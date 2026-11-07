@@ -332,6 +332,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
             catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[alerts] stay drawn: Harmony is not loaded"); }
         }
 
+        // The cost label (icon and count) a build designator draws at the pointer; the ghost stays. NOT PLAYED when written (2026-11-07, for EntityGazing gallery-22).
+        [When(Prefix + "I hide the designator labels")]
+        public void HideDesignatorLabels_Alt(PickleContext ctx) { HideDesignatorLabels(ctx); }
+        [Given(Prefix + "the designator labels are hidden")]
+        public void HideDesignatorLabels(PickleContext ctx)
+        {
+            try { OverlaySuppression.HideDesignatorLabels(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[designator] labels stay drawn: Harmony is not loaded"); }
+        }
+
         // The white brackets the game draws around the selected thing. The selection stays (the inspect pane and its tab stay open).
         [When(Prefix + "I hide the selection brackets")]
         public void HideSelectionBrackets_Alt(PickleContext ctx) { HideSelectionBrackets(ctx); }
