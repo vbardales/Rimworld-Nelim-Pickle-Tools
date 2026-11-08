@@ -9,7 +9,7 @@
 // Backend "direct" (default, no inventory needed): reads the Defs of the mods of the map straight from the Workshop folder, LoadFolders v1.6 applied
 // (IfModActive / IfModActiveAll / IfModNotActive evaluated against the packageIds of the map), plus the vanilla Data folders of the game. With --inv the
 // def lookup is handed to Picker's inventory query (`inv-check.js <map> --game 1.6`, lines Type/defName on stdin, JSON out) once it exists.
-// Not checked: defs created by patches (XML Patches), defs of a mod outside the map, names built by a step at run time.
+// Defs added inside XML Patches (<value> blocks) count as present, patch conditions ignored. Not checked: defs of a mod outside the map, names built by a step at run time.
 const fs = require('fs'), path = require('path'), cp = require('child_process');
 const args = process.argv.slice(2);
 const opt = n => { const i = args.indexOf('--' + n); return i < 0 ? null : args[i + 1]; };
@@ -104,7 +104,8 @@ for (const m of mods) {
   // A numeric ref is a Workshop id; a name is a folder of the local Mods folder of the game (rjw, rjw-genes...).
   const root = m.isPath ? path.join(ROOT, m.ref).replace(/\\/g, '/') : (/^\d+$/.test(m.ref) ? W + m.ref : GAME.replace(/\/Data$/, '/Mods/') + m.ref);
   if (!fs.existsSync(root)) { notOnDisk.push(m.pkg + ' ' + m.ref); continue; }
-  for (const r of loadFolders(root)) readDefsSimple(r + '/Defs');
+  // Patches too: a patch may add defs inside <value> (Moving Vanilla Eyes removes the FA eyeballs and re-adds EyeThin there). Counted as present whatever the patch conditions.
+  for (const r of loadFolders(root)) { readDefsSimple(r + '/Defs'); readDefsSimple(r + '/Patches'); }
 }
 for (const d of ['Core', 'Royalty', 'Ideology', 'Biotech', 'Anomaly', 'Odyssey']) readDefsSimple(GAME + '/' + d + '/Defs');
 
