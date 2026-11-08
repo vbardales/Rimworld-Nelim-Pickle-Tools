@@ -27,6 +27,7 @@ const CITES = [
   [/mouth is "([^"]+)"/, 'FacialAnimation.MouthTypeDef'], [/brows are "([^"]+)"/, 'FacialAnimation.BrowTypeDef'], [/lids are "([^"]+)"/, 'FacialAnimation.LidTypeDef'],
   [/eyeballs are "([^"]+)"/, 'FacialAnimation.EyeballTypeDef'], [/face skin is "([^"]+)"/, 'FacialAnimation.SkinTypeDef'],
   [/facial expression is "([^"]+)"/, 'FacialAnimation.FaceAnimationDef', s => s.split('+')],
+  [/I place the decor "([^"]+)"/, 'ThingDef'], [/I lay the floor "([^"]+)"/, 'TerrainDef'],
   [/hairstyle is "([^"]+)"/, 'HairDef'], [/beard is "([^"]+)"/, 'BeardDef'],
   [/(?:face|body) tattoo is "([^"]+)"/, 'TattooDef'], [/has the gene "([^"]+)"/, 'GeneDef'],
 ];

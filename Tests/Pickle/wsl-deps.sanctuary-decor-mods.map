@@ -14,6 +14,7 @@ nelim.sanctuarybacklot path:SanctuaryBacklot/Mod
 nelim.pickletools.decorbase path:PickleTools/Tests/Pickle/DecorBase/Mod
 # dependencies of the decorative mods
 brrainz.harmony 2009463077
+adaptive.storage.framework 3033901359
 erdelf.HumanoidAlienRaces 839005762
 OskarPotocki.VanillaFactionsExpanded.Core 2023507013
 # the decorative mods (Workshop ids read from the Windows Workshop folder 2026-11-05)
