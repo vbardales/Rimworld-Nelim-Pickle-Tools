@@ -19,7 +19,7 @@
       "testing RimWorld mods."
     ]
   },
-  "echo": { "file": "echo-concept.png" },
+  "echo": { "file": "echo-concept.png", "panelMaxWidth": 22, "panelRight": 3 },
   "icon": {
     "file": "ModIcon-source.png",
     "corner": "bottom-right"
