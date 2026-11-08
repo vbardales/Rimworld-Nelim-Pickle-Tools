@@ -55,16 +55,68 @@ namespace Nelim.PickleTools.ScreenshotStudio
             map.mapDrawer.RegenerateEverythingNow();
         }
 
+        private static float? glowCeiling;
+
         private static void PostGlowColor(ref UnityEngine.Color32 __result)
         {
-            if (!glowFloor.HasValue) return;
-            byte f = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowFloor.Value * 255f), 0, 255);
-            __result = new UnityEngine.Color32((byte)System.Math.Max(__result.r, f), (byte)System.Math.Max(__result.g, f), (byte)System.Math.Max(__result.b, f), __result.a);
+            if (glowFloor.HasValue)
+            {
+                byte f = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowFloor.Value * 255f), 0, 255);
+                __result = new UnityEngine.Color32((byte)System.Math.Max(__result.r, f), (byte)System.Math.Max(__result.g, f), (byte)System.Math.Max(__result.b, f), __result.a);
+            }
+            if (glowCeiling.HasValue)
+            {
+                byte c = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowCeiling.Value * 255f), 0, 255);
+                __result = new UnityEngine.Color32((byte)System.Math.Min(__result.r, c), (byte)System.Math.Min(__result.g, c), (byte)System.Math.Min(__result.b, c), __result.a);
+            }
         }
 
         private static void PostGlow(ref float __result)
         {
             if (glowFloor.HasValue && __result < glowFloor.Value) __result = glowFloor.Value;
+            if (glowCeiling.HasValue && __result > glowCeiling.Value) __result = glowCeiling.Value;
+        }
+
+        // Patches every read of the glow grid once; the floor and the ceiling are read by the postfixes.
+        private static void EnsureGlowPatched(PickleContext ctx)
+        {
+            if (glowHarmony != null) return;
+            var h = new HarmonyLib.Harmony("nelim.pickletools.glowfloor");
+            int patched = 0;
+            var all = typeof(GlowGrid).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly)
+                .Where(x => !x.IsAbstract && !x.ContainsGenericParameters).ToList();
+            // The signatures are logged: the glow reads differ between game versions (a float glow, a Color32 the lighting overlay draws; ticket eb32, AnN 2026-11-07).
+            Log.Message("[light] GlowGrid methods: " + string.Join("; ", all.Select(x => x.ReturnType.Name + " " + x.Name + "(" + string.Join(", ", x.GetParameters().Select(p => p.ParameterType.Name)) + ")")));
+            foreach (System.Reflection.MethodInfo m in all.Where(x => x.Name.IndexOf("GlowAt", System.StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("Glow", System.StringComparison.OrdinalIgnoreCase) >= 0 && x.GetParameters().Length >= 1))
+            {
+                if (m.ReturnType == typeof(float)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
+                else if (m.ReturnType == typeof(UnityEngine.Color32)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlowColor))); patched++; }
+            }
+            if (patched == 0) { h.UnpatchAll(h.Id); ctx.Require(false, "no GlowGrid read could be patched: the game changed"); }
+            glowHarmony = h;
+            Log.Message("[light] " + patched + " reads of the glow are patched");
+        }
+
+        /// <summary>
+        /// Dims the light of every cell of the map to at most this glow (0 dark, 1 full day) until the scenario ends, for a dusk or night capture that renders as day after the hour is set
+        /// (AnB, gallery-lg-7, scenes 6 and 7). The glow grid is recomputed and the map mesh redrawn at once. Written 2026-11-08. COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [Given(Prefix + "the light of the map is dimmed to at most {float}")]
+        public void DimLight(PickleContext ctx, float ceiling)
+        {
+            ctx.Require(Find.CurrentMap != null, "No loaded map");
+            ctx.Require(ceiling >= 0f && ceiling <= 1f, "the glow runs from 0 to 1");
+            EnsureGlowPatched(ctx);
+            glowCeiling = ceiling;
+            RefreshGlow(Find.CurrentMap);
+        }
+
+        /// <summary>Recomputes the glow grid and redraws the map mesh, for a capture taken after the hour was set in a paused game (the glow cache is refreshed on a tick only).</summary>
+        [When(Prefix + "the light of the map is refreshed")]
+        public void RefreshLight(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "No loaded map");
+            RefreshGlow(Find.CurrentMap);
         }
 
         /// <summary>
@@ -77,23 +129,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             ctx.Require(Find.CurrentMap != null, "No loaded map");
             ctx.Require(floor >= 0f && floor <= 1f, "the glow runs from 0 to 1");
-            if (glowHarmony == null)
-            {
-                var h = new HarmonyLib.Harmony("nelim.pickletools.glowfloor");
-                int patched = 0;
-                var all = typeof(GlowGrid).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.DeclaredOnly)
-                    .Where(x => !x.IsAbstract && !x.ContainsGenericParameters).ToList();
-                // The signatures are logged: the glow reads differ between game versions (a float glow, a Color32 the lighting overlay draws; ticket eb32, AnN 2026-11-07).
-                Log.Message("[light] GlowGrid methods: " + string.Join("; ", all.Select(x => x.ReturnType.Name + " " + x.Name + "(" + string.Join(", ", x.GetParameters().Select(p => p.ParameterType.Name)) + ")")));
-                foreach (System.Reflection.MethodInfo m in all.Where(x => x.Name.IndexOf("GlowAt", System.StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("Glow", System.StringComparison.OrdinalIgnoreCase) >= 0 && x.GetParameters().Length >= 1))
-                {
-                    if (m.ReturnType == typeof(float)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
-                    else if (m.ReturnType == typeof(UnityEngine.Color32)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlowColor))); patched++; }
-                }
-                if (patched == 0) { h.UnpatchAll(h.Id); ctx.Require(false, "no GlowGrid read could be patched: the game changed"); }
-                glowHarmony = h;
-                Log.Message("[light] " + patched + " reads of the glow are floored at " + floor);
-            }
+            EnsureGlowPatched(ctx);
             glowFloor = floor;
             RefreshGlow(Find.CurrentMap);
             Find.CurrentMap.mapDrawer.RegenerateEverythingNow();
@@ -102,8 +138,9 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [AfterScenario]
         public void ReleaseGlowFloor()
         {
-            if (!glowFloor.HasValue) return;
+            if (!glowFloor.HasValue && !glowCeiling.HasValue) return;
             glowFloor = null;
+            glowCeiling = null;
             try { RefreshGlow(Find.CurrentMap); } catch { }
         }
 
