@@ -40,6 +40,104 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        private static readonly List<Pawn> Holders = new List<Pawn>();
+
+        /// <summary>
+        /// Makes one thing of a def (by defName, made of its default stuff) and puts it in the colonist's hands (the carry tracker, drawn in the
+        /// hand, not in the inventory). The colonist must carry nothing yet and be spawned on a map. The thing is destroyed at the end of the
+        /// scenario. Written 2026-11-08 for AnimalCosmeticGenes (a serum in Nelim's hand, shot 4). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} holds {string} in hand")]
+        public void HoldsInHand(PickleContext ctx, string nickname, string defName) => HoldInHand(ctx, nickname, defName, null, null);
+
+        /// <summary>
+        /// The same, and before it is held the named field of the thing (or, if the thing has none of that name, of one of its comps) is set from a
+        /// text: a def field takes the def of that name (by its field type), a text field the text, a number, a flag or an enum the parsed value.
+        /// Public and private instance fields are found, base classes included. Fails when no field of that name exists or the value does not fit.
+        /// For a thing that carries a def in a field, such as a serum that holds a gene (<c>gene</c>). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the colonist {string} holds {string} in hand set with the field {string} to {string}")]
+        public void HoldsInHandWithField(PickleContext ctx, string nickname, string defName, string field, string value) => HoldInHand(ctx, nickname, defName, field, value);
+
+        private static void HoldInHand(PickleContext ctx, string nickname, string defName, string field, string value)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no ThingDef named '{defName}'");
+            ctx.Require(pawn.Spawned && pawn.Map != null, $"{nickname} is not spawned on a map");
+            ctx.Require(pawn.carryTracker != null, $"{nickname} has no carry tracker");
+            ctx.Require(pawn.carryTracker.CarriedThing == null, $"{nickname} already carries {pawn.carryTracker.CarriedThing?.LabelCap}");
+            Thing thing = ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def));
+            if (field != null)
+            {
+                SetField(ctx, thing, field, value);
+            }
+
+            bool added = pawn.carryTracker.innerContainer.TryAdd(thing, 1) == 1;
+            ctx.Assert(added && pawn.carryTracker.CarriedThing == thing, $"{nickname}'s hands did not take '{defName}'");
+            Holders.Add(pawn);
+        }
+
+        private static void SetField(PickleContext ctx, Thing thing, string field, string value)
+        {
+            const System.Reflection.BindingFlags flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic;
+            var targets = new List<object> { thing };
+            if (thing is ThingWithComps withComps)
+            {
+                targets.AddRange(withComps.AllComps.Cast<object>());
+            }
+
+            foreach (object target in targets)
+            {
+                for (System.Type type = target.GetType(); type != null; type = type.BaseType)
+                {
+                    System.Reflection.FieldInfo info = type.GetField(field, flags | System.Reflection.BindingFlags.DeclaredOnly);
+                    if (info == null)
+                    {
+                        continue;
+                    }
+
+                    object parsed;
+                    if (typeof(Def).IsAssignableFrom(info.FieldType))
+                    {
+                        parsed = GenDefDatabase.GetDef(info.FieldType, value, false);
+                        ctx.Require(parsed != null, $"no {info.FieldType.Name} named '{value}' for the field '{field}'");
+                    }
+                    else if (info.FieldType == typeof(string))
+                    {
+                        parsed = value;
+                    }
+                    else if (info.FieldType.IsEnum)
+                    {
+                        parsed = System.Enum.Parse(info.FieldType, value, true);
+                    }
+                    else
+                    {
+                        parsed = System.Convert.ChangeType(value, info.FieldType, System.Globalization.CultureInfo.InvariantCulture);
+                    }
+
+                    info.SetValue(target, parsed);
+                    return;
+                }
+            }
+
+            ctx.Require(false, $"'{thing.def.defName}' and its comps have no field named '{field}'");
+        }
+
+        [AfterScenario]
+        public void DropHeldThings(PickleContext ctx)
+        {
+            foreach (Pawn pawn in Holders)
+            {
+                if (!pawn.Destroyed && pawn.carryTracker != null)
+                {
+                    pawn.carryTracker.innerContainer.ClearAndDestroyContents();
+                }
+            }
+
+            Holders.Clear();
+        }
+
         /// <summary>
         /// Puts N things of a def (by defName, made of its default stuff) on the ground at a cell, as one stack when N fits the stack limit and as
         /// several stacks next to each other otherwise (the game finds the nearest free cells). Fails when the def is unknown, the cell is outside

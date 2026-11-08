@@ -460,6 +460,44 @@ namespace Nelim.PickleTools.ColonistRace
             return null;
         }
 
+        /// <summary>
+        /// The refuel job of the game's own work giver, after the checks that make its failures readable: the game's RefuelWorkGiverUtility.RefuelJob
+        /// threw a bare NullReferenceException with no stack (AnimalArk ticket 49cf, DR_StickLantern, 2026-11-08), so the target is checked first (fuel comp,
+        /// not full, a fuel it accepts within reach) and the call itself is wrapped so the real exception and its stack reach the failure message.
+        /// </summary>
+        private static Job RefuelJobFor(PickleContext ctx, Pawn pawn, Thing target)
+        {
+            CompRefuelable comp = target.TryGetComp<CompRefuelable>();
+            ctx.Require(comp != null, $"{target.def.defName} at {target.Position} has no fuel comp (CompRefuelable): the Refuel job does not apply to it");
+            ctx.Require(pawn.Spawned && pawn.Map == target.Map, $"{pawn.LabelShort} is not spawned on the map of {target.def.defName}");
+            ctx.Require(!comp.IsFull, $"{target.def.defName} at {target.Position} is full ({comp.Fuel} of {comp.Props.fuelCapacity}, target level {comp.TargetFuelLevel}): empty it first with 'the building \"{target.def.defName}\" at ({target.Position.x}, {target.Position.z}) is put out'");
+            string accepted = comp.Props.fuelFilter == null ? "none" : string.Join(", ", comp.Props.fuelFilter.AllowedThingDefs.Select(d => d.defName));
+            Thing fuel;
+            try
+            {
+                fuel = comp.Props.fuelFilter == null ? null : target.Map.listerThings.AllThings
+                    .Where(t => t.Spawned && comp.Props.fuelFilter.Allows(t) && !t.IsForbidden(pawn) && pawn.CanReach(t, PathEndMode.ClosestTouch, Danger.Deadly))
+                    .OrderBy(t => t.Position.DistanceToSquared(pawn.Position)).FirstOrDefault();
+            }
+            catch (Exception e)
+            {
+                ctx.Require(false, $"looking for fuel for {target.def.defName} at {target.Position} threw (colonist at {pawn.Position}, fuel accepted: {accepted}): {e}");
+                return null;
+            }
+
+            ctx.Require(fuel != null, $"no fuel {pawn.LabelShort} can reach for {target.def.defName} at {target.Position}: it accepts {accepted}; spawn one on the map (the decor or the carries step) within reach and not forbidden");
+            Job job;
+            try { job = RefuelWorkGiverUtility.RefuelJob(pawn, target, true); }
+            catch (Exception e)
+            {
+                ctx.Require(false, $"the game's RefuelJob on {target.def.defName} at {target.Position} threw (colonist at {pawn.Position}, fuel found {fuel.def.defName} at {fuel.Position}, level {comp.Fuel} of {comp.Props.fuelCapacity}): {e}");
+                return null;
+            }
+
+            ctx.Require(job != null, $"the game builds no refuel job for {target.def.defName} at {target.Position} although {fuel.def.defName} lies at {fuel.Position}: the target is forbidden, reserved or not designated for refuel");
+            return job;
+        }
+
         private static void StartForced(PickleContext ctx, string nickname, Pawn pawn, Map map, JobDef jobDef, Thing target, bool placeBeside)
         {
             // A building with an interaction cell (a chess table, an instrument): the colonist stands there and the game's own givers pass that cell as target B
@@ -516,8 +554,7 @@ namespace Nelim.PickleTools.ColonistRace
             Job job;
             if (jobDef.defName == "Refuel" || jobDef.defName == "RefuelAtomic")
             {
-                job = RefuelWorkGiverUtility.RefuelJob(pawn, target, true);
-                ctx.Require(job != null, $"the game builds no refuel job for {target.LabelShort}: it is full, or no fuel it accepts can be reached");
+                job = RefuelJobFor(ctx, pawn, target);
             }
             else if (jobDef.defName == "DoBill")
             {
