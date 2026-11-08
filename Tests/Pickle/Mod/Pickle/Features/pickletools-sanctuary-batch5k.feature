@@ -40,6 +40,9 @@ Feature: Sanctuary decor batch 5k
     And Nelim's Pickle Tools: I place the decor "Yuran_StorageCrateWood" near (228, 237)
     And Nelim's Pickle Tools: I place the decor "milple_HandTailoringBench" near (221, 239)
     And Nelim's Pickle Tools: I place the decor "FueledSmithy" near (225, 242)
+    # no carpentry bench in the base game (NSB): the second craft zone is stonecutting and sculpting
+    And Nelim's Pickle Tools: I place the decor "TableStonecutter" near (225, 235)
+    And Nelim's Pickle Tools: I place the decor "TableSculpting" near (225, 238)
     And Nelim's Pickle Tools: I place the decor "Yuran_SignLamp_Smith" near (224, 230)
     And Nelim's Pickle Tools: I place the decor "Yuran_SignLamp_tailor" near (222, 230)
 
@@ -75,6 +78,14 @@ Feature: Sanctuary decor batch 5k
     And Nelim's Pickle Tools: I place the decor "Yuran_woodfence" near (136, 124)
     And Nelim's Pickle Tools: I place the decor "Yuran_woodfence" near (138, 124)
     And Nelim's Pickle Tools: I place the decor "Yuran_woodfence" near (140, 124)
+    # plants (NSB: Spidercamps names; no maple or willow def in Decorative Trees, so the willow and birch of the base map)
+    And Nelim's Pickle Tools: I place the decor "SCBonsaiTreePine" at (141, 133) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCBonsaiTreeOak" at (153, 131) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCPinkhydrangea" at (137, 131) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCBluehydrangea" at (151, 135) fully grown
+    And Nelim's Pickle Tools: I place the decor "SCWhitehydrangea" at (143, 135) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeWillow" at (135, 135) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TreeBirch" at (154, 136) fully grown
 
     # 3. gravel-yard, frame (170,143) zoom 11.2: karesansui court, clear then raked gravel, rock gardens, lamps, pagoda statue on the torii axis, nothing tall in the centre
     And Nelim's Pickle Tools: the area from (162, 136) to (178, 150) is emptied
@@ -95,12 +106,30 @@ Feature: Sanctuary decor batch 5k
     And Nelim's Pickle Tools: I place the decor "milple_TorchLampR" near (178, 142)
     And Nelim's Pickle Tools: I place the decor "Yuran_stonelamp" near (170, 136)
     And Nelim's Pickle Tools: I place the decor "Yuran_Statue_pagoda" near (170, 151)
+    # moss border (outside the gravel) and a stepping-stone path, orthogonally connected, from the south edge to the centre
+    And Nelim's Pickle Tools: I lay the floor "Yuran_mossstonefloorSandstone" from (161, 135) to (179, 135)
+    And Nelim's Pickle Tools: I lay the floor "Yuran_mossstonefloorSandstone" from (161, 151) to (179, 151)
+    And Nelim's Pickle Tools: I lay the floor "Yuran_mossstonefloorSandstone" from (161, 136) to (161, 150)
+    And Nelim's Pickle Tools: I lay the floor "Yuran_mossstonefloorSandstone" from (179, 136) to (179, 150)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (170, 140)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (170, 141)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (170, 142)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (170, 143)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (170, 144)
 
     # 4. left-bank telescope, frame (112,111): the base-game Telescope listed above, a wooden deck centred on the frame, bench, lamp, path from the bridge (cells indicative, the report lists the Telescope cell)
     And Nelim's Pickle Tools: I lay the floor "Yuran_woodfloor" from (110, 109) to (114, 113)
     And Nelim's Pickle Tools: I place the decor "LP_GardenBench" near (110, 114)
     And Nelim's Pickle Tools: I place the decor "Yuran_stonelamp" near (115, 109)
     And Nelim's Pickle Tools: I place the decor "Yuran_stonelamp" near (109, 109)
+    # sky-chart scrolls near the telescope (NSB judges the look on the photo) and a stepping-stone path to the south
+    And Nelim's Pickle Tools: I place the decor "Yuran_scroll_BDX" near (111, 113)
+    And Nelim's Pickle Tools: I place the decor "Yuran_scroll_HJQJ" near (113, 113)
+    And Nelim's Pickle Tools: I place the decor "Yuran_scroll_XSYR" near (112, 114)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (112, 108)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (112, 107)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (112, 106)
+    And Nelim's Pickle Tools: I place the decor "LP_SteppingStone" exactly at (112, 105)
     And Nelim's Pickle Tools: the things within 8 cells of (112, 111) are listed
     And Nelim's Pickle Tools: the things within 8 cells of (170, 143) are listed
     And Nelim's Pickle Tools: the things within 8 cells of (144, 132) are listed
