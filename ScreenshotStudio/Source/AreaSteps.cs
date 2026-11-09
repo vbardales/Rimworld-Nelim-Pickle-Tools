@@ -189,18 +189,36 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// Despawns the animals of the area now, then on every frame until the scenario ends (animals come back through the doors). May be called
         /// for several areas. The hooks are removed after the scenario by <see cref="AreaSteps"/>, so the assembly needs no clean-up of its own.
         /// </summary>
-        public static void KeepAnimalsOut(PickleContext ctx, MapArea area) => KeepAnimalsOut(ctx, area, null);
+        public static void KeepAnimalsOut(PickleContext ctx, MapArea area) => KeepAnimalsOut(ctx, area, new string[0]);
 
         /// <summary>The same, except the animal whose short name (<c>Name.ToStringShort</c>, as the animal steps of ColonistRace find it) is given: it stays and is not despawned.</summary>
         public static void KeepAnimalsOut(PickleContext ctx, MapArea area, string exceptName)
+            => KeepAnimalsOut(ctx, area, string.IsNullOrEmpty(exceptName) ? new string[0] : new[] { exceptName });
+
+        /// <summary>
+        /// The same, except one animal for each short name given (<c>Name.ToStringShort</c>, else the label, case ignored). Each name is bound once to the
+        /// first animal of the area that carries it (a named animal first, then an unnamed one of that label) and that animal is spared by its thing id, so
+        /// summoned look-alikes of the same label (a VEF summon on spawn) are despawned.
+        /// </summary>
+        public static void KeepAnimalsOut(PickleContext ctx, MapArea area, string[] exceptNames)
         {
             RequireMap(ctx);
-            Func<Pawn, bool> spared = p => !string.IsNullOrEmpty(exceptName) && string.Equals(p.Name?.ToStringShort ?? p.LabelShort, exceptName, StringComparison.OrdinalIgnoreCase);
+            var sparedIds = new HashSet<int>();
+            var unbound = new List<string>(exceptNames);
             Action hook = () =>
             {
                 Map map = Find.CurrentMap;
                 if (map == null) return;
-                foreach (var a in AreaOps.SpawnedPawns(map).Where(p => p.RaceProps.Animal && area.Contains(p.Position) && !spared(p)).ToList()) a.DeSpawn();
+                var animals = AreaOps.SpawnedPawns(map).Where(p => p.RaceProps.Animal && area.Contains(p.Position)).ToList();
+                foreach (string name in unbound.ToList())
+                {
+                    Pawn match = animals.FirstOrDefault(p => !sparedIds.Contains(p.thingIDNumber) && p.Name != null && string.Equals(p.Name.ToStringShort, name, StringComparison.OrdinalIgnoreCase))
+                        ?? animals.FirstOrDefault(p => !sparedIds.Contains(p.thingIDNumber) && p.Name == null && string.Equals(p.LabelShort, name, StringComparison.OrdinalIgnoreCase));
+                    if (match == null) continue;
+                    sparedIds.Add(match.thingIDNumber);
+                    unbound.Remove(name);
+                }
+                foreach (var a in animals.Where(p => !sparedIds.Contains(p.thingIDNumber))) a.DeSpawn();
             };
             hook();
             KeepOutHooks.Add(hook);
@@ -501,6 +519,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Despawns the animals of the rectangle now and on every frame until the scenario ends, except the one animal of that short name (an animal a scenario places in the area, such as the dog of a portrait). Compiled, not played.</summary>
         [Given(Prefix + "the animals except {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
         public void KeepAnimalsOutExcept(PickleContext ctx, string exceptName, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), exceptName);
+
+        /// <summary>Despawns the animals of the rectangle now and on every frame until the scenario ends, except one animal of each of the three short names (or labels): the others of the same label, such as the workers a VEF summon adds, go. Compiled, not played.</summary>
+        [Given(Prefix + "the animals except {string}, {string} and {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void KeepAnimalsOutExcept3(PickleContext ctx, string a, string b, string c, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), new[] { a, b, c });
 
         /// <summary>Removes the roofs of the rectangle (thick roofs stay) so the sun lights it.</summary>
         [Given(Prefix + "the roof is removed from the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
