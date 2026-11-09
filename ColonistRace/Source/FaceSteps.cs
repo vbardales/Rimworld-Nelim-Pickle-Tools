@@ -325,6 +325,23 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(ok is bool b && b, "The mod refused to play \"" + animationName + "\" on " + nickname + " (not valid for this race or head?)");
         }
 
+        /// <summary>
+        /// Sets the mouth pull-back D of the Beauty2 head fix hosted in Nelim's Sanctuary Backlot (static field <c>D</c> of
+        /// <c>Nelim.SanctuaryBacklot.Beauty2Mouth</c>, read at each draw: no repatch). East profile moves the mouth by -D, west by +D, in world units.
+        /// Fails when the patch is not loaded (SanctuaryBacklot not in the pass map) or the field is gone. Written 2026-11-09 for BeE (D sweep 0.02 to 0.05).
+        /// NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the Beauty2 mouth offset is {float}")]
+        public void SetBeauty2MouthOffset(PickleContext ctx, float value)
+        {
+            Type t = Type.GetType("Nelim.SanctuaryBacklot.Beauty2Mouth, Nelim.SanctuaryBacklot.Beauty2Mouth");
+            ctx.Require(t != null, "Nelim.SanctuaryBacklot.Beauty2Mouth is not loaded: add nelim.sanctuarybacklot to the pass map (its Beauty2Mouth assembly)");
+            FieldInfo d = t.GetField("D", BindingFlags.Public | BindingFlags.Static);
+            ctx.Require(d != null && d.FieldType == typeof(float), "Beauty2Mouth has no public static float D: SanctuaryBacklot changed, update this step");
+            d.SetValue(null, value);
+            ctx.Assert((float)d.GetValue(null) == value, "Beauty2Mouth.D did not take the value " + value);
+        }
+
         private static readonly System.Collections.Generic.List<Action> heldExpressionHooks = new System.Collections.Generic.List<Action>();
 
         /// <summary>
