@@ -59,6 +59,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly List<Action> KeepOutHooks = new List<Action>();
         private static Map lastFramedMap;
+        private static float lastFramedX = float.NaN, lastFramedZ = float.NaN;
 
         // Not map.mapPawns: its accessors throw "Accessing map pawns off main thread" when a step runs off the main thread (EntityGazing gallery-8, 2026-10-15).
         internal static IEnumerable<Pawn> SpawnedPawns(Map map) => map == null ? Enumerable.Empty<Pawn>() : map.listerThings.ThingsInGroup(ThingRequestGroup.Pawn).OfType<Pawn>().Where(p => p.Spawned).ToList();
@@ -82,13 +83,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// Lifts the zoom limit, clears the selection, jumps the camera to the cell and sets the root size (smaller is closer), waits 90 frames for
         /// the zoom, then waits (600 frames at most) until the sky glow holds still so that two shots of one run have the same light.
         /// </summary>
-        public static async Task Frame(PickleContext ctx, int x, int z, float rootSize)
+        public static Task Frame(PickleContext ctx, int x, int z, float rootSize) => Frame(ctx, (float)x, (float)z, rootSize);
+
+        /// <summary>Same as the integer overload, on a point in cell units: an integer is the centre of that cell, so 143.5 is the edge between cells 143 and 144.</summary>
+        public static async Task Frame(PickleContext ctx, float x, float z, float rootSize)
         {
             RequireMap(ctx);
             LiftZoomLimit();
             // Asked again for the place it already shows (a scenario that frames the same place before every shot): nothing to wait for. Each wait is
             // 90 frames, 33 s on a machine short of memory (VenusTouchWaistlines 405b, 2026-10-20: nine waits of that kind outlast the 300 s of a scenario).
-            if (Find.CameraDriver.MapPosition == new IntVec3(x, 0, z) && Mathf.Abs(Find.CameraDriver.RootSize - rootSize) < 0.05f && lastFramedMap == Find.CurrentMap)
+            if (Mathf.Abs(lastFramedX - x) < 0.01f && Mathf.Abs(lastFramedZ - z) < 0.01f && Find.CameraDriver.MapPosition == new IntVec3(Mathf.FloorToInt(x + 0.5f), 0, Mathf.FloorToInt(z + 0.5f)) && Mathf.Abs(Find.CameraDriver.RootSize - rootSize) < 0.05f && lastFramedMap == Find.CurrentMap)
             {
                 Find.Selector.ClearSelection();
                 await ctx.WaitFrames(1);
@@ -97,7 +101,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
 
             Find.Selector.ClearSelection();
-            Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z));
+            // A cell centre is (x + 0.5, z + 0.5) in world units, as IntVec3.ToVector3Shifted gives.
+            Find.CameraDriver.JumpToCurrentMapLoc(new Vector3(x + 0.5f, 0f, z + 0.5f));
             Find.CameraDriver.SetRootSize(rootSize);
             var clock = System.Diagnostics.Stopwatch.StartNew();
             await ctx.WaitFrames(90);
@@ -114,6 +119,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
             Log.Message("[frame] asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00") + "; zoom wait " + zoomMs + " ms, total " + clock.ElapsedMilliseconds + " ms");
             lastFramedMap = Find.CurrentMap;
+            lastFramedX = x;
+            lastFramedZ = z;
         }
 
         /// <summary>
@@ -347,6 +354,10 @@ namespace Nelim.PickleTools.ScreenshotStudio
         /// <summary>Centres the camera on a cell at a root size (smaller is closer, down to 2 and up to 130: the game's own limit is lifted) and waits until the sky glow holds still. Same as framing a rectangle, but the zoom is the one asked for.</summary>
         [When(Prefix + "I frame the area centred on \\({int}, {int}\\) at root size {float}", TimeoutSeconds = 60f)]
         public Task Frame(PickleContext ctx, int x, int z, float rootSize) => AreaOps.Frame(ctx, x, z, rootSize);
+
+        /// <summary>Like framing a cell, on a point between cells: in cell units an integer is the centre of that cell, so (143.5, 73) is the edge between cells 143 and 144 on row 73. Written 2026-11-09 for AnimalCosmeticGenes (two pawns side by side at root size 0.7 to 0.8). Compiled, not played. The wording says "the point" so it never matches the cell step (a float pattern would also match whole numbers).</summary>
+        [When(Prefix + "I frame the area centred on the point \\({float}, {float}\\) at root size {float}", TimeoutSeconds = 60f)]
+        public Task FramePoint(PickleContext ctx, float x, float z, float rootSize) => AreaOps.Frame(ctx, x, z, rootSize);
 
         /// <summary>Destroys the furniture, items, plants, filth and corpses of the rectangle. Pawns, walls, doors and natural rock stay; terrain and roofs are untouched.</summary>
         [Given(Prefix + "the area from \\({int}, {int}\\) to \\({int}, {int}\\) is emptied")]
