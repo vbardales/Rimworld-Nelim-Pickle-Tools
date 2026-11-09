@@ -486,14 +486,38 @@ namespace Nelim.PickleTools.ColonistRace
             Redraw(pawn);
         }
 
-        private static void CarryItems(PickleContext ctx, string name, int count, string defName)
+        /// <summary>
+        /// The same item, made of a chosen stuff (a ThingDef name such as Steel or WoodLog), for a weapon or garment that the game refuses to make without one
+        /// (MeleeWeapon_Gladius: "MakeThing error: ... is madeFromStuff but stuff=null"). Written 2026-11-09 for AncientSalvage shots 2 and 9. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} carries the item {string} made of {string}")]
+        public void CarriesItemMadeOf(PickleContext ctx, string name, string defName, string stuffName)
+        {
+            CarryItems(ctx, name, 1, defName, stuffName);
+        }
+
+        private static void CarryItems(PickleContext ctx, string name, int count, string defName) => CarryItems(ctx, name, count, defName, null);
+
+        private static void CarryItems(PickleContext ctx, string name, int count, string defName, string stuffName)
         {
             Pawn pawn = AnyPawn(ctx, name);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
             ctx.Require(def != null, $"no ThingDef named '{defName}'");
             ctx.Require(pawn.carryTracker != null, $"{name} has no carry tracker");
+            ThingDef stuff = null;
+            if (stuffName != null)
+            {
+                stuff = DefDatabase<ThingDef>.GetNamedSilentFail(stuffName);
+                ctx.Require(stuff != null, $"no ThingDef named '{stuffName}' (stuff)");
+                ctx.Require(def.MadeFromStuff, $"'{defName}' is not made from a stuff");
+                ctx.Require(GenStuff.AllowedStuffsFor(def).Contains(stuff), $"'{stuffName}' is not an allowed stuff for '{defName}'");
+            }
+            else if (def.MadeFromStuff)
+            {
+                stuff = GenStuff.DefaultStuffFor(def);
+            }
             if (pawn.carryTracker.CarriedThing != null) pawn.carryTracker.DestroyCarriedThing();
-            Thing thing = ThingMaker.MakeThing(def);
+            Thing thing = ThingMaker.MakeThing(def, stuff);
             int wanted = Math.Max(1, Math.Min(count, def.stackLimit));
             thing.stackCount = wanted;
             int carried = pawn.carryTracker.TryStartCarry(thing, wanted, true);
