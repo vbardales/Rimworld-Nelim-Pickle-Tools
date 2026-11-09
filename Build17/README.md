@@ -14,6 +14,8 @@ Copied 2026-11-09 from `~/pt17/mods/<Name>` (DLL dates: InspectTabs and Screensh
 
 The `net10.0` ScreenshotStudio DLL (95 KB) is older than the 1.6 one in `ScreenshotStudio/Mod` (118 KB): it was built from `~/pt17/src`, which is not synced with `ScreenshotStudio/Source` here. Steps added later (for example `CameraOrthoSteps`) are not in the 1.7 build until it is rebuilt.
 
+A mod whose scenario uses a step missing from these builds must fail loudly (an undefined step is an error), never be skipped.
+
 ## Rebuild
 
 The 1.7 csproj files are not in this repository. They live in `~/pt17/src/<folder>` (WSL), reference the game in `~/rimworld17` and Pickle in `~/Rimworld-Pickle/1.7`, and write to `~/pt17/out-<name>`. From WSL, after copying the current `.cs` files of the tool's `Source/` into the folder above:
