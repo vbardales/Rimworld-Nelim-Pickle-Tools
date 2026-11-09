@@ -66,6 +66,7 @@ Feature: Sanctuary photos
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
+    And Nelim's Sanctuary: the beds of the sanctuary "sleeping-nook" have their head to the wall
     And Nelim's Sanctuary: I am at the sanctuary "sleeping-nook"
     And I take a screenshot "photo-sleeping-nook"
 
@@ -612,6 +613,7 @@ Feature: Sanctuary photos
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
+    And Nelim's Sanctuary: the beds of the sanctuary "infirmary" have their head to the wall
     And Nelim's Sanctuary: I am at the sanctuary "infirmary"
     And I take a screenshot "photo-infirmary"
 
@@ -625,6 +627,7 @@ Feature: Sanctuary photos
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
+    And Nelim's Sanctuary: the beds of the sanctuary "infirmary-pawns" have their head to the wall
     And Nelim's Sanctuary: I am at the sanctuary "infirmary-pawns"
     And I take a screenshot "photo-infirmary-pawns"
 
@@ -638,6 +641,7 @@ Feature: Sanctuary photos
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
+    And Nelim's Sanctuary: the beds of the sanctuary "infirmary-animals" have their head to the wall
     And Nelim's Sanctuary: I am at the sanctuary "infirmary-animals"
     And I take a screenshot "photo-infirmary-animals"
 
@@ -651,6 +655,7 @@ Feature: Sanctuary photos
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: the area and zone overlays are hidden
     And I wait 60 ticks
+    And Nelim's Sanctuary: the beds of the sanctuary "pediatrics" have their head to the wall
     And Nelim's Sanctuary: I am at the sanctuary "pediatrics"
     And I take a screenshot "photo-pediatrics"
 
