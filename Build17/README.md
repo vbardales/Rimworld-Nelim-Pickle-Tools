@@ -12,7 +12,7 @@ Copied 2026-11-09 from `~/pt17/mods/<Name>` (DLL dates: InspectTabs and Screensh
 
 ## Known gap
 
-The `net10.0` ScreenshotStudio DLL (95 KB) is older than the 1.6 one in `ScreenshotStudio/Mod` (118 KB): it was built from `~/pt17/src`, which is not synced with `ScreenshotStudio/Source` here. Steps added later (for example `CameraOrthoSteps`) are not in the 1.7 build until it is rebuilt.
+The `net10.0` ScreenshotStudio DLL was rebuilt 2026-11-09 from the current `ScreenshotStudio/Source` (128 KB, `CameraOrthoSteps` included). Rebuild again whenever its `Source/` changes.
 
 A mod whose scenario uses a step missing from these builds must fail loudly (an undefined step is an error), never be skipped.
 
