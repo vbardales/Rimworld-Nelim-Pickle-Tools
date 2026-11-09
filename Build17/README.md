@@ -7,6 +7,12 @@ Pickle tool folders built for 1.7 (`net10.0`), kept here so a 1.7 Pickle run doe
 | `InspectTabs` | `InspectTabs/Source` | `~/pt17/src/InspectTabs` |
 | `ScreenshotStudio` | `ScreenshotStudio/Source` | `~/pt17/src/Nelim.PickleTools.ScreenshotStudio` |
 | `ScreenshotMode` | `ScreenshotMode/Source` | `~/pt17/src/ScreenshotMode` |
+| `CameraZoom` | `CameraZoom/Source` | `~/pt17/src/Nelim.PickleTools.CameraZoom` |
+| `StageDecor` | `StageDecor/Source` | `~/pt17/src/Nelim.PickleTools.StageDecor` |
+| `CoatSteps` | `CoatSteps/Source` | `~/pt17/src/Nelim.PickleTools.CoatSteps` (csproj copied from StageDecor, 2026-11-10) |
+| `ClearScreen` | `ClearScreen/Source` | `~/pt17/src/ClearScreen/Source` |
+| `ClickDiagnostics` | `ClickDiagnostics/Source` | `~/pt17/src/ClickDiagnostics/Source` |
+| `ColonistRace` | `ColonistRace/Source` | `~/pt17/src/Nelim.PickleTools.ColonistRace` |
 
 Copied 2026-11-09 from `~/pt17/mods/<Name>` (DLL dates: InspectTabs and ScreenshotMode 2026-10-12, ScreenshotStudio 2026-11-05).
 
