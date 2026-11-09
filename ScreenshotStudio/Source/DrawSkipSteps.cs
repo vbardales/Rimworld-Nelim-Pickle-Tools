@@ -12,7 +12,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     /// Hides what a class of a mod draws by itself, for the rest of the scenario. Written 2026-11-09 for AncientChineseBeastAndGeneExpandedRenew (scene 6:
     /// Ability_BerserkRing.Draw puts a 22.9-tile plane over the whole frame, it is not a Mote thing, so hiding a mote def would not touch it).
     /// The step skips the void methods named Draw (instance, any visibility) declared by the type, or by the nearest base class that declares one and
-    /// is not a type of the game (Verse, RimWorld, Unity). The methods are patched once with Harmony; a flag decides, so the patch is inert after the
+    /// is not a type of the game (Verse, RimWorld, Unity). A ThingComp draws in PostDraw (CompSeXieExpansion, a second drawer of the same ring, 2026-11-09): that one is skipped too. The methods are patched once with Harmony; a flag decides, so the patch is inert after the
     /// scenario. Compiled, not played.
     /// </summary>
     [PickleSteps]
@@ -56,17 +56,17 @@ namespace Nelim.PickleTools.ScreenshotStudio
             for (Type t = type; t != null && !IsGameType(t); t = t.BaseType)
             {
                 methods = t.GetMethods(BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly)
-                    .Where(m => m.Name == "Draw" && m.ReturnType == typeof(void) && !m.IsAbstract).ToList();
+                    .Where(m => (m.Name == "Draw" || m.Name == "PostDraw") && m.ReturnType == typeof(void) && !m.IsAbstract).ToList();
                 if (methods.Count > 0) break;
             }
-            ctx.Require(methods.Count > 0, "the class '" + type.FullName + "' (and its bases outside the game) declares no void method named Draw");
+            ctx.Require(methods.Count > 0, "the class '" + type.FullName + "' (and its bases outside the game) declares no void method named Draw or PostDraw (a ThingComp draws in PostDraw)");
             if (harmony == null) harmony = new Harmony("nelim.pickletools.drawskip");
             foreach (MethodInfo m in methods)
             {
                 if (Patched.Add(m)) harmony.Patch(m, prefix: new HarmonyMethod(typeof(DrawSkipSteps), nameof(Prefix_Draw)));
                 Skipped.Add(m);
             }
-            Log.Message("[draw-skip] " + methods.Count + " Draw method(s) of " + methods[0].DeclaringType.FullName + " are skipped");
+            Log.Message("[draw-skip] " + methods.Count + " Draw or PostDraw method(s) of " + methods[0].DeclaringType.FullName + " are skipped");
         }
 
         private static bool Prefix_Draw(MethodBase __originalMethod) => !Skipped.Contains(__originalMethod);
