@@ -244,7 +244,26 @@ namespace Nelim.PickleTools.ColonistRace
         /// kind's, so a kind from a race mod gives a pawn of that race, with that race's body types.
         /// </summary>
         [Given("Nelim's Pickle Tools: a colonist {string} of kind {string} exists")]
-        public void ColonistOfKindExists(PickleContext ctx, string nickname, string kindDefName)
+        public async System.Threading.Tasks.Task ColonistOfKindExists(PickleContext ctx, string nickname, string kindDefName)
+        {
+            // The pawn lists of the game are read on the main thread only (1.7: "Accessing map pawns off main thread").
+            await LookSteps.OnMainThread(ctx);
+            CreateColonist(ctx, nickname, kindDefName);
+        }
+
+        /// <summary>
+        /// The plain colonist of Pickle's own "a colonist {string} exists", made safe on 1.7: same result (a colonist of the
+        /// player's faction from the Colonist kind, spawned near the colonists, nothing done if the nickname is taken), but the
+        /// step waits for the main thread before it reads the pawn lists.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: a colonist {string} exists")]
+        public async System.Threading.Tasks.Task ColonistExists(PickleContext ctx, string nickname)
+        {
+            await LookSteps.OnMainThread(ctx);
+            CreateColonist(ctx, nickname, "Colonist");
+        }
+
+        private static void CreateColonist(PickleContext ctx, string nickname, string kindDefName)
         {
             if (ColonistLookup.Find(nickname) != null)
             {

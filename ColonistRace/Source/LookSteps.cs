@@ -323,7 +323,7 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>The pawn lists of the game may be read on the main thread only; a step of a Background can start elsewhere (SanctuaryBacklot ticket 5a9f, 2026-11-05: "Accessing map pawns off main thread"). The wait resumes on the main thread.</summary>
-        private static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
+        internal static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
         {
             if (!UnityData.IsInMainThread)
             {
