@@ -93,10 +93,20 @@ function readDefsSimple(defsDir) {
   const files = []; xmlFiles(defsDir, files);
   for (const f of files) {
     let t; try { t = fs.readFileSync(f, 'utf8'); } catch (e) { continue; }
-    t = t.replace(/<!--[\s\S]*?-->/g, '');
-    for (const m of t.matchAll(/<([A-Za-z_][\w.:-]*)\b([^>]*)>\s*(?:<[^>]*>[^<]*<\/[^>]*>\s*)*?<defName>([^<]*)<\/defName>/g)) {
-      if (/Abstract="True"/i.test(m[2])) continue;
-      have.add(m[1] + '/' + m[3].trim());
+    t = t.replace(/<!--[\s\S]*?-->/g, '').replace(/<!\[CDATA\[[\s\S]*?\]\]>/g, '').replace(/<\?[\s\S]*?\?>/g, '');
+    // Tag stack: a <defName> names its PARENT element, wherever defName sits among the siblings (nested elements may come before it) and at any depth (patch <value> blocks).
+    const stack = [];
+    for (const m of t.matchAll(/<(\/?)([A-Za-z_][\w.:-]*)\b((?:"[^"]*"|'[^']*'|[^>"'])*?)(\/?)>|([^<]+)/g)) {
+      if (m[5] !== undefined) continue;
+      if (m[1]) { const i = stack.map(s => s.tag).lastIndexOf(m[2]); if (i >= 0) stack.length = i; continue; }
+      if (m[4]) continue;
+      if (m[2] === 'defName') {
+        const end = t.indexOf('</defName>', m.index);
+        const parent = stack[stack.length - 1];
+        if (end > 0 && parent && !/Abstract\s*=\s*["']true["']/i.test(parent.attrs)) have.add(parent.tag + '/' + t.slice(m.index + m[0].length, end).trim());
+        continue;
+      }
+      stack.push({ tag: m[2], attrs: m[3] });
     }
   }
 }
