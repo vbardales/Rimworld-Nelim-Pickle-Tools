@@ -376,6 +376,35 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public void Empty(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.Empty(ctx, new MapArea(x0, z0, x1, z1));
 
         /// <summary>
+        /// Lays a stockpile zone (the game's default stockpile filter: accepts everything) on the cells of the rectangle, as the player does by dragging with the stockpile tool.
+        /// Cells that are not in bounds, not standable, or already in another zone are left out and logged ([stockpile-created]); fails when no cell is left. Written 2026-11-10 for
+        /// MalayThemedExpansionRenew (a bill whose product has no stockpile to go to stays "should do now False"); taken from Eden Garden's field stockpile step. Compiled, not played.
+        /// </summary>
+        [When(Prefix + "I create a stockpile in the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void CreateStockpile(PickleContext ctx, int x0, int z0, int x1, int z1)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var area = new MapArea(x0, z0, x1, z1);
+            var zone = new Zone_Stockpile(StorageSettingsPreset.DefaultStockpile, map.zoneManager);
+            map.zoneManager.RegisterZone(zone);
+            int skipped = 0;
+            for (int x = area.MinX; x <= area.MaxX; x++)
+                for (int z = area.MinZ; z <= area.MaxZ; z++)
+                {
+                    var cell = new IntVec3(x, 0, z);
+                    if (!cell.InBounds(map) || !cell.Standable(map) || map.zoneManager.ZoneAt(cell) != null) { skipped++; continue; }
+                    zone.AddCell(cell);
+                }
+            if (zone.Cells.Count == 0)
+            {
+                zone.Delete();
+                ctx.Require(false, "The stockpile has no cell: all " + skipped + " cells of the area from (" + x0 + ", " + z0 + ") to (" + x1 + ", " + z1 + ") are out of bounds, not standable or already in a zone");
+            }
+            Log.Message("[stockpile-created] " + zone.Cells.Count + " cells, " + skipped + " left out, area (" + x0 + ", " + z0 + ") to (" + x1 + ", " + z1 + ")");
+        }
+
+        /// <summary>
         /// Logs ([zone-bounds]) every zone of the map whose label contains a text: its kind, its cell count, the min and max x and z of its cells, and the
         /// plants standing on it by def. Never fails on a missing zone (it logs that none matched), so a feature can look before it plants.
         /// Written 2026-11-06 for the sanctuary (rice zones, dump zone). Compiled, not played.
