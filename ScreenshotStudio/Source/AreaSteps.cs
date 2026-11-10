@@ -70,6 +70,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
             return Find.CurrentMap;
         }
 
+        /// <summary>A [frame] line to the game log and to the process console, so it reaches a run's stdout.txt when Player.log is not kept.</summary>
+        private static void FrameTrace(string text)
+        {
+            Log.Message("[frame] " + text);
+            try { Console.WriteLine("[frame] " + text); } catch { }
+        }
+
         // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange); a tighter or wider frame needs the range widened first.
         public static void LiftZoomLimit()
         {
@@ -105,8 +112,13 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Find.CameraDriver.JumpToCurrentMapLoc(new Vector3(x + 0.5f, 0f, z + 0.5f));
             Find.CameraDriver.SetRootSize(rootSize);
             var clock = System.Diagnostics.Stopwatch.StartNew();
-            await ctx.WaitFrames(90);
+            int frame0 = Time.frameCount;
+            FrameTrace("start (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", frame " + frame0);
+            // 90 frames for the zoom, but at most 20 s of wall clock: at under 1.5 fps (1.7 in WSL under xvfb, AnimalCosmeticGenes diag-17b and 17c, 2026-11-10)
+            // 90 frames outlast the 60 s a frame step is given.
+            for (int i = 0; i < 90 && clock.ElapsedMilliseconds < 20000; i++) await ctx.WaitFrames(1);
             long zoomMs = clock.ElapsedMilliseconds;
+            FrameTrace("zoom wait over after " + zoomMs + " ms, " + (Time.frameCount - frame0) + " frame(s), camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0"));
             float last = -1f; int still = 0;
             // The light wait stops after 15 s of wall clock too: at a few frames a second 600 frames outlast the 60 s a frame step is given
             // (VenusTouchWaistlines tickets 4b8e, 73de, 2026-10-19: "timed out after 60s").
@@ -117,7 +129,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 last = glow;
                 await ctx.WaitFrames(1);
             }
-            Log.Message("[frame] asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00") + "; zoom wait " + zoomMs + " ms, total " + clock.ElapsedMilliseconds + " ms");
+            FrameTrace("asked (" + x + ", " + z + ") root size " + rootSize + ", camera at " + Find.CameraDriver.MapPosition + ", root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sky glow " + last.ToString("0.00") + "; zoom wait " + zoomMs + " ms, total " + clock.ElapsedMilliseconds + " ms, " + (Time.frameCount - frame0) + " frame(s), " + ((Time.frameCount - frame0) * 1000f / Math.Max(1, clock.ElapsedMilliseconds)).ToString("0.0") + " fps");
             lastFramedMap = Find.CurrentMap;
             lastFramedX = x;
             lastFramedZ = z;
