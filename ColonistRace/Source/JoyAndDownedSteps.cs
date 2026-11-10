@@ -4,6 +4,7 @@ using System.Linq;
 using RimWorks.Pickle;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace Nelim.PickleTools.ColonistRace
 {
@@ -117,11 +118,11 @@ namespace Nelim.PickleTools.ColonistRace
 
         /// <summary>
         /// Downs a colonist in a bed: both legs are removed (the colonist stays conscious and cannot move, as after a bad fight), the colonist is put on
-        /// the bed's first sleeping spot and the health state is rechecked at once. Fails when no bed stands at the cell, the body has no legs, or the
+        /// the bed's first sleeping spot, a LayDown job on the bed is started and awaited until the colonist is in the bed (InBed, which a pawn standing there is not). Fails when no bed stands at the cell, the body has no legs, or the
         /// colonist is not downed afterwards. The legs are not healed back: the scenario ends with the colonist, as other injuring steps do.
         /// </summary>
-        [Given("Nelim's Pickle Tools: {string} is downed in the bed at \\({int}, {int}\\)")]
-        public void DownedInBed(PickleContext ctx, string nickname, int x, int z)
+        [Given("Nelim's Pickle Tools: {string} is downed in the bed at \\({int}, {int}\\)", TimeoutSeconds = 15f)]
+        public async System.Threading.Tasks.Task DownedInBed(PickleContext ctx, string nickname, int x, int z)
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.Spawned && pawn.Map != null, $"{nickname} is not spawned on a map");
@@ -148,7 +149,14 @@ namespace Nelim.PickleTools.ColonistRace
             pawn.jobs?.StopAll();
             pawn.Position = bed.GetSleepingSlotPos(0);
             pawn.Notify_Teleported(true, true);
-            ctx.Assert(pawn.Position == bed.GetSleepingSlotPos(0) && pawn.Downed, $"{nickname} is at {pawn.Position}, downed {pawn.Downed}; the bed's first sleeping spot is {bed.GetSleepingSlotPos(0)}");
+            ctx.Require(pawn.Position == bed.GetSleepingSlotPos(0) && pawn.Downed, $"{nickname} is at {pawn.Position}, downed {pawn.Downed}; the bed's first sleeping spot is {bed.GetSleepingSlotPos(0)}");
+
+            // Standing on the sleeping spot is not lying in the bed: the game says a pawn is in a bed (InBed, CurrentBed) only while it LAYS in it, that is while a
+            // LayDown job on the bed holds the posture LayingInBed. Start that job, as a rescuer's hand-over does, and wait for the posture.
+            Job lay = JobMaker.MakeJob(JobDefOf.LayDown, bed);
+            pawn.jobs.StartJob(lay, JobCondition.InterruptForced);
+            await ctx.WaitUntil(() => pawn.InBed(), 8f);
+            ctx.Assert(pawn.InBed() && pawn.CurrentBed() == bed, $"{nickname} is not lying in the bed at ({x}, {z}) after a LayDown job: in bed {pawn.InBed()}, posture {pawn.GetPosture()}, job {pawn.CurJob?.def.defName ?? "none"}");
         }
 
         /// <summary>
