@@ -238,7 +238,8 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             Log.Message($"[joy-giver] joy level of {nickname}: {pawn.needs?.joy?.CurLevel.ToString("0.000") ?? "no joy need"}");
-            Log.Message($"[joy-giver] TryGiveJob for {nickname}: {Try(() => giver.Worker.TryGiveJob(pawn)?.def.defName ?? "null")}");
+            Log.Message($"[joy-giver] {nickname} in bed: {Try(() => pawn.InBed())}; {(pawn.InBed() ? "TryGiveJobWhileInBed" : "TryGiveJob")}: {Try(() => GiveJob(pawn, giver)?.def.defName ?? "null")}");
+            Log.Message("[joy-giver] " + WatchLines(pawn, giver));
         }
 
         /// <summary>
@@ -254,12 +255,47 @@ namespace Nelim.PickleTools.ColonistRace
             JoyGiverDef giver = DefDatabase<JoyGiverDef>.GetNamedSilentFail(giverDefName);
             ctx.Require(giver != null, $"no joy giver '{giverDefName}'");
             ctx.Require(pawn.jobs != null, $"{nickname} has no job tracker");
-            Job job = giver.Worker.TryGiveJob(pawn);
-            ctx.Require(job != null, $"joy giver {giverDefName} gives no job to {nickname}; " + WhyNoJoyJob(pawn, giver));
+            Job job = GiveJob(pawn, giver);
+            ctx.Require(job != null, $"joy giver {giverDefName} gives no job to {nickname}{(pawn.InBed() ? " (in bed: TryGiveJobWhileInBed)" : string.Empty)}; " + WhyNoJoyJob(pawn, giver) + WatchLines(pawn, giver));
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
             Log.Message($"[joy-giver] forced {job.def.defName} on {nickname} from {giverDefName}; current job now {pawn.CurJob?.def.defName ?? "none"}");
         }
 
+
+        /// <summary>
+        /// Asserts a joy giver (a JoyGiverDef, by defName) returns no job for a colonist, asked the way the game asks: <c>TryGiveJobWhileInBed</c> when the
+        /// colonist lies in a bed, <c>TryGiveJob</c> otherwise. Never starts the job. For "no use through a wall". Written 2026-11-10 for RetroJoyRenew.
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the joy giver {string} gives no job to {string}")]
+        public void JoyGiverGivesNoJob(PickleContext ctx, string giverDefName, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            JoyGiverDef giver = DefDatabase<JoyGiverDef>.GetNamedSilentFail(giverDefName);
+            ctx.Require(giver != null, $"no joy giver '{giverDefName}'");
+            Job job = GiveJob(pawn, giver);
+            ctx.Assert(job == null, $"joy giver {giverDefName} gives {job?.def.defName} to {nickname}, none was expected; " + WatchLines(pawn, giver));
+        }
+
+        // The game asks a pawn lying in a bed for TryGiveJobWhileInBed (watching a building from the bed needs no chair), any other pawn for TryGiveJob.
+        private static Job GiveJob(Pawn pawn, JoyGiverDef giver)
+        {
+            return pawn.InBed() ? giver.Worker.TryGiveJobWhileInBed(pawn) : giver.Worker.TryGiveJob(pawn);
+        }
+
+        // For a building giver: where the pawn is (its bed spot when in bed) and whether each building could be watched from there, with the watch cells.
+        private static string WatchLines(Pawn pawn, JoyGiverDef giver)
+        {
+            if (giver.thingDefs == null || pawn.Map == null) return string.Empty;
+            var sb = new System.Text.StringBuilder($"pawn at {pawn.Position}, in bed {Try(() => pawn.InBed())}, bed {Try(() => pawn.CurrentBed()?.Position.ToString() ?? "none")}; ");
+            foreach (ThingDef td in giver.thingDefs)
+                foreach (Thing t in pawn.Map.listerThings.ThingsOfDef(td).Take(3))
+                {
+                    sb.Append($"[{td.defName} at {t.Position} facing {t.Rotation}: pawn cell is a watch cell {Try(() => WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map).Any(c => c.ToString() == pawn.Position.ToString()))}; watch cells {Try(() => string.Join(" ", WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map)))}] ");
+                }
+
+            return sb.ToString();
+        }
 
         // Why a joy giver of buildings returns no job: the checks of JoyGiver_InteractBuilding.CanInteractWith and of the two TryGivePlayJob variants, per candidate thing.
         // Time, the Joy need, weather and temperature are NOT checked by TryGiveJob (they belong to JobGiver_GetJoy), so they never explain a null here.
