@@ -79,6 +79,53 @@ namespace Nelim.PickleTools.StageDecor
             PlaceNear(ctx, thingDefName, x, z, null);
         }
         /// <summary>
+        /// Places a thing (a seat, a stool) on a free cell directly north, east, south or west of the nearest spawned thing of another def, for
+        /// the player, and remembers it for removal. The nearest target is measured from the map centre of the first of its cells; the neighbour
+        /// cells are those touching its footprint (a 2 by 1 table has six), tried north first, then east, south, west. A cell qualifies when it is
+        /// standable and holds no building and no pawn. Fails naming the target and the cells tried when none qualifies. Written 2026-11-10 for
+        /// JapaneseHomestead (JoyGiver_InteractBuildingSitAdjacent needs a seat on a cardinal cell). Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} on a cardinal cell next to the nearest {string}")]
+        public void PlaceDecorNextToNearest(PickleContext ctx, string seatDefName, string targetDefName)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef seat = DefDatabase<ThingDef>.GetNamedSilentFail(seatDefName);
+            ctx.Require(seat != null, $"no thing def '{seatDefName}' in this game");
+            ThingDef targetDef = DefDatabase<ThingDef>.GetNamedSilentFail(targetDefName);
+            ctx.Require(targetDef != null, $"no thing def '{targetDefName}' in this game");
+            IntVec3 centre = map.Center;
+            Thing target = map.listerThings.AllThings.Where(t => t.Spawned && t.def == targetDef)
+                .OrderBy(t => (t.Position - centre).LengthHorizontalSquared).FirstOrDefault();
+            ctx.Require(target != null, $"no {targetDefName} stands on the map");
+
+            var tried = new List<string>();
+            IntVec3 chosen = IntVec3.Invalid;
+            CellRect rect = target.OccupiedRect();
+            foreach (IntVec3 dir in new[] { IntVec3.North, IntVec3.East, IntVec3.South, IntVec3.West })
+            {
+                foreach (IntVec3 edge in rect.Cells.Where(c => !rect.Contains(c + dir)))
+                {
+                    IntVec3 cell = edge + dir;
+                    string why = !cell.InBounds(map) ? "outside the map"
+                        : !cell.Standable(map) ? "not standable"
+                        : cell.GetThingList(map).Any(t => t is Pawn || t is Building) ? "holds a pawn or a building"
+                        : null;
+                    if (why != null) { tried.Add($"({cell.x}, {cell.z}) {why}"); continue; }
+                    chosen = cell;
+                    break;
+                }
+                if (chosen.IsValid) break;
+            }
+
+            ctx.Require(chosen.IsValid, $"no free cardinal cell next to the {targetDefName} at ({target.Position.x}, {target.Position.z}); tried: {string.Join("; ", tried)}");
+            Thing thing = ThingMaker.MakeThing(seat, seat.MadeFromStuff ? GenStuff.DefaultStuffFor(seat) : null);
+            Thing spawned = GenSpawn.Spawn(thing, chosen, map, WipeMode.Vanish);
+            if (spawned.def.CanHaveFaction) spawned.SetFaction(Faction.OfPlayer);
+            Placed.Add(spawned);
+            Log.Message($"[decor-placed] {seatDefName} at ({chosen.x}, {chosen.z}), next to the {targetDefName} at ({target.Position.x}, {target.Position.z})");
+        }
+
+        /// <summary>
         /// Places a building on exactly this cell, if the game's own rules accept it there with one of the rotations (north first); otherwise it is
         /// skipped and logged when the scenario asked for that, and fails when it did not. For a chain of cells that must touch (a hidden conduit).
         /// </summary>
