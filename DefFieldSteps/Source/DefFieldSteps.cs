@@ -290,6 +290,48 @@ namespace Nelim.PickleTools.DefFields
                 $"{extensionType} on {def.GetType().Name} '{defName}' field '{fieldPath}' should be '{expected}'; actual '{actual}'");
         }
 
+        /// <summary>
+        /// Asserts a list field of a def (dotted path, such as <c>tradeTags</c> or <c>comps</c>) holds an item, by text (a def by its defName), ignoring
+        /// case. The plain field step compares the WHOLE list; this one reads one item. Written 2026-11-10 for PropsAsDeco. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} has {string} in the list {string}")]
+        public void ListHas(PickleContext ctx, string defName, string typeName, string item, string fieldPath)
+        {
+            Def def = Find(ctx, defName, typeName);
+            var items = ItemsOf(ctx, def, fieldPath);
+            ctx.Assert(items.Contains(item, StringComparer.OrdinalIgnoreCase), $"{def.GetType().Name} '{defName}' list '{fieldPath}' does not hold '{item}'; it holds: " + string.Join(", ", items));
+        }
+
+        /// <summary>The negative twin of <c>the def ... has ... in the list ...</c>. Compiled, NOT PLAYED.</summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} does not have {string} in the list {string}")]
+        public void ListHasNot(PickleContext ctx, string defName, string typeName, string item, string fieldPath)
+        {
+            Def def = Find(ctx, defName, typeName);
+            var items = ItemsOf(ctx, def, fieldPath);
+            ctx.Assert(!items.Contains(item, StringComparer.OrdinalIgnoreCase), $"{def.GetType().Name} '{defName}' list '{fieldPath}' holds '{item}'");
+        }
+
+        /// <summary>
+        /// Asserts a ThingDef carries a comp of that class (its full name, such as <c>MyMod.CompProperties_Deco</c>, found in <c>comps</c>, which the
+        /// plain path cannot index). Read by reflection on the name, so this tool does not reference the mod. Written 2026-11-10 for PropsAsDeco.
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} has the comp {string}")]
+        public void HasComp(PickleContext ctx, string defName, string typeName, string compType)
+        {
+            Def def = Find(ctx, defName, typeName);
+            var comps = (def as ThingDef)?.comps ?? new List<CompProperties>();
+            ctx.Assert(comps.Any(c => c != null && (c.GetType().FullName == compType || c.compClass?.FullName == compType)),
+                $"{def.GetType().Name} '{defName}' carries no comp {compType}; its comps: " + string.Join(", ", comps.Select(c => c?.GetType().FullName ?? "(null)")));
+        }
+
+        private static List<string> ItemsOf(PickleContext ctx, Def def, string fieldPath)
+        {
+            object value = Walk(ctx, def, fieldPath);
+            ctx.Require(value is System.Collections.IEnumerable && !(value is string), $"'{fieldPath}' of {def.GetType().Name} '{def.defName}' is not a list");
+            return ((System.Collections.IEnumerable)value).Cast<object>().Select(o => o is Def d ? d.defName : Text(o)).ToList();
+        }
+
         /// <summary>Asserts the PawnKindDef carries exactly one Better Crossbreeding extension (a patch that adds a second one would fail the game's own read). Compiled, not played.</summary>
         [Then("Nelim's Pickle Tools: the pawn kind {string} carries one Better Crossbreeding extension")]
         public void KindCarriesOneCrossbreedingExtension(PickleContext ctx, string kindName)

@@ -58,6 +58,47 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asserts an Architect category tab (DesignationCategoryDef defName or label, case ignored) lists a building def among its designators, the
+        /// ones inside a drop-down group included. A def-level read of <c>ResolvedAllowedDesignators</c>: no window opens. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the architect tab {string} lists the def {string}")]
+        public void ArchitectTabLists(PickleContext ctx, string tabName, string defName)
+        {
+            var listed = ArchitectDefs(ctx, tabName, out DesignationCategoryDef tab);
+            ctx.Assert(listed.Contains(defName, StringComparer.OrdinalIgnoreCase), $"the Architect tab '{tab.defName}' does not list '{defName}'; it lists " + string.Join(", ", listed.Take(60)));
+        }
+
+        /// <summary>The negative twin of <c>the architect tab ... lists the def ...</c>: other entries of the tab are not read. Compiled, NOT PLAYED.</summary>
+        [Then("Nelim's Pickle Tools: the architect tab {string} does not list the def {string}")]
+        public void ArchitectTabDoesNotList(PickleContext ctx, string tabName, string defName)
+        {
+            var listed = ArchitectDefs(ctx, tabName, out DesignationCategoryDef tab);
+            ctx.Assert(!listed.Contains(defName, StringComparer.OrdinalIgnoreCase), $"the Architect tab '{tab.defName}' lists '{defName}'");
+        }
+
+        private static System.Collections.Generic.List<string> ArchitectDefs(PickleContext ctx, string tabName, out DesignationCategoryDef tab)
+        {
+            var categories = DefDatabase<DesignationCategoryDef>.AllDefsListForReading;
+            tab = categories.FirstOrDefault(c => string.Equals(c.defName, tabName, StringComparison.OrdinalIgnoreCase))
+                ?? categories.FirstOrDefault(c => string.Equals(c.LabelCap.ToString(), tabName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(tab != null, $"no Architect tab '{tabName}'; the tabs are " + string.Join(", ", categories.Select(c => c.defName)));
+            var names = new System.Collections.Generic.List<string>();
+            foreach (Designator designator in tab.ResolvedAllowedDesignators)
+            {
+                if (designator is Designator_Dropdown dropdown)
+                {
+                    names.AddRange(dropdown.Elements.OfType<Designator_Place>().Select(p => p.PlacingDef?.defName).Where(n => n != null));
+                }
+                else if (designator is Designator_Place place && place.PlacingDef != null)
+                {
+                    names.Add(place.PlacingDef.defName);
+                }
+            }
+
+            return names;
+        }
+
+        /// <summary>
         /// Opens the bill configuration dialog (the window with the ingredient list) of the bill for a recipe (RecipeDef defName) held by a work table
         /// (by defName, at a cell). Fails when no such table or bill is there, listing what the table holds.
         /// </summary>
