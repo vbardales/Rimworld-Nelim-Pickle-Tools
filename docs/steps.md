@@ -802,3 +802,6 @@ Package `nelim.pickletools.veffactions`. In the bundle (`Mod/Pickle/Assemblies`)
 | `Nelim's Pickle Tools: the architect tab {string} does not show the def {string}` (Then) | The negative twin: not listed, not visible or research not finished. |
 | `Nelim's Pickle Tools: the def {string} of type {string} is labelled {string}` (Then) | Exact `LabelCap` of a def in the language of the run (a translation applied). Compiled, NOT PLAYED. |
 | `Nelim's Pickle Tools: the def {string} of type {string} is described as {string}` (Then) | Exact description of a def in the language of the run. |
+| `Nelim's Pickle Tools: I add {string} to the set option {string} of the mod {string}` (When) | Adds a text entry to a set or list of text in the mod's settings (`HashSet<string>` of defNames), then writes the settings like closing the window does. Written 2026-11-10 for RepossessedFurniture, compiled, NOT PLAYED. |
+| `Nelim's Pickle Tools: I remove {string} from the set option {string} of the mod {string}` (When) | The same, removing; fails when the entry was not there. |
+| `Nelim's Pickle Tools: the settings file of the mod {string} lists {string} in the set option {string}` (Then) | Reads the settings file on disk: the option's element must hold an `<li>` with the entry (case ignored). |

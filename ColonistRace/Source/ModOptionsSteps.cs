@@ -160,6 +160,65 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(string.Equals(read, expected, StringComparison.OrdinalIgnoreCase), $"entry '{key}' of option '{option}' of {pack.Name} is '{read}', not '{expected}'");
         }
 
+        /// <summary>
+        /// Adds a text entry to an option that is a set or list of text (a <c>HashSet&lt;string&gt;</c> of defNames, say), then writes the mod's settings (what
+        /// closing the window does). Does nothing more when the entry is already there. Written 2026-11-10 for RepossessedFurniture. Compiled, NOT PLAYED.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I add {string} to the set option {string} of the mod {string}")]
+        public void AddToSetOption(PickleContext ctx, string entry, string option, string packageId)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ICollection<string> set = SetOption(ctx, pack, handle, option, out object owner, out MemberInfo member);
+            set.Add(entry);
+            Log.Message($"[mod-options] {entry} added to {option} of {pack.Name} ({set.Count} entries)");
+            handle.WriteSettings();
+            LogWrite(handle, option + "+" + entry, owner, member, entry);
+        }
+
+        /// <summary>The same, removing the entry (fails when it was not in the set, so a scenario cannot pass on a typo).</summary>
+        [When("Nelim's Pickle Tools: I remove {string} from the set option {string} of the mod {string}")]
+        public void RemoveFromSetOption(PickleContext ctx, string entry, string option, string packageId)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ICollection<string> set = SetOption(ctx, pack, handle, option, out object owner, out MemberInfo member);
+            ctx.Require(set.Remove(entry), $"'{entry}' was not in the set option '{option}' of {pack.Name}; it holds: " + string.Join(", ", set.Take(40)));
+            Log.Message($"[mod-options] {entry} removed from {option} of {pack.Name} ({set.Count} entries)");
+            handle.WriteSettings();
+            LogWrite(handle, option + "-" + entry, owner, member, entry);
+        }
+
+        private static ICollection<string> SetOption(PickleContext ctx, ModContentPack pack, Mod handle, string option, out object owner, out MemberInfo member)
+        {
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            ctx.Require(!IsMsf(handle), $"{pack.Name} keeps its options in Mod Settings Framework: no set options");
+            ctx.Require(FindMember(handle, option, out owner, out member), $"no member '{option}' in the settings of {pack.Name}; members: " + Members(handle));
+            object value = member is FieldInfo f ? f.GetValue(owner) : ((PropertyInfo)member).GetValue(owner);
+            ctx.Require(value != null, $"'{option}' of {pack.Name} is null");
+            var set = value as ICollection<string>;
+            ctx.Require(set != null, $"'{option}' of {pack.Name} is a {value.GetType().Name}, not a set or list of text");
+            return set;
+        }
+
+        /// <summary>
+        /// Reads the settings file on disk (the one a restart loads): the element named like the option must hold a <c>&lt;li&gt;</c> child with the entry text
+        /// (case ignored). Written 2026-11-10 for RepossessedFurniture. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the settings file of the mod {string} lists {string} in the set option {string}")]
+        public void FileListsInSet(PickleContext ctx, string packageId, string entry, string option)
+        {
+            ModContentPack pack = PackOf(ctx, packageId);
+            Mod handle = PageOf(pack);
+            ctx.Require(handle != null, $"{pack.Name} has no entry in Mod options");
+            string path = SettingsPath(handle);
+            ctx.Require(path != null && File.Exists(path), $"no settings file for {pack.Name} at '{path}'");
+            XElement el = XDocument.Load(path).Descendants().FirstOrDefault(e => string.Equals(e.Name.LocalName, option, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(el != null, $"{path} holds no element '{option}'; its elements: " + string.Join(", ", XDocument.Load(path).Descendants().Select(e => e.Name.LocalName).Distinct()));
+            var items = el.Elements("li").Select(e => e.Value).ToList();
+            ctx.Assert(items.Contains(entry, StringComparer.OrdinalIgnoreCase), $"{path}: '{option}' does not list '{entry}'; it lists " + string.Join(", ", items.Take(40)));
+        }
+
         [Then("Nelim's Pickle Tools: the option {string} of the mod {string} is {string}")]
         public void OptionIs(PickleContext ctx, string option, string packageId, string expected)
         {
