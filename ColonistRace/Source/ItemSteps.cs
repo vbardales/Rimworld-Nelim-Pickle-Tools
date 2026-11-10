@@ -294,6 +294,11 @@ namespace Nelim.PickleTools.ColonistRace
             foreach (ThingDef td in giver.thingDefs)
                 foreach (Thing t in pawn.Map.listerThings.ThingsOfDef(td).Take(3))
                 {
+                    sb.Append("{bed check of " + td.defName + " at " + t.Position + ": " +
+                        $"building room {Try(() => t.GetRoom() == null ? "none" : t.GetRoom().ID + " (" + t.GetRoom().CellCount + " cells)")}, pawn room {Try(() => pawn.GetRoom() == null ? "none" : pawn.GetRoom().ID + " (" + pawn.GetRoom().CellCount + " cells)")}, same room {Try(() => t.GetRoom() == pawn.GetRoom())}, " +
+                        $"watchBuildingInSameRoom {td.building?.watchBuildingInSameRoom}, pawn cell roofed {Try(() => pawn.Position.Roofed(pawn.Map))}, building powered {Try(() => t.TryGetComp<CompPowerTrader>()?.PowerOn.ToString() ?? "no power comp")}, " +
+                        $"bed {Try(() => pawn.CurrentBed()?.def.defName ?? "none")} medical {Try(() => pawn.CurrentBed()?.Medical.ToString() ?? "n/a")}, can reserve the building {Try(() => pawn.CanReserve(t, 1))}, " +
+                        $"line of sight pawn cell to building {Try(() => GenSight.LineOfSight(pawn.Position, t.Position, pawn.Map, true))}, cells between {Try(() => string.Join(" ", GenSight.PointsOnLineOfSight(pawn.Position, t.Position).Select(c => c + ":" + (c.CanBeSeenOver(pawn.Map) ? "clear" : "BLOCKS") + "[" + string.Join("/", c.GetThingList(pawn.Map).Where(x => !(x is Mote)).Select(x => x.def.defName)) + "]")))}" + "} ");
                     sb.Append($"[{td.defName} at {t.Position} facing {t.Rotation}: can watch from bed {Try(() => pawn.CurrentBed() != null && WatchBuildingUtility.CanWatchFromBed(pawn, pawn.CurrentBed(), t))}; pawn cell is a watch cell {Try(() => WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map).Any(c => c.ToString() == pawn.Position.ToString()))}; watch cells {Try(() => string.Join(" ", WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map)))}] ");
                 }
 
