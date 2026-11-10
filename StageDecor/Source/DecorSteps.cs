@@ -643,6 +643,64 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Builds two closed, roofed rooms side by side that share one wall, with a door in the middle of that wall held open so line of sight crosses it:
+        /// the first room's south-west inside cell is (x, z), each inside is width by depth, the second starts one cell (the shared wall) east of the first.
+        /// Each is a proper room of its own (a door splits rooms), with no other opening: a pawn put inside is shut in. Plants and filth are cleared; fails
+        /// naming the first cell outside the map or holding a building or a pawn. The walls and the door are removed with the other decor. Written 2026-11-10
+        /// for RimScentExtended (a pawn scans only its own room). Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: two rooms of {int} by {int} are built side by side at \\({int}, {int}\\) with a door held open in the shared wall", TimeoutSeconds = 20f)]
+        public async System.Threading.Tasks.Task BuildTwoRooms(PickleContext ctx, int width, int depth, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            ctx.Require(width >= 1 && depth >= 1, $"each inside must be at least 1 by 1, not {width} by {depth}");
+            CellRect insideA = new CellRect(x, z, width, depth);
+            CellRect insideB = new CellRect(x + width + 1, z, width, depth);
+            CellRect footprint = new CellRect(x - 1, z - 1, 2 * width + 3, depth + 2);
+            IntVec3 doorCell = new IntVec3(x + width, 0, z + (depth - 1) / 2);
+            foreach (IntVec3 c in footprint)
+            {
+                ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+                Thing blocker = c.GetThingList(map).FirstOrDefault(t => t is Pawn || t is Building);
+                ctx.Require(blocker == null, $"the cell ({c.x}, {c.z}) already holds {blocker?.def.defName}");
+            }
+
+            foreach (IntVec3 c in footprint)
+            {
+                foreach (Thing t in c.GetThingList(map).Where(t => t.def.category == ThingCategory.Plant || t.def.category == ThingCategory.Filth).ToList())
+                {
+                    t.Destroy();
+                }
+            }
+
+            Building_Door door = null;
+            foreach (IntVec3 c in footprint.Cells.Where(c => !insideA.Contains(c) && !insideB.Contains(c)))
+            {
+                ThingDef def = c == doorCell ? ThingDefOf.Door : ThingDefOf.Wall;
+                Thing spawned = GenSpawn.Spawn(ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def)), c, map, WipeMode.Vanish);
+                Placed.Add(spawned);
+                if (c == doorCell) door = spawned as Building_Door;
+            }
+
+            ctx.Require(door != null, "the door of the shared wall was not built");
+            System.Reflection.FieldInfo hold = typeof(Building_Door).GetField("holdOpenInt", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+            if (hold != null) hold.SetValue(door, true); else Log.Warning("[decor] Building_Door has no holdOpenInt in this game version: the door is not held open");
+
+            foreach (IntVec3 c in insideA.Cells.Concat(insideB.Cells))
+            {
+                map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
+            }
+
+            map.regionAndRoomUpdater.RebuildAllRegionsAndRooms();
+            IntVec3 probeA = insideA.CenterCell, probeB = insideB.CenterCell;
+            await ctx.WaitUntil(() => probeA.GetRoom(map)?.ProperRoom == true && probeB.GetRoom(map)?.ProperRoom == true, 10f);
+            Room roomA = probeA.GetRoom(map), roomB = probeB.GetRoom(map);
+            ctx.Assert(roomA != null && roomB != null && roomA != roomB && roomA.ProperRoom && roomB.ProperRoom,
+                $"the two rooms should be two proper rooms; A {(roomA == null ? "none" : roomA.CellCount + " cells, proper " + roomA.ProperRoom)}, B {(roomB == null ? "none" : roomB.CellCount + " cells, proper " + roomB.ProperRoom)}, same room {roomA == roomB}");
+            Log.Message($"[decor-rooms] room A inside ({insideA.minX},{insideA.minZ})-({insideA.maxX},{insideA.maxZ}), room B inside ({insideB.minX},{insideB.minZ})-({insideB.maxX},{insideB.maxZ}), door at ({doorCell.x}, {doorCell.z}), held open {hold != null}");
+        }
+
+        /// <summary>
         /// Builds a closed, roofed room whose south-west inside cell is (x, z): walls around an inside of the given width by depth, a door in the middle of
         /// the south wall (the inside must be at least 3 wide), a constructed roof over the inside, then waits for the game to make a proper room of it.
         /// Plants and filth in the way are cleared; fails naming the first cell outside the map or holding a building or a pawn. The walls and the door are
