@@ -6,8 +6,8 @@ Seven step-test tickets filed. Results as they arrive (summary.json and junit.xm
 |---|---|---|
 | 1d89 | deffields | GREEN, 1 of 1 |
 | c953 | inspecttabs | GREEN, 1 of 1 |
-| 74be | interfacescale | pending |
-| dd3d | keyedclick | pending |
-| 4035 | researchsteps | pending |
-| 8e08 | tradesteps | pending |
-| 520b | excludes | pending |
+| 74be | interfacescale | GREEN, 1 of 1 |
+| dd3d | keyedclick | GREEN, 1 of 1 |
+| 4035 | researchsteps | GREEN, 1 of 1 |
+| 8e08 | tradesteps | GREEN, 1 of 1 |
+| 520b | excludes | GREEN, 1 passed, 1 skipped by design (the loaded-mod scenario is excluded when the mod is absent) |
