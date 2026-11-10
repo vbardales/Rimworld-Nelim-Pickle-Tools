@@ -42,7 +42,8 @@ namespace Nelim.PickleTools.StageDecor
 
         /// <summary>
         /// Places a thing of the def at a cell, made of its default stuff, and remembers it for removal. Fails naming the cell if it is
-        /// off the map or already holds a pawn or a building (the game would otherwise wipe what stood there).
+        /// off the map or already holds a pawn or a building (the game would otherwise wipe what stood there); an item (category Item, an egg on a bed) is
+        /// the exception and may lie on a building (2026-11-10, for MoaRenew).
         /// </summary>
         [Given("Nelim's Pickle Tools: I place the decor {string} at \\({int}, {int}\\)")]
         public void PlaceDecor(PickleContext ctx, string thingDefName, int x, int z)
@@ -59,8 +60,12 @@ namespace Nelim.PickleTools.StageDecor
                 return;
             }
 
-            Thing blocker = cell.GetThingList(map).FirstOrDefault(t => t is Pawn || t is Building);
-            ctx.Require(blocker == null, $"the cell ({x}, {z}) already holds {blocker?.def.defName}");
+            // An item (an egg, a book) lies on a building (a bed, a shelf) without wiping it: only a pawn or a building blocks a non-item.
+            if (def.category != ThingCategory.Item)
+            {
+                Thing blocker = cell.GetThingList(map).FirstOrDefault(t => t is Pawn || t is Building);
+                ctx.Require(blocker == null, $"the cell ({x}, {z}) already holds {blocker?.def.defName}");
+            }
 
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
             Placed.Add(GenSpawn.Spawn(thing, cell, map, WipeMode.Vanish));
