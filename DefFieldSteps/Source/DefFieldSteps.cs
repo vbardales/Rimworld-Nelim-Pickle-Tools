@@ -251,7 +251,7 @@ namespace Nelim.PickleTools.DefFields
         [Then("Nelim's Pickle Tools: the def {string} of type {string} is not loaded")]
         public void DefIsNotLoaded(PickleContext ctx, string defName, string typeName)
         {
-            Type type = GenTypes.GetTypeInAnyAssembly(typeName);
+            Type type = ResolveDefType(typeName);
             ctx.Require(type != null && typeof(Def).IsAssignableFrom(type), $"'{typeName}' is not a def type the game knows (a name such as StyleCategoryDef or ThingDef)");
             ctx.Assert(GenDefDatabase.GetDefSilentFail(type, defName, false) == null, $"a {type.Name} named '{defName}' is loaded, and it should not be");
         }
@@ -391,9 +391,18 @@ namespace Nelim.PickleTools.DefFields
                 $"style '{styleName}' of '{thingName}' draws the pink bad-texture material (texPath '{graphic.path}')");
         }
 
-        private static Def Find(PickleContext ctx, string defName, string typeName)
+        /// <summary>Finds a def type by name; falls back to a scan of every Def subclass by full or short name, so a type of another mod (AlienRace.BackstoryDef) resolves.</summary>
+        private static Type ResolveDefType(string typeName)
         {
             Type type = GenTypes.GetTypeInAnyAssembly(typeName);
+            if (type != null && typeof(Def).IsAssignableFrom(type)) return type;
+            return typeof(Def).AllSubclasses().FirstOrDefault(t => t.FullName == typeName)
+                ?? typeof(Def).AllSubclasses().FirstOrDefault(t => t.Name == typeName);
+        }
+
+        private static Def Find(PickleContext ctx, string defName, string typeName)
+        {
+            Type type = ResolveDefType(typeName);
             ctx.Require(
                 type != null && typeof(Def).IsAssignableFrom(type),
                 $"'{typeName}' is not a def type the game knows (a name such as ThingDef or PawnKindDef)");
