@@ -80,6 +80,42 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Sets a colonist's skill (SkillDef defName) to a level, with no experience towards the next one. Fails loudly when the skill is disabled for that
+        /// colonist (a backstory or trait: a level cannot fix that) or when the level is outside 0 to 20. Written 2026-11-10 for RetroJoyRenew. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} has the skill {string} at level {int}")]
+        public void SkillAtLevel(PickleContext ctx, string nickname, string skillName, int level)
+        {
+            SkillRecord record = Record(ctx, nickname, skillName, level);
+            record.Level = level;
+            record.xpSinceLastLevel = 0f;
+            ctx.Assert(record.Level == level, $"{nickname}'s {skillName} reads {record.Level} after setting {level}");
+        }
+
+        /// <summary>The same, and the passion (None, Minor or Major), which sets how fast the skill learns.</summary>
+        [Given("Nelim's Pickle Tools: {string} has the skill {string} at level {int} with the passion {word}")]
+        public void SkillAtLevelWithPassion(PickleContext ctx, string nickname, string skillName, int level, string passion)
+        {
+            SkillRecord record = Record(ctx, nickname, skillName, level);
+            ctx.Require(Enum.GetNames(typeof(Passion)).Any(n => string.Equals(n, passion, StringComparison.OrdinalIgnoreCase)), "the passion must be one of " + string.Join(", ", Enum.GetNames(typeof(Passion))) + $", not '{passion}'");
+            record.Level = level;
+            record.xpSinceLastLevel = 0f;
+            record.passion = (Passion)Enum.Parse(typeof(Passion), passion, true);
+            ctx.Assert(record.Level == level && record.passion.ToString().Equals(passion, StringComparison.OrdinalIgnoreCase), $"{nickname}'s {skillName} reads level {record.Level}, passion {record.passion} after setting {level}, {passion}");
+        }
+
+        private static SkillRecord Record(PickleContext ctx, string nickname, string skillName, int level)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            SkillDef skill = SkillOf(ctx, skillName);
+            SkillRecord record = pawn.skills?.GetSkill(skill);
+            ctx.Require(record != null, $"{nickname} has no skill tracker for {skill.defName}");
+            ctx.Require(level >= 0 && level <= 20, $"a skill level is 0 to 20, not {level}");
+            ctx.Require(!record.TotallyDisabled, $"{nickname}'s {skill.defName} is disabled (a backstory or a trait): a level cannot enable it; pick another colonist");
+            return record;
+        }
+
+        /// <summary>
         /// Downs a colonist in a bed: both legs are removed (the colonist stays conscious and cannot move, as after a bad fight), the colonist is put on
         /// the bed's first sleeping spot and the health state is rechecked at once. Fails when no bed stands at the cell, the body has no legs, or the
         /// colonist is not downed afterwards. The legs are not healed back: the scenario ends with the colonist, as other injuring steps do.

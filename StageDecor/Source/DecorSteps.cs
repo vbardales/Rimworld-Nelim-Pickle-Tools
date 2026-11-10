@@ -48,6 +48,24 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: I place the decor {string} at \\({int}, {int}\\)")]
         public void PlaceDecor(PickleContext ctx, string thingDefName, int x, int z) => PlaceDecorCore(ctx, thingDefName, x, z, false);
 
+        /// <summary>The same as <c>owned by the colonists at</c> with a given facing (north, east, south or west). The plain step spawns with the game's default rotation, north. Written 2026-11-10 for RetroJoyRenew (a chair must face the console's watch area). Compiled, NOT PLAYED.</summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} owned by the colonists at \\({int}, {int}\\) facing {word}")]
+        public void PlaceDecorOwnedFacing(PickleContext ctx, string thingDefName, int x, int z, string facing) => PlaceDecorCore(ctx, thingDefName, x, z, true, FacingOf(ctx, facing));
+
+        private static Rot4 FacingOf(PickleContext ctx, string facing)
+        {
+            switch (facing.ToLowerInvariant())
+            {
+                case "north": return Rot4.North;
+                case "east": return Rot4.East;
+                case "south": return Rot4.South;
+                case "west": return Rot4.West;
+            }
+
+            ctx.Require(false, $"facing must be north, east, south or west, not '{facing}'");
+            return Rot4.North;
+        }
+
         /// <summary>
         /// The same, and the thing is the colony's: <c>SetFaction(Faction.OfPlayer)</c> when its def can have a faction (a building, never a plant or an item).
         /// A building left without a faction is not counted by what looks for the player's own things (a meditation focus offset, a joy giver searching for an
@@ -56,7 +74,7 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: I place the decor {string} owned by the colonists at \\({int}, {int}\\)")]
         public void PlaceDecorOwned(PickleContext ctx, string thingDefName, int x, int z) => PlaceDecorCore(ctx, thingDefName, x, z, true);
 
-        private void PlaceDecorCore(PickleContext ctx, string thingDefName, int x, int z, bool owned)
+        private void PlaceDecorCore(PickleContext ctx, string thingDefName, int x, int z, bool owned, Rot4 rot = default(Rot4))
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
@@ -78,9 +96,10 @@ namespace Nelim.PickleTools.StageDecor
             }
 
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
-            Thing spawned = GenSpawn.Spawn(thing, cell, map, WipeMode.Vanish);
+            Thing spawned = GenSpawn.Spawn(thing, cell, map, rot, WipeMode.Vanish);
             if (owned && spawned.def.CanHaveFaction) spawned.SetFaction(Faction.OfPlayer);
             Placed.Add(spawned);
+            Log.Message($"[decor-placed] {def.defName} at ({x}, {z}) facing {spawned.Rotation}{(owned ? ", owned by the colonists" : string.Empty)}");
         }
 
 
@@ -150,6 +169,16 @@ namespace Nelim.PickleTools.StageDecor
         public void PlaceDecorExactly(PickleContext ctx, string thingDefName, int x, int z)
         {
             PlaceNear(ctx, thingDefName, x, z, null, 0);
+        }
+
+        /// <summary>
+        /// Places a building on exactly this cell with this facing and the colony as its owner, if the game's own rules accept it there (like <c>exactly at</c>, one rotation only).
+        /// Written 2026-11-10 for RetroJoyRenew. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} owned by the colonists exactly at \\({int}, {int}\\) facing {word}")]
+        public void PlaceDecorOwnedExactlyFacing(PickleContext ctx, string thingDefName, int x, int z, string facing)
+        {
+            PlaceNear(ctx, thingDefName, x, z, FacingOf(ctx, facing), 0, null, true);
         }
 
         /// <summary>
@@ -304,7 +333,7 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(false, $"no free dry cell within 4 cells of ({x}, {z}) for the plant {def.defName}");
         }
 
-        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only, int limit = 4, string stuffName = null)
+        private void PlaceNear(PickleContext ctx, string thingDefName, int x, int z, Rot4? only, int limit = 4, string stuffName = null, bool owned = false)
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
@@ -345,6 +374,7 @@ namespace Nelim.PickleTools.StageDecor
                             if (!GenConstruct.CanPlaceBlueprintAt(def, cell, rot, map, false, null, null, stuff).Accepted) continue;
                             Thing thing = ThingMaker.MakeThing(def, stuff);
                             Thing spawned = GenSpawn.Spawn(thing, cell, map, rot, WipeMode.Vanish);
+                            if (owned && spawned.def.CanHaveFaction) spawned.SetFaction(Faction.OfPlayer);
                             Placed.Add(spawned);
                             CompRefuelable fuel = spawned.TryGetComp<CompRefuelable>();
                             fuel?.Refuel(fuel.Props.fuelCapacity);
