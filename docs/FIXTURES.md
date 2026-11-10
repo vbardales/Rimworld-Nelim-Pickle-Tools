@@ -50,7 +50,7 @@ in that band.
 desert, so most of the 250 x 250 map carries nothing. Items: 18 steel, 5 wood logs, 6 survival meals, 2 medicine.
 
 **Free space.** Outside the band above and the two hive sites, the map is thing-free: 44,229 origins for a
-9 x 9 square and 49,152 for a 7 x 7 square have no thing on any cell, and **(30, 30) is one of them** (the
+9 x 9 square and 49,152 for a 7 x 7 square have no thing on any cell, and ~~(30, 30)~~ is NOT one of them (2026-11-10: it and (29, 29) hold natural rock in the saved compressed grid; a 9 x 9 footprint at (68, 83) is clear, room inside at (70, 85); the
 nearest hive is at (35, 46), 10 cells away, so a suite building there should clear hostile things first).
 The relayed observation: repeated construction near **(144-148, 155)** raised no placement failure across several
 Epona scenarios (a music spot at (146, 155), a table at (148, 155), items at (144, 155)); that is inside the
