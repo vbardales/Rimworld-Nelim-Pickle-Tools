@@ -297,6 +297,67 @@ namespace Nelim.PickleTools.ScreenshotStudio
         // Interface kept, but without the mouse-over tooltips (a hover left on the subject). Needs Harmony; without it the scenario goes on with a warning.
         [When(Prefix + "I hide the tooltips")]
         public void HideTooltips_Alt(PickleContext ctx) { HideTooltips(ctx); }
+        // Written 2026-11-10 for AncientChineseBeastAndGeneExpanded (scene 6: brown-green cloudy patches over the whole frame at the water garden). Compiled, not played.
+        // Logs ([sky] lines): the weather and its age, every active game condition (map and world) with the sky overlays it carries, the overlays of the weather worker, the sky glow,
+        // the map components and the distinct kinds of section layer the map draws (what a map mod adds). Never fails.
+        [Given(Prefix + "the sky, weather and map layers are logged")]
+        public void LogSky(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "Load a map first");
+            var lines = new System.Collections.Generic.List<string>();
+            WeatherManager wm = map.weatherManager;
+            lines.Add("weather " + wm.curWeather?.defName + " (age " + wm.curWeatherAge + " ticks), last " + wm.lastWeather?.defName + ", transition " + wm.TransitionLerpFactor.ToString("0.00"));
+            lines.Add("sky glow " + map.skyManager.CurSkyGlow.ToString("0.00"));
+            foreach (var cm in new[] { map.gameConditionManager, Find.World?.gameConditionManager })
+            {
+                if (cm == null) continue;
+                foreach (GameCondition c in cm.ActiveConditions)
+                    lines.Add("condition " + c.def.defName + " (" + c.GetType().Name + ", " + (cm == map.gameConditionManager ? "map" : "world") + ", " + (c.Permanent ? "permanent" : c.TicksLeft + " ticks left") + ") overlays: " + OverlayMembers(c));
+            }
+            lines.Add("weather worker overlays: " + OverlayMembers(wm.curWeather?.Worker));
+            lines.Add("map components: " + string.Join(", ", map.components.Select(x => x.GetType().FullName)));
+            try
+            {
+                var sections = (Array)HarmonyLib.AccessTools.Field(typeof(MapDrawer), "sections").GetValue(map.mapDrawer);
+                var kinds = new System.Collections.Generic.SortedSet<string>();
+                foreach (object section in sections)
+                {
+                    var layers = HarmonyLib.AccessTools.Field(section.GetType(), "layers")?.GetValue(section) as System.Collections.IEnumerable;
+                    if (layers != null) foreach (object layer in layers) kinds.Add(layer.GetType().FullName);
+                }
+                lines.Add("section layers: " + string.Join(", ", kinds));
+            }
+            catch (Exception e) { lines.Add("section layers: not read (" + e.GetType().Name + ")"); }
+            foreach (string line in lines) Log.Message("[sky] " + line);
+            ctx.Attach("sky", string.Join(Environment.NewLine, lines));
+        }
+
+        private static string OverlayMembers(object owner)
+        {
+            if (owner == null) return "none";
+            var found = new System.Collections.Generic.List<string>();
+            const System.Reflection.BindingFlags flags = System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic;
+            foreach (var f in owner.GetType().GetFields(flags))
+            {
+                object v = null;
+                try { v = f.GetValue(owner); } catch { }
+                if (v is SkyOverlay so) found.Add(f.Name + "=" + so.GetType().Name);
+                else if (v is System.Collections.IEnumerable list && !(v is string))
+                    foreach (object o in list) if (o is SkyOverlay so2) found.Add(f.Name + "=" + so2.GetType().Name);
+            }
+            return found.Count == 0 ? "none found" : string.Join(", ", found);
+        }
+
+        // The weather and condition overlays (fog, dust, rain streaks, an eclipse veil) are not drawn: SkyOverlay.DrawOverlay skipped, the light stays. Put back after the scenario. Needs Harmony. Compiled, not played.
+        [Given(Prefix + "the sky overlays are hidden")]
+        public void HideSkyOverlays(PickleContext ctx)
+        {
+            ctx.Require(Find.CurrentMap != null, "Load a map first");
+            try { OverlaySuppression.HideSkyOverlays(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[sky-overlays] stay drawn: Harmony is not loaded"); }
+        }
+
         // The zone paint (stockpiles, growing zones) and the areas (Home, allowed areas) are not drawn: the "show zones" toggle off plus no area drawing, put back after the scenario. Needs a loaded map and Harmony. NOT PLAYED when written (2026-10-30, for FireworkStand).
         [Given(Prefix + "the area and zone overlays are hidden")]
         public void HideAreaOverlays(PickleContext ctx)

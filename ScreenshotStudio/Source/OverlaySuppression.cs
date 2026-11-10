@@ -16,7 +16,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private static readonly object Gate = new object();
         private static Harmony harmony;
-        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched, designatorLabelsPatched;
+        private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched, designatorLabelsPatched, skyPatched;
         private static bool? zonesShownBefore;
 
         public static bool Active { get; private set; }
@@ -27,6 +27,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static bool BracketsHidden { get; private set; }
         public static bool AreasHidden { get; private set; }
         public static bool DesignatorLabelsHidden { get; private set; }
+        public static bool SkyOverlaysHidden { get; private set; }
         public static bool StatusIconsKept { get; set; }
 
         public static void Begin()
@@ -167,6 +168,26 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
+        /// <summary>
+        /// Hides the weather and condition overlays drawn over the map (fog, dust, rain streaks, the dark veil of an eclipse): <c>SkyOverlay.DrawOverlay</c> is skipped, the light and
+        /// the weather itself stay as they are. Put back by <see cref="End"/>. Written 2026-11-10 for AncientChineseBeastAndGeneExpanded scene 6 (a veil over the frame). NOT PLAYED.
+        /// </summary>
+        public static void HideSkyOverlays()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!skyPatched)
+                {
+                    MethodInfo method = AccessTools.Method(typeof(SkyOverlay), "DrawOverlay");
+                    if (method != null) harmony.Patch(method, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipSkyOverlays)));
+                    else Log.Warning("[sky-overlays] SkyOverlay.DrawOverlay not found: the overlays stay drawn");
+                    skyPatched = true;
+                }
+                SkyOverlaysHidden = true;
+            }
+        }
+
         public static void End()
         {
             if (zonesShownBefore != null && Current.ProgramState == ProgramState.Playing && Find.PlaySettings != null)
@@ -175,7 +196,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Find.CurrentMap?.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Zone);
             }
             zonesShownBefore = null;
-            AreasHidden = false; DesignatorLabelsHidden = false;
+            AreasHidden = false; DesignatorLabelsHidden = false; SkyOverlaysHidden = false;
             Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false;
         }
 
@@ -200,6 +221,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static bool SkipAlerts() => !AlertsHidden;
         private static bool SkipBrackets() => !BracketsHidden;
         private static bool SkipAreas() => !AreasHidden;
+        private static bool SkipSkyOverlays() => !SkyOverlaysHidden;
         private static bool SkipDesignatorLabels() => !DesignatorLabelsHidden;
     }
 }

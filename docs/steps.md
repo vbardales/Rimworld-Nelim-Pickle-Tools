@@ -643,6 +643,8 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the colonist bar is hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the tooltips` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the area and zone overlays are hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the sky, weather and map layers are logged` (Given) | Logs (`[sky]` lines, attached as `sky`): the weather and its age, each active game condition of the map and of the world with the sky overlays it carries, the overlays of the weather worker, the sky glow, the map components and the kinds of section layer the map draws (what a map mod adds). Never fails. Written 2026-11-10 for AncientChineseBeastAndGeneExpanded (a veil over the frame). Compiled, not played. |
+| `Nelim's Pickle Tools: the sky overlays are hidden` (Given) | The weather and condition overlays (fog, dust, rain streaks, an eclipse veil) are not drawn (`SkyOverlay.DrawOverlay` skipped); the light and the weather stay. Put back after the scenario. Needs Harmony. Compiled, not played. |
 | `Nelim's Pickle Tools: the tooltips are hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the resource readout` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the resource readout is hidden` (Given) | (no description yet) |
