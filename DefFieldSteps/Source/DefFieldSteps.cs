@@ -325,6 +325,27 @@ namespace Nelim.PickleTools.DefFields
                 $"{def.GetType().Name} '{defName}' carries no comp {compType}; its comps: " + string.Join(", ", comps.Select(c => c?.GetType().FullName ?? "(null)")));
         }
 
+        /// <summary>
+        /// Asserts the label of a def as the game shows it in the language it runs in (<c>LabelCap</c>, so a translation of the def is applied), compared
+        /// exactly: a name that must stay English in a French run is checked by running with that language. Written 2026-11-10 for RetroJoyRenew.
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} is labelled {string}")]
+        public void DefLabelReads(PickleContext ctx, string defName, string typeName, string expected)
+        {
+            Def def = Find(ctx, defName, typeName);
+            string actual = def.LabelCap.ToString();
+            ctx.Assert(actual == expected, $"{def.GetType().Name} '{defName}' is labelled '{actual}' in the language of this run, expected '{expected}'");
+        }
+
+        /// <summary>The same for the description of the def, exact text. Compiled, NOT PLAYED.</summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} is described as {string}")]
+        public void DefDescriptionReads(PickleContext ctx, string defName, string typeName, string expected)
+        {
+            Def def = Find(ctx, defName, typeName);
+            ctx.Assert(def.description == expected, $"{def.GetType().Name} '{defName}' is described as '{def.description}' in the language of this run, expected '{expected}'");
+        }
+
         private static List<string> ItemsOf(PickleContext ctx, Def def, string fieldPath)
         {
             object value = Walk(ctx, def, fieldPath);

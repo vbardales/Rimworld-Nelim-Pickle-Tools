@@ -791,3 +791,14 @@ Package `nelim.pickletools.veffactions`. In the bundle (`Mod/Pickle/Assemblies`)
 | `Nelim's Pickle Tools: the chosen faction is ignored in this save` (Then) | Asserts the chosen faction is on VEF's ignored list |
 | `Nelim's Pickle Tools: the chosen faction is not ignored` (Then) | Asserts the chosen faction is not on VEF's ignored list |
 | `Nelim's Pickle Tools: the game log says the chosen faction was ignored` (Then) | Asserts the log holds a Quiet New Factions line for the chosen faction |
+| `Nelim's Pickle Tools: I remember {string}'s joy level` (When) | Remembers the joy need level (0 to 1) of a colonist. Written 2026-11-10 for RetroJoyRenew, compiled, NOT PLAYED. |
+| `Nelim's Pickle Tools: {string}'s joy level is higher than remembered` (Then) | The joy need is above the remembered level. |
+| `Nelim's Pickle Tools: I remember {string}'s joy tolerance for the kind {string}` (When) | Remembers the tolerance of a colonist for a JoyKindDef (defName, such as Gaming_Dexterity). |
+| `Nelim's Pickle Tools: {string}'s joy tolerance for the kind {string} is higher than remembered` (Then) | The tolerance of that kind rose: the colonist really took joy of it. |
+| `Nelim's Pickle Tools: I remember {string}'s skill {string} experience` (When) | Remembers the experience (level included) of a SkillDef (defName, such as Melee). |
+| `Nelim's Pickle Tools: {string}'s skill {string} experience is higher than remembered` (Then) | The experience is above the remembered value; a level gained counts. |
+| `Nelim's Pickle Tools: {string} is downed in the bed at \({int}, {int}\)` (Given) | Removes both legs (the colonist stays conscious, cannot move), puts the colonist on the first sleeping spot of the bed at the cell and checks the colonist is downed. Compiled, NOT PLAYED. |
+| `Nelim's Pickle Tools: the architect tab {string} shows the def {string}` (Then) | Like `lists`, and the def's research is finished and its designator visible. Fails when developer god mode is on. Compiled, NOT PLAYED. |
+| `Nelim's Pickle Tools: the architect tab {string} does not show the def {string}` (Then) | The negative twin: not listed, not visible or research not finished. |
+| `Nelim's Pickle Tools: the def {string} of type {string} is labelled {string}` (Then) | Exact `LabelCap` of a def in the language of the run (a translation applied). Compiled, NOT PLAYED. |
+| `Nelim's Pickle Tools: the def {string} of type {string} is described as {string}` (Then) | Exact description of a def in the language of the run. |
