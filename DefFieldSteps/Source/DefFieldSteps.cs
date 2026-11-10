@@ -403,9 +403,14 @@ namespace Nelim.PickleTools.DefFields
         private static Def Find(PickleContext ctx, string defName, string typeName)
         {
             Type type = ResolveDefType(typeName);
-            ctx.Require(
-                type != null && typeof(Def).IsAssignableFrom(type),
-                $"'{typeName}' is not a def type the game knows (a name such as ThingDef or PawnKindDef)");
+            if (type == null || !typeof(Def).IsAssignableFrom(type))
+            {
+                string shortName = typeName.Substring(typeName.LastIndexOf('.') + 1);
+                string seen = string.Join(", ", AppDomain.CurrentDomain.GetAssemblies()
+                    .SelectMany(a => { try { return a.GetTypes(); } catch (ReflectionTypeLoadException e) { return e.Types.Where(t => t != null); } catch { return Type.EmptyTypes; } })
+                    .Where(t => t.Name == shortName).Select(t => t.FullName + (typeof(Def).IsAssignableFrom(t) ? " (a Def)" : " (NOT a Def)")).Take(5));
+                ctx.Require(false, $"'{typeName}' is not a def type the game knows (a name such as ThingDef or PawnKindDef); types of that short name in the loaded assemblies: " + (seen.Length > 0 ? seen : "none (the mod that defines it is not loaded?)"));
+            }
 
             Def def = GenDefDatabase.GetDefSilentFail(type, defName, false);
             if (def == null)
