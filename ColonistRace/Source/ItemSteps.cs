@@ -288,10 +288,13 @@ namespace Nelim.PickleTools.ColonistRace
         {
             if (giver.thingDefs == null || pawn.Map == null) return string.Empty;
             var sb = new System.Text.StringBuilder($"pawn at {pawn.Position}, in bed {Try(() => pawn.InBed())}, bed {Try(() => pawn.CurrentBed()?.Position.ToString() ?? "none")}; ");
+            sb.Append("capacities: " + Try(() => string.Join(", ", new[] { PawnCapacityDefOf.Consciousness, PawnCapacityDefOf.Sight, PawnCapacityDefOf.Manipulation, PawnCapacityDefOf.Moving }.Select(c => c.defName + " " + pawn.health.capacities.GetLevel(c).ToString("0.00") + " (capable " + pawn.health.capacities.CapableOf(c) + ")"))) + "; ");
+            sb.Append("giver requiredCapacities: " + Try(() => giver.requiredCapacities == null || giver.requiredCapacities.Count == 0 ? "none" : string.Join(", ", giver.requiredCapacities.Select(c => c.defName + " capable " + pawn.health.capacities.CapableOf(c)))) + "; ");
+            sb.Append($"joy kind {giver.joyKind?.defName ?? "none"} tolerance {Try(() => pawn.needs.joy.tolerances[giver.joyKind].ToString("0.000"))} bored {Try(() => pawn.needs.joy.tolerances.BoredOf(giver.joyKind))}; ");
             foreach (ThingDef td in giver.thingDefs)
                 foreach (Thing t in pawn.Map.listerThings.ThingsOfDef(td).Take(3))
                 {
-                    sb.Append($"[{td.defName} at {t.Position} facing {t.Rotation}: pawn cell is a watch cell {Try(() => WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map).Any(c => c.ToString() == pawn.Position.ToString()))}; watch cells {Try(() => string.Join(" ", WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map)))}] ");
+                    sb.Append($"[{td.defName} at {t.Position} facing {t.Rotation}: can watch from bed {Try(() => pawn.CurrentBed() != null && WatchBuildingUtility.CanWatchFromBed(pawn, pawn.CurrentBed(), t))}; pawn cell is a watch cell {Try(() => WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map).Any(c => c.ToString() == pawn.Position.ToString()))}; watch cells {Try(() => string.Join(" ", WatchBuildingUtility.CalculateWatchCells(td, t.Position, t.Rotation, pawn.Map)))}] ");
                 }
 
             return sb.ToString();
