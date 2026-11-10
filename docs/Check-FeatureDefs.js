@@ -41,7 +41,16 @@ for (const raw of fs.readFileSync(mapPath, 'utf8').split(/\r?\n/)) {
   const m = l.match(/^(\S+)\s+(path:)?(\S+)/);
   if (m) mods.push({ pkg: m[1], isPath: !!m[2], ref: m[3] });
 }
-const active = new Set(mods.map(m => m.pkg.toLowerCase()));
+// The mod under test: the first folder of the feature path under the protocols root (<Mod>/Tests/Pickle/...). The launcher always stages it, and a map often
+// does not list it, so its own defs would all read "not found" (RetroJoyRenew, 2026-11-10). Added to the defs read, not to the map's mods.
+const tested = [];
+{
+  const rel = path.relative(ROOT, path.resolve(featureArg)).split(path.sep).join('/').split('/');
+  const about = rel.length > 2 && rel[0] !== '..' ? path.join(ROOT, rel[0], 'Mod', 'About', 'About.xml') : null;
+  const pkg = about && fs.existsSync(about) ? ((fs.readFileSync(about, 'utf8').match(/<packageId>\s*([^<\s]+)\s*<\/packageId>/) || [])[1]) : null;
+  if (pkg && !mods.some(m => m.pkg.toLowerCase() === pkg.toLowerCase())) tested.push({ pkg, isPath: true, ref: rel[0] + '/Mod' });
+}
+const active = new Set(mods.concat(tested).map(m => m.pkg.toLowerCase()));
 ['ludeon.rimworld', 'ludeon.rimworld.royalty', 'ludeon.rimworld.ideology', 'ludeon.rimworld.biotech', 'ludeon.rimworld.anomaly', 'ludeon.rimworld.odyssey'].forEach(p => active.add(p));
 
 // 2. The features: the scenarios the filter keeps, their cited names and @requires.
@@ -111,7 +120,7 @@ function readDefsSimple(defsDir) {
   }
 }
 const notOnDisk = [];
-for (const m of mods) {
+for (const m of mods.concat(tested)) {
   // A numeric ref is a Workshop id; a name is a folder of the local Mods folder of the game (rjw, rjw-genes...).
   const root = m.isPath ? path.join(ROOT, m.ref).replace(/\\/g, '/') : (/^\d+$/.test(m.ref) ? W + m.ref : GAME.replace(/\/Data$/, '/Mods/') + m.ref);
   if (!fs.existsSync(root)) { notOnDisk.push(m.pkg + ' ' + m.ref); continue; }
