@@ -46,7 +46,17 @@ namespace Nelim.PickleTools.StageDecor
         /// the exception and may lie on a building (2026-11-10, for MoaRenew).
         /// </summary>
         [Given("Nelim's Pickle Tools: I place the decor {string} at \\({int}, {int}\\)")]
-        public void PlaceDecor(PickleContext ctx, string thingDefName, int x, int z)
+        public void PlaceDecor(PickleContext ctx, string thingDefName, int x, int z) => PlaceDecorCore(ctx, thingDefName, x, z, false);
+
+        /// <summary>
+        /// The same, and the thing is the colony's: <c>SetFaction(Faction.OfPlayer)</c> when its def can have a faction (a building, never a plant or an item).
+        /// A building left without a faction is not counted by what looks for the player's own things (a meditation focus offset, a joy giver searching for an
+        /// instrument, a tab shown only for an owned building). Written 2026-11-10 for PropsInUse. Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} owned by the colonists at \\({int}, {int}\\)")]
+        public void PlaceDecorOwned(PickleContext ctx, string thingDefName, int x, int z) => PlaceDecorCore(ctx, thingDefName, x, z, true);
+
+        private void PlaceDecorCore(PickleContext ctx, string thingDefName, int x, int z, bool owned)
         {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
@@ -68,7 +78,9 @@ namespace Nelim.PickleTools.StageDecor
             }
 
             Thing thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
-            Placed.Add(GenSpawn.Spawn(thing, cell, map, WipeMode.Vanish));
+            Thing spawned = GenSpawn.Spawn(thing, cell, map, WipeMode.Vanish);
+            if (owned && spawned.def.CanHaveFaction) spawned.SetFaction(Faction.OfPlayer);
+            Placed.Add(spawned);
         }
 
 
@@ -743,13 +755,14 @@ namespace Nelim.PickleTools.StageDecor
         private static bool WouldStore(PickleContext ctx, string buildingDefName, int x, int z, string thingDefName)
         {
             var storage = StorageAt(ctx, buildingDefName, x, z);
-            ctx.Require(storage is Building_Storage, $"the {buildingDefName} is a bookcase; accepts/refuses reads slot groups, which a bookcase has none");
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
             ctx.Require(def != null, $"no thing def '{thingDefName}' in this game");
             Map map = CurrentMap(ctx);
             Thing probe = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
             try
             {
+                // A bookcase has no slot group: its own haul-destination answer (the book filter and the ten-book cap) is the game's word on it.
+                if (storage is Building_Bookcase bookcase) return ((IHaulDestination)bookcase).Accepts(probe);
                 return storage.OccupiedRect().Cells.Any(c => StoreUtility.IsGoodStoreCell(c, map, probe, null, Faction.OfPlayer));
             }
             finally
