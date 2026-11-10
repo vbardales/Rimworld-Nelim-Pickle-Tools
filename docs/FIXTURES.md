@@ -117,3 +117,16 @@ centre `(125, 125)`:
 - **Name pawns that exist in the file you load.** `Jet`, `Larson`, `Morrison` are in both; the studio adds four.
 - **What still needs a running game:** terrain, roofs, the hour at load, whether the insects raise the danger.
   Add the answers here when a run has them.
+
+## Free areas of `test-colony` (computed offline 2026-11-10)
+
+From the saved fixture: every cell holding natural rock (the compressed thing grid, 32,761 cells) or any saved thing (plants, ruin, hives, items) counts as taken. A rectangle is listed when ALL its cells are free; the origin is its south-west cell, and a room built by a Stage decor step needs its footprint (inside plus one wall cell all round) inside it. Samples spread over the map, none played:
+
+| Free rectangle (w by d) | Free origins on the map | Samples (origin) |
+| --- | --- | --- |
+| 9 by 9 (one 5 by 5 room and its walls, 2 cells to spare) | 4,343 | (68, 83), (118, 128), (200, 95), (60, 201), (198, 217) |
+| 15 by 9 (two 5 by 5 rooms side by side with the shared wall, margin 1) | 1,640 | (67, 88), (112, 128), (205, 100), (59, 201), (194, 218) |
+| 21 by 13 | 151 | (57, 111), (65, 111), (214, 148), (34, 196) |
+| 31 by 21 | none | |
+
+`(70, 85)` is free only for the 9 by 9 case up to x 76 (the 2026-11-10 claim of room for about 13 by 7 there was wrong: rock at (78, 84)).
