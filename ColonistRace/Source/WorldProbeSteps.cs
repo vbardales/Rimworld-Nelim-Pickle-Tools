@@ -124,8 +124,19 @@ namespace Nelim.PickleTools.ColonistRace
             battery.SetFactionDirect(Faction.OfPlayer);
             GenSpawn.Spawn(battery, spot, map);
             battery.GetComp<CompPowerBattery>().SetStoredEnergyPct(1f);
+            ctx.Require(battery.Spawned, $"the Battery did not stay spawned at {spot} (something destroyed or refused it)");
             map.powerNetManager.UpdatePowerNetsAndConnections_First();
             await ctx.WaitFrames(3);
+            // The game connects a trader to an adjacent transmitter when either spawns, but a building put on the map by a step can miss that pass (RSEIE 2026-11-11: 3x2 crematorium,
+            // "net none" after the battery). Connect it ourselves with the game's own call, then let the net be rebuilt.
+            CompPower batteryPower = battery.GetComp<CompPower>();
+            if (trader.PowerNet == null && batteryPower != null && trader.connectParent == null)
+            {
+                trader.ConnectToTransmitter(batteryPower);
+                map.powerNetManager.UpdatePowerNetsAndConnections_First();
+                await ctx.WaitFrames(3);
+            }
+
             trader.PowerNet?.PowerNetTick();
             Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, PowerOn {trader.PowerOn}");
             ctx.Assert(trader.PowerOn, $"the {defName} at ({x}, {z}) is still unpowered after the battery at {spot} (net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, switch " + (building.GetComp<CompFlickable>()?.SwitchIsOn.ToString() ?? "none") + ")");
