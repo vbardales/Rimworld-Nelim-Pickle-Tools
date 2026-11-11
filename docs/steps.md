@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-648 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+649 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -700,6 +700,7 @@ Package `nelim.pickletools.screenshotstudio`. Not in the bundle: a companion sta
 | `Nelim's Pickle Tools: the tooltips are hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the resource readout` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the resource readout is hidden` (Given) | (no description yet) |
+| `Nelim's Pickle Tools: the main bar, the speed controls and the mouse-over readout are hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the alerts` (When) | (no description yet) |
 | `Nelim's Pickle Tools: the alerts are hidden` (Given) | (no description yet) |
 | `Nelim's Pickle Tools: I hide the designator labels` (When) | (no description yet) |

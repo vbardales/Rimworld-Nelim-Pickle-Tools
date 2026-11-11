@@ -188,6 +188,31 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
         }
 
+        private static bool chromePatched;
+
+        /// <summary>
+        /// Hides the bottom main tab bar (Architect, Work, ...), the speed and date controls with the small button grid at the bottom right, and the mouse-over readout at the bottom left,
+        /// and leaves the windows alone, so an inspect pane (the Health tab) stays on screen. Written 2026-11-11 for PomeranianADogSaid2Renew. NOT PLAYED when written. Needs Harmony.
+        /// </summary>
+        public static void HideChrome()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!chromePatched)
+                {
+                    harmony.Patch(AccessTools.Method(typeof(MainButtonsRoot), nameof(MainButtonsRoot.MainButtonsOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
+                    harmony.Patch(AccessTools.Method(typeof(GlobalControls), nameof(GlobalControls.GlobalControlsOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
+                    harmony.Patch(AccessTools.Method(typeof(MouseoverReadout), nameof(MouseoverReadout.MouseoverReadoutOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
+                    chromePatched = true;
+                }
+                ChromeHidden = true;
+            }
+        }
+
+        public static bool ChromeHidden { get; private set; }
+        private static bool SkipChrome() => !ChromeHidden;
+
         public static void End()
         {
             if (zonesShownBefore != null && Current.ProgramState == ProgramState.Playing && Find.PlaySettings != null)
@@ -196,7 +221,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 Find.CurrentMap?.mapDrawer.WholeMapChanged(MapMeshFlagDefOf.Zone);
             }
             zonesShownBefore = null;
-            AreasHidden = false; DesignatorLabelsHidden = false; SkyOverlaysHidden = false;
+            AreasHidden = false; DesignatorLabelsHidden = false; SkyOverlaysHidden = false; ChromeHidden = false;
             Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false;
         }
 

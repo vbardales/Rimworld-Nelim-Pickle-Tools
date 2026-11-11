@@ -383,6 +383,14 @@ namespace Nelim.PickleTools.ScreenshotStudio
             catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[readout] stays drawn: Harmony is not loaded"); }
         }
 
+        // The bottom bar, the speed controls and the mouse-over readout hidden; the windows (an inspect pane) stay.
+        [Given(Prefix + "the main bar, the speed controls and the mouse-over readout are hidden")]
+        public void HideChrome(PickleContext ctx)
+        {
+            try { OverlaySuppression.HideChrome(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException) { Log.Warning("[chrome] stays drawn: Harmony is not loaded"); }
+        }
+
         // Interface kept (tabs, buttons), but without the alert boxes at the bottom right.
         [When(Prefix + "I hide the alerts")]
         public void HideAlerts_Alt(PickleContext ctx) { HideAlerts(ctx); }
