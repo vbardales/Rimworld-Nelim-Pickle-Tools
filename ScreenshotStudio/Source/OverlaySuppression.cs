@@ -191,7 +191,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static bool chromePatched;
 
         /// <summary>
-        /// Hides the bottom main tab bar (Architect, Work, ...), the speed and date controls with the small button grid at the bottom right, and the mouse-over readout at the bottom left,
+        /// Hides the bottom main tab bar (Architect, Work, ...), the speed and date controls with the small button grid at the bottom right, the mouse-over readout at the bottom left, and the row of developer icons at the top centre (DebugWindowsOpener.DrawButtons, drawn while developer mode is on),
         /// and leaves the windows alone, so an inspect pane (the Health tab) stays on screen. Written 2026-11-11 for PomeranianADogSaid2Renew. NOT PLAYED when written. Needs Harmony.
         /// </summary>
         public static void HideChrome()
@@ -204,6 +204,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
                     harmony.Patch(AccessTools.Method(typeof(MainButtonsRoot), nameof(MainButtonsRoot.MainButtonsOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
                     harmony.Patch(AccessTools.Method(typeof(GlobalControls), nameof(GlobalControls.GlobalControlsOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
                     harmony.Patch(AccessTools.Method(typeof(MouseoverReadout), nameof(MouseoverReadout.MouseoverReadoutOnGUI)), prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
+                    MethodInfo devButtons = AccessTools.Method(typeof(DebugWindowsOpener), "DrawButtons");
+                    if (devButtons != null) harmony.Patch(devButtons, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SkipChrome)));
                     chromePatched = true;
                 }
                 ChromeHidden = true;
