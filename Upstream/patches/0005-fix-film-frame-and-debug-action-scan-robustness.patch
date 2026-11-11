@@ -1,0 +1,64 @@
+From 9267a5bdaf90f1536f4032683f4deb7cae78ea8d Mon Sep 17 00:00:00 2001
+From: vbardales <vbardales@users.noreply.github.com>
+Date: Wed, 11 Nov 2026 20:09:03 +0100
+Subject: [PATCH] fix: drop a film frame whose scratch texture was destroyed,
+ and skip a debug action whose attribute cannot load
+
+FrameCapture: an async readback that lands after the film ended (or the frame size changed)
+loads into a destroyed scratch texture and logs a NullReferenceException warning per frame
+(91 in one run), which also fails scenarios that assert on the warnings logged.
+
+DevModeSteps.Scan: GetMethods was guarded, but reading the DebugAction attribute of a method
+whose attribute argument type is in an assembly that failed to load throws a TypeLoad
+exception out of the scan and fails every debug-action step.
+---
+ Source/Pickle.Vanilla/DevModeSteps.cs | 13 +++++++++++--
+ Source/Pickle/Runtime/FrameCapture.cs |  7 +++++++
+ 2 files changed, 18 insertions(+), 2 deletions(-)
+
+diff --git a/Source/Pickle.Vanilla/DevModeSteps.cs b/Source/Pickle.Vanilla/DevModeSteps.cs
+index 7988b39..528be0f 100644
+--- a/Source/Pickle.Vanilla/DevModeSteps.cs
++++ b/Source/Pickle.Vanilla/DevModeSteps.cs
+@@ -121,9 +121,18 @@ public static class DevModeSteps {
+       }
+ 
+       foreach (MethodInfo method in methods) {
+-        if (method.TryGetAttribute(out DebugActionAttribute attribute)) {
+-          yield return (attribute.name ?? method.Name, attribute.category ?? string.Empty, method);
++        DebugActionAttribute? attribute;
++        try {
++          if (!method.TryGetAttribute(out attribute)) {
++            continue;
++          }
++        } catch (Exception) {
++          // an attribute whose argument type lives in an assembly that failed to load (a missing
++          // dependency of a mod) throws here, as GetMethods does above: skip that method, not the scan
++          continue;
+         }
++
++        yield return (attribute.name ?? method.Name, attribute.category ?? string.Empty, method);
+       }
+     }
+   }
+diff --git a/Source/Pickle/Runtime/FrameCapture.cs b/Source/Pickle/Runtime/FrameCapture.cs
+index 3f030ce..73fd115 100644
+--- a/Source/Pickle/Runtime/FrameCapture.cs
++++ b/Source/Pickle/Runtime/FrameCapture.cs
+@@ -107,6 +107,13 @@ internal static class FrameCapture {
+         return;
+       }
+ 
++      // the film can end, or the frame size change, while a readback is in flight: the shared
++      // scratch texture is then destroyed and Unity throws a NullReferenceException from it.
++      // The frame is lost with the film that asked for it, so drop it quietly.
++      if (scratch == null) {
++        return;
++      }
++
+       try {
+         scratch.LoadRawTextureData(request.GetData<byte>());
+         scratch.Apply(false);
+-- 
+2.52.0.windows.1
+
