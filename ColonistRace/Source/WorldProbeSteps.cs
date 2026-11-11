@@ -104,12 +104,12 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// Powers the building of a def at a cell through the game's own power net: a Battery (full) is spawned on a free cell touching the building, the nets
+        /// Powers (by a battery, as against `is powered` of StageDecor which only flips PowerOn) the building of a def at a cell through the game's own power net: a Battery (full) is spawned on a free cell touching the building, the nets
         /// are rebuilt and ticked once (the scene runs paused). Fails when the building has no power comp, no cell touches it, or the building is still unpowered
         /// after that (its switch is off, or the draw is above the battery's stored energy: it holds 600 Wd). Does not touch the building's switch.
         /// Asked for by RSEIE (electric crematorium and smelter scents). NOT PLAYED when written.
         /// </summary>
-        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is powered")]
+        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is powered by a battery")]
         public async System.Threading.Tasks.Task Powered(PickleContext ctx, string defName, int x, int z)
         {
             ThingWithComps building = BuildingAt(ctx, defName, x, z);
