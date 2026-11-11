@@ -900,6 +900,27 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// The same with the pot put NEAR the cell, as "I place the decor ... near" does (the nearest cell within 4 where the game accepts the pot, so a cell held by a bed or another
+        /// building is passed over), and the plant fully grown in it on the pot's own cell. When no cell takes the pot the step is skipped and logged ([decor-skipped]) after "a decor that
+        /// finds no cell is skipped and logged", and fails otherwise. Written 2026-11-11 for PomeranianADogSaid2Renew (a pot asked on the cell of an AnimalBed). Compiled, not played.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place the decor {string} holding {string} fully grown near \\({int}, {int}\\)")]
+        public void PlaceDecorHoldingNear(PickleContext ctx, string potDefName, string plantDefName, int x, int z)
+        {
+            ThingDef plantDef = DefDatabase<ThingDef>.GetNamedSilentFail(plantDefName);
+            ctx.Require(plantDef != null && plantDef.plant != null, $"'{plantDefName}' is not a plant def in this game");
+            int before = Placed.Count;
+            PlaceNear(ctx, potDefName, x, z, null);
+            if (Placed.Count == before) return;
+            Thing pot = Placed.Last();
+            var plant = (Plant)ThingMaker.MakeThing(plantDef);
+            plant.Growth = 1f;
+            Placed.Add(GenSpawn.Spawn(plant, pot.Position, CurrentMap(ctx), WipeMode.Vanish));
+            ctx.Assert(pot.Spawned, $"the {potDefName} at {pot.Position} is gone after the {plantDefName} was placed in it");
+            ctx.Assert(plant.Spawned, $"the {plantDefName} at {pot.Position} is not on the map after the step");
+        }
+
+        /// <summary>
         /// Lays a floor (a TerrainDef: a carpet, a tile, soil) on every cell of the rectangle from the first corner to the second, and
         /// remembers what each cell held, so the removal step puts it back. Fails naming the first cell off the map or under a wall.
         /// </summary>
