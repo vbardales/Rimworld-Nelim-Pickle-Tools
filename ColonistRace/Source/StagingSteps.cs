@@ -375,6 +375,11 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn animal = AnimalGeneSteps.FindAnimal(ctx, animalName);
             ctx.Require(animal.BillStack.Count > 0, $"the animal '{animalName}' holds no bill; add one with 'the animal \"{animalName}\" has the surgery bill \"<recipe>\" on its \"<part>\"'");
             ctx.Require(doctor.workSettings != null && !doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor), $"{doctorName} cannot do doctor work (disabled by a trait or a backstory): pick a colonist who can");
+            // With the game running, the colonist's own AI may already have taken this surgery and reserved the patient: end that job and drop the reservations on the patient and by the
+            // colonist, or the forced job cannot reserve the animal again (the game logs 'Could not reserve ... for job DoBill', an error that fails the scenario).
+            doctor.jobs.StopAll();
+            doctor.Map.reservationManager.ReleaseAllClaimedBy(doctor);
+            doctor.Map.reservationManager.ReleaseAllForTarget(animal);
             Job job = null;
             var tried = new System.Collections.Generic.List<string>();
             foreach (WorkGiverDef giverDef in DefDatabase<WorkGiverDef>.AllDefsListForReading)
