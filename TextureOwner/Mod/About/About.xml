@@ -6,6 +6,9 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <incompatibleWith>
+    <li>nelim.pickletools</li>
+  </incompatibleWith>
   <description>Two Pickle steps that ask which running mod answers for a texture path, and how many running mods ship it. For a retexture that shares paths with another retexture: if its loadAfter stopped winning, every scenario would stay green while players saw the other mod's textures. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See TextureOwner/README.md at the repository root.
 
 Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.

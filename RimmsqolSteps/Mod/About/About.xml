@@ -6,6 +6,9 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <incompatibleWith>
+    <li>nelim.pickletools</li>
+  </incompatibleWith>
   <description>Reusable Pickle steps that reveal and hide a MainButtonDef through RIMMSQOL's own settings, the way its interface does, and assert what the main bar then draws. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See RimmsqolSteps/README.md at the repository root.
 
 Developer test companion for RimWorld 1.6. Requires Pickle; no gameplay content or scenarios included. Enable only for test suites that use these steps. Runtime coverage and limitations are documented in the repository.

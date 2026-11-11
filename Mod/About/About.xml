@@ -7,6 +7,22 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <incompatibleWith>
+    <li>nelim.pickletools.clearscreen</li>
+    <li>nelim.pickletools.clickdiagnostics</li>
+    <li>nelim.pickletools.colonistrace</li>
+    <li>nelim.pickletools.expansions</li>
+    <li>nelim.pickletools.filmticks</li>
+    <li>nelim.pickletools.hoversteps</li>
+    <li>nelim.pickletools.inspecttabs</li>
+    <li>nelim.pickletools.interfacescale</li>
+    <li>nelim.pickletools.keyedclick</li>
+    <li>nelim.pickletools.research</li>
+    <li>nelim.pickletools.rimmsqol</li>
+    <li>nelim.pickletools.screenshotmode</li>
+    <li>nelim.pickletools.textureowner</li>
+    <li>nelim.pickletools.veffactions</li>
+  </incompatibleWith>
   <description>[h1]Shared utilities for Pickle test suites[/h1]
 Developer tools for writing and running [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url] scenarios for the latest RimWorld version.
 

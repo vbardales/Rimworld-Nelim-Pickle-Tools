@@ -6,6 +6,9 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <incompatibleWith>
+    <li>nelim.pickletools</li>
+  </incompatibleWith>
   <description>Pickle steps that close every window another mod owns and keep them closed for the rest of the scenario, so a click is not swallowed by a log viewer or a notice. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See ClearScreen/README.md at the repository root.
 
 It is the same pair of steps as the one proposed to Pickle itself as a pull request; when that lands this mod can go.

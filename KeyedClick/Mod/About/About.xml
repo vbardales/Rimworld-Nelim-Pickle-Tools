@@ -6,6 +6,9 @@
   <supportedVersions>
     <li>1.6</li>
   </supportedVersions>
+  <incompatibleWith>
+    <li>nelim.pickletools</li>
+  </incompatibleWith>
   <description>A Pickle step that clicks a button by the translation key its label comes from, so a scenario runs in any language. Developer tooling; no Defs, no features. A suite stages it with one line in a pass map. See KeyedClick/README.md at the repository root.
 
 It is the same step as the one proposed to Pickle itself as a pull request; when that lands this mod's step can go.
