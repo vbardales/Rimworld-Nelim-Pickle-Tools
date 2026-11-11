@@ -1035,6 +1035,94 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Asserts the terrain def of one cell, by defName (<c>RuneWaterShallow</c>, <c>Soil</c>...). The failure text says which terrain the game reports there. Reads only.
+        /// Written 2026-11-11 for ShallowWaterFloorRenew (the terrain a colonist built). Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the terrain of the cell \\({int}, {int}\\) is {string}")]
+        public void AssertTerrain(PickleContext ctx, int x, int z, string terrainDefName)
+        {
+            Map map = CurrentMap(ctx);
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            TerrainDef actual = map.terrainGrid.TerrainAt(cell);
+            ctx.Assert(actual != null && actual.defName == terrainDefName, $"the terrain at ({x}, {z}) should be {terrainDefName}; the game reports {actual?.defName ?? "nothing"}");
+        }
+
+        /// <summary>
+        /// Has a colonist build a floor, the way a player does: puts a blueprint of the terrain def on every cell of the rectangle (the game's own placement check, so a
+        /// terrain whose affordance the ground does not give is refused with the game's reason), tops up the materials of its cost on the map near the rectangle when the
+        /// map holds less than the whole rectangle costs, lets one free colonist who can build take the Construction work, and waits, with the game running at the
+        /// speed the scenario set, until every cell of the rectangle holds the terrain, or fails after 90000 game ticks or 1000 real seconds, saying which cells are
+        /// left, the jobs of the colonists and what blueprints and frames stand. The terrain each cell held is remembered, so `the decor is removed` puts it back. Fails at
+        /// once when the game is paused, when a cell already holds the terrain (nothing would be proved), or when no free colonist can do Construction.
+        /// Written 2026-11-11 for ShallowWaterFloorRenew. Compiled, NOT PLAYED.
+        /// </summary>
+        [When("Nelim's Pickle Tools: a colonist builds the floor {string} from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 1200f)]
+        public async System.Threading.Tasks.Task BuildFloor(PickleContext ctx, string terrainDefName, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            TerrainDef def = DefDatabase<TerrainDef>.GetNamedSilentFail(terrainDefName);
+            ctx.Require(def != null, $"no terrain def '{terrainDefName}' in this game");
+            ctx.Require(!Find.TickManager.Paused, "the game is paused: set the game speed (Pickle's `game speed is ...` steps) before a colonist builds");
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            foreach (IntVec3 c in rect)
+            {
+                ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+                ctx.Require(map.terrainGrid.TerrainAt(c) != def, $"the cell ({c.x}, {c.z}) already holds {terrainDefName}: nothing to build there");
+            }
+
+            Pawn builder = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => !p.Downed && !p.WorkTypeIsDisabled(WorkTypeDefOf.Construction) && p.workSettings != null);
+            ctx.Require(builder != null, "no free colonist on the map can do Construction");
+            if (builder.workSettings.GetPriority(WorkTypeDefOf.Construction) == 0)
+            {
+                builder.workSettings.SetPriority(WorkTypeDefOf.Construction, 1);
+            }
+
+            foreach (IntVec3 c in rect)
+            {
+                AcceptanceReport report = GenConstruct.CanPlaceBlueprintAt(def, c, Rot4.North, map);
+                ctx.Require(report.Accepted, $"the game refuses a blueprint of {terrainDefName} at ({c.x}, {c.z}) over {map.terrainGrid.TerrainAt(c)?.defName}: {report.Reason}");
+            }
+
+            ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
+            foreach (ThingDefCountClass cost in def.CostListAdjusted(stuff))
+            {
+                int have = map.listerThings.ThingsOfDef(cost.thingDef).Sum(t => t.stackCount);
+                int missing = cost.count * rect.Area - have;
+                while (missing > 0)
+                {
+                    Thing pile = ThingMaker.MakeThing(cost.thingDef);
+                    pile.stackCount = System.Math.Min(missing, cost.thingDef.stackLimit);
+                    missing -= pile.stackCount;
+                    ctx.Require(GenPlace.TryPlaceThing(pile, rect.CenterCell, map, ThingPlaceMode.Near), $"no room near ({rect.CenterCell.x}, {rect.CenterCell.z}) for {pile.stackCount} {cost.thingDef.defName}, the cost of {terrainDefName}");
+                    Placed.Add(pile);
+                }
+            }
+
+            foreach (IntVec3 c in rect)
+            {
+                Floors.Add(new OldFloor { Cell = c, Terrain = map.terrainGrid.TerrainAt(c) });
+                GenConstruct.PlaceBlueprintForBuild(def, c, map, Rot4.North, Faction.OfPlayer, stuff);
+            }
+
+            int startTick = Find.TickManager.TicksGame;
+            var clock = System.Diagnostics.Stopwatch.StartNew();
+            while (rect.Any(c => map.terrainGrid.TerrainAt(c) != def) && Find.TickManager.TicksGame - startTick < 90000 && clock.Elapsed.TotalSeconds < 1000)
+            {
+                await ctx.WaitFrames(30);
+            }
+
+            List<IntVec3> left = rect.Where(c => map.terrainGrid.TerrainAt(c) != def).ToList();
+            Log.Message($"[build-floor] {terrainDefName}: {rect.Area - left.Count} of {rect.Area} cells built by {builder.LabelShortCap}, {Find.TickManager.TicksGame - startTick} ticks, {clock.Elapsed.TotalSeconds:0} s, speed {Find.TickManager.CurTimeSpeed}");
+            if (left.Count > 0)
+            {
+                string jobs = string.Join(", ", map.mapPawns.FreeColonistsSpawned.Select(p => $"{p.LabelShortCap} {(p.CurJob == null ? "none" : p.CurJob.def.defName)}"));
+                string standing = string.Join(", ", rect.SelectMany(c => c.GetThingList(map)).Where(t => t is Blueprint || t is Frame).Select(t => $"{t.def.defName} at ({t.Position.x}, {t.Position.z})"));
+                ctx.Assert(false, $"{left.Count} of {rect.Area} cells still do not hold {terrainDefName} (first: ({left[0].x}, {left[0].z}), now {map.terrainGrid.TerrainAt(left[0])?.defName}); colonist jobs: {jobs}; blueprints and frames standing: {(standing.Length == 0 ? "none" : standing)}");
+            }
+        }
+
+        /// <summary>
         /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
         /// </summary>
         [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
