@@ -27,5 +27,18 @@ namespace Nelim.PickleTools.ColonistRace
             wm.curWeatherAge = (int)WeatherManager.TransitionTicks;
             ctx.Assert(wm.curWeather == def && wm.CurWeatherPerceived == def, $"the weather reads {wm.CurWeatherPerceived?.defName} after the step, not {defName}");
         }
+
+        /// <summary>Starts a game condition (HeatWave, ColdSnap, Drought, ...) on the current map for 3 days, like an incident would. Does nothing new when the condition is already active; fails when the def does not exist or the map is not loaded.</summary>
+        [Given("Nelim's Pickle Tools: the game condition {string} is started")]
+        public void StartGameCondition(PickleContext ctx, string defName)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            GameConditionDef def = DefDatabase<GameConditionDef>.GetNamedSilentFail(defName);
+            ctx.Require(def != null, $"no game condition '{defName}'");
+            if (!map.gameConditionManager.ConditionIsActive(def))
+                map.gameConditionManager.RegisterCondition(GameConditionMaker.MakeCondition(def, 3 * GenDate.TicksPerDay));
+            ctx.Assert(map.gameConditionManager.ConditionIsActive(def), $"the game condition {defName} is not active after the step");
+        }
     }
 }
