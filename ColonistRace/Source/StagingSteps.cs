@@ -317,7 +317,7 @@ namespace Nelim.PickleTools.ColonistRace
             if (bed.Faction == null && bed.def.CanHaveFaction) bed.SetFaction(Faction.OfPlayer);
             pawn.jobs.StartJob(layDown(), JobCondition.InterruptForced);
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef,
-                $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not LayDown: the game refused the bed {bed.def.defName} at {bed.Position} for this pawn (pawn faction {pawn.Faction?.Name ?? "none"} (wild animals are not the colony's: use 'the player animal ... is spawned'), bed faction {bed.Faction?.Name ?? "none"}, medical {bed.Medical}, for prisoners {bed.ForPrisoners}, humanlike bed {bed.def.building.bed_humanlike}, forbidden {bed.IsForbidden(pawn)}, can reserve {pawn.CanReserve(bed)})");
+                $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not LayDown: the game refused the bed {bed.def.defName} at {bed.Position} for this pawn (pawn faction {pawn.Faction?.Name ?? "none"} (wild animals are not the colony's: use 'the player animal ... is spawned'), bed faction {bed.Faction?.Name ?? "none"}, medical {bed.Medical}, for prisoners {bed.ForPrisoners}, humanlike bed {bed.def.building.bed_humanlike}, forbidden {bed.IsForbidden(pawn)}, can reserve {pawn.CanReserve(bed)}, CanUseBedEver {RestUtility.CanUseBedEver(pawn, bed.def)}, pawn body size {pawn.BodySize:0.00} against the bed maximum {bed.def.building.bed_maxBodySize:0.00}, animal bed flag {bed.def.building.bed_humanlike == false}, a medical bed only takes a pawn that seeks medical rest: {HealthAIUtility.ShouldSeekMedicalRest(pawn)})");
             Action hook = () =>
             {
                 if (pawn == null || !pawn.Spawned || pawn.Dead || pawn.jobs == null) return;
