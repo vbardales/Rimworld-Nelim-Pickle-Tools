@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using RimWorks.Pickle;
+using RimWorld;
 using Verse;
 
 namespace Nelim.PickleTools.DefFields
@@ -471,6 +472,56 @@ namespace Nelim.PickleTools.DefFields
             }
 
             return current;
+        }
+
+        /// <summary>
+        /// Reads the label of one stage of a thought def as the player sees it in the current game language: the translated <c>ThoughtStage.label</c>, with the
+        /// <c>{PAWN_...}</c> tokens resolved for the pawn named (a colonist or animal, by short name or nickname, on any loaded map) and its first letter capitalised,
+        /// which is what the game's <c>Thought.LabelCap</c> shows. Compares the whole text after trimming, ignoring case. Stage is the 0-based index in <c>ThoughtDef.stages</c>.
+        /// Written 2026-11-11 for RimScentExtendedEverydayLifeExpansion (the English and French display runs). Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the thought label of the stage {int} of {string} shown to {string} reads {string}")]
+        public void ThoughtLabelReads(PickleContext ctx, int stage, string thoughtDefName, string pawnName, string expected)
+        {
+            ThoughtStage s = ThoughtStageOf(ctx, thoughtDefName, stage);
+            Pawn pawn = PawnNamed(ctx, pawnName);
+            string actual = s.label.Formatted(pawn.Named("PAWN")).Resolve().CapitalizeFirst().Trim();
+            ctx.Assert(
+                string.Equals(actual, expected.Trim(), StringComparison.OrdinalIgnoreCase),
+                $"the label of stage {stage} of {thoughtDefName} shown to {pawnName} should read '{expected}'; it reads '{actual}' (language {Prefs.LangFolderName})");
+        }
+
+        /// <summary>
+        /// Reads the description of one stage of a thought def as the player sees it: the translated <c>ThoughtStage.description</c> with the <c>{PAWN_...}</c> tokens
+        /// resolved for the pawn named (as <c>Thought.Description</c> does). Compares the whole text after trimming, ignoring case. Written 2026-11-11 for
+        /// RimScentExtendedEverydayLifeExpansion. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the thought description of the stage {int} of {string} shown to {string} reads {string}")]
+        public void ThoughtDescriptionReads(PickleContext ctx, int stage, string thoughtDefName, string pawnName, string expected)
+        {
+            ThoughtStage s = ThoughtStageOf(ctx, thoughtDefName, stage);
+            Pawn pawn = PawnNamed(ctx, pawnName);
+            string actual = (s.description ?? string.Empty).Formatted(pawn.Named("PAWN")).Resolve().Trim();
+            ctx.Assert(
+                string.Equals(actual, expected.Trim(), StringComparison.OrdinalIgnoreCase),
+                $"the description of stage {stage} of {thoughtDefName} shown to {pawnName} should read '{expected}'; it reads '{actual}' (language {Prefs.LangFolderName})");
+        }
+
+        private static ThoughtStage ThoughtStageOf(PickleContext ctx, string thoughtDefName, int stage)
+        {
+            ThoughtDef def = DefDatabase<ThoughtDef>.GetNamedSilentFail(thoughtDefName);
+            ctx.Require(def != null, $"no ThoughtDef named '{thoughtDefName}'");
+            ctx.Require(def.stages != null && stage >= 0 && stage < def.stages.Count, $"the thought {thoughtDefName} has {(def.stages == null ? 0 : def.stages.Count)} stage(s): there is no stage {stage}");
+            return def.stages[stage];
+        }
+
+        private static Pawn PawnNamed(PickleContext ctx, string name)
+        {
+            Pawn pawn = Verse.Find.Maps.SelectMany(m => m.mapPawns.AllPawnsSpawned).FirstOrDefault(p =>
+                string.Equals(p.LabelShort, name, StringComparison.OrdinalIgnoreCase)
+                || (p.Name is NameTriple t && string.Equals(t.Nick, name, StringComparison.OrdinalIgnoreCase)));
+            ctx.Require(pawn != null, $"no pawn named '{name}' stands on a loaded map");
+            return pawn;
         }
 
         private static string Describe(Type type)

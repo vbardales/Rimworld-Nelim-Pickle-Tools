@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-651 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+653 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -402,6 +402,8 @@ Package `nelim.pickletools.deffields`. Not in the bundle: a companion staged by 
 | `Nelim's Pickle Tools: a {string} mother has no answer for a {string} father` (Then) | The negative twin of `a ... mother answers a ... father with ...`: no extension, or none with an outcome for that father kind. Compiled, not played. **Parameters:** `motherKind` (string); `fatherKind` (string). |
 | `Nelim's Pickle Tools: the style category {string} gives the thing {string} the style {string}` (Then) | Asserts an ideoligion style category gives a thing the style: its `thingDefStyles` holds the pair (thing, style). Written 2026-10-29 for PropsAsStyle. Compiled, not played. **Parameters:** `categoryName` (string); `thingName` (string); `styleName` (string). |
 | `Nelim's Pickle Tools: the style {string} of the thing {string} draws a texture that resolves` (Then) | Asserts the graphic a style gives a thing resolves: the graphic is built from the style's own graphicData (or the thing's, when the style has none) and its material is not the game's pink bad-texture material. A def-level read: no thing is placed. Written 2026-10-29 for PropsAsStyle. Compiled, not played. **Parameters:** `styleName` (string); `thingName` (string). |
+| `Nelim's Pickle Tools: the thought label of the stage {int} of {string} shown to {string} reads {string}` (Then) | Reads the label of one stage of a thought def as the player sees it in the current game language: the translated `ThoughtStage.label`, with the `{PAWN_...}` tokens resolved for the pawn named (a colonist or animal, by short name or nickname, on any loaded map) and its first letter capitalised, which is what the game's... **Parameters:** `stage` (int); `thoughtDefName` (string); `pawnName` (string); `expected` (string): the expected text. |
+| `Nelim's Pickle Tools: the thought description of the stage {int} of {string} shown to {string} reads {string}` (Then) | Reads the description of one stage of a thought def as the player sees it: the translated `ThoughtStage.description` with the `{PAWN_...}` tokens resolved for the pawn named (as `Thought.Description` does). Compares the whole text after trimming, ignoring case. Written 2026-11-11 for RimScentExtendedEverydayLifeExpansion. **Parameters:** `stage` (int); `thoughtDefName` (string); `pawnName` (string); `expected` (string): the expected text. |
 
 ## ExpansionSteps
 
