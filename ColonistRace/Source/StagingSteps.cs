@@ -352,11 +352,12 @@ namespace Nelim.PickleTools.ColonistRace
             BodyPartRecord part = offered.FirstOrDefault(p => string.Equals(p.Label, partName, StringComparison.OrdinalIgnoreCase))
                 ?? offered.FirstOrDefault(p => string.Equals(p.def.defName, partName, StringComparison.OrdinalIgnoreCase));
             ctx.Require(part != null, $"the game offers {recipeName} on no part '{partName}' of the animal '{name}'; it offers it on: " + (offered.Count == 0 ? "no part (the part must be missing or fit first, see the steps that remove or wound a part)" : string.Join(", ", offered.Select(p => p.Label))));
-            Bill_Medical bill = recipe.MakeNewBill() as Bill_Medical;
-            ctx.Require(bill != null, $"the game builds no medical bill for {recipeName}");
-            bill.Part = part;
-            animal.BillStack.AddBill(bill);
-            ctx.Assert(animal.BillStack.Bills.Contains(bill), $"the bill {recipeName} was not added to the animal '{name}'");
+            // The game's own way (the health tab's operation list): RecipeDef.MakeNewBill gives a production bill, not a medical one, for a surgery.
+            int billsBefore = animal.BillStack.Count;
+            HealthCardUtility.CreateSurgeryBill(animal, recipe, part, null, false);
+            Bill_Medical bill = animal.BillStack.Bills.OfType<Bill_Medical>().LastOrDefault(b => b.recipe == recipe);
+            ctx.Assert(bill != null && animal.BillStack.Count > billsBefore, $"the game's CreateSurgeryBill added no bill {recipeName} to the animal '{name}' (bills now: {string.Join(", ", animal.BillStack.Bills.Select(b => b.GetType().Name + " " + b.recipe?.defName))})");
+            ctx.Assert(bill.Part == part, $"the bill {recipeName} is on '{bill.Part?.Label ?? "no part"}', not '{part.Label}'");
         }
 
         /// <summary>
