@@ -137,9 +137,14 @@ namespace Nelim.PickleTools.ColonistRace
                 await ctx.WaitFrames(3);
             }
 
-            trader.PowerNet?.PowerNetTick();
-            Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, PowerOn {trader.PowerOn}");
-            ctx.Assert(trader.PowerOn, $"the {defName} at ({x}, {z}) is still unpowered after the battery at {spot} (net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, switch " + (building.GetComp<CompFlickable>()?.SwitchIsOn.ToString() ?? "none") + ")");
+            // The net decides PowerOn when it ticks: tick it a few times, as the game's own map tick would, before reading the state.
+            for (int tick = 0; tick < 5 && trader.PowerNet != null && !trader.PowerOn; tick++) trader.PowerNet.PowerNetTick();
+            CompPower batteryComp = battery.GetComp<CompPower>();
+            string net = trader.PowerNet == null
+                ? "none"
+                : $"{trader.PowerNet.powerComps.Count} traders/producers, {trader.PowerNet.batteryComps.Count} batteries, stored {trader.PowerNet.CurrentStoredEnergy():0.0} Wd, gain {trader.PowerNet.CurrentEnergyGainRate():0.0} Wd per tick, the battery is " + (batteryComp?.PowerNet == trader.PowerNet ? "on this net" : "NOT on this net");
+            Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {net}, PowerOn {trader.PowerOn}, draws {trader.Props.PowerConsumption:0} W");
+            ctx.Assert(trader.PowerOn, $"the {defName} at ({x}, {z}) is still unpowered after the battery at {spot} (net {net}; draws {trader.Props.PowerConsumption:0} W; switch " + (building.GetComp<CompFlickable>()?.SwitchIsOn.ToString() ?? "none") + ")");
         }
 
         /// <summary>Asserts the power state of the building of a def at a cell: <c>CompPowerTrader.PowerOn</c> is true for <c>powered</c>, false for <c>unpowered</c>. Fails when the building has no power comp.</summary>
