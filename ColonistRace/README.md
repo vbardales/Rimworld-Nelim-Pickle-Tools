@@ -214,3 +214,13 @@ Written for SanctuaryBacklot (Atticus's eye gene). **Compiled, never played.**
 | `Nelim's Pickle Tools: the animal {string} holds the hediff {string}` | Asserts the animal holds it; the failure lists the hediffs held. |
 
 Added 2026-10-31 for SanctuaryBacklot (Animal Traits System stores traits as AnimalTrait_* hediffs). **Compiled, never played.**
+
+## Filth (2026-11-12)
+
+For RimScentExtendedImprovedExpansion (a pawn held 4 DirtScent from map dirt). The texts differ from ScreenshotStudio's `all filth is cleaned` so both can be staged. **Compiled, never played.**
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: the filth of the whole map is removed` | Destroys every piece of filth on the current map; fails if some is left. |
+| `Nelim's Pickle Tools: the filth within {int} cells of the colonist {string} is removed` | Destroys the filth on the cells within a radius (circle) of a colonist; logs `[filth-removed]`. |
+| `Nelim's Pickle Tools: the filth within {int} cells of \({int}, {int}\) is removed` | The same around a cell of the current map. |
