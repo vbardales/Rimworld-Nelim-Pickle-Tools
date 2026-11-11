@@ -5,6 +5,7 @@ using RimWorks.Pickle;
 using RimWorld;
 using RimWorld.Planet;
 using Verse;
+using HarmonyLib;
 using Verse.Grammar;
 
 namespace Nelim.PickleTools.ColonistRace
@@ -19,7 +20,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// <summary>
         /// Generates a number of names with the name maker of a culture (a CultureDef by defName: its <c>pawnNameMaker</c>, or <c>pawnNameMakerFemale</c> for <c>female</c> when it has one) and asserts
         /// that each name is a first part and a family part, the first part found in the word list <c>first</c> and the rest in the word list <c>family</c>: a word list is the set of
-        /// plain text rules of the rule pack under that keyword (a rule <c>r_firstname-&gt;Aiko</c> belongs to the list <c>r_firstname</c>), compared ignoring case. The name is the game's own
+        /// plain text rules of the rule pack and of the packs it includes under that keyword, and the lines of a rulesFiles entry (`keyword->Names/File`, one name per line in the active language) (a rule <c>r_firstname-&gt;Aiko</c> belongs to the list <c>r_firstname</c>), compared ignoring case. The name is the game's own
         /// output for the pack (<c>NameGenerator.GenerateName</c>), one word for the first part and the remaining words for the family part. Fails with the names that do not match and the
         /// keywords the pack holds. Needs Ideology (cultures). Does not create pawns. NOT PLAYED when written.
         /// </summary>
@@ -86,13 +87,39 @@ namespace Nelim.PickleTools.ColonistRace
         private static HashSet<string> WordList(List<Rule> rules, string keyword)
         {
             var set = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
-            foreach (Rule rule in rules.OfType<Rule_String>().Where(r => string.Equals(r.keyword, keyword, StringComparison.OrdinalIgnoreCase)))
+            foreach (Rule rule in rules.Where(r => string.Equals(r.keyword, keyword, StringComparison.OrdinalIgnoreCase)))
             {
-                string text = rule.Generate();
-                if (!string.IsNullOrEmpty(text)) set.Add(text);
+                if (rule is Rule_String)
+                {
+                    string text = rule.Generate();
+                    if (!string.IsNullOrEmpty(text)) set.Add(text);
+                }
+                else if (rule is Rule_File file)
+                {
+                    // A rulesFiles entry (keyword->Names/File): one entry per line of the file in the active language, as the game reads it.
+                    foreach (string line in FileLines(file)) if (!string.IsNullOrWhiteSpace(line)) set.Add(line.Trim());
+                }
             }
 
             return set;
+        }
+
+        private static IEnumerable<string> FileLines(Rule_File file)
+        {
+            string path = Traverse.Create(file).Field("path").GetValue<string>();
+            var lines = new List<string>();
+            // The language's own reader of a strings file, found by name: it is not in the reference assembly under one fixed name in every version.
+            System.Reflection.MethodInfo reader = typeof(LoadedLanguage).GetMethods(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic)
+                .FirstOrDefault(m => m.Name.IndexOf("StringsFromFile", StringComparison.OrdinalIgnoreCase) >= 0 && m.GetParameters().Length == 1 && m.GetParameters()[0].ParameterType == typeof(string));
+            if (path != null && reader != null && reader.Invoke(LanguageDatabase.activeLanguage, new object[] { path }) is IEnumerable<string> read) lines.AddRange(read);
+            if (lines.Count == 0)
+            {
+                // The game keeps the lines it read in a list of the rule; take it when the path gave none (a fallback language).
+                foreach (var field in typeof(Rule_File).GetFields(System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public))
+                    if (field.FieldType == typeof(List<string>) && field.GetValue(file) is List<string> held) lines.AddRange(held);
+            }
+
+            return lines;
         }
 
         private static IEnumerable<string> Keywords(List<Rule> rules)
