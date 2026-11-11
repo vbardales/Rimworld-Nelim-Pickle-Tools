@@ -368,8 +368,8 @@ namespace Nelim.PickleTools.ColonistRace
         /// in a bed. Fails when the colonist cannot do doctor work, the animal holds no surgery bill, the game gives no job (medicine or part missing, patient not in bed: it says what it knows) or
         /// the job does not start. Written 2026-11-11 for PomeranianADogSaid2Renew. NOT PLAYED when written; the held work field is read by reflection and left alone if the driver has none.
         /// </summary>
-        [Given("Nelim's Pickle Tools: {string} operates on the animal {string}")]
-        public void OperatesOnAnimal(PickleContext ctx, string doctorName, string animalName)
+        [Given("Nelim's Pickle Tools: {string} operates on the animal {string}", TimeoutSeconds = 60f)]
+        public async System.Threading.Tasks.Task OperatesOnAnimal(PickleContext ctx, string doctorName, string animalName)
         {
             Pawn doctor = RequireSpawnedPawn(ctx, doctorName);
             Pawn animal = AnimalGeneSteps.FindAnimal(ctx, animalName);
@@ -423,6 +423,14 @@ namespace Nelim.PickleTools.ColonistRace
             };
             SleepHooks.Add(hook);
             PickleDriver.Instance.AddFrameHook(hook);
+            // The job first fetches its ingredients and walks to the patient: the operation proper (the work left field is set) starts later. Wait for it, with the game RUNNING (speed normal) before this step.
+            Func<bool> working = () => doctor.CurJob != null && doctor.CurJob.def == jobDef && doctor.jobs.curDriver != null
+                && HarmonyLib.Traverse.Create(doctor.jobs.curDriver).Field("workLeft").FieldExists() && HarmonyLib.Traverse.Create(doctor.jobs.curDriver).Field("workLeft").GetValue<float>() > 0f;
+            Func<bool> ended = () => doctor.CurJob == null || doctor.CurJob.def != jobDef;
+            await ctx.WaitUntil(() => working() || ended(), 40f);
+            string where = $"{doctorName} at {doctor.Position}, patient at {animal.Position}, job {doctor.CurJob?.def.defName ?? "none"}, toil {(doctor.jobs.curDriver == null ? "none" : HarmonyLib.Traverse.Create(doctor.jobs.curDriver).Field("curToilIndex").GetValue<int>().ToString())}, game speed {Find.TickManager.CurTimeSpeed}";
+            ctx.Assert(!ended(), $"the operation job ended before the work began ({where}): the ingredients are missing, out of reach or forbidden, or the bill was refused; the game log says why");
+            ctx.Assert(working(), $"the operation did not begin within 40 seconds ({where}): the game must be running (game speed normal) before this step, and the ingredients must lie within reach");
         }
 
         /// <summary>
