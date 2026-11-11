@@ -313,7 +313,11 @@ namespace Nelim.PickleTools.ColonistRace
             pawn.Position = RestUtility.GetBedSleepingSlotPosFor(pawn, bed);
             pawn.Notify_Teleported(false, true);
             Func<Job> layDown = () => { Job j = JobMaker.MakeJob(jobDef, bed); j.forceSleep = true; return j; };
-            StartJob(ctx, name, pawn, jobDef, layDown());
+            // A bed of no faction (a decor step placed it) is not usable by anyone: the game refuses the LayDown. A bed is the colony's for this scene.
+            if (bed.Faction == null && bed.def.CanHaveFaction) bed.SetFaction(Faction.OfPlayer);
+            pawn.jobs.StartJob(layDown(), JobCondition.InterruptForced);
+            ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef,
+                $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not LayDown: the game refused the bed {bed.def.defName} at {bed.Position} for this pawn (pawn faction {pawn.Faction?.Name ?? "none"} (wild animals are not the colony's: use 'the player animal ... is spawned'), bed faction {bed.Faction?.Name ?? "none"}, medical {bed.Medical}, for prisoners {bed.ForPrisoners}, humanlike bed {bed.def.building.bed_humanlike}, forbidden {bed.IsForbidden(pawn)}, can reserve {pawn.CanReserve(bed)})");
             Action hook = () =>
             {
                 if (pawn == null || !pawn.Spawned || pawn.Dead || pawn.jobs == null) return;
