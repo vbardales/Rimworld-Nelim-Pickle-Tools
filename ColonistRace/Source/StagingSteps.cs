@@ -290,10 +290,26 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: {string} lies asleep in the bed {string} at \\({int}, {int}\\)")]
         public void LiesAsleepInBed(PickleContext ctx, string name, string bedDefName, int x, int z)
         {
+            LayInBed(ctx, name, bedDefName, x, z);
+        }
+
+        /// <summary>
+        /// The same for the bed that stands at the cell, whatever its def (a vet bed, an animal sleeping spot, a hospital bed): the pawn (a colonist or an animal, by short name) lies asleep on it
+        /// and is held there until the scenario ends. Fails when no bed stands on the cell (it lists what does), the pawn is unknown or LayDown does not become the job. Written 2026-11-11 for
+        /// PomeranianADogSaid2Renew (a dog on a vet bed). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} lies on the bed at \\({int}, {int}\\)")]
+        public void AnimalLiesOnBed(PickleContext ctx, string name, int x, int z)
+        {
+            LayInBed(ctx, name, null, x, z);
+        }
+
+        private static Building_Bed LayInBed(PickleContext ctx, string name, string bedDefName, int x, int z)
+        {
             Pawn pawn = RequireSpawnedPawn(ctx, name);
             JobDef jobDef = RequireJob(ctx, "LayDown");
-            Building_Bed bed = pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).OfType<Building_Bed>().FirstOrDefault(b => b.def.defName == bedDefName);
-            ctx.Require(bed != null, $"no bed {bedDefName} stands at ({x}, {z}); there is " + string.Join(", ", pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).Select(t => t.def.defName)));
+            Building_Bed bed = pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).OfType<Building_Bed>().FirstOrDefault(b => bedDefName == null || b.def.defName == bedDefName);
+            ctx.Require(bed != null, $"no bed {bedDefName ?? "(any def)"} stands at ({x}, {z}); there is " + string.Join(", ", pawn.Map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)).Select(t => t.def.defName)));
             pawn.Position = RestUtility.GetBedSleepingSlotPosFor(pawn, bed);
             pawn.Notify_Teleported(false, true);
             Func<Job> layDown = () => { Job j = JobMaker.MakeJob(jobDef, bed); j.forceSleep = true; return j; };
@@ -306,12 +322,97 @@ namespace Nelim.PickleTools.ColonistRace
             };
             SleepHooks.Add(hook);
             PickleDriver.Instance.AddFrameHook(hook);
+            return bed;
         }
         [AfterScenario]
         public void ReleaseSleepHolds()
         {
             foreach (Action hook in SleepHooks) PickleDriver.Instance?.RemoveFrameHook(hook);
             SleepHooks.Clear();
+        }
+
+        /// <summary>
+        /// Puts a surgery bill on the animal: the recipe (a RecipeDef by defName, e.g. InstallPegLegAnimal) on one of its body parts (by label, else def name, as <c>has the hediff ... on its ...</c>
+        /// finds it). The part must be one the game offers the recipe on (the recipe worker's own list: a missing leg for a peg leg); the failure lists them. The bill is the game's own
+        /// (<c>RecipeDef.MakeNewBill</c>, a Bill_Medical) so the operation window and the health tab show it. Written 2026-11-11 for PomeranianADogSaid2Renew. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the animal {string} has the surgery bill {string} on its {string}")]
+        public void AnimalHasSurgeryBill(PickleContext ctx, string name, string recipeName, string partName)
+        {
+            Pawn animal = AnimalGeneSteps.FindAnimal(ctx, name);
+            RecipeDef recipe = DefDatabase<RecipeDef>.GetNamedSilentFail(recipeName);
+            ctx.Require(recipe != null, $"no RecipeDef named '{recipeName}'");
+            ctx.Require(recipe.IsSurgery, $"{recipeName} is not a surgery");
+            ctx.Require(animal.def.AllRecipes.Contains(recipe), $"the animal '{name}' ({animal.def.defName}) is not offered {recipeName}; it is offered: " + string.Join(", ", animal.def.AllRecipes.Where(r => r.IsSurgery).Select(r => r.defName).Take(40)));
+            var offered = recipe.Worker.GetPartsToApplyOn(animal, recipe).ToList();
+            BodyPartRecord part = offered.FirstOrDefault(p => string.Equals(p.Label, partName, StringComparison.OrdinalIgnoreCase))
+                ?? offered.FirstOrDefault(p => string.Equals(p.def.defName, partName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(part != null, $"the game offers {recipeName} on no part '{partName}' of the animal '{name}'; it offers it on: " + (offered.Count == 0 ? "no part (the part must be missing or fit first, see the steps that remove or wound a part)" : string.Join(", ", offered.Select(p => p.Label))));
+            Bill_Medical bill = recipe.MakeNewBill() as Bill_Medical;
+            ctx.Require(bill != null, $"the game builds no medical bill for {recipeName}");
+            bill.Part = part;
+            animal.BillStack.AddBill(bill);
+            ctx.Assert(animal.BillStack.Bills.Contains(bill), $"the bill {recipeName} was not added to the animal '{name}'");
+        }
+
+        /// <summary>
+        /// A colonist operates on the animal: the game's own work giver gives the colonist the surgery job on the animal (the first surgery bill the animal holds, see <c>has the surgery bill</c>),
+        /// the colonist is put beside the animal (at its bed when it lies in one) turned towards it, the Anesthetic hediff is put on the animal if it has none, and the job is started by force. The
+        /// operation is then held mid-way until the scenario ends: on every rendered frame, even paused, the work left of the job is kept from running out (it never drops under 60% of the most it held), so the
+        /// capture shows the doctor working and the patient under Anesthetic whenever it is taken. Lay the animal on a bed first (<c>the animal ... lies on the bed at</c>): the game asks a patient
+        /// in a bed. Fails when the colonist cannot do doctor work, the animal holds no surgery bill, the game gives no job (medicine or part missing, patient not in bed: it says what it knows) or
+        /// the job does not start. Written 2026-11-11 for PomeranianADogSaid2Renew. NOT PLAYED when written; the held work field is read by reflection and left alone if the driver has none.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} operates on the animal {string}")]
+        public void OperatesOnAnimal(PickleContext ctx, string doctorName, string animalName)
+        {
+            Pawn doctor = RequireSpawnedPawn(ctx, doctorName);
+            Pawn animal = AnimalGeneSteps.FindAnimal(ctx, animalName);
+            ctx.Require(animal.BillStack.Count > 0, $"the animal '{animalName}' holds no bill; add one with 'the animal \"{animalName}\" has the surgery bill \"<recipe>\" on its \"<part>\"'");
+            ctx.Require(doctor.workSettings != null && !doctor.WorkTypeIsDisabled(WorkTypeDefOf.Doctor), $"{doctorName} cannot do doctor work (disabled by a trait or a backstory): pick a colonist who can");
+            Job job = null;
+            var tried = new System.Collections.Generic.List<string>();
+            foreach (WorkGiverDef giverDef in DefDatabase<WorkGiverDef>.AllDefsListForReading)
+            {
+                var scanner = giverDef.Worker as WorkGiver_Scanner;
+                if (scanner == null || giverDef.workType != WorkTypeDefOf.Doctor) continue;
+                try
+                {
+                    Job candidate = scanner.JobOnThing(doctor, animal, true);
+                    tried.Add(giverDef.defName + (candidate == null ? ":none" : ":" + candidate.def.defName));
+                    if (candidate != null && candidate.bill is Bill_Medical) { job = candidate; break; }
+                }
+                catch (Exception e) { tried.Add(giverDef.defName + ":threw " + e.GetType().Name); }
+            }
+
+            ctx.Require(job != null, $"the game gives {doctorName} no surgery job on the animal '{animalName}' (doctor work givers asked: {string.Join(", ", tried)}): the animal must lie in a bed, the part must be fit for the recipe, and its ingredients (medicine, the prosthesis) must lie on the map within reach, not forbidden");
+            if (!animal.health.hediffSet.HasHediff(HediffDefOf.Anesthetic)) animal.health.AddHediff(HediffMaker.MakeHediff(HediffDefOf.Anesthetic, animal));
+            IntVec3 beside = GenAdj.CellsAdjacent8Way(animal).Where(c => c.InBounds(animal.Map) && c.Standable(animal.Map) && c.GetEdifice(animal.Map) == null).OrderBy(c => c.DistanceToSquared(animal.Position)).FirstOrDefault();
+            if (beside.IsValid)
+            {
+                doctor.Position = beside;
+                doctor.Notify_Teleported(false, true);
+                doctor.Rotation = Rot4.FromIntVec3(animal.Position - beside);
+            }
+
+            doctor.jobs.StartJob(job, JobCondition.InterruptForced);
+            ctx.Assert(doctor.CurJob != null && doctor.CurJob.def == job.def, $"{doctorName}'s job is {doctor.CurJob?.def.defName ?? "none"}, not {job.def.defName}");
+            JobDef jobDef = job.def;
+            Bill bill = job.bill;
+            float held = 0f;
+            Action hook = () =>
+            {
+                if (doctor == null || !doctor.Spawned || doctor.Dead || doctor.jobs == null || animal == null || !animal.Spawned) return;
+                if (!animal.BillStack.Bills.Contains(bill)) return;
+                if (doctor.CurJob == null || doctor.CurJob.def != jobDef || doctor.jobs.curDriver == null) return;
+                var field = HarmonyLib.Traverse.Create(doctor.jobs.curDriver).Field("workLeft");
+                if (!field.FieldExists()) return;
+                float left = field.GetValue<float>();
+                if (left > held) held = left;
+                if (held > 0f && left < held * 0.6f) field.SetValue(held * 0.6f);
+            };
+            SleepHooks.Add(hook);
+            PickleDriver.Instance.AddFrameHook(hook);
         }
 
         /// <summary>
