@@ -104,6 +104,44 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Powers the building of a def at a cell through the game's own power net: a Battery (full) is spawned on a free cell touching the building, the nets
+        /// are rebuilt and ticked once (the scene runs paused). Fails when the building has no power comp, no cell touches it, or the building is still unpowered
+        /// after that (its switch is off, or the draw is above the battery's stored energy: it holds 600 Wd). Does not touch the building's switch.
+        /// Asked for by RSEIE (electric crematorium and smelter scents). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} at \\({int}, {int}\\) is powered")]
+        public async System.Threading.Tasks.Task Powered(PickleContext ctx, string defName, int x, int z)
+        {
+            ThingWithComps building = BuildingAt(ctx, defName, x, z);
+            CompPowerTrader trader = building.GetComp<CompPowerTrader>();
+            ctx.Require(trader != null, $"the {defName} has no power trader comp");
+            Map map = building.Map;
+            ThingDef batteryDef = DefDatabase<ThingDef>.GetNamedSilentFail("Battery");
+            ctx.Require(batteryDef != null, "no Battery def in this game");
+            IntVec3 spot = GenAdj.CellsAdjacentCardinal(building).FirstOrDefault(c => c.InBounds(map) && c.Standable(map) && c.GetEdifice(map) == null && c.GetFirstItem(map) == null);
+            ctx.Require(spot.IsValid && spot != IntVec3.Zero, $"no free cell touches the {defName} at ({x}, {z}) for a battery");
+            var battery = (ThingWithComps)ThingMaker.MakeThing(batteryDef);
+            battery.SetFactionDirect(Faction.OfPlayer);
+            GenSpawn.Spawn(battery, spot, map);
+            battery.GetComp<CompPowerBattery>().SetStoredEnergyPct(1f);
+            map.powerNetManager.UpdatePowerNetsAndConnections_First();
+            await ctx.WaitFrames(3);
+            trader.PowerNet?.PowerNetTick();
+            Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, PowerOn {trader.PowerOn}");
+            ctx.Assert(trader.PowerOn, $"the {defName} at ({x}, {z}) is still unpowered after the battery at {spot} (net {(trader.PowerNet == null ? "none" : "of " + trader.PowerNet.powerComps.Count + " comps")}, switch " + (building.GetComp<CompFlickable>()?.SwitchIsOn.ToString() ?? "none") + ")");
+        }
+
+        /// <summary>Asserts the power state of the building of a def at a cell: <c>CompPowerTrader.PowerOn</c> is true for <c>powered</c>, false for <c>unpowered</c>. Fails when the building has no power comp.</summary>
+        [Then("Nelim's Pickle Tools: the power of the building {string} at \\({int}, {int}\\) is {word}")]
+        public void PowerState(PickleContext ctx, string defName, int x, int z, string state)
+        {
+            ctx.Require(state == "powered" || state == "unpowered", $"the state is powered or unpowered, not '{state}'");
+            CompPowerTrader trader = BuildingAt(ctx, defName, x, z).GetComp<CompPowerTrader>();
+            ctx.Require(trader != null, $"the {defName} has no power trader comp");
+            ctx.Assert(trader.PowerOn == (state == "powered"), $"the {defName} at ({x}, {z}) should be {state}; PowerOn is {trader.PowerOn}");
+        }
+
+        /// <summary>
         /// Places a corpse of a pawn kind at a cell at a rot stage: <c>fresh</c> (no rot), <c>rotting</c> (just past the start of rot) or <c>dessicated</c> (past
         /// the time to dessicate). The pawn is generated, spawned and killed, so the corpse is the game's own. Removed after the scenario.
         /// </summary>
