@@ -153,7 +153,7 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 var items = list.Cast<object>().ToList();
                 object first = items.FirstOrDefault();
-                graphics = items.Count + (first == null ? string.Empty : " first=" + Str(Get(first, "path") ?? Get(first, "data")?.GetType().Name) + " shader=" + Str(Get(Get(first, "Shader"), "name") ?? Get(Get(first, "shader"), "name") ?? Get(first, "Shader"))) + " material: " + MaterialInfo(first));
+                graphics = items.Count + (first == null ? string.Empty : " first=" + Str(Get(first, "path") ?? Get(first, "data")?.GetType().Name) + " shader=" + Str(Get(Get(first, "Shader"), "name") ?? Get(Get(first, "shader"), "name") ?? Get(first, "Shader")) + " material: " + MaterialInfo(first));
             }
             else
             {
