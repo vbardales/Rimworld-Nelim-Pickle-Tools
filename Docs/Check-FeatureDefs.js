@@ -88,8 +88,9 @@ function loadFolders(root) {
   }
   const common = fs.existsSync(root + '/Common') ? [root + '/Common'] : [];
   const v = ['1.6', '1.5', '1.4', '1.3'].find(x => fs.existsSync(root + '/' + x));
-  const out = common.concat(v ? [root + '/' + v] : []);
-  return out.length ? out : [root];
+  // Without LoadFolders.xml the game loads the mod root (its Defs folder), then Common, then the folder of the game version: the root is never left out
+  // (Disco! 2436747646 keeps DSC_DiscoFloor in root Defs/ beside empty version folders; the pre-check refused a def the game loads, 2026-11-12).
+  return [root].concat(common, v ? [root + '/' + v] : []);
 }
 function xmlFiles(d, out, depth = 0) {
   if (depth > 8) return;
