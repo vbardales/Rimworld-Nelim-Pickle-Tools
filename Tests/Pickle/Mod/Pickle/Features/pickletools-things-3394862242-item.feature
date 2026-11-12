@@ -28,7 +28,7 @@ Feature: item catalogue 3394862242
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (147.5, 152.5) at root size 5.5
+    And Nelim's Pickle Tools: I frame the area centred on (148, 153) at root size 5.5
     And I take a screenshot "things-3394862242-item-01"
     Then no errors were logged
 
@@ -47,7 +47,7 @@ Feature: item catalogue 3394862242
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (147.5, 152.5) at root size 5.5
+    And Nelim's Pickle Tools: I frame the area centred on (148, 153) at root size 5.5
     And I take a screenshot "things-3394862242-item-02"
     Then no errors were logged
 

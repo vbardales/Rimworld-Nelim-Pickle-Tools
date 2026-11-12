@@ -69,7 +69,7 @@ const PER = Number(opt('--per', group === 'building' ? 10 : 15)), SHOTS = Number
 const rows = Math.ceil(PER / COLS);
 const wCells = COLS * PITCH, hCells = rows * PITCH;
 const x1 = X0 + wCells - 1, z1 = Z0 + hCells - 1;
-const cx = X0 + wCells / 2, cz = Z0 + hCells / 2;
+const cx = Math.round(X0 + wCells / 2), cz = Math.round(Z0 + hCells / 2); // the framing step takes whole cells ({int}): a .5 centre was an undefined step (ticket f4cd)
 const size = Math.max(hCells / 2, wCells / 3.56) + 1; // root size that holds the grid with a margin (1080p frame: 2N cells tall, about 3.56N wide)
 
 const shots = [];
