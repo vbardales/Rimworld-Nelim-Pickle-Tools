@@ -28,7 +28,19 @@ const sheet = path.resolve(root, '..', '..', 'rimworld-mod-inventory', key + '.j
 if (!fs.existsSync(sheet)) { console.error('no content sheet: ' + sheet); process.exit(1); }
 const j = JSON.parse(zlib.gunzipSync(fs.readFileSync(sheet)));
 
-const defs = j.defs.filter(d => d.t === 'ThingDef' && d.n);
+// Defs in a folder the mod loads only IfModActive (LoadFolders.xml of the Workshop copy, game version 1.6) belong to an optional integration: they are not part of the mod's own
+// catalogue and would fail with "no ThingDef named" when the other mod is not staged (RKK_CursedRetinueBow, ticket d631). They are listed apart, not photographed.
+const lf = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/' + key + '/LoadFolders.xml';
+const conditional = [];
+if (fs.existsSync(lf)) {
+  const x = fs.readFileSync(lf, 'utf8');
+  const v = (x.match(/<v1\.6>[\s\S]*?<\/v1\.6>/) || [''])[0];
+  for (const m of v.matchAll(/<li IfModActive="([^"]+)">([^<]+)<\/li>/g)) conditional.push({ mod: m[1], folder: m[2].replace(/^\/+|\/+$/g, '') + '/' });
+}
+const condOf = d => conditional.find(c => (d.f || '').replace(/\\/g, '/').startsWith(c.folder));
+const defs = j.defs.filter(d => d.t === 'ThingDef' && d.n && !condOf(d));
+const apart = j.defs.filter(d => d.t === 'ThingDef' && d.n && condOf(d));
+if (apart.length) console.log('conditional (IfModActive), not photographed: ' + apart.length + ' defs: ' + [...new Set(apart.map(d => condOf(d).mod))].join(', '));
 const parentNames = new Set(defs.flatMap(d => (d.p || []).map(p => p.Name)));
 const chain = d => (d.p || []).map(p => p.Name).join('>');
 const classify = d => {
