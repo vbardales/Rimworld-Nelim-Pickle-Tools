@@ -10,6 +10,7 @@ const W = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/';
 const MODS = {
   lts: { id: '3751997843', name: '[LTS] Raiments', first: ['LTS_SummerSundress', 'LTS_StraightDress', 'LTS_Skirt', 'LTS_Shorts', 'LTS_Dresspants'] },
   lisawork: { slim: true, id: '3709891968', name: "Lisa's Work Apparel", first: ['LisaWork_ApparelCollaredShirt', 'LisaWork_ApparelApronSurgeon', 'LisaWork_ApparelLabCoat', 'LisaWork_ApparelStethoscope'], firstLabels: /plaid shirt|shirt buttoned|pants and belt|^skirt$/i },
+  rkk: { id: '3394862242', name: 'Ratkin Knights+', first: [], skip: /\/Mod\/(CRE|RKA|DMS|JUN)\// }, // skip: folders the mod loads only IfModActive (LoadFolders.xml)
   boots: { id: '1488970545', name: 'Boots and Stuff', first: ['Apparel_sandals', 'Apparel_shoes'] },
 };
 const key = process.argv[2];
@@ -29,6 +30,7 @@ const files = []; walk(root, files);
 const all = [];
 for (const f of files) {
   const rel = f.replace(root, '');
+  if (mod.skip && mod.skip.test(rel.replace(/\\/g, '/'))) continue;
   if (/\/(1\.[0-5])\//.test(rel) || /Versions\/1\.[0-5]\//.test(rel)) continue;
   let t; try { t = fs.readFileSync(f, 'utf8'); } catch (e) { continue; }
   t = t.replace(/<!--[\s\S]*?-->/g, '');

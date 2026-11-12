@@ -1,0 +1,81 @@
+# Clothes gallery of Ratkin Knights+ (2026-11-12, PiI queue): the map of wsl-deps.clothes-lts.map with the Ratkin mods instead of [LTS] Raiments. Seeds: config/clothes-rkk (copy of config/clothes-lts).
+#
+#   Submit-PickleRun.ps1 -Mod PickleTools -DepMap wsl-deps.clothes-lts.map -Filter '::clothes-lts-' -EvidenceDir Tests/Pickle/Inbox/clothes-lts-1
+# Look validation pass (feature sanctuary-looks): the sanctuary pass PLUS the mods the character profiles call for and the map lacks (owner, 2026-10-19): Roo's HD Hairstyles (Roo_Royal_*, Roo_HD_*), Tribal Tattoos (STribalTat_*), Tattoos Expanded (Body_rose, Body_Koi). NOT PLAYED.
+#
+#   Submit-PickleRun.ps1 -Mod SanctuaryBacklot -DepMap wsl-deps.sanctuary-looks.map -Filter "::looks-" -EvidenceDir Tests/Pickle/Inbox/looks-1
+# The passes of the Sanctuaire de Nelim: the studio fixtures (including Nelims-tribe), the camera steps, the stage decor, the animal steps (coat steps) and the clear screen.
+#
+#   Submit-PickleRun.ps1 -Mod SanctuaryBacklot -DepMap wsl-deps.sanctuary.map -Filter "::infirmary-views"   (the Backlot's own suite; its scenarios stage Nelim's Pickle Tools by the path: lines below)
+nelim.pickletools.screenshotstudio path:PickleTools/ScreenshotStudio/Mod
+nelim.pickletools.camerazoom path:PickleTools/CameraZoom/Mod
+nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
+nelim.pickletools.coatsteps path:PickleTools/CoatSteps/Mod
+nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
+nelim.pickletools.clickdiagnostics path:PickleTools/ClickDiagnostics/Mod
+# The bundle is committed under PickleTools/Mod: this shell replaces it, so the tools above are the only copy of their steps (see StandaloneBase).
+nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# Minimum list, 2026-10-07/08 (owner). The staging activates in file order, then sorts by loadAfter/dependencies.
+# Bodies and trousers, as proven by Venus Touch Waistlines' gallery pass WITHOUT TailorMade (VenusTouchWaistlines/docs/runs/2026-10-08_gallery-no-tailormade-1):
+# Female Body Variants and Female Apparel Variants load BEFORE WDI (else their Naked_*_Female textures shadow WDI's); AB's Visible Pants is indispensable (without it Venus does nothing).
+# Seeds: Tests/Pickle/config/sanctuary/ (AB's settings; Venus's, whose name must be Mod_local-<packageId>_<Class>.xml because it is staged by path:).
+# Not staged: TailorMade (not needed), Apparel Paper Pattern (not required: AB lists it in loadAfter only), THIGAPPE (does the same fitting as Venus, dropped), Reel's textures (owner: not added), Kas.GeneralCollection (optional, Workshop id 3789119336).
+tiagocc0.FemaleBodyVariants 3798082132
+tiagocc0.FemaleApparelVariants 3799726535
+# UnderWhere (underwear base of the catalogue try-ons) before WDI, as in wsl-deps.sanctuary-looks.map (NSB daily map lacks it, ticket 3a0f 2026-11-04: no apparel UnderWhere_Panties).
+Malistaticy.UnderWhere 1870010563
+wdi.realistic.bodies 3527486510
+ab.vplrf 2986402536
+nelim.venustouch.waistlines path:VenusTouchWaistlines/Mod
+# Facial animation: base (blinks included: its `blink` animation), experimentals, Vanilla Textures Expanded, Akeron Extras (needs VTE), EyeGenes3, the performance patch. Moving Vanilla Eyes (VEFA) is listed further down.
+Nals.FacialAnimation 1635901197
+nals.facialanimationexperimentals 2581693737
+VanillaExpanded.VTEXE.FacialAnims 2816938779
+Newton.AKNExtras.FacialAnimations 2889716301
+lucius.eyegenes3 3745223213
+astryl.FacialAnimationPerformancePatch 3790129900
+# Facial animation fixes (owner, 2026-10-08): Init Fix animates newly spawned pawns at once, Load Fix refreshes pawn graphics after a save loads (both after Nals.FacialAnimation). Cuter Kids (3807706870, children only) is added on the owner's word.
+# [VK] closed eyes: new eyelids for the Experimentals, 1.6. FAE (2890697696) is NOT used and Dynamic Eyebrows (3813572847) is NOT used (owner, 2026-10-08).
+vk.addeyes.EX 3694711465
+# VEFA = Vanilla Experimentals for Facial Animation (SunshineyDays, sd.fa.movingvanillaeyes): moving eyes, half-lidded tiredness, tears, hot and cold overlays, smiles; reads the VTE lids and mouths. Back 2026-10-08 on the owner's word, after its HasNegativeBlushThought exception (run d445) was a reason to remove it. Its seed (config/sanctuary) sets enableBlushLimiting to False to avoid that exception.
+sd.fa.movingvanillaeyes 3753978140
+SleepyFrieren.beautygenefa 3685072616
+ria.cuterkidsforfacialanimation 3807706870
+Moshii.NLFA.InitFix 3609895011
+ccj.nlfaloadfix 3721489042
+
+# Added for the look validation: ids from NPT's wsl-deps.look-catalogue.map.
+Shenanigans.TribalTattoos 2782262247
+Qux.Tattoos 2569243583
+Rooboid.RooTattoo 2555588467
+rooboid.hdhair.continued 3559870636
+# Vanilla Hair Expanded: Miel's VHE_SideBraid (ticket 089c failed "no hairstyle VHE_SideBraid" without it).
+VanillaExpanded.VHE 1888705256
+# Hair under hats: Hat Hair Control replaces Show Hair Under Stuff here (owner, 2026-10-20), seed in config/sanctuary-looks. Clothing candidates for the alt outfits (owner: choose, test).
+lordfelix.HatHairControl 3760821540
+Dress.Cinderella 3627646170
+homebrew.fairycoreapparel2 3812924898
+KRJS.JoseonCostume1 3043633660
+
+# Intimacy - Friends n Lovers, Way Better Romance (owner links, 2026-10-30; Simple Trans dropped, RJW genes chosen instead). Non-Binary Gender (3109763692) removed 2026-10-30 (owner): WBR lists it as incompatibleWith, the load order could not be sorted (ticket dfe1).
+LovelyDovey.Sex.WithEuterpe 3498422643
+divineDerivative.Romance 2877731755
+
+# RJW genes for gender and sexuality (owner, 2026-10-30): local RimWorld Mods folder (not Steam), folder names rjw and rjw-genes; Harmony and Biotech are automatic.
+rim.job.world rjw
+vegapnk.rjw.genes rjw-genes
+archersaiter.rjw.traits rjw-traits
+
+# Daily-outfit captures from the Roster (owner, 2026-11-04, "go captures"): copy of wsl-deps.sanctuary-looks.map plus the skins and the garments the Roster column AM names.
+LazyFridayStudio.GenesExpandedSkin 3214172563
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+VanillaExpanded.VAPPE 1814987817
+Mlie.FashionRIMsta 3592569869
+ponpeco.KidsClothes 3237739433
+ponpeco.PonpecoAccessories 3298397484
+# The mod photographed:
+bbb.ratkinweapon.morefailure 2779404660
+Solaris.RatkinRaceMod 1578693166
+erdelf.HumanoidAlienRaces 839005762
+RKK.RatKnights.Core 3394862242
