@@ -121,16 +121,28 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Map map = Find.CurrentMap;
             ctx.Require(map != null, "No loaded map");
             var sb = new System.Text.StringBuilder();
-            sb.AppendLine("[altitudes] layers: " + string.Join("; ", Enum.GetValues(typeof(AltitudeLayer)).Cast<AltitudeLayer>().Select(l => l + "=" + l.AltitudeFor().ToString("0.000")).OrderBy(x => x)));
+            var table = new List<string>();
+            foreach (AltitudeLayer l in Enum.GetValues(typeof(AltitudeLayer)))
+            {
+                try { table.Add(l + "=" + l.AltitudeFor().ToString("0.000")); }
+                catch (Exception e) { table.Add(l + "=(" + e.GetType().Name + ")"); }
+            }
+            table.Sort(StringComparer.Ordinal);
+            sb.AppendLine("[altitudes] layers: " + string.Join("; ", table));
             IntVec3 cam = Find.CameraDriver.MapPosition;
             int found = 0;
-            foreach (Thing t in map.listerThings.AllThings.Where(t => t.Spawned && t.Position.InHorDistOf(cam, 20f)))
+            try
             {
-                float y = t.def.Altitude;
+            foreach (Thing t in map.listerThings.AllThings.ToList().Where(t => t.Spawned && t.Position.InHorDistOf(cam, 20f)))
+            {
+                float y;
+                try { y = t.def.Altitude; } catch (Exception) { continue; }
                 if (y < from || y > to) continue;
                 found++;
                 if (found <= 80) sb.AppendLine("  " + t.def.defName + " (" + t.GetType().Name + ", " + (t.def.modContentPack?.PackageId ?? "?") + ") at " + t.Position + " layer " + t.def.altitudeLayer + " y " + y.ToString("0.000"));
             }
+            }
+            catch (Exception e) { sb.AppendLine("read error: " + e); }
             sb.AppendLine(found + " thing(s) with y between " + from + " and " + to + " within 20 cells of " + cam);
             Log.Message(sb.ToString());
             ctx.Attach("altitudes", sb.ToString());
