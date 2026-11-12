@@ -6,7 +6,7 @@
 //                                                                                              are staged by the staging from its About.xml, a missing id goes in
 //                                                                                              the mod's own wsl-ids.map or the shared table)
 //   Tests/Pickle/things-<key>.key.md                                                          (which def is in which cell of each shot)
-// Usage: node Docs/Generate-ThingGallery.js <workshopId> --group building|item|plant [--per N] [--shots N] [--from K] [--list] [--dep <packageId>:<workshopId>]...
+// Usage: node Docs/Generate-ThingGallery.js <workshopId> --group building|item|plant|apparel|style [--per N] [--shots N] [--from K] [--list] [--dep <packageId>:<workshopId>]...
 //   --dep (repeatable) stages a hard dependency the staging does not resolve by itself (Ratkin Knights+ 3394862242 needs --dep bbb.ratkinweapon.morefailure:2779404660
 //   --dep Solaris.RatkinRaceMod:1578693166 --dep erdelf.HumanoidAlienRaces:839005762: without them its DLL fails to load and the first step times out, ticket 8c99).
 //   --list prints the classification (group, count, first names) and writes nothing.
@@ -60,10 +60,21 @@ if (args.includes('--list') || !group) {
   for (const [g, l] of Object.entries(by)) console.log(`${g}: ${l.length}  ${l.slice(0, 6).join(', ')}`);
   process.exit(0);
 }
-const names = by[group] || [];
+// group style: the (thing, style) pairs of the mod's StyleCategoryDefs (Ideology styles of vanilla things), each placed with its style by StageDecor ("I place the decor ... with the style ...").
+let names = by[group] || [];
+if (group === 'style') {
+  const dir = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/' + key + '/Defs';
+  const walkx = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walkx(d + '/' + e.name) : (/\.xml$/i.test(e.name) ? [d + '/' + e.name] : []));
+  names = [];
+  for (const f of walkx(dir)) {
+    const t = fs.readFileSync(f, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+    for (const m of t.matchAll(/<li>\s*<thingDef>([^<]*)<\/thingDef>\s*<styleDef>([^<]*)<\/styleDef>/g)) names.push(m[1] + '|' + m[2]);
+  }
+  names = [...new Set(names)];
+}
 if (!names.length) { console.error('no ' + group + ' in ' + key); process.exit(1); }
 
-const PITCH = group === 'building' ? 4 : 3;
+const PITCH = group === 'style' ? 5 : group === 'building' ? 4 : 3;
 const COLS = 5, X0 = 140, Z0 = 148;
 const PER = Number(opt('--per', group === 'building' ? 10 : 15)), SHOTS = Number(opt('--shots', 0)), FROM = Number(opt('--from', 1));
 const rows = Math.ceil(PER / COLS);
@@ -91,6 +102,8 @@ used.forEach((shot, si) => {
     const c = i % COLS, r = Math.floor(i / COLS);
     const ax = X0 + c * PITCH + Math.floor(PITCH / 2), az = z1 - Math.floor(PITCH / 2) - r * PITCH;
     if (group === 'building') f += `    And Nelim's Pickle Tools: the building "${name}" is spawned at (${ax}, ${az}) facing south\n`;
+    else if (group === 'style') { const [th, st] = name.split('|'); f += `    And Nelim's Pickle Tools: I place the decor "${th}" with the style "${st}" at (${ax}, ${az})
+`; }
     else if (group === 'plant') f += `    And Nelim's Pickle Tools: I place the decor "${name}" at (${ax}, ${az}) fully grown\n`;
     else f += `    And Nelim's Pickle Tools: 1 of the item "${name}" are spawned at (${ax}, ${az})\n`;
     k += `| ${r + 1} | ${c + 1} | ${name} |\n`;
