@@ -194,7 +194,34 @@ namespace Nelim.PickleTools.ColonistRace
             return Rot4.North;
         }
 
-        private void SpawnBuilding(PickleContext ctx, string defName, int x, int z, string facing, string stuffName)
+        private static List<string> BlockedCells(Map map, ThingDef def, IntVec3 cell, Rot4 rot)
+        {
+            var blocked = new List<string>();
+            foreach (IntVec3 c in GenAdj.OccupiedRect(cell, rot, def.size))
+            {
+                if (!c.InBounds(map)) { blocked.Add($"({c.x}, {c.z}) outside the map"); continue; }
+                if (c.Impassable(map)) { blocked.Add($"({c.x}, {c.z}) impassable"); continue; }
+                Building edifice = c.GetEdifice(map);
+                if (edifice != null) { blocked.Add($"({c.x}, {c.z}) holds {edifice.def.defName}"); continue; }
+                if (!c.Standable(map)) { blocked.Add($"({c.x}, {c.z}) not standable"); continue; }
+                if (!GenConstruct.CanBuildOnTerrain(def, c, map, rot)) blocked.Add($"({c.x}, {c.z}) terrain {c.GetTerrain(map).defName} cannot carry it");
+            }
+
+            return blocked;
+        }
+
+        /// <summary>
+        /// The same finished building on the nearest cell (rings around the asked cell, up to 40 cells) where the whole footprint fits: standable, no building, not impassable, terrain fine.
+        /// Logs the cell chosen as <c>[serum] ... the nearest free cell is (x, z)</c>. Asked for by RpF (a random new colony map has natural rock where a fixed grid lands). Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} is spawned on the nearest free cell around \\({int}, {int}\\)")]
+        public void BuildingSpawnedNearest(PickleContext ctx, string defName, int x, int z) => SpawnBuilding(ctx, defName, x, z, "north", null, true);
+
+        /// <summary>The same with a facing: north, east, south or west.</summary>
+        [Given("Nelim's Pickle Tools: the building {string} is spawned on the nearest free cell around \\({int}, {int}\\) facing {word}")]
+        public void BuildingSpawnedNearestFacing(PickleContext ctx, string defName, int x, int z, string facing) => SpawnBuilding(ctx, defName, x, z, facing, null, true);
+
+        private void SpawnBuilding(PickleContext ctx, string defName, int x, int z, string facing, string stuffName, bool nearest = false)
         {
             Map map = RequireMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
@@ -211,15 +238,25 @@ namespace Nelim.PickleTools.ColonistRace
                     $"{defName} cannot be made of {stuffName}; it allows " + (def.MadeFromStuff ? string.Join(", ", GenStuff.AllowedStuffsFor(def).Select(s => s.defName).Take(30)) : "no stuff"));
             }
 
-            var blocked = new List<string>();
-            foreach (IntVec3 c in GenAdj.OccupiedRect(cell, rot, def.size))
+            List<string> blocked = BlockedCells(map, def, cell, rot);
+            if (nearest && blocked.Count > 0)
             {
-                if (!c.InBounds(map)) { blocked.Add($"({c.x}, {c.z}) outside the map"); continue; }
-                if (c.Impassable(map)) { blocked.Add($"({c.x}, {c.z}) impassable"); continue; }
-                Building edifice = c.GetEdifice(map);
-                if (edifice != null) { blocked.Add($"({c.x}, {c.z}) holds {edifice.def.defName}"); continue; }
-                if (!GenConstruct.CanBuildOnTerrain(def, c, map, rot)) blocked.Add($"({c.x}, {c.z}) terrain {c.GetTerrain(map).defName} cannot carry it");
+                // Search the rings around the asked cell, nearest first, for the first cell where the whole footprint fits (the natural rock of a random map is not predictable).
+                IntVec3 found = IntVec3.Invalid;
+                for (int r = 1; r <= 40 && !found.IsValid; r++)
+                    for (int dx = -r; dx <= r && !found.IsValid; dx++)
+                        for (int dz = -r; dz <= r; dz++)
+                        {
+                            if (Math.Max(Math.Abs(dx), Math.Abs(dz)) != r) continue;
+                            var c = new IntVec3(x + dx, 0, z + dz);
+                            if (BlockedCells(map, def, c, rot).Count == 0) { found = c; break; }
+                        }
+
+                ctx.Require(found.IsValid, $"{defName} fits on no cell within 40 cells of ({x}, {z}); at ({x}, {z}) it was blocked: " + string.Join("; ", blocked));
+                Log.Message($"[serum] {defName}: ({x}, {z}) is blocked ({string.Join("; ", blocked)}), the nearest free cell is ({found.x}, {found.z})");
+                cell = found; x = found.x; z = found.z; blocked = new List<string>();
             }
+
             ctx.Require(blocked.Count == 0, $"{defName} does not fit at ({x}, {z}) (size {def.size.x}x{def.size.z}): " + string.Join("; ", blocked));
             Thing thing = ThingMaker.MakeThing(def, stuff);
             thing.SetFactionDirect(Faction.OfPlayer);
