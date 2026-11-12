@@ -453,6 +453,27 @@ namespace Nelim.PickleTools.ColonistRace
             StartJob(ctx, name, pawn, jobDef, job);
         }
 
+        /// <summary>
+        /// A colonist (or any pawn, by short name) eats an item lying at a cell, and the step ends when the Ingest job is over: it starts the job as
+        /// <c>is forced into the job "Ingest"</c> does, runs the game at its fastest speed until the job ends (180 real seconds at most), and puts the speed back. The thought and the
+        /// hediff the meal gives are there when the step ends, so a Then step can assert them. Fails like the forced step, or when the job is still running after the cap
+        /// (the pawn cannot reach the item or sits down for ever). Asked for by SMT (SilkyMilkTea scenario 03b). Compiled, NOT PLAYED.
+        /// </summary>
+        [When("Nelim's Pickle Tools: {string} eats the item {string} at \\({int}, {int}\\)", TimeoutSeconds = 200f)]
+        public async System.Threading.Tasks.Task PawnEatsItem(PickleContext ctx, string name, string defName, int x, int z)
+        {
+            AnimalForcedToIngest(ctx, name, defName, x, z);
+            Pawn pawn = RequireSpawnedPawn(ctx, name);
+            JobDef ingest = RequireJob(ctx, "Ingest");
+            TickManager tm = Find.TickManager;
+            TimeSpeed before = tm.CurTimeSpeed;
+            int start = tm.TicksGame;
+            tm.CurTimeSpeed = TimeSpeed.Ultrafast;
+            try { await ctx.WaitUntil(() => pawn.Destroyed || pawn.CurJob == null || pawn.CurJob.def != ingest, 180f); }
+            finally { tm.CurTimeSpeed = before; }
+            ctx.Assert(pawn.Destroyed || pawn.CurJob == null || pawn.CurJob.def != ingest, $"{name} is still eating after {tm.TicksGame - start} ticks (at {pawn.Position}, job {pawn.CurJob?.def.defName ?? "none"})");
+        }
+
         /// <summary>The same for any pawn by short name, a colonist at a table included: it walks to the item, sits if the item lies on a table, and eats. Written 2026-10-25 for FlavorTextExtended. NOT PLAYED when written.</summary>
         [Given("Nelim's Pickle Tools: {string} is forced into the job \"Ingest\" on the item {string} at \\({int}, {int}\\)")]
         public void PawnForcedToIngest(PickleContext ctx, string name, string defName, int x, int z) => AnimalForcedToIngest(ctx, name, defName, x, z);
