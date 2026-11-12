@@ -89,6 +89,29 @@ namespace Nelim.PickleTools.ColonistRace
             return string.Join(" ", parts);
         }
 
+        // The south material of a graphic: shader, main texture (name, size, readable), colour and its alpha, and whether a readable texture is fully transparent.
+        private static string MaterialInfo(object graphic)
+        {
+            try
+            {
+                Material mat = Get(graphic, "MatSouth") as Material ?? Get(graphic, "MatSingle") as Material;
+                if (mat == null) return "none";
+                Texture tex = mat.mainTexture;
+                string texInfo = tex == null ? "no main texture" : tex.name + " " + tex.width + "x" + tex.height + " readable=" + ((tex as Texture2D)?.isReadable.ToString() ?? "?");
+                string opaque = "?";
+                if (tex is Texture2D t2 && t2.isReadable)
+                {
+                    Color32[] px = t2.GetPixels32();
+                    int visible = 0;
+                    for (int i = 0; i < px.Length; i += 7) if (px[i].a > 16) visible++;
+                    opaque = visible + " of " + (px.Length + 6) / 7 + " sampled pixels visible";
+                }
+                string mask = mat.HasProperty("_MaskTex") && mat.GetTexture("_MaskTex") != null ? " mask=" + mat.GetTexture("_MaskTex").name : string.Empty;
+                return "shader=" + mat.shader?.name + " tex=" + texInfo + " pixels=" + opaque + " color=" + mat.color + mask + " renderQueue=" + mat.renderQueue;
+            }
+            catch (Exception e) { return "error " + e.Message; }
+        }
+
         private static void Set(object boxed, string name, object value)
         {
             FieldInfo f = boxed.GetType().GetField(name, All);
@@ -130,7 +153,7 @@ namespace Nelim.PickleTools.ColonistRace
             {
                 var items = list.Cast<object>().ToList();
                 object first = items.FirstOrDefault();
-                graphics = items.Count + (first == null ? string.Empty : " first=" + Str(Get(first, "path") ?? Get(first, "data")?.GetType().Name) + " shader=" + Str(Get(Get(first, "Shader"), "name") ?? Get(Get(first, "shader"), "name") ?? Get(first, "Shader")));
+                graphics = items.Count + (first == null ? string.Empty : " first=" + Str(Get(first, "path") ?? Get(first, "data")?.GetType().Name) + " shader=" + Str(Get(Get(first, "Shader"), "name") ?? Get(Get(first, "shader"), "name") ?? Get(first, "Shader"))) + " material: " + MaterialInfo(first));
             }
             else
             {
