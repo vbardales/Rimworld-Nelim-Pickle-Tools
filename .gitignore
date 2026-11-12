@@ -46,3 +46,7 @@ Tests/Pickle/Mod/Pickle/Fixtures/removal-check.rws
 # Third-party mod images of the capture catalogue live in a PRIVATE store (../../rimworld-catalogue), never in this public repo (Audit 2026-11-06).
 docs/catalogue/
 /Docs/catalogue/
+
+# Generated test saves, rebuilt by the Sanctuary session and the fixture steps (Docs/FIXTURES.md: not versioned; Audit ruling 2026-11-12).
+Tests/Pickle/DecorBase/Mod/Pickle/
+Tests/Pickle/Fixtures/
