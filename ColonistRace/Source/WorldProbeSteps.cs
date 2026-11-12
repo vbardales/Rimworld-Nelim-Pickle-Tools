@@ -137,13 +137,22 @@ namespace Nelim.PickleTools.ColonistRace
                 await ctx.WaitFrames(3);
             }
 
+            // A building put on the map by a step can hold PowerOutput 0 (the desired output is computed on a tick or a switch change), so the net sees no draw ("gain 0.0 Wd per tick",
+            // RSEIE ticket 0dee, ElectricCrematorium and ElectricSmelter, 2026-11-12) and never switches it on. Ask the comp for its own desired output first.
+            if (trader.PowerOutput >= 0f)
+            {
+                MethodInfo desired = typeof(CompPowerTrader).GetMethod("UpdateDesiredPowerOutput", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic);
+                if (desired != null) desired.Invoke(trader, null);
+                if (trader.PowerOutput >= 0f && (building.GetComp<CompFlickable>()?.SwitchIsOn ?? true)) trader.PowerOutput = -trader.Props.PowerConsumption;
+            }
+
             // The net decides PowerOn when it ticks: tick it a few times, as the game's own map tick would, before reading the state.
             for (int tick = 0; tick < 5 && trader.PowerNet != null && !trader.PowerOn; tick++) trader.PowerNet.PowerNetTick();
             CompPower batteryComp = battery.GetComp<CompPower>();
             string net = trader.PowerNet == null
                 ? "none"
                 : $"{trader.PowerNet.powerComps.Count} traders/producers, {trader.PowerNet.batteryComps.Count} batteries, stored {trader.PowerNet.CurrentStoredEnergy():0.0} Wd, gain {trader.PowerNet.CurrentEnergyGainRate():0.0} Wd per tick, the battery is " + (batteryComp?.PowerNet == trader.PowerNet ? "on this net" : "NOT on this net");
-            Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {net}, PowerOn {trader.PowerOn}, draws {trader.Props.PowerConsumption:0} W");
+            Log.Message($"[power] battery at {spot} for the {defName} at ({x}, {z}): net {net}, PowerOn {trader.PowerOn}, draws {trader.Props.PowerConsumption:0} W, PowerOutput {trader.PowerOutput:0.0}");
             ctx.Assert(trader.PowerOn, $"the {defName} at ({x}, {z}) is still unpowered after the battery at {spot} (net {net}; draws {trader.Props.PowerConsumption:0} W; switch " + (building.GetComp<CompFlickable>()?.SwitchIsOn.ToString() ?? "none") + ")");
         }
 
