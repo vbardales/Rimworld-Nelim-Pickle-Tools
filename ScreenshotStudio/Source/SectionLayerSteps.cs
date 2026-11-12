@@ -148,6 +148,51 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Attach("altitudes", sb.ToString());
         }
 
+        /// <summary>
+        /// Logs ([camera-effects]) every camera of the game with its culling mask, depth, clear flags and every enabled component on it (image effects, post-process, mod shaders), and the
+        /// fleck systems of the map with how many flecks each holds (static, attached, thrown). For a veil that is not a section layer nor a thing: a post-process or a fleck.
+        /// Reflection on the fleck manager: a member the game version lacks prints nothing. Reads only; never fails. Written 2026-11-12 for ACBaGE. NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the cameras and the flecks of the map are logged")]
+        public void LogCamerasAndFlecks(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var sb = new System.Text.StringBuilder();
+            try
+            {
+                foreach (UnityEngine.Camera c in UnityEngine.Camera.allCameras)
+                {
+                    sb.AppendLine("[camera-effects] camera " + c.name + " enabled " + c.enabled + " depth " + c.depth + " cullingMask " + c.cullingMask + " clear " + c.clearFlags + " ortho " + c.orthographic + " size " + c.orthographicSize.ToString("0.00") + " target " + (c.targetTexture != null ? c.targetTexture.name : "screen"));
+                    foreach (UnityEngine.Behaviour b in c.GetComponents<UnityEngine.Behaviour>())
+                        sb.AppendLine("    component " + b.GetType().FullName + " enabled " + b.enabled);
+                }
+            }
+            catch (Exception e) { sb.AppendLine("camera read error: " + e); }
+            try
+            {
+                const BindingFlags all = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic;
+                object manager = map.flecks;
+                foreach (FieldInfo f in manager.GetType().GetFields(all))
+                {
+                    object v = f.GetValue(manager);
+                    var systems = new List<object>();
+                    if (v is System.Collections.IDictionary d) foreach (object x in d.Values) systems.Add(x);
+                    else if (v is System.Collections.IEnumerable en && !(v is string)) foreach (object x in en) systems.Add(x);
+                    foreach (object sys in systems.Where(x => x != null && x.GetType().Name.IndexOf("Fleck", StringComparison.OrdinalIgnoreCase) >= 0))
+                    {
+                        var counts = new List<string>();
+                        foreach (FieldInfo sf in sys.GetType().GetFields(all))
+                            if (sf.GetValue(sys) is System.Collections.IList l) counts.Add(sf.Name + "=" + l.Count);
+                        sb.AppendLine("[camera-effects] fleck system " + sys.GetType().Name + ": " + string.Join(", ", counts));
+                    }
+                }
+            }
+            catch (Exception e) { sb.AppendLine("fleck read error: " + e); }
+            Log.Message(sb.ToString());
+            ctx.Attach("camera-effects", sb.ToString());
+        }
+
         private static bool SkipLayer(SectionLayer __instance) => !Hidden.Contains(__instance.GetType().Name);
 
         /// <summary>
