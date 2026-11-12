@@ -99,12 +99,25 @@ namespace Nelim.PickleTools.ColonistRace
                 Texture tex = mat.mainTexture;
                 string texInfo = tex == null ? "no main texture" : tex.name + " " + tex.width + "x" + tex.height + " readable=" + ((tex as Texture2D)?.isReadable.ToString() ?? "?");
                 string opaque = "?";
-                if (tex is Texture2D t2 && t2.isReadable)
+                if (tex != null && tex.width > 0 && tex.height > 0)
                 {
-                    Color32[] px = t2.GetPixels32();
-                    int visible = 0;
-                    for (int i = 0; i < px.Length; i += 7) if (px[i].a > 16) visible++;
-                    opaque = visible + " of " + (px.Length + 6) / 7 + " sampled pixels visible";
+                    // Read through the GPU so that an unreadable texture can be counted too: blit to a temporary render texture, read it back.
+                    RenderTexture rt = RenderTexture.GetTemporary(tex.width, tex.height, 0, RenderTextureFormat.ARGB32);
+                    RenderTexture prev = RenderTexture.active;
+                    Texture2D copy = new Texture2D(tex.width, tex.height, TextureFormat.RGBA32, false);
+                    try
+                    {
+                        Graphics.Blit(tex, rt);
+                        RenderTexture.active = rt;
+                        copy.ReadPixels(new Rect(0, 0, tex.width, tex.height), 0, 0);
+                        copy.Apply();
+                    }
+                    finally { RenderTexture.active = prev; RenderTexture.ReleaseTemporary(rt); }
+                    Color32[] px = copy.GetPixels32();
+                    UnityEngine.Object.Destroy(copy);
+                    int visible = 0, opaqueN = 0;
+                    for (int i = 0; i < px.Length; i++) { if (px[i].a > 16) visible++; if (px[i].a > 240) opaqueN++; }
+                    opaque = visible + " visible and " + opaqueN + " opaque of " + px.Length + " pixels (" + (100f * opaqueN / Math.Max(1, px.Length)).ToString("0.0") + " % opaque, GPU copy)";
                 }
                 string mask = mat.HasProperty("_MaskTex") && mat.GetTexture("_MaskTex") != null ? " mask=" + mat.GetTexture("_MaskTex").name : string.Empty;
                 return "shader=" + mat.shader?.name + " tex=" + texInfo + " pixels=" + opaque + " color=" + mat.color + mask + " renderQueue=" + mat.renderQueue;
@@ -155,6 +168,48 @@ namespace Nelim.PickleTools.ColonistRace
             if (pawn.genes != null) sb.AppendLine("genes: " + string.Join(", ", pawn.genes.GenesListForReading.Select(g => g.def.defName + (g.Active ? string.Empty : "(inactive)"))));
             Log.Message(sb.ToString());
             ctx.Attach("pawn-draw", sb.ToString());
+        }
+
+        /// <summary>
+        /// Logs ([draw-requests]) what the render tree of the colonist holds as draw requests after the game's own draw of the last frame (the VEF prefix on AppendDrawRequests and the CanDrawNow
+        /// postfixes of other mods have then already acted): every list field of the tree whose element type carries a node, a mesh or a material is dumped element by element (node, mesh,
+        /// material shader and texture, matrix position). Wait a frame after the pawn is placed. Reflection only: a field the game version lacks is simply not listed. Never fails. NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the draw requests of {string} are logged")]
+        public void LogDrawRequests(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[draw-requests] " + nickname + ", frame " + Time.frameCount);
+            foreach (FieldInfo f in tree.GetType().GetFields(All))
+            {
+                object v = null;
+                try { v = f.GetValue(tree); } catch (Exception) { }
+                if (!(v is IEnumerable list) || v is string) continue;
+                var items = list.Cast<object>().ToList();
+                if (items.Count == 0) { sb.AppendLine("field " + f.Name + ": empty"); continue; }
+                string typeName = items[0]?.GetType().Name ?? "?";
+                bool interesting = items[0] != null && items[0].GetType().GetFields(All).Any(x => x.Name.IndexOf("mesh", StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("material", StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("node", StringComparison.OrdinalIgnoreCase) >= 0);
+                sb.AppendLine("field " + f.Name + ": " + items.Count + " x " + typeName + (interesting ? string.Empty : " (not dumped)"));
+                if (!interesting) continue;
+                foreach (object it in items)
+                {
+                    var parts = new System.Collections.Generic.List<string>();
+                    foreach (FieldInfo ef in it.GetType().GetFields(All))
+                    {
+                        object ev = null;
+                        try { ev = ef.GetValue(it); } catch (Exception) { }
+                        if (ev is PawnRenderNode n) parts.Add(ef.Name + "=" + (n.Props?.debugLabel ?? n.GetType().Name));
+                        else if (ev is Mesh m) parts.Add(ef.Name + "=" + m.name);
+                        else if (ev is Material mat) parts.Add(ef.Name + "=" + mat.shader?.name + "/" + (mat.mainTexture?.name ?? "no texture") + " a=" + mat.color.a.ToString("0.00"));
+                        else if (ev is Matrix4x4 mx) parts.Add(ef.Name + "=pos " + mx.GetColumn(3) + " scale " + mx.lossyScale);
+                    }
+                    sb.AppendLine("  " + string.Join(" | ", parts));
+                }
+            }
+            Log.Message(sb.ToString());
+            ctx.Attach("draw-requests", sb.ToString());
         }
 
         private static void Dump(PawnRenderNode node, int depth, System.Text.StringBuilder sb, object parms)
