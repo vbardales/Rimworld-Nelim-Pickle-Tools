@@ -101,7 +101,7 @@ used.forEach((shot, si) => {
   shot.forEach((name, i) => {
     const c = i % COLS, r = Math.floor(i / COLS);
     const ax = X0 + c * PITCH + Math.floor(PITCH / 2), az = z1 - Math.floor(PITCH / 2) - r * PITCH;
-    if (group === 'building') f += `    And Nelim's Pickle Tools: the building "${name}" is spawned at (${ax}, ${az}) facing south\n`;
+    if (group === 'building') f += `    And Nelim's Pickle Tools: the building "${name}" is spawned on the nearest free cell around (${ax}, ${az}) facing south\n`; // nearest: a big building (Forgenest 6 x 7) does not fit its cell, ticket 385b
     else if (group === 'style') { const [th, st] = name.split('|'); f += `    And Nelim's Pickle Tools: I place the decor "${th}" with the style "${st}" at (${ax}, ${az})
 `; }
     else if (group === 'plant') f += `    And Nelim's Pickle Tools: I place the decor "${name}" at (${ax}, ${az}) fully grown\n`;

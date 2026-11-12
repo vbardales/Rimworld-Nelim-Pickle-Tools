@@ -9,7 +9,7 @@ Feature: building catalogue 3716502926
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (140, 148) to (159, 155) is cleared
-    And Nelim's Pickle Tools: the building "RKFN_Building" is spawned at (142, 153) facing south
+    And Nelim's Pickle Tools: the building "RKFN_Building" is spawned on the nearest free cell around (142, 153) facing south
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
