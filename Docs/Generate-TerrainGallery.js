@@ -22,7 +22,20 @@ const j = JSON.parse(zlib.gunzipSync(fs.readFileSync(sheet)));
 const defs = j.defs.filter(d => d.t === 'TerrainDef' && d.n);
 // An abstract def is only named as a parent by another def: drop those.
 const parents = new Set(defs.flatMap(d => (d.p || []).map(p => p.Name)));
-const names = [...new Set(defs.map(d => d.n))].filter(n => !parents.has(n)).sort();
+let names = [...new Set(defs.map(d => d.n))].filter(n => !parents.has(n)).sort();
+// --only-log <Player.log>: keep the floors the game really loaded, read from the [terrain-stats] lines of a run (a def that needs another mod, such as ATH Draconic's Pristine
+// Limestone floors, is in the content sheet but not in the game, and its scenario stops at "no terrain def"; ticket e3ba, 2026-11-12). The others are listed on stdout.
+const onlyLog = args.includes('--only-log') ? args[args.indexOf('--only-log') + 1] : null;
+if (onlyLog) {
+  const have = new Set();
+  for (const l of fs.readFileSync(onlyLog, 'latin1').split(/\r?\n/)) {
+    const m = l.replace(/<[^>]*>/g, '').match(/\[terrain-stats\] (\{.*\})\s*$/);
+    if (m) { try { have.add(JSON.parse(m[1]).defName); } catch (e) { /* a broken line is skipped */ } }
+  }
+  const lost = names.filter(n => !have.has(n));
+  console.log(`not in the game (${lost.length}, not photographed): ${lost.join(', ')}`);
+  names = names.filter(n => have.has(n));
+}
 if (!names.length) { console.error('no concrete TerrainDef in ' + key); process.exit(1); }
 
 const COLS = 6, X0 = 140, Z0 = 148;
