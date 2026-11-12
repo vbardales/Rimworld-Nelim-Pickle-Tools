@@ -50,3 +50,6 @@ docs/catalogue/
 # Generated test saves, rebuilt by the Sanctuary session and the fixture steps (Docs/FIXTURES.md: not versioned; Audit ruling 2026-11-12).
 Tests/Pickle/DecorBase/Mod/Pickle/
 Tests/Pickle/Fixtures/
+Tests/Pickle/Inbox/
+Tests/Pickle/Parked/
+Tests/Pickle/Evidence/
