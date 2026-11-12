@@ -454,10 +454,18 @@ namespace Nelim.PickleTools.DefFields
         private static object Walk(PickleContext ctx, object start, string path)
         {
             object current = start;
-            foreach (string part in path.Split('.'))
+            // 'stages.0.baseMoodEffect' and 'stages[0].baseMoodEffect' read the first item of a list (RSEFyE, 2026-11-12: "List`1 has no public field or property '0'").
+            foreach (string part in path.Replace("[", ".").Replace("]", string.Empty).Split(new[] { '.' }, StringSplitOptions.RemoveEmptyEntries))
             {
                 ctx.Require(current != null, $"'{path}' walks through a null at '{part}'");
                 Type type = current.GetType();
+                if (int.TryParse(part, out int index) && current is System.Collections.IList list)
+                {
+                    ctx.Require(index >= 0 && index < list.Count, $"'{path}': the list has {list.Count} item(s), no item {index}");
+                    current = list[index];
+                    continue;
+                }
+
                 FieldInfo field = type.GetField(part, BindingFlags.Instance | BindingFlags.Public);
                 if (field != null)
                 {
