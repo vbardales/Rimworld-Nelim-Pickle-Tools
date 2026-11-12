@@ -35,6 +35,13 @@ namespace Nelim.PickleTools.ColonistRace
                 string category = handle.SettingsCategory();
                 if (!string.IsNullOrEmpty(category) && category == pack.Name) return handle;
             }
+
+            // The category is the mod's own text, not always its name ("Repossessed Furniture: contents"): the handle's content pack tells which mod it belongs to.
+            foreach (Mod handle in LoadedModManager.ModHandles)
+            {
+                if (ReferenceEquals(handle.Content, pack) && !string.IsNullOrEmpty(handle.SettingsCategory())) return handle;
+            }
+
             return null;
         }
 

@@ -1177,7 +1177,38 @@ namespace Nelim.PickleTools.StageDecor
                 $"'{thingDefName}' at ({x}, {z}) does not glow after refuelling{(withComps.GetComp<CompPowerTrader>() != null ? "; it needs power and the network gives none" : string.Empty)}");
         }
 
-        private static readonly System.Collections.Generic.List<System.Tuple<IntVec3, RoofDef>> Roofs = new System.Collections.Generic.List<System.Tuple<IntVec3, RoofDef>>();
+        /// <summary>
+        /// Makes a placed fuel-burning thing burn, light or no light: fills its fuel when it is refuelable and switches it on when it has a
+        /// switch. Reads nothing back from the game's effects (smoke, glow): the capture shows them. For a thing that smokes only while a
+        /// bill is worked, this step is not enough: a bill must also be worked.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the decor {string} at \\({int}, {int}\\) burns")]
+        public void Burns(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            Thing thing = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == thingDefName);
+            ctx.Require(thing is ThingWithComps, $"no '{thingDefName}' stands at ({x}, {z})");
+            var withComps = (ThingWithComps)thing;
+            CompRefuelable fuel = withComps.GetComp<CompRefuelable>();
+            CompFlickable flick = withComps.GetComp<CompFlickable>();
+            ctx.Require(fuel != null || flick != null, $"'{thingDefName}' has neither a fuel nor a switch component: nothing to fill or switch on");
+
+            if (fuel != null)
+            {
+                fuel.Refuel(fuel.Props.fuelCapacity);
+            }
+
+            if (flick != null)
+            {
+                flick.SwitchIsOn = true;
+            }
+
+            ctx.Assert(
+                (fuel == null || fuel.HasFuel) && (flick == null || flick.SwitchIsOn),
+                $"'{thingDefName}' at ({x}, {z}) is not burning: fuel {(fuel == null ? "none" : fuel.Fuel.ToString())}, switch {(flick == null ? "none" : flick.SwitchIsOn.ToString())}");
+        }
+
+        private static readonly System.Collections.Generic.List<System.Tuple<IntVec3, RoofDef>> Roofs =new System.Collections.Generic.List<System.Tuple<IntVec3, RoofDef>>();
 
         /// <summary>
         /// Takes the roof off a rectangle of cells (a test colony under a mountain roof is dark in a capture) and remembers each roof, so the

@@ -38,6 +38,7 @@ building the map already has is laid anyway (the building stays).
 | Step | What it does |
 | --- | --- |
 | `Nelim's Pickle Tools: the decor {string} at \({int}, {int}\) is lit` | Fills the fuel of a placed thing that has a fuel component (torch, campfire), switches it on when it has a switch, waits up to 10 s for the game to say it glows, and fails if it has no light or does not glow (a lamp on a powerless network says so). Whether the picture then shows the glow at the chosen hour is not established |
+| `Nelim's Pickle Tools: the decor {string} at \({int}, {int}\) burns` | Fills the fuel of a placed thing that has a fuel component and switches it on when it has a switch, light or no light (a smoker, a crematorium). Fails when the thing has neither component. Reads nothing of the effect (smoke, glow): the capture shows it. A thing that smokes only while a bill is worked also needs a bill worked. Added 2026-11-12 for SimpleFXSmokePatchRenew. Not compiled, not played yet |
 | `Nelim's Pickle Tools: the roof is removed from \({int}, {int}\) to \({int}, {int}\)` | Takes the roof off a rectangle (a test colony under a mountain roof is dark) and remembers each roof; `the decor is removed` puts them back |
 
 Hour and weather are Pickle's own: `I set the hour to {int}`, `I set the weather to {string}` (read from its `Docs/steps.md`).
