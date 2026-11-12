@@ -110,6 +110,32 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Attach("draw-over-map", sb.ToString());
         }
 
+        /// <summary>
+        /// Logs ([altitudes]) the draw altitude (y) of every AltitudeLayer of the game, then every thing within 20 cells of the camera (pawns, items, buildings, plants, motes, filth, gas)
+        /// whose draw altitude lies between the two bounds: def, class, mod package id, cell, altitude layer. For a veil that covers a pawn: what is drawn just above the pawn layer.
+        /// The fleck systems have no list to read. Reads only; never fails. Written 2026-11-12 for ACBaGE (body hidden under something at y 8.42 to 8.43). NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the things drawn at an altitude from {float} to {float} are logged")]
+        public void LogAltitudeBand(PickleContext ctx, float from, float to)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[altitudes] layers: " + string.Join("; ", Enum.GetValues(typeof(AltitudeLayer)).Cast<AltitudeLayer>().Select(l => l + "=" + l.AltitudeFor().ToString("0.000")).OrderBy(x => x)));
+            IntVec3 cam = Find.CameraDriver.MapPosition;
+            int found = 0;
+            foreach (Thing t in map.listerThings.AllThings.Where(t => t.Spawned && t.Position.InHorDistOf(cam, 20f)))
+            {
+                float y = t.def.Altitude;
+                if (y < from || y > to) continue;
+                found++;
+                if (found <= 80) sb.AppendLine("  " + t.def.defName + " (" + t.GetType().Name + ", " + (t.def.modContentPack?.PackageId ?? "?") + ") at " + t.Position + " layer " + t.def.altitudeLayer + " y " + y.ToString("0.000"));
+            }
+            sb.AppendLine(found + " thing(s) with y between " + from + " and " + to + " within 20 cells of " + cam);
+            Log.Message(sb.ToString());
+            ctx.Attach("altitudes", sb.ToString());
+        }
+
         private static bool SkipLayer(SectionLayer __instance) => !Hidden.Contains(__instance.GetType().Name);
 
         /// <summary>
