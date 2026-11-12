@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using HarmonyLib;
 using RimWorks.Pickle;
+using RimWorld;
 using Verse;
 
 namespace Nelim.PickleTools.ScreenshotStudio
@@ -65,6 +66,48 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
             Log.Message(sb.ToString());
             ctx.Attach("section-layers", sb.ToString());
+        }
+
+        /// <summary>
+        /// Logs ([draw-over-map]) what can draw over the map at the camera: the sun glow, the weather and its overlay classes, the active conditions (map and world), the lights near the camera
+        /// (glowers: def, position, radius, colour) and every Harmony patch on a draw, overlay or render method of the map, section, sky, weather, glow, fleck or camera classes (owner id, patch kind).
+        /// A cloudy veil that no section layer owns is usually one of those. Reads only; never fails. Written 2026-11-12 for ACBaGE. NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "what draws over the map is logged")]
+        public void LogDrawOverMap(PickleContext ctx)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[draw-over-map] camera " + Find.CameraDriver.MapPosition + " root size " + Find.CameraDriver.RootSize.ToString("0.0") + ", sun glow " + GenCelestial.CurCelestialSunGlow(map).ToString("0.00") + ", weather " + map.weatherManager.curWeather.defName
+                + ", overlays " + string.Join(", ", (map.weatherManager.curWeather.overlayClasses ?? new List<Type>()).Select(t => t.Name))
+                + ", conditions " + string.Join(", ", map.gameConditionManager.ActiveConditions.Select(c => c.def.defName)) + ", world conditions " + string.Join(", ", Find.World.gameConditionManager.ActiveConditions.Select(c => c.def.defName)));
+            try
+            {
+                var lights = map.listerThings.AllThings.Select(t => t.TryGetComp<CompGlower>()).Where(g => g != null && g.Glows && g.parent.Position.InHorDistOf(Find.CameraDriver.MapPosition, 40f)).Take(20)
+                    .Select(g => g.parent.def.defName + "@" + g.parent.Position + " r" + g.Props.glowRadius + " " + g.GlowColor);
+                sb.AppendLine("glowers within 40 cells: " + string.Join("; ", lights));
+            }
+            catch (Exception e) { sb.AppendLine("glower read error: " + e.Message); }
+            try
+            {
+                string[] names = { "Map", "Section", "Sky", "Weather", "Overlay", "Glow", "Fleck", "GenDraw", "Camera", "PawnRender" };
+                foreach (MethodBase m in Harmony.GetAllPatchedMethods().Where(m => m.DeclaringType != null && (m.DeclaringType.Namespace == "Verse" || m.DeclaringType.Namespace == "RimWorld")
+                    && (m.Name.IndexOf("Draw", StringComparison.OrdinalIgnoreCase) >= 0 || m.Name.IndexOf("Overlay", StringComparison.OrdinalIgnoreCase) >= 0 || m.Name.IndexOf("Render", StringComparison.OrdinalIgnoreCase) >= 0)
+                    && names.Any(n => m.DeclaringType.Name.IndexOf(n, StringComparison.Ordinal) >= 0)))
+                {
+                    Patches pi = Harmony.GetPatchInfo(m);
+                    var owners = new List<string>();
+                    foreach (var p in pi.Prefixes) owners.Add("prefix:" + p.owner);
+                    foreach (var p in pi.Postfixes) owners.Add("postfix:" + p.owner);
+                    foreach (var p in pi.Transpilers) owners.Add("transpiler:" + p.owner);
+                    foreach (var p in pi.Finalizers) owners.Add("finalizer:" + p.owner);
+                    sb.AppendLine("patched " + m.DeclaringType.Name + "." + m.Name + " by " + string.Join(", ", owners));
+                }
+            }
+            catch (Exception e) { sb.AppendLine("patch read error: " + e.Message); }
+            Log.Message(sb.ToString());
+            ctx.Attach("draw-over-map", sb.ToString());
         }
 
         private static bool SkipLayer(SectionLayer __instance) => !Hidden.Contains(__instance.GetType().Name);

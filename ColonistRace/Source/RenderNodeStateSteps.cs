@@ -135,6 +135,28 @@ namespace Nelim.PickleTools.ColonistRace
 
         private static string Str(object o) => o == null ? "?" : o.ToString();
 
+        /// <summary>
+        /// Logs ([pawn-draw]) where and how the game draws a colonist: race def, life stage and body size, spawned, draw position and its screen point with the camera root size,
+        /// the draw mode, the body type, hediffs and genes. To tell a pawn drawn in the wrong place or at a zero size from a pawn whose body node does not draw. Never fails.
+        /// Written 2026-11-12 for ACBaGE (a spawned colonist drawn as a head and a cape only). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the draw position of {string} is logged")]
+        public void LogDrawPosition(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[pawn-draw] " + nickname + ": race " + pawn.def.defName + ", kind " + pawn.kindDef?.defName + ", humanlike " + pawn.RaceProps.Humanlike + ", life stage " + pawn.ageTracker?.CurLifeStage?.defName
+                + ", biological age " + pawn.ageTracker?.AgeBiologicalYears + ", body size " + pawn.BodySize.ToString("0.00") + ", body type " + pawn.story?.bodyType?.defName + ", gender " + pawn.gender);
+            Vector3 pos = pawn.DrawPos;
+            Vector3 screen = Find.Camera != null ? Find.Camera.WorldToScreenPoint(pos) : Vector3.zero;
+            sb.AppendLine("spawned " + pawn.Spawned + ", position " + pawn.Position + ", draw pos " + pos + ", screen " + screen + " of " + Screen.width + "x" + Screen.height + ", camera root size " + Find.CameraDriver.RootSize.ToString("0.00") + ", rotation " + pawn.Rotation);
+            sb.AppendLine("draw mode " + pawn.Drawer.renderer.CurRotDrawMode + ", dead " + pawn.Dead + ", downed " + pawn.Downed);
+            sb.AppendLine("hediffs: " + string.Join(", ", pawn.health.hediffSet.hediffs.Select(h => h.def.defName)));
+            if (pawn.genes != null) sb.AppendLine("genes: " + string.Join(", ", pawn.genes.GenesListForReading.Select(g => g.def.defName + (g.Active ? string.Empty : "(inactive)"))));
+            Log.Message(sb.ToString());
+            ctx.Attach("pawn-draw", sb.ToString());
+        }
+
         private static void Dump(PawnRenderNode node, int depth, System.Text.StringBuilder sb, object parms)
         {
             if (node == null) return;
