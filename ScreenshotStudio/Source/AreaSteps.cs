@@ -82,7 +82,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             object config = Find.CameraDriver?.config;
             var field = config?.GetType().GetField("sizeRange");
-            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(2f, 130f));
+            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(0.3f, 130f));
             else Log.Warning("[frame] CameraMapConfig.sizeRange not found: the zoom stays limited to the game's own range");
         }
 
@@ -363,7 +363,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
     {
         private const string Prefix = "Nelim's Pickle Tools: ";
 
-        /// <summary>Centres the camera on a cell at a root size (smaller is closer, down to 2 and up to 130: the game's own limit is lifted) and waits until the sky glow holds still. Same as framing a rectangle, but the zoom is the one asked for.</summary>
+        /// <summary>Centres the camera on a cell at a root size (smaller is closer, down to 0.3 and up to 130: the game's own limit is lifted) and waits until the sky glow holds still. Same as framing a rectangle, but the zoom is the one asked for.</summary>
         [When(Prefix + "I frame the area centred on \\({int}, {int}\\) at root size {float}", TimeoutSeconds = 60f)]
         public Task Frame(PickleContext ctx, int x, int z, float rootSize) => AreaOps.Frame(ctx, x, z, rootSize);
 

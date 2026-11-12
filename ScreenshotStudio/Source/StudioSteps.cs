@@ -39,7 +39,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         {
             object config = Find.CameraDriver?.config;
             var field = config?.GetType().GetField("sizeRange");
-            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(2f, 130f));
+            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(0.3f, 130f));
             else Log.Warning("[frame] CameraMapConfig.sizeRange not found: the zoom stays limited to the game's own range");
         }
 
