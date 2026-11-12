@@ -177,14 +177,14 @@ bash Rimworld-Release-Admin/scripts/generate-publish-workflow.sh PickleTools \
 `--gallery-dir Art/Gallery` is the command to run with the next `--replace`; the committed workflow in `.github/` was generated before it and does not declare the gallery yet (to regenerate by the rules of `Rimworld-Release-Admin/docs/OPERATIONS.md`, not by hand).
 
 The change note is the fenced block under `### 1.1.0` in "Steam change notes"; the release notes are the `## [1.1.0]` section of
-`CHANGELOG.md`; the description is the block under "Steam description", sent only with `update_description` (turn it on for this
-release: the live page still says release candidate; 8000 bytes maximum, no straight double quote, no backslash). The dry-run prints its
+`CHANGELOG.md`; the description is the block under "Steam description", sent only with `update_description` (turn it on for a release only
+when the live page differs from it or this text changed, see above; 8000 bytes maximum, no straight double quote, no backslash). The dry-run prints its
 size, hash and diff against the live page, which is the review. The gallery folder is `Art/Gallery/` (position 0 only, see Images); the committed workflow does not declare it yet.
 
-**Rollback.** `v1.0.0` (`2dc9845`) cannot be a CI rollback target: it has no `.github` and its `Mod/` has no DLL. For the first CI
-publication the rollback is Steam's own "rétablir cette version" in the item's change history (the 1.0.0 uploaded on 2026-09-22 is
-there), chosen by the owner before the publish. Once 1.1.0 is published from a commit that holds the payload and the workflow, that
-commit is the target of a later 1.1.1. The CI creates `v1.1.0` and its release; nothing is tagged by hand.
+**Rollback.** `v1.0.0` (`2dc9845`) cannot be a CI rollback target: it has no `.github` and its `Mod/` has no DLL. 1.1.0 is published (2026-09-28) from a commit that
+holds the payload and the workflow, so that commit (`f236105`) is the CI rollback target of the next release. The only way back to
+1.0.0 (uploaded on 2026-09-22) is Steam's own "revert to this version" in the item's change history, chosen by hand. The CI created
+`v1.1.0` and its release; nothing is tagged by hand.
 
 `HoverSteps` joins the payload in this release (the owner, 2026-09-25): `Sync-Payload.ps1` lists fourteen tools and the workflow requires the fourteen DLLs. Its scenario was played once on 2026-09-25, in English, and passed (1 of 1); see `STATUS.md`.
 
