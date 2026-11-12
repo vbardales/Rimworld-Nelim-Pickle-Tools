@@ -135,6 +135,55 @@ namespace Nelim.PickleTools.ScreenshotStudio
             Find.CurrentMap.mapDrawer.RegenerateEverythingNow();
         }
 
+        private static HarmonyLib.Harmony sunHarmony;
+        private static float? sunHeld;
+
+        private static void PostSunGlow(ref float __result) { if (sunHeld.HasValue) __result = sunHeld.Value; }
+
+        /// <summary>
+        /// Holds the sun glow and the sky glow of the map at this value (0 night, 1 full day; about 0.3 to 0.6 is a dawn or dusk with a low sun and a tinted sky) until the scenario ends,
+        /// whatever the hour: postfix on GenCelestial.CurCelestialSunGlow and SkyManager.CurSkyGlow, then the sky, the glow grid and the map mesh are refreshed at once. It changes what the game
+        /// reads as the light of the day (sky colour, lighting overlay, shadows follow the sun position, not the glow). Written 2026-11-12 for ArS scene 1 (dawn). COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [Given(Prefix + "the sun glow of the map is held at {float}")]
+        public void HoldSunGlow(PickleContext ctx, float glow)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            ctx.Require(glow >= 0f && glow <= 1f, "the glow runs from 0 to 1");
+            if (sunHarmony == null)
+            {
+                var h = new HarmonyLib.Harmony("nelim.pickletools.sunglowheld");
+                int patched = 0;
+                System.Reflection.MethodInfo a = typeof(GenCelestial).GetMethod("CurCelestialSunGlow", new[] { typeof(Map) });
+                if (a != null && a.ReturnType == typeof(float)) { h.Patch(a, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostSunGlow))); patched++; }
+                System.Reflection.MethodInfo b = typeof(SkyManager).GetProperty("CurSkyGlow")?.GetGetMethod();
+                if (b != null && b.ReturnType == typeof(float)) { h.Patch(b, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostSunGlow))); patched++; }
+                if (patched == 0) { h.UnpatchAll(h.Id); ctx.Require(false, "neither GenCelestial.CurCelestialSunGlow nor SkyManager.CurSkyGlow could be patched: the game changed"); }
+                Log.Message("[light] " + patched + " sun glow reads are patched");
+                sunHarmony = h;
+            }
+            sunHeld = glow;
+            RefreshSky(map);
+            ctx.Assert(System.Math.Abs(GenCelestial.CurCelestialSunGlow(map) - glow) < 0.001f, "the sun glow reads " + GenCelestial.CurCelestialSunGlow(map).ToString("0.00") + " after the step, not " + glow);
+        }
+
+        private static void RefreshSky(Map map)
+        {
+            if (map == null) return;
+            try { map.skyManager.ForceSetCurSkyGlow(sunHeld ?? GenCelestial.CurCelestialSunGlow(map)); } catch { }
+            try { map.skyManager.SkyManagerUpdate(); } catch { }
+            RefreshGlow(map);
+        }
+
+        [AfterScenario]
+        public void ReleaseSunGlow()
+        {
+            if (!sunHeld.HasValue) return;
+            sunHeld = null;
+            try { RefreshSky(Find.CurrentMap); } catch { }
+        }
+
         [AfterScenario]
         public void ReleaseGlowFloor()
         {
