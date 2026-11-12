@@ -6,5 +6,8 @@ nelim.pickletools.stagedecor path:PickleTools/StageDecor/Mod
 nelim.pickletools.savesteps path:PickleTools/SaveSteps/Mod
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
+bbb.ratkinweapon.morefailure 2779404660
+Solaris.RatkinRaceMod 1578693166
+erdelf.HumanoidAlienRaces 839005762
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
 RKK.RatKnights.Core 3394862242
