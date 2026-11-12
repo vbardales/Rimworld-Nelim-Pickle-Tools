@@ -80,21 +80,23 @@ namespace Nelim.PickleTools.ColonistRace
         {
             var categories = DefDatabase<DesignationCategoryDef>.AllDefsListForReading;
             tab = categories.FirstOrDefault(c => string.Equals(c.defName, tabName, StringComparison.OrdinalIgnoreCase))
-                ?? categories.FirstOrDefault(c => string.Equals(c.LabelCap.ToString(), tabName, StringComparison.OrdinalIgnoreCase));
+                ?? categories.FirstOrDefault(c => c.label != null && string.Equals(c.LabelCap.ToString(), tabName, StringComparison.OrdinalIgnoreCase));
             ctx.Require(tab != null, $"no Architect tab '{tabName}'; the tabs are " + string.Join(", ", categories.Select(c => c.defName)));
+            // Read from the defs, not from tab.ResolvedAllowedDesignators: building that list instantiates designators that read the game
+            // (Find.CurrentMap, selector) and throws a NullReferenceException at the main menu, where no game is loaded (ticket 54a6 of RepossessedFurniture, 2026-11-12).
+            // A buildable is on a tab when its designationCategory is that tab; members of a drop-down group are on the same tab.
             var names = new System.Collections.Generic.List<string>();
-            foreach (Designator designator in tab.ResolvedAllowedDesignators)
+            try
             {
-                if (designator is Designator_Dropdown dropdown)
-                {
-                    names.AddRange(dropdown.Elements.OfType<Designator_Place>().Select(p => p.PlacingDef?.defName).Where(n => n != null));
-                }
-                else if (designator is Designator_Place place && place.PlacingDef != null)
-                {
-                    names.Add(place.PlacingDef.defName);
-                }
+                foreach (ThingDef def in DefDatabase<ThingDef>.AllDefsListForReading)
+                    if (def != null && def.designationCategory == tab) names.Add(def.defName);
+                foreach (TerrainDef def in DefDatabase<TerrainDef>.AllDefsListForReading)
+                    if (def != null && def.designationCategory == tab) names.Add(def.defName);
             }
-
+            catch (Exception e)
+            {
+                ctx.Require(false, "reading the defs of the Architect tab '" + tab.defName + "' threw: " + e);
+            }
             return names;
         }
 

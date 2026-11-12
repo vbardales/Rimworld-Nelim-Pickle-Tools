@@ -163,14 +163,54 @@ namespace Nelim.PickleTools.ColonistRace
         /// bench of its chain scenario). NOT PLAYED when written.
         /// </summary>
         [Given("Nelim's Pickle Tools: the building {string} is spawned at \\({int}, {int}\\)")]
-        public void BuildingSpawned(PickleContext ctx, string defName, int x, int z)
+        public void BuildingSpawned(PickleContext ctx, string defName, int x, int z) => SpawnBuilding(ctx, defName, x, z, "north", null);
+
+        /// <summary>
+        /// The same finished building with a facing (<c>north</c>, <c>east</c>, <c>south</c> or <c>west</c>, any case). Asked for by RpF (Repossessed Furniture, 73 pieces).
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} is spawned at \\({int}, {int}\\) facing {word}")]
+        public void BuildingSpawnedFacing(PickleContext ctx, string defName, int x, int z, string facing) => SpawnBuilding(ctx, defName, x, z, facing, null);
+
+        /// <summary>
+        /// The same finished building with a facing and a stuff (a ThingDef defName such as <c>WoodLog</c>); fails naming the stuff when the def does not
+        /// allow it. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the building {string} is spawned at \\({int}, {int}\\) facing {word} made of {string}")]
+        public void BuildingSpawnedFacingStuff(PickleContext ctx, string defName, int x, int z, string facing, string stuffName) => SpawnBuilding(ctx, defName, x, z, facing, stuffName);
+
+        /// <summary>Parses a facing word for a step: north, east, south or west, any case.</summary>
+        internal static Rot4 ParseFacing(PickleContext ctx, string facing)
+        {
+            switch ((facing ?? "").Trim().ToLowerInvariant())
+            {
+                case "north": return Rot4.North;
+                case "east": return Rot4.East;
+                case "south": return Rot4.South;
+                case "west": return Rot4.West;
+            }
+
+            ctx.Require(false, $"the facing is north, east, south or west, not '{facing}'");
+            return Rot4.North;
+        }
+
+        private void SpawnBuilding(PickleContext ctx, string defName, int x, int z, string facing, string stuffName)
         {
             Map map = RequireMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(defName);
             ctx.Require(def != null, $"no ThingDef named '{defName}'");
             ctx.Require(def.category == ThingCategory.Building && def.thingClass != null && !def.IsBlueprint && !def.IsFrame, $"{defName} is not a building def");
             var cell = new IntVec3(x, 0, z);
-            Rot4 rot = Rot4.North;
+            Rot4 rot = ParseFacing(ctx, facing);
+            ThingDef stuff = GenStuff.DefaultStuffFor(def);
+            if (!string.IsNullOrEmpty(stuffName))
+            {
+                stuff = DefDatabase<ThingDef>.GetNamedSilentFail(stuffName);
+                ctx.Require(stuff != null, $"no ThingDef named '{stuffName}' for the stuff");
+                ctx.Require(def.MadeFromStuff && GenStuff.AllowedStuffsFor(def).Contains(stuff),
+                    $"{defName} cannot be made of {stuffName}; it allows " + (def.MadeFromStuff ? string.Join(", ", GenStuff.AllowedStuffsFor(def).Select(s => s.defName).Take(30)) : "no stuff"));
+            }
+
             var blocked = new List<string>();
             foreach (IntVec3 c in GenAdj.OccupiedRect(cell, rot, def.size))
             {
@@ -181,10 +221,10 @@ namespace Nelim.PickleTools.ColonistRace
                 if (!GenConstruct.CanBuildOnTerrain(def, c, map, rot)) blocked.Add($"({c.x}, {c.z}) terrain {c.GetTerrain(map).defName} cannot carry it");
             }
             ctx.Require(blocked.Count == 0, $"{defName} does not fit at ({x}, {z}) (size {def.size.x}x{def.size.z}): " + string.Join("; ", blocked));
-            Thing thing = ThingMaker.MakeThing(def, GenStuff.DefaultStuffFor(def));
+            Thing thing = ThingMaker.MakeThing(def, stuff);
             thing.SetFactionDirect(Faction.OfPlayer);
             GenSpawn.Spawn(thing, cell, map, rot);
-            Log.Message($"[serum] {defName} spawned at ({x}, {z}), footprint {GenAdj.OccupiedRect(cell, rot, def.size)}");
+            Log.Message($"[serum] {defName} spawned at ({x}, {z}) facing {rot}, footprint {GenAdj.OccupiedRect(cell, rot, def.size)}");
             ctx.Assert(thing.Spawned && thing.Faction == Faction.OfPlayer, $"{defName} did not spawn at ({x}, {z}) as a player building");
         }
 

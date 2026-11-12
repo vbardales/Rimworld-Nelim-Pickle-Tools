@@ -21,6 +21,17 @@ namespace Nelim.PickleTools.CameraZoom
         private const int FramesToSettle = 90;
         private const float Tolerance = 0.05f;
 
+        // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange), so a size below 11 reads back as 11 (BetweenSus bfa5 and SimpleFXSmokePatchRenew
+        // 52f2, 2026-11-12: 8.33 and 4.17 asked, 11 read). ScreenshotStudio's frame steps widen that range first; these steps do the same before every SetRootSize.
+        // NOT PLAYED when written: read the read-back of the first run.
+        private static void LiftZoomLimit()
+        {
+            object config = Find.CameraDriver?.config;
+            var field = config?.GetType().GetField("sizeRange");
+            if (field != null && field.FieldType == typeof(FloatRange)) field.SetValue(config, new FloatRange(2f, 130f));
+            else Log.Warning("[camerazoom] CameraMapConfig.sizeRange not found: the zoom stays limited to the game's own range");
+        }
+
         /// <summary>
         /// Sets the camera root size directly (smaller is closer: Pickle's closest is 12, the studio presets use 12 to 16) and waits
         /// 90 frames, since the game smooths the zoom over several frames. Does not check the size reached: use the read-back step.
@@ -30,6 +41,7 @@ namespace Nelim.PickleTools.CameraZoom
         {
             ctx.Require(Find.CameraDriver != null, "no camera driver is loaded: load a map first");
             ctx.Require(size > 0f, $"a camera root size must be positive, not {size}");
+            LiftZoomLimit();
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(FramesToSettle);
         }
@@ -52,6 +64,7 @@ namespace Nelim.PickleTools.CameraZoom
 
             lastFramed = rect;
             Find.CameraDriver.JumpToCurrentMapLoc(rect.CenterCell);
+            LiftZoomLimit();
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(FramesToSettle);
 
@@ -95,6 +108,7 @@ namespace Nelim.PickleTools.CameraZoom
             Pawn pawn = Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => p.Name != null && string.Equals(p.LabelShort, pawnName, StringComparison.OrdinalIgnoreCase));
             ctx.Require(pawn != null, $"no pawn named '{pawnName}' is on the current map");
             Find.CameraDriver.JumpToCurrentMapLoc(pawn.Position);
+            LiftZoomLimit();
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(FramesToSettle);
             float read = Find.CameraDriver.RootSize;
@@ -162,6 +176,7 @@ namespace Nelim.PickleTools.CameraZoom
         {
             ctx.Require(size > 0f, $"a camera root size must be positive, not {size}");
             Find.CameraDriver.JumpToCurrentMapLoc(pos);
+            LiftZoomLimit();
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(FramesToSettle);
             float read = Find.CameraDriver.RootSize;
@@ -208,6 +223,7 @@ namespace Nelim.PickleTools.CameraZoom
             }
             ctx.Require(size > 0f, $"a camera root size must be positive, not {size}");
             Find.CameraDriver.JumpToCurrentMapLoc(new IntVec3(x, 0, z));
+            LiftZoomLimit();
             Find.CameraDriver.SetRootSize(size);
             await ctx.WaitFrames(FramesToSettle);
             float read = Find.CameraDriver.RootSize;
