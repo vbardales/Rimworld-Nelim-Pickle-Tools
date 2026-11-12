@@ -81,24 +81,38 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Require(classes.Count > 0, "no SectionLayer class has a name containing '" + text + "'");
             harmony = harmony ?? new Harmony("nelim.pickletools.sectionlayers");
             int patched = 0;
-            foreach (Type t in classes)
+            var problems = new List<string>();
+            var targets = new List<MethodInfo>();
+            const BindingFlags decl = BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly;
+            // The layer classes themselves, then the base class: a layer that does not override a method is drawn by the base one, and the prefix tests the class.
+            foreach (Type t in classes.Concat(new[] { typeof(SectionLayer) }))
+                foreach (MethodInfo m in t.GetMethods(decl))
+                    if (m.ReturnType == typeof(void) && m.GetParameters().Length == 0 && (m.Name == "DrawLayer" || m.Name == "DrawLayer_Internal")) targets.Add(m);
+            foreach (MethodInfo m in targets)
             {
-                Hidden.Add(t.Name);
-                MethodInfo m = t.GetMethod("DrawLayer", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
-                if (m != null && m.GetParameters().Length == 0 && m.ReturnType == typeof(void))
-                {
-                    harmony.Patch(m, prefix: new HarmonyMethod(typeof(SectionLayerSteps), nameof(PrefixDraw)));
-                    patched++;
-                }
+                try { harmony.Patch(m, prefix: new HarmonyMethod(typeof(SectionLayerSteps), nameof(PrefixDraw))); patched++; }
+                catch (Exception e) { problems.Add(m.DeclaringType.Name + "." + m.Name + ": " + e.Message); }
             }
-            // A layer that does not override DrawLayer is drawn by the base method: patch it once, the prefix tests the class.
-            MethodInfo baseDraw = typeof(SectionLayer).GetMethod("DrawLayer", BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.DeclaredOnly);
-            if (baseDraw != null && baseDraw.GetParameters().Length == 0 && baseDraw.ReturnType == typeof(void))
+            // Also the visibility test: Section.DrawSection asks it before drawing a layer.
+            foreach (Type t in classes.Concat(new[] { typeof(SectionLayer) }))
             {
-                try { harmony.Patch(baseDraw, prefix: new HarmonyMethod(typeof(SectionLayerSteps), nameof(PrefixDraw))); patched++; } catch (Exception) { }
+                MethodInfo g = t.GetProperty("Visible", decl)?.GetGetMethod(true);
+                if (g == null || g.ReturnType != typeof(bool)) continue;
+                try { harmony.Patch(g, prefix: new HarmonyMethod(typeof(SectionLayerSteps), nameof(PrefixVisible))); patched++; }
+                catch (Exception e) { problems.Add(t.Name + ".Visible: " + e.Message); }
             }
-            Log.Message("[section-layers] hiding " + string.Join(", ", classes.Select(t => t.Name)) + " (" + patched + " DrawLayer method(s) patched)");
-            ctx.Require(patched > 0, "no DrawLayer method could be patched: the game changed");
+            Log.Message("[section-layers] hiding " + string.Join(", ", classes.Select(t => t.Name)) + " (" + patched + " method(s) patched)");
+            if (patched == 0)
+            {
+                string methods = string.Join("; ", typeof(SectionLayer).GetMethods(decl).Select(m => m.ReturnType.Name + " " + m.Name + "(" + m.GetParameters().Length + ")"));
+                ctx.Require(false, "no DrawLayer or Visible could be patched; SectionLayer declares: " + methods + (problems.Count > 0 ? "; errors: " + string.Join(" | ", problems) : string.Empty));
+            }
+        }
+
+        private static bool PrefixVisible(SectionLayer __instance, ref bool __result)
+        {
+            if (Hidden.Contains(__instance.GetType().Name)) { __result = false; return false; }
+            return true;
         }
 
         private static bool PrefixDraw(SectionLayer __instance) => SkipLayer(__instance);

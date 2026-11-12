@@ -31,7 +31,7 @@ namespace Nelim.PickleTools.ColonistRace
             tree.EnsureInitialized(PawnRenderFlags.None);
             object parms = MakeParms(pawn);
             var sb = new System.Text.StringBuilder();
-            sb.AppendLine("[render-state] " + nickname + " (" + pawn.story?.bodyType?.defName + "), facing South, parms " + (parms == null ? "NOT BUILT" : "built"));
+            sb.AppendLine("[render-state] " + nickname + " (" + pawn.story?.bodyType?.defName + "), facing South, flags " + GameFlags() + ", parms " + (parms == null ? "NOT BUILT" : "built"));
             Dump(tree.rootNode, 0, sb, parms);
             Log.Message(sb.ToString());
             ctx.Attach("render-state", sb.ToString());
@@ -45,12 +45,48 @@ namespace Nelim.PickleTools.ColonistRace
                 Set(p, "pawn", pawn);
                 Set(p, "facing", Rot4.South);
                 Set(p, "rotDrawMode", RotDrawMode.Fresh);
-                Set(p, "flags", PawnRenderFlags.None);
+                Set(p, "flags", GameFlags());
                 Set(p, "tint", Color.white);
                 Set(p, "matrix", Matrix4x4.identity);
                 return p;
             }
             catch (Exception e) { Log.Warning("[render-state] parms: " + e.Message); return null; }
+        }
+
+        // The flags the game draws a pawn with on the map: clothes and headgear on. With None the apparel workers say CanDrawNow False (found 2026-11-12, ACBaGE ticket b326).
+        private static PawnRenderFlags GameFlags()
+        {
+            PawnRenderFlags f = PawnRenderFlags.None;
+            foreach (string n in new[] { "Clothes", "Headgear" })
+                if (Enum.IsDefined(typeof(PawnRenderFlags), n)) f |= (PawnRenderFlags)Enum.Parse(typeof(PawnRenderFlags), n);
+            return f;
+        }
+
+        private static string Transform(PawnRenderNode node, object parms)
+        {
+            object worker = Get(node, "Worker");
+            if (worker == null || parms == null) return "?";
+            var parts = new System.Collections.Generic.List<string>();
+            try
+            {
+                MethodInfo off = worker.GetType().GetMethod("OffsetFor", All);
+                if (off != null) { object[] a = { node, parms, Vector3.zero }; object r = off.Invoke(worker, a); parts.Add("offset=" + Str(r) + " pivot=" + Str(a[2])); }
+            }
+            catch (Exception e) { parts.Add("offset error " + (e.InnerException ?? e).Message); }
+            foreach (string n in new[] { "ScaleFor", "AltitudeFor" })
+                try { MethodInfo m = worker.GetType().GetMethod(n, All); if (m != null) parts.Add(n + "=" + Str(m.Invoke(worker, new object[] { node, parms }))); } catch (Exception e) { parts.Add(n + " error " + (e.InnerException ?? e).Message); }
+            try
+            {
+                MethodInfo gm = node.GetType().GetMethod("GetMesh", All) ?? worker.GetType().GetMethod("GetMesh", All);
+                if (gm != null)
+                {
+                    object mesh = gm.DeclaringType.IsInstanceOfType(node) ? gm.Invoke(node, new object[] { parms }) : gm.Invoke(worker, new object[] { parms });
+                    Mesh um = mesh as Mesh;
+                    parts.Add("mesh=" + (um == null ? Str(mesh) : um.name + " bounds=" + um.bounds.size));
+                }
+            }
+            catch (Exception e) { parts.Add("mesh error " + (e.InnerException ?? e).Message); }
+            return string.Join(" ", parts);
         }
 
         private static void Set(object boxed, string name, object value)
@@ -105,7 +141,7 @@ namespace Nelim.PickleTools.ColonistRace
             string apparel = node is PawnRenderNode_Apparel a && a.apparel != null ? " apparel=" + a.apparel.def.defName + " layer=" + a.apparel.def.apparel.LastLayer?.defName : string.Empty;
             sb.AppendLine(new string(' ', depth * 2) + "- " + (node.Props?.debugLabel ?? node.GetType().Name) + " class=" + node.GetType().Name + " tag=" + node.Props?.tagDef?.defName
                 + " worker=" + Get(node, "Worker")?.GetType().Name + " canDrawNow=" + canDraw + " graphics=" + graphics + " drawSize=" + Str(Get(node.Props, "drawSize"))
-                + " color=" + Str(Get(node.Props, "colorType")) + " texPath=" + node.Props?.texPath + " children=" + (node.children?.Length ?? 0) + apparel);
+                + " color=" + Str(Get(node.Props, "colorType")) + " texPath=" + node.Props?.texPath + " children=" + (node.children?.Length ?? 0) + apparel + " transform: " + Transform(node, parms));
             if (node.children != null)
                 foreach (PawnRenderNode child in node.children) Dump(child, depth + 1, sb, parms);
         }
