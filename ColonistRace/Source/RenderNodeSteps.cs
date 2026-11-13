@@ -96,5 +96,22 @@ namespace Nelim.PickleTools.ColonistRace
             foreach (PawnRenderNode node in hit) { if (node.parent.children != null) node.parent.children = node.parent.children.Where(c => c != node).ToArray(); }
             Log.Message("[render-nodes] " + nickname + ": hidden " + hit.Count + " node(s) matching '" + text + "': " + string.Join("; ", hit.Select(n => n.GetType().Name)));
         }
+
+        /// <summary>
+        /// Takes out of the render tree of a colonist every node that DRAWS a texture whose path contains the text (ignoring case; for example <c>blush_cover</c>):
+        /// for a layer that has the same node type as the rest of the face (the Facial Animation part nodes) and no tag. The path is the one the log step shows
+        /// (graphic texPath, or the path field, or the texture name). The tree comes back when the game rebuilds it: hide, then shoot at once. Fails when no
+        /// node draws such a path; the failure lists every node with its path. Logs <c>[render-nodes]</c> with what was hidden. Written 2026-11-13 for APerfectMindInAPerfectBody. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the render nodes of {string} drawing {string} are hidden")]
+        public void NodesDrawingHidden(PickleContext ctx, string nickname, string pathPart)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            PawnRenderTree tree = Tree(ctx, pawn, nickname);
+            var hit = Walk(tree.rootNode).Where(n => n.parent != null && PathOf(n).IndexOf(pathPart, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            ctx.Require(hit.Count > 0, nickname + " has no render node drawing '" + pathPart + "'; nodes: " + string.Join("; ", Walk(tree.rootNode).Select(n => n.GetType().Name + " " + PathOf(n))));
+            foreach (PawnRenderNode node in hit) { if (node.parent.children != null) node.parent.children = node.parent.children.Where(c => c != node).ToArray(); }
+            Log.Message("[render-nodes] " + nickname + ": hidden " + hit.Count + " node(s) drawing '" + pathPart + "': " + string.Join("; ", hit.Select(n => PathOf(n))));
+        }
     }
 }
