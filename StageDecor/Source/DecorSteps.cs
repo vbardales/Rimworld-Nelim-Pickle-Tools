@@ -432,6 +432,38 @@ namespace Nelim.PickleTools.StageDecor
             }
 
             Log.Message($"[decor-guard] {KeptFree.Count} cells of {zones.Count} growing zones ({string.Join(", ", zones.Select(zn => zn.label))}) are kept free of decor");
+            LogGuardedInRect(map, x1, z1, x2, z2);
+        }
+
+        /// <summary>
+        /// The same, but guards only the zone cells INSIDE the rectangle: a growing zone that reaches far outside it (the whole logo can be one zone) leaves its
+        /// other cells free for decor. Logs ([decor-guard-cells]) the guarded cells of the rectangle row by row (z, then the x list), so a scenario can see what
+        /// stays free. Fails when no growing zone has a cell in the rectangle. Written 2026-11-13 for EntityGazing. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the cells of the growing zones inside the area from \\({int}, {int}\\) to \\({int}, {int}\\) are kept free of decor")]
+        public void KeepZonesFreeInside(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            List<Zone_Growing> zones = GrowingZonesTouching(ctx, map, x1, z1, x2, z2);
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            foreach (Zone_Growing zone in zones)
+            {
+                foreach (IntVec3 c in zone.Cells) if (rect.Contains(c)) KeptFree.Add(c);
+            }
+
+            Log.Message($"[decor-guard] only the cells inside the area of {zones.Count} growing zones ({string.Join(", ", zones.Select(zn => zn.label + " " + zn.Cells.Count + " cells"))}) are kept free of decor");
+            LogGuardedInRect(map, x1, z1, x2, z2);
+        }
+
+        private static void LogGuardedInRect(Map map, int x1, int z1, int x2, int z2)
+        {
+            CellRect rect = CellRect.FromLimits(x1, z1, x2, z2);
+            for (int z = rect.maxZ; z >= rect.minZ; z--)
+            {
+                var xs = new List<int>();
+                for (int x = rect.minX; x <= rect.maxX; x++) if (KeptFree.Contains(new IntVec3(x, 0, z))) xs.Add(x);
+                if (xs.Count > 0) Log.Message($"[decor-guard-cells] z {z}: x {string.Join(" ", xs)}");
+            }
         }
 
         /// <summary>
