@@ -116,7 +116,10 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: the {string} worn by {string} is dyed rgb \\({int}, {int}, {int}\\)")]
         public void DyeApparel(PickleContext ctx, string apparelDefName, string nickname, int r, int g, int b)
         {
-            Pawn pawn = ColonistLookup.Require(nickname);
+            // A colonist by nickname, else any spawned pawn by short name (an animal that wears a collar or a saddle).
+            Pawn pawn = ColonistLookup.Find(nickname)
+                ?? Find.CurrentMap?.mapPawns.AllPawnsSpawned.FirstOrDefault(p => string.Equals(p.LabelShort, nickname, System.StringComparison.OrdinalIgnoreCase));
+            ctx.Require(pawn != null, $"no colonist or pawn named '{nickname}'");
             ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
             Apparel apparel = pawn.apparel.WornApparel.FirstOrDefault(a => a.def.defName == apparelDefName);
             ctx.Require(

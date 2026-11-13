@@ -1123,6 +1123,43 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Places a BLUEPRINT (not a built building) of a building def at a cell, for the player, facing north, in its default stuff, and tops up the
+        /// materials of its cost near the blueprint so a colonist can build it (the game's own placement check; refused with the game's reason). It is
+        /// remembered for the removal step like the rest of the set (the blueprint, the frame it becomes, the building and the material piles).
+        /// Then let a colonist build it with game ticks running, and pause when the frame is part built. Written 2026-11-13 for ArchitectStudio. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: I place a blueprint of {string} at \\({int}, {int}\\)")]
+        public void PlaceBlueprint(PickleContext ctx, string thingDefName, int x, int z)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(thingDefName);
+            ctx.Require(def != null && def.IsBuildingArtificial, $"no building def '{thingDefName}' in this game");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            ThingDef stuff = def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null;
+            AcceptanceReport report = GenConstruct.CanPlaceBlueprintAt(def, cell, Rot4.North, map, false, null, null, stuff);
+            ctx.Require(report.Accepted, $"the game refuses a blueprint of {thingDefName} at ({x}, {z}): {report.Reason}");
+            foreach (ThingDefCountClass cost in def.CostListAdjusted(stuff))
+            {
+                int have = map.listerThings.ThingsOfDef(cost.thingDef).Sum(t => t.stackCount);
+                int missing = cost.count - have;
+                while (missing > 0)
+                {
+                    Thing pile = ThingMaker.MakeThing(cost.thingDef);
+                    pile.stackCount = System.Math.Min(missing, cost.thingDef.stackLimit);
+                    missing -= pile.stackCount;
+                    ctx.Require(GenPlace.TryPlaceThing(pile, cell, map, ThingPlaceMode.Near), $"no room near ({x}, {z}) for {pile.stackCount} {cost.thingDef.defName}, the cost of {thingDefName}");
+                    Placed.Add(pile);
+                }
+            }
+
+            Thing blueprint = GenConstruct.PlaceBlueprintForBuild(def, cell, map, Rot4.North, Faction.OfPlayer, stuff);
+            ctx.Require(blueprint != null && blueprint.Spawned, $"the blueprint of {thingDefName} at ({x}, {z}) was not placed");
+            Placed.Add(blueprint);
+            Log.Message($"[decor-blueprint] {thingDefName} at ({x}, {z}), stuff {stuff?.defName ?? "none"}");
+        }
+
+        /// <summary>
         /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
         /// </summary>
         [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
