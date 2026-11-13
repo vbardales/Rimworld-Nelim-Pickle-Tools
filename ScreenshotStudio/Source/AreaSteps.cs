@@ -576,6 +576,16 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [Given(Prefix + "the animals except {string}, {string} and {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
         public void KeepAnimalsOutExcept3(PickleContext ctx, string a, string b, string c, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), new[] { a, b, c });
 
+        /// <summary>The same with four, five or six short names (AnimalArk shot 12 keeps six: kikiw, kikiwr, queen, fleder, ekimme, djinn). Written 2026-11-13. Compiled, not played.</summary>
+        [Given(Prefix + "the animals except {string}, {string}, {string} and {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void KeepAnimalsOutExcept4(PickleContext ctx, string a, string b, string c, string d, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), new[] { a, b, c, d });
+
+        [Given(Prefix + "the animals except {string}, {string}, {string}, {string} and {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void KeepAnimalsOutExcept5(PickleContext ctx, string a, string b, string c, string d, string e, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), new[] { a, b, c, d, e });
+
+        [Given(Prefix + "the animals except {string}, {string}, {string}, {string}, {string} and {string} are kept out of the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void KeepAnimalsOutExcept6(PickleContext ctx, string a, string b, string c, string d, string e, string f, int x0, int z0, int x1, int z1) => AreaOps.KeepAnimalsOut(ctx, new MapArea(x0, z0, x1, z1), new[] { a, b, c, d, e, f });
+
         /// <summary>Removes the roofs of the rectangle (thick roofs stay) so the sun lights it.</summary>
         [Given(Prefix + "the roof is removed from the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
         public void RemoveRoof(PickleContext ctx, int x0, int z0, int x1, int z1) => AreaOps.RemoveRoof(ctx, new MapArea(x0, z0, x1, z1));
