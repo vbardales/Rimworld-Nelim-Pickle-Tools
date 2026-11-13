@@ -60,6 +60,12 @@ Windows (no loopback device for ffmpeg there) is not needed for the tests.
 - `ffmpeg` on the PATH of the game, and an audio server to record from. On the WSL test install the game plays into the
   sink WSLg provides, and `ffmpeg -sources pulse` lists its monitor as `RDPSink.monitor`, the default source. Another source
   can be set with the environment variable `PICKLETOOLS_SOUND_SOURCE`.
+- **Lane limit (owner/Audit, 2026-11-13): sound CAPTURE runs on the local WSL lane only.** The azure and hetzner servers have no WSLg
+  (no `/mnt/wslg/PulseServer`, no `RDPSink`), so `ffmpeg` cannot open `RDPSink.monitor` (EpI ticket ead2: 0 of 3 for that reason). Pin a
+  ticket that records with `Submit-PickleRun.ps1 -Runner wsl` (accepted: `wsl`, `docker`, `hetzner`, `azure`, `auto`; `wsl` is the bare local WSL,
+  `docker` a local container whose audio is unverified); never let `auto` pick for a recording. The game-side steps (`the game is playing a sound`,
+  `... the sound {string}`) work on every lane. On a lane without audio the record steps fail at once with
+  `SOUND CAPTURE NOT POSSIBLE ON THIS LANE` (Pickle 4.x has no step-level skip, so it is a clear failure, not a skip).
 - **The sound also reaches the Windows speakers**, because that sink is the way out of WSL. Keep a recording to a few seconds.
 
 ## A lead, not yet a known cause: positional sustain sounds may not reach the recording

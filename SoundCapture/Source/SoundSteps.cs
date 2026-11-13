@@ -86,6 +86,14 @@ namespace Nelim.PickleTools.SoundCapture
         {
             ctx.Assert(active == null, $"already recording \"{active?.Name}\": stop that recording first");
 
+            // A lane with no audio server (the azure and hetzner servers have no WSLg) cannot record: say so before ffmpeg is started, not as an ffmpeg error.
+            // Pickle's PickleContext has no skip (4.x: Assert, Require, Attach, Wait..., checked 2026-11-13), so this is a clear failure, not a skip.
+            // A deliberate PULSE_SERVER (any value) is left to ffmpeg.
+            ctx.Require(
+                !string.IsNullOrEmpty(Environment.GetEnvironmentVariable("PULSE_SERVER")) || File.Exists("/mnt/wslg/PulseServer"),
+                "SOUND CAPTURE NOT POSSIBLE ON THIS LANE: no audio server (PULSE_SERVER unset and /mnt/wslg/PulseServer missing: a remote lane such as azure or hetzner has no WSLg). " +
+                "Sound capture runs on the local WSL lane only: pin the ticket with Submit-PickleRun.ps1 -Runner wsl. The game-side sound steps (the game is playing a sound) work on every lane.");
+
             string directory = ScreenshotCapture.FrameDirectory(FeatureFolder, name);
             string file = Path.Combine(directory, "sound.wav");
             if (File.Exists(file))
