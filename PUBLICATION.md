@@ -14,7 +14,7 @@ Developer tools for writing and running [url=https://steamcommunity.com/sharedfi
 
 [list]
 [*]Open and inspect research and pawn tabs.
-[*]Create and verify colonists: xenotypes, humanlike pawn kinds and body types.
+[*]Create and verify colonists with xenotypes, humanlike pawn kinds, and body types.
 [*]Check texture ownership, active expansions and optional mods.
 [*]Capture tick-based films and clean review screenshots.
 [*]Click translated buttons and diagnose missed clicks or interface-scale issues.
