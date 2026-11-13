@@ -86,4 +86,8 @@ protocols_read_sha: f841c5f9ab05bf74ec74aceca3b341b57479875b
 See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-10-10-audit.md); the remaining gates are listed in `remaining`. `RimmsqolSteps/README.md` says what was played and what was not.
 
 
+## Ecosystem
+
+2026-11-13, PiI (docs/inventory/ecosystem-steam/PickleTools.md): no duplicate. Of 689 Steam hits (175 title-filtered pages read for a link to Pickle 3791648678), no other mod requires or extends Pickle, and none offers test, screenshot or gallery steps. Local corpus: About.xml naming rimworks.pickle or RIMMSqol hits only Pickle, RIMMSqol, our two mods (Pickle Tools, Sanctuary Backlot) and 3 RIMMSqol compat mentions (Gizmo Begone x2, Show Me Your Hands). RIMMSqol ecosystem: Dev branch 1211432379 (dead), temp fix 1.7 3821363906, translations zh x2, es, ja: none touches our steps. Nothing subscribed, nothing to unsubscribe.
+
 Dated review and audit sections of 2026-09-22 were folded into `docs/runs/2026-09-22-status-sections.md` on 2026-10-10.
