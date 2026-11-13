@@ -20,12 +20,15 @@ namespace Nelim.PickleTools.ColonistRace
         [When("Nelim's Pickle Tools: the game is advanced by {int} ticks", TimeoutSeconds = 295f)]
         public async System.Threading.Tasks.Task AdvanceTicks(PickleContext ctx, int ticks)
         {
+            // Ticks touch the pawn lists, which the game reads on the main thread only (1.7 asserts it): a step can start elsewhere, as Pickle's own wait step does (BurnBarrel, 2026-11-13).
+            await LookSteps.OnMainThread(ctx);
             ctx.Require(ticks > 0, "the number of ticks must be above 0");
             ctx.Require(Current.ProgramState == ProgramState.Playing && Find.TickManager != null, "no game is playing");
             int start = Find.TickManager.TicksGame;
             var clock = Stopwatch.StartNew();
             while (Find.TickManager.TicksGame - start < ticks && clock.Elapsed.TotalSeconds < 280)
             {
+                await LookSteps.OnMainThread(ctx);
                 var slice = Stopwatch.StartNew();
                 while (Find.TickManager.TicksGame - start < ticks && slice.ElapsedMilliseconds < 40) Find.TickManager.DoSingleTick();
                 await ctx.WaitFrames(1);
