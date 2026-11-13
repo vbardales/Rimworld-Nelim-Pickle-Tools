@@ -762,6 +762,27 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asserts a colonist stands at the building of a def at a cell (on a cell touching its footprint, interaction cell included) and is working:
+        /// it has a current job that is not an idle or walking one (Wait, Wait_Combat, GotoWander, Goto, LayDown...). The failure names the cell it is on, the
+        /// building's footprint and its job. Written 2026-11-13 for BillAutopilot. NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: {string} is at the building {string} at \\({int}, {int}\\) and working")]
+        public void IsAtBuildingAndWorking(PickleContext ctx, string nickname, string defName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "no map is loaded");
+            Building building = new IntVec3(x, 0, z).GetThingList(map).OfType<Building>().FirstOrDefault(b => b.def.defName == defName);
+            ctx.Require(building != null, $"no {defName} stands at ({x}, {z})");
+            CellRect near = building.OccupiedRect().ExpandedBy(1);
+            string job = pawn.CurJob?.def.defName ?? "none";
+            bool idle = pawn.CurJob == null || job == "Wait" || job == "Wait_Combat" || job == "Wait_Wander" || job == "GotoWander" || job == "Goto" || job == "LayDown" || job == "Wait_MaintainPosture";
+            Log.Message($"[stage] {nickname} at {pawn.Position}, building {defName} footprint {building.OccupiedRect()}, job {job}");
+            ctx.Assert(pawn.Spawned && near.Contains(pawn.Position), $"{nickname} should stand at the {defName} at ({x}, {z}) (footprint {building.OccupiedRect()}); it is at {pawn.Position}, job {job}");
+            ctx.Assert(!idle, $"{nickname} stands at the {defName} but is not working: job {job}");
+        }
+
+        /// <summary>
         /// Asserts the role of the room that holds a cell (RoomRoleDef by defName). The room's stats and role are recomputed first. The failure prints the
         /// role read and the score of every role for that room. Fails when the cell has no room (open air, a wall).
         /// </summary>
