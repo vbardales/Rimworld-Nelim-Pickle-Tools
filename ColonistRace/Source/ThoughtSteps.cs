@@ -134,6 +134,36 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(offset > limit, $"{nickname}'s thought {thoughtName} should have a mood offset above {limit}; it is {offset:0.##} from {count} thought(s)");
         }
 
+        /// <summary>
+        /// Removes every memory thought of a colonist (the ones that last for days: SleptInHeat, SleepDisturbed, AteWithoutTable...). The situational thoughts
+        /// (Naked, Hot, a dark room) are NOT memories: they follow the state of the colonist and come back at once if it holds. Written 2026-11-13 for
+        /// APerfectMindInAPerfectBody (a blush that stays on a face held neutral). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the memory thoughts of {string} are cleared")]
+        public void ClearMemories(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            var handler = pawn.needs?.mood?.thoughts?.memories;
+            ctx.Require(handler != null, nickname + " has no memory thought handler");
+            int count = handler.Memories.Count;
+            foreach (Thought_Memory memory in handler.Memories.ToList()) handler.RemoveMemory(memory);
+            Log.Message("[thoughts] " + nickname + ": " + count + " memory thought(s) cleared");
+        }
+
+        /// <summary>The same for the memory thoughts of one ThoughtDef only (for example <c>SleptInHeat</c>); fails when the def does not exist.</summary>
+        [When("Nelim's Pickle Tools: the memory thoughts {string} of {string} are cleared")]
+        public void ClearMemoriesOfDef(PickleContext ctx, string thoughtName, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ThoughtDef def = DefDatabase<ThoughtDef>.GetNamedSilentFail(thoughtName);
+            ctx.Require(def != null, "no ThoughtDef named '" + thoughtName + "'");
+            var handler = pawn.needs?.mood?.thoughts?.memories;
+            ctx.Require(handler != null, nickname + " has no memory thought handler");
+            int count = handler.Memories.Count(m => m.def == def);
+            handler.RemoveMemoriesOfDef(def);
+            Log.Message("[thoughts] " + nickname + ": " + count + " memory thought(s) " + thoughtName + " cleared");
+        }
+
         /// <summary>Asserts a colonist does NOT have the mood thought <c>ThoughtDef</c> now; the failure says it is there, with its mood offset.</summary>
         [Then("Nelim's Pickle Tools: {string} has no thought {string}")]
         public void HasNoThought(PickleContext ctx, string nickname, string thoughtName)
