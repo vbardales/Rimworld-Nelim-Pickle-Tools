@@ -159,6 +159,30 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        /// <summary>
+        /// Makes a colonist who holds a weapon (<c>wields</c> first) draw it raised at a cell, and face it: the game's own aiming pose is drawn while the pawn's stance is
+        /// a busy one with a focus target, so the step puts a warm-up stance of 600000 ticks on the pawn (it never completes: no shot is fired) and turns the pawn to the cell.
+        /// The pawn stays where it is (drafted, Wait_Combat, as <c>wields</c> leaves it). Call it right before the capture, after any wait during which the game ran: a running
+        /// game can replace the stance. Fails when the colonist holds no weapon or has no verb to aim with. Written 2026-11-14 for AncientChineseBeastAndGeneExpandedRenew
+        /// (gallery 5). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: {string} aims at the cell \\({int}, {int}\\)")]
+        public void AimsAtCell(PickleContext ctx, string nickname, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.Spawned && pawn.Map != null, $"{nickname} is not spawned on a map");
+            ctx.Require(pawn.equipment?.Primary != null, $"{nickname} holds no weapon: use '{nickname} wields ...' first");
+            var cell = new IntVec3(x, 0, z);
+            var target = new LocalTargetInfo(cell);
+            Verb verb = pawn.TryGetAttackVerb(null, false) ?? pawn.equipment.PrimaryEq?.PrimaryVerb;
+            ctx.Require(verb != null, $"{nickname} has no attack verb for {pawn.equipment.Primary.def.defName}");
+            pawn.rotationTracker.FaceTarget(target);
+            pawn.stances.SetStance(new Stance_Warmup(600000, target, verb));
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            ctx.Assert(pawn.stances.curStance is Stance_Warmup, $"{nickname} should be in a warm-up stance; the stance is {pawn.stances.curStance?.GetType().Name ?? "none"}");
+            Log.Message($"[aim] {nickname} at ({pawn.Position.x}, {pawn.Position.z}) aims {pawn.equipment.Primary.def.defName} at ({x}, {z}), rot {pawn.Rotation}, job {pawn.CurJobDef?.defName ?? "none"}");
+        }
+
         /// <summary>Takes the weapons these steps gave away from the colonist and puts the draft state back as it was before the first one.</summary>
         [When("Nelim's Pickle Tools: {string} puts its weapon away")]
         public void PutsAway(PickleContext ctx, string nickname)
