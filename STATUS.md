@@ -86,6 +86,9 @@ protocols_read_sha: f841c5f9ab05bf74ec74aceca3b341b57479875b
 See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-10-10-audit.md); the remaining gates are listed in `remaining`. `RimmsqolSteps/README.md` says what was played and what was not.
 
 
+## Open threads (2026-11-14)
+- CATALOGUES (owner 2026-11-14: resume): Ratkin Knights+ was already photographed 2026-11-12; next in tsv order = RimAlert Vehicle 3256230223 (6 VehicleDefs, 1 shot): ticket 2355 filed on 2aeeccf (azure, running), new step `the vehicle {string} is spawned at (x, z) facing {word}` (ColonistRace VehicleSteps, Vehicle Framework by reflection, NOT PLAYED), generator `--group vehicle`. At RUN_DONE: read summary.json + junit.xml, judge the image, copy to ../../rimworld-catalogue, set tsv photographed with the ticket id, tell Audit. After: RutraNickers 3464716875, Nass 3793167552, Destroyed City 3538979939, SloppyMods Entertaining Ideas 3808800583.
+
 ## Open threads (2026-11-13)
 - Memory-thought clear steps (26a6443) and render-node log/hide steps (a76b890): compiled, not played. aPMiaPB blush persists after 16 memories cleared; FA parts all neutral; waiting for the `[render-nodes]` log.
 - CrB 1.7 freeze: hypothesis = 1800 s step timeout silent wait vs 600 s watchdog; waiting for their control ticket.
