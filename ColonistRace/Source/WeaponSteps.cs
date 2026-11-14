@@ -176,11 +176,24 @@ namespace Nelim.PickleTools.ColonistRace
             var target = new LocalTargetInfo(cell);
             Verb verb = pawn.TryGetAttackVerb(null, false) ?? pawn.equipment.PrimaryEq?.PrimaryVerb;
             ctx.Require(verb != null, $"{nickname} has no attack verb for {pawn.equipment.Primary.def.defName}");
+            // 2026-11-14 (ACBaGE ticket 06df: "job none", no rifle in the capture): a step that stops the pawn's job (stands at) after wields leaves job none, and the game draws no weapon
+            // without a job that may show it (see WieldsCore). Draft again if needed and give Wait_Combat before the stance, as wields does.
+            if (pawn.drafter != null && !pawn.Drafted)
+            {
+                if (!DraftedBefore.ContainsKey(pawn)) DraftedBefore[pawn] = false;
+                pawn.drafter.Drafted = true;
+            }
+
+            if (pawn.jobs != null && (pawn.CurJob == null || pawn.CurJob.def.neverShowWeapon))
+            {
+                pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.Wait_Combat), JobCondition.InterruptForced);
+            }
+
             pawn.rotationTracker.FaceTarget(target);
             pawn.stances.SetStance(new Stance_Warmup(600000, target, verb));
             pawn.Drawer.renderer.SetAllGraphicsDirty();
             ctx.Assert(pawn.stances.curStance is Stance_Warmup, $"{nickname} should be in a warm-up stance; the stance is {pawn.stances.curStance?.GetType().Name ?? "none"}");
-            Log.Message($"[aim] {nickname} at ({pawn.Position.x}, {pawn.Position.z}) aims {pawn.equipment.Primary.def.defName} at ({x}, {z}), rot {pawn.Rotation}, job {pawn.CurJobDef?.defName ?? "none"}");
+            Log.Message($"[aim] {nickname} at ({pawn.Position.x}, {pawn.Position.z}) aims {pawn.equipment.Primary.def.defName} at ({x}, {z}), rot {pawn.Rotation}, drafted {pawn.Drafted}, job {pawn.CurJobDef?.defName ?? "none"}, carryOpenly {PawnRenderUtility.CarryWeaponOpenly(pawn)}");
         }
 
         /// <summary>Takes the weapons these steps gave away from the colonist and puts the draft state back as it was before the first one.</summary>
