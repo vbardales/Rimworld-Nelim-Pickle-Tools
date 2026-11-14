@@ -39,6 +39,13 @@ namespace Nelim.PickleTools.ColonistRace
             }
         }
 
+        // 2026-11-14 (aPMiaPB, tickets d52a, 1f5d, fc78): taking a node out of its parent's children did NOT reach the screenshot (hiding the head node itself
+        // left the face drawn). The game's own switch is the flag the dev render-tree window toggles, debugEnabled: the node stays in the tree and is skipped at draw.
+        private static void HideNode(PawnRenderNode node)
+        {
+            node.debugEnabled = false;
+        }
+
         private static string PathOf(PawnRenderNode node)
         {
             try
@@ -59,7 +66,7 @@ namespace Nelim.PickleTools.ColonistRace
             string parent = node.parent == null ? "root" : node.parent.GetType().Name;
             string worker = node.Props?.workerClass?.Name ?? "-";
             string mod = node.Props?.tagDef?.modContentPack?.Name ?? "-";
-            return node.GetType().Name + " tag=" + tag + " parent=" + parent + " worker=" + worker + " tagMod=" + mod + " draws " + PathOf(node);
+            return node.GetType().Name + " enabled=" + node.debugEnabled + " tag=" + tag + " parent=" + parent + " worker=" + worker + " tagMod=" + mod + " draws " + PathOf(node);
         }
 
         /// <summary>
@@ -81,8 +88,8 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// Takes out of the render tree of a colonist every node whose type name or tag contains the text (ignoring case; for example <c>Tattoo</c>, <c>Blush</c>, <c>Head</c>),
-        /// so the next capture shows whether the mark goes with it. The tree comes back when the game rebuilds it (a garment or a look change): hide, then shoot at once.
+        /// Switches off the drawing (the game's own debugEnabled flag, as the dev render-tree window does; the node stays in the tree) of every node whose type name or tag contains the text (ignoring case; for example <c>Tattoo</c>, <c>Blush</c>, <c>Head</c>),
+        /// so the next capture shows whether the mark goes with it. The flag resets when the game rebuilds the tree (a garment or a look change): hide, then shoot at once.
         /// Fails when no node matches; the failure lists the nodes. Logs <c>[render-nodes]</c> with what was hidden.
         /// </summary>
         [When("Nelim's Pickle Tools: the render nodes of {string} matching {string} are hidden")]
@@ -93,12 +100,12 @@ namespace Nelim.PickleTools.ColonistRace
             var hit = Walk(tree.rootNode).Where(n => n.parent != null && (n.GetType().Name.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0
                 || (n.Props?.tagDef?.defName ?? "").IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0)).ToList();
             ctx.Require(hit.Count > 0, nickname + " has no render node matching '" + text + "'; nodes: " + string.Join("; ", Walk(tree.rootNode).Select(n => n.GetType().Name + "/" + (n.Props?.tagDef?.defName ?? "-"))));
-            foreach (PawnRenderNode node in hit) { if (node.parent.children != null) node.parent.children = node.parent.children.Where(c => c != node).ToArray(); }
+            foreach (PawnRenderNode node in hit) HideNode(node);
             Log.Message("[render-nodes] " + nickname + ": hidden " + hit.Count + " node(s) matching '" + text + "': " + string.Join("; ", hit.Select(n => n.GetType().Name)));
         }
 
         /// <summary>
-        /// Takes out of the render tree of a colonist every node that DRAWS a texture whose path contains the text (ignoring case; for example <c>blush_cover</c>):
+        /// Switches off the drawing (the game's own debugEnabled flag, as the dev render-tree window does; the node stays in the tree) of every node that DRAWS a texture whose path contains the text (ignoring case; for example <c>blush_cover</c>):
         /// for a layer that has the same node type as the rest of the face (the Facial Animation part nodes) and no tag. The path is the one the log step shows
         /// (graphic texPath, or the path field, or the texture name). The tree comes back when the game rebuilds it: hide, then shoot at once. Fails when no
         /// node draws such a path; the failure lists every node with its path. Logs <c>[render-nodes]</c> with what was hidden. Written 2026-11-13 for APerfectMindInAPerfectBody. NOT PLAYED when written.
@@ -110,7 +117,7 @@ namespace Nelim.PickleTools.ColonistRace
             PawnRenderTree tree = Tree(ctx, pawn, nickname);
             var hit = Walk(tree.rootNode).Where(n => n.parent != null && PathOf(n).IndexOf(pathPart, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             ctx.Require(hit.Count > 0, nickname + " has no render node drawing '" + pathPart + "'; nodes: " + string.Join("; ", Walk(tree.rootNode).Select(n => n.GetType().Name + " " + PathOf(n))));
-            foreach (PawnRenderNode node in hit) { if (node.parent.children != null) node.parent.children = node.parent.children.Where(c => c != node).ToArray(); }
+            foreach (PawnRenderNode node in hit) HideNode(node);
             Log.Message("[render-nodes] " + nickname + ": hidden " + hit.Count + " node(s) drawing '" + pathPart + "': " + string.Join("; ", hit.Select(n => PathOf(n))));
         }
     }
