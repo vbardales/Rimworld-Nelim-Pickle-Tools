@@ -1205,6 +1205,41 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Spreads a filth def (by defName: <c>Filth_Dirt</c>, <c>Filth_Ash</c>, <c>Filth_Slime</c>...) on every cell of the rectangle that can hold filth, so a patch of ground
+        /// reads as dug, burnt or soiled (a brown smear on grass). The filth is remembered for the removal step like the rest of the set. Fails when the def is not a filth def, or
+        /// when no cell of the rectangle took any (and says which terrain refused). Written 2026-11-14 for AnimalsNaturally (a grizzly's dug-up berries). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the filth {string} is spread from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void FilthSpread(PickleContext ctx, string filthDefName, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(filthDefName);
+            ctx.Require(def != null && typeof(Filth).IsAssignableFrom(def.thingClass), $"'{filthDefName}' is not a filth def (try Filth_Dirt, Filth_Ash, Filth_Slime)");
+            int made = 0;
+            var refused = new List<string>();
+            foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
+            {
+                ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+                FilthMaker.TryMakeFilth(c, map, def, 1, FilthSourceFlags.None, true);
+                Filth filth = c.GetThingList(map).OfType<Filth>().FirstOrDefault(f => f.def == def);
+                if (filth != null)
+                {
+                    // thickness to the maximum so the smear is drawn dense
+                    filth.thickness = def.filth != null ? 5 : filth.thickness;
+                    Placed.Add(filth);
+                    made++;
+                }
+                else
+                {
+                    refused.Add($"({c.x}, {c.z}) {map.terrainGrid.TerrainAt(c)?.defName}");
+                }
+            }
+
+            Log.Message($"[filth-spread] {filthDefName}: {made} cell(s) with filth, refused: {(refused.Count == 0 ? "none" : string.Join("; ", refused))}");
+            ctx.Assert(made > 0, $"no cell of the rectangle took {filthDefName}; refused: {string.Join("; ", refused)}");
+        }
+
+        /// <summary>
         /// Brings every plant on the rectangle to full growth, so a tree spawned by a step shows at its adult size instead of as a sapling.
         /// </summary>
         [Given("Nelim's Pickle Tools: the plants from \\({int}, {int}\\) to \\({int}, {int}\\) are fully grown")]
