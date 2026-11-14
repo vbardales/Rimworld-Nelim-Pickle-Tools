@@ -89,7 +89,7 @@ namespace Nelim.PickleTools.ColonistRace
 
         /// <summary>
         /// Switches off the drawing (the game's own debugEnabled flag, as the dev render-tree window does; the node stays in the tree) of every node whose type name or tag contains the text (ignoring case; for example <c>Tattoo</c>, <c>Blush</c>, <c>Head</c>),
-        /// so the next capture shows whether the mark goes with it. The flag resets when the game rebuilds the tree (a garment or a look change): hide, then shoot at once.
+        /// so the next capture shows whether the mark goes with it. The flag resets when the game rebuilds the tree. Does NOT reach the screen while astryl.FacialAnimationPerformancePatch is staged: it caches the face draw (aPMiaPB, tickets 9dd0 and 7979, 2026-11-14: without that patch the blush was gone) (a garment or a look change): hide, then shoot at once.
         /// Fails when no node matches; the failure lists the nodes. Logs <c>[render-nodes]</c> with what was hidden.
         /// </summary>
         [When("Nelim's Pickle Tools: the render nodes of {string} matching {string} are hidden")]
