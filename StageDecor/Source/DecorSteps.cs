@@ -684,6 +684,7 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: two rooms of {int} by {int} are built side by side at \\({int}, {int}\\) with a door held open in the shared wall", TimeoutSeconds = 20f)]
         public async System.Threading.Tasks.Task BuildTwoRooms(PickleContext ctx, int width, int depth, int x, int z)
         {
+            await OnMainThread(ctx);
             Map map = CurrentMap(ctx);
             ctx.Require(width >= 1 && depth >= 1, $"each inside must be at least 1 by 1, not {width} by {depth}");
             CellRect insideA = new CellRect(x, z, width, depth);
@@ -741,6 +742,7 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: a closed roofed room is built at \\({int}, {int}\\) of {int} by {int}", TimeoutSeconds = 15f)]
         public async System.Threading.Tasks.Task BuildRoom(PickleContext ctx, int x, int z, int width, int depth)
         {
+            await OnMainThread(ctx);
             Map map = CurrentMap(ctx);
             ctx.Require(width >= 3 && depth >= 1, $"the inside must be at least 3 by 1, not {width} by {depth}");
             CellRect inside = new CellRect(x, z, width, depth);
@@ -1092,6 +1094,7 @@ namespace Nelim.PickleTools.StageDecor
         [When("Nelim's Pickle Tools: a colonist builds the floor {string} from \\({int}, {int}\\) to \\({int}, {int}\\)", TimeoutSeconds = 1200f)]
         public async System.Threading.Tasks.Task BuildFloor(PickleContext ctx, string terrainDefName, int x1, int z1, int x2, int z2)
         {
+            await OnMainThread(ctx);
             Map map = CurrentMap(ctx);
             TerrainDef def = DefDatabase<TerrainDef>.GetNamedSilentFail(terrainDefName);
             ctx.Require(def != null, $"no terrain def '{terrainDefName}' in this game");
@@ -1144,6 +1147,7 @@ namespace Nelim.PickleTools.StageDecor
                 await ctx.WaitFrames(30);
             }
 
+            await OnMainThread(ctx);
             List<IntVec3> left = rect.Where(c => map.terrainGrid.TerrainAt(c) != def).ToList();
             Log.Message($"[build-floor] {terrainDefName}: {rect.Area - left.Count} of {rect.Area} cells built by {builder.LabelShortCap}, {Find.TickManager.TicksGame - startTick} ticks, {clock.Elapsed.TotalSeconds:0} s, speed {Find.TickManager.CurTimeSpeed}");
             if (left.Count > 0)
@@ -1221,6 +1225,7 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: the decor {string} at \\({int}, {int}\\) is lit", TimeoutSeconds = 15f)]
         public async System.Threading.Tasks.Task Lit(PickleContext ctx, string thingDefName, int x, int z)
         {
+            await OnMainThread(ctx);
             Map map = CurrentMap(ctx);
             Thing thing = new IntVec3(x, 0, z).GetThingList(map).FirstOrDefault(t => t.def.defName == thingDefName);
             ctx.Require(thing is ThingWithComps, $"no '{thingDefName}' stands at ({x}, {z})");
@@ -1488,6 +1493,15 @@ namespace Nelim.PickleTools.StageDecor
             ctx.Require(power != null, $"{defName} at ({x}, {z}) has no power trader component");
             power.PowerOn = true;
             ctx.Assert(power.PowerOn, $"{defName} at ({x}, {z}) is still off after the step");
+        }
+
+        // 2026-11-14 (CrB, ticket 68d8, 1.7): an async step starts off the game thread; the map, the pawn lists and the placement calls must run on it. Same guard as ColonistRace LookSteps.OnMainThread.
+        private static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
+        {
+            if (!UnityData.IsInMainThread)
+            {
+                await ctx.WaitUntil(() => UnityData.IsInMainThread, 30f);
+            }
         }
 
         private static Map CurrentMap(PickleContext ctx)
