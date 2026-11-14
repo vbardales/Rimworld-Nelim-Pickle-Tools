@@ -38,12 +38,14 @@ if (fs.existsSync(lf)) {
   for (const m of v.matchAll(/<li IfModActive="([^"]+)">([^<]+)<\/li>/g)) conditional.push({ mod: m[1], folder: m[2].replace(/^\/+|\/+$/g, '') + '/' });
 }
 const condOf = d => conditional.find(c => (d.f || '').replace(/\\/g, '/').startsWith(c.folder));
-const defs = j.defs.filter(d => d.t === 'ThingDef' && d.n && !condOf(d));
-const apart = j.defs.filter(d => d.t === 'ThingDef' && d.n && condOf(d));
+const isThing = d => d.t === 'ThingDef' || d.t === 'Vehicles.VehicleDef';
+const defs = j.defs.filter(d => isThing(d) && d.n && !condOf(d));
+const apart = j.defs.filter(d => isThing(d) && d.n && condOf(d));
 if (apart.length) console.log('conditional (IfModActive), not photographed: ' + apart.length + ' defs: ' + [...new Set(apart.map(d => condOf(d).mod))].join(', '));
 const parentNames = new Set(defs.flatMap(d => (d.p || []).map(p => p.Name)));
 const chain = d => (d.p || []).map(p => p.Name).join('>');
 const classify = d => {
+  if (d.t === 'Vehicles.VehicleDef') return 'vehicle'; // Vehicle Framework vehicles (RimAlert Vehicle 3256230223), spawned by the vehicle step of ColonistRace
   const c = chain(d);
   if (/Mote|Fleck|Bullet|Projectile|Skyfaller|Ethereal|Filth|Gas/i.test(c) || /^(Bullet|Mote|Fleck)/i.test(d.n)) return 'skip';
   if (/AnimalThingBase|BasePawn|Race\b/.test(c) || /Race$/.test(d.n)) return 'skip';
@@ -74,9 +76,9 @@ if (group === 'style') {
 }
 if (!names.length) { console.error('no ' + group + ' in ' + key); process.exit(1); }
 
-const PITCH = group === 'style' ? 5 : group === 'building' ? 4 : 3;
+const PITCH = group === 'vehicle' ? 8 : group === 'style' ? 5 : group === 'building' ? 4 : 3;
 const COLS = 5, X0 = 140, Z0 = 148;
-const PER = Number(opt('--per', group === 'building' ? 10 : 15)), SHOTS = Number(opt('--shots', 0)), FROM = Number(opt('--from', 1));
+const PER = Number(opt('--per', group === 'vehicle' ? 6 : group === 'building' ? 10 : 15)), SHOTS = Number(opt('--shots', 0)), FROM = Number(opt('--from', 1));
 const rows = Math.ceil(PER / COLS);
 const wCells = COLS * PITCH, hCells = rows * PITCH;
 const x1 = X0 + wCells - 1, z1 = Z0 + hCells - 1;
@@ -102,6 +104,8 @@ used.forEach((shot, si) => {
     const c = i % COLS, r = Math.floor(i / COLS);
     const ax = X0 + c * PITCH + Math.floor(PITCH / 2), az = z1 - Math.floor(PITCH / 2) - r * PITCH;
     if (group === 'building') f += `    And Nelim's Pickle Tools: the building "${name}" is spawned on the nearest free cell around (${ax}, ${az}) facing south\n`; // nearest: a big building (Forgenest 6 x 7) does not fit its cell, ticket 385b
+    else if (group === 'vehicle') f += `    And Nelim's Pickle Tools: the vehicle "${name}" is spawned at (${ax}, ${az}) facing south
+`;
     else if (group === 'style') { const [th, st] = name.split('|'); f += `    And Nelim's Pickle Tools: I place the decor "${th}" with the style "${st}" at (${ax}, ${az})
 `; }
     else if (group === 'plant') f += `    And Nelim's Pickle Tools: I place the decor "${name}" at (${ax}, ${az}) fully grown\n`;
