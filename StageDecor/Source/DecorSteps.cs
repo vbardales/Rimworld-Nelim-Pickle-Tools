@@ -1142,9 +1142,18 @@ namespace Nelim.PickleTools.StageDecor
 
             int startTick = Find.TickManager.TicksGame;
             var clock = System.Diagnostics.Stopwatch.StartNew();
-            while (rect.Any(c => map.terrainGrid.TerrainAt(c) != def) && Find.TickManager.TicksGame - startTick < 90000 && clock.Elapsed.TotalSeconds < 1000)
+            // 2026-11-14 (CrB, tickets 68d8 and 5348, 1.7 hetzner): the wait ended only at 1000 real seconds, after the scenario timeout and the ~600 s watchdog, so a build that
+            // did not progress was killed with no line at all. The wait now gives up at 240 s, and logs the state every 30 s.
+            int nextReport = 30;
+            Log.Message($"[build-floor] start: builder {builder.LabelShortCap} job {builder.CurJobDef?.defName ?? "none"}, speed {Find.TickManager.CurTimeSpeed}, tick {startTick}");
+            while (rect.Any(c => map.terrainGrid.TerrainAt(c) != def) && Find.TickManager.TicksGame - startTick < 90000 && clock.Elapsed.TotalSeconds < 240)
             {
                 await ctx.WaitFrames(30);
+                if (clock.Elapsed.TotalSeconds >= nextReport)
+                {
+                    nextReport += 30;
+                    Log.Message($"[build-floor] {clock.Elapsed.TotalSeconds:0} s: {Find.TickManager.TicksGame - startTick} ticks, paused {Find.TickManager.Paused}, speed {Find.TickManager.CurTimeSpeed}, builder {builder.LabelShortCap} job {builder.CurJobDef?.defName ?? "none"} at ({builder.Position.x}, {builder.Position.z}), cells left {rect.Count(c => map.terrainGrid.TerrainAt(c) != def)}");
+                }
             }
 
             await OnMainThread(ctx);
