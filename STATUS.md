@@ -95,6 +95,7 @@ See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-
 
 - 2026-11-14 later: RutraNickers = skip (Audit set it). SloppyMods Entertaining Ideas 3808800583 (46 buildings, 5 shots): ticket 7321 filed on a9965f8. In flight: d25e Nass, 5e81 Destroyed City, 7321 SloppyMods (3 of the 4-ticket cap). aPMiaPB blush SOLVED by them: astryl.FacialAnimationPerformancePatch caches the face draw and carries the blush; render-node hide steps do not reach the screen while it is staged (noted in the step docs).
 - 2026-11-14 evening: Nass Industries 3793167552 PHOTOGRAPHED (ticket d25e green 4/4, vehicle step played OK: 11 vehicles in 2 shots, 1 building, 13 other in 1 shot each; webp + key.md in rimworld-catalogue/things/3793167552, Inbox deleted, tsv photographed). Audit and PiI told. In flight: 5e81, 7321. Next: Invincible Viltrumites Unleashed 3792583363.
+- 2026-11-14 evening: Destroyed City 3538979939 PHOTOGRAPHED (ticket 5e81 green 1/1, 9 of 10 buildings visible in shot; webp + key.md in rimworld-catalogue/things/3538979939, Inbox deleted). Audit and PiI told. In flight: 7321, b42d.
 
 ## Open threads (2026-11-13)
 - Memory-thought clear steps (26a6443) and render-node log/hide steps (a76b890): compiled, not played. aPMiaPB blush persists after 16 memories cleared; FA parts all neutral; waiting for the `[render-nodes]` log.
