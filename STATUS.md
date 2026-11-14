@@ -93,6 +93,8 @@ See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-
 
 - 2026-11-14 later still: RimAlert row = skip (Audit set it). RutraNickers 3464716875 reported to Audit with a skip proposal (patch collection; its 5 xenotypes need other mods' cosmetic genes), row pending until Audit answers. Destroyed City 3538979939 (10 buildings, 1 shot): ticket 5e81 filed. In flight: d25e Nass, 5e81 Destroyed City. At each RUN_DONE: summary.json + junit.xml, judge, copy to ../../rimworld-catalogue, tsv photographed + ticket id, tell Audit. Next: SloppyMods 3808800583 (46 buildings).
 
+- 2026-11-14 later: RutraNickers = skip (Audit set it). SloppyMods Entertaining Ideas 3808800583 (46 buildings, 5 shots): ticket 7321 filed on a9965f8. In flight: d25e Nass, 5e81 Destroyed City, 7321 SloppyMods (3 of the 4-ticket cap). aPMiaPB blush SOLVED by them: astryl.FacialAnimationPerformancePatch caches the face draw and carries the blush; render-node hide steps do not reach the screen while it is staged (noted in the step docs).
+
 ## Open threads (2026-11-13)
 - Memory-thought clear steps (26a6443) and render-node log/hide steps (a76b890): compiled, not played. aPMiaPB blush persists after 16 memories cleared; FA parts all neutral; waiting for the `[render-nodes]` log.
 - CrB 1.7 freeze: hypothesis = 1800 s step timeout silent wait vs 600 s watchdog; waiting for their control ticket.
