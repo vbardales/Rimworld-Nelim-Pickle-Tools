@@ -1216,6 +1216,50 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Puts a colonist on the job of building a blueprint (placed by <c>I place a blueprint of ...</c>), caught at work: the blueprint becomes its frame (the game's own
+        /// replacement), the frame is given every material it needs, the colonist is put on a free cell beside it, and the job FinishFrame is started on it by force. The colonist then
+        /// holds the tool at the frame as soon as the game runs: let ticks pass (<c>the game is advanced by 30 ticks</c>), then pause (<c>game speed is paused</c>) and shoot while the job is
+        /// still the colonist's current one; a long advance finishes the building. Fails when the colonist or the blueprint is not found, when no free cell stands beside it, or when
+        /// the job does not become the colonist's current one (it says the job the colonist has). Written 2026-11-15 for ArchitectStudio (gallery 2). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} builds the blueprint at \\({int}, {int}\\)")]
+        public async System.Threading.Tasks.Task BuildsBlueprint(PickleContext ctx, string nickname, int x, int z)
+        {
+            await OnMainThread(ctx);
+            Map map = CurrentMap(ctx);
+            Pawn pawn = map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => string.Equals(p.LabelShort, nickname, System.StringComparison.OrdinalIgnoreCase));
+            ctx.Require(pawn != null, $"no colonist named '{nickname}'; colonists: {string.Join(", ", map.mapPawns.FreeColonistsSpawned.Select(p => p.LabelShort))}");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(map), $"the cell ({x}, {z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
+            Frame frame = cell.GetThingList(map).OfType<Frame>().FirstOrDefault();
+            if (frame == null)
+            {
+                Blueprint_Build blueprint = cell.GetThingList(map).OfType<Blueprint_Build>().FirstOrDefault();
+                ctx.Require(blueprint != null, $"no blueprint or frame stands at ({x}, {z}): place one first with 'I place a blueprint of ... at ({x}, {z})'");
+                blueprint.TryReplaceWithSolidThing(pawn, out Thing created, out bool jobEnded);
+                frame = created as Frame;
+                ctx.Require(frame != null, $"the blueprint at ({x}, {z}) did not become a frame (it became {created?.def.defName ?? "nothing"})");
+                Placed.Add(frame);
+            }
+
+            foreach (ThingDefCountClass need in frame.TotalMaterialCost().ToList())
+            {
+                Thing pile = ThingMaker.MakeThing(need.thingDef);
+                pile.stackCount = need.count;
+                frame.resourceContainer.TryAdd(pile, need.count);
+            }
+
+            IntVec3 beside = GenAdj.CellsAdjacentCardinal(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map) && c.GetThingList(map).OfType<Pawn>().All(p => p == pawn));
+            if (!beside.IsValid) beside = GenAdj.CellsAdjacent8Way(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map));
+            ctx.Require(beside.IsValid, $"no free cell stands beside the frame at ({x}, {z})");
+            pawn.Position = beside;
+            pawn.Notify_Teleported(true, true);
+            pawn.jobs.StartJob(JobMaker.MakeJob(JobDefOf.FinishFrame, frame), Verse.AI.JobCondition.InterruptForced);
+            ctx.Assert(pawn.CurJobDef == JobDefOf.FinishFrame, $"{nickname} should be on FinishFrame; the job is {pawn.CurJobDef?.defName ?? "none"} (a colonist who cannot do Construction refuses it)");
+            Log.Message($"[builds-blueprint] {nickname} at ({beside.x}, {beside.z}) on FinishFrame of {frame.def.defName} at ({x}, {z})");
+        }
+
+        /// <summary>
         /// Spreads a filth def (by defName: <c>Filth_Dirt</c>, <c>Filth_Ash</c>, <c>Filth_Slime</c>...) on every cell of the rectangle that can hold filth, so a patch of ground
         /// reads as dug, burnt or soiled (a brown smear on grass). The filth is remembered for the removal step like the rest of the set. Fails when the def is not a filth def, or
         /// when no cell of the rectangle took any (and says which terrain refused). Written 2026-11-14 for AnimalsNaturally (a grizzly's dug-up berries). NOT PLAYED when written.

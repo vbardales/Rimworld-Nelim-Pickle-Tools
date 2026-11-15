@@ -83,6 +83,27 @@ namespace Nelim.PickleTools.HoverSteps
         [When("Nelim's Pickle Tools: I hover over the tooltip containing {string}", TimeoutSeconds = 12f)]
         public async Task HoverContaining(PickleContext ctx, string part) { await Hover(ctx, Containing(ctx, part)); }
 
+        /// <summary>
+        /// Puts the pointer over a gizmo button (an Architect designator or group button, the gizmo of a selected thing) found by a part of its label (ignoring case) and waits for a
+        /// tooltip to be drawn, so a capture shows it. The gizmos are recorded while they are drawn: open the Architect tab first (<c>I open the architect tab ...</c>) and let a few frames
+        /// pass. Fails with the labels drawn when none or several match. Written 2026-11-15 for ArchitectStudio (the tooltip of a custom group button). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I hover over the gizmo labelled {string}", TimeoutSeconds = 20f)]
+        public async Task HoverGizmo(PickleContext ctx, string part)
+        {
+            GizmoRecorder.Ensure(ctx);
+            await ctx.WaitFrames(30);
+            var labels = GizmoRecorder.Tags().Select(t => t.Substring(GizmoRecorder.Prefix.Length)).Distinct().ToList();
+            var hit = labels.Where(l => l.IndexOf(part, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            ctx.Require(hit.Count == 1,
+                hit.Count == 0
+                    ? "no gizmo is drawn whose label contains \"" + part + "\"; gizmos drawn: " + (labels.Count == 0 ? "none (open the Architect tab or select a thing first)" : string.Join(" | ", labels.ToArray()))
+                    : "more than one gizmo label contains \"" + part + "\": " + string.Join(" | ", hit.ToArray()));
+            await ctx.Hover(GizmoRecorder.Prefix + hit[0]);
+            await ctx.AssertEventually(() => TooltipHandler.activeTips.Values.Any(tip => Time.realtimeSinceStartup > tip.firstTriggerTime + tip.signal.delay),
+                () => "the pointer is over the gizmo \"" + hit[0] + "\", but no tooltip was drawn within " + DrawTimeoutSeconds + " seconds", DrawTimeoutSeconds);
+        }
+
         [Then("Nelim's Pickle Tools: the tooltip keyed {string} is drawn")]
         public void DrawnKeyed(PickleContext ctx, string key)
         {
