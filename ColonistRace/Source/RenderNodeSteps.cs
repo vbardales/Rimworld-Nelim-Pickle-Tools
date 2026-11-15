@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RimWorks.Pickle;
+using RimWorld;
 using UnityEngine;
 using Verse;
 
@@ -60,6 +61,24 @@ namespace Nelim.PickleTools.ColonistRace
             catch (Exception e) { return "(unreadable: " + e.GetType().Name + ")"; }
         }
 
+        // 2026-11-14 (FwS, ticket 33a9): a worn garment with NO render node. What the game builds a node from is the graphic record the getter returns for the body type:
+        // when it returns false (no texture for that body type) nothing is drawn. Written here with the def facts that decide it.
+        private static string ApparelDetail(Pawn pawn, Apparel a)
+        {
+            string record;
+            try
+            {
+                bool ok = ApparelGraphicRecordGetter.TryGetGraphicApparel(a, pawn.story.bodyType, false, out ApparelGraphicRecord rec);
+                record = ok ? "graphic record OK " + (rec.graphic?.path ?? "?") : "graphic record NOT BUILT (no texture for this body type, or the getter refused)";
+            }
+            catch (Exception e) { record = "getter threw " + e.GetType().Name; }
+
+            ApparelProperties p = a.def.apparel;
+            return a.def.defName + " mod " + (a.def.modContentPack?.PackageId ?? "?") + ", layers " + string.Join("/", p.layers.Select(l => l.defName))
+                + ", parts " + string.Join("/", p.bodyPartGroups.Select(g => g.defName)) + ", wornGraphicPath " + (p.wornGraphicPath ?? "(none)")
+                + ", texPath " + (a.def.graphicData?.texPath ?? "(none)") + ", renderNodeProperties " + (p.RenderNodeProperties?.Count ?? 0) + ", " + record;
+        }
+
         private static string Describe(PawnRenderNode node)
         {
             string tag = node.Props?.tagDef?.defName ?? "-";
@@ -82,7 +101,8 @@ namespace Nelim.PickleTools.ColonistRace
             string hediffs = pawn.health?.hediffSet == null ? "(none)" : string.Join(", ", pawn.health.hediffSet.hediffs.Select(h => h.def.defName + (h.Part != null ? "@" + h.Part.def.defName : "")));
             string style = pawn.style == null ? "(no style tracker)" : "hair " + pawn.story?.hairDef?.defName + ", beard " + pawn.style.beardDef?.defName + ", face tattoo " + pawn.style.FaceTattoo?.defName + ", body tattoo " + pawn.style.BodyTattoo?.defName;
             string apparel = pawn.apparel == null ? "(none)" : string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName));
-            string text = lines.Count + " render node(s):\n  " + string.Join("\n  ", lines) + "\nhediffs: " + hediffs + "\nstyle: " + style + "\napparel: " + apparel;
+            string detail = pawn.apparel == null ? "" : "\napparel detail (body type " + pawn.story?.bodyType?.defName + "):\n  " + string.Join("\n  ", pawn.apparel.WornApparel.Select(a => ApparelDetail(pawn, a)));
+            string text = lines.Count + " render node(s):\n  " + string.Join("\n  ", lines) + "\nhediffs: " + hediffs + "\nstyle: " + style + "\napparel: " + apparel + detail;
             Log.Message("[render-nodes] " + nickname + ": " + text);
             ctx.Attach("render-nodes", nickname + ": " + text);
         }
