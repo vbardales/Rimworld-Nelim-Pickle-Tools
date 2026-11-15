@@ -344,6 +344,22 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert((float)d.GetValue(null) == value, "Beauty2Mouth.D did not take the value " + value);
         }
 
+        /// <summary>
+        /// Sets the vertical pull DY of the same Beauty2 head fix (static field <c>DY</c> of <c>Nelim.SanctuaryBacklot.Beauty2Mouth</c>, in world units; positive lowers the mouth;
+        /// applies in East and West only, like D). For tuning the smile height of Nelim in profile. Written 2026-11-16 for AnimalCosmeticGenes at NSB's request (the field exists in
+        /// the Beauty2Mouth assembly rebuilt 2026-11-16 00:44; its default is 0). Fails when the assembly is older and has no DY. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the Beauty2 mouth vertical offset is {float}")]
+        public void SetBeauty2MouthVerticalOffset(PickleContext ctx, float value)
+        {
+            Type t = Type.GetType("Nelim.SanctuaryBacklot.Beauty2Mouth, Nelim.SanctuaryBacklot.Beauty2Mouth");
+            ctx.Require(t != null, "Nelim.SanctuaryBacklot.Beauty2Mouth is not loaded: add nelim.sanctuarybacklot to the pass map (its Beauty2Mouth assembly)");
+            FieldInfo dy = t.GetField("DY", BindingFlags.Public | BindingFlags.Static);
+            ctx.Require(dy != null && dy.FieldType == typeof(float), "Beauty2Mouth has no public static float DY: the staged SanctuaryBacklot build is older than 2026-11-16 00:44");
+            dy.SetValue(null, value);
+            ctx.Assert((float)dy.GetValue(null) == value, "Beauty2Mouth.DY did not take the value " + value);
+        }
+
         private static readonly System.Collections.Generic.List<Action> heldExpressionHooks = new System.Collections.Generic.List<Action>();
 
         /// <summary>
