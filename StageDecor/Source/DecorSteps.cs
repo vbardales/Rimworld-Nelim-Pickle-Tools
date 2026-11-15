@@ -1231,7 +1231,7 @@ namespace Nelim.PickleTools.StageDecor
             foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
             {
                 ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
-                FilthMaker.TryMakeFilth(c, map, def, 1, FilthSourceFlags.None, true);
+                FilthMaker.TryMakeFilth(c, map, def, 1, FilthSourceFlags.Natural | FilthSourceFlags.Unnatural, true);
                 Filth filth = c.GetThingList(map).OfType<Filth>().FirstOrDefault(f => f.def == def);
                 if (filth != null)
                 {
