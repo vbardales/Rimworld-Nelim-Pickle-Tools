@@ -1233,6 +1233,15 @@ namespace Nelim.PickleTools.StageDecor
                 ctx.Require(c.InBounds(map), $"the cell ({c.x}, {c.z}) is outside the map, which is {map.Size.x} by {map.Size.z}");
                 FilthMaker.TryMakeFilth(c, map, def, 1, FilthSourceFlags.Natural | FilthSourceFlags.Unnatural, true);
                 Filth filth = c.GetThingList(map).OfType<Filth>().FirstOrDefault(f => f.def == def);
+                if (filth == null && c.Walkable(map))
+                {
+                    // 2026-11-15 (AnN, tickets 52e2 and 9d37): the game refuses filth on natural ground whatever the flags (terrain acceptance mask), as it does in play; a scene may still
+                    // need the smear (dug earth), so the thing is spawned directly, as the game does for a filth it places itself.
+                    filth = ThingMaker.MakeThing(def) as Filth;
+                    if (filth != null) GenSpawn.Spawn(filth, c, map);
+                    if (filth != null && !filth.Spawned) filth = null;
+                }
+
                 if (filth != null)
                 {
                     // thickness to the maximum so the smear is drawn dense
