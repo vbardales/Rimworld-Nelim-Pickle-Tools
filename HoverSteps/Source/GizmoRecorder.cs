@@ -20,6 +20,8 @@ namespace Nelim.PickleTools.HoverSteps
         private const string HarmonyId = "nelim.pickletools.hoversteps.gizmos";
         private const string TagPrefix = "gizmo:";
 
+        private static readonly HashSet<string> seen = new HashSet<string>();
+        private static int seenFrame = -1;
         private static bool patched;
         private static MethodInfo record;
         private static Func<IEnumerable<string>> knownTags;
@@ -61,9 +63,15 @@ namespace Nelim.PickleTools.HoverSteps
             if (record == null) return;
             try
             {
+                // the store records on Repaint only; the dedupe below must not see the Layout pass first
+                if (Event.current == null || Event.current.type != EventType.Repaint) return;
                 string label = (__instance as Command)?.LabelCap;
                 if (string.IsNullOrEmpty(label)) return;
                 var rect = new Rect(topLeft.x, topLeft.y, __instance.GetWidth(maxWidth), 75f);
+                // Designator.GizmoOnGUI calls Command.GizmoOnGUI, and both are patched: the same gizmo at the same rect arrives twice per draw, and Pickle's tag store calls that
+                // "ambiguous" (ArS run 1a65: the tag was listed yet "not found"). Record one entry per label and rectangle each frame.
+                if (Time.frameCount != seenFrame) { seen.Clear(); seenFrame = Time.frameCount; }
+                if (!seen.Add(label + "@" + rect)) return;
                 record.Invoke(null, new object[] { TagPrefix + label, rect });
             }
             catch (Exception)
