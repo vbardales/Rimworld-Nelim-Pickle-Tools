@@ -224,3 +224,10 @@ For RimScentExtendedImprovedExpansion (a pawn held 4 DirtScent from map dirt). T
 | `Nelim's Pickle Tools: the filth of the whole map is removed` | Destroys every piece of filth on the current map; fails if some is left. |
 | `Nelim's Pickle Tools: the filth within {int} cells of the colonist {string} is removed` | Destroys the filth on the cells within a radius (circle) of a colonist; logs `[filth-removed]`. |
 | `Nelim's Pickle Tools: the filth within {int} cells of \({int}, {int}\) is removed` | The same around a cell of the current map. |
+
+## Steps of 2026-11-15 (compiled; played only by the sessions that asked, no suite of its own except `Tests/Pickle/Mod/Pickle/Features/pickletools-steps-regression.feature`)
+
+- `"X" aims at the cell (x, z)` (WeaponSteps): a 600000-tick warm-up stance with the cell as focus target, so the game draws the raised weapon, and the colonist is turned to the cell. It re-drafts and gives `Wait_Combat` when the job is none (a `stands at` after `wields` stops the job, and the game draws no weapon without a job that may show it). Played by AncientChineseBeastAndGeneExpandedRenew (ticket 06df green).
+- `the render nodes and layers of "X" are logged` (RenderNodeSteps) now ends with an `apparel detail` block per garment: mod, layers, parts, `wornGraphicPath`, `texPath` and `graphic record OK <path>` or `NOT BUILT` for the body type. A garment with no render node (FireworkStand, Nelim, `Apparel_Pants`) is explained by `NOT BUILT` or by an inert Visible Pants seed (seed folder = `Tests/Pickle/config/<setName of the ticket>`).
+- `LookSteps.OnMainThread`: the guard every async step of the tool awaits first. It now resumes through a Pickle frame hook, which runs on the game thread, instead of `WaitUntil`, which could resume the step on the thread that finished the wait (the intermittent "Accessing map pawns off main thread" on 1.7, EponaInstrumentsRenew ticket 90a3).
+- `the Beauty2 mouth offset is {float}` (FaceSteps): the patch lives in Nelim's Sanctuary Backlot; its tuned default is D 0.06 (2026-11-15), the step is only needed to try another value.

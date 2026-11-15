@@ -42,3 +42,10 @@ building the map already has is laid anyway (the building stays).
 | `Nelim's Pickle Tools: the roof is removed from \({int}, {int}\) to \({int}, {int}\)` | Takes the roof off a rectangle (a test colony under a mountain roof is dark) and remembers each roof; `the decor is removed` puts them back |
 
 Hour and weather are Pickle's own: `I set the hour to {int}`, `I set the weather to {string}` (read from its `Docs/steps.md`).
+
+## Steps of 2026-11-15 (compiled; no suite of its own except `Tests/Pickle/Mod/Pickle/Features/pickletools-steps-regression.feature`)
+
+- `"X" builds the blueprint at (x, z)`: the blueprint placed by `I place a blueprint of ...` becomes its frame (the game's replacement), the frame receives every material, the colonist stands beside it and starts `FinishFrame` by force. Let ticks pass (`the game is advanced by 30 ticks`), pause, shoot while the job is current. Played by ArchitectStudio (gallery 2).
+- `the filth {string} is spread from (x1, z1) to (x2, z2)`: `FilthMaker.TryMakeFilth` first (flags Natural | Unnatural), then a direct spawn on a walkable cell the game refuses (natural ground has a terrain acceptance mask), thickness 5, removed with the decor. For dug earth (AnimalsNaturally).
+- `a colonist builds the floor ...` now: the builder gets Construction first and Hauling off and drops his current job (a colonist on `HaulToCell` never built), fast-forwards game ticks itself (the 1.7 harness ticks about once a second at Normal), gives up after 240 real seconds with its own failure text, and logs `[build-floor]` every 30 s.
+- Every async step awaits `OnMainThread` first (frame hook, see ColonistRace).

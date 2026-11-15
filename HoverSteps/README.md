@@ -61,3 +61,11 @@ which is what the step's failure is for. **Not played in French**, and not with 
 Known limits: two regions with the same tooltip text are the same tag, and Pickle reports it as ambiguous; a
 tooltip whose text changes every frame cannot be named; at an interface scale other than 100 the region rect
 depends on the InterfaceScale tool's tag store repair, which a suite should stage with this one.
+
+## Gizmo buttons (2026-11-15)
+
+| Step | What it does |
+| --- | --- |
+| `Nelim's Pickle Tools: I hover over the gizmo labelled {string}` | Hovers the gizmo button (an Architect designator or group button, the gizmo of a selected thing) whose label contains the text (ignoring case) and waits for a tooltip to be drawn. Open the Architect tab first. Fails with the labels drawn when none or several match. |
+
+The gizmos are recorded by a postfix on `Command.GizmoOnGUI` and `Designator.GizmoOnGUI` (one tag `gizmo:<label>` per label and rectangle per frame, on the Repaint pass: the designator override calls the base, and a tag recorded twice is "ambiguous" for Pickle). Played by ArchitectStudio: the step finds and hovers the button; the tooltip of a vanilla `Designator_Dropdown` does not hold a group name. No 1.7 build.

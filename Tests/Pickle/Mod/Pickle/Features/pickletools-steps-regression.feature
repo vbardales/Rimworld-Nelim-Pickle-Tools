@@ -1,0 +1,38 @@
+# Non-regression of the steps written on 2026-11-15 (ColonistRace, StageDecor, HoverSteps). Each step asserts inside itself (it fails when its effect is missing),
+# so a scenario passes only if the effect happened. Map: Tests/Pickle/wsl-deps.steps-regression.map. Written 2026-11-16. NOT PLAYED when written.
+@requires:nelim.pickletools.stagedecor
+@requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.hoversteps
+Feature: steps of 2026-11-15
+
+  Background:
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: a colonist "Jet" exists
+
+  Scenario: filth is spread on natural ground
+    Given Nelim's Pickle Tools: the area from (140, 148) to (146, 154) is cleared
+    When Nelim's Pickle Tools: the filth "Filth_Dirt" is spread from (141, 149) to (143, 151)
+    Then no errors were logged
+
+  Scenario: a colonist builds a placed blueprint
+    Given Nelim's Pickle Tools: the area from (140, 148) to (146, 154) is cleared
+    And Nelim's Pickle Tools: I place a blueprint of "Wall" at (143, 151)
+    When Nelim's Pickle Tools: "Jet" builds the blueprint at (143, 151)
+    And Nelim's Pickle Tools: the game is advanced by 30 ticks
+    Then no errors were logged
+
+  Scenario: a colonist aims a rifle at a cell
+    Given Nelim's Pickle Tools: "Jet" wields "Gun_BoltActionRifle"
+    And Nelim's Pickle Tools: "Jet" stands at (144, 152) facing West
+    When Nelim's Pickle Tools: "Jet" aims at the cell (138, 152)
+    Then no errors were logged
+
+  Scenario: the render nodes and the apparel detail are logged
+    When Nelim's Pickle Tools: the render nodes and layers of "Jet" are logged
+    Then no errors were logged
+
+  Scenario: a gizmo of the Architect is hovered by its label
+    Given Nelim's Pickle Tools: I open the architect tab "Furniture"
+    When Nelim's Pickle Tools: I hover over the gizmo labelled "Bed"
+    Then no errors were logged
