@@ -329,7 +329,9 @@ namespace Nelim.PickleTools.ColonistRace
         /// Sets the mouth pull-back D of the Beauty2 head fix hosted in Nelim's Sanctuary Backlot (static field <c>D</c> of
         /// <c>Nelim.SanctuaryBacklot.Beauty2Mouth</c>, read at each draw: no repatch). East profile moves the mouth by -D, west by +D, in world units.
         /// Fails when the patch is not loaded (SanctuaryBacklot not in the pass map) or the field is gone. Written 2026-11-09 for BeE (D sweep 0.02 to 0.05).
-        /// NOT PLAYED when written.
+        /// NOT PLAYED when written. 2026-11-15 (NSB, ACG tickets aa81 and a785): the patch works in game and the tuned default is D 0.06, so a scenario needs this step only to try
+        /// another value. The early builds never acted (the head type was read from the vanilla pawn, "Beauty2" is a Facial Animation head type); the build of 2026-11-15 11:47 or later
+        /// logs "Beauty2 mouth patch applied" on success.
         /// </summary>
         [Given("Nelim's Pickle Tools: the Beauty2 mouth offset is {float}")]
         public void SetBeauty2MouthOffset(PickleContext ctx, float value)
