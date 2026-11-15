@@ -1113,6 +1113,10 @@ namespace Nelim.PickleTools.StageDecor
                 builder.workSettings.SetPriority(WorkTypeDefOf.Construction, 1);
             }
 
+            // 2026-11-14 (CrB, tickets 0b20 and d7a9, 1.7): all three colonists were on HaulToCell for 294 s and the blueprint stood untouched. The builder now has
+            // Construction first and Hauling off, and drops the haul job it holds so the work giver is asked again.
+            if (builder.workSettings.GetPriority(WorkTypeDefOf.Construction) != 1) builder.workSettings.SetPriority(WorkTypeDefOf.Construction, 1);
+            if (!builder.WorkTypeIsDisabled(WorkTypeDefOf.Hauling) && builder.workSettings.GetPriority(WorkTypeDefOf.Hauling) != 0) builder.workSettings.SetPriority(WorkTypeDefOf.Hauling, 0);
             foreach (IntVec3 c in rect)
             {
                 AcceptanceReport report = GenConstruct.CanPlaceBlueprintAt(def, c, Rot4.North, map);
@@ -1144,6 +1148,7 @@ namespace Nelim.PickleTools.StageDecor
             var clock = System.Diagnostics.Stopwatch.StartNew();
             // 2026-11-14 (CrB, tickets 68d8 and 5348, 1.7 hetzner): the wait ended only at 1000 real seconds, after the scenario timeout and the ~600 s watchdog, so a build that
             // did not progress was killed with no line at all. The wait now gives up at 240 s, and logs the state every 30 s.
+            builder.jobs?.EndCurrentJob(Verse.AI.JobCondition.InterruptForced, true);
             int nextReport = 30;
             Log.Message($"[build-floor] start: builder {builder.LabelShortCap} job {builder.CurJobDef?.defName ?? "none"}, speed {Find.TickManager.CurTimeSpeed}, tick {startTick}");
             while (rect.Any(c => map.terrainGrid.TerrainAt(c) != def) && Find.TickManager.TicksGame - startTick < 90000 && clock.Elapsed.TotalSeconds < 240)
