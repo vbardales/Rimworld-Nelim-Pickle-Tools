@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using RimWorks.Pickle;
+using RimWorks.Pickle.Runtime;
 using RimWorld;
 using Verse;
 
@@ -1552,10 +1553,14 @@ namespace Nelim.PickleTools.StageDecor
         // 2026-11-14 (CrB, ticket 68d8, 1.7): an async step starts off the game thread; the map, the pawn lists and the placement calls must run on it. Same guard as ColonistRace LookSteps.OnMainThread.
         private static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
         {
-            if (!UnityData.IsInMainThread)
-            {
-                await ctx.WaitUntil(() => UnityData.IsInMainThread, 30f);
-            }
+            if (UnityData.IsInMainThread) return;
+            // 2026-11-15 (EpI, ticket 90a3, intermittent): WaitUntil may hand the continuation back on the thread that finished the wait, not the game thread. A frame hook runs on the
+            // game thread each frame, and completing the task there runs the continuation inline on it.
+            var done = new System.Threading.Tasks.TaskCompletionSource<bool>();
+            System.Action hook = null;
+            hook = () => { PickleDriver.Instance.RemoveFrameHook(hook); done.TrySetResult(true); };
+            PickleDriver.Instance.AddFrameHook(hook);
+            await done.Task;
         }
 
         private static Map CurrentMap(PickleContext ctx)

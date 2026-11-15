@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using RimWorld;
 using RimWorks.Pickle;
+using RimWorks.Pickle.Runtime;
 using UnityEngine;
 using Verse;
 using Verse.AI;
@@ -328,10 +329,14 @@ namespace Nelim.PickleTools.ColonistRace
         /// <summary>The pawn lists of the game may be read on the main thread only; a step of a Background can start elsewhere (SanctuaryBacklot ticket 5a9f, 2026-11-05: "Accessing map pawns off main thread"). The wait resumes on the main thread.</summary>
         internal static async System.Threading.Tasks.Task OnMainThread(PickleContext ctx)
         {
-            if (!UnityData.IsInMainThread)
-            {
-                await ctx.WaitUntil(() => UnityData.IsInMainThread, 30f);
-            }
+            if (UnityData.IsInMainThread) return;
+            // 2026-11-15 (EpI, ticket 90a3, intermittent): WaitUntil may hand the continuation back on the thread that finished the wait, not the game thread. A frame hook runs on the
+            // game thread each frame, and completing the task there runs the continuation inline on it.
+            var done = new System.Threading.Tasks.TaskCompletionSource<bool>();
+            System.Action hook = null;
+            hook = () => { PickleDriver.Instance.RemoveFrameHook(hook); done.TrySetResult(true); };
+            PickleDriver.Instance.AddFrameHook(hook);
+            await done.Task;
         }
 
         /// <summary>
