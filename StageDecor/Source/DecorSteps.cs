@@ -1153,7 +1153,12 @@ namespace Nelim.PickleTools.StageDecor
             Log.Message($"[build-floor] start: builder {builder.LabelShortCap} job {builder.CurJobDef?.defName ?? "none"}, speed {Find.TickManager.CurTimeSpeed}, tick {startTick}");
             while (rect.Any(c => map.terrainGrid.TerrainAt(c) != def) && Find.TickManager.TicksGame - startTick < 90000 && clock.Elapsed.TotalSeconds < 240)
             {
-                await ctx.WaitFrames(30);
+                // 2026-11-15 (CrB d7a9): the 1.7 harness ticks at about 0.74 a second at Normal (the frame itself is slow), so waiting for the game speed never gets a floor built.
+                // Same fast-forward as ColonistRace TickSteps: run the game tick for about 40 ms a frame, then let the frame draw.
+                await OnMainThread(ctx);
+                var slice = System.Diagnostics.Stopwatch.StartNew();
+                while (slice.ElapsedMilliseconds < 40 && rect.Any(c => map.terrainGrid.TerrainAt(c) != def)) Find.TickManager.DoSingleTick();
+                await ctx.WaitFrames(1);
                 if (clock.Elapsed.TotalSeconds >= nextReport)
                 {
                     nextReport += 30;
