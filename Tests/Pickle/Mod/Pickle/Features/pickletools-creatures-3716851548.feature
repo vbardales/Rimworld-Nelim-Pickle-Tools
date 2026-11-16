@@ -2,6 +2,7 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 @requires:nelim.pickletools.colonistrace
+@requires:nelim.pickletools.coatsteps
 @requires:nelim.pickletools.camerazoom
 Feature: creature catalogue 3716851548
 
