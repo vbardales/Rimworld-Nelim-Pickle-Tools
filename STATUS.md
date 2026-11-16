@@ -67,4 +67,6 @@ See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-
 
 2026-11-13, PiI (docs/inventory/ecosystem-steam/PickleTools.md): no duplicate. Of 689 Steam hits (175 title-filtered pages read for a link to Pickle 3791648678), no other mod requires or extends Pickle, and none offers test, screenshot or gallery steps. Local corpus: About.xml naming rimworks.pickle or RIMMSqol hits only Pickle, RIMMSqol, our two mods (Pickle Tools, Sanctuary Backlot) and 3 RIMMSqol compat mentions (Gizmo Begone x2, Show Me Your Hands). RIMMSqol ecosystem: Dev branch 1211432379 (dead), temp fix 1.7 3821363906, translations zh x2, es, ja: none touches our steps. Nothing subscribed, nothing to unsubscribe.
 
+Links block (PiI, 2026-11-16, same study, no new search): linked Pickle 3791648678 (1.5 1.6 1.7); parent RIMMSqol 1084452457 (1.4 to 1.7, used by RimmsqolSteps only); patch RIMMSqol temp fix 1.7 3821363906; linked RIMMSqol Dev 1211432379 (1.4, dead); translations of RIMMSqol 3351006602, 3542654645 (zh), 3367847088 (es), 3512858053 (ja). Verdict: no duplicate, nothing to integrate (translation_* not_applicable).
+
 Dated review and audit sections of 2026-09-22 were folded into `docs/runs/2026-09-22-status-sections.md` on 2026-10-10.
