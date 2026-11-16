@@ -67,7 +67,6 @@ Feature: style catalogue 3522312454
     And Nelim's Pickle Tools: the area from (140, 148) to (164, 162) is cleared
     And Nelim's Pickle Tools: I place the decor "StandingLamp" with the style "ASP_StandingLamp" at (142, 160)
     And Nelim's Pickle Tools: I place the decor "FloodLight" with the style "ASP_FloodLight" at (147, 160)
-    And Nelim's Pickle Tools: I place the decor "WallLamp" with the style "ASP_WallLamp" at (152, 160)
     And Nelim's Pickle Tools: I place the decor "Apparel_SimpleHelmet" with the style "ASP_SimpleHelmet" at (157, 160)
     And Nelim's Pickle Tools: I place the decor "Apparel_PowerArmorHelmet" with the style "ASP_PowerArmorHelmet" at (162, 160)
     And Nelim's Pickle Tools: I place the decor "Apparel_BasicShirt" with the style "ASP_ShirtBasic" at (142, 155)

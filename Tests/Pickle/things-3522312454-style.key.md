@@ -48,7 +48,7 @@ Cell = the 5 x 5 block, row 1 = north.
 |---|---|---|
 | 1 | 1 | StandingLamp|ASP_StandingLamp |
 | 1 | 2 | FloodLight|ASP_FloodLight |
-| 1 | 3 | WallLamp|ASP_WallLamp |
+| 1 | 3 | WallLamp|ASP_WallLamp | (NOT photographed: spawned without a wall it crashes PowerNetManager, ticket 7ea1)
 | 1 | 4 | Apparel_SimpleHelmet|ASP_SimpleHelmet |
 | 1 | 5 | Apparel_PowerArmorHelmet|ASP_PowerArmorHelmet |
 | 2 | 1 | Apparel_BasicShirt|ASP_ShirtBasic |

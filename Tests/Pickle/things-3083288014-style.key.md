@@ -72,7 +72,7 @@ Cell = the 5 x 5 block, row 1 = north.
 | 1 | 4 | SculptureLarge|OES_SculptureLarge |
 | 1 | 5 | SculptureGrand|OES_SculptureGrand |
 | 2 | 1 | Column|OES_Column |
-| 2 | 2 | WallLamp|OES_WallLamp |
+| 2 | 2 | WallLamp|OES_WallLamp | (NOT photographed: spawned without a wall it crashes PowerNetManager, ticket fdd9)
 | 2 | 3 | PlantPot|OES_PlantPot |
 | 2 | 4 | PlantPot_Bonsai|OES_PlantPot_Bonsai |
 | 2 | 5 | Table1x2c|OES_Table1x2c |
