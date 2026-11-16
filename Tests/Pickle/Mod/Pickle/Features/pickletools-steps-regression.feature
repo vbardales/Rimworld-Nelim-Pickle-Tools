@@ -34,5 +34,5 @@ Feature: steps of 2026-11-15
 
   Scenario: a gizmo of the Architect is hovered by its label
     Given Nelim's Pickle Tools: I open the architect tab "Furniture"
-    When Nelim's Pickle Tools: I hover over the gizmo labelled "Bed"
+    When Nelim's Pickle Tools: I hover over the gizmo labelled "Bed..."
     Then no errors were logged
