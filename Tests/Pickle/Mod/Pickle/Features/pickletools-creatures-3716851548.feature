@@ -18,7 +18,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-01" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-01"
     Then no errors were logged
 
@@ -34,7 +34,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-02" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-02"
     Then no errors were logged
 
@@ -50,7 +50,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-03" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-03"
     Then no errors were logged
 
@@ -66,7 +66,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-04" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-04"
     Then no errors were logged
 
@@ -82,7 +82,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-05" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-05"
     Then no errors were logged
 
@@ -98,7 +98,7 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-06" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-06"
     Then no errors were logged
 
@@ -114,6 +114,6 @@ Feature: creature catalogue 3716851548
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     When Nelim's Pickle Tools: I frame the animal "cat-07" at zoom 2
-    And I let 5 frames pass
+    And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3716851548-07"
     Then no errors were logged
