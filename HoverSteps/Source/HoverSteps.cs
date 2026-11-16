@@ -84,7 +84,7 @@ namespace Nelim.PickleTools.HoverSteps
         public async Task HoverContaining(PickleContext ctx, string part) { await Hover(ctx, Containing(ctx, part)); }
 
         /// <summary>
-        /// Puts the pointer over a gizmo button (an Architect designator or group button, the gizmo of a selected thing) found by a part of its label (ignoring case) and waits for a
+        /// Puts the pointer over a gizmo button (an Architect designator or group button, the gizmo of a selected thing) found by its label (ignoring case; an exact label wins, otherwise a part of a label) and waits for a
         /// tooltip to be drawn, so a capture shows it. The gizmos are recorded while they are drawn: open the Architect tab first (<c>I open the architect tab ...</c>) and let a few frames
         /// pass. Fails with the labels drawn when none or several match. Written 2026-11-15 for ArchitectStudio (the tooltip of a custom group button). NOT PLAYED when written.
         /// </summary>
@@ -94,7 +94,8 @@ namespace Nelim.PickleTools.HoverSteps
             GizmoRecorder.Ensure(ctx);
             await ctx.WaitFrames(30);
             var labels = GizmoRecorder.Tags().Select(t => t.Substring(GizmoRecorder.Prefix.Length)).Distinct().ToList();
-            var hit = labels.Where(l => l.IndexOf(part, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            var hit = labels.Where(l => l.Equals(part, System.StringComparison.OrdinalIgnoreCase)).ToList();
+            if (hit.Count == 0) hit = labels.Where(l => l.IndexOf(part, System.StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             ctx.Require(hit.Count == 1,
                 hit.Count == 0
                     ? "no gizmo is drawn whose label contains \"" + part + "\"; gizmos drawn: " + (labels.Count == 0 ? "none (open the Architect tab or select a thing first)" : string.Join(" | ", labels.ToArray()))
