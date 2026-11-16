@@ -66,6 +66,6 @@ depends on the InterfaceScale tool's tag store repair, which a suite should stag
 
 | Step | What it does |
 | --- | --- |
-| `Nelim's Pickle Tools: I hover over the gizmo labelled {string}` | Hovers the gizmo button (an Architect designator or group button, the gizmo of a selected thing) whose label contains the text (ignoring case) and waits for a tooltip to be drawn. Open the Architect tab first. Fails with the labels drawn when none or several match. |
+| `Nelim's Pickle Tools: I hover over the gizmo labelled {string}` | Hovers the gizmo button (an Architect designator or group button, the gizmo of a selected thing) whose label is the text (ignoring case; an exact label wins, otherwise a part of a label; labels of the Architect carry the ellipsis, "Bed...") and waits for a tooltip to be drawn, or for the game to report the gizmo as under the pointer (an Architect designator shows its info box at the bottom left, not a tooltip). Open the Architect tab first. Fails with the labels drawn when none or several match. |
 
 The gizmos are recorded by a postfix on `Command.GizmoOnGUI` and `Designator.GizmoOnGUI` (one tag `gizmo:<label>` per label and rectangle per frame, on the Repaint pass: the designator override calls the base, and a tag recorded twice is "ambiguous" for Pickle). Played by ArchitectStudio: the step finds and hovers the button; the tooltip of a vanilla `Designator_Dropdown` does not hold a group name. No 1.7 build.

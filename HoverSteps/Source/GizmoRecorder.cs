@@ -58,7 +58,19 @@ namespace Nelim.PickleTools.HoverSteps
             return knownTags == null ? new List<string>() : knownTags().Where(t => t.StartsWith(TagPrefix, StringComparison.Ordinal)).ToList();
         }
 
-        private static void AfterGizmo(Gizmo __instance, Vector2 topLeft, float maxWidth)
+        private static string mouseoverLabel;
+        private static int mouseoverFrame = -1;
+
+        /// <summary>
+        /// True when the game itself drew this gizmo under the pointer in the last frames (<c>GizmoState.Mouseover</c>). An Architect designator answers a hover with its
+        /// info box at the bottom left, not with a <c>TipRegion</c> tooltip (the 3e62 run, 2026-11-16: the box showed, no tip was registered), so the tip list alone cannot prove it.
+        /// </summary>
+        internal static bool IsMouseOver(string label)
+        {
+            return mouseoverLabel != null && string.Equals(mouseoverLabel, label, StringComparison.OrdinalIgnoreCase) && Time.frameCount - mouseoverFrame <= 3;
+        }
+
+        private static void AfterGizmo(Gizmo __instance, Vector2 topLeft, float maxWidth, GizmoResult __result)
         {
             if (record == null) return;
             try
@@ -67,6 +79,7 @@ namespace Nelim.PickleTools.HoverSteps
                 if (Event.current == null || Event.current.type != EventType.Repaint) return;
                 string label = (__instance as Command)?.LabelCap;
                 if (string.IsNullOrEmpty(label)) return;
+                if (__result.State == GizmoState.Mouseover) { mouseoverLabel = label; mouseoverFrame = Time.frameCount; }
                 var rect = new Rect(topLeft.x, topLeft.y, __instance.GetWidth(maxWidth), 75f);
                 // Designator.GizmoOnGUI calls Command.GizmoOnGUI, and both are patched: the same gizmo at the same rect arrives twice per draw, and Pickle's tag store calls that
                 // "ambiguous" (ArS run 1a65: the tag was listed yet "not found"). Record one entry per label and rectangle each frame.

@@ -101,8 +101,9 @@ namespace Nelim.PickleTools.HoverSteps
                     ? "no gizmo is drawn whose label contains \"" + part + "\"; gizmos drawn: " + (labels.Count == 0 ? "none (open the Architect tab or select a thing first)" : string.Join(" | ", labels.ToArray()))
                     : "more than one gizmo label contains \"" + part + "\": " + string.Join(" | ", hit.ToArray()));
             await ctx.Hover(GizmoRecorder.Prefix + hit[0]);
-            await ctx.AssertEventually(() => TooltipHandler.activeTips.Values.Any(tip => Time.realtimeSinceStartup > tip.firstTriggerTime + tip.signal.delay),
-                () => "the pointer is over the gizmo \"" + hit[0] + "\", but no tooltip was drawn within " + DrawTimeoutSeconds + " seconds", DrawTimeoutSeconds);
+            // A tooltip, or the game's own mouse-over state of the gizmo (an Architect designator shows its info box, not a tooltip).
+            await ctx.AssertEventually(() => GizmoRecorder.IsMouseOver(hit[0]) || TooltipHandler.activeTips.Values.Any(tip => Time.realtimeSinceStartup > tip.firstTriggerTime + tip.signal.delay),
+                () => "the pointer is over the gizmo \"" + hit[0] + "\", but the game neither drew a tooltip nor reported the gizmo as under the pointer within " + DrawTimeoutSeconds + " seconds", DrawTimeoutSeconds);
         }
 
         [Then("Nelim's Pickle Tools: the tooltip keyed {string} is drawn")]
