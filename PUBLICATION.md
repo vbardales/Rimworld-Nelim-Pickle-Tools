@@ -16,7 +16,7 @@ Developer tools for writing and running [url=https://steamcommunity.com/sharedfi
 [*]Open and inspect research and pawn tabs.
 [*]Create and verify colonists with xenotypes, humanlike pawn kinds, and body types.
 [*]Check texture ownership, active expansions and optional mods.
-[*]Capture tick-based films and clean review screenshots.
+[*]Capture tick-based footage and clean review screenshots.
 [*]Click translated buttons and diagnose missed clicks or interface-scale issues.
 [*]Hover a tooltip by its text and check what is drawn.
 [*]Exercise optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSqol[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] workflows.
@@ -111,7 +111,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. 1
 
 [b]Added[/b]
 [list]
-[*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, whatever its xenotype's body-type genes, or the body of a child.
+[*]Colonist body type step: a pawn gets Male, Female, Thin, Fat or Hulk for certain, regardless of its xenotype's body-type genes, or the body of a child.
 [*]Hover steps: hover a tooltip by its text and check that it is drawn.
 [*]Screenshot mode can turn developer mode off for a capture that keeps the interface.
 [/list]
