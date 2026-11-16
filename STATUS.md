@@ -57,6 +57,8 @@ See the front matter. The 2026-10-10 audit retained `setupRepo` (docs/runs/2026-
 - 2026-11-15: Invincible Viltrumites 3792583363 SKIP (Audit): 9 hard deps absent locally, ticket 9f6d red, reopen when subscribed. RimOni 3800174512 PHOTOGRAPHED (ticket c9aa green 1/1, the one item Leather_Oni; 27 PawnKindDef and 26 render trees are out of the generator scope). Audit and PiI told. Next: SZ_StonesAndTerrains 1874663469, Simple Ivory 1724270693, Gerrymon Greekcore 3666883698.
 - 2026-11-15 evening: SZ_StonesAndTerrains 1874663469 PHOTOGRAPHED (f37d 18 floors cut into tiles by Make-TerrainCatalogue.js, db09 green 3/3: 6 items + 18 other in 3 shots; webp + key.md in rimworld-catalogue/{terrain,things}/1874663469, Inbox deleted). Audit and PiI told. Next: Simple Ivory 1724270693, Gerrymon Greekcore 3666883698. New steps today (compiled, not played): ColonistRace aims at the cell, StageDecor builds the blueprint / filth spread / floor build fast-forward, HoverSteps hover over the gizmo.
 
+- 2026-11-16 evening: Simple Ivory 1724270693 PHOTOGRAPHED (d83f 1 floor IvoryTile cut by Make-TerrainCatalogue.js, f27a 3 items Ivory, WalrusTusk, WildBoarTusk in 1 shot; webp + key.md + metadata in rimworld-catalogue/{terrain,things}/1724270693, Inbox cleaned, tsv photographed). Next: Yukiyuki 3716851548 (owner order, priority 1), then Gerrymon Greekcore 3666883698.
+
 ## Open threads (2026-11-13)
 - Memory-thought clear steps (26a6443) and render-node log/hide steps (a76b890): compiled, not played. aPMiaPB blush persists after 16 memories cleared; FA parts all neutral; waiting for the `[render-nodes]` log.
 - CrB 1.7 freeze: hypothesis = 1800 s step timeout silent wait vs 600 s watchdog; waiting for their control ticket.
