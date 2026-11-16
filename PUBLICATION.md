@@ -19,14 +19,14 @@ Developer tools for writing and running [url=https://steamcommunity.com/sharedfi
 [*]Capture tick-based films and clean review screenshots.
 [*]Click translated buttons and diagnose missed clicks or interface-scale issues.
 [*]Hover a tooltip by its text and check what is drawn.
-[*]Exercise optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] workflows.
+[*]Exercise optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSqol[/url] and [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] workflows.
 [/list]
 
-Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url]. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] and mods targeted by particular tests are OPTIONAL: install them only for scenarios that need them. No gameplay content or test saves included. Do not enable this bundle together with its separate development companions: they contain the same steps.
+Requires [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url]. [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSqol[/url], [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url] and mods targeted by particular tests are OPTIONAL: install them only for scenarios that need them. No gameplay content or test saves included. Do not enable this bundle together with its separate development companions: they contain the same steps.
 
 Some utilities have been submitted upstream to Pickle. If equivalent functionality is integrated and released in a supported Pickle version, those utilities will be removed from this bundle in favor of the upstream implementation.
 
-Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSQOL and Vanilla Expanded Framework, and across a game restart, on the 13 tools of the first release. The steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
+Tested against Pickle 4.9.1 in English and French: with and without Biotech, with optional RIMMSqol and Vanilla Expanded Framework, and across a game restart, on the 13 tools of the first release. The steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. What was played and what was not (manual checks, some optional tools) is listed in TESTING.md and STATUS.md in the repository.
 
 [h1]If I go quiet[/h1]
 If I do not answer within a reasonable time after being contacted, anyone may freely update this or any other of my mods, including publishing a continuation of it. All credit must be preserved.
@@ -37,7 +37,7 @@ Code and documentation include Claude Code (Anthropic) and Codex (OpenAI), under
 [h1]Thanks[/h1]
 [list]
 [*]Aaron Scherer and RimWorks for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678]Pickle[/url], the test runner these utilities extend.
-[*]Malte Schulze for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSQOL[/url] and its readable source, used for the optional MainButtons workflow.
+[*]Malte Schulze for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1084452457]RIMMSqol[/url] and its readable source, used for the optional MainButtons workflow.
 [*]Oskar Potocki and the Vanilla Expanded team for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2023507013]Vanilla Expanded Framework[/url], whose optional faction workflow is exercised by one module.
 [*]Andreas Pardeike for [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077]Harmony[/url].
 [/list]
@@ -67,7 +67,7 @@ The gallery today is `Art/Gallery/0-preview.png` alone. Any further image goes i
   packageId `brrainz.harmony`, declared since 2026-10-10 in the bundle and in the seven tools that call HarmonyLib
   (ClickDiagnostics, ColonistRace, HoverSteps, IdeologySteps, ResearchSteps, ScreenshotStudio, VefFactionSteps; ClearScreen,
   InterfaceScale and QuietNewFactions already did). Pickle itself needs Harmony or Concord.
-- RIMMSQOL and Vanilla Expanded Framework are optional integrations. Do not add them to Steam's required-items
+- RIMMSqol and Vanilla Expanded Framework are optional integrations. Do not add them to Steam's required-items
   list. Scenarios that need them declare their own `@requires` tag.
 - No RimWorld DLC is a global requirement. Scenario-specific DLC requirements remain optional.
 
@@ -82,7 +82,7 @@ content.
 The global `WORKSHOP_COMMENTS.md` register controls duplicates.
 
 - Pickle (`3791648678`): already posted for the collection; add PickleTools to `Covers`, do not repost.
-- RIMMSQOL (`1084452457`): already posted for the collection; add PickleTools to `Covers`, do not repost.
+- RIMMSqol (`1084452457`): already posted for the collection; add PickleTools to `Covers`, do not repost.
 - Harmony (`2009463077`): already posted for the collection; add PickleTools to `Covers`, do not repost.
 - Vanilla Expanded Framework (`2023507013`): posted on 2026-09-22 after item 3806142401 became public.
 
@@ -133,7 +133,7 @@ The publish workflow reads the fenced block under the heading `### <version>`. 1
 [*]Thirteen reusable Pickle step modules in one Workshop item.
 [*]Research and inspect-tab controls, colonist and xenotype helpers, texture ownership and expansion checks.
 [*]Tick-based filming, clean screenshot mode, keyed clicks, click diagnostics and interface-scale repair.
-[*]Optional RIMMSQOL and Vanilla Expanded Framework test integrations.
+[*]Optional RIMMSqol and Vanilla Expanded Framework test integrations.
 [*]MIT licence, full attribution and suite-authoring documentation.
 [/list]
 
