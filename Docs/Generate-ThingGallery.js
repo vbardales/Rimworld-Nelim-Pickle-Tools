@@ -65,7 +65,9 @@ if (args.includes('--list') || !group) {
 // group style: the (thing, style) pairs of the mod's StyleCategoryDefs (Ideology styles of vanilla things), each placed with its style by StageDecor ("I place the decor ... with the style ...").
 let names = by[group] || [];
 if (group === 'style') {
-  const dir = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/' + key + '/Defs';
+  const modDir = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/' + key;
+  // Defs at the root, else the newest version folder that has Defs (1.6 first): a mod with LoadFolders keeps them there.
+  const dir = ['Defs', '1.6/Defs', '1.5/Defs', 'Common/Defs'].map(s => modDir + '/' + s).find(p => fs.existsSync(p)) || modDir + '/Defs';
   const walkx = d => fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walkx(d + '/' + e.name) : (/\.xml$/i.test(e.name) ? [d + '/' + e.name] : []));
   names = [];
   for (const f of walkx(dir)) {
