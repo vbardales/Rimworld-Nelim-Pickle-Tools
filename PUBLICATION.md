@@ -64,9 +64,9 @@ The gallery today is `Art/Gallery/0-preview.png` alone. Any further image goes i
 
 - **Required Workshop items:** [Pickle](https://steamcommunity.com/sharedfiles/filedetails/?id=3791648678),
   packageId `rimworks.pickle`, and [Harmony](https://steamcommunity.com/sharedfiles/filedetails/?id=2009463077),
-  packageId `brrainz.harmony`, declared since 2026-10-10 in the bundle and in the seven tools that call HarmonyLib
-  (ClickDiagnostics, ColonistRace, HoverSteps, IdeologySteps, ResearchSteps, ScreenshotStudio, VefFactionSteps; ClearScreen,
-  InterfaceScale and QuietNewFactions already did). Pickle itself needs Harmony or Concord.
+  packageId `brrainz.harmony`, declared in the bundle and in the twelve tools that call HarmonyLib
+  (ClearScreen, ClickDiagnostics, ColonistRace, Excludes, HoverSteps, IdeologySteps, InterfaceScale, LoadAudit,
+  QuietNewFactions, ResearchSteps, ScreenshotStudio, VefFactionSteps). Pickle itself needs Harmony or Concord.
 - RIMMSqol and Vanilla Expanded Framework are optional integrations. Do not add them to Steam's required-items
   list. Scenarios that need them declare their own `@requires` tag.
 - No RimWorld DLC is a global requirement. Scenario-specific DLC requirements remain optional.
@@ -146,7 +146,7 @@ The next release goes out by the CI, after `AUDIT.md`'s `tested` and `prepublish
 
 **The description must be true at the moment it replaces the page.** Its "tested" sentence holds for the thirteen-module bundle (`docs/runs/aggregate.md`) and was reworded on 2026-09-25 (the owner chose to reword rather than replay the matrix): it now says the matrix ran on the thirteen tools of the first release, and that the steps added since (hover steps, the colonist body type step) have scenarios of their own and were not replayed together with the rest. Replaying the matrix with the fourteen modules would let the sentence say more; until then, change it in both `About.xml` and this file together (a new commit, a new SHA, a new dry-run).
 
-The Steam description above is the text of 1.1.0 as published on 2026-09-28; it no longer calls the bundle a release candidate. For the next release, read the live page again: if it differs from the description above, or if this text changed, send it with the CI's `update_description` (its dry-run prints the text, its size and its diff against the page) or paste it by hand on the Steam page; an upload from the game does not send the description again. `Mod/About/About.xml` carries the same text.
+The Steam description above is the text of 1.1.0 as published on 2026-09-28; it no longer calls the bundle a release candidate. The `CHANGELOG.md` entry `1.1.0` keeps its drafting date 2026-09-25 and its line "awaits the owner's confirmation" (old entries are append-only); the release date is 2026-09-28. For the next release, read the live page again: if it differs from the description above, or if this text changed, send it with the CI's `update_description` (its dry-run prints the text, its size and its diff against the page) or paste it by hand on the Steam page; an upload from the game does not send the description again. `Mod/About/About.xml` carries the same text.
 
 **The payload is committed.** The workflow uploads `Mod/` as committed and has no build step, so `Mod/Pickle/Assemblies` holds the
 fourteen tool DLLs, copied byte for byte from the tools by `Release/Sync-Payload.ps1 -SyncMod`. Before every release run
