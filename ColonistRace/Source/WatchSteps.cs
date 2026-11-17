@@ -10,7 +10,7 @@ namespace Nelim.PickleTools.ColonistRace
     /// <summary>
     /// A batched "watch": advances the game tick by tick like "the game is advanced by N ticks" (ticks in a loop, about 40 ms per frame, so a slow lane still finishes) and, after EACH
     /// tick, looks at the things of one def: how many stand on the map, and the value of one field of each. Written 2026-11-17 for ACBaGE (firecracker chain on the slow 1.7 lane,
-    /// 240 ticks one by one over 90 s). What it saw is kept for the assertions that follow. Compiled, NOT PLAYED.
+    /// 240 ticks one by one over 90 s). What it saw is kept for the assertions that follow. Played 2026-11-17: vanilla 1.6 and the 1.7 lane (ACBaGE, firecracker chain, 47 s).
     /// </summary>
     [PickleSteps]
     public class WatchSteps
