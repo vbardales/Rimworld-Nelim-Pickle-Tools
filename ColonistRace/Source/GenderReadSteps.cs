@@ -12,7 +12,7 @@ namespace Nelim.PickleTools.ColonistRace
     public class GenderReadSteps
     {
         /// <summary>Logs the gender of a colonist as <c>[gender] Name: Male|Female|None</c>, so two runs can be compared in their logs.</summary>
-        [When("Nelim's Pickle Tools: the gender of {string} is logged")]
+        [When("Nelim's Pickle Tools: the gender of {string} is written to the log")]
         public void LogGender(PickleContext ctx, string nickname)
         {
             Pawn pawn = ColonistLookup.Require(nickname);

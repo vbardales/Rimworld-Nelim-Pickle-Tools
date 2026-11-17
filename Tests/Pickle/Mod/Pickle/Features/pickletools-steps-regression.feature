@@ -50,6 +50,6 @@ Feature: steps of 2026-11-15
 
   Scenario: the gender of a colonist is logged and asserted
     Given Nelim's Pickle Tools: "Jet" gender is female
-    When Nelim's Pickle Tools: the gender of "Jet" is logged
+    When Nelim's Pickle Tools: the gender of "Jet" is written to the log
     Then Nelim's Pickle Tools: the gender of "Jet" is female
     And no errors were logged
