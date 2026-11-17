@@ -576,6 +576,18 @@ namespace Nelim.PickleTools.StageDecor
             PlaceDecor(ctx, thingDefName, x, z);
             Thing thing = Placed.Last();
             thing.SetStyleDef(style);
+            if (thing.StyleDef != style)
+            {
+                // Some defs (a wall, a torch, a reliquary) leave the style at none after SetStyleDef (tickets ad2b, 5a8b, 2026-11-17): the field is set
+                // directly, as the game does when a style category applies, and the map mesh is redrawn.
+                var field = typeof(Thing).GetField("styleDef", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                if (field != null)
+                {
+                    field.SetValue(thing, style);
+                    if (thing.Spawned) thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Things);
+                    Log.Warning($"[style-forced] {thingDefName} at ({x}, {z}): SetStyleDef left the style none, the field was set to {styleDefName}");
+                }
+            }
             ctx.Assert(thing.StyleDef == style, $"the {thingDefName} at ({x}, {z}) holds the style '{thing.StyleDef?.defName ?? "none"}' after the step, not '{styleDefName}'");
         }
 
