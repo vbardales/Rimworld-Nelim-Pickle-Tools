@@ -7,27 +7,21 @@ using Verse;
 namespace Nelim.PickleTools.ColonistRace
 {
     /// <summary>
-    /// The SEX of a pawn as a gene, for Biotech Bodies 1.1.0 (owner model 2026-11-17): <c>Pawn.gender</c> is the GENDER (what the profile shows, None = neutral), the sex is
-    /// an endogene that drives body, head, hair and organs. The gene defNames (final since 2026-11-17) are kept in one place (the two constants below). Until
-    /// the genes exist the sex steps fail saying so; the gender steps behave as before. Compiled, NOT PLAYED (no BiB code exists yet).
+    /// The sex gene of a pawn for Biotech Bodies 1.1.0 (owner model 2026-11-17): <c>Pawn.gender</c> is the GENDER, the SEX is an endogene. This file holds only what the gender setter needs:
+    /// a plain defName lookup (no code dependency on BiB). The sex steps (`sex is`, `the sex of ... is`, its log) are NOT here: the owner decided on 2026-11-17 that BiB ships them in its own package.
+    /// Names final since 2026-11-17. Compiled, NOT PLAYED (no BiB code exists yet).
     /// </summary>
-    [PickleSteps]
-    public class SexGeneSteps
+    internal static class SexGeneSteps
     {
         // Final names (BiB, validated by the owner 2026-11-17): the only place to change if they ever change.
-        public const string MaleGeneName = "BiB_SexMale";
-        public const string FemaleGeneName = "BiB_SexFemale";
+        internal const string MaleGeneName = "BiB_SexMale";
+        internal const string FemaleGeneName = "BiB_SexFemale";
 
         private static bool Defined(out GeneDef male, out GeneDef female)
         {
             male = DefDatabase<GeneDef>.GetNamedSilentFail(MaleGeneName);
             female = DefDatabase<GeneDef>.GetNamedSilentFail(FemaleGeneName);
             return male != null && female != null;
-        }
-
-        private static void NeedGenes(PickleContext ctx, out GeneDef male, out GeneDef female)
-        {
-            ctx.Require(Defined(out male, out female), $"the sex gene {MaleGeneName} or {FemaleGeneName} is not defined (BiB 1.1.0 not loaded, or the defNames changed)");
         }
 
         private static Gene Held(Pawn pawn, GeneDef male, GeneDef female)
@@ -62,48 +56,6 @@ namespace Nelim.PickleTools.ColonistRace
                 SetSexGene(pawn, isMale ? male : female, male, female);
                 Log.Message($"[sex-drawn] {pawn.Name?.ToStringShort}: {(isMale ? "Male" : "Female")} seed={seed}");
             }
-        }
-
-        /// <summary>Sets the SEX gene of a colonist: <c>male</c> or <c>female</c> adds that sex gene (endogene) and removes the other. Fails while the genes are not defined. Does not touch Pawn.gender.</summary>
-        [Given("Nelim's Pickle Tools: {string} sex is {word}")]
-        public void SetSex(PickleContext ctx, string nickname, string sex)
-        {
-            Pawn pawn = ColonistLookup.Require(nickname);
-            NeedGenes(ctx, out GeneDef male, out GeneDef female);
-            ctx.Require(pawn.genes != null, $"{nickname} has no genes (Biotech)");
-            GeneDef wanted;
-            switch (sex.ToLowerInvariant())
-            {
-                case "male": wanted = male; break;
-                case "female": wanted = female; break;
-                default: wanted = null; ctx.Require(false, $"the sex must be male or female, not '{sex}'"); break;
-            }
-
-            SetSexGene(pawn, wanted, male, female);
-            ctx.Assert(pawn.genes.GenesListForReading.Any(g => g.def == wanted), $"{nickname} should hold {wanted.defName} after this step");
-        }
-
-        /// <summary>Asserts the sex gene of a colonist, <c>male</c> or <c>female</c>. Fails while the genes are not defined, or when the pawn holds none (it says so).</summary>
-        [Then("Nelim's Pickle Tools: the sex of {string} is {word}")]
-        public void SexIs(PickleContext ctx, string nickname, string sex)
-        {
-            Pawn pawn = ColonistLookup.Require(nickname);
-            NeedGenes(ctx, out GeneDef male, out GeneDef female);
-            Gene held = Held(pawn, male, female);
-            GeneDef wanted = sex.ToLowerInvariant() == "male" ? male : sex.ToLowerInvariant() == "female" ? female : null;
-            ctx.Require(wanted != null, $"the sex must be male or female, not '{sex}'");
-            ctx.Assert(held != null && held.def == wanted, $"{nickname} should have the sex {sex}; the sex gene held is {held?.def.defName ?? "none"}");
-        }
-
-        /// <summary>Writes <c>[sex] Name: Male|Female|none</c> (the sex gene held) and <c>[sex-genes] Name: ...</c> (every gene whose defName starts with BiB_Sex). Fails while the genes are not defined.</summary>
-        [When("Nelim's Pickle Tools: the sex of {string} is written to the log")]
-        public void LogSex(PickleContext ctx, string nickname)
-        {
-            Pawn pawn = ColonistLookup.Require(nickname);
-            NeedGenes(ctx, out GeneDef male, out GeneDef female);
-            Gene held = Held(pawn, male, female);
-            Log.Message($"[sex] {nickname}: {(held == null ? "none" : held.def == male ? "Male" : "Female")}");
-            Log.Message($"[sex-genes] {nickname}: {string.Join(", ", (pawn.genes?.GenesListForReading ?? new System.Collections.Generic.List<Gene>()).Where(g => g.def.defName.StartsWith("BiB_Sex")).Select(g => g.def.defName))}");
         }
     }
 }
