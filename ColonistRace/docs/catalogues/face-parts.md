@@ -6,6 +6,10 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 **Photographs (2026-10-09, runs 90ae, 58ce, 504a; Tests/Pickle/.../pickletools-face-parts-gallery.feature).** One photograph per value, in the order of the tables, on Nelim of the save Nelims-tribe at 20 degrees. Each scenario starts from the kit neutral and sets one part value after another, so a photograph also shows the parts set earlier in the same scenario (the cheek mark of a skin stays on the later eyeball photographs): read the changed part, not the whole face. Sheets: docs/Make-PartSheets.ps1.
 
+## Vanilla face (no part type): 2026-11-17, Virginie
+
+The tables below list only `MouthTypeDef`, `BrowTypeDef`, `LidTypeDef`, `SkinTypeDef`, `EyeballTypeDef` and head shapes, which Facial Animation and its extensions add: the base game has none of these defs. The vanilla face is drawn by the head texture itself, so it has no name to photograph in a part table. Read on the Core head sheet (`../img/looks/0303 Tetes - Core - 1.jpg`, one photograph per Core head, taken with Facial Animation loaded): the six Male heads (`Male_AverageNormal` to `Male_NarrowWide`) draw a straight-line mouth, round eyes and straight brows; the six Female heads draw eyelashes and eyes and no mouth; `Skull` and `Stump` have neither. So "the vanilla mouth" is the straight line of the Male heads, not a mouth part. A separate photograph of the vanilla face without Facial Animation loaded is not taken: it would need a run whose mod list lacks Facial Animation (a map without it). Open.
+
 ## Mouths (38)
 
 Step texts: `"<pawn>" mouth is "<defName>"`
