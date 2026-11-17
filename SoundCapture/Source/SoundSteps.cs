@@ -234,6 +234,12 @@ namespace Nelim.PickleTools.SoundCapture
                 ctx.Attach("sound-short", shortNote);
             }
 
+            string ffmpegReport = ErrorsOf(recording).Trim();
+            if (ffmpegReport.Length > 0)
+            {
+                ctx.Attach("sound-ffmpeg", ffmpegReport);
+            }
+
             ctx.Attach("sound-file", recording.File);
             ctx.Attach("sound-note", $"\"{recording.Name}\": recorded from '{recording.Source}', {new FileInfo(recording.File).Length} bytes. " +
                                      "It also played on the Windows speakers. Listening to the file is what says the sound is the right one.");

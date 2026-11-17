@@ -19,7 +19,11 @@ namespace Nelim.PickleTools.SoundCapture
 
         public static string RecordArguments(string source, string file, int maxSeconds, int rate = 22050, int channels = 1)
         {
-            return $"-hide_banner -loglevel error -y -f pulse -i {source} -ar {rate} -ac {channels} -t {maxSeconds} \"{file}\"";
+            // Warnings are kept (loglevel warning, not error) and attached to the run as sound-ffmpeg: a WSLg monitor that delivers data only
+            // part of the time (Epona, 2026-11-17: 3 s of sound in 43 s) leaves a trace there. The gaps are NOT filled with silence
+            // (aresample async, wall-clock timestamps): the file would then last as long as the recording and ShortRecording could no longer
+            // tell a starved sink from a good one.
+            return $"-hide_banner -loglevel warning -y -f pulse -i {source} -ar {rate} -ac {channels} -t {maxSeconds} \"{file}\"";
         }
 
         /// <summary>
