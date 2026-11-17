@@ -580,7 +580,8 @@ namespace Nelim.PickleTools.StageDecor
             {
                 // Some defs (a wall, a torch, a reliquary) leave the style at none after SetStyleDef (tickets ad2b, 5a8b, 2026-11-17): the field is set
                 // directly, as the game does when a style category applies, and the map mesh is redrawn.
-                var field = typeof(Thing).GetField("styleDef", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                var field = typeof(Thing).GetField("styleDef", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
+                Log.Warning($"[style-forced] {thingDefName}: field styleDef {(field == null ? "not found on Thing" : "found")}; style fields of Thing: {string.Join(", ", typeof(Thing).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Where(f => f.FieldType == typeof(ThingStyleDef)).Select(f => f.Name))}");
                 if (field != null)
                 {
                     field.SetValue(thing, style);
