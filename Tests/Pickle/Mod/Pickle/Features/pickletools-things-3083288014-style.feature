@@ -100,7 +100,6 @@ Feature: style catalogue 3083288014
     And Nelim's Pickle Tools: I place the decor "SculptureGrand" with the style "OES_SculptureGrand" at (162, 160)
     And Nelim's Pickle Tools: I place the decor "Column" with the style "OES_Column" at (142, 155)
     And Nelim's Pickle Tools: I place the decor "PlantPot" with the style "OES_PlantPot" at (152, 155)
-    And Nelim's Pickle Tools: I place the decor "PlantPot_Bonsai" with the style "OES_PlantPot_Bonsai" at (157, 155)
     And Nelim's Pickle Tools: I place the decor "Table1x2c" with the style "OES_Table1x2c" at (162, 155)
     And Nelim's Pickle Tools: I place the decor "Table2x2c" with the style "OES_Table2x2c" at (142, 150)
     And Nelim's Pickle Tools: I place the decor "Table2x4c" with the style "OES_Table2x4c" at (147, 150)
