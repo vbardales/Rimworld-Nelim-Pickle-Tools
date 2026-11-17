@@ -74,3 +74,8 @@ Feature: steps of 2026-11-15
     When Nelim's Pickle Tools: the reach of "Zed" to (143, 151) is written to the log
     Then Nelim's Pickle Tools: "Zed" can reach (143, 151)
     And no errors were logged
+
+  Scenario: the names of generated pawns of a xenotype are written and checked
+    When Nelim's Pickle Tools: 5 pawns of xenotype "Hussar" are generated and their names are written to the log
+    Then Nelim's Pickle Tools: none of the generated names holds a raw rule key
+    And no errors were logged
