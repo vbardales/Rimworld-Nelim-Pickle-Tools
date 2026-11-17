@@ -7,7 +7,7 @@ namespace Nelim.PickleTools.ColonistRace
     /// <summary>
     /// A fast-forward: runs game ticks in a loop on the main thread, as fast as the machine allows, instead of waiting for the game speed to pass them
     /// (about 18 ticks a second on the 1.7 server lane, so a game day of 60 000 ticks takes over 55 minutes at the fastest speed). Written 2026-11-13 for BurnBarrel
-    /// (04-pollution, one game day). NOT PLAYED when written.
+    /// (04-pollution, one game day). Played 2026-11-17 on the 1.7 lane by ACBaGE (drought scenario, 3600 ticks in 114.6 s, about 31 ticks a second; the same wait without this step: 354 ticks in 401.9 s, red).
     /// </summary>
     [PickleSteps]
     public class TickSteps
