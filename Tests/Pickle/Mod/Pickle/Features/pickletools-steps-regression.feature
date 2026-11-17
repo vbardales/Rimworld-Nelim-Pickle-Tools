@@ -36,3 +36,9 @@ Feature: steps of 2026-11-15
     Given Nelim's Pickle Tools: I open the architect tab "Furniture"
     When Nelim's Pickle Tools: I hover over the gizmo labelled "Bed..."
     Then no errors were logged
+
+  Scenario: a colonist is ordered to go somewhere many times at a set mood (vanilla refuses none)
+    Given Nelim's Pickle Tools: the mood of "Jet" is set to 0.5
+    And Nelim's Pickle Tools: "Jet" is ordered to go to (143, 151) 20 times
+    Then Nelim's Pickle Tools: the orders of "Jet" were refused between 0 and 0 times
+    And no errors were logged
