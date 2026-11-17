@@ -15,6 +15,7 @@ When Nelim's Pickle Tools: "Nelim" facial expression is "normal+blink"
 
 - The name is a `FaceAnimationDef` name. A wrong name fails and prints the valid ones. Names joined by `+` play together; for each part of the face the last one wins.
 - Start with `normal`: it clears the heat face (sweat) that the room temperature would otherwise leave on the pawn.
+- Confirmed 2026-11-17 on a gallery (ASN, AdaptiveStorageNeolithicRenew run 2d09, five captures): after a face kit, `facial expression is "normal"` removes the red cheeks and the pale forehead mark (heat face) and the kit's smile survives (faint on one scene, as before the step). Set the map temperature to 20 at the start as well.
 - Let ticks pass BEFORE placing the pawn: the scene is paused, and without ticks nothing is recalculated. The pawn wanders during the ticks, so place her afterwards.
 - The temporary animation ends when its frames have run out (it counts game ticks, it holds while the game is paused).
 - To list the animations your mod list defines: step `Nelim's Pickle Tools: the facial animations are listed` (log lines `[face-animations]`).
