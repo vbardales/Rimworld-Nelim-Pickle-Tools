@@ -37,7 +37,7 @@ Cell = the 5 x 5 block, row 1 = north.
 | 2 | 4 | Pew|Ocean_Pew |
 | 2 | 5 | KneelPillow|Ocean_KneelPillow |
 | 3 | 1 | KneelSheet|Ocean_KneelSheet |
-| 3 | 2 | Reliquary|Ocean_Reliquary (NOT photographed: StyleDef stays none on this def, tickets 5a8b 8503 785c 0408) |
+| 3 | 2 | Reliquary|Ocean_Reliquary |
 | 3 | 3 | Ideogram|Ocean_IdeogramA |
 | 3 | 4 | Ideogram|Ocean_IdeogramB |
 | 3 | 5 | StandingLamp|Ocean_StandingLamp |
@@ -47,7 +47,7 @@ Cell = the 5 x 5 block, row 1 = north.
 | row | col | def |
 |---|---|---|
 | 1 | 1 | TorchLamp|Ocean_TorchLamp |
-| 1 | 2 | Darktorch|Ocean_Darktorch (NOT photographed: StyleDef stays none on this def, tickets 5a8b 8503 785c 0408) |
+| 1 | 2 | Darktorch|Ocean_Darktorch |
 | 1 | 3 | FloodLight|Ocean_FloodLight |
 | 1 | 4 | DiningChair|Ocean_DiningChair |
 | 1 | 5 | Armchair|Ocean_Armchair |
@@ -69,7 +69,7 @@ Cell = the 5 x 5 block, row 1 = north.
 | 1 | 1 | Dresser|Ocean_Dresser |
 | 1 | 2 | ShelfSmall|Ocean_ShelfSmall |
 | 1 | 3 | Shelf|Ocean_Shelf |
-| 1 | 4 | Wall|Ocean_Wall (NOT photographed: StyleDef stays none on this def, tickets 5a8b 8503 785c 0408) |
+| 1 | 4 | Wall|Ocean_Wall |
 | 1 | 5 | SteleLarge|Ocean_SteleLarge |
 | 2 | 1 | SteleGrand|Ocean_SteleGrand |
 | 2 | 2 | PlantPot|Ocean_PlantPot |

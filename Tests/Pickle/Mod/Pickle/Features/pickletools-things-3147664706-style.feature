@@ -48,6 +48,7 @@ Feature: style catalogue 3147664706
     And Nelim's Pickle Tools: I place the decor "Pew" with the style "Ocean_Pew" at (157, 155)
     And Nelim's Pickle Tools: I place the decor "KneelPillow" with the style "Ocean_KneelPillow" at (162, 155)
     And Nelim's Pickle Tools: I place the decor "KneelSheet" with the style "Ocean_KneelSheet" at (142, 150)
+    And Nelim's Pickle Tools: I place the decor "Reliquary" with the style "Ocean_Reliquary" at (147, 150)
     And Nelim's Pickle Tools: I place the decor "Ideogram" with the style "Ocean_IdeogramA" at (152, 150)
     And Nelim's Pickle Tools: I place the decor "Ideogram" with the style "Ocean_IdeogramB" at (157, 150)
     And Nelim's Pickle Tools: I place the decor "StandingLamp" with the style "Ocean_StandingLamp" at (162, 150)
@@ -65,6 +66,7 @@ Feature: style catalogue 3147664706
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (140, 148) to (164, 162) is cleared
     And Nelim's Pickle Tools: I place the decor "TorchLamp" with the style "Ocean_TorchLamp" at (142, 160)
+    And Nelim's Pickle Tools: I place the decor "Darktorch" with the style "Ocean_Darktorch" at (147, 160)
     And Nelim's Pickle Tools: I place the decor "FloodLight" with the style "Ocean_FloodLight" at (152, 160)
     And Nelim's Pickle Tools: I place the decor "DiningChair" with the style "Ocean_DiningChair" at (157, 160)
     And Nelim's Pickle Tools: I place the decor "Armchair" with the style "Ocean_Armchair" at (162, 160)
@@ -94,6 +96,7 @@ Feature: style catalogue 3147664706
     And Nelim's Pickle Tools: I place the decor "Dresser" with the style "Ocean_Dresser" at (142, 160)
     And Nelim's Pickle Tools: I place the decor "ShelfSmall" with the style "Ocean_ShelfSmall" at (147, 160)
     And Nelim's Pickle Tools: I place the decor "Shelf" with the style "Ocean_Shelf" at (152, 160)
+    And Nelim's Pickle Tools: I place the decor "Wall" with the style "Ocean_Wall" at (157, 160)
     And Nelim's Pickle Tools: I place the decor "SteleLarge" with the style "Ocean_SteleLarge" at (162, 160)
     And Nelim's Pickle Tools: I place the decor "SteleGrand" with the style "Ocean_SteleGrand" at (142, 155)
     And Nelim's Pickle Tools: I place the decor "PlantPot" with the style "Ocean_PlantPot" at (147, 155)

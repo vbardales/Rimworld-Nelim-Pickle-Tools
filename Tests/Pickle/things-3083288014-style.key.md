@@ -72,11 +72,10 @@ Cell = the 5 x 5 block, row 1 = north.
 | 1 | 4 | SculptureLarge|OES_SculptureLarge |
 | 1 | 5 | SculptureGrand|OES_SculptureGrand |
 | 2 | 1 | Column|OES_Column |
-| 2 | 2 | WallLamp|OES_WallLamp | (NOT photographed: spawned without a wall it crashes PowerNetManager, ticket fdd9)
-| 2 | 3 | PlantPot|OES_PlantPot |
-| 2 | 4 | PlantPot_Bonsai|OES_PlantPot_Bonsai (NOT photographed: Thing.SetStyleDef leaves the style none on this pot, ticket ad2b) |
-| 2 | 5 | Table1x2c|OES_Table1x2c |
-| 3 | 1 | Table2x2c|OES_Table2x2c |
-| 3 | 2 | Table2x4c|OES_Table2x4c |
-| 3 | 3 | Table3x3c|OES_Table3x3c |
+| 2 | 2 | PlantPot|OES_PlantPot |
+| 2 | 3 | PlantPot_Bonsai|OES_PlantPot_Bonsai |
+| 2 | 4 | Table1x2c|OES_Table1x2c |
+| 2 | 5 | Table2x2c|OES_Table2x2c |
+| 3 | 1 | Table2x4c|OES_Table2x4c |
+| 3 | 2 | Table3x3c|OES_Table3x3c |
 

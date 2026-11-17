@@ -587,6 +587,8 @@ namespace Nelim.PickleTools.StageDecor
                     var comp = new CompStyleable { parent = withComps };
                     comp.Initialize(new CompProperties_Styleable());
                     withComps.AllComps.Add(comp);
+                    // Thing.StyleDef reads the cached field ThingWithComps.compStyleable (ThingStyleHelper, decompiled 2026-11-17), filled once at creation: set it too.
+                    typeof(ThingWithComps).GetField("compStyleable", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance)?.SetValue(withComps, comp);
                     Log.Warning($"[style-comp-added] {thingDefName} at ({x}, {z}) had no CompStyleable");
                 }
                 thing.StyleDef = style;
