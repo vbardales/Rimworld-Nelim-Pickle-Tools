@@ -580,6 +580,15 @@ namespace Nelim.PickleTools.StageDecor
             {
                 // Some defs (a wall, a torch, a reliquary) leave the style at none after SetStyleDef (tickets ad2b, 5a8b, 8503, 785c, 2026-11-17):
                 // the property is set directly (Thing.StyleDef has a public setter) and the map mesh is redrawn.
+                // The game keeps a style in the CompStyleable of the thing: a def without that comp (a wall, a torch, a reliquary of some packs) cannot hold one,
+                // and both setters do nothing. The comp is given to this one thing, for this run only (read from Assembly-CSharp, 2026-11-17).
+                if (thing is ThingWithComps withComps && withComps.GetComp<CompStyleable>() == null)
+                {
+                    var comp = new CompStyleable { parent = withComps };
+                    comp.Initialize(new CompProperties_Styleable());
+                    withComps.AllComps.Add(comp);
+                    Log.Warning($"[style-comp-added] {thingDefName} at ({x}, {z}) had no CompStyleable");
+                }
                 thing.StyleDef = style;
                 if (thing.Spawned) thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Things);
                 Log.Warning($"[style-forced] {thingDefName} at ({x}, {z}): SetStyleDef left the style none, StyleDef was set to {styleDefName}, it now holds {thing.StyleDef?.defName ?? "none"}");
