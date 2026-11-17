@@ -8,7 +8,9 @@ Steps (all start with `Nelim's Pickle Tools: `): `"<pawn>" mouth is "<name>"`, `
 
 ## Vanilla face (no part type): 2026-11-17, Virginie
 
-The tables below list only `MouthTypeDef`, `BrowTypeDef`, `LidTypeDef`, `SkinTypeDef`, `EyeballTypeDef` and head shapes, which Facial Animation and its extensions add: the base game has none of these defs. The vanilla face is drawn by the head texture itself, so it has no name to photograph in a part table. Read on the Core head sheet (`../img/looks/0303 Tetes - Core - 1.jpg`, one photograph per Core head, taken with Facial Animation loaded): the six Male heads (`Male_AverageNormal` to `Male_NarrowWide`) draw a straight-line mouth, round eyes and straight brows; the six Female heads draw eyelashes and eyes and no mouth; `Skull` and `Stump` have neither. So "the vanilla mouth" is the straight line of the Male heads, not a mouth part. A separate photograph of the vanilla face without Facial Animation loaded is not taken: it would need a run whose mod list lacks Facial Animation (a map without it). Open.
+The tables below list only `MouthTypeDef`, `BrowTypeDef`, `LidTypeDef`, `SkinTypeDef`, `EyeballTypeDef` and head shapes, which Facial Animation and its extensions add: the base game has none of these defs.
+
+**Photographed without Facial Animation (ticket aa6a, run on a map with only the PickleTools tools, 12 Core heads, 6 Male then 6 Female, close up, clothes dropped; private store `rimworld-catalogue/looks/vanilla-face`):** the vanilla head draws round eyes and brows and NO mouth, on a Male head (checked on `Male_AverageNormal` and `Male_NarrowWide`). So the base game has no vanilla mouth to list. The straight-line mouth seen on the Male heads of the Core head sheet (`../img/looks/0303 Tetes - Core - 1.jpg`, taken with Facial Animation loaded) comes from Facial Animation: it draws a default mouth for those heads. Which part type it is was not found. Not checked: the other ten photographs, one by one (this note comes from two of them). The photographs also show a death thought bubble and a corpse beside the pawn, and the clothes put back on one of them: usable for the face, not clean.
 
 ## Mouths (38)
 
