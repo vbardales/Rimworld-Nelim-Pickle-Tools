@@ -22,7 +22,7 @@ Feature: vanilla face
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    When Nelim's Pickle Tools: "Jet" sex is male
+    When Nelim's Pickle Tools: "Jet" gender is male
     And Nelim's Pickle Tools: "Jet" head type is "Male_AverageNormal"
     And I wait 10 ticks
     And I take a screenshot "vanillaface-Male_AverageNormal"
@@ -41,7 +41,7 @@ Feature: vanilla face
     And Nelim's Pickle Tools: "Jet" head type is "Male_NarrowWide"
     And I wait 10 ticks
     And I take a screenshot "vanillaface-Male_NarrowWide"
-    When Nelim's Pickle Tools: "Jet" sex is female
+    When Nelim's Pickle Tools: "Jet" gender is female
     And Nelim's Pickle Tools: "Jet" head type is "Female_AverageNormal"
     And I wait 10 ticks
     And I take a screenshot "vanillaface-Female_AverageNormal"
