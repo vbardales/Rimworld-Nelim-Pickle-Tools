@@ -41,6 +41,8 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message($"[reach] {nickname} at ({pawn.Position.x}, {pawn.Position.z}) to ({x}, {z}): canReach={can} (OnCell, Danger.Deadly)");
             Log.Message($"[reach-cell] from {DescribeCell(pawn.Map, pawn.Position)}");
             Log.Message($"[reach-cell] to {DescribeCell(pawn.Map, target)}");
+            // Evidence lanes keep messages.ndjson and the report but not always Player.log: a passing Assert keeps its text in the report, so the data survives there too (AniS, 2026-11-17).
+            ctx.Assert(true, $"[reach] {nickname} at ({pawn.Position.x}, {pawn.Position.z}) to ({x}, {z}): canReach={can}; from {DescribeCell(pawn.Map, pawn.Position)}; to {DescribeCell(pawn.Map, target)}");
         }
 
         /// <summary>Asserts that a colonist can reach a cell from where it stands (the game's reachability, OnCell, danger Deadly). The failure gives both cells' region data.</summary>
