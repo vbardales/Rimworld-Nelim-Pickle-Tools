@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using System.Linq;
 using RimWorks.Pickle;
 using Verse;
 
@@ -12,6 +13,18 @@ namespace Nelim.PickleTools.ColonistRace
     [PickleSteps]
     public class TickSteps
     {
+        /// <summary>
+        /// A pawn is drawn from a smoothed position (PawnTweener) that follows its cell frame by frame: after many ticks run without frames it still draws the pawn where it was (CrB, 2026-11-17: the pawn
+        /// had walked six cells in the logic and was drawn in the door frame). Snaps every spawned pawn of the current map to where it stands.
+        /// </summary>
+        internal static void SnapPawnDrawPositions()
+        {
+            Map map = Find.CurrentMap;
+            if (map == null) return;
+            foreach (Pawn pawn in map.mapPawns.AllPawnsSpawned.ToList())
+                pawn.Drawer?.tweener?.ResetTweenedPosToRoot();
+        }
+
         /// <summary>
         /// Advances the game by a number of ticks at once: each frame runs ticks (<c>TickManager.DoSingleTick</c>, the game's own tick: map, pawns, things,
         /// processors) for about 40 ms, then lets the frame draw, until the count is done. The game speed and the pause are left as they are. Logs
@@ -36,6 +49,7 @@ namespace Nelim.PickleTools.ColonistRace
 
             // The last frame wait may resume on another thread; the next step of the scenario runs from here, so hand the step back on the main thread (ACBaGE births, 2026-11-17: 'map pawns off main thread' after a batch).
             await LookSteps.OnMainThread(ctx);
+            SnapPawnDrawPositions();
             int done = Find.TickManager.TicksGame - start;
             Log.Message($"[ticks-advanced] {done} of {ticks} ticks in {clock.Elapsed.TotalSeconds:0.0} s");
             ctx.Assert(done >= ticks, $"only {done} of {ticks} ticks were run in {clock.Elapsed.TotalSeconds:0} s");

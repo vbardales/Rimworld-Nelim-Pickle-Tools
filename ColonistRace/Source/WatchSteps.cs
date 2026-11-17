@@ -83,6 +83,7 @@ namespace Nelim.PickleTools.ColonistRace
             }
 
             await LookSteps.OnMainThread(ctx);
+            TickSteps.SnapPawnDrawPositions();
             seen.TicksDone = Find.TickManager.TicksGame - start;
             string values = seen.Values.Count == 0 ? "none" : string.Join(", ", seen.Values.OrderBy(v => v));
             Log.Message($"[ticks-watched] {defName}: {seen.TicksDone} of {ticks} ticks in {clock.Elapsed.TotalSeconds:0.0} s; seen {seen.Things.Count} thing(s), most at once {seen.MostAtOnce}; field '{field}' values: {values}");
