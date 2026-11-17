@@ -64,7 +64,7 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(pawn.Spawned, $"{nickname} is not spawned on a map");
             var target = new IntVec3(x, 0, z);
             bool can = pawn.Map.reachability.CanReach(pawn.Position, target, PathEndMode.OnCell, TraverseParms.For(pawn, Danger.Deadly));
-            ctx.Assert(!can, $"{nickname} can reach ({x}, {z}) from ({pawn.Position.x}, {pawn.Position.z})");
+            ctx.Assert(!can, $"{nickname} can reach ({x}, {z}); from {DescribeCell(pawn.Map, pawn.Position)}; to {DescribeCell(pawn.Map, target)}");
         }
     }
 }
