@@ -34,6 +34,8 @@ namespace Nelim.PickleTools.ColonistRace
                 await ctx.WaitFrames(1);
             }
 
+            // The last frame wait may resume on another thread; the next step of the scenario runs from here, so hand the step back on the main thread (ACBaGE births, 2026-11-17: 'map pawns off main thread' after a batch).
+            await LookSteps.OnMainThread(ctx);
             int done = Find.TickManager.TicksGame - start;
             Log.Message($"[ticks-advanced] {done} of {ticks} ticks in {clock.Elapsed.TotalSeconds:0.0} s");
             ctx.Assert(done >= ticks, $"only {done} of {ticks} ticks were run in {clock.Elapsed.TotalSeconds:0} s");
