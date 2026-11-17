@@ -17,7 +17,7 @@ Feature: creature catalogue 3806709627
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    When Nelim's Pickle Tools: I frame the animal "cat-01" at zoom 2
+    When Nelim's Pickle Tools: I frame the cell (147, 152) at zoom 1.6
     And Nelim's Pickle Tools: I let 5 frames pass
     And I take a screenshot "creatures-3806709627-01"
     Then no errors were logged
