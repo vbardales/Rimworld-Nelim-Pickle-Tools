@@ -678,6 +678,38 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Adds a garment of the apparel def, dyed in an RGB colour 0 to 255, to what the colonist already wears (the "also wears" step plus the dye of "wears ... dyed rgb"): only the garments
+        /// that cannot be worn with it go to the inventory, the other clothes stay on, everything comes back at the end of the scenario. Written 2026-11-17 for BiotechBodies (gallery shot 2).
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} also wears {string} dyed rgb \\({int}, {int}, {int}\\)")]
+        public void AlsoWearsDyed(PickleContext ctx, string nickname, string apparelDefName, int r, int g, int b)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
+            ThingDef def = Def<ThingDef>(ctx, apparelDefName, "apparel");
+            ctx.Require(def.IsApparel, $"'{apparelDefName}' is not an apparel def");
+            ctx.Require(ApparelUtility.HasPartsToWear(pawn, def), $"{nickname} has no body part to wear '{apparelDefName}' on");
+            Color wanted = Rgb(ctx, r, g, b);
+            if (!OriginalClothes.ContainsKey(pawn))
+            {
+                OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+            }
+
+            StowApparel(pawn, a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
+            var apparel = (Apparel)ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
+            pawn.apparel.Wear(apparel, false);
+            DressedIn.Add(apparel);
+            apparel.DesiredColor = wanted;
+            apparel.SetColor(wanted, false);
+            apparel.Notify_ColorChanged();
+            Redraw(pawn);
+            ctx.Assert(
+                pawn.apparel.WornApparel.Contains(apparel),
+                $"{nickname} should wear '{apparelDefName}' dyed ({r}, {g}, {b}); it wears {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName))}");
+        }
+
+        /// <summary>
         /// Dresses a colonist in a new garment of the apparel def, undyed, in the same way as the dyed step: the garments that cannot be
         /// worn with it go to the inventory, and the clothes it had come back with the step that gives them back.
         /// </summary>
