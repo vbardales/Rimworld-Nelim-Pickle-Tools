@@ -68,3 +68,9 @@ Feature: steps of 2026-11-15
     And Nelim's Pickle Tools: at most 1 of the watched things of def "Wall" stood at once
     And Nelim's Pickle Tools: between 1 and 1 distinct things of def "Wall" were seen while watching
     And no errors were logged
+
+  Scenario: a colonist that exists is spawned on a cell connected to the colony
+    Given Nelim's Pickle Tools: a colonist "Zed" exists
+    When Nelim's Pickle Tools: the reach of "Zed" to (143, 151) is written to the log
+    Then Nelim's Pickle Tools: "Zed" can reach (143, 151)
+    And no errors were logged

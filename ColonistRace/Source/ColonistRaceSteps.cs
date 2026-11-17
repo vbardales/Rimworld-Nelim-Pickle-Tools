@@ -291,13 +291,13 @@ namespace Nelim.PickleTools.ColonistRace
                 kind.RaceProps.Humanlike,
                 $"pawn kind '{kindDefName}' is a {kind.race.defName}, which is not humanlike, so it cannot be a colonist");
 
-            IntVec3 cell = FindSpawnCell(ctx, map);
-
             // Seeded here, not at scenario start, like the colonist step: Rand is one stream the game draws
-            // from every tick, and Pop puts the game's own back.
+            // from every tick, and Pop puts the game's own back. The spawn cell is drawn inside the seeded state too
+            // (2026-11-17, AniS: the cell used to be drawn from the game's own stream, so it changed from one run to the next).
             Rand.PushState(Gen.HashCombineInt(ctx.ScenarioSeed, GenText.StableStringHash(nickname)));
             try
             {
+                IntVec3 cell = FindSpawnCell(ctx, map);
                 Pawn pawn = PawnGenerator.GeneratePawn(kind, Faction.OfPlayer);
                 pawn.Name = new NameTriple(nickname, nickname, nickname);
                 GenSpawn.Spawn(pawn, cell, map, WipeMode.Vanish);
@@ -310,8 +310,12 @@ namespace Nelim.PickleTools.ColonistRace
 
         private static IntVec3 FindSpawnCell(PickleContext ctx, Map map)
         {
-            IntVec3 origin = map.mapPawns.FreeColonistsSpawned.FirstOrDefault()?.Position ?? map.Center;
-            if (CellFinder.TryFindRandomCellNear(origin, map, 20, c => c.Standable(map), out IntVec3 near, 200))
+            Pawn anchor = map.mapPawns.FreeColonistsSpawned.FirstOrDefault();
+            IntVec3 origin = anchor?.Position ?? map.Center;
+            // A standable cell can sit in a pocket cut off from the colony (AniS, 2026-11-17: region 271 of 21 cells against the colony's region): the cell must also be
+            // reachable from the first colonist when there is one.
+            System.Func<IntVec3, bool> connected = c => c.Standable(map) && (anchor == null || map.reachability.CanReach(anchor.Position, c, Verse.AI.PathEndMode.OnCell, TraverseParms.For(anchor, Danger.Deadly)));
+            if (CellFinder.TryFindRandomCellNear(origin, map, 20, c => connected(c), out IntVec3 near, 200))
             {
                 return near;
             }
