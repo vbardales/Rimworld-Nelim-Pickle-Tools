@@ -42,3 +42,8 @@ Feature: steps of 2026-11-15
     And Nelim's Pickle Tools: "Jet" is ordered to go to (143, 151) 20 times
     Then Nelim's Pickle Tools: the orders of "Jet" were refused between 0 and 0 times
     And no errors were logged
+
+  Scenario: a colonist is named by its number and then found by that name
+    Given Nelim's Pickle Tools: the colonist number 1 is named "Zed"
+    And Nelim's Pickle Tools: the mood of "Zed" is set to 0.5
+    Then no errors were logged
