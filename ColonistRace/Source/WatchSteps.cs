@@ -86,7 +86,7 @@ namespace Nelim.PickleTools.ColonistRace
             seen.TicksDone = Find.TickManager.TicksGame - start;
             string values = seen.Values.Count == 0 ? "none" : string.Join(", ", seen.Values.OrderBy(v => v));
             Log.Message($"[ticks-watched] {defName}: {seen.TicksDone} of {ticks} ticks in {clock.Elapsed.TotalSeconds:0.0} s; seen {seen.Things.Count} thing(s), most at once {seen.MostAtOnce}; field '{field}' values: {values}");
-            ctx.Assert(true, $"[ticks-watched] {defName}: {seen.TicksDone} ticks; seen {seen.Things.Count}, most at once {seen.MostAtOnce}; field '{field}' values: {values}");
+            ctx.Attach("ticks watched", $"{defName}: {seen.TicksDone} ticks; seen {seen.Things.Count}, most at once {seen.MostAtOnce}; field '{field}' values: {values}");
             ctx.Assert(seen.TicksDone >= ticks, $"only {seen.TicksDone} of {ticks} ticks were run in {clock.Elapsed.TotalSeconds:0} s");
         }
 

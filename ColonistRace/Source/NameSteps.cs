@@ -33,6 +33,7 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(xenotype != null, $"no xenotype '{xenotypeName}' in this game");
             PawnKindDef kind = DefDatabase<PawnKindDef>.GetNamedSilentFail("Colonist") ?? PawnKindDefOf.Colonist;
             Names.Clear();
+            var lines = new List<string>();
             for (int i = 0; i < count; i++)
             {
                 var request = new PawnGenerationRequest(kind, Faction.OfPlayer, PawnGenerationContext.NonPlayer, -1, forceGenerateNewPawn: true, fixedBiologicalAge: null, fixedChronologicalAge: null,
@@ -42,8 +43,10 @@ namespace Nelim.PickleTools.ColonistRace
                 string shortName = pawn.Name?.ToStringShort ?? "(no name)";
                 Names.Add(full);
                 Log.Message($"[generated-name] {xenotypeName}: {full} / {shortName}");
+                lines.Add($"{full} / {shortName}");
                 Find.WorldPawns.PassToWorld(pawn, PawnDiscardDecideMode.Discard);
             }
+            ctx.Attach("generated names", $"{xenotypeName}: " + string.Join("; ", lines));
         }
 
         /// <summary>

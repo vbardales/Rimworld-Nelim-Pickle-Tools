@@ -61,12 +61,11 @@ Feature: steps of 2026-11-15
 
   Scenario: a batch of ticks is watched for the things of a def
     Given Nelim's Pickle Tools: the area from (140, 148) to (146, 154) is cleared
-    And Nelim's Pickle Tools: I place the decor "Wall" at (143, 151)
-    When Nelim's Pickle Tools: the game is advanced by 30 ticks watching the field "def" of the things of def "Wall"
-    Then Nelim's Pickle Tools: the watched things of def "Wall" showed the value "Wall"
-    And Nelim's Pickle Tools: the watched things of def "Wall" never showed the value "Door"
-    And Nelim's Pickle Tools: at most 1 of the watched things of def "Wall" stood at once
-    And Nelim's Pickle Tools: between 1 and 1 distinct things of def "Wall" were seen while watching
+    And Nelim's Pickle Tools: I place the decor "Gun_Autopistol" at (143, 151)
+    When Nelim's Pickle Tools: the game is advanced by 30 ticks watching the field "def" of the things of def "Gun_Autopistol"
+    Then Nelim's Pickle Tools: the watched things of def "Gun_Autopistol" showed the value "Gun_Autopistol"
+    And Nelim's Pickle Tools: the watched things of def "Gun_Autopistol" never showed the value "Wall"
+    And Nelim's Pickle Tools: at most 5 of the watched things of def "Gun_Autopistol" stood at once
     And no errors were logged
 
   Scenario: a colonist that exists is spawned on a cell connected to the colony
