@@ -8,13 +8,13 @@ namespace Nelim.PickleTools.ColonistRace
 {
     /// <summary>
     /// The SEX of a pawn as a gene, for Biotech Bodies 1.1.0 (owner model 2026-11-17): <c>Pawn.gender</c> is the GENDER (what the profile shows, None = neutral), the sex is
-    /// an endogene that drives body, head, hair and organs. The gene defNames are PROVISIONAL and kept in one place (the two constants below): BiB tells the final names. Until
+    /// an endogene that drives body, head, hair and organs. The gene defNames (final since 2026-11-17) are kept in one place (the two constants below). Until
     /// the genes exist the sex steps fail saying so; the gender steps behave as before. Compiled, NOT PLAYED (no BiB code exists yet).
     /// </summary>
     [PickleSteps]
     public class SexGeneSteps
     {
-        // PROVISIONAL names (BiB, 2026-11-17): the only place to change when the owner names them.
+        // Final names (BiB, validated by the owner 2026-11-17): the only place to change if they ever change.
         public const string MaleGeneName = "BiB_SexMale";
         public const string FemaleGeneName = "BiB_SexFemale";
 
