@@ -19,7 +19,19 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message($"[gender] {nickname}: {pawn.gender}");
         }
 
-        /// <summary>Asserts the gender of a colonist: <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c> = Gender.None). The failure gives the gender found.</summary>
+        /// <summary>Main wording: logs the SEX of a colonist as <c>[sex] Name: Male|Female|None</c> (the game's Pawn.gender is the sex).</summary>
+        [When("Nelim's Pickle Tools: the sex of {string} is written to the log")]
+        public void LogSex(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Log.Message($"[sex] {nickname}: {pawn.gender}");
+        }
+
+        /// <summary>Main wording: asserts the SEX of a colonist, <c>male</c> or <c>female</c> (<c>neutre</c>, <c>neutral</c>, <c>none</c>, <c>nonbinary</c>, <c>genderless</c> = Gender.None). Same check as "the gender of {string} is {word}", kept as an alias.</summary>
+        [Then("Nelim's Pickle Tools: the sex of {string} is {word}")]
+        public void SexIs(PickleContext ctx, string nickname, string sex) => GenderIs(ctx, nickname, sex);
+
+        /// <summary>LEGACY alias of "the sex of {string} is {word}": reads the sex. Asserts the gender of a colonist: <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c> = Gender.None). The failure gives the gender found.</summary>
         [Then("Nelim's Pickle Tools: the gender of {string} is {word}")]
         public void GenderIs(PickleContext ctx, string nickname, string gender)
         {
