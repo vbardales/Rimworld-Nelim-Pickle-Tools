@@ -47,3 +47,9 @@ Feature: steps of 2026-11-15
     Given Nelim's Pickle Tools: the colonist number 1 is named "Zed"
     And Nelim's Pickle Tools: the mood of "Zed" is set to 0.5
     Then no errors were logged
+
+  Scenario: the gender of a colonist is logged and asserted
+    Given Nelim's Pickle Tools: "Jet" gender is female
+    When Nelim's Pickle Tools: the gender of "Jet" is logged
+    Then Nelim's Pickle Tools: the gender of "Jet" is female
+    And no errors were logged
