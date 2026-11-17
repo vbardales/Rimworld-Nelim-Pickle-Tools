@@ -75,6 +75,8 @@ if (group === 'style') {
     for (const m of t.matchAll(/<li>\s*<thingDef>([^<]*)<\/thingDef>\s*<styleDef>([^<]*)<\/styleDef>/g)) names.push(m[1] + '|' + m[2]);
   }
   names = [...new Set(names)];
+  // WallLamp spawned without a wall crashes PowerNetManager (NRE in TryConnectToAnyPowerNet, tickets fdd9 and 7ea1, 2026-11-17): left out.
+  names = names.filter(n => n.split('|')[0] !== 'WallLamp');
 }
 if (!names.length) { console.error('no ' + group + ' in ' + key); process.exit(1); }
 
