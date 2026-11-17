@@ -43,7 +43,7 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// LEGACY alias of "{string} sex is {word}": it sets the SEX of the pawn (Pawn.gender), not a gender identity. Sets a pawn's gender, <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c>: the game's Gender.None; the body type is then left as it is and a head reserved for one gender is replaced by a gender-free head), then makes the look agree with it: a Male or Female plain body follows the new
+        /// Sets a pawn's gender (Pawn.gender is the GENDER; the SEX is a gene, see SexGeneSteps; when the BiB sex genes exist a male or female gender also sets the sex gene), <c>male</c>, <c>female</c> or <c>neutral</c> (also <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c>: the game's Gender.None; the body type is then left as it is and a head reserved for one gender is replaced by a gender-free head), then makes the look agree with it: a Male or Female plain body follows the new
         /// gender, and a head type reserved for the other gender is replaced by a head of the new gender. Call it BEFORE the body type, hairstyle
         /// and head type steps, which read the gender. Redraws the pawn and reads the gender back.
         /// </summary>
@@ -51,14 +51,6 @@ namespace Nelim.PickleTools.ColonistRace
         /// <param name="gender"><c>male</c>, <c>female</c>, <c>neutral</c>, <c>none</c>, <c>neutre</c>, <c>nonbinary</c>, <c>genderless</c> (the last five are Gender.None); any case; anything else fails</param>
         [Given("Nelim's Pickle Tools: {string} gender is {word}")]
         public void SetGender(PickleContext ctx, string nickname, string gender) => SetGenderCore(ctx, nickname, gender);
-
-        /// <summary>
-        /// The main wording (2026-11-17, for SanctuaryBacklot): the game's <c>Pawn.gender</c> is the SEX of the pawn (organs, body, head textures), so this step sets it
-        /// exactly like the legacy step "{string} gender is {word}" (kept as an alias, which also sets the sex). <c>male</c> or <c>female</c>; <c>neutre</c>, <c>neutral</c>, <c>none</c>,
-        /// <c>nonbinary</c> and <c>genderless</c> stay accepted for Gender.None tests. The word GENDER is kept free for a gender identity step, if one is ever added.
-        /// </summary>
-        [Given("Nelim's Pickle Tools: {string} sex is {word}")]
-        public void SetSex(PickleContext ctx, string nickname, string sex) => SetGenderCore(ctx, nickname, sex);
 
         // What a saved colonist was before a step changed its gender (and the body and head that follow it): put back after the scenario, for a suite that reuses the fixture's colonists by name (2026-10-28, PSaJ).
         private static readonly System.Collections.Generic.Dictionary<Pawn, (Gender Gender, BodyTypeDef Body, HeadTypeDef Head)> GenderBefore =
@@ -111,6 +103,7 @@ namespace Nelim.PickleTools.ColonistRace
                 }
             }
 
+            SexGeneSteps.FollowGender(pawn, wanted);
             pawn.Drawer.renderer.SetAllGraphicsDirty();
             ctx.Assert(pawn.gender == wanted, $"pawn '{nickname}' should be {wanted} after this step; it is {pawn.gender}");
         }

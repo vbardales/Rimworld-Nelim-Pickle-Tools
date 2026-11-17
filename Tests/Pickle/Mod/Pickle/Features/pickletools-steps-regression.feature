@@ -58,9 +58,3 @@ Feature: steps of 2026-11-15
     When Nelim's Pickle Tools: the reach of "Jet" to (143, 151) is written to the log
     Then Nelim's Pickle Tools: "Jet" can reach (143, 151)
     And no errors were logged
-
-  Scenario: the sex of a colonist is set, logged and asserted
-    Given Nelim's Pickle Tools: "Jet" sex is male
-    When Nelim's Pickle Tools: the sex of "Jet" is written to the log
-    Then Nelim's Pickle Tools: the sex of "Jet" is male
-    And no errors were logged
