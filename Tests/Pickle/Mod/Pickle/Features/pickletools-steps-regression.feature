@@ -83,3 +83,9 @@ Feature: steps of 2026-11-15
     Given Nelim's Pickle Tools: a colonist "Zed" exists near (143, 151)
     Then Nelim's Pickle Tools: "Zed" can reach (143, 151)
     And no errors were logged
+
+  Scenario: the movement of a colonist is written to the log before and after some ticks
+    When Nelim's Pickle Tools: the movement of "Jet" is written to the log
+    And Nelim's Pickle Tools: the game is advanced by 20 ticks
+    And Nelim's Pickle Tools: the movement of "Jet" is written to the log
+    Then no errors were logged
