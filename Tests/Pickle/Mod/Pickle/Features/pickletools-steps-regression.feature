@@ -53,3 +53,8 @@ Feature: steps of 2026-11-15
     When Nelim's Pickle Tools: the gender of "Jet" is written to the log
     Then Nelim's Pickle Tools: the gender of "Jet" is female
     And no errors were logged
+
+  Scenario: the reach of a colonist to a cell is logged and asserted
+    When Nelim's Pickle Tools: the reach of "Jet" to (143, 151) is written to the log
+    Then Nelim's Pickle Tools: "Jet" can reach (143, 151)
+    And no errors were logged
