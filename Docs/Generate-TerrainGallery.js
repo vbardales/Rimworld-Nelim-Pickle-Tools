@@ -23,6 +23,18 @@ const defs = j.defs.filter(d => d.t === 'TerrainDef' && d.n);
 // An abstract def is only named as a parent by another def: drop those.
 const parents = new Set(defs.flatMap(d => (d.p || []).map(p => p.Name)));
 let names = [...new Set(defs.map(d => d.n))].filter(n => !parents.has(n)).sort();
+// A TerrainDef with MayRequire exists only when that other mod is loaded (Alpha Memes, Biomes Islands: Nautian and Greekcore tickets 2306 and 2026-11-17): left out, listed on stdout.
+{
+  const modDir = 'C:/Program Files (x86)/Steam/steamapps/workshop/content/294100/' + key;
+  const walkm = d => fs.existsSync(d) ? fs.readdirSync(d, { withFileTypes: true }).flatMap(e => e.isDirectory() ? walkm(d + '/' + e.name) : (/\.xml$/i.test(e.name) ? [d + '/' + e.name] : [])) : [];
+  const gated = new Set();
+  for (const f of walkm(modDir).filter(f => /\/Defs\//.test(f))) {
+    const t = fs.readFileSync(f, 'utf8').replace(/<!--[\s\S]*?-->/g, '');
+    for (const m of t.matchAll(/<TerrainDef[^>]*MayRequire="[^"]*"[^>]*>\s*<defName>([^<]*)<\/defName>/g)) gated.add(m[1]);
+  }
+  const dropped = names.filter(n => gated.has(n));
+  if (dropped.length) { console.log(`needs another mod (MayRequire, ${dropped.length}, not photographed): ${dropped.join(', ')}`); names = names.filter(n => !gated.has(n)); }
+}
 // --only-log <Player.log>: keep the floors the game really loaded, read from the [terrain-stats] lines of a run (a def that needs another mod, such as ATH Draconic's Pristine
 // Limestone floors, is in the content sheet but not in the game, and its scenario stops at "no terrain def"; ticket e3ba, 2026-11-12). The others are listed on stdout.
 const onlyLog = args.includes('--only-log') ? args[args.indexOf('--only-log') + 1] : null;
