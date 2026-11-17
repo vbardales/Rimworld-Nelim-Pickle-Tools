@@ -777,6 +777,23 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Asserts the head type of a colonist (a <c>HeadTypeDef</c> name, any case), read now, and logs it (<c>[look-headtype]</c>). The failure names the head the pawn has and its
+        /// gender, so a scenario that generates a pawn (a xenotype, a set of genes) can check the head with no capture. Written 2026-11-17 for APerfectMindInAPerfectBody (K04, Kholo
+        /// heads). NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the head type of {string} is {string}")]
+        public void HeadTypeIs(PickleContext ctx, string nickname, string headDefName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story, so it has no head");
+            HeadTypeDef have = pawn.story.headType;
+            Log.Message($"[look-headtype] {nickname}: {have?.defName ?? "(none)"} (head gender {have?.gender.ToString() ?? "-"}, pawn {pawn.gender}, xenotype {pawn.genes?.XenotypeLabel ?? "-"})");
+            ctx.Assert(
+                have != null && string.Equals(have.defName, headDefName, StringComparison.OrdinalIgnoreCase),
+                $"{nickname} should have the head type {headDefName}; it has {have?.defName ?? "(none)"} (head gender {have?.gender.ToString() ?? "-"}, pawn {pawn.gender})");
+        }
+
+        /// <summary>
         /// Gives a colonist a beard (a <c>BeardDef</c> name) or <c>none</c>, and redraws it. Refuses a beard for a pawn that has no style
         /// tracker. The failure lists the valid beard defs.
         /// </summary>
