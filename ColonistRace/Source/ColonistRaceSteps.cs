@@ -264,7 +264,19 @@ namespace Nelim.PickleTools.ColonistRace
             CreateColonist(ctx, nickname, "Colonist");
         }
 
-        private static void CreateColonist(PickleContext ctx, string nickname, string kindDefName)
+        /// <summary>
+        /// Like "a colonist {string} exists" but the spawn cell is drawn near a given cell and must be REACHABLE from that cell (a cut-off pocket is refused), so a scenario whose colonist must
+        /// reach a place (a tree, a ring of cells) names that place (2026-11-17, AniS: the colonist landed in a pocket cut off from the ring). The cell is drawn with the scenario seed, within 12 cells
+        /// of the target. Fails when the target cell is not standable or no reachable cell is found.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: a colonist {string} exists near \\({int}, {int}\\)")]
+        public async System.Threading.Tasks.Task ColonistExistsNear(PickleContext ctx, string nickname, int x, int z)
+        {
+            await LookSteps.OnMainThread(ctx);
+            CreateColonist(ctx, nickname, "Colonist", new IntVec3(x, 0, z));
+        }
+
+        private static void CreateColonist(PickleContext ctx, string nickname, string kindDefName, IntVec3? near = null)
         {
             if (ColonistLookup.Find(nickname) != null)
             {
@@ -297,17 +309,28 @@ namespace Nelim.PickleTools.ColonistRace
             Rand.PushState(Gen.HashCombineInt(ctx.ScenarioSeed, GenText.StableStringHash(nickname)));
             try
             {
-                IntVec3 cell = FindSpawnCell(ctx, map);
+                IntVec3 cell = near.HasValue ? FindCellNear(ctx, map, near.Value) : FindSpawnCell(ctx, map);
                 Pawn pawn = PawnGenerator.GeneratePawn(kind, Faction.OfPlayer);
                 pawn.Name = new NameTriple(nickname, nickname, nickname);
                 GenSpawn.Spawn(pawn, cell, map, WipeMode.Vanish);
                 Region spawnRegion = cell.GetRegion(map, RegionType.Set_Passable);
-                Log.Message($"[colonist-spawn] {nickname} at ({cell.x}, {cell.z}); region {spawnRegion?.id.ToString() ?? "none"} of {spawnRegion?.CellCount ?? 0} cells; anchor {(map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p != pawn)?.Name?.ToStringShort ?? "none")}");
+                string spawnText = $"{nickname} at ({cell.x}, {cell.z}); region {spawnRegion?.id.ToString() ?? "none"} of {spawnRegion?.CellCount ?? 0} cells; anchor {(map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p != pawn)?.Name?.ToStringShort ?? "none")}";
+                Log.Message($"[colonist-spawn] {spawnText}");
+                ctx.Attach("colonist spawn", spawnText);
             }
             finally
             {
                 Rand.PopState();
             }
+        }
+
+        private static IntVec3 FindCellNear(PickleContext ctx, Map map, IntVec3 target)
+        {
+            ctx.Require(target.InBounds(map) && target.Standable(map), $"the target cell ({target.x}, {target.z}) is outside the map or not standable");
+            ctx.Require(
+                CellFinder.TryFindRandomCellNear(target, map, 12, c => c.Standable(map) && map.reachability.CanReach(target, c, Verse.AI.PathEndMode.OnCell, TraverseParms.For(TraverseMode.PassDoors, Danger.Deadly)), out IntVec3 cell, 300),
+                $"no standable cell reachable from ({target.x}, {target.z}) within 12 cells");
+            return cell;
         }
 
         private static IntVec3 FindSpawnCell(PickleContext ctx, Map map)
