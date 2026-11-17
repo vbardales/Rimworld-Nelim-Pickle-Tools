@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using RimWorld;
@@ -588,15 +589,46 @@ namespace Nelim.PickleTools.ColonistRace
         {
             ctx.Require(bench is IBillGiver, $"{bench.def.defName} does not hold bills");
             ctx.Require(((IBillGiver)bench).BillStack.Count > 0, $"{bench.def.defName} at {bench.Position} has no bill: add one with 'the building \"{bench.def.defName}\" at ({bench.Position.x}, {bench.Position.z}) has the bill \"<recipe>\"'");
+            var listing = new List<WorkGiverDef>();
             foreach (WorkGiverDef giverDef in DefDatabase<WorkGiverDef>.AllDefsListForReading)
             {
                 var scanner = giverDef.Worker as WorkGiver_DoBill;
                 if (scanner == null) continue;
                 if (giverDef.fixedBillGiverDefs == null || !giverDef.fixedBillGiverDefs.Contains(bench.def)) continue;
+                listing.Add(giverDef);
                 Job job = scanner.JobOnThing(pawn, bench, true);
                 if (job != null) return job;
             }
-            ctx.Require(false, $"the game gives {pawn.LabelShort} no bill job on {bench.def.defName} at {bench.Position}: ingredients missing or out of reach, the bench unpowered or forbidden, or the colonist cannot do that work type");
+
+            // Which cause: said, not guessed (AncientBuildings ticket 3e1d, dbc6, 2026-11-17: the message named six causes and the log none).
+            var causes = new List<string>();
+            if (listing.Count == 0)
+            {
+                causes.Add($"NO WorkGiver_DoBill lists {bench.def.defName} in its fixedBillGiverDefs (a modded bench the game's givers do not know: add it by a patch, the step only asks those givers)");
+            }
+            else
+            {
+                foreach (WorkGiverDef giverDef in listing)
+                {
+                    if (giverDef.workType != null && pawn.WorkTypeIsDisabled(giverDef.workType))
+                        causes.Add($"{pawn.LabelShort} cannot do the work type {giverDef.workType.defName} (disabled: backstory or trait)");
+                    else if (giverDef.workType != null && pawn.workSettings != null && pawn.workSettings.GetPriority(giverDef.workType) == 0)
+                        causes.Add($"the work type {giverDef.workType.defName} is off for {pawn.LabelShort} (priority 0; forced work ignores it, so this is not the cause)");
+                }
+            }
+
+            if (bench.IsForbidden(pawn)) causes.Add($"{bench.def.defName} is forbidden to {pawn.LabelShort}");
+            if (!pawn.CanReserve(bench)) causes.Add($"{bench.def.defName} cannot be reserved by {pawn.LabelShort}");
+            CompPowerTrader power = bench.TryGetComp<CompPowerTrader>();
+            if (power != null && !power.PowerOn) causes.Add($"{bench.def.defName} is not powered");
+            CompRefuelable fuel = bench.TryGetComp<CompRefuelable>();
+            if (fuel != null && !fuel.HasFuel) causes.Add($"{bench.def.defName} has no fuel");
+            foreach (Thing onBench in bench.Position.GetThingList(bench.Map).Where(t => t.def.category == ThingCategory.Item))
+                causes.Add($"the item {onBench.def.defName} lies on the bench's own cell {bench.Position}: a bench cell is not walkable, so a colonist cannot reach it; spawn the ingredients on a free cell beside the bench");
+            if (causes.Count == 0)
+                causes.Add("no cause found among the work giver list, work type, forbidden, reservation, power, fuel and items on the bench cell: look at the ingredients (the recipe's filter, their count, forbidden, reachable, the bill's ingredient search radius and its allowed skill range)");
+
+            ctx.Require(false, $"the game gives {pawn.LabelShort} no bill job on {bench.def.defName} at {bench.Position}; givers listing it: {(listing.Count == 0 ? "none" : string.Join(", ", listing.Select(g => g.defName).ToArray()))}; findings: " + string.Join(" | ", causes.ToArray()));
             return null;
         }
 
