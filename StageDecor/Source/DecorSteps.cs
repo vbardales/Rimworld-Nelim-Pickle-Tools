@@ -578,16 +578,11 @@ namespace Nelim.PickleTools.StageDecor
             thing.SetStyleDef(style);
             if (thing.StyleDef != style)
             {
-                // Some defs (a wall, a torch, a reliquary) leave the style at none after SetStyleDef (tickets ad2b, 5a8b, 2026-11-17): the field is set
-                // directly, as the game does when a style category applies, and the map mesh is redrawn.
-                var field = typeof(Thing).GetField("styleDef", System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance);
-                Log.Warning($"[style-forced] {thingDefName}: field styleDef {(field == null ? "not found on Thing" : "found")}; style fields of Thing: {string.Join(", ", typeof(Thing).GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).Where(f => f.FieldType == typeof(ThingStyleDef)).Select(f => f.Name))}");
-                if (field != null)
-                {
-                    field.SetValue(thing, style);
-                    if (thing.Spawned) thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Things);
-                    Log.Warning($"[style-forced] {thingDefName} at ({x}, {z}): SetStyleDef left the style none, the field was set to {styleDefName}");
-                }
+                // Some defs (a wall, a torch, a reliquary) leave the style at none after SetStyleDef (tickets ad2b, 5a8b, 8503, 785c, 2026-11-17):
+                // the property is set directly (Thing.StyleDef has a public setter) and the map mesh is redrawn.
+                thing.StyleDef = style;
+                if (thing.Spawned) thing.Map.mapDrawer.MapMeshDirty(thing.Position, MapMeshFlagDefOf.Things);
+                Log.Warning($"[style-forced] {thingDefName} at ({x}, {z}): SetStyleDef left the style none, StyleDef was set to {styleDefName}, it now holds {thing.StyleDef?.defName ?? "none"}");
             }
             ctx.Assert(thing.StyleDef == style, $"the {thingDefName} at ({x}, {z}) holds the style '{thing.StyleDef?.defName ?? "none"}' after the step, not '{styleDefName}'");
         }
