@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-745 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+747 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -549,6 +549,8 @@ Package `nelim.pickletools.inspecttabs`. In the bundle (`Mod/Pickle/Assemblies`)
 | `Nelim's Pickle Tools: I open the {string} inspect tab` (When) | Opens an inspect tab on the selected thing, naming it by type or label key. |
 | `Nelim's Pickle Tools: I open the hidden {string} inspect tab` (When) | Opens a tab the game keeps out of the tab strip (`Hidden`), the way the game opens it from a button: the Genes tab (`ITab_Genes`, Hidden in the base game) opens from the xenotype button of a pawn and from a genepack or xenogerm selected on the map. Only `IsVisible` is required. Written 2026-11-02 for AnimalCosmeticGenes (genepack genes). |
 | `Nelim's Pickle Tools: I select the thing of def {string} at \({int}, {int}\)` (When) | Selects the one thing of a def on a cell, language independent: Pickle's own `I select {string}` takes a label, which is text in the language of the run. Clears the selection first. A cell with none, or with two of that def, is refused, and the message lists what the cell holds, so the scenario never selects "one of them" by luck. **Parameters:** `defName` (string): a def name of the loaded game (any case); `x` (int): map cell, x (east); 0 at the west edge; `z` (int): map cell, z (north); 0 at the south edge. |
+| `Nelim's Pickle Tools: the selection is cleared` (When) | Empties the selection. Written 2026-11-18 at the request of BiotechBodies (shot 7 selection held a second thing). NOT PLAYED when written. |
+| `Nelim's Pickle Tools: I select the colonist named {string} alone` (When) | Selects the colonist of that nickname and nothing else, then reports what the selector holds right after the click and two frames later (labels, defs, cells, spawned or not), attached as `selection`. |
 | `Nelim's Pickle Tools: the {string} inspect tab is open` (Then) | Asserts the named inspect tab is the one currently open. |
 
 ## InterfaceScale

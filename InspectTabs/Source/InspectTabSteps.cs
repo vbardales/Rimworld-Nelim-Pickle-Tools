@@ -95,6 +95,56 @@ namespace Nelim.PickleTools.InspectTabs
         }
 
         /// <summary>
+        /// Empties the selection. Written 2026-11-18 at the request of BiotechBodies (shot 7 selection held a second thing). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the selection is cleared")]
+        public void ClearSelection(PickleContext ctx)
+        {
+            Find.Selector.ClearSelection();
+        }
+
+        /// <summary>
+        /// Selects the colonist of that nickname and nothing else, then reports what the selector holds right after the click
+        /// and two frames later (labels, defs, cells, spawned or not), attached as <c>selection</c>. Does not fail when the
+        /// selector holds more than the colonist: the log is there to show what joins it (a mount, a bonded animal, a mod's
+        /// group select). Written 2026-11-18 at the request of BiotechBodies (Quack was selected with Nelim). NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I select the colonist named {string} alone")]
+        public async Task SelectColonistAlone(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = PawnsFinder.AllMaps_FreeColonists.FirstOrDefault(
+                p => string.Equals(p.Name?.ToStringShort, nickname, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(
+                pawn != null,
+                $"no colonist named '{nickname}'; the colonists are " +
+                string.Join(", ", PawnsFinder.AllMaps_FreeColonists.Select(p => p.Name?.ToStringShort ?? Nothing)));
+            ctx.Require(pawn.Spawned, $"colonist '{nickname}' is not spawned on a map, so it cannot be selected");
+
+            Find.Selector.ClearSelection();
+            Find.Selector.Select(pawn, false, true);
+            string right = DescribeSelectionDetailed();
+            await ctx.WaitFrames(2);
+            string later = DescribeSelectionDetailed();
+
+            ctx.Attach("selection", $"right after the click: {right}\ntwo frames later: {later}");
+        }
+
+        private static string DescribeSelectionDetailed()
+        {
+            List<string> rows = Find.Selector.SelectedObjectsListForReading.Select(o =>
+            {
+                if (o is Pawn p)
+                {
+                    return $"{p.LabelShortCap} (def {p.def.defName}, kind {p.kindDef?.defName}, faction {p.Faction?.Name ?? Nothing}, cell {p.Position}, spawned {p.Spawned})";
+                }
+
+                return o is Thing t ? $"{t.LabelCap} (def {t.def.defName}, cell {t.Position}, spawned {t.Spawned})" : o.GetType().Name;
+            }).ToList();
+
+            return rows.Count == 0 ? Nothing : $"{rows.Count} selected: " + string.Join("; ", rows);
+        }
+
+        /// <summary>
         /// Asserts the named inspect tab is the one currently open.
         /// </summary>
         // Waits the way 'window is open' does: a tab opened by a real click lands a frame or two

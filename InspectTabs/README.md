@@ -10,6 +10,8 @@ Two Pickle steps that open a pawn's inspect tabs (Gear, Bio, Health, Social, Nee
 | `Nelim's Pickle Tools: I open the info card of the selected thing on the {string} tab` | Opens the info card (the "i" button) of the single selected thing on a tab named by enum (`Stats`, `Character`, `Health`, `Records`). Not in the Pickle pull request. Written 2026-10-12 for AnimalsNaturally; not played |
 | `Nelim's Pickle Tools: I close the info card` | Closes the info card if one is open, nothing otherwise |
 | `Nelim's Pickle Tools: I select the thing of def {string} at ({int}, {int})` | Selects the one thing of that def on that cell, language independent (Pickle's `I select {string}` takes a label, which is text). Clears the selection first. No thing, or two of that def, on the cell is refused, and the message lists what the cell holds. **Written 2026-09-28 for Mechanoid Factory; not played** |
+| `Nelim's Pickle Tools: the selection is cleared` | Empties the selection. **Written 2026-11-18 for BiotechBodies; not played** |
+| `Nelim's Pickle Tools: I select the colonist named {string} alone` | Clears the selection, selects only that colonist (by nickname, spawned), then attaches `selection`: what the selector holds right after the click and two frames later (label, def, kind, faction, cell). Does not fail if more than the colonist is selected: the log shows what joins it. **Written 2026-11-18 for BiotechBodies (Quack selected with Nelim); not played** |
 
 Developer tooling. GitHub and Workshop release preparation in progress; no Defs, no features: a suite stages the companion mod in `Mod/` and writes its
 own scenarios.
