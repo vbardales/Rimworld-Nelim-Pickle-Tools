@@ -27,3 +27,10 @@ Apparel (ground items, not worn): cell = the 3 x 3 block, row 1 = north (one sho
 | 1 | 5 | dlc:Royalty | Apparel_Beret |
 | 2 | 1 | dlc:Royalty | Apparel_VestRoyal |
 | 2 | 2 | dlc:Ideology | Apparel_Broadwrap |
+| 2 | 3 | 1814987817 | VAE_Apparel_BuildersJacket |
+| 2 | 4 | 1814987817 | VAE_Apparel_Apron |
+| 2 | 5 | 1814987817 | VAE_Apparel_Overalls |
+| 3 | 1 | 1814987817 | VAE_Handwear_Gloves |
+| 3 | 2 | 1814987817 | VAE_Headgear_Scarf |
+| 3 | 3 | 3592569869 | Apparel_FSConstructionJacket |
+| 3 | 4 | 3592569869 | Apparel_FSOveralls |

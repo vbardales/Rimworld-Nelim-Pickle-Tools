@@ -7,3 +7,7 @@ nelim.pickletools.savesteps path:PickleTools/SaveSteps/Mod
 nelim.pickletools.colonistrace path:PickleTools/ColonistRace/Mod
 nelim.pickletools.clearscreen path:PickleTools/ClearScreen/Mod
 nelim.pickletools   path:PickleTools/Tests/Pickle/StandaloneBase/Mod
+# Workshop mods for the builder apparel of ArS (Cat, 2026-11-18): VEF, Vanilla Apparel Expanded, FashionRIMsta (ids as in the Sanctuary map).
+OskarPotocki.VanillaFactionsExpanded.Core 2023507013
+VanillaExpanded.VAPPE 1814987817
+Mlie.FashionRIMsta 3592569869

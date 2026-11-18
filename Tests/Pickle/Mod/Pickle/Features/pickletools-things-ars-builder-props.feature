@@ -27,7 +27,7 @@ Feature: things ars-builder-props
     And I take a screenshot "things-ars-builder-props-building"
     Then no errors were logged
 
-  Scenario: things-ars-builder-props-apparel: 7 garments on the ground
+  Scenario: things-ars-builder-props-apparel: 14 garments on the ground
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
@@ -39,6 +39,13 @@ Feature: things ars-builder-props
     And Nelim's Pickle Tools: 1 of the item "Apparel_Beret" are spawned at (153, 155)
     And Nelim's Pickle Tools: 1 of the item "Apparel_VestRoyal" are spawned at (141, 152)
     And Nelim's Pickle Tools: 1 of the item "Apparel_Broadwrap" are spawned at (144, 152)
+    And Nelim's Pickle Tools: 1 of the item "VAE_Apparel_BuildersJacket" are spawned at (147, 152)
+    And Nelim's Pickle Tools: 1 of the item "VAE_Apparel_Apron" are spawned at (150, 152)
+    And Nelim's Pickle Tools: 1 of the item "VAE_Apparel_Overalls" are spawned at (153, 152)
+    And Nelim's Pickle Tools: 1 of the item "VAE_Handwear_Gloves" are spawned at (141, 149)
+    And Nelim's Pickle Tools: 1 of the item "VAE_Headgear_Scarf" are spawned at (144, 149)
+    And Nelim's Pickle Tools: 1 of the item "Apparel_FSConstructionJacket" are spawned at (147, 149)
+    And Nelim's Pickle Tools: 1 of the item "Apparel_FSOveralls" are spawned at (150, 149)
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
