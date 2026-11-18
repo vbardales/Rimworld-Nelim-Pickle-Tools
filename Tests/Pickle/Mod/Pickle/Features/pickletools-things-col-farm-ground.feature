@@ -1,44 +1,82 @@
-# Farm ground catalogue for CoL (Cat request 2026-11-18), vanilla Core and Odyssey defs. Written by hand, not generated: edit here.
+# Farm ground catalogue for CoL: Core and Odyssey plants, fences, hay, one row per shot (owner rules, 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by hand, not generated: edit here.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 Feature: things col-farm-ground
 
-  Scenario: things-col-farm-ground-floor: 6 floors, one 6 x 6 patch each
+  Scenario: col-farm-ground-plant
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 142) to (157, 153) is cleared
-    And Nelim's Pickle Tools: I lay the floor "StrawMatting" from (140, 148) to (145, 153)
-    And Nelim's Pickle Tools: I lay the floor "PackedDirt" from (146, 148) to (151, 153)
-    And Nelim's Pickle Tools: I lay the floor "SoilRich" from (152, 148) to (157, 153)
-    And Nelim's Pickle Tools: I lay the floor "MossyTerrain" from (140, 142) to (145, 147)
-    And Nelim's Pickle Tools: I lay the floor "Soil" from (146, 142) to (151, 147)
-    And Nelim's Pickle Tools: I lay the floor "GrasslandSoil" from (152, 142) to (157, 147)
+    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: I place the decor "Plant_Grass" at (144, 150) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_TallGrass" at (147, 150) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_Haygrass" at (150, 150) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_YellowGrass" at (153, 150) fully grown
+    And Nelim's Pickle Tools: I place the decor "Plant_YellowTallGrass" at (156, 150) fully grown
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (148, 148) at root size 6.5
-    And I take a screenshot "things-col-farm-ground-floor"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
+    And I take a screenshot "col-farm-ground-plant"
     Then no errors were logged
 
-  Scenario: things-col-farm-ground-plant: 5 plants, 2 fences, a hay stack
+  Scenario: col-farm-ground-fence
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 148) to (154, 156) is cleared
-    And Nelim's Pickle Tools: I place the decor "Plant_Grass" at (141, 155) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_TallGrass" at (144, 155) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_Haygrass" at (147, 155) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_YellowGrass" at (150, 155) fully grown
-    And Nelim's Pickle Tools: I place the decor "Plant_YellowTallGrass" at (153, 155) fully grown
-    And Nelim's Pickle Tools: the building "Fence" is spawned on the nearest free cell around (141, 152) facing south
-    And Nelim's Pickle Tools: the building "FenceGate" is spawned on the nearest free cell around (144, 152) facing south
-    And Nelim's Pickle Tools: 30 of the item "Hay" are spawned at (147, 152)
+    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: the building "Fence" is spawned on the nearest free cell around (148, 150) facing south
+    And Nelim's Pickle Tools: the building "FenceGate" is spawned on the nearest free cell around (152, 150) facing south
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (148, 153) at root size 5.5
-    And I take a screenshot "things-col-farm-ground-plant"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.5
+    And I take a screenshot "col-farm-ground-fence"
+    Then no errors were logged
+
+  Scenario: col-farm-ground-floor-a
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "StrawMatting" from (144, 147) to (149, 152)
+    And Nelim's Pickle Tools: I lay the floor "PackedDirt" from (151, 147) to (156, 152)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
+    And I take a screenshot "col-farm-ground-floor-a"
+    Then no errors were logged
+
+  Scenario: col-farm-ground-floor-b
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "SoilRich" from (144, 147) to (149, 152)
+    And Nelim's Pickle Tools: I lay the floor "MossyTerrain" from (151, 147) to (156, 152)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
+    And I take a screenshot "col-farm-ground-floor-b"
+    Then no errors were logged
+
+  Scenario: col-farm-ground-floor-c
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Soil" from (144, 147) to (149, 152)
+    And Nelim's Pickle Tools: I lay the floor "GrasslandSoil" from (151, 147) to (156, 152)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
+    And I take a screenshot "col-farm-ground-floor-c"
     Then no errors were logged

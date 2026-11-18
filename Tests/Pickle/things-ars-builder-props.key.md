@@ -1,36 +1,31 @@
 # ars-builder-props key
 
-Buildings and stacks: cell = the 4 x 4 block, row 1 = north (one shot, `things-ars-builder-props-building`).
+One row per shot, left to right = col 1 to n; the root size of each shot is the guess to check on its first image.
 
-| row | col | mod | def |
+| shot | col | mod | def |
 |---|---|---|---|
-| 1 | 1 | dlc:Core | Stool |
-| 1 | 2 | dlc:Core | PlantPot |
-| 1 | 3 | dlc:Ideology | PlantPot_Bonsai |
-| 1 | 4 | dlc:Core | TorchLamp |
-| 1 | 5 | dlc:Core | StandingLamp |
-| 2 | 1 | dlc:Core | FermentingBarrel |
-| 2 | 2 | dlc:Core | ShelfSmall |
-| 2 | 3 | dlc:Core | CraftingSpot |
-| 2 | 4 | dlc:Core | Steel |
-| 2 | 5 | dlc:Core | WoodLog |
-| 3 | 1 | dlc:Core | BlocksGranite |
-
-Apparel (ground items, not worn): cell = the 3 x 3 block, row 1 = north (one shot, `things-ars-builder-props-apparel`).
-
-| row | col | mod | def |
-|---|---|---|---|
-| 1 | 1 | dlc:Core | Apparel_Jacket |
-| 1 | 2 | dlc:Core | Apparel_Duster |
-| 1 | 3 | dlc:Core | Apparel_Cape |
-| 1 | 4 | dlc:Core | Apparel_Pants |
-| 1 | 5 | dlc:Royalty | Apparel_Beret |
-| 2 | 1 | dlc:Royalty | Apparel_VestRoyal |
-| 2 | 2 | dlc:Ideology | Apparel_Broadwrap |
-| 2 | 3 | 1814987817 | VAE_Apparel_BuildersJacket |
-| 2 | 4 | 1814987817 | VAE_Apparel_Apron |
-| 2 | 5 | 1814987817 | VAE_Apparel_Overalls |
-| 3 | 1 | 1814987817 | VAE_Handwear_Gloves |
-| 3 | 2 | 1814987817 | VAE_Headgear_Scarf |
-| 3 | 3 | 3592569869 | Apparel_FSConstructionJacket |
-| 3 | 4 | 3592569869 | Apparel_FSOveralls |
+| building-a | 1 | dlc:Core | Stool |
+| building-a | 2 | dlc:Core | PlantPot |
+| building-a | 3 | dlc:Ideology | PlantPot_Bonsai |
+| building-a | 4 | dlc:Core | TorchLamp |
+| building-b | 1 | dlc:Core | StandingLamp |
+| building-b | 2 | dlc:Core | FermentingBarrel |
+| building-b | 3 | dlc:Core | ShelfSmall |
+| building-b | 4 | dlc:Core | CraftingSpot |
+| stacks | 1 | dlc:Core | Steel |
+| stacks | 2 | dlc:Core | WoodLog |
+| stacks | 3 | dlc:Core | BlocksGranite |
+| apparel-a | 1 | dlc:Core | Apparel_Jacket |
+| apparel-a | 2 | dlc:Core | Apparel_Duster |
+| apparel-a | 3 | dlc:Core | Apparel_Cape |
+| apparel-a | 4 | dlc:Core | Apparel_Pants |
+| apparel-a | 5 | dlc:Royalty | Apparel_Beret |
+| apparel-a | 6 | dlc:Royalty | Apparel_VestRoyal |
+| apparel-a | 7 | dlc:Ideology | Apparel_Broadwrap |
+| apparel-b | 1 | 1814987817 | VAE_Apparel_BuildersJacket |
+| apparel-b | 2 | 1814987817 | VAE_Apparel_Apron |
+| apparel-b | 3 | 1814987817 | VAE_Apparel_Overalls |
+| apparel-b | 4 | 1814987817 | VAE_Handwear_Gloves |
+| apparel-b | 5 | 1814987817 | VAE_Headgear_Scarf |
+| apparel-b | 6 | 3592569869 | Apparel_FSConstructionJacket |
+| apparel-b | 7 | 3592569869 | Apparel_FSOveralls |

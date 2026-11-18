@@ -1,25 +1,19 @@
 # col-farm-ground key
 
-Shot `things-col-farm-ground-floor`: each floor is a 6 x 6 patch, 3 per row, row 1 = north.
+One row per shot, left to right = col 1 to n; the root size of each shot is the guess to check on its first image.
 
-| row | col | mod | def |
+| shot | col | mod | def |
 |---|---|---|---|
-| 1 | 1 | dlc:Core | StrawMatting |
-| 1 | 2 | dlc:Core | PackedDirt |
-| 1 | 3 | dlc:Core | SoilRich |
-| 2 | 1 | dlc:Core | MossyTerrain |
-| 2 | 2 | dlc:Core | Soil |
-| 2 | 3 | dlc:Odyssey | GrasslandSoil |
-
-Shot `things-col-farm-ground-plant`: plants fully grown, 3 cells apart, 5 per row from the north-west corner (141, 155); row 2 = buildings and the stack; row 1 = north.
-
-| row | col | mod | def |
-|---|---|---|---|
-| 1 | 1 | dlc:Core | Plant_Grass |
-| 1 | 2 | dlc:Core | Plant_TallGrass |
-| 1 | 3 | dlc:Core | Plant_Haygrass |
-| 1 | 4 | dlc:Odyssey | Plant_YellowGrass |
-| 1 | 5 | dlc:Odyssey | Plant_YellowTallGrass |
-| 2 | 1 | dlc:Core | Fence |
-| 2 | 2 | dlc:Core | FenceGate |
-| 2 | 3 | dlc:Core | Hay |
+| plant | 1 | dlc:Core | Plant_Grass |
+| plant | 2 | dlc:Core | Plant_TallGrass |
+| plant | 3 | dlc:Core | Plant_Haygrass |
+| plant | 4 | dlc:Odyssey | Plant_YellowGrass |
+| plant | 5 | dlc:Odyssey | Plant_YellowTallGrass |
+| fence | 1 | dlc:Core | Fence |
+| fence | 2 | dlc:Core | FenceGate |
+| floor-a | 1 | dlc:Core | StrawMatting (floor patch 6 x 6) |
+| floor-a | 2 | dlc:Core | PackedDirt (floor patch 6 x 6) |
+| floor-b | 1 | dlc:Core | SoilRich (floor patch 6 x 6) |
+| floor-b | 2 | dlc:Core | MossyTerrain (floor patch 6 x 6) |
+| floor-c | 1 | dlc:Core | Soil (floor patch 6 x 6) |
+| floor-c | 2 | dlc:Odyssey | GrasslandSoil (floor patch 6 x 6) |
