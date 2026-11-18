@@ -118,6 +118,82 @@ namespace Nelim.PickleTools.ColonistRace
             menu.Close(false);
         }
 
+        /// <summary>
+        /// Asserts the letter stack (the letters at the right edge of the screen) holds a letter whose label or text contains the text, case ignored.
+        /// The failure lists the labels of the letters. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: a letter containing {string} is shown")]
+        public void LetterShown(PickleContext ctx, string text)
+        {
+            var seen = new List<string>();
+            foreach (Letter l in Find.LetterStack.LettersListForReading)
+            {
+                string label = l.Label.ToString();
+                string body = (l as ChoiceLetter)?.Text.ToString() ?? "";
+                seen.Add(label);
+                if (label.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0 || body.IndexOf(text, StringComparison.OrdinalIgnoreCase) >= 0) return;
+            }
+            ctx.Assert(false, $"no letter contains '{text}'; the letters are " + (seen.Count == 0 ? "none" : string.Join(" | ", seen)));
+        }
+
+        /// <summary>
+        /// Sets a field or property of an open window (by class name) to a value: the way to type into a text field the mod keeps in a member, or to pick
+        /// a row the window keeps as a selected index or object name. Text, whole numbers, decimals, booleans and enums are converted. Fails listing the
+        /// members when none has that name. It writes the member, it does not click: call the window's own method after it when the window needs one.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the field {string} of the window {string} is set to {string}")]
+        public void SetWindowField(PickleContext ctx, string member, string className, string value)
+        {
+            Window w = FindWindow(className);
+            ctx.Require(w != null, $"no window '{className}' is open; the open windows are " + OpenWindowNames());
+            MemberInfo m = FindMember(w.GetType(), member);
+            ctx.Require(m != null, $"'{w.GetType().Name}' has no field or property '{member}'; it has " + string.Join(", ", w.GetType().GetFields(All).Select(f => f.Name).Take(40)));
+            Type t = m is FieldInfo fi ? fi.FieldType : ((PropertyInfo)m).PropertyType;
+            object v = t.IsEnum ? Enum.Parse(t, value, true) : Convert.ChangeType(value, t, System.Globalization.CultureInfo.InvariantCulture);
+            if (m is FieldInfo f2) f2.SetValue(w, v); else ((PropertyInfo)m).SetValue(w, v, null);
+        }
+
+        /// <summary>Asserts a field or property of an open window (by class name) reads the text (invariant text of the value, case ignored).</summary>
+        [Then("Nelim's Pickle Tools: the field {string} of the window {string} is {string}")]
+        public void WindowFieldIs(PickleContext ctx, string member, string className, string expected)
+        {
+            Window w = FindWindow(className);
+            ctx.Require(w != null, $"no window '{className}' is open; the open windows are " + OpenWindowNames());
+            MemberInfo m = FindMember(w.GetType(), member);
+            ctx.Require(m != null, $"'{w.GetType().Name}' has no field or property '{member}'");
+            object v = m is FieldInfo fi ? fi.GetValue(w) : ((PropertyInfo)m).GetValue(w, null);
+            string actual = v == null ? "null" : Convert.ToString(v, System.Globalization.CultureInfo.InvariantCulture);
+            ctx.Assert(string.Equals(actual, expected, StringComparison.OrdinalIgnoreCase), $"the field '{member}' of '{className}' reads '{actual}', not '{expected}'");
+        }
+
+        /// <summary>
+        /// Calls a method of an open window (by class name) that takes no argument: the callback a button or a row runs (Confirm, Back, Skip, Continue),
+        /// when the button cannot be clicked by label. The method is found by name, public or not. Fails listing the methods without argument.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I call {string} on the window {string}")]
+        public void CallWindowMethod(PickleContext ctx, string method, string className)
+        {
+            Window w = FindWindow(className);
+            ctx.Require(w != null, $"no window '{className}' is open; the open windows are " + OpenWindowNames());
+            MethodInfo mi = w.GetType().GetMethods(All).FirstOrDefault(x => x.GetParameters().Length == 0 && string.Equals(x.Name, method, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(mi != null, $"'{w.GetType().Name}' has no method '{method}' without argument; it has "
+                + string.Join(", ", w.GetType().GetMethods(All | BindingFlags.DeclaredOnly).Where(x => x.GetParameters().Length == 0).Select(x => x.Name)));
+            mi.Invoke(w, null);
+        }
+
+        private static MemberInfo FindMember(Type t, string name)
+        {
+            for (; t != null; t = t.BaseType)
+            {
+                FieldInfo f = t.GetFields(All | BindingFlags.DeclaredOnly).FirstOrDefault(x => string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase));
+                if (f != null) return f;
+                PropertyInfo p = t.GetProperties(All | BindingFlags.DeclaredOnly).FirstOrDefault(x => x.GetIndexParameters().Length == 0 && x.CanRead && x.CanWrite
+                    && string.Equals(x.Name, name, StringComparison.OrdinalIgnoreCase));
+                if (p != null) return p;
+            }
+            return null;
+        }
+
         private static List<string> LiveMessages(PickleContext ctx)
         {
             FieldInfo f = typeof(Messages).GetField("liveMessages", All);
