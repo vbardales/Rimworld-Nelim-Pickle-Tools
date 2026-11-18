@@ -30,7 +30,10 @@ namespace Nelim.PickleTools.ColonistRace
         [Given("Nelim's Pickle Tools: the def metadata of the mod {string} is logged")]
         public void LogDefMetadata(PickleContext ctx, string packageId)
         {
-            Func<Def, bool> ofMod = d => d.modContentPack != null && string.Equals(d.modContentPack.PackageId, packageId, StringComparison.OrdinalIgnoreCase);
+            // The game generates a blueprint, a frame and an install blueprint for every building and floor of a mod (Blueprint_X, Frame_X, Install_X, Minified...):
+            // they carry the mod's package id but are not content of the mod (found on Simple Ivory, ticket cf83, 2026-11-18): left out.
+            Func<Def, bool> ofMod = d => d.modContentPack != null && string.Equals(d.modContentPack.PackageId, packageId, StringComparison.OrdinalIgnoreCase)
+                && !(d is ThingDef && (d.defName.StartsWith("Blueprint_") || d.defName.StartsWith("Frame_") || d.defName.StartsWith("Install_") || d.defName.StartsWith("Minified")));
             List<ThingDef> things = DefDatabase<ThingDef>.AllDefs.Where(d => ofMod(d)).ToList();
             List<TerrainDef> terrains = DefDatabase<TerrainDef>.AllDefs.Where(d => ofMod(d)).ToList();
             ctx.Require(things.Count + terrains.Count > 0, $"the mod '{packageId}' has no ThingDef or TerrainDef (is it loaded? the package id must match its About.xml)");
