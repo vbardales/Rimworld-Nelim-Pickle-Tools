@@ -28,8 +28,8 @@ namespace Nelim.PickleTools.ColonistRace
         {
             Pawn pawn = ColonistLookup.Require(nickname);
             ctx.Require(pawn.story != null, $"pawn '{nickname}' has no story tracker");
-            pawn.story.Childhood = null;
-            pawn.story.Adulthood = null;
+            Assign(pawn, BackstorySlot.Childhood, null);
+            Assign(pawn, BackstorySlot.Adulthood, null);
             Refresh(pawn);
             ctx.Assert(
                 pawn.story.Childhood == null && pawn.story.Adulthood == null,
@@ -44,25 +44,38 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(def != null, $"no BackstoryDef named '{defName}' in this game");
             ctx.Require(def.slot == slot, $"'{defName}' is a {def.slot} backstory, not a {slot} one");
 
-            if (slot == BackstorySlot.Childhood)
-            {
-                pawn.story.Childhood = def;
-            }
-            else
-            {
-                pawn.story.Adulthood = def;
-            }
-
+            Assign(pawn, slot, def);
             Refresh(pawn);
             BackstoryDef read = slot == BackstorySlot.Childhood ? pawn.story.Childhood : pawn.story.Adulthood;
             ctx.Assert(read == def, $"{nickname} should have the {slot} backstory '{defName}'; it has {Describe(pawn)}");
         }
 
-        // The game caches the disabled work tags and skills of a pawn; both caches are told to recompute.
+        // The property setter of the game can throw for a null or a pawn without the usual trackers (ticket f08b: a NullReferenceException on 'has no backstory'):
+        // the field is then set by reflection, which skips whatever the setter does with the old value.
+        private static void Assign(Pawn pawn, BackstorySlot slot, BackstoryDef def)
+        {
+            try
+            {
+                if (slot == BackstorySlot.Childhood) pawn.story.Childhood = def; else pawn.story.Adulthood = def;
+            }
+            catch (Exception e) when (e is NullReferenceException)
+            {
+                string field = slot == BackstorySlot.Childhood ? "childhood" : "adulthood";
+                System.Reflection.FieldInfo info = typeof(Pawn_StoryTracker).GetField(field, System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+                if (info == null) throw;
+                info.SetValue(pawn.story, def);
+                Log.Warning("[backstory] the setter of " + field + " threw a NullReferenceException; the field was set directly");
+            }
+        }
+
+        // The game caches the disabled work tags and skills of a pawn; both caches are told to recompute. A refresh that throws does not fail the step:
+        // the read-back below says whether the backstory is the wanted one, and the work restriction is read from the backstory itself.
         private static void Refresh(Pawn pawn)
         {
-            pawn.Notify_DisabledWorkTypesChanged();
-            pawn.skills?.Notify_SkillDisablesChanged();
+            try { pawn.Notify_DisabledWorkTypesChanged(); }
+            catch (Exception e) { Log.Warning("[backstory] Notify_DisabledWorkTypesChanged threw " + e.GetType().Name + ": " + e.Message); }
+            try { pawn.skills?.Notify_SkillDisablesChanged(); }
+            catch (Exception e) { Log.Warning("[backstory] Notify_SkillDisablesChanged threw " + e.GetType().Name + ": " + e.Message); }
         }
 
         private static string Describe(Pawn pawn)
