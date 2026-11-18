@@ -4,7 +4,7 @@
 @requires:nelim.pickletools.camerazoom
 Feature: visual mods test
 
-  Scenario: visualmods-test: a rifle aimed and a sword held
+  Scenario: visualmods-test: a rifle aimed, a sword held, hay and milk carried
     Given the save "Nelims-tribe" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the item and name labels are hidden
@@ -29,4 +29,12 @@ Feature: visual mods test
     When Nelim's Pickle Tools: "Nelim" wields "MeleeWeapon_LongSword"
     And I wait 60 ticks
     And I take a screenshot "visualmods-sword"
+    And Nelim's Pickle Tools: "Nelim" puts its weapon away
+    And Nelim's Pickle Tools: "Nelim" carries the item "Hay"
+    And I wait 60 ticks
+    And I take a screenshot "visualmods-carry"
+    And Nelim's Pickle Tools: "Nelim" carries the item "Milk"
+    And I wait 60 ticks
+    And I take a screenshot "visualmods-carry-milk"
+
     Then no errors were logged
