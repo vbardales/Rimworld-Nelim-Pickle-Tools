@@ -25,7 +25,14 @@ function build(set, desc, shots) {
   for (const sh of shots) {
     s += `  Scenario: ${set}-${sh.id}\n` + pre;
     key += `\n## Shot ${sh.id}\n\n| row | col | mod | def |\n|---|---|---|---|\n`;
-    if (sh.patches) {
+    if (sh.lay) {
+      sh.lay.forEach(([d, x1, z1, x2, z2, m]) => {
+        s += `    And Nelim's Pickle Tools: I lay the floor "${d}" from (${x1}, ${z1}) to (${x2}, ${z2})
+`;
+        key += `| 1 | ${sh.lay.indexOf(sh.lay.find(l => l[0] === d)) + 1} | ${m} | ${d} (floor, ${x2 - x1 + 1} x ${z2 - z1 + 1} cells) |
+`;
+      });
+    } else if (sh.patches) {
       sh.items.forEach(([d, m], i) => {
         const x0 = sh.items.length === 1 ? 147 : 144 + 7 * i;
         s += `    And Nelim's Pickle Tools: I lay the floor "${d}" from (${x0}, 147) to (${x0 + 5}, 152)\n`;
@@ -33,9 +40,9 @@ function build(set, desc, shots) {
       });
     } else {
       const n = sh.items.length, x0 = 150 - ((n - 1) * sh.step) / 2;
-      sh.items.forEach(([d, m], i) => {
+      sh.items.forEach(([d, m, k2], i) => {
         const x = Math.round(x0 + i * sh.step);
-        const k = sh.kind;
+        const k = k2 || sh.kind;
         s += k === 'b' ? `    And Nelim's Pickle Tools: the building "${d}" is spawned on the nearest free cell around (${x}, 150) facing south\n`
           : k === 'p' ? `    And Nelim's Pickle Tools: I place the decor "${d}" at (${x}, 150) fully grown\n`
           : k === 's' ? `    And Nelim's Pickle Tools: 50 of the item "${d}" are spawned at (${x}, 150)\n`
@@ -71,4 +78,13 @@ build('bap-hearth-furniture', 'Hearth furniture catalogue for BAp: Core furnitur
   { id: 'b', kind: 'b', step: 3, size: 3.5, items: [['Stool', C], ['DiningChair', C], ['Armchair', C], ['Shelf', C]] },
   { id: 'c', kind: 'b', step: 3, size: 3.5, items: [['ShelfSmall', C], ['Bookcase', C], ['Dresser', C], ['EndTable', C]] },
   { id: 'carpet', patches: true, size: 4, items: [['Carpet_MindbendA', 'dlc:Ideology']] },
+]);
+build('bib-water-garden', 'Water garden catalogue for BiB: fires, shrine, bonsai, floors, water', [
+  { id: 'fire-a', kind: 'b', step: 2, size: 3, items: [['Brazier', 'dlc:Royalty'], ['Campfire', C]] },
+  { id: 'bonsai', kind: 'p', step: 2, size: 3, items: [['Plant_TreeBonsai', 'dlc:Ideology'], ['PlantPot_Bonsai', 'dlc:Ideology', 'b']] },
+  { id: 'shrine', kind: 'b', step: 4, size: 3.5, items: [['NatureShrine_Small', 'dlc:Royalty'], ['StylingStation', 'dlc:Ideology']] },
+  { id: 'floor-a', patches: true, size: 4, items: [['FlagstoneGranite', C], ['FlagstoneSlate', C]] },
+  { id: 'floor-b', patches: true, size: 4, items: [['FlagstoneSandstone', C], ['FlagstoneMarble', C]] },
+  { id: 'floor-c', patches: true, size: 4, items: [['TileSandstone', C], ['FineTileSandstone', 'dlc:Royalty']] },
+  { id: 'water', size: 5.5, lay: [['WaterShallow', 145, 145, 154, 154, C], ['WaterDeep', 148, 148, 151, 151, C]] },
 ]);
