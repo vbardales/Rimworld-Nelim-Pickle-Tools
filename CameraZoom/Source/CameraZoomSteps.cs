@@ -129,6 +129,33 @@ namespace Nelim.PickleTools.CameraZoom
             await CenterAt(ctx, HeadPos(pawn), size);
         }
 
+        // The mouth of a pawn facing the camera sits a little below the head centre (HeadPos): 0.12 cell is a first guess, not measured; the step with an
+        // offset lets a scenario find the value by shots (2026-11-18, VanityCase lip close-ups).
+        private const float MouthDrop = 0.12f;
+
+        /// <summary>
+        /// Centres the camera on the mouth of a pawn (colonist or animal, by short name): the head position of the head step, lowered by 0.12 cell, at a
+        /// root size, and reads it back. For a lip close-up: root size about 0.5 (the game's zoom limit is lifted down to 0.3). The 0.12 is a guess:
+        /// use the step with an offset when the lips sit off the middle. Written 2026-11-18 for VanityCase. NOT PLAYED when written.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the camera frames the mouth of {string} at root size {float}", TimeoutSeconds = 150f)]
+        public async Task FrameMouth(PickleContext ctx, string pawnName, float size)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            await CenterAt(ctx, HeadPos(pawn) - new UnityEngine.Vector3(0f, 0f, MouthDrop), size);
+        }
+
+        /// <summary>
+        /// The same with the drop below the head position given in cells (0.12 is the default of the step without it; negative raises the centre), to
+        /// find where the lips sit by trying a few values in one scenario.
+        /// </summary>
+        [When("Nelim's Pickle Tools: the camera frames the mouth of {string} at root size {float} lowered by {float} cells", TimeoutSeconds = 150f)]
+        public async Task FrameMouthLowered(PickleContext ctx, string pawnName, float size, float drop)
+        {
+            Pawn pawn = FindPawn(ctx, pawnName);
+            await CenterAt(ctx, HeadPos(pawn) - new UnityEngine.Vector3(0f, 0f, drop), size);
+        }
+
         /// <summary>
         /// Like the head step, centred on the middle between the head of the first pawn and the second pawn, so that a colonist's face and the animal
         /// beside it are in the same picture. The two should stand within about two cells of each other at the root size asked for.
