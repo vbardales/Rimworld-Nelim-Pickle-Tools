@@ -13,6 +13,7 @@ const args = process.argv.slice(2);
 const key = args.find(a => /^\d+$/.test(a));
 if (!key) { console.error('usage: node Docs/Generate-TerrainGallery.js <workshopId> [--per 18] [--shots N]'); process.exit(2); }
 const opt = (n, d) => { const i = args.indexOf(n); return i >= 0 ? Number(args[i + 1]) : d; };
+const ROOT = opt('--root', 3.8);  // root size of every shot: 3.5 clips the first block of a 6-wide row (12 cells x 154 px + the half-cell shift); owner 2026-11-18 asked 3 to 3.5 per cell
 const PER = opt('--per', 18), SHOTS = opt('--shots', 0), FROM = opt('--from', 1);
 const root = path.resolve(__dirname, '..');
 const sheet = path.resolve(root, '..', '..', 'rimworld-mod-inventory', key + '.json.gz');
@@ -70,6 +71,8 @@ used.forEach((shot, si) => {
   if (si === 0) f += `    And Nelim's Pickle Tools: the terrains of the mod "${j.mod.PackageId}" are logged
 `;
   f += `    And Nelim's Pickle Tools: the area from (${X0}, ${Z0}) to (${x1}, ${z1}) is cleared\n`;
+  f += `    And Nelim's Pickle Tools: I lay the floor "Concrete" from (${cx - 10}, ${cz - 6}) to (${cx + 10}, ${cz + 6})
+`; // one uniform ground under the whole frame (the test-colony ground is split into sand and dark stone)
   k += `## Shot ${n}\n\n| row | col | floor |\n|---|---|---|\n`;
   shot.forEach((name, i) => {
     const c = i % COLS, r = Math.floor(i / COLS);
@@ -94,5 +97,5 @@ const more = FROM > 1;
 fs.writeFileSync(path.join(tp, "Mod", "Pickle", "Features", more ? `pickletools-terrainmore-${key}-from${FROM}.feature` : `pickletools-terrain-${key}.feature`), f);
 if (!more) fs.writeFileSync(path.join(tp, `wsl-deps.terrain-${key}.map`), m);
 fs.writeFileSync(path.join(tp, more ? `terrain-${key}-from${FROM}.key.md` : `terrain-${key}.key.md`), k);
-if (!more) fs.writeFileSync(path.join(tp, `terrain-${key}.layout.json`), JSON.stringify({ cols: COLS, rows, blockPx: 270, pxPerCell: 135, x0px: 960 - (COLS + 0.5) * 135, y0px: 540 - (rows - 0.5) * 135, note: "x0px,y0px = top-left pixel of the grid on a 1920x1080 shot, camera root size 4 centred on cell (X0+COLS, Z0+rows)", X0, Z0, per: PER, packageId: j.mod.PackageId, name: j.mod.Name }));
+if (!more) fs.writeFileSync(path.join(tp, `terrain-${key}.layout.json`), JSON.stringify({ cols: COLS, rows, blockPx: 2 * 1080 / (2 * ROOT), pxPerCell: 1080 / (2 * ROOT), x0px: 960 - (COLS + 0.5) * 1080 / (2 * ROOT), y0px: 540 - (rows - 0.5) * 1080 / (2 * ROOT), note: "x0px,y0px = top-left pixel of the grid on a 1920x1080 shot, camera root size 4 centred on cell (X0+COLS, Z0+rows)", X0, Z0, per: PER, packageId: j.mod.PackageId, name: j.mod.Name }));
 console.log(`${key}: ${names.length} floors, ${shots.length} shots, wrote ${used.length}`);

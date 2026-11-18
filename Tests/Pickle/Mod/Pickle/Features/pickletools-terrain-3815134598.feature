@@ -10,6 +10,7 @@ Feature: Terrain catalogue 3815134598
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the terrains of the mod "we1tall.depths" are logged
     And Nelim's Pickle Tools: the area from (140, 148) to (151, 149) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (136, 143) to (156, 155)
     And Nelim's Pickle Tools: I lay the floor "DP_AbyssOoze" from (140, 148) to (141, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_BlackSand" from (142, 148) to (143, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_Brine" from (144, 148) to (145, 149)
@@ -29,6 +30,7 @@ Feature: Terrain catalogue 3815134598
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (140, 148) to (151, 149) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (136, 143) to (156, 155)
     And Nelim's Pickle Tools: I lay the floor "DP_Gravel" from (140, 148) to (141, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_IceSilt" from (142, 148) to (143, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_PeatSilt" from (144, 148) to (145, 149)
@@ -48,6 +50,7 @@ Feature: Terrain catalogue 3815134598
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (140, 148) to (151, 149) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (136, 143) to (156, 155)
     And Nelim's Pickle Tools: I lay the floor "DP_SeaLava" from (140, 148) to (141, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_Seabed" from (142, 148) to (143, 149)
     And Nelim's Pickle Tools: I lay the floor "DP_Silt" from (144, 148) to (145, 149)
