@@ -1274,7 +1274,17 @@ namespace Nelim.PickleTools.StageDecor
         /// the job does not become the colonist's current one (it says the job the colonist has). Written 2026-11-15 for ArchitectStudio (gallery 2). NOT PLAYED when written.
         /// </summary>
         [Given("Nelim's Pickle Tools: {string} builds the blueprint at \\({int}, {int}\\)")]
-        public async System.Threading.Tasks.Task BuildsBlueprint(PickleContext ctx, string nickname, int x, int z)
+        public System.Threading.Tasks.Task BuildsBlueprint(PickleContext ctx, string nickname, int x, int z) => BuildsBlueprintCore(ctx, nickname, x, z, null);
+
+        /// <summary>
+        /// The same, with the cell the colonist works from chosen by the scenario instead of the first free cell beside the frame (east of a wall at (153, 99) whatever the
+        /// neighbours: ArchitectStudio r16 to r23, she is seen from behind). The colonist faces the frame, so standing NORTH of it she faces south, toward a camera that looks
+        /// down: her face is visible. The cell must touch the frame (side or corner), be standable and free of another pawn; the failure says which. Written 2026-11-19 for ArchitectStudio. NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} builds the blueprint at \\({int}, {int}\\) standing at \\({int}, {int}\\)")]
+        public System.Threading.Tasks.Task BuildsBlueprintFrom(PickleContext ctx, string nickname, int x, int z, int px, int pz) => BuildsBlueprintCore(ctx, nickname, x, z, new IntVec3(px, 0, pz));
+
+        private async System.Threading.Tasks.Task BuildsBlueprintCore(PickleContext ctx, string nickname, int x, int z, IntVec3? standAt)
         {
             await OnMainThread(ctx);
             Map map = CurrentMap(ctx);
@@ -1300,8 +1310,21 @@ namespace Nelim.PickleTools.StageDecor
                 frame.resourceContainer.TryAdd(pile, need.count);
             }
 
-            IntVec3 beside = GenAdj.CellsAdjacentCardinal(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map) && c.GetThingList(map).OfType<Pawn>().All(p => p == pawn));
-            if (!beside.IsValid) beside = GenAdj.CellsAdjacent8Way(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map));
+            IntVec3 beside;
+            if (standAt.HasValue)
+            {
+                beside = standAt.Value;
+                ctx.Require(beside.InBounds(map), $"the cell ({beside.x}, {beside.z}) to stand at is outside the map");
+                ctx.Require(GenAdj.CellsAdjacent8Way(frame).Contains(beside), $"({beside.x}, {beside.z}) does not touch the frame at ({x}, {z}); the cells beside it are {string.Join(", ", GenAdj.CellsAdjacent8Way(frame).Select(c => "(" + c.x + ", " + c.z + ")"))}");
+                ctx.Require(beside.Standable(map), $"({beside.x}, {beside.z}) is not standable (something blocks it)");
+                ctx.Require(beside.GetThingList(map).OfType<Pawn>().All(p => p == pawn), $"another pawn stands at ({beside.x}, {beside.z})");
+            }
+            else
+            {
+                beside = GenAdj.CellsAdjacentCardinal(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map) && c.GetThingList(map).OfType<Pawn>().All(p => p == pawn));
+                if (!beside.IsValid) beside = GenAdj.CellsAdjacent8Way(frame).FirstOrDefault(c => c.InBounds(map) && c.Standable(map));
+            }
+
             ctx.Require(beside.IsValid, $"no free cell stands beside the frame at ({x}, {z})");
             pawn.Position = beside;
             pawn.Notify_Teleported(true, true);
