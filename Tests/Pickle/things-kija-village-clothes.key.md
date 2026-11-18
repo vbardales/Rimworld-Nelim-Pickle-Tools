@@ -27,3 +27,9 @@ One row per shot: row = 1, col = left to right. Image: things-kija-village-cloth
 | 1 | 1 | dlc:Core | Apparel_Robe |
 | 1 | 2 | dlc:Core | Apparel_CollarShirt |
 | 1 | 3 | 3592569869 | Apparel_FSGardeningVest |
+
+## Shot d
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | 1814987817 | VAE_Apparel_Apron |

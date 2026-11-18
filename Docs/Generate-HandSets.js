@@ -92,4 +92,5 @@ build('kija-village-clothes', 'Village clothes catalogue for CoKK: garments as g
   { id: 'a', kind: 'a', step: 2, size: 3, items: [['VAE_Apparel_Tunic', '1814987817'], ['VAE_Apparel_TribalKilt', '1814987817'], ['VAE_Apparel_Skirt', '1814987817'], ['VAE_Apparel_Shorts', '1814987817']] },
   { id: 'b', kind: 'a', step: 2, size: 3, items: [['VAE_Apparel_TribalPoncho', '1814987817'], ['VAE_Apparel_Trousers', '1814987817'], ['Apparel_TribalA', C], ['Apparel_BasicShirt', C]] },
   { id: 'c', kind: 'a', step: 2, size: 3, items: [['Apparel_Robe', C], ['Apparel_CollarShirt', C], ['Apparel_FSGardeningVest', '3592569869']] },
+  { id: 'd', kind: 'a', step: 2, size: 3, items: [['VAE_Apparel_Apron', '1814987817']] },
 ]);
