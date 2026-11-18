@@ -171,10 +171,13 @@ namespace Nelim.PickleTools.InspectTabs
         private static List<InspectTabBase> RequireInspectTabs(PickleContext ctx)
         {
             IEnumerable<InspectTabBase> tabs = InspectPane().CurTabs;
+            string why = Find.UIRoot != null && Find.UIRoot.screenshotMode.Active
+                ? "screenshot mode is on, which hides the inspect pane (a scenario that enabled studio presentation mode needs 'the game interface is shown' first). "
+                : "the pane needs exactly one thing selected. ";
             ctx.Require(
                 tabs != null,
-                "no inspect tabs are available; the pane needs exactly one thing selected. " +
-                $"selected: {DescribeSelection()}");
+                $"no inspect tabs are available; {why}" +
+                $"{Find.Selector.NumSelected} selected: {DescribeSelection()}");
 
             List<InspectTabBase> list = tabs.ToList();
             ctx.Require(list.Count > 0, $"'{DescribeSelection()}' has no inspect tabs at all");
