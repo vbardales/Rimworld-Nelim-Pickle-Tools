@@ -993,12 +993,18 @@ namespace Nelim.PickleTools.StageDecor
             foreach (IntVec3 c in rect)
             {
                 Floors.Add(new OldFloor { Cell = c, Terrain = map.terrainGrid.TerrainAt(c) });
+                // A foundation (a submarine deck, a bridge pier) is refused where an under layer exists: the game logs "Tried to set foundation ... there is an under terrain there". Strip the layers first; the removal step puts the old top floor back.
+                if (def.isFoundation)
+                {
+                    while (map.terrainGrid.UnderTerrainAt(c) != null) map.terrainGrid.RemoveTopLayer(c, false);
+                }
+
                 map.terrainGrid.SetTerrain(c, def);
             }
 
             IntVec3 probe = rect.CenterCell;
             ctx.Assert(
-                map.terrainGrid.TerrainAt(probe) == def,
+                map.terrainGrid.TerrainAt(probe) == def || (def.isFoundation && map.terrainGrid.FoundationAt(probe) == def),
                 $"the floor at ({probe.x}, {probe.z}) should be {terrainDefName}; the game reports {map.terrainGrid.TerrainAt(probe)?.defName}");
         }
 
