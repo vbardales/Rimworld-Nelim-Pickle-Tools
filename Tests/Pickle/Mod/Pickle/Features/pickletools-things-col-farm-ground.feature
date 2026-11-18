@@ -26,8 +26,9 @@ Feature: things col-farm-ground
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
-    And Nelim's Pickle Tools: the building "Fence" is spawned on the nearest free cell around (148, 150) facing south
-    And Nelim's Pickle Tools: the building "FenceGate" is spawned on the nearest free cell around (152, 150) facing south
+    And Nelim's Pickle Tools: the building "Fence" is spawned on the nearest free cell around (146, 150) facing south
+    And Nelim's Pickle Tools: the building "FenceGate" is spawned on the nearest free cell around (150, 150) facing south
+    And Nelim's Pickle Tools: 30 of the item "Hay" are spawned at (154, 150)
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks

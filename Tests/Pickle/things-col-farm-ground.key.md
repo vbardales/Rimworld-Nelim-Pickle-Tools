@@ -11,6 +11,7 @@ One row per shot, left to right = col 1 to n; the root size of each shot is the 
 | plant | 5 | dlc:Odyssey | Plant_YellowTallGrass |
 | fence | 1 | dlc:Core | Fence |
 | fence | 2 | dlc:Core | FenceGate |
+| fence | 3 | dlc:Core | Hay (30, item stack) |
 | floor-a | 1 | dlc:Core | StrawMatting (floor patch 6 x 6) |
 | floor-a | 2 | dlc:Core | PackedDirt (floor patch 6 x 6) |
 | floor-b | 1 | dlc:Core | SoilRich (floor patch 6 x 6) |
