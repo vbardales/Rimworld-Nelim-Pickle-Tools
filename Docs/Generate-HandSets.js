@@ -88,3 +88,8 @@ build('bib-water-garden', 'Water garden catalogue for BiB: fires, shrine, bonsai
   { id: 'floor-c', patches: true, size: 4, items: [['TileSandstone', C], ['FineTileSandstone', 'dlc:Royalty']] },
   { id: 'water', size: 5.5, lay: [['WaterShallow', 145, 145, 154, 154, C], ['WaterDeep', 148, 148, 151, 151, C]] },
 ]);
+build('kija-village-clothes', 'Village clothes catalogue for CoKK: garments as ground items', [
+  { id: 'a', kind: 'a', step: 2, size: 3, items: [['VAE_Apparel_Tunic', '1814987817'], ['VAE_Apparel_TribalKilt', '1814987817'], ['VAE_Apparel_Skirt', '1814987817'], ['VAE_Apparel_Shorts', '1814987817']] },
+  { id: 'b', kind: 'a', step: 2, size: 3, items: [['VAE_Apparel_TribalPoncho', '1814987817'], ['VAE_Apparel_Trousers', '1814987817'], ['Apparel_TribalA', C], ['Apparel_BasicShirt', C]] },
+  { id: 'c', kind: 'a', step: 2, size: 3, items: [['Apparel_Robe', C], ['Apparel_CollarShirt', C], ['Apparel_FSGardeningVest', '3592569869']] },
+]);
