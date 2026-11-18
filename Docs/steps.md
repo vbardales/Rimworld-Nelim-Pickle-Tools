@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-749 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+752 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -110,6 +110,9 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: the animal {string} has no name` (Then) | (no description yet) **Parameters:** `alias` (string). |
 | `Nelim's Pickle Tools: the animal {string} offers the training {string}` (Then) | Asks Pawn_TrainingTracker.CanAssignToTrain, the call the Training tab itself makes: the training must be visible there and accepted. The failure gives the game's reason. Fails when the TrainableDef is not loaded. NOT PLAYED when written. **Parameters:** `alias` (string); `trainableName` (string). |
 | `Nelim's Pickle Tools: the information card of the animal {string} lists the stat {string} at {string}` (Then) | Reads the line the information card shows for a stat (StatsReportUtility.StatsToDraw, the list the Stats tab draws), as text with the unit, compared after trimming. The failure gives the value found, or says the card does not list the stat. Fails when the StatDef is not loaded. NOT PLAYED when written. **Parameters:** `alias` (string); `statName` (string); `value` (string): the value written, as text. |
+| `Nelim's Pickle Tools: {string} childhood is {string}` (Given) | Gives the colonist this childhood backstory (a BackstoryDef of slot Childhood), then refreshes the work restrictions it carries. **Parameters:** `nickname` (string): the colonist's nickname; `backstoryDefName` (string). |
+| `Nelim's Pickle Tools: {string} adulthood is {string}` (Given) | Gives the colonist this adulthood backstory (a BackstoryDef of slot Adulthood), then refreshes the work restrictions it carries. **Parameters:** `nickname` (string): the colonist's nickname; `backstoryDefName` (string). |
+| `Nelim's Pickle Tools: {string} has no backstory` (Given) | Removes both backstories of the colonist, so no backstory restricts its work (a colonist without backstory has no disabled work tag from it). **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the look of {string} is saved` (Given) | (no description yet) **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the look of {string} is restored` (Given) | (no description yet) **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: the body hair {string} of {string} is set to {string}` (When) | Sets the style of one slot of the colonist and redraws the pawn. The slot is "Torso", "LowerBody" or "Back" (or the def name "BHF_LowerBody"); the style is a body hair def name such as "MortonFlameLowerBody", or "BHF_None" for no hair in that slot. **Parameters:** `slot` (string); `nickname` (string): the colonist's nickname; `style` (string). |
