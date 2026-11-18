@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.RegularExpressions;
 using RimWorks.Pickle;
+using RimWorld;
 using Verse;
 
 namespace Nelim.PickleTools.ColonistRace
@@ -94,6 +95,27 @@ namespace Nelim.PickleTools.ColonistRace
                 foreach (string s in WindowStrings(w))
                     if (re.IsMatch(s)) hits.Add(w.GetType().Name + ": " + Trim(s));
             ctx.Assert(hits.Count == 0, $"{hits.Count} text(s) on screen match '{pattern}': " + string.Join(" || ", hits.Take(3)));
+        }
+
+        /// <summary>
+        /// Picks the option of the float menu that is open now (the top FloatMenu of the window stack, a gizmo's menu or a right click) whose label
+        /// contains the text, case ignored: it runs the option as a click does, then closes the menu, so the step works again after the next gizmo
+        /// click. Fails when no float menu is open, when no option matches (listing the labels) or when the option is greyed out (a disabled option
+        /// runs nothing). Read the message the option shows with <c>the last message shown contains</c>. Compiled, NOT PLAYED.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I pick the option {string} of the open float menu")]
+        public void PickFloatMenuOption(PickleContext ctx, string label)
+        {
+            FloatMenu menu = Find.WindowStack.Windows.OfType<FloatMenu>().LastOrDefault();
+            ctx.Require(menu != null, "no float menu is open; the open windows are " + OpenWindowNames());
+            FieldInfo f = typeof(FloatMenu).GetField("options", All);
+            ctx.Require(f != null, "FloatMenu.options does not exist any more (the game changed): update this step");
+            var options = ((IEnumerable)f.GetValue(menu)).Cast<FloatMenuOption>().ToList();
+            FloatMenuOption opt = options.FirstOrDefault(o => o.Label != null && o.Label.IndexOf(label, StringComparison.OrdinalIgnoreCase) >= 0);
+            ctx.Require(opt != null, $"no option of the open float menu contains '{label}'; the options are " + string.Join(" | ", options.Select(o => o.Label)));
+            ctx.Require(!opt.Disabled, $"the option '{opt.Label}' is greyed out: it runs nothing");
+            opt.Chosen(true, menu);
+            menu.Close(false);
         }
 
         private static List<string> LiveMessages(PickleContext ctx)
