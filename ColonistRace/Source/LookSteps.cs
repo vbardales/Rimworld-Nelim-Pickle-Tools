@@ -279,13 +279,44 @@ namespace Nelim.PickleTools.ColonistRace
 
             OriginalClothes.Clear();
             DressedIn.Clear();
+            StowHistory.Clear();
         }
 
         // Takes garments off into the inventory, never onto the ground: a garment dropped where the colonist stands shows up beside whatever the scene is about.
+        // What the dressing steps put into the inventory, in order, for "the clothes worn by X are logged".
+        private static readonly System.Collections.Generic.Dictionary<Pawn, System.Collections.Generic.List<string>> StowHistory =
+            new System.Collections.Generic.Dictionary<Pawn, System.Collections.Generic.List<string>>();
+
+        /// <summary>
+        /// Reports, attached as <c>clothes-worn</c>, what a colonist wears (def, stuff, layers, body part groups, drawn colour) and what the dressing
+        /// steps of this scenario moved to the inventory, in order (a garment that cannot be worn with a newer one on the same layer and body parts
+        /// is moved, so a missing shirt shows up here). Changes nothing. Written 2026-11-18 for AnimaSong (Soren's bare torso). NOT PLAYED when written.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the clothes worn by {string} are logged")]
+        public void ClothesLogged(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
+            System.Collections.Generic.IEnumerable<string> worn = pawn.apparel.WornApparel.Select(a =>
+                $"{a.def.defName} (stuff {a.Stuff?.defName ?? "none"}, layers {string.Join("+", a.def.apparel.layers.Select(l => l.defName))}, " +
+                $"covers {string.Join("+", a.def.apparel.bodyPartGroups.Select(g => g.defName))}, drawn colour {a.DrawColor})");
+            System.Collections.Generic.IEnumerable<string> stowed = pawn.inventory == null
+                ? System.Linq.Enumerable.Empty<string>()
+                : pawn.inventory.innerContainer.OfType<Apparel>().Select(a => a.def.defName);
+            StowHistory.TryGetValue(pawn, out System.Collections.Generic.List<string> history);
+            string report =
+                $"{nickname} wears {pawn.apparel.WornApparel.Count}: {string.Join("; ", worn)}\n" +
+                $"in the inventory: {string.Join(", ", stowed)}\n" +
+                $"moved to the inventory by the dressing steps, in order: {(history == null || history.Count == 0 ? "(none)" : string.Join(", ", history))}";
+            ctx.Attach("clothes-worn", report);
+        }
+
         private static void StowApparel(Pawn pawn, System.Func<Apparel, bool> which)
         {
             foreach (Apparel a in pawn.apparel.WornApparel.Where(which).ToList())
             {
+                if (!StowHistory.TryGetValue(pawn, out System.Collections.Generic.List<string> history)) StowHistory[pawn] = history = new System.Collections.Generic.List<string>();
+                history.Add(a.def.defName);
                 pawn.apparel.Remove(a);
                 if (pawn.inventory == null || !pawn.inventory.innerContainer.TryAdd(a, false)) a.Destroy();
             }
