@@ -67,5 +67,74 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(counts.refused >= min && counts.refused <= max,
                 $"the orders of {nickname} should be refused between {min} and {max} times; accepted={counts.accepted} refused={counts.refused}");
         }
+
+        private static readonly Dictionary<Pawn, bool> LastOrderTaken = new Dictionary<Pawn, bool>();
+
+        /// <summary>
+        /// Gives a colonist an attack order (melee) on the first thing of a def (a pawn's race def counts) standing on a cell, as a right click on it
+        /// does (<c>TryTakeOrderedJob</c>, tag Misc). A mod that refuses the order shows its message: read it with
+        /// <c>the last message shown contains</c> right after. Logs <c>[order-attack] taken=True|False</c>. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is ordered to attack the thing {string} at \\({int}, {int}\\)")]
+        public void OrderedToAttack(PickleContext ctx, string nickname, string defName, int x, int z)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Thing target = ThingAt(ctx, pawn, defName, x, z);
+            pawn.jobs.StopAll();
+            pawn.jobs.ClearQueuedJobs();
+            bool taken = pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.AttackMelee, target), JobTag.Misc);
+            LastOrderTaken[pawn] = taken;
+            Log.Message("[order-attack] " + nickname + " taken=" + taken);
+        }
+
+        /// <summary>
+        /// Gives a colonist a haul order: carry the first thing of a def on a cell to another cell (<c>HaulToCell</c>, tag Misc). A refusing mod shows
+        /// its message: read it with <c>the last message shown contains</c>. Logs <c>[order-haul] taken=True|False</c>. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} is ordered to haul the thing {string} at \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void OrderedToHaul(PickleContext ctx, string nickname, string defName, int x, int z, int toX, int toZ)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Thing target = ThingAt(ctx, pawn, defName, x, z);
+            var dest = new IntVec3(toX, 0, toZ);
+            ctx.Require(dest.InBounds(pawn.Map), "the cell (" + toX + ", " + toZ + ") is outside the map");
+            pawn.jobs.StopAll();
+            pawn.jobs.ClearQueuedJobs();
+            Job job = JobMaker.MakeJob(JobDefOf.HaulToCell, target, dest);
+            job.count = target.stackCount;
+            bool taken = pawn.jobs.TryTakeOrderedJob(job, JobTag.Misc);
+            LastOrderTaken[pawn] = taken;
+            Log.Message("[order-haul] " + nickname + " taken=" + taken);
+        }
+
+        /// <summary>Asserts the last attack or haul order of a colonist was refused (the game or a mod said no).</summary>
+        [Then("Nelim's Pickle Tools: the last order of {string} was refused")]
+        public void LastOrderRefused(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(LastOrderTaken.TryGetValue(pawn, out bool taken), "no attack or haul order was given to " + nickname);
+            ctx.Assert(!taken, "the last order of " + nickname + " was taken, not refused");
+        }
+
+        /// <summary>Asserts the last attack or haul order of a colonist was taken.</summary>
+        [Then("Nelim's Pickle Tools: the last order of {string} was taken")]
+        public void LastOrderTakenStep(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(LastOrderTaken.TryGetValue(pawn, out bool taken), "no attack or haul order was given to " + nickname);
+            ctx.Assert(taken, "the last order of " + nickname + " was refused, not taken");
+        }
+
+        private static Thing ThingAt(PickleContext ctx, Pawn pawn, string defName, int x, int z)
+        {
+            ctx.Require(pawn.Spawned && pawn.jobs != null, pawn.LabelShort + " is not spawned on a map");
+            var cell = new IntVec3(x, 0, z);
+            ctx.Require(cell.InBounds(pawn.Map), "the cell (" + x + ", " + z + ") is outside the map");
+            foreach (Thing t in cell.GetThingList(pawn.Map))
+                if (t != pawn && (string.Equals(t.def.defName, defName, System.StringComparison.OrdinalIgnoreCase)
+                    || (t is Pawn p && string.Equals(p.kindDef?.defName, defName, System.StringComparison.OrdinalIgnoreCase)))) return t;
+            ctx.Require(false, "no thing '" + defName + "' on (" + x + ", " + z + "); the cell holds " + string.Join(", ", cell.GetThingList(pawn.Map).ConvertAll(t => t.def.defName)));
+            return null;
+        }
     }
 }
