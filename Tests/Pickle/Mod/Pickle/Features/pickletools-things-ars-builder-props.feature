@@ -17,7 +17,7 @@ Feature: things ars-builder-props
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "ars-builder-props-building-a"
+    And I take a screenshot "things-ars-builder-props-building-a"
     Then no errors were logged
 
   Scenario: ars-builder-props-building-b
@@ -34,7 +34,7 @@ Feature: things ars-builder-props
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "ars-builder-props-building-b"
+    And I take a screenshot "things-ars-builder-props-building-b"
     Then no errors were logged
 
   Scenario: ars-builder-props-stacks
@@ -50,7 +50,7 @@ Feature: things ars-builder-props
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.5
-    And I take a screenshot "ars-builder-props-stacks"
+    And I take a screenshot "things-ars-builder-props-stacks"
     Then no errors were logged
 
   Scenario: ars-builder-props-apparel-a
@@ -70,7 +70,7 @@ Feature: things ars-builder-props
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "ars-builder-props-apparel-a"
+    And I take a screenshot "things-ars-builder-props-apparel-a"
     Then no errors were logged
 
   Scenario: ars-builder-props-apparel-b
@@ -90,5 +90,5 @@ Feature: things ars-builder-props
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "ars-builder-props-apparel-b"
+    And I take a screenshot "things-ars-builder-props-apparel-b"
     Then no errors were logged

@@ -1,31 +1,54 @@
 # ars-builder-props key
 
-One row per shot, left to right = col 1 to n; the root size of each shot is the guess to check on its first image.
+One row per shot: row = 1, col = left to right. Image: things-ars-builder-props-<shot>.webp. Roots are guesses, checked on the first image.
 
-| shot | col | mod | def |
+
+## Shot building-a
+
+| row | col | mod | def |
 |---|---|---|---|
-| building-a | 1 | dlc:Core | Stool |
-| building-a | 2 | dlc:Core | PlantPot |
-| building-a | 3 | dlc:Ideology | PlantPot_Bonsai |
-| building-a | 4 | dlc:Core | TorchLamp |
-| building-b | 1 | dlc:Core | StandingLamp |
-| building-b | 2 | dlc:Core | FermentingBarrel |
-| building-b | 3 | dlc:Core | ShelfSmall |
-| building-b | 4 | dlc:Core | CraftingSpot |
-| stacks | 1 | dlc:Core | Steel |
-| stacks | 2 | dlc:Core | WoodLog |
-| stacks | 3 | dlc:Core | BlocksGranite |
-| apparel-a | 1 | dlc:Core | Apparel_Jacket |
-| apparel-a | 2 | dlc:Core | Apparel_Duster |
-| apparel-a | 3 | dlc:Core | Apparel_Cape |
-| apparel-a | 4 | dlc:Core | Apparel_Pants |
-| apparel-a | 5 | dlc:Royalty | Apparel_Beret |
-| apparel-a | 6 | dlc:Royalty | Apparel_VestRoyal |
-| apparel-a | 7 | dlc:Ideology | Apparel_Broadwrap |
-| apparel-b | 1 | 1814987817 | VAE_Apparel_BuildersJacket |
-| apparel-b | 2 | 1814987817 | VAE_Apparel_Apron |
-| apparel-b | 3 | 1814987817 | VAE_Apparel_Overalls |
-| apparel-b | 4 | 1814987817 | VAE_Handwear_Gloves |
-| apparel-b | 5 | 1814987817 | VAE_Headgear_Scarf |
-| apparel-b | 6 | 3592569869 | Apparel_FSConstructionJacket |
-| apparel-b | 7 | 3592569869 | Apparel_FSOveralls |
+| 1 | 1 | dlc:Core | Stool |
+| 1 | 2 | dlc:Core | PlantPot |
+| 1 | 3 | dlc:Ideology | PlantPot_Bonsai |
+| 1 | 4 | dlc:Core | TorchLamp |
+
+## Shot building-b
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | dlc:Core | StandingLamp |
+| 1 | 2 | dlc:Core | FermentingBarrel |
+| 1 | 3 | dlc:Core | ShelfSmall |
+| 1 | 4 | dlc:Core | CraftingSpot |
+
+## Shot stacks
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | dlc:Core | Steel |
+| 1 | 2 | dlc:Core | WoodLog |
+| 1 | 3 | dlc:Core | BlocksGranite |
+
+## Shot apparel-a
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | dlc:Core | Apparel_Jacket |
+| 1 | 2 | dlc:Core | Apparel_Duster |
+| 1 | 3 | dlc:Core | Apparel_Cape |
+| 1 | 4 | dlc:Core | Apparel_Pants |
+| 1 | 5 | dlc:Royalty | Apparel_Beret |
+| 1 | 6 | dlc:Royalty | Apparel_VestRoyal |
+| 1 | 7 | dlc:Ideology | Apparel_Broadwrap |
+
+## Shot apparel-b
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | 1814987817 | VAE_Apparel_BuildersJacket |
+| 1 | 2 | 1814987817 | VAE_Apparel_Apron |
+| 1 | 3 | 1814987817 | VAE_Apparel_Overalls |
+| 1 | 4 | 1814987817 | VAE_Handwear_Gloves |
+| 1 | 5 | 1814987817 | VAE_Headgear_Scarf |
+| 1 | 6 | 3592569869 | Apparel_FSConstructionJacket |
+| 1 | 7 | 3592569869 | Apparel_FSOveralls |

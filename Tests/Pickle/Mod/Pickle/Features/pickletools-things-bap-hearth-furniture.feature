@@ -17,7 +17,7 @@ Feature: things bap-hearth-furniture
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "bap-hearth-furniture-a"
+    And I take a screenshot "things-bap-hearth-furniture-a"
     Then no errors were logged
 
   Scenario: bap-hearth-furniture-b
@@ -34,7 +34,7 @@ Feature: things bap-hearth-furniture
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "bap-hearth-furniture-b"
+    And I take a screenshot "things-bap-hearth-furniture-b"
     Then no errors were logged
 
   Scenario: bap-hearth-furniture-c
@@ -51,7 +51,7 @@ Feature: things bap-hearth-furniture
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "bap-hearth-furniture-c"
+    And I take a screenshot "things-bap-hearth-furniture-c"
     Then no errors were logged
 
   Scenario: bap-hearth-furniture-carpet
@@ -65,5 +65,5 @@ Feature: things bap-hearth-furniture
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "bap-hearth-furniture-carpet"
+    And I take a screenshot "things-bap-hearth-furniture-carpet"
     Then no errors were logged

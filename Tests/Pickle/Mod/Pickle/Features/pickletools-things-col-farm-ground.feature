@@ -18,7 +18,7 @@ Feature: things col-farm-ground
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
-    And I take a screenshot "col-farm-ground-plant"
+    And I take a screenshot "things-col-farm-ground-plant"
     Then no errors were logged
 
   Scenario: col-farm-ground-fence
@@ -34,7 +34,7 @@ Feature: things col-farm-ground
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.5
-    And I take a screenshot "col-farm-ground-fence"
+    And I take a screenshot "things-col-farm-ground-fence"
     Then no errors were logged
 
   Scenario: col-farm-ground-floor-a
@@ -49,7 +49,7 @@ Feature: things col-farm-ground
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "col-farm-ground-floor-a"
+    And I take a screenshot "things-col-farm-ground-floor-a"
     Then no errors were logged
 
   Scenario: col-farm-ground-floor-b
@@ -64,7 +64,7 @@ Feature: things col-farm-ground
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "col-farm-ground-floor-b"
+    And I take a screenshot "things-col-farm-ground-floor-b"
     Then no errors were logged
 
   Scenario: col-farm-ground-floor-c
@@ -79,5 +79,5 @@ Feature: things col-farm-ground
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
     And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4
-    And I take a screenshot "col-farm-ground-floor-c"
+    And I take a screenshot "things-col-farm-ground-floor-c"
     Then no errors were logged
