@@ -1,4 +1,4 @@
-# Hearth furniture catalogue for BAp: Core furniture, one row per shot (owner rules, 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by hand, not generated: edit here.
+# Hearth furniture catalogue for BAp: Core furniture and an Ideology carpet, one row per shot, on a Concrete floor (owner rules 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by Docs/Generate-HandSets.js: edit there.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 Feature: things bap-hearth-furniture
@@ -7,7 +7,8 @@ Feature: things bap-hearth-furniture
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
     And Nelim's Pickle Tools: the building "HandTailoringBench" is spawned on the nearest free cell around (144, 150) facing south
     And Nelim's Pickle Tools: the building "FueledStove" is spawned on the nearest free cell around (148, 150) facing south
     And Nelim's Pickle Tools: the building "Table2x2c" is spawned on the nearest free cell around (152, 150) facing south
@@ -24,16 +25,17 @@ Feature: things bap-hearth-furniture
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
-    And Nelim's Pickle Tools: the building "Stool" is spawned on the nearest free cell around (144, 150) facing south
-    And Nelim's Pickle Tools: the building "DiningChair" is spawned on the nearest free cell around (148, 150) facing south
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: the building "Stool" is spawned on the nearest free cell around (146, 150) facing south
+    And Nelim's Pickle Tools: the building "DiningChair" is spawned on the nearest free cell around (149, 150) facing south
     And Nelim's Pickle Tools: the building "Armchair" is spawned on the nearest free cell around (152, 150) facing south
-    And Nelim's Pickle Tools: the building "Shelf" is spawned on the nearest free cell around (156, 150) facing south
+    And Nelim's Pickle Tools: the building "Shelf" is spawned on the nearest free cell around (155, 150) facing south
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.5
     And I take a screenshot "things-bap-hearth-furniture-b"
     Then no errors were logged
 
@@ -41,16 +43,17 @@ Feature: things bap-hearth-furniture
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
-    And Nelim's Pickle Tools: the building "ShelfSmall" is spawned on the nearest free cell around (144, 150) facing south
-    And Nelim's Pickle Tools: the building "Bookcase" is spawned on the nearest free cell around (148, 150) facing south
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: the building "ShelfSmall" is spawned on the nearest free cell around (146, 150) facing south
+    And Nelim's Pickle Tools: the building "Bookcase" is spawned on the nearest free cell around (149, 150) facing south
     And Nelim's Pickle Tools: the building "Dresser" is spawned on the nearest free cell around (152, 150) facing south
-    And Nelim's Pickle Tools: the building "EndTable" is spawned on the nearest free cell around (156, 150) facing south
+    And Nelim's Pickle Tools: the building "EndTable" is spawned on the nearest free cell around (155, 150) facing south
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.5
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.5
     And I take a screenshot "things-bap-hearth-furniture-c"
     Then no errors were logged
 
@@ -58,7 +61,8 @@ Feature: things bap-hearth-furniture
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (138, 144) to (162, 156) is cleared
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
     And Nelim's Pickle Tools: I lay the floor "Carpet_MindbendA" from (147, 147) to (152, 152)
     And I set the hour to 12
     And I set the weather to "Clear"

@@ -2,7 +2,6 @@
 
 One row per shot: row = 1, col = left to right. Image: things-ars-builder-props-<shot>.webp. Roots are guesses, checked on the first image.
 
-
 ## Shot building-a
 
 | row | col | mod | def |
@@ -37,11 +36,16 @@ One row per shot: row = 1, col = left to right. Image: things-ars-builder-props-
 | 1 | 2 | dlc:Core | Apparel_Duster |
 | 1 | 3 | dlc:Core | Apparel_Cape |
 | 1 | 4 | dlc:Core | Apparel_Pants |
-| 1 | 5 | dlc:Royalty | Apparel_Beret |
-| 1 | 6 | dlc:Royalty | Apparel_VestRoyal |
-| 1 | 7 | dlc:Ideology | Apparel_Broadwrap |
 
 ## Shot apparel-b
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | dlc:Royalty | Apparel_Beret |
+| 1 | 2 | dlc:Royalty | Apparel_VestRoyal |
+| 1 | 3 | dlc:Ideology | Apparel_Broadwrap |
+
+## Shot apparel-c
 
 | row | col | mod | def |
 |---|---|---|---|
@@ -49,6 +53,11 @@ One row per shot: row = 1, col = left to right. Image: things-ars-builder-props-
 | 1 | 2 | 1814987817 | VAE_Apparel_Apron |
 | 1 | 3 | 1814987817 | VAE_Apparel_Overalls |
 | 1 | 4 | 1814987817 | VAE_Handwear_Gloves |
-| 1 | 5 | 1814987817 | VAE_Headgear_Scarf |
-| 1 | 6 | 3592569869 | Apparel_FSConstructionJacket |
-| 1 | 7 | 3592569869 | Apparel_FSOveralls |
+
+## Shot apparel-d
+
+| row | col | mod | def |
+|---|---|---|---|
+| 1 | 1 | 1814987817 | VAE_Headgear_Scarf |
+| 1 | 2 | 3592569869 | Apparel_FSConstructionJacket |
+| 1 | 3 | 3592569869 | Apparel_FSOveralls |

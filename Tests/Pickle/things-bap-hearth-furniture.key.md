@@ -2,7 +2,6 @@
 
 One row per shot: row = 1, col = left to right. Image: things-bap-hearth-furniture-<shot>.webp. Roots are guesses, checked on the first image.
 
-
 ## Shot a
 
 | row | col | mod | def |
