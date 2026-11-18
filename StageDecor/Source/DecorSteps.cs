@@ -563,6 +563,32 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Destroys the plants of a def (by defName, trees and bamboo included) standing on the cells of the rectangle, with or without a growing
+        /// zone there: wild or placed plants on plain cells. Logs how many and where ([decor-plants-removed-area]); removing none is not an error
+        /// (the log says 0). Fails when the def is unknown or is not a plant. The save is not touched. Written 2026-11-18 for AlphaMythology
+        /// (daylilies hiding berries in the flower garden, no growing zone there). NOT PLAYED when written.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the plants {string} are removed in the area from \\({int}, {int}\\) to \\({int}, {int}\\)")]
+        public void RemovePlantsInArea(PickleContext ctx, string plantDefName, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(plantDefName);
+            ctx.Require(def != null && def.plant != null, $"no plant def '{plantDefName}' in this game");
+            var removed = new List<string>();
+            foreach (IntVec3 c in CellRect.FromLimits(x1, z1, x2, z2))
+            {
+                if (!c.InBounds(map)) continue;
+                foreach (Plant plant in c.GetThingList(map).OfType<Plant>().Where(pl => pl.def == def).ToList())
+                {
+                    removed.Add("(" + plant.Position.x + "," + plant.Position.z + ")");
+                    plant.Destroy();
+                }
+            }
+
+            Log.Message($"[decor-plants-removed-area] {removed.Count} {plantDefName} destroyed in the area from ({x1}, {z1}) to ({x2}, {z2}): {string.Join(" ", removed)}");
+        }
+
+        /// <summary>
         /// Places a thing like "I place the decor" and gives it an ideoligion thing style (a <c>ThingStyleDef</c>, by defName) the way the game does
         /// when a style category applies: <c>Thing.SetStyleDef</c>. Fails when the style is unknown, or when the thing does not hold the style after
         /// the step. The style is not checked against a style category: any style can be forced, which is what a test of a style's graphic wants.
