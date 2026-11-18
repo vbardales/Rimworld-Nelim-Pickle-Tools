@@ -678,6 +678,35 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Adds a garment of the apparel def made of a chosen stuff (Gold, Silver, Jade, Steel...) to what the colonist already wears: the "also wears" step with the stuff of
+        /// "wears ... made of". Fails when the garment is not made from a stuff or does not accept that one (the failure lists the accepted ones). Written 2026-11-17 for VanityCase.
+        /// Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} also wears {string} made of {string}")]
+        public void AlsoWearsMadeOf(PickleContext ctx, string nickname, string apparelDefName, string stuffName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ctx.Require(pawn.apparel != null, $"pawn '{nickname}' has no apparel tracker");
+            ThingDef def = Def<ThingDef>(ctx, apparelDefName, "apparel");
+            ctx.Require(def.IsApparel, $"'{apparelDefName}' is not an apparel def");
+            ThingDef stuffDef = StuffFor(ctx, def, stuffName);
+            ctx.Require(ApparelUtility.HasPartsToWear(pawn, def), $"{nickname} has no body part to wear '{apparelDefName}' on");
+            if (!OriginalClothes.ContainsKey(pawn))
+            {
+                OriginalClothes[pawn] = pawn.apparel.WornApparel.ToList();
+            }
+
+            StowApparel(pawn, a => !ApparelUtility.CanWearTogether(a.def, def, pawn.RaceProps.body));
+            var apparel = (Apparel)ThingMaker.MakeThing(def, stuffDef);
+            pawn.apparel.Wear(apparel, false);
+            DressedIn.Add(apparel);
+            Redraw(pawn);
+            ctx.Assert(
+                pawn.apparel.WornApparel.Contains(apparel),
+                $"{nickname} should wear '{apparelDefName}' made of {stuffName}; it wears {string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName))}");
+        }
+
+        /// <summary>
         /// Adds a garment of the apparel def, dyed in an RGB colour 0 to 255, to what the colonist already wears (the "also wears" step plus the dye of "wears ... dyed rgb"): only the garments
         /// that cannot be worn with it go to the inventory, the other clothes stay on, everything comes back at the end of the scenario. Written 2026-11-17 for BiotechBodies (gallery shot 2).
         /// Compiled, NOT PLAYED.

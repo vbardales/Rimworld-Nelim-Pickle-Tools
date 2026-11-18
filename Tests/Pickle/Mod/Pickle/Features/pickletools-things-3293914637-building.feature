@@ -11,7 +11,6 @@ Feature: building catalogue 3293914637
     And Nelim's Pickle Tools: the area from (140, 148) to (159, 155) is cleared
     And Nelim's Pickle Tools: the building "RA_BraveTinSoldier" is spawned on the nearest free cell around (142, 153) facing south
     And Nelim's Pickle Tools: the building "RA_CrossStone_Building" is spawned on the nearest free cell around (146, 153) facing south
-    And Nelim's Pickle Tools: the building "RA_CrossStone_DustyWatch" is spawned on the nearest free cell around (150, 153) facing south
     And Nelim's Pickle Tools: the building "RA_GrayDoor" is spawned on the nearest free cell around (154, 153) facing south
     And Nelim's Pickle Tools: the building "RA_GrayStatue" is spawned on the nearest free cell around (158, 153) facing south
     And Nelim's Pickle Tools: the building "RA_Herb" is spawned on the nearest free cell around (142, 149) facing south

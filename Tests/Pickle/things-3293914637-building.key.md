@@ -8,7 +8,7 @@ Cell = the 4 x 4 block, row 1 = north.
 |---|---|---|
 | 1 | 1 | RA_BraveTinSoldier |
 | 1 | 2 | RA_CrossStone_Building |
-| 1 | 3 | RA_CrossStone_DustyWatch |
+| 1 | 3 | RA_CrossStone_DustyWatch (NOT photographed: the mod throws a NullReferenceException in CrossStoneWatch.get_Graphic, ticket d097) |
 | 1 | 4 | RA_GrayDoor |
 | 1 | 5 | RA_GrayStatue |
 | 2 | 1 | RA_Herb |
