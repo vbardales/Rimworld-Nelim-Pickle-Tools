@@ -23,7 +23,7 @@ namespace Nelim.PickleTools.ColonistRace
         /// <summary>
         /// Logs and attaches (<c>def-metadata-PACKAGEID</c>, JSON lines) one line per ThingDef and TerrainDef whose mod has the package id (case
         /// ignored): packageId, defName, label, type, category (building, item, apparel, plant, floor, pawn, other), size, cost, stuffCategories, workToMake,
-        /// textures, power, research, dependencies, techLevel, designationCategory, minifiable, minifiedDef and givers. Givers: bill, joy, sit, sleep,
+        /// textures, power, research, dependencies, passability, fillPercent (things only), techLevel, designationCategory, minifiable, minifiedDef and givers. Givers: bill, joy, sit, sleep,
         /// eat, research, store, medical, ritual (a heuristic on the class and the comps). NOT read: wash and work (no robust game link). Fails when the mod
         /// has no def of these two types.
         /// </summary>
@@ -52,6 +52,8 @@ namespace Nelim.PickleTools.ColonistRace
             var o = new List<string>();
             Common(o, d, ThingCategoryOf(d));
             o.Add(N("size", d.size.x + "," + d.size.z));
+            o.Add(N("passability", d.passability.ToString()));
+            o.Add(N("fillPercent", d.fillPercent.ToString(CultureInfo.InvariantCulture)));
             o.Add(L("cost", d.costList?.Select(c => c.thingDef.defName + ":" + c.count)));
             o.Add(N("costStuffCount", d.costStuffCount.ToString(CultureInfo.InvariantCulture)));
             o.Add(L("stuffCategories", d.stuffCategories?.Select(s => s.defName)));
