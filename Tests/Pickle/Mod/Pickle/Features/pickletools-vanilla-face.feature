@@ -1,4 +1,4 @@
-# Framing (owner, 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md): head and shoulders at root size 2.5 (head step, as the face galleries), area around Jet cleared (no corpse, skeleton, filth, rock). Place: the clean catalogue map, not SaB: SaB's save carries the sanctuary mods, and this set must show the base game alone.
+# Framing (owner, 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md): head and shoulders at root size 0.9 (head step, as the face galleries), area around Jet cleared (no corpse, skeleton, filth, rock). Place: the clean catalogue map, not SaB: SaB's save carries the sanctuary mods, and this set must show the base game alone.
 # The vanilla face (2026-11-17, Virginie): the Core heads on a pawn WITHOUT Facial Animation, to see the face the base game draws by itself (mouth, eyes, brows are in the head texture).
 # Map: wsl-deps.vanilla-face.map (the tools and the empty base only: no Facial Animation, no body or hair mod). Written 2026-11-17, NOT PLAYED when written.
 @requires:nelim.pickletools.screenshotstudio
@@ -19,12 +19,12 @@ Feature: vanilla face
     And Nelim's Pickle Tools: "Jet" stands at (143, 151) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
     And Nelim's Pickle Tools: "Jet" hairstyle is "Bald"
-    And Nelim's Pickle Tools: "Jet" drops its clothes
+    And Nelim's Pickle Tools: "Jet" is undressed
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: the camera frames the head of "Jet" at root size 2.5
+    And Nelim's Pickle Tools: the camera frames the head of "Jet" at root size 0.9
     When Nelim's Pickle Tools: "Jet" gender is male
     And Nelim's Pickle Tools: "Jet" head type is "Male_AverageNormal"
     And I wait 10 ticks
