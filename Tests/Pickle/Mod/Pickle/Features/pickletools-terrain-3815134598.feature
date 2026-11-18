@@ -21,7 +21,7 @@ Feature: Terrain catalogue 3815134598
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 4
+    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 3.8
     And I take a screenshot "terrain-3815134598-01"
     Then no errors were logged
 
@@ -41,7 +41,7 @@ Feature: Terrain catalogue 3815134598
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 4
+    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 3.8
     And I take a screenshot "terrain-3815134598-02"
     Then no errors were logged
 
@@ -60,7 +60,7 @@ Feature: Terrain catalogue 3815134598
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 4
+    And Nelim's Pickle Tools: I frame the area centred on (146, 149) at root size 3.8
     And I take a screenshot "terrain-3815134598-03"
     Then no errors were logged
 

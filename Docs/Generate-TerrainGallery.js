@@ -82,7 +82,7 @@ used.forEach((shot, si) => {
   });
   f += `    And I set the hour to 12\n    And I set the weather to "Clear"\n    And I wait 60 ticks\n`;
   f += `    And Nelim's Pickle Tools: studio presentation mode is enabled\n`;
-  f += `    And Nelim's Pickle Tools: I frame the area centred on (${cx}, ${cz}) at root size 4\n`;
+  f += `    And Nelim's Pickle Tools: I frame the area centred on (${cx}, ${cz}) at root size ${ROOT}\n`;
   f += `    And I take a screenshot "terrain-${key}-${n}"\n    Then no errors were logged\n\n`;
   k += '\n';
 });
