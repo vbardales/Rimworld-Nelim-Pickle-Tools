@@ -459,6 +459,19 @@ namespace Nelim.PickleTools.ScreenshotStudio
             await ctx.WaitFrames(2);
         }
 
+        /// <summary>
+        /// Switches the game's interface back on (screenshot mode off) while keeping the other presentation settings: name labels, stack counts, zone and room overlays and the learning helper stay hidden, and the colonist bar and tooltips stay as their own steps left them.
+        /// For an interface shot: with screenshot mode on the inspect pane is not there (CurTabs is null), so a tab cannot be opened or drawn. Put it after "studio presentation mode is enabled" and before the tab step. Restored after the scenario like the rest.
+        /// Written 2026-11-18 for BiotechBodies shot 7 (Genes inspect tab). NOT PLAYED when written.
+        /// </summary>
+        [When(Prefix + "the game interface is shown")]
+        public async Task InterfaceShown(PickleContext ctx)
+        {
+            if (!originalScreenshotMode.HasValue) originalScreenshotMode = Find.UIRoot.screenshotMode.Active;
+            Find.UIRoot.screenshotMode.Active = false;
+            await ctx.WaitFrames(2);
+        }
+
         /// <summary>Opt-in: presentation mode hides the status icons over buildings (no power, power off, broken down, out of fuel). This keeps them drawn while names, counts and overlays stay hidden. Works before or after presentation mode; cleared after the scenario.</summary>
         [When(Prefix + "the building status icons are kept")]
         public void KeepStatusIcons(PickleContext ctx) { OverlaySuppression.StatusIconsKept = true; }
