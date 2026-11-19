@@ -28,13 +28,45 @@ namespace Nelim.PickleTools.ColonistRace
             Pawn pawn = ColonistLookup.Require(nickname);
             pawn.Drawer.renderer.SetAllGraphicsDirty();
             PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
-            tree.EnsureInitialized(PawnRenderFlags.None);
+            // Built with the flags the game draws with, then marked dirty again: a tree built here with None and left in place would be the tree of the capture (written 2026-11-19, AniS ticket 46a7: ApparelBody children=0; hypothesis, not proven).
+            tree.EnsureInitialized(GameFlags());
             object parms = MakeParms(pawn);
             var sb = new System.Text.StringBuilder();
             sb.AppendLine("[render-state] " + nickname + " (" + pawn.story?.bodyType?.defName + "), facing South, flags " + GameFlags() + ", parms " + (parms == null ? "NOT BUILT" : "built"));
             Dump(tree.rootNode, 0, sb, parms);
             Log.Message(sb.ToString());
             ctx.Attach("render-state", sb.ToString());
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+        }
+
+        /// <summary>
+        /// Rebuilds the render tree of a pawn (colonist by nickname) from what it wears now, with the flags the game draws with (clothes, headgear), and logs ([render-rebuilt]) the
+        /// number of children of the ApparelBody and ApparelHead nodes against the number of garments worn. For a pawn drawn with no clothes although it wears some. Never fails.
+        /// Written 2026-11-19 for AniS (Soren, bare torso). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the render tree of {string} is rebuilt")]
+        public void RebuildRenderTree(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            pawn.Drawer.renderer.SetAllGraphicsDirty();
+            PawnRenderTree tree = pawn.Drawer.renderer.renderTree;
+            tree.EnsureInitialized(GameFlags());
+            int body = -1, head = -1;
+            foreach (PawnRenderNode n in tree.rootNode.children ?? new PawnRenderNode[0])
+                Count(n, ref body, ref head);
+            string msg = "[render-rebuilt] " + nickname + ": worn " + pawn.apparel?.WornApparelCount + " (" + string.Join(", ", pawn.apparel?.WornApparel.Select(a => a.def.defName) ?? Enumerable.Empty<string>())
+                + "), ApparelBody children " + body + ", ApparelHead children " + head + ", frame " + Time.frameCount;
+            Log.Message(msg);
+            ctx.Attach("render-rebuilt", msg);
+        }
+
+        private static void Count(PawnRenderNode node, ref int body, ref int head)
+        {
+            string tag = node.Props?.tagDef?.defName;
+            if (tag == "ApparelBody") body = node.children?.Length ?? 0;
+            else if (tag == "ApparelHead") head = node.children?.Length ?? 0;
+            if (node.children == null) return;
+            foreach (PawnRenderNode c in node.children) Count(c, ref body, ref head);
         }
 
         private static object MakeParms(Pawn pawn)

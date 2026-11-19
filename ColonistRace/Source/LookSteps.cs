@@ -451,11 +451,36 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Require(jobDef != null, "no JobDef named 'LayDown'");
             Job job = JobMaker.MakeJob(jobDef, pawn.Position);
             job.forceSleep = true;
+            // The lie is held: LayDown ends when the animal is rested or its expiry runs out, then the animal wanders (AniS ticket ba5d: Paon lay down at frame 490, wandered by frame 717).
+            job.expiryInterval = 600000;
+            job.checkOverrideOnExpire = false;
+            if (pawn.needs?.rest != null) pawn.needs.rest.CurLevel = 0f;
             pawn.jobs.StartJob(job, JobCondition.InterruptForced);
             pawn.Rotation = facing;
             Redraw(pawn);
             ctx.Assert(pawn.CurJob != null && pawn.CurJob.def == jobDef, $"{name}'s job is {pawn.CurJob?.def.defName ?? "none"}, not LayDown");
             ctx.Assert(pawn.Rotation == facing, $"{name} should face {facing}; it faces {pawn.Rotation}");
+        }
+
+        /// <summary>
+        /// Logs ([animal-state]) where an animal is at this frame: spawned, position, draw position, screen point with the screen size and camera root size, rotation, current job, name.
+        /// To tell an animal that moved or was despawned after its placement from one that is drawn outside the frame. Never fails on a missing job or camera.
+        /// Asked for by AniS (gallery B, peacock "Paon" absent from the capture), 2026-11-19. NOT PLAYED.
+        /// </summary>
+        /// <param name="name">the short name of the animal</param>
+        [Given("Nelim's Pickle Tools: the animal {string} is logged")]
+        public void AnimalIsLogged(PickleContext ctx, string name)
+        {
+            Pawn pawn = AnyPawn(ctx, name);
+            Vector3 pos = pawn.DrawPos;
+            Vector3 screen = Find.Camera != null ? Find.Camera.WorldToScreenPoint(pos) : Vector3.zero;
+            var sb = new System.Text.StringBuilder();
+            sb.AppendLine("[animal-state] " + name + ": kind " + pawn.kindDef?.defName + ", full name " + pawn.LabelShortCap + ", frame " + Time.frameCount);
+            sb.AppendLine("spawned " + pawn.Spawned + ", position " + pawn.Position + ", draw pos " + pos + ", screen " + screen + " of " + Screen.width + "x" + Screen.height
+                + ", camera root size " + Find.CameraDriver.RootSize.ToString("0.00") + ", rotation " + pawn.Rotation);
+            sb.AppendLine("job " + (pawn.CurJob?.def.defName ?? "none") + ", dead " + pawn.Dead + ", downed " + pawn.Downed + ", map " + (pawn.Map != null));
+            Log.Message(sb.ToString());
+            ctx.Attach("animal-state", sb.ToString());
         }
 
         /// <summary>Turns a pawn (colonist or animal, found by its short name) where it stands, without moving it.</summary>
