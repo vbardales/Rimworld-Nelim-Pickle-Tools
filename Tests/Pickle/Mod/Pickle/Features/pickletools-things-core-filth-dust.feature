@@ -39,6 +39,26 @@ Feature: things core-filth-dust
     And I take a screenshot "things-core-filth-dust-02"
     Then no errors were logged
 
+  Scenario: core-filth-dust-03
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: 1 of the item "DirtBase" are spawned at (148, 151)
+    And Nelim's Pickle Tools: 3 of the item "DirtBase" are spawned at (150, 151)
+    And Nelim's Pickle Tools: 5 of the item "DirtBase" are spawned at (152, 151)
+    And Nelim's Pickle Tools: 1 of the item "Gravel" are spawned at (148, 149)
+    And Nelim's Pickle Tools: 3 of the item "Gravel" are spawned at (150, 149)
+    And Nelim's Pickle Tools: 5 of the item "Gravel" are spawned at (152, 149)
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.3
+    And I take a screenshot "things-core-filth-dust-03"
+    Then no errors were logged
+
   Scenario: core-filth-dust-metadata
     Given the save "test-colony" is loaded
     And game speed is paused
