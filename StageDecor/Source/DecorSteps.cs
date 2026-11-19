@@ -1341,6 +1341,19 @@ namespace Nelim.PickleTools.StageDecor
         [Given("Nelim's Pickle Tools: the filth {string} is spread from \\({int}, {int}\\) to \\({int}, {int}\\)")]
         public void FilthSpread(PickleContext ctx, string filthDefName, int x1, int z1, int x2, int z2)
         {
+            SpreadFilth(ctx, filthDefName, x1, z1, x2, z2, 5);
+        }
+
+        /// <summary>The same with a thickness from 1 (a light smear) to 5 (dense), for a catalogue shot of a filth at a given thickness. Written 2026-11-20 for DustBunnies (Core filths side by side). NOT PLAYED.</summary>
+        [Given("Nelim's Pickle Tools: the filth {string} is spread from \\({int}, {int}\\) to \\({int}, {int}\\) at thickness {int}")]
+        public void FilthSpreadThick(PickleContext ctx, string filthDefName, int x1, int z1, int x2, int z2, int thickness)
+        {
+            ctx.Require(thickness >= 1 && thickness <= 5, $"a filth thickness runs from 1 to 5, not {thickness}");
+            SpreadFilth(ctx, filthDefName, x1, z1, x2, z2, thickness);
+        }
+
+        private void SpreadFilth(PickleContext ctx, string filthDefName, int x1, int z1, int x2, int z2, int thickness)
+        {
             Map map = CurrentMap(ctx);
             ThingDef def = DefDatabase<ThingDef>.GetNamedSilentFail(filthDefName);
             ctx.Require(def != null && typeof(Filth).IsAssignableFrom(def.thingClass), $"'{filthDefName}' is not a filth def (try Filth_Dirt, Filth_Ash, Filth_Slime)");
@@ -1362,8 +1375,8 @@ namespace Nelim.PickleTools.StageDecor
 
                 if (filth != null)
                 {
-                    // thickness to the maximum so the smear is drawn dense
-                    filth.thickness = def.filth != null ? 5 : filth.thickness;
+                    // thickness to the maximum (5) unless a step asked for less, so the smear is drawn dense
+                    filth.thickness = def.filth != null ? thickness : filth.thickness;
                     Placed.Add(filth);
                     made++;
                 }
