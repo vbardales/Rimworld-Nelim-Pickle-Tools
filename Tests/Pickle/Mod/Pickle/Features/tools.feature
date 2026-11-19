@@ -5,6 +5,7 @@
 # single such gene is deterministic: Genie (Body_Thin) and Yttakin (Body_Hulk), used below.
 # The steps that read a pawn's DRAWN body ("body is drawn from", "body type is Fat") are RimWorks/Rimworld-Pickle#32 and are not in
 # the stock Pickle: their scenarios are in Upstream/tests/colonist-race-bodytype-probe.feature, for a build that has that PR.
+@requires:nelim.pickletools.colonistrace
 Feature: PickleTools steps
 
   Background:

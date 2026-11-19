@@ -4,6 +4,7 @@
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.colonistrace
 @requires:nelim.pickletools.camerazoom
+@requires:nelim.pickletools.stagedecor
 Feature: vanilla face
 
   Scenario: vanilla-face-01: the twelve Core heads, six male then six female

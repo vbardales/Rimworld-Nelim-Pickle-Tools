@@ -1,6 +1,7 @@
 # Farm ground catalogue for CoL: floors, plants, fences, hay, one row per shot, on a Concrete floor (owner rules 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by Docs/Generate-HandSets.js: edit there.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
+@requires:nelim.pickletools.colonistrace
 Feature: things col-farm-ground
 
   Scenario: col-farm-ground-floor-a

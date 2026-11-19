@@ -76,7 +76,7 @@ Feature: One photograph per gene of Seren, from Stardust (skin colours, hair col
     And Nelim's Pickle Tools: the learning helper is hidden
     And Nelim's Pickle Tools: the temperature of the map is 20 degrees
     And Nelim's Pickle Tools: I frame the area centred on (177, 121) at root size 6.5
-    And a colonist "SerenModel" of kind "OL_SerenColonist" exists
+    And Nelim's Pickle Tools: a colonist "SerenModel" of kind "OL_SerenColonist" exists
     And Nelim's Pickle Tools: "SerenModel" gender is Female
     And Nelim's Pickle Tools: "SerenModel" stands at (176, 120) facing South
     And Nelim's Pickle Tools: the other colonists are out of frame
