@@ -25,54 +25,66 @@ Feature: vanilla face
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: the camera frames the head of "Jet" at root size 0.9
+    And Nelim's Pickle Tools: the camera frames the mouth of "Jet" at root size 0.9 lowered by 0.37 cells
     When Nelim's Pickle Tools: "Jet" gender is male
     And Nelim's Pickle Tools: "Jet" head type is "Male_AverageNormal"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_AverageNormal"
     And Nelim's Pickle Tools: "Jet" head type is "Male_AveragePointy"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_AveragePointy"
     And Nelim's Pickle Tools: "Jet" head type is "Male_AverageWide"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_AverageWide"
     And Nelim's Pickle Tools: "Jet" head type is "Male_NarrowNormal"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_NarrowNormal"
     And Nelim's Pickle Tools: "Jet" head type is "Male_NarrowPointy"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_NarrowPointy"
     And Nelim's Pickle Tools: "Jet" head type is "Male_NarrowWide"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Male_NarrowWide"
     When Nelim's Pickle Tools: "Jet" gender is female
     And Nelim's Pickle Tools: "Jet" head type is "Female_AverageNormal"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_AverageNormal"
     And Nelim's Pickle Tools: "Jet" head type is "Female_AveragePointy"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_AveragePointy"
     And Nelim's Pickle Tools: "Jet" head type is "Female_AverageWide"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_AverageWide"
     And Nelim's Pickle Tools: "Jet" head type is "Female_NarrowNormal"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_NarrowNormal"
     And Nelim's Pickle Tools: "Jet" head type is "Female_NarrowPointy"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_NarrowPointy"
     And Nelim's Pickle Tools: "Jet" head type is "Female_NarrowWide"
+    And Nelim's Pickle Tools: the graphics of "Jet" are refreshed
     And I wait 10 ticks
     And Nelim's Pickle Tools: the interaction bubbles are cleared
     And I take a screenshot "vanillaface-Female_NarrowWide"
