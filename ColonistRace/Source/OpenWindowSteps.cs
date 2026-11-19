@@ -76,6 +76,67 @@ namespace Nelim.PickleTools.ColonistRace
             ctx.Assert(!listed.Contains(defName, StringComparer.OrdinalIgnoreCase), $"the Architect tab '{tab.defName}' lists '{defName}'");
         }
 
+        // The only defs a tab may offer while a scenario runs; null = no limit. Read by the postfix on ResolvedAllowedDesignators, which the
+        // Architect menu reads every frame it draws a tab, so no cache has to be rebuilt.
+        private static System.Collections.Generic.HashSet<string> onlyDefs;
+        private static DesignationCategoryDef limitedTab;
+        private static HarmonyLib.Harmony designatorHarmony;
+
+        private static bool Kept(Designator d)
+        {
+            if (d is Designator_Dropdown dropdown)
+                return dropdown.Elements.Any(Kept);
+            if (d is Designator_Place place)
+                return place.PlacingDef != null && onlyDefs.Contains(place.PlacingDef.defName);
+            return true;
+        }
+
+        private static System.Collections.Generic.IEnumerable<Designator> FilterDesignators(System.Collections.Generic.IEnumerable<Designator> __result, DesignationCategoryDef __instance)
+        {
+            if (onlyDefs == null || __instance != limitedTab)
+                return __result;
+            return __result.Where(Kept).ToList();
+        }
+
+        /// <summary>
+        /// Limits what one Architect tab offers to a list of building defs (comma separated defNames), for the length of the scenario, so a capture of a
+        /// tab with thirty entries (the Unsorted tab with the Ideology and Odyssey items) shows a few rows. A drop-down group stays when one of its
+        /// members is listed; designators that are no building (cancel, copy) stay. Postfix on <c>DesignationCategoryDef.ResolvedAllowedDesignators</c>.
+        /// Written 2026-11-20 for ArchitectStudio scene 3. COMPILED, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the architect tab {string} shows only the defs {string}")]
+        public void ArchitectTabShowsOnly(PickleContext ctx, string tabName, string defNames)
+        {
+            var categories = DefDatabase<DesignationCategoryDef>.AllDefsListForReading;
+            DesignationCategoryDef tab = categories.FirstOrDefault(c => string.Equals(c.defName, tabName, StringComparison.OrdinalIgnoreCase))
+                ?? categories.FirstOrDefault(c => c.label != null && string.Equals(c.LabelCap.ToString(), tabName, StringComparison.OrdinalIgnoreCase));
+            ctx.Require(tab != null, $"no Architect tab '{tabName}'; the tabs are " + string.Join(", ", categories.Select(c => c.defName)));
+            var names = new System.Collections.Generic.HashSet<string>(
+                defNames.Split(',').Select(n => n.Trim()).Where(n => n.Length > 0), StringComparer.OrdinalIgnoreCase);
+            ctx.Require(names.Count > 0, "the list of defs is empty");
+            if (designatorHarmony == null)
+            {
+                MethodInfo getter = typeof(DesignationCategoryDef).GetProperty("ResolvedAllowedDesignators")?.GetGetMethod();
+                ctx.Require(getter != null, "DesignationCategoryDef.ResolvedAllowedDesignators is not there any more (the game changed): update this step");
+                var h = new HarmonyLib.Harmony("nelim.pickletools.architectonly");
+                h.Patch(getter, postfix: new HarmonyLib.HarmonyMethod(typeof(OpenWindowSteps), nameof(FilterDesignators)));
+                designatorHarmony = h;
+            }
+
+            limitedTab = tab;
+            onlyDefs = names;
+            int shown = tab.ResolvedAllowedDesignators.Count();
+            Log.Message($"[architect] tab {tab.defName} limited to {string.Join(", ", names)}: {shown} designator(s) left");
+            ctx.Assert(shown > 0, $"no designator of '{tab.defName}' is left: none of {string.Join(", ", names)} is on it");
+        }
+
+        [AfterScenario]
+        public void ArchitectTabUnlimited()
+        {
+            onlyDefs = null;
+            limitedTab = null;
+        }
+
         private static System.Collections.Generic.List<string> ArchitectDefs(PickleContext ctx, string tabName, out DesignationCategoryDef tab)
         {
             var categories = DefDatabase<DesignationCategoryDef>.AllDefsListForReading;
