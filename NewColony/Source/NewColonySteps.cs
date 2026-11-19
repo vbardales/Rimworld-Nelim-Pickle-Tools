@@ -227,12 +227,13 @@ namespace Nelim.PickleTools.NewColony
             ctx.Require(Current.ProgramState == ProgramState.Playing && Find.CurrentMap != null, "start a new colony first");
 
             var clock = Stopwatch.StartNew();
+            int startTicks = Find.TickManager.TicksGame;
             Find.TickManager.CurTimeSpeed = TimeSpeed.Fast;
             try
             {
                 while (!AllSpawned())
                 {
-                    ctx.Assert(clock.Elapsed.TotalSeconds < 90, "the colonists did not all land within 90 s: " + ColonistStates());
+                    ctx.Assert(clock.Elapsed.TotalSeconds < 90, "the colonists did not all land within 90 s: " + ColonistStates() + ". " + TickState(startTicks));
                     await ctx.WaitFrames(5);
                 }
             }
@@ -248,6 +249,16 @@ namespace Nelim.PickleTools.NewColony
         {
             var pawns = Find.CurrentMap.mapPawns;
             return pawns.FreeColonistsCount > 0 && pawns.FreeColonistsSpawnedCount == pawns.FreeColonistsCount;
+        }
+
+        // Says whether the game ran at all while the step waited: a pause (a dialog, a window that force-pauses) and a slow game read the same
+        // in the colonists' states (ticket 8b30, ForTheOccasion, Odyssey: all stuck in ActiveTransporterInfo, tick count unknown).
+        private static string TickState(int startTicks)
+        {
+            var tm = Find.TickManager;
+            string windows = string.Join(", ", Find.WindowStack.Windows.Select(w => w.GetType().Name + (w.forcePause ? " (force-pause)" : "")));
+            return $"ticks run {tm.TicksGame - startTicks} (start {startTicks}, now {tm.TicksGame}), speed {tm.CurTimeSpeed}, paused {tm.Paused}, force-paused {tm.ForcePaused}, "
+                + $"open windows: {(windows.Length > 0 ? windows : "none")}";
         }
 
         private static string ColonistStates()
