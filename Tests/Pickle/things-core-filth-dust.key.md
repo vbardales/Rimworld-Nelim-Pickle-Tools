@@ -5,8 +5,6 @@
 | --- | --- | --- | --- |
 | 01 | 1 | dlc:Core | Filth_Trash |
 | 01 | 2 | dlc:Core | Filth_Dirt |
-| 01 | 3 | dlc:Core | Filth_Ash |
-| 01 | 4 | dlc:Core | Filth_Sand |
 
 ## Shot 02
 | shot | col | mod | def |

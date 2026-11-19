@@ -1,4 +1,4 @@
-# Core filths side by side on a Concrete floor, one shot, for DustBunnies (Cat request 2026-11-20, set things/core-filth-dust): Trash and Dirt at thickness 3, Ash and Sand at the default dense thickness 5. Written by hand, NOT PLAYED when written.
+# Core filths side by side on a Concrete floor, one shot, for DustBunnies (Cat request 2026-11-20, set things/core-filth-dust): Trash and Dirt at thickness 3 (Ash and Sand dropped 2026-11-20, DuB decision). Written by hand, NOT PLAYED when written.
 @requires:nelim.pickletools.screenshotstudio
 @requires:nelim.pickletools.stagedecor
 @requires:nelim.pickletools.colonistrace
@@ -12,13 +12,11 @@ Feature: things core-filth-dust
     And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
     And Nelim's Pickle Tools: the filth "Filth_Trash" is spread from (146, 149) to (147, 151) at thickness 3
     And Nelim's Pickle Tools: the filth "Filth_Dirt" is spread from (148, 149) to (149, 151) at thickness 3
-    And Nelim's Pickle Tools: the filth "Filth_Ash" is spread from (150, 149) to (151, 151)
-    And Nelim's Pickle Tools: the filth "Filth_Sand" is spread from (152, 149) to (153, 151)
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.3
+    And Nelim's Pickle Tools: I frame the area centred on (148, 150) at root size 3.3
     And I take a screenshot "things-core-filth-dust-01"
     Then no errors were logged
 
