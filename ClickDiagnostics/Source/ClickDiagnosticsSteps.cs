@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using RimWorks.Pickle;
 using RimWorks.Pickle.Input;
@@ -130,6 +131,124 @@ namespace Nelim.PickleTools.ClickDiagnostics
 
             var pointer = CentreOf(ctx, label);
             storeAfterHover = $"  centre of the button {pointer}\n{ButtonProbe.DescribeTagStore(label)}";
+            AssertReachable(ctx, label, pointer, windowName);
+        }
+
+        private const int FramesToFindNth = 120;
+
+        // Pickle's tag store drops a tag two buttons claim, so the nth button is found from the probe's own record of
+        // what was drawn (ButtonText overloads, in draw order) and handed to Pickle's interaction request, which matches a
+        // widget by its rectangle. Both are internal to Pickle: reflected, and a missing member says so by name.
+        private static async Task<Rect> NthRect(PickleContext ctx, string label, string key, int number)
+        {
+            ctx.Require(number >= 1, $"button numbers start at 1, got {number}");
+            ButtonProbe.EnsureInstalled();
+            List<Rect> rects = null;
+            for (var frame = 0; frame < FramesToFindNth; frame++)
+            {
+                rects = ButtonProbe.AllRects(label);
+                if (rects.Count >= number)
+                {
+                    return rects[number - 1];
+                }
+
+                await ctx.WaitFrames(1);
+            }
+
+            ctx.Assert(false,
+                $"button number {number} labelled '{label}' (key '{key}') was not drawn within {FramesToFindNth} frames: " +
+                $"{rects?.Count ?? 0} such button(s) seen, at {(rects == null ? "(none)" : string.Join(", ", rects))}");
+            return default;
+        }
+
+        private static MethodInfo RequestMethod(PickleContext ctx, string name)
+        {
+            var type = HarmonyLib.AccessTools.TypeByName("RimWorks.Pickle.Input.InteractionRequest");
+            var method = type == null ? null : HarmonyLib.AccessTools.Method(type, name);
+            ctx.Require(method != null, $"RimWorks.Pickle.Input.InteractionRequest.{name} is not there in this Pickle build: it moved, this step has to follow");
+            return method;
+        }
+
+        /// <summary>
+        /// Same check as <c>the button keyed ... is reachable in</c>, for the nth button (1 = first drawn) when several
+        /// buttons share a label, which Pickle's own lookup refuses.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the button keyed {string} number {int} is reachable in {string}", TimeoutSeconds = 30)]
+        public async Task NthButtonIsReachable(PickleContext ctx, string key, int number, string windowName)
+        {
+            var label = Label(ctx, key);
+            var rect = await NthRect(ctx, label, key, number);
+            RequestMethod(ctx, "SetHover").Invoke(null, new object[] { rect });
+            await ctx.WaitFrames(2);
+            AssertReachable(ctx, label, rect.center / Prefs.UIScale, windowName);
+        }
+
+        /// <summary>Waits until the nth button of that label has been drawn at the same place for sixty frames and two seconds.</summary>
+        [When("Nelim's Pickle Tools: the button keyed {string} number {int} has stood still", TimeoutSeconds = 30)]
+        public async Task NthButtonHasStoodStill(PickleContext ctx, string key, int number)
+        {
+            var label = Label(ctx, key);
+            ButtonProbe.EnsureInstalled();
+            Rect? last = null;
+            var stable = 0;
+            var clock = Stopwatch.StartNew();
+            var still = Stopwatch.StartNew();
+            var frame = 0;
+            for (; frame < FramesToGiveUp && (stable < FramesToStandStill || still.Elapsed.TotalSeconds < SecondsToStandStill)
+                   && clock.Elapsed.TotalSeconds < SecondsToGiveUp; frame++)
+            {
+                await ctx.WaitFrames(1);
+                var all = ButtonProbe.AllRects(label);
+                Rect? now = all.Count >= number ? all[number - 1] : (Rect?)null;
+                var unchanged = now.HasValue && last.HasValue && now.Value == last.Value;
+                stable = unchanged ? stable + 1 : 0;
+                if (!unchanged)
+                {
+                    still.Restart();
+                }
+
+                last = now;
+            }
+
+            var waited = $"{frame} frames in {clock.Elapsed.TotalSeconds:0.#} s";
+            ctx.Assert(last.HasValue, $"button number {number} labelled '{label}' (key '{key}') was not drawn in {waited}");
+            ctx.Assert(stable >= FramesToStandStill && still.Elapsed.TotalSeconds >= SecondsToStandStill,
+                $"button number {number} '{label}' never stood still for {FramesToStandStill} frames and {SecondsToStandStill} s in {waited}; last seen at {last}");
+        }
+
+        /// <summary>
+        /// Clicks the nth button (1 = first drawn) of a label several buttons share, by arming Pickle's click on that
+        /// button's rectangle: the widget that draws at it takes the click, as for a tagged button.
+        /// </summary>
+        [When("Nelim's Pickle Tools: I click the button keyed {string} number {int}", TimeoutSeconds = 30)]
+        public async Task ClickNthButton(PickleContext ctx, string key, int number)
+        {
+            var label = Label(ctx, key);
+            var rect = await NthRect(ctx, label, key, number);
+            RequestMethod(ctx, "ArmClick").Invoke(null, new object[] { rect });
+            var fired = HarmonyLib.AccessTools.Property(
+                HarmonyLib.AccessTools.TypeByName("RimWorks.Pickle.Input.InteractionRequest"), "ClickFired");
+            ctx.Require(fired != null, "RimWorks.Pickle.Input.InteractionRequest.ClickFired is not there in this Pickle build");
+            var clock = Stopwatch.StartNew();
+            while (!(bool)fired.GetValue(null) && clock.Elapsed.TotalSeconds < 2)
+            {
+                await ctx.WaitFrames(1);
+            }
+
+            if (!(bool)fired.GetValue(null))
+            {
+                RequestMethod(ctx, "Clear").Invoke(null, null);
+                ctx.Assert(false,
+                    $"button number {number} '{label}' (key '{key}') at {rect} took no click in 2 s: no Widgets.ButtonText there fired it " +
+                    $"(covered, or drawn without a click check).\nWindow stack, top first:\n{DescribeStack(rect.center / Prefs.UIScale)}");
+            }
+
+            await ctx.WaitFrames(2);
+        }
+
+        // The pointer is the centre of the button in GUI space; the window under it must be the named one and receive input.
+        private static void AssertReachable(PickleContext ctx, string label, Vector2 pointer, string windowName)
+        {
             var under = Find.WindowStack.GetWindowAt(pointer);
             ctx.Assert(under != null,
                 $"'{label}' is under no window at all; the centre of the button is at {pointer}\nWindow stack, top first:\n{DescribeStack(pointer)}");

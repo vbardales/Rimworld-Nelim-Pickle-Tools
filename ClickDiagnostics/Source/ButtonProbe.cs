@@ -133,6 +133,23 @@ namespace Nelim.PickleTools.ClickDiagnostics
         }
 
         /// <summary>
+        /// Every rectangle a text button with this label was drawn at in the last two frames, in draw order, a
+        /// rectangle drawn on both frames once. Pickle's tag store keeps one rectangle per tag and refuses a tag
+        /// two buttons claim (it reports it "not found" after 5 s), so this is the only way to reach the nth of
+        /// several buttons with the same label.
+        /// </summary>
+        internal static List<Rect> AllRects(string label)
+        {
+            return previous.Concat(current)
+                .Where(seen => seen.Widget == "ButtonText" && seen.Label == label)
+                .GroupBy(seen => seen.Screen)
+                .Select(group => group.First())
+                .OrderBy(seen => seen.Order)
+                .Select(seen => seen.Screen)
+                .ToList();
+        }
+
+        /// <summary>
         /// Where a text button with this label was drawn, in the space Pickle records its tags in. The click
         /// lands at the centre of the rectangle Pickle stored, so when the pointer is nowhere near the button
         /// on the screenshot, this is the number that says whether the rectangle or the pointer is wrong.
