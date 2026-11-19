@@ -20,7 +20,7 @@ const post = (size, shot) => `    And I set the hour to 12
     Then no errors were logged
 `;
 function build(set, desc, shots) {
-  let s = `# ${desc}, one row per shot, on a Concrete floor (owner rules 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by Docs/Generate-HandSets.js: edit there.\n@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.stagedecor\nFeature: things ${set}\n\n`;
+  let s = `# ${desc}, one row per shot, on a Concrete floor (owner rules 2026-11-18, Rimworld-Catalog/docs/CAPTURE-RULES.md). Written by Docs/Generate-HandSets.js: edit there.\n@requires:nelim.pickletools.screenshotstudio\n@requires:nelim.pickletools.stagedecor\n@requires:nelim.pickletools.colonistrace\nFeature: things ${set}\n\n`;
   let key = `# ${set} key\n\nOne row per shot: row = 1, col = left to right. Image: things-${set}-<shot>.webp. Roots are guesses, checked on the first image.\n`;
   for (const sh of shots) {
     s += `  Scenario: ${set}-${sh.id}\n` + pre;
