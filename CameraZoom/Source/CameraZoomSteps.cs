@@ -21,7 +21,7 @@ namespace Nelim.PickleTools.CameraZoom
         private const int FramesToSettle = 90;
         private const float Tolerance = 0.05f;
 
-        // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange), so a size below 11 reads back as 11 (BetweenSus bfa5 and SimpleFXSmokePatchRenew
+        // The game keeps the camera root size between 11 and 60 (CameraMapConfig.sizeRange) unless widened (Pickle 6.7.x lowers its own closest to 3 as well; played 2026-11-20, ticket f4e9: 6 asked, 6 read), so a size below 11 reads back as 11 without it (BetweenSus bfa5 and SimpleFXSmokePatchRenew
         // 52f2, 2026-11-12: 8.33 and 4.17 asked, 11 read). ScreenshotStudio's frame steps widen that range first; these steps do the same before every SetRootSize.
         // NOT PLAYED when written: read the read-back of the first run.
         private static void LiftZoomLimit()

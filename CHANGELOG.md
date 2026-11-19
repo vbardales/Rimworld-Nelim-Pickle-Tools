@@ -21,7 +21,7 @@ Since the commit the 1.1.0 dry-run was made for (`f236105`, run 36175171078; **1
   - TradeSteps: `the trader offers {string}` (no stock fails with the prefix `[no-stock] `: Pickle 6.6.3 has no runtime skip), `the trader would buy {string}`, and orbital trader kinds (a trade ship instead of a caravan pawn).
   - DefFieldSteps: a list or array field reads as its items joined by `, `; new steps `the biome {string} lists the wild animal {string}`, `the recipe {string} is offered for the race {string}`, `the surgery recipes of the race {string} match those of the race {string}`.
   - `brrainz.harmony` is now declared (`modDependencies` and `loadAfter`) in the bundle and in the seven tools that use HarmonyLib.
-  - CameraZoom: the probe now asserts what it measured on Pickle 6.6.3, the game stops the zoom at root size 11.
+  - CameraZoom: the probe asserted what it measured on Pickle 6.6.3 (the zoom stops at root size 11); 2026-11-20 it asserts 6, the size reached once the range is widened (ticket f4e9).
   - Test fixes, no payload change: the aggregate pass maps no longer overlay a retired `.build/aggregate-current`; features that used `Apparel_ShirtButton` (it is `Apparel_BasicShirt` in 1.6) and spots of `test-colony` that hold natural rock were corrected.
 
 ## [1.1.0] - 2026-09-25

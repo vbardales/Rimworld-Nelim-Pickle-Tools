@@ -15,7 +15,7 @@ Two steps for a capture that needs the camera closer than Pickle's own zoom step
 
 Pickle's `I zoom all the way in` is clamped to a root size of 12 (`CloseSize` in `CameraSteps.cs`, read from its source on
 2026-10-02), and `SetRootSize` called directly is not. AncientBuildingsRenew measured about 45 px per cell at 12 on a
-1080-pixel-high screen and wants about 6 (about 90 px). **The game itself bounds the size at 11** (measured 2026-10-10, ticket 9e60, Pickle 6.6.3: asked for 6, the camera read 11): no suite gets closer than 11, whatever the step asks.
+1080-pixel-high screen and wants about 6 (about 90 px). **The game keeps the camera root size at 11 or more unless the range is widened** (measured 2026-10-10, ticket 9e60, Pickle 6.6.3, before the steps widened it: asked for 6, the camera read 11). Since 2026-11-12 these steps widen `CameraMapConfig.sizeRange` themselves before every size they set, and Pickle 6.7.x lowers its own closest size to 3 (v6.7.5 source, `CameraSteps.CloseSize`): asked for 6, the camera reads 6 (ticket f4e9, 2026-11-20, Pickle 6.7.2 on the remote lanes). Without these steps and on an older Pickle the bound of 11 still holds.
 The read-back step is how a suite finds out.
 
 Ported on 2026-10-02 from AncientBuildingsRenew's provisional steps (`Tests/Pickle/Source/BuildingSteps.cs`), at Virginie's
@@ -34,7 +34,7 @@ nelim.pickletools.camerazoom   path:PickleTools/CameraZoom/Mod
 in a pass map of `Tests/Pickle/`. Not in the Workshop bundle: a companion staged by a pass map. Check the patterns with
 `powershell.exe -ExecutionPolicy Bypass -File scripts/Check-Steps.ps1 -ModRoot PickleTools/CameraZoom -Tool`. The probe scenario is
 `Tests/Pickle/Mod/Pickle/Features/pickletools-camerazoom.feature`, staged with `Tests/Pickle/wsl-deps.camerazoom.map`; it asks for
-root size 6 and asserts the game's own closest size, 11 (the answer the probe found on 2026-10-10).
+root size 6 and asserts that the size reached is 6 (the probe read 11 on 2026-10-10, before the steps widened the range; 6 on 2026-11-20, ticket f4e9).
 
 What a camera step does not do: frame a named pawn. `CoatSteps` frames `coat-N` animals only; a by-name step is wanted
 (see `docs/Elsewhere/README.md`, the camera framing row).
