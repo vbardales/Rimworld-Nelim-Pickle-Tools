@@ -164,6 +164,25 @@ namespace Nelim.PickleTools.ColonistRace
             Log.Message("[thoughts] " + nickname + ": " + count + " memory thought(s) " + thoughtName + " cleared");
         }
 
+        /// <summary>
+        /// Gives a colonist the memory thought of a ThoughtDef at its first stage, as the game does when the event happens (for a biscuit eaten: <c>AteFZCookies</c>), so the Needs tab
+        /// lists it. A memory lasts days and the game may drop it as ticks pass: the step goes right before the capture. Fails on an unknown def, on a def that is not a memory
+        /// thought, or when the game refuses it (a precept or trait that blocks it) and the colonist does not hold it afterwards.
+        /// Written 2026-11-19 for FzC (Needs tab, gallery). NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} gains the memory thought {string}")]
+        public void GainsMemory(PickleContext ctx, string nickname, string thoughtName)
+        {
+            Pawn pawn = ColonistLookup.Require(nickname);
+            ThoughtDef def = DefDatabase<ThoughtDef>.GetNamedSilentFail(thoughtName);
+            ctx.Require(def != null, "no ThoughtDef named '" + thoughtName + "'");
+            ctx.Require(typeof(Thought_Memory).IsAssignableFrom(def.thoughtClass), thoughtName + " is not a memory thought (its class is " + def.thoughtClass?.Name + ")");
+            var handler = pawn.needs?.mood?.thoughts?.memories;
+            ctx.Require(handler != null, nickname + " has no memory thought handler");
+            handler.TryGainMemory(def);
+            ctx.Assert(handler.Memories.Any(m => m.def == def), nickname + " did not gain " + thoughtName + ": the game refused it (a trait, precept or requirement blocks it); memories held: " + string.Join(", ", handler.Memories.Select(m => m.def.defName)));
+        }
+
         /// <summary>Asserts a colonist does NOT have the mood thought <c>ThoughtDef</c> now; the failure says it is there, with its mood offset.</summary>
         [Then("Nelim's Pickle Tools: {string} has no thought {string}")]
         public void HasNoThought(PickleContext ctx, string nickname, string thoughtName)
