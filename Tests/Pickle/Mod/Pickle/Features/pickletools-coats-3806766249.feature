@@ -10,7 +10,7 @@ Feature: coat gallery 3806766249
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 8 adult animals of kind "RG_Dodo" are spawned around (150, 152)
+    And Nelim's Pickle Tools: 8 adult animals of kind "RG_Dodo" are spawned close together
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1

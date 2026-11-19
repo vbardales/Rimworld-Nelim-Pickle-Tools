@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Coat gallery of a Colorful Coats mod (patches and textures only, no defs): one shot per animal kind, every coat of the kind side by side
 // (the original graphic plus each alternate graphic of the patch), made from the PawnKindDef blocks of the mod's Patches folder.
-// Usage: node Docs/Generate-CoatGallery.js <workshopId> --pkg <packageId> [--dep <packageId>:<workshopId>]... [--skip <defName>]... [--per N]
+// Usage: node Docs/Generate-CoatGallery.js <workshopId> --pkg <packageId> [--dep <packageId>:<workshopId>]... [--skip <defName>]... [--close]
 //   --skip drops a kind (a patch that lists the same animal under an old defName twice). Writes the feature, the key and the map under Tests/Pickle/.
 // Written 2026-11-20 for Colorful Coats Dodos 3806766249 and Megafauna 3806766441 (Cat's catalogue request). COMPILED, NOT PLAYED.
 const fs = require('fs');
@@ -13,6 +13,7 @@ const all = (n) => args.flatMap((a, i) => (a === n ? [args[i + 1]] : []));
 if (!id || !opt('--pkg')) { console.error('usage: node Docs/Generate-CoatGallery.js <workshopId> --pkg <packageId> [--dep pid:id]... [--skip defName]...'); process.exit(2); }
 const pkg = opt('--pkg');
 const skip = new Set(all('--skip'));
+const close = args.includes('--close');   // small kinds: every animal within four cells of the map centre, one tight frame; without it spread around (150, 152) for big kinds
 const root = path.join('C:/Program Files (x86)/Steam/steamapps/workshop/content/294100', id, 'Patches');
 const kinds = new Map();
 for (const f of fs.readdirSync(root).filter((n) => n.endsWith('.xml'))) {
@@ -38,7 +39,7 @@ for (const kind of names) {
     + `    Given the save "test-colony" is loaded\n    And game speed is paused\n`
     + `    And Nelim's Pickle Tools: the eclipse of the map is ended\n`
     + `    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared\n`
-    + `    And Nelim's Pickle Tools: ${coats.length + 1} adult animals of kind "${kind}" are spawned around (150, 152)\n`
+    + `    And Nelim's Pickle Tools: ${coats.length + 1} adult animals of kind "${kind}" are spawned ${close ? 'close together' : 'around (150, 152)'}\n`
     + `    And Nelim's Pickle Tools: the animal "coat-1" is given coat -1\n`
     + coats.map((_, i) => `    And Nelim's Pickle Tools: the animal "coat-${i + 2}" is given coat ${i}\n`).join('')
     + `    And I set the hour to 12\n    And I set the weather to "Clear"\n    And I wait 60 ticks\n`
