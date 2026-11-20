@@ -56,8 +56,25 @@ namespace Nelim.PickleTools.ScreenshotStudio
         }
 
         private static float? glowCeiling;
+        // Ceiling on the sun term only: the lamp glow stored in the grid (CompGlower of torches, braziers) is kept (AnN galerie-45 and 46, 2026-11-20).
+        private static bool ceilingKeepsLamps;
+        private static System.Reflection.FieldInfo glowArrayField, glowMapField;
 
-        private static void PostGlowColor(ref UnityEngine.Color32 __result)
+        // The lamp glow of a cell as the grid stores it (no sun term), or null when the grid layout of this game version is unknown.
+        private static UnityEngine.Color32? LampGlowAt(GlowGrid grid, object cell)
+        {
+            if (glowArrayField == null) glowArrayField = typeof(GlowGrid).GetField("glowGrid", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+            if (glowMapField == null) glowMapField = typeof(GlowGrid).GetField("map", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Public);
+            var arr = glowArrayField?.GetValue(grid) as UnityEngine.Color32[];
+            if (arr == null) return null;
+            int i;
+            if (cell is IntVec3 c) { var map = glowMapField?.GetValue(grid) as Map; if (map == null) return null; i = map.cellIndices.CellToIndex(c); }
+            else if (cell is int n) i = n;
+            else return null;
+            return i >= 0 && i < arr.Length ? arr[i] : (UnityEngine.Color32?)null;
+        }
+
+        private static void PostGlowColor(GlowGrid __instance, object __0, ref UnityEngine.Color32 __result)
         {
             if (glowFloor.HasValue)
             {
@@ -67,14 +84,24 @@ namespace Nelim.PickleTools.ScreenshotStudio
             if (glowCeiling.HasValue)
             {
                 byte c = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowCeiling.Value * 255f), 0, 255);
-                __result = new UnityEngine.Color32((byte)System.Math.Min(__result.r, c), (byte)System.Math.Min(__result.g, c), (byte)System.Math.Min(__result.b, c), __result.a);
+                UnityEngine.Color32 lamp = ceilingKeepsLamps ? LampGlowAt(__instance, __0) ?? default(UnityEngine.Color32) : default(UnityEngine.Color32);
+                __result = new UnityEngine.Color32((byte)System.Math.Min(__result.r, System.Math.Max(c, lamp.r)), (byte)System.Math.Min(__result.g, System.Math.Max(c, lamp.g)), (byte)System.Math.Min(__result.b, System.Math.Max(c, lamp.b)), __result.a);
             }
         }
 
-        private static void PostGlow(ref float __result)
+        private static void PostGlow(GlowGrid __instance, object __0, ref float __result)
         {
             if (glowFloor.HasValue && __result < glowFloor.Value) __result = glowFloor.Value;
-            if (glowCeiling.HasValue && __result > glowCeiling.Value) __result = glowCeiling.Value;
+            if (glowCeiling.HasValue)
+            {
+                float keep = glowCeiling.Value;
+                if (ceilingKeepsLamps)
+                {
+                    UnityEngine.Color32? lamp = LampGlowAt(__instance, __0);
+                    if (lamp.HasValue) keep = System.Math.Max(keep, System.Math.Max(lamp.Value.r, System.Math.Max(lamp.Value.g, lamp.Value.b)) / 255f);
+                }
+                if (__result > keep) __result = keep;
+            }
         }
 
         // Patches every read of the glow grid once; the floor and the ceiling are read by the postfixes.
@@ -87,7 +114,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
                 .Where(x => !x.IsAbstract && !x.ContainsGenericParameters).ToList();
             // The signatures are logged: the glow reads differ between game versions (a float glow, a Color32 the lighting overlay draws; ticket eb32, AnN 2026-11-07).
             Log.Message("[light] GlowGrid methods: " + string.Join("; ", all.Select(x => x.ReturnType.Name + " " + x.Name + "(" + string.Join(", ", x.GetParameters().Select(p => p.ParameterType.Name)) + ")")));
-            foreach (System.Reflection.MethodInfo m in all.Where(x => x.Name.IndexOf("GlowAt", System.StringComparison.OrdinalIgnoreCase) >= 0 || x.Name.IndexOf("Glow", System.StringComparison.OrdinalIgnoreCase) >= 0 && x.GetParameters().Length >= 1))
+            foreach (System.Reflection.MethodInfo m in all.Where(x => x.GetParameters().Length >= 1 && x.Name.IndexOf("Glow", System.StringComparison.OrdinalIgnoreCase) >= 0))
             {
                 if (m.ReturnType == typeof(float)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlow))); patched++; }
                 else if (m.ReturnType == typeof(UnityEngine.Color32)) { h.Patch(m, postfix: new HarmonyLib.HarmonyMethod(typeof(LightSteps), nameof(PostGlowColor))); patched++; }
@@ -108,7 +135,25 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Require(ceiling >= 0f && ceiling <= 1f, "the glow runs from 0 to 1");
             EnsureGlowPatched(ctx);
             glowCeiling = ceiling;
+            ceilingKeepsLamps = false;
             RefreshGlow(Find.CurrentMap);
+        }
+
+        /// <summary>
+        /// Dims only the SUN term of the light of every cell to at most this glow (0 dark, 1 full day) and keeps the glow of lit lamps, torches and braziers as the glow grid stores it, so a lit
+        /// lamp throws its pool on a dark night floor (AnN galerie-45: sun hold alone drew day; galerie-46: the plain dim clamped the lamps). Same patches as the plain dim; the ceiling of a
+        /// cell is raised to the lamp glow of that cell. Written 2026-11-20. COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [Given(Prefix + "the sun light of the map is dimmed to at most {float}, lamps kept")]
+        public void DimSunLight(PickleContext ctx, float ceiling)
+        {
+            ctx.Require(Find.CurrentMap != null, "No loaded map");
+            ctx.Require(ceiling >= 0f && ceiling <= 1f, "the glow runs from 0 to 1");
+            EnsureGlowPatched(ctx);
+            glowCeiling = ceiling;
+            ceilingKeepsLamps = true;
+            RefreshGlow(Find.CurrentMap);
+            ctx.Assert(LampGlowAt(Find.CurrentMap.glowGrid, Find.CurrentMap.Center) != null, "the lamp glow of the grid cannot be read (field glowGrid or map not found): the game changed");
         }
 
         /// <summary>Recomputes the glow grid and redraws the map mesh, for a capture taken after the hour was set in a paused game (the glow cache is refreshed on a tick only).</summary>
