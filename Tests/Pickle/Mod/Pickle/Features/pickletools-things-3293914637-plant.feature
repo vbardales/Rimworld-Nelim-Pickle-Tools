@@ -8,14 +8,15 @@ Feature: plant catalogue 3293914637
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 148) to (154, 156) is cleared
+    And Nelim's Pickle Tools: the area from (132, 140) to (162, 164) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (132, 140) to (162, 164)
     And Nelim's Pickle Tools: I place the decor "RA_MetalBean" at (141, 155) fully grown
     And Nelim's Pickle Tools: I place the decor "RA_MetalBeanSmall" at (144, 155) fully grown
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (148, 153) at root size 5.5
+    And Nelim's Pickle Tools: I frame the area centred on (143, 155) at root size 2.2
     And I take a screenshot "things-3293914637-plant-01"
     Then no errors were logged
 
