@@ -9,15 +9,15 @@ Feature: Terrain catalogue 3549649041
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the terrains of the mod "RGBmods.Misc.Plastone" are logged
-    And Nelim's Pickle Tools: the area from (140, 148) to (151, 153) is cleared
-    And Nelim's Pickle Tools: I lay the floor "Concrete" from (136, 145) to (156, 157)
+    And Nelim's Pickle Tools: the area from (136, 145) to (156, 157) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Soil" from (136, 145) to (156, 157)
     And Nelim's Pickle Tools: I lay the floor "RGBmods_FlagstonePlastone" from (140, 152) to (141, 153)
     And Nelim's Pickle Tools: I lay the floor "RGBmods_TilePlastone" from (142, 152) to (143, 153)
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (146, 151) at root size 3.8
+    And Nelim's Pickle Tools: I frame the area centred on (142, 153) at root size 2.1
     And I take a screenshot "terrain-3549649041-01"
     Then no errors were logged
 

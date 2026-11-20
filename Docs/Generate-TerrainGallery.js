@@ -14,6 +14,7 @@ const key = args.find(a => /^\d+$/.test(a));
 if (!key) { console.error('usage: node Docs/Generate-TerrainGallery.js <workshopId> [--per 18] [--shots N]'); process.exit(2); }
 const opt = (n, d) => { const i = args.indexOf(n); return i >= 0 ? Number(args[i + 1]) : d; };
 const ROOT = opt('--root', 3.8);  // root size of every shot: 3.5 clips the first block of a 6-wide row (12 cells x 154 px + the half-cell shift); owner 2026-11-18 asked 3 to 3.5 per cell
+const BASE = args.includes('--base') ? args[args.indexOf('--base') + 1] : 'Concrete'; // ground under the swatches: a contrasting base (Soil) for light floors such as Poured Concrete (Cat, 2026-11-20: a concrete floor on Concrete was unreadable)
 const PER = opt('--per', 18), SHOTS = opt('--shots', 0), FROM = opt('--from', 1);
 const root = path.resolve(__dirname, '..');
 const sheet = path.resolve(root, '..', '..', 'rimworld-mod-inventory', key + '.json.gz');
@@ -70,8 +71,8 @@ used.forEach((shot, si) => {
   f += `    And Nelim's Pickle Tools: the eclipse of the map is ended\n`;
   if (si === 0) f += `    And Nelim's Pickle Tools: the terrains of the mod "${j.mod.PackageId}" are logged
 `;
-  f += `    And Nelim's Pickle Tools: the area from (${X0}, ${Z0}) to (${x1}, ${z1}) is cleared\n`;
-  f += `    And Nelim's Pickle Tools: I lay the floor "Concrete" from (${cx - 10}, ${cz - 6}) to (${cx + 10}, ${cz + 6})
+  f += `    And Nelim's Pickle Tools: the area from (${cx - 10}, ${cz - 6}) to (${cx + 10}, ${cz + 6}) is cleared\n`; // the whole ground: no rock left in frame
+  f += `    And Nelim's Pickle Tools: I lay the floor "${BASE}" from (${cx - 10}, ${cz - 6}) to (${cx + 10}, ${cz + 6})
 `; // one uniform ground under the whole frame (the test-colony ground is split into sand and dark stone)
   k += `## Shot ${n}\n\n| row | col | floor |\n|---|---|---|\n`;
   shot.forEach((name, i) => {
@@ -82,7 +83,10 @@ used.forEach((shot, si) => {
   });
   f += `    And I set the hour to 12\n    And I set the weather to "Clear"\n    And I wait 60 ticks\n`;
   f += `    And Nelim's Pickle Tools: studio presentation mode is enabled\n`;
-  f += `    And Nelim's Pickle Tools: I frame the area centred on (${cx}, ${cz}) at root size ${ROOT}\n`;
+  // a shot with fewer floors than a full grid is framed on the blocks it uses, zoomed so that each cell stays large (Cat, 2026-11-20)
+  const cu = Math.min(shot.length, COLS), ru = Math.ceil(shot.length / COLS);
+  const fcx = X0 + cu, fcz = z1 - ru + 1, froot = shot.length < PER ? Math.min(ROOT, Math.max(ru, cu * 2 / 3.56) + 1) : ROOT;
+  f += `    And Nelim's Pickle Tools: I frame the area centred on (${fcx}, ${fcz}) at root size ${Number(froot.toFixed(1))}\n`;
   f += `    And I take a screenshot "terrain-${key}-${n}"\n    Then no errors were logged\n\n`;
   k += '\n';
 });
