@@ -83,6 +83,7 @@ if (!names.length) { console.error('no ' + group + ' in ' + key); process.exit(1
 const PITCH = group === 'vehicle' ? 8 : group === 'style' ? 5 : group === 'building' ? 4 : 3;
 const COLS = 5, X0 = 140, Z0 = 148;
 const PER = Number(opt('--per', group === 'vehicle' ? 6 : group === 'building' ? 10 : 15)), SHOTS = Number(opt('--shots', 0)), FROM = Number(opt('--from', 1));
+const M = 8; // margin of cleared Concrete around the grid: a close frame must not show the bare map (Cat, 2026-11-20)
 const rows = Math.ceil(PER / COLS);
 const wCells = COLS * PITCH, hCells = rows * PITCH;
 const x1 = X0 + wCells - 1, z1 = Z0 + hCells - 1;
@@ -102,8 +103,8 @@ used.forEach((shot, si) => {
   f += `  Scenario: ${tag}-${n}: defs ${(FROM - 1 + si) * PER + 1} to ${(FROM - 1 + si) * PER + shot.length}\n`;
   f += `    Given the save "test-colony" is loaded\n    And game speed is paused\n`;
   f += `    And Nelim's Pickle Tools: the eclipse of the map is ended\n`;
-  f += `    And Nelim's Pickle Tools: the area from (${X0}, ${Z0}) to (${x1}, ${z1}) is cleared\n`;
-  f += `    And Nelim's Pickle Tools: I lay the floor "Concrete" from (${X0}, ${Z0}) to (${x1}, ${z1})
+  f += `    And Nelim's Pickle Tools: the area from (${X0 - M}, ${Z0 - M}) to (${x1 + M}, ${z1 + M}) is cleared\n`;
+  f += `    And Nelim's Pickle Tools: I lay the floor "Concrete" from (${X0 - M}, ${Z0 - M}) to (${x1 + M}, ${z1 + M})
 `; // uniform ground (Cat, 2026-11-20: a hat on sand with rocks was refused)
   k += `## Shot ${n}\n\n| row | col | def |\n|---|---|---|\n`;
   shot.forEach((name, i) => {

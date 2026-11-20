@@ -8,8 +8,8 @@ Feature: building catalogue 2899540745
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 148) to (159, 155) is cleared
-    And Nelim's Pickle Tools: I lay the floor "Concrete" from (140, 148) to (159, 155)
+    And Nelim's Pickle Tools: the area from (132, 140) to (167, 163) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (132, 140) to (167, 163)
     And Nelim's Pickle Tools: the building "JellyGlowPod" is spawned on the nearest free cell around (142, 153) facing south
     And Nelim's Pickle Tools: the building "Jelly_Wall" is spawned on the nearest free cell around (146, 153) facing south
     And I set the hour to 12

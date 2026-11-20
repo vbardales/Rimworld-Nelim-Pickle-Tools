@@ -8,8 +8,8 @@ Feature: plant catalogue 3796907899
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 148) to (154, 156) is cleared
-    And Nelim's Pickle Tools: I lay the floor "Concrete" from (140, 148) to (154, 156)
+    And Nelim's Pickle Tools: the area from (132, 140) to (162, 164) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (132, 140) to (162, 164)
     And Nelim's Pickle Tools: I place the decor "BDBE_RimerryBush" at (141, 155) fully grown
     And Nelim's Pickle Tools: I place the decor "BDBE_RimerryTree" at (144, 155) fully grown
     And I set the hour to 12

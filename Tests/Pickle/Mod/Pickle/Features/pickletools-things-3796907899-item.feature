@@ -8,8 +8,8 @@ Feature: item catalogue 3796907899
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (140, 148) to (154, 156) is cleared
-    And Nelim's Pickle Tools: I lay the floor "Concrete" from (140, 148) to (154, 156)
+    And Nelim's Pickle Tools: the area from (132, 140) to (162, 164) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (132, 140) to (162, 164)
     And Nelim's Pickle Tools: 1 of the item "BDBE_BerryCake" are spawned at (141, 155)
     And Nelim's Pickle Tools: 1 of the item "BDBE_BerryCandy" are spawned at (144, 155)
     And Nelim's Pickle Tools: 1 of the item "BDBE_BerryJam" are spawned at (147, 155)
