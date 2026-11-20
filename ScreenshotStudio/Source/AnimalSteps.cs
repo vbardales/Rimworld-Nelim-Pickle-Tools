@@ -293,6 +293,27 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(pawn.Faction == null, nickname + " should have no faction; it is in " + pawn.Faction?.Name);
         }
 
+        /// <summary>
+        /// Puts the Tame designation on a spawned wild animal (found by nickname), as the player does with the Tame button. Needed before forcing the Tame job:
+        /// every toil of the game's JobDriver_Tame fails when the animal has no Tame designation (decompiled, <c>noLongerDesignated</c>), the job ends at once and the colonist
+        /// falls on Train or RopeToPen (AlM, 2026-11-20, ticket ccf1: faction none, job still replaced). Fails when the animal is not spawned, is in a faction, or is not tameable.
+        /// Use after <c>the animal X is made wild</c>. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the animal {string} is designated for taming")]
+        public void AnimalDesignatedForTaming(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            ctx.Require(pawn.Spawned && pawn.Map != null, nickname + " is not spawned");
+            ctx.Require(pawn.Faction == null, nickname + " is in the faction " + pawn.Faction?.Name + ": make it wild first");
+            if (pawn.Map.designationManager.DesignationOn(pawn, DesignationDefOf.Tame) == null)
+            {
+                pawn.Map.designationManager.AddDesignation(new Designation(pawn, DesignationDefOf.Tame));
+            }
+
+            ctx.Assert(pawn.Map.designationManager.DesignationOn(pawn, DesignationDefOf.Tame) != null, nickname + " should carry the Tame designation");
+            Log.Message($"[tame-designation] {nickname} ({pawn.def.defName}) designated for taming; trainability {pawn.training != null}; tried to tame too recently {TameUtility.TriedToTameTooRecently(pawn)}");
+        }
+
         /// <summary>Puts a new apparel (by defName, made of its default stuff, undyed) on a spawned animal found by nickname, adult or young. Fails when the animal, the def or the apparel tracker is missing, or the game refuses the garment for that body.</summary>
         [Given(Prefix + "the animal {string} is dressed in {string}")]
         public void AnimalDressed(PickleContext ctx, string nickname, string apparelDefName) => Dress(ctx, nickname, apparelDefName, null);
