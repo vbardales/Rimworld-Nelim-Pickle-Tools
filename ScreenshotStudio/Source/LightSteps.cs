@@ -193,6 +193,35 @@ namespace Nelim.PickleTools.ScreenshotStudio
             try { RefreshGlow(Find.CurrentMap); } catch { }
         }
 
+        /// <summary>
+        /// Sets the local date of the map to a day of the year (0 to 59: 15 days a quadrum, so the 8th of the third quadrum is day 37) and an hour (0 to 23), keeping the year, by moving the
+        /// game tick counter, so every scene of a gallery shows the same date (the plain hour step moves to the nearest such hour, which can fall on the day before or after). Reads the
+        /// local date back and fails when it differs. Written 2026-11-20 for ContentedLivestock (the date readout went back a day between scenes). COMPILED, NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the date is set to day {int} of the year at hour {int}")]
+        public void SetDate(PickleContext ctx, int day, int hour)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            ctx.Require(day >= 0 && day < 60, $"the day of the year runs from 0 to 59 (15 days a quadrum), not {day}");
+            ctx.Require(hour >= 0 && hour < 24, $"the hour runs from 0 to 23, not {hour}");
+            TickManager tm = Find.TickManager;
+            float longitude = Find.WorldGrid.LongLatOf(map.Tile).x;
+            long offset = GenDate.LocalTicksOffsetFromLongitude(longitude);
+            long absNow = tm.TicksAbs;
+            long localNow = absNow + offset;
+            long yearBase = localNow / GenDate.TicksPerYear * GenDate.TicksPerYear;
+            long localTarget = yearBase + (long)day * GenDate.TicksPerDay + (long)hour * GenDate.TicksPerHour;
+            long gameTicks = localTarget - offset - tm.gameStartAbsTick;
+            if (gameTicks < 0)
+                gameTicks += GenDate.TicksPerYear;
+            tm.DebugSetTicksGame((int)gameTicks);
+            int readDay = GenLocalDate.DayOfYear(map);
+            int readHour = GenLocalDate.HourInteger(map);
+            Log.Message($"[date] asked day {day} hour {hour}; game ticks {gameTicks}; local date reads day {readDay} hour {readHour}");
+            ctx.Assert(readDay == day && readHour == hour, $"the local date reads day {readDay} hour {readHour} after the step, not day {day} hour {hour}");
+        }
+
         [Then(Prefix + "the sun glow of the map is at least {float}")]
         public void SunGlowAtLeast(PickleContext ctx, float minimum)
         {
