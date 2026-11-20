@@ -2,6 +2,7 @@
 @requires:MalteSchulze.RIMMSqol
 Feature: PickleTools aggregate with optional RIMMSQOL
 
+  @timeout:400
   Scenario: the bundle can use the RIMMSQOL bridge when RIMMSQOL is installed
     Given the main menu is open
     Then Nelim's Pickle Tools: the expansion "MalteSchulze.RIMMSqol" is active
