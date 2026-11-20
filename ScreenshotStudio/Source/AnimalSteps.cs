@@ -275,6 +275,24 @@ namespace Nelim.PickleTools.ScreenshotStudio
             ctx.Assert(pawn.apparel == null || !pawn.apparel.WornApparel.Any(), nickname + " should wear nothing; it wears " + string.Join(", ", pawn.apparel.WornApparel.Select(a => a.def.defName)));
         }
 
+        /// <summary>
+        /// Takes a spawned animal (found by nickname) out of the player's faction: it becomes wild again (no faction), so that the taming job can be forced on it.
+        /// The spawn steps generate every animal in the player's faction, as the game's own tame animals are: on such an animal the Tame job has no valid target and the
+        /// colonist ends on Train or RopeToPen instead (AlM, 2026-11-20, tickets 11ab and a140). Its jobs are stopped; the save on disk is not touched. Fails when the animal
+        /// is not spawned or is still in a faction afterwards. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given(Prefix + "the animal {string} is made wild")]
+        public void AnimalMadeWild(PickleContext ctx, string nickname)
+        {
+            Pawn pawn = AnimalNamed(ctx, nickname);
+            ctx.Require(pawn.Spawned, nickname + " is not spawned");
+            pawn.jobs?.StopAll();
+            pawn.pather?.StopDead();
+            pawn.SetFaction(null);
+            Log.Message($"[wild] {nickname} ({pawn.def.defName}) faction now {pawn.Faction?.Name ?? "none"}, tameable {pawn.RaceProps.Animal}");
+            ctx.Assert(pawn.Faction == null, nickname + " should have no faction; it is in " + pawn.Faction?.Name);
+        }
+
         /// <summary>Puts a new apparel (by defName, made of its default stuff, undyed) on a spawned animal found by nickname, adult or young. Fails when the animal, the def or the apparel tracker is missing, or the game refuses the garment for that body.</summary>
         [Given(Prefix + "the animal {string} is dressed in {string}")]
         public void AnimalDressed(PickleContext ctx, string nickname, string apparelDefName) => Dress(ctx, nickname, apparelDefName, null);
