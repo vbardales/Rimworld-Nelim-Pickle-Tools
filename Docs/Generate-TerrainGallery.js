@@ -101,5 +101,7 @@ const more = FROM > 1;
 fs.writeFileSync(path.join(tp, "Mod", "Pickle", "Features", more ? `pickletools-terrainmore-${key}-from${FROM}.feature` : `pickletools-terrain-${key}.feature`), f);
 if (!more) fs.writeFileSync(path.join(tp, `wsl-deps.terrain-${key}.map`), m);
 fs.writeFileSync(path.join(tp, more ? `terrain-${key}-from${FROM}.key.md` : `terrain-${key}.key.md`), k);
-if (!more) fs.writeFileSync(path.join(tp, `terrain-${key}.layout.json`), JSON.stringify({ cols: COLS, rows, blockPx: 2 * 1080 / (2 * ROOT), pxPerCell: 1080 / (2 * ROOT), x0px: 960 - (COLS + 0.5) * 1080 / (2 * ROOT), y0px: 540 - (rows - 0.5) * 1080 / (2 * ROOT), note: "x0px,y0px = top-left pixel of the grid on a 1920x1080 shot, camera root size 4 centred on cell (X0+COLS, Z0+rows)", X0, Z0, per: PER, packageId: j.mod.PackageId, name: j.mod.Name }));
+// the layout follows the framing of the FIRST shot (a partial shot is zoomed on its used blocks, see the frame step above)
+const l0 = used[0] || shots[0], lcu = Math.min(l0.length, COLS), lru = Math.ceil(l0.length / COLS), lroot = l0.length < PER ? Math.min(ROOT, Math.max(lru, lcu * 2 / 3.56) + 1) : ROOT;
+if (!more) fs.writeFileSync(path.join(tp, `terrain-${key}.layout.json`), JSON.stringify({ cols: COLS, rows, blockPx: 2 * 1080 / (2 * lroot), pxPerCell: 1080 / (2 * lroot), x0px: 960 - (lcu + 0.5) * 1080 / (2 * lroot), y0px: 540 - (lru - 0.5) * 1080 / (2 * lroot), note: "x0px,y0px = top-left pixel of the grid on a 1920x1080 shot, camera root size 4 centred on cell (X0+COLS, Z0+rows)", X0, Z0, per: PER, packageId: j.mod.PackageId, name: j.mod.Name }));
 console.log(`${key}: ${names.length} floors, ${shots.length} shots, wrote ${used.length}`);
