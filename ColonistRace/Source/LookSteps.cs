@@ -412,12 +412,12 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
-        /// Turns a colonist, where it stands, to face another spawned pawn (colonist or animal, by short name) and keeps that facing while the game is
+        /// Turns a colonist (step <c>turns toward</c>), where it stands, to face another spawned pawn (colonist or animal, by short name) and keeps that facing while the game is
         /// paused: the body turns to the nearest of North, East, South, West (the game draws a pawn and its head in those four directions only, there is
         /// no head tilt). With <c>holds ... in hand</c> it gives a colonist holding an item toward someone. Fails when a pawn is missing, on another map, or on the same cell.
         /// Asked for by VanityCase (a gesture toward Miel), 2026-11-20. Compiled, NOT PLAYED.
         /// </summary>
-        [Given("Nelim's Pickle Tools: {string} faces {string}")]
+        [Given("Nelim's Pickle Tools: {string} turns toward {string}")]
         public async System.Threading.Tasks.Task FacesPawn(PickleContext ctx, string nickname, string otherName)
         {
             await OnMainThread(ctx);
