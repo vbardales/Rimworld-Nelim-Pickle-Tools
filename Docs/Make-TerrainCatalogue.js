@@ -31,7 +31,7 @@ for (const d of dirs) {
 }
 const out = path.join(store, 'terrain', key);
 fs.mkdirSync(out, { recursive: true });
-const B = layout.blockPx, INSET = 6, SIZE = B - 2 * INSET;
+const B = layout.blockPx, INSET = opt('--inset') ? Number(opt('--inset')) : 6, SIZE = B - 2 * INSET; // --inset N: cut N px off every side (floors that the game blends into the base around them, Cat 2026-11-20: 80)
 const rows = [];
 let shot = null, missing = 0;
 for (const line of keymd) {
