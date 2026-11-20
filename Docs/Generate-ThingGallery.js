@@ -51,7 +51,7 @@ const classify = d => {
   if (/AnimalThingBase|BasePawn|Race\b/.test(c) || /Race$/.test(d.n)) return 'skip';
   if (/Apparel|Hat/i.test(c) || /(Helm|Helmet|Hood)$/i.test(d.n)) return 'apparel';
   if (/PlantBase|PlantNonEdible/i.test(c)) return 'plant';
-  if (/BuildingBase|FurnitureBase|BedBase|DoorBase|BenchBase|SteleBase/.test(c)) return 'building';
+  if (/BuildingBase|FurnitureBase|BedBase|DoorBase|BenchBase|SteleBase|MineralBase/.test(c) || (!c && d.cat && d.cat.length)) return 'building'; // a def with no known parent but an architect category is a building (Ash Furniture JP_HP_*); a mineral rock too (Minerals_SK)
   if (/Weapon|Gun|Melee|ResourceBase|Item|Meal|Drug/i.test(c)) return 'item';
   return 'other';
 };
