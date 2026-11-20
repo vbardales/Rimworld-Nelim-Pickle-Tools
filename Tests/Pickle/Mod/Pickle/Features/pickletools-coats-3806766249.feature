@@ -5,12 +5,20 @@
 @requires:nelim.pickletools.colonistrace
 Feature: coat gallery 3806766249
 
-  Scenario: coats-3806766249-rg-dodo: RG_Dodo in 8 coats
+  Scenario: coats-3806766249-rg-dodo: RG_Dodo, coats 1 to 8 of 8
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 8 adult animals of kind "RG_Dodo" are spawned close together
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-1" is spawned at (143, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-2" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-4" is spawned at (149, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-5" is spawned at (151, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-6" is spawned at (153, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-7" is spawned at (155, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "RG_Dodo" named "coat-8" is spawned at (157, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -23,6 +31,6 @@ Feature: coat gallery 3806766249
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "RG_Dodo"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.3
     And I take a screenshot "coats-3806766249-rg-dodo"
     Then no errors were logged

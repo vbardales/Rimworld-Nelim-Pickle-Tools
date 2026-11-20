@@ -5,12 +5,15 @@
 @requires:nelim.pickletools.colonistrace
 Feature: coat gallery 3806766441
 
-  Scenario: coats-3806766441-andrewsarchus: Andrewsarchus in 3 coats
+  Scenario: coats-3806766441-andrewsarchus: Andrewsarchus, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Andrewsarchus" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Andrewsarchus" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Andrewsarchus" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Andrewsarchus" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -18,16 +21,20 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Andrewsarchus"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-andrewsarchus"
     Then no errors were logged
 
-  Scenario: coats-3806766441-arthropleura: Arthropleura in 4 coats
+  Scenario: coats-3806766441-arthropleura: Arthropleura, coats 1 to 4 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Arthropleura" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Arthropleura" named "coat-1" is spawned at (144, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Arthropleura" named "coat-2" is spawned at (148, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Arthropleura" named "coat-3" is spawned at (152, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Arthropleura" named "coat-4" is spawned at (156, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -36,16 +43,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Arthropleura"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.3
     And I take a screenshot "coats-3806766441-arthropleura"
     Then no errors were logged
 
-  Scenario: coats-3806766441-castoroides: Castoroides in 3 coats
+  Scenario: coats-3806766441-castoroides: Castoroides, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Castoroides" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Castoroides" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Castoroides" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Castoroides" named "coat-3" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -53,19 +63,39 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Castoroides"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
     And I take a screenshot "coats-3806766441-castoroides"
     Then no errors were logged
 
-  Scenario: coats-3806766441-chalicotherium: Chalicotherium in 6 coats
+  Scenario: coats-3806766441-chalicotherium-a: Chalicotherium, coats 1 to 3 of 6
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 6 adult animals of kind "Chalicotherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
+    And I take a screenshot "coats-3806766441-chalicotherium-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-chalicotherium-b: Chalicotherium, coats 4 to 6 of 6
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-4" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-5" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Chalicotherium" named "coat-6" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And Nelim's Pickle Tools: the animal "coat-5" is given coat 3
     And Nelim's Pickle Tools: the animal "coat-6" is given coat 4
@@ -73,16 +103,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Chalicotherium"
-    And I take a screenshot "coats-3806766441-chalicotherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
+    And I take a screenshot "coats-3806766441-chalicotherium-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-daeodon: Daeodon in 3 coats
+  Scenario: coats-3806766441-daeodon: Daeodon, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Daeodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Daeodon" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Daeodon" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Daeodon" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -90,34 +123,56 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Daeodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-daeodon"
     Then no errors were logged
 
-  Scenario: coats-3806766441-deinotherium: Deinotherium in 4 coats
+  Scenario: coats-3806766441-deinotherium-a: Deinotherium, coats 1 to 2 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Deinotherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Deinotherium" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Deinotherium" named "coat-2" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
-    And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
-    And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Deinotherium"
-    And I take a screenshot "coats-3806766441-deinotherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-deinotherium-a"
     Then no errors were logged
 
-  Scenario: coats-3806766441-dinocrocuta: Dinocrocuta in 4 coats
+  Scenario: coats-3806766441-deinotherium-b: Deinotherium, coats 3 to 4 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Dinocrocuta" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Deinotherium" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Deinotherium" named "coat-4" is spawned at (153, 150)
+    And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
+    And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-deinotherium-b"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-dinocrocuta: Dinocrocuta, coats 1 to 4 of 4
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Dinocrocuta" named "coat-1" is spawned at (144, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Dinocrocuta" named "coat-2" is spawned at (148, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Dinocrocuta" named "coat-3" is spawned at (152, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Dinocrocuta" named "coat-4" is spawned at (156, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -126,16 +181,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Dinocrocuta"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.3
     And I take a screenshot "coats-3806766441-dinocrocuta"
     Then no errors were logged
 
-  Scenario: coats-3806766441-diprotodon: Diprotodon in 3 coats
+  Scenario: coats-3806766441-diprotodon: Diprotodon, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Diprotodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Diprotodon" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Diprotodon" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Diprotodon" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -143,16 +201,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Diprotodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-diprotodon"
     Then no errors were logged
 
-  Scenario: coats-3806766441-doedicurus: Doedicurus in 3 coats
+  Scenario: coats-3806766441-doedicurus: Doedicurus, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Doedicurus" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Doedicurus" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Doedicurus" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Doedicurus" named "coat-3" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -160,53 +221,93 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Doedicurus"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
     And I take a screenshot "coats-3806766441-doedicurus"
     Then no errors were logged
 
-  Scenario: coats-3806766441-elasmotherium: Elasmotherium in 4 coats
+  Scenario: coats-3806766441-elasmotherium-a: Elasmotherium, coats 1 to 3 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Elasmotherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Elasmotherium" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Elasmotherium" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Elasmotherium" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
+    And I take a screenshot "coats-3806766441-elasmotherium-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-elasmotherium-b: Elasmotherium, coats 4 to 4 of 4
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Elasmotherium" named "coat-4" is spawned at (150, 150)
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Elasmotherium"
-    And I take a screenshot "coats-3806766441-elasmotherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.3
+    And I take a screenshot "coats-3806766441-elasmotherium-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-enhydriodon: Enhydriodon in 5 coats
+  Scenario: coats-3806766441-enhydriodon-a: Enhydriodon, coats 1 to 3 of 5
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 5 adult animals of kind "Enhydriodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Enhydriodon" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Enhydriodon" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Enhydriodon" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
+    And I take a screenshot "coats-3806766441-enhydriodon-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-enhydriodon-b: Enhydriodon, coats 4 to 5 of 5
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Enhydriodon" named "coat-4" is spawned at (148, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Enhydriodon" named "coat-5" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And Nelim's Pickle Tools: the animal "coat-5" is given coat 3
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Enhydriodon"
-    And I take a screenshot "coats-3806766441-enhydriodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.6
+    And I take a screenshot "coats-3806766441-enhydriodon-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-gomphotaria: Gomphotaria in 3 coats
+  Scenario: coats-3806766441-gomphotaria: Gomphotaria, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Gomphotaria" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Gomphotaria" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Gomphotaria" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Gomphotaria" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -214,16 +315,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Gomphotaria"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-gomphotaria"
     Then no errors were logged
 
-  Scenario: coats-3806766441-josephoartigasia: Josephoartigasia in 3 coats
+  Scenario: coats-3806766441-josephoartigasia: Josephoartigasia, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Josephoartigasia" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Josephoartigasia" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Josephoartigasia" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Josephoartigasia" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -231,16 +335,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Josephoartigasia"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-josephoartigasia"
     Then no errors were logged
 
-  Scenario: coats-3806766441-macrauchenia: Macrauchenia in 3 coats
+  Scenario: coats-3806766441-macrauchenia: Macrauchenia, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Macrauchenia" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Macrauchenia" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Macrauchenia" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Macrauchenia" named "coat-3" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -248,51 +355,89 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Macrauchenia"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
     And I take a screenshot "coats-3806766441-macrauchenia"
     Then no errors were logged
 
-  Scenario: coats-3806766441-megalania: Megalania in 3 coats
+  Scenario: coats-3806766441-megalania-a: Megalania, coats 1 to 2 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Megalania" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Megalania" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Megalania" named "coat-2" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-megalania-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-megalania-b: Megalania, coats 3 to 3 of 3
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Megalania" named "coat-3" is spawned at (150, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Megalania"
-    And I take a screenshot "coats-3806766441-megalania"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.8
+    And I take a screenshot "coats-3806766441-megalania-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-paraceratherium: Paraceratherium in 4 coats
+  Scenario: coats-3806766441-paraceratherium-a: Paraceratherium, coats 1 to 2 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Paraceratherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Paraceratherium" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Paraceratherium" named "coat-2" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.7
+    And I take a screenshot "coats-3806766441-paraceratherium-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-paraceratherium-b: Paraceratherium, coats 3 to 4 of 4
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Paraceratherium" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Paraceratherium" named "coat-4" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Paraceratherium"
-    And I take a screenshot "coats-3806766441-paraceratherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.7
+    And I take a screenshot "coats-3806766441-paraceratherium-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-platybelodon: Platybelodon in 3 coats
+  Scenario: coats-3806766441-platybelodon: Platybelodon, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Platybelodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Platybelodon" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Platybelodon" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Platybelodon" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -300,16 +445,20 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Platybelodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-platybelodon"
     Then no errors were logged
 
-  Scenario: coats-3806766441-procoptodon: Procoptodon in 4 coats
+  Scenario: coats-3806766441-procoptodon: Procoptodon, coats 1 to 4 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Procoptodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Procoptodon" named "coat-1" is spawned at (144, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Procoptodon" named "coat-2" is spawned at (148, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Procoptodon" named "coat-3" is spawned at (152, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Procoptodon" named "coat-4" is spawned at (156, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -318,16 +467,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Procoptodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.3
     And I take a screenshot "coats-3806766441-procoptodon"
     Then no errors were logged
 
-  Scenario: coats-3806766441-pulmonoscorpius: Pulmonoscorpius in 3 coats
+  Scenario: coats-3806766441-pulmonoscorpius: Pulmonoscorpius, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Pulmonoscorpius" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Pulmonoscorpius" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Pulmonoscorpius" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Pulmonoscorpius" named "coat-3" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -335,53 +487,107 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Pulmonoscorpius"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 3.3
     And I take a screenshot "coats-3806766441-pulmonoscorpius"
     Then no errors were logged
 
-  Scenario: coats-3806766441-purussaurus: Purussaurus in 5 coats
+  Scenario: coats-3806766441-purussaurus-a: Purussaurus, coats 1 to 2 of 5
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 5 adult animals of kind "Purussaurus" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Purussaurus" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Purussaurus" named "coat-2" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.7
+    And I take a screenshot "coats-3806766441-purussaurus-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-purussaurus-b: Purussaurus, coats 3 to 4 of 5
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Purussaurus" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Purussaurus" named "coat-4" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.7
+    And I take a screenshot "coats-3806766441-purussaurus-b"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-purussaurus-c: Purussaurus, coats 5 to 5 of 5
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Purussaurus" named "coat-5" is spawned at (150, 150)
     And Nelim's Pickle Tools: the animal "coat-5" is given coat 3
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Purussaurus"
-    And I take a screenshot "coats-3806766441-purussaurus"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.3
+    And I take a screenshot "coats-3806766441-purussaurus-c"
     Then no errors were logged
 
-  Scenario: coats-3806766441-sivatherium: Sivatherium in 4 coats
+  Scenario: coats-3806766441-sivatherium-a: Sivatherium, coats 1 to 2 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "Sivatherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Sivatherium" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Sivatherium" named "coat-2" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-sivatherium-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-sivatherium-b: Sivatherium, coats 3 to 4 of 4
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Sivatherium" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Sivatherium" named "coat-4" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Sivatherium"
-    And I take a screenshot "coats-3806766441-sivatherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-sivatherium-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-smilodon: Smilodon in 3 coats
+  Scenario: coats-3806766441-smilodon: Smilodon, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Smilodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Smilodon" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Smilodon" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Smilodon" named "coat-3" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -389,16 +595,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Smilodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
     And I take a screenshot "coats-3806766441-smilodon"
     Then no errors were logged
 
-  Scenario: coats-3806766441-titanis: Titanis in 3 coats
+  Scenario: coats-3806766441-titanis: Titanis, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Titanis" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Titanis" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Titanis" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Titanis" named "coat-3" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -406,16 +615,19 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Titanis"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
     And I take a screenshot "coats-3806766441-titanis"
     Then no errors were logged
 
-  Scenario: coats-3806766441-uintatherium: Uintatherium in 3 coats
+  Scenario: coats-3806766441-uintatherium: Uintatherium, coats 1 to 3 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Uintatherium" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Uintatherium" named "coat-1" is spawned at (145, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Uintatherium" named "coat-2" is spawned at (150, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Uintatherium" named "coat-3" is spawned at (155, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
@@ -423,41 +635,76 @@ Feature: coat gallery 3806766441
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Uintatherium"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.0
     And I take a screenshot "coats-3806766441-uintatherium"
     Then no errors were logged
 
-  Scenario: coats-3806766441-woollymammoth: WoollyMammoth in 4 coats
+  Scenario: coats-3806766441-woollymammoth-a: WoollyMammoth, coats 1 to 2 of 4
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 4 adult animals of kind "WoollyMammoth" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "WoollyMammoth" named "coat-1" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "WoollyMammoth" named "coat-2" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-woollymammoth-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-woollymammoth-b: WoollyMammoth, coats 3 to 4 of 4
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "WoollyMammoth" named "coat-3" is spawned at (147, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "WoollyMammoth" named "coat-4" is spawned at (153, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And Nelim's Pickle Tools: the animal "coat-4" is given coat 2
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "WoollyMammoth"
-    And I take a screenshot "coats-3806766441-woollymammoth"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.2
+    And I take a screenshot "coats-3806766441-woollymammoth-b"
     Then no errors were logged
 
-  Scenario: coats-3806766441-zygolophodon: Zygolophodon in 3 coats
+  Scenario: coats-3806766441-zygolophodon-a: Zygolophodon, coats 1 to 2 of 3
     Given the save "test-colony" is loaded
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
-    And Nelim's Pickle Tools: the area from (136, 144) to (163, 159) is cleared
-    And Nelim's Pickle Tools: 3 adult animals of kind "Zygolophodon" are spawned around (150, 152)
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Zygolophodon" named "coat-1" is spawned at (146, 150)
+    And Nelim's Pickle Tools: an adult animal of kind "Zygolophodon" named "coat-2" is spawned at (154, 150)
     And Nelim's Pickle Tools: the animal "coat-1" is given coat -1
     And Nelim's Pickle Tools: the animal "coat-2" is given coat 0
+    And I set the hour to 12
+    And I set the weather to "Clear"
+    And I wait 60 ticks
+    And Nelim's Pickle Tools: studio presentation mode is enabled
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 5.3
+    And I take a screenshot "coats-3806766441-zygolophodon-a"
+    Then no errors were logged
+
+  Scenario: coats-3806766441-zygolophodon-b: Zygolophodon, coats 3 to 3 of 3
+    Given the save "test-colony" is loaded
+    And game speed is paused
+    And Nelim's Pickle Tools: the eclipse of the map is ended
+    And Nelim's Pickle Tools: the area from (136, 144) to (164, 156) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (138, 145) to (162, 155)
+    And Nelim's Pickle Tools: an adult animal of kind "Zygolophodon" named "coat-3" is spawned at (150, 150)
     And Nelim's Pickle Tools: the animal "coat-3" is given coat 1
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the animals of kind "Zygolophodon"
-    And I take a screenshot "coats-3806766441-zygolophodon"
+    And Nelim's Pickle Tools: I frame the area centred on (150, 150) at root size 4.8
+    And I take a screenshot "coats-3806766441-zygolophodon-b"
     Then no errors were logged
