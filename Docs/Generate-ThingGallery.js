@@ -80,7 +80,7 @@ if (group === 'style') {
 }
 if (!names.length) { console.error('no ' + group + ' in ' + key); process.exit(1); }
 
-const PITCH = group === 'vehicle' ? 8 : group === 'style' ? 5 : group === 'building' ? 4 : 3;
+const PITCH = opt('--pitch', group === 'vehicle' ? 8 : group === 'style' ? 5 : group === 'building' ? 4 : 3); // --pitch N: cells between two subjects (2 for a mod of 1 x 1 wall devices: at 4 they came out at 50 px, Cat asks 100)
 const COLS = 5, X0 = 140, Z0 = 148;
 const PER = Number(opt('--per', group === 'vehicle' ? 6 : group === 'building' ? 10 : 15)), SHOTS = Number(opt('--shots', 0)), FROM = Number(opt('--from', 1));
 const M = 8; // margin of cleared Concrete around the grid: a close frame must not show the bare map (Cat, 2026-11-20)

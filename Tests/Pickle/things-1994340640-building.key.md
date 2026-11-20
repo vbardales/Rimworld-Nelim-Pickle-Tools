@@ -1,6 +1,6 @@
 # building key, workshop mod 1994340640
 
-Cell = the 4 x 4 block, row 1 = north.
+Cell = the 2 x 2 block, row 1 = north.
 
 ## Shot 01
 
