@@ -9,13 +9,14 @@ Feature: building catalogue 3625587416
     And game speed is paused
     And Nelim's Pickle Tools: the eclipse of the map is ended
     And Nelim's Pickle Tools: the area from (140, 148) to (159, 155) is cleared
+    And Nelim's Pickle Tools: I lay the floor "Concrete" from (140, 148) to (159, 155)
     And Nelim's Pickle Tools: the building "XER_LogDoor" is spawned on the nearest free cell around (142, 153) facing south
     And Nelim's Pickle Tools: the building "XER_LogWall" is spawned on the nearest free cell around (146, 153) facing south
     And I set the hour to 12
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (150, 152) at root size 6.6
+    And Nelim's Pickle Tools: I frame the area centred on (144, 154) at root size 3.2
     And I take a screenshot "things-3625587416-building-01"
     Then no errors were logged
 

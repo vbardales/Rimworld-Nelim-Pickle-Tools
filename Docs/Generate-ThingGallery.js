@@ -103,6 +103,8 @@ used.forEach((shot, si) => {
   f += `    Given the save "test-colony" is loaded\n    And game speed is paused\n`;
   f += `    And Nelim's Pickle Tools: the eclipse of the map is ended\n`;
   f += `    And Nelim's Pickle Tools: the area from (${X0}, ${Z0}) to (${x1}, ${z1}) is cleared\n`;
+  f += `    And Nelim's Pickle Tools: I lay the floor "Concrete" from (${X0}, ${Z0}) to (${x1}, ${z1})
+`; // uniform ground (Cat, 2026-11-20: a hat on sand with rocks was refused)
   k += `## Shot ${n}\n\n| row | col | def |\n|---|---|---|\n`;
   shot.forEach((name, i) => {
     const c = i % COLS, r = Math.floor(i / COLS);
@@ -118,7 +120,11 @@ used.forEach((shot, si) => {
   });
   f += `    And I set the hour to 12\n    And I set the weather to "Clear"\n    And I wait 60 ticks\n`;
   f += `    And Nelim's Pickle Tools: studio presentation mode is enabled\n`;
-  f += `    And Nelim's Pickle Tools: I frame the area centred on (${cx}, ${cz}) at root size ${size.toFixed(1)}\n`;
+  // frame the cells this shot uses, not the whole grid: the subject stays centred and large (Cat, 2026-11-20: at least 100 px per subject, 150 for a hat)
+  const cu = Math.min(shot.length, COLS), ru = Math.ceil(shot.length / COLS);
+  const ucx = Math.round(X0 + cu * PITCH / 2 - 0.5), ucz = Math.round(z1 + 1 - ru * PITCH / 2 - 0.5); // centre cell of the used block
+  const usize = Math.max(ru * PITCH / 2, cu * PITCH / 3.56) + (group === 'building' || group === 'vehicle' ? 1 : 0.5);
+  f += `    And Nelim's Pickle Tools: I frame the area centred on (${ucx}, ${ucz}) at root size ${usize.toFixed(1)}\n`;
   f += `    And I take a screenshot "${tag}-${n}"\n    Then no errors were logged\n\n`;
   k += '\n';
 });
