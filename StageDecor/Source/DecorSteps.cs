@@ -1121,6 +1121,34 @@ namespace Nelim.PickleTools.StageDecor
         }
 
         /// <summary>
+        /// Logs ([things-at], one line per thing) every thing standing on the cells of a rectangle: def, label, class, mod, cell, rotation and graphic path.
+        /// Answers "which def or mod draws that prop in my scene" (ArS, 2026-11-20: two blue-flame cauldron-like props in a hut). Corners in any order, clamped
+        /// to the map; fails above 400 cells so a log is never a dump of the map. Pawns, filth and motes are listed too (class tells them apart). Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the things on the area from \\({int}, {int}\\) to \\({int}, {int}\\) are logged")]
+        public void LogThingsOnArea(PickleContext ctx, int x1, int z1, int x2, int z2)
+        {
+            Map map = CurrentMap(ctx);
+            int minX = System.Math.Max(0, System.Math.Min(x1, x2)), maxX = System.Math.Min(map.Size.x - 1, System.Math.Max(x1, x2));
+            int minZ = System.Math.Max(0, System.Math.Min(z1, z2)), maxZ = System.Math.Min(map.Size.z - 1, System.Math.Max(z1, z2));
+            ctx.Require((maxX - minX + 1) * (maxZ - minZ + 1) <= 400, $"the area ({x1}, {z1}) to ({x2}, {z2}) holds more than 400 cells: log a smaller one");
+            int count = 0;
+            for (int x = minX; x <= maxX; x++)
+            {
+                for (int z = minZ; z <= maxZ; z++)
+                {
+                    foreach (Thing thing in map.thingGrid.ThingsListAt(new IntVec3(x, 0, z)))
+                    {
+                        count++;
+                        Log.Message($"[things-at] ({x}, {z}): {thing.def.defName} \"{thing.LabelCap}\" {thing.GetType().Name}; mod {thing.def.modContentPack?.PackageId}; rot {thing.Rotation}; graphic {thing.def.graphicData?.texPath ?? "none"}");
+                    }
+                }
+            }
+
+            Log.Message($"[things-at] {count} thing(s) on ({minX}, {minZ}) to ({maxX}, {maxZ})");
+        }
+
+        /// <summary>
         /// Asserts the terrain def of one cell, by defName (<c>RuneWaterShallow</c>, <c>Soil</c>...). The failure text says which terrain the game reports there. Reads only.
         /// Written 2026-11-11 for ShallowWaterFloorRenew (the terrain a colonist built). Compiled, NOT PLAYED.
         /// </summary>
