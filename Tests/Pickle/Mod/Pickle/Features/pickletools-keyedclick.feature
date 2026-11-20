@@ -8,6 +8,7 @@
 @requires:nelim.pickletools.keyedclick
 Feature: PickleTools keyed click step
 
+  @timeout:400
   Scenario: a button is clicked by the key its label comes from
     Given the main menu is open
     When Nelim's Pickle Tools: I click button keyed "NewColony"

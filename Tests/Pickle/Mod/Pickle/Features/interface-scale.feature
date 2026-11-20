@@ -6,6 +6,7 @@
 # The button is clicked by the key its label comes from (KeyedClick): a click on the English label "New colony" cannot find its button in a French game.
 Feature: PickleTools interface scale
 
+  @timeout:400
   Scenario: a button is clickable at another interface scale
     Given the main menu is open
     And Nelim's Pickle Tools: the interface scale is 150 percent

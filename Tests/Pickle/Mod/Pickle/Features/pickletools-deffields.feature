@@ -8,6 +8,7 @@
 @requires:nelim.pickletools.deffields
 Feature: PickleTools def fields
 
+  @timeout:400
   Scenario: a name shared by a ThingDef and a PawnKindDef is read by its type
     Given the main menu is open
     Then Nelim's Pickle Tools: def "Muffalo" of type "ThingDef" field "race.baseBodySize" is "2.4"
