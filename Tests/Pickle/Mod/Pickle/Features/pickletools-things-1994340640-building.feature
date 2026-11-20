@@ -24,7 +24,7 @@ Feature: building catalogue 1994340640
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (145, 150) at root size 3.8
+    And Nelim's Pickle Tools: I frame the area centred on (145, 150) at root size 3.3
     And I take a screenshot "things-1994340640-building-01"
     Then no errors were logged
 
@@ -48,7 +48,7 @@ Feature: building catalogue 1994340640
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (145, 150) at root size 3.8
+    And Nelim's Pickle Tools: I frame the area centred on (145, 150) at root size 3.3
     And I take a screenshot "things-1994340640-building-02"
     Then no errors were logged
 
@@ -67,7 +67,7 @@ Feature: building catalogue 1994340640
     And I set the weather to "Clear"
     And I wait 60 ticks
     And Nelim's Pickle Tools: studio presentation mode is enabled
-    And Nelim's Pickle Tools: I frame the area centred on (145, 151) at root size 3.8
+    And Nelim's Pickle Tools: I frame the area centred on (145, 151) at root size 3.3
     And I take a screenshot "things-1994340640-building-03"
     Then no errors were logged
 
