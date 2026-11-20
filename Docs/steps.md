@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-767 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+769 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -262,6 +262,8 @@ Package `nelim.pickletools.colonistrace`. In the bundle (`Mod/Pickle/Assemblies`
 | `Nelim's Pickle Tools: the clothes worn by {string} are logged` (Then) | Reports, attached as `clothes-worn`, what a colonist wears (def, stuff, layers, body part groups, drawn colour) and what the dressing steps of this scenario moved to the inventory, in order (a garment that cannot be worn with a newer one on the same layer and body parts is moved, so a missing shirt shows up here). Changes nothing. **Parameters:** `nickname` (string): the colonist's nickname. |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\)` (Given) | Puts a colonist on a cell of the current map, stops its job and its walking, and keeps it where it stands: the pawn stays put as long as the game is paused (Pickle's own `game speed is paused`) and as long as nothing gives it a job. Fails if the cell is off the map or not standable. |
 | `Nelim's Pickle Tools: {string} stands at \({int}, {int}\) facing {word}` (Given) | The same, and turns the colonist to face North, East, South or West (what the renderer draws it looking at). |
+| `Nelim's Pickle Tools: {string} faces {string}` (Given) | Turns a colonist, where it stands, to face another spawned pawn (colonist or animal, by short name) and keeps that facing while the game is paused: the body turns to the nearest of North, East, South, West (the game draws a pawn and its head in those four directions only, there is no head tilt). With `holds ... |
+| `Nelim's Pickle Tools: {string} faces the cell \({int}, {int}\)` (Given) | The same toward a cell: a colonist that looks at the floor spot of an item, or at a window. |
 | `Nelim's Pickle Tools: the animal {string} stands at \({int}, {int}\)` (Given) | Puts an ANIMAL (any spawned pawn that is not a free colonist, found by its short name, e.g. the `coat-N` names) on a standable cell, stops it and keeps it there while the game is paused. Same checks and read-back as the colonist step. |
 | `Nelim's Pickle Tools: the animal {string} stands at \({int}, {int}\) facing {word}` (Given) | The same, turned North, East, South or West. |
 | `Nelim's Pickle Tools: the animal {string} lies at \({int}, {int}\) facing {word}` (Given) | Puts an animal on a standable cell turned North, East, South or West, then starts the job LayDown on it, forced to sleep, so it is drawn lying. The job's first toil runs when the job starts, so the pose is set even on a paused game; nothing here has been checked on a capture. |

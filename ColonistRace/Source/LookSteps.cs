@@ -412,6 +412,43 @@ namespace Nelim.PickleTools.ColonistRace
         }
 
         /// <summary>
+        /// Turns a colonist, where it stands, to face another spawned pawn (colonist or animal, by short name) and keeps that facing while the game is
+        /// paused: the body turns to the nearest of North, East, South, West (the game draws a pawn and its head in those four directions only, there is
+        /// no head tilt). With <c>holds ... in hand</c> it gives a colonist holding an item toward someone. Fails when a pawn is missing, on another map, or on the same cell.
+        /// Asked for by VanityCase (a gesture toward Miel), 2026-11-20. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: {string} faces {string}")]
+        public async System.Threading.Tasks.Task FacesPawn(PickleContext ctx, string nickname, string otherName)
+        {
+            await OnMainThread(ctx);
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Pawn other = AnyPawn(ctx, otherName);
+            Turn(ctx, pawn, other.Position, otherName);
+        }
+
+        /// <summary>The same toward a cell: a colonist that looks at the floor spot of an item, or at a window.</summary>
+        [Given("Nelim's Pickle Tools: {string} faces the cell \\({int}, {int}\\)")]
+        public async System.Threading.Tasks.Task FacesCell(PickleContext ctx, string nickname, int x, int z)
+        {
+            await OnMainThread(ctx);
+            Pawn pawn = ColonistLookup.Require(nickname);
+            Turn(ctx, pawn, new IntVec3(x, 0, z), $"({x}, {z})");
+        }
+
+        private static void Turn(PickleContext ctx, Pawn pawn, IntVec3 target, string what)
+        {
+            ctx.Require(pawn.Spawned, $"{pawn.LabelShort} is not spawned on a map");
+            ctx.Require(target != pawn.Position, $"{pawn.LabelShort} stands on {what}: no direction to face");
+            Rot4 facing = Rot4.FromAngleFlat((target - pawn.Position).AngleFlat);
+            pawn.Rotation = facing;
+            HoldRotation(pawn, facing);
+            Subjects.Add(pawn);
+            Redraw(pawn);
+            ctx.Assert(pawn.Rotation == facing, $"{pawn.LabelShort} should face {facing} toward {what}; it faces {pawn.Rotation}");
+            Log.Message($"[faces] {pawn.LabelShort} at {pawn.Position} faces {facing} toward {what} at {target}");
+        }
+
+        /// <summary>
         /// Puts an ANIMAL (any spawned pawn that is not a free colonist, found by its short name, e.g. the <c>coat-N</c> names) on a standable
         /// cell, stops it and keeps it there while the game is paused. Same checks and read-back as the colonist step.
         /// </summary>
