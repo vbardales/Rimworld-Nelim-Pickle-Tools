@@ -60,6 +60,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         // (decompiled 2026-11-20, ticket b8a8 of AnN: no field "glowGrid" exists, the fields are accumulatedGlow and map). So the Color32 reads are left alone in this mode and the
         // float read keeps the lamp term of the cell (AnN galerie-45 and 46).
         private static bool ceilingKeepsLamps;
+        private static float lampScale = 1f;
 
         // The lamp part of GroundGlowAt, as the game computes it (alpha 1 = overlit, else 3.6 x the brightest channel, at most 0.5), read through the public VisualGlowAt.
         private static float LampTerm(GlowGrid grid, object cell)
@@ -72,6 +73,8 @@ namespace Nelim.PickleTools.ScreenshotStudio
 
         private static void PostGlowColor(GlowGrid __instance, object __0, ref UnityEngine.Color32 __result)
         {
+            if (lampScale != 1f)
+                __result = new UnityEngine.Color32((byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(__result.r * lampScale), 0, 255), (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(__result.g * lampScale), 0, 255), (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(__result.b * lampScale), 0, 255), __result.a);
             if (glowFloor.HasValue)
             {
                 byte f = (byte)UnityEngine.Mathf.Clamp(UnityEngine.Mathf.RoundToInt(glowFloor.Value * 255f), 0, 255);
@@ -144,6 +147,37 @@ namespace Nelim.PickleTools.ScreenshotStudio
             glowCeiling = ceiling;
             ceilingKeepsLamps = true;
             RefreshGlow(Find.CurrentMap);
+        }
+
+        /// <summary>
+        /// Scales the glow of the lamps (every light of the glow grid: torches, braziers, lamps) to this percent of its value (100 = unchanged) until the scenario ends, keeping the falloff, so
+        /// a night scene lit by lamps shows a pool that fades out instead of a floor lit flat (AnN galerie-46 and 48: a flat clamp or no clamp at all). Scales the Color32 lamp reads the
+        /// lighting overlay draws and the lamp term GroundGlowAt computes from them. Written 2026-11-20. COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [Given(Prefix + "the glow of the lamps is scaled to {int} percent")]
+        public void ScaleLampGlow(PickleContext ctx, int percent)
+        {
+            ctx.Require(Find.CurrentMap != null, "No loaded map");
+            ctx.Require(percent >= 0 && percent <= 400, "a percent runs from 0 to 400");
+            EnsureGlowPatched(ctx);
+            lampScale = percent / 100f;
+            RefreshGlow(Find.CurrentMap);
+        }
+
+        /// <summary>
+        /// Logs ([light-at]) what the light is on one cell: the lamp glow of the grid (r, g, b, a: alpha 1 = overlit), the ground glow the game reads, whether the cell is roofed, the sky glow
+        /// and the sun glow. Reads only, to tell a lamp pool from the sun on a capture that reads bright. Written 2026-11-20 for AnN. COMPILED, NOT PLAYED.
+        /// </summary>
+        [When(Prefix + "the light at \\({int}, {int}\\) is logged")]
+        public void LogLightAt(PickleContext ctx, int x, int z)
+        {
+            Map map = Find.CurrentMap;
+            ctx.Require(map != null, "No loaded map");
+            var c = new IntVec3(x, 0, z);
+            ctx.Require(c.InBounds(map), "the cell (" + x + ", " + z + ") is off the map");
+            UnityEngine.Color32 lamp = map.glowGrid.VisualGlowAt(c);
+            Log.Message("[light-at] (" + x + ", " + z + ") lamp glow r" + lamp.r + " g" + lamp.g + " b" + lamp.b + " a" + lamp.a + ", ground glow " + map.glowGrid.GroundGlowAt(c).ToString("0.00") + ", ground glow without the sky " + map.glowGrid.GroundGlowAt(c, false, true).ToString("0.00")
+                + ", roofed " + map.roofGrid.Roofed(c) + ", sky glow " + map.skyManager.CurSkyGlow.ToString("0.00") + ", sun glow " + GenCelestial.CurCelestialSunGlow(map).ToString("0.00"));
         }
 
         /// <summary>Recomputes the glow grid and redraws the map mesh, for a capture taken after the hour was set in a paused game (the glow cache is refreshed on a tick only).</summary>
