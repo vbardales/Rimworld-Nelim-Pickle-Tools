@@ -44,6 +44,43 @@ namespace Nelim.PickleTools.ClickDiagnostics
         private const int SecondsToGiveUp = 25;
         private const int FramesToOpen = 60;
 
+        /// <summary>
+        /// Logs ([windows]) every window open now, front to back: full type name, rectangle, whether it absorbs input around it, whether it is a dialog
+        /// that closes on escape, and the mod that owns its type. To find out what a window is before a step names it (idea read in the Hotfix mod's Snapshot
+        /// tool, 2026-11-21: its screen listing is richer, ours stays a window list). Never fails. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the open windows are logged")]
+        public void LogOpenWindows()
+        {
+            var windows = Find.WindowStack.Windows;
+            Log.Message($"[windows] {windows.Count} open");
+            for (int i = windows.Count - 1; i >= 0; i--)
+            {
+                Window window = windows[i];
+                Type type = window.GetType();
+                Log.Message($"[windows] {windows.Count - i}. {type.FullName} rect {window.windowRect} absorbs {window.absorbInputAroundWindow} closeOnCancel {window.closeOnCancel} mod {LoadedModManager.RunningModsListForReading.FirstOrDefault(mod => mod.assemblies.loadedAssemblies.Contains(type.Assembly))?.PackageId ?? "game"}");
+            }
+        }
+
+        /// <summary>
+        /// Logs ([buttons]) every button drawn in the last complete frame: widget (text or image button), label (none for an image button), rectangle in screen
+        /// space and drawing order. To see what can be clicked on the screen now, before a step names a button (the Hotfix mod's Snapshot tool does the same for
+        /// the whole screen, 2026-11-21: this one lists buttons only). Installs the same probe as the click steps and waits 5 frames so a frame is complete. Never
+        /// fails. Compiled, NOT PLAYED.
+        /// </summary>
+        [Given("Nelim's Pickle Tools: the buttons drawn are logged", TimeoutSeconds = 60f)]
+        public async Task LogButtons(PickleContext ctx)
+        {
+            ButtonProbe.EnsureInstalled();
+            await ctx.WaitFrames(5);
+            var seen = ButtonProbe.LastFrame();
+            Log.Message($"[buttons] {seen.Count} drawn in the last frame");
+            foreach (var button in seen)
+            {
+                Log.Message($"[buttons] {button.Order}. {button.Widget} \"{button.Label ?? ""}\" at {button.Screen}");
+            }
+        }
+
         // What Pickle's tag store held right after the hover step, kept for the failure message of the click.
         private static string storeAfterHover = "(no hover step ran before the click)";
 

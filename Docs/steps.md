@@ -7,7 +7,7 @@ of a pass map ("Using a tool from a suite" in the [README](../README.md)).
 
 This file is **generated** from the `[Given]`, `[When]` and `[Then]` attributes of each tool's `Source/` and the first
 sentences of the summary above them: do not edit it, run `docs/Generate-Steps.ps1` (`-Check` verifies that it is current).
-771 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
+773 steps. The keyword in brackets is the one the source declares; Pickle matches on the text alone, so a scenario may
 use `Given`, `When`, `Then` or `And` as it reads best. What a step does not say here (its limits, what was played and what
 was not) is in the tool's README.
 
@@ -46,6 +46,8 @@ Package `nelim.pickletools.clickdiagnostics`. In the bundle (`Mod/Pickle/Assembl
 
 | Step | Does |
 | --- | --- |
+| `Nelim's Pickle Tools: the open windows are logged` (Given) | Logs ([windows]) every window open now, front to back: full type name, rectangle, whether it absorbs input around it, whether it is a dialog that closes on escape, and the mod that owns its type. |
+| `Nelim's Pickle Tools: the buttons drawn are logged` (Given) | Logs ([buttons]) every button drawn in the last complete frame: widget (text or image button), label (none for an image button), rectangle in screen space and drawing order. |
 | `Nelim's Pickle Tools: I move the mouse to \({int}, {int}\)` (When) | Parks the pointer: drops whatever hover Pickle had armed, so no control is drawn as hovered and no tooltip or selection bracket draws over the subject of a capture. |
 | `Nelim's Pickle Tools: the button keyed {string} has stood still` (When) | Waits until the button has been drawn at the same place for sixty frames in a row and two seconds. |
 | `Nelim's Pickle Tools: the button keyed {string} is reachable in {string}` (Then) | Hovers the button and asserts the window under the pointer is the named one, and that it receives input. |

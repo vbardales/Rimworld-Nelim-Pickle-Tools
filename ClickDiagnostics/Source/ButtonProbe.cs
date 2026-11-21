@@ -115,6 +115,9 @@ namespace Nelim.PickleTools.ClickDiagnostics
             });
         }
 
+        /// <summary>The buttons of the last COMPLETE frame (the one before the frame being drawn), in drawing order.</summary>
+        internal static IReadOnlyList<Seen> LastFrame() => previous;
+
         /// <summary>The last rectangle a text button with this label was drawn at, or null if none was seen.</summary>
         internal static Rect? LatestRect(string label)
         {
