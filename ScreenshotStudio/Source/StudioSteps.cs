@@ -476,6 +476,20 @@ namespace Nelim.PickleTools.ScreenshotStudio
         [When(Prefix + "the building status icons are kept")]
         public void KeepStatusIcons(PickleContext ctx) { OverlaySuppression.StatusIconsKept = true; }
 
+        /// <summary>
+        /// Opt-in: holds the pulse of the status icons over buildings (no power, power off, broken down, out of fuel) at full alpha until the scenario ends, so a screenshot does not catch the icon at a faint phase
+        /// (the game fades them with realtime). Use it with "the building status icons are kept". Prefix on FadedMaterialPool.FadedVersionOf forcing alpha 1 while held (any other faded material in the shot is full alpha too).
+        /// Written 2026-11-23 for aCSCaH scene 6 (ticket 83d5). COMPILED, NOT PLAYED. Needs Harmony.
+        /// </summary>
+        [When(Prefix + "the building status icons are kept steady")]
+        public void KeepStatusIconsSteady(PickleContext ctx)
+        {
+            OverlaySuppression.StatusIconsKept = true;
+            try { OverlaySuppression.HoldStatusIconsSteady(); }
+            catch (Exception e) when (e is System.IO.FileNotFoundException || e is TypeLoadException || e is TypeInitializationException)
+            { ctx.Require(false, "the status icons cannot be held steady: Harmony is not loaded (" + e.GetType().Name + ")"); }
+        }
+
         [AfterScenario]
         public void RestoreInterface()
         {

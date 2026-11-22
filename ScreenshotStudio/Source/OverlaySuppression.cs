@@ -18,6 +18,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
         private static Harmony harmony;
         private static bool overlaysPatched, tooltipsPatched, helperPatched, readoutPatched, alertsPatched, statusPatched, bracketsPatched, areasPatched, designatorLabelsPatched, skyPatched;
         private static bool? zonesShownBefore;
+        private static bool steadyPatched;
 
         public static bool Active { get; private set; }
         public static bool TooltipsHidden { get; private set; }
@@ -29,6 +30,29 @@ namespace Nelim.PickleTools.ScreenshotStudio
         public static bool DesignatorLabelsHidden { get; private set; }
         public static bool SkyOverlaysHidden { get; private set; }
         public static bool StatusIconsKept { get; set; }
+        public static bool StatusIconsSteady { get; private set; }
+
+        /// <summary>
+        /// Holds the pulse of the status icons at full alpha: OverlayDrawer.RenderPulsingOverlay draws them through FadedMaterialPool.FadedVersionOf with an alpha that follows realtime,
+        /// so a screenshot catches them at a random phase. The prefix forces alpha 1 on that call while the hold is on, which also affects any other faded material drawn in the same shot.
+        /// </summary>
+        public static void HoldStatusIconsSteady()
+        {
+            lock (Gate)
+            {
+                Harmony();
+                if (!steadyPatched)
+                {
+                    MethodInfo faded = AccessTools.Method(typeof(FadedMaterialPool), nameof(FadedMaterialPool.FadedVersionOf), new[] { typeof(UnityEngine.Material), typeof(float) });
+                    if (faded == null) throw new InvalidOperationException("FadedMaterialPool.FadedVersionOf(Material, float) not found: the game changed, update this step");
+                    harmony.Patch(faded, prefix: new HarmonyMethod(typeof(OverlaySuppression), nameof(SteadyAlpha)));
+                    steadyPatched = true;
+                }
+                StatusIconsSteady = true;
+            }
+        }
+
+        private static void SteadyAlpha(ref float alpha) { if (StatusIconsSteady) alpha = 1f; }
 
         public static void Begin()
         {
@@ -224,7 +248,7 @@ namespace Nelim.PickleTools.ScreenshotStudio
             }
             zonesShownBefore = null;
             AreasHidden = false; DesignatorLabelsHidden = false; SkyOverlaysHidden = false; ChromeHidden = false;
-            Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false;
+            Active = false; TooltipsHidden = false; HelperHidden = false; ReadoutHidden = false; AlertsHidden = false; BracketsHidden = false; StatusIconsKept = false; StatusIconsSteady = false;
         }
 
         private static void Harmony() { if (harmony == null) harmony = new Harmony("nelim.pickletools.screenshotstudio.overlays"); }
