@@ -35,6 +35,36 @@ namespace Nelim.PickleTools.DefFields
                 $"{def.GetType().Name} '{defName}' field '{fieldPath}' should be '{expected}'; actual '{actual}'");
         }
 
+        /// <summary>
+        /// Asserts a field of a def has NO value: it is null, or an empty list or array, or an empty string (what a PatchOperationRemove leaves
+        /// behind, such as <c>renderNodeProperties</c>). The plain step reads a null as the text <c>(null)</c> and an empty list as an empty text.
+        /// A null met on the way (not at the last part of the path) still fails. Compiled, NOT PLAYED.
+        /// </summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} has no value in the field {string}")]
+        public void FieldHasNoValue(PickleContext ctx, string defName, string typeName, string fieldPath)
+        {
+            Def def = Find(ctx, defName, typeName);
+            object value = Walk(ctx, def, fieldPath);
+            ctx.Assert(IsEmpty(value), $"{def.GetType().Name} '{defName}' field '{fieldPath}' should have no value; actual '{Text(value)}'");
+        }
+
+        /// <summary>The positive twin of <c>the def ... has no value in the field ...</c>: the field is not null, and not an empty list, array or string. Compiled, NOT PLAYED.</summary>
+        [Then("Nelim's Pickle Tools: the def {string} of type {string} has a value in the field {string}")]
+        public void FieldHasValue(PickleContext ctx, string defName, string typeName, string fieldPath)
+        {
+            Def def = Find(ctx, defName, typeName);
+            object value = Walk(ctx, def, fieldPath);
+            ctx.Assert(!IsEmpty(value), $"{def.GetType().Name} '{defName}' field '{fieldPath}' should have a value; it is {(value == null ? "null" : "empty")}");
+        }
+
+        private static bool IsEmpty(object value)
+        {
+            if (value == null) return true;
+            if (value is string s) return s.Length == 0;
+            if (value is System.Collections.IEnumerable list) return !list.Cast<object>().Any();
+            return false;
+        }
+
         /// <summary>Asserts a biome lists a pawn kind among its wild animals (BiomeDef.wildAnimals, which a patch fills; the commonality is not read).</summary>
         [Then("Nelim's Pickle Tools: the biome {string} lists the wild animal {string}")]
         public void BiomeListsAnimal(PickleContext ctx, string biomeName, string kindName)
