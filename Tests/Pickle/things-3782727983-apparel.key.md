@@ -1,6 +1,6 @@
 # apparel key, workshop mod 3782727983
 
-Cell = the 3 x 3 block, row 1 = north.
+Cell = the 2 x 2 block, row 1 = north.
 
 ## Shot 01
 
